@@ -1,0 +1,2004 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="PresentationCore">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationCore.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Media.Media3D.Converters">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Media.Media3D.Converters" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" />
+        <element api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" />
+      </elements>
+      <file name="e5339c6b-0f7f-d6fa-d8bd-b6e98e0ea90b" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" />
+      <apidata name="Matrix3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="824cd8e2-f64c-3015-4bac-b85a451d6372" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer">
+      <topicdata name="Matrix3DValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" />
+      <apidata name="Matrix3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" />
+      </containers>
+      <file name="ffb72c62-5ebd-25a6-c10b-86f30b28c96f" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer">
+      <topicdata name="Matrix3DValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" />
+      <apidata name="Matrix3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" />
+      </containers>
+      <file name="c7f208c0-ece4-e60c-a336-04c1f83f3bd9" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" ref="true" />
+      </containers>
+      <file name="98c42a09-ae7b-a368-073b-091d3afb72a2" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" ref="true" />
+      </containers>
+      <file name="a6d84e14-e7af-3ea8-834b-7750f2315895" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" ref="true" />
+      </containers>
+      <file name="f76eebbf-ae7e-57e1-34ed-83edbb6356b3" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" ref="true" />
+      </containers>
+      <file name="cf0f8efa-0a46-0858-57a8-e218dc46c1cd" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Matrix3DValueSerializer" ref="true" />
+      </containers>
+      <file name="ee2c7a4b-884c-c72c-230f-706d2b1c377c" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" />
+      <apidata name="Point3DCollectionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="77e94b1b-f82e-8d70-dee4-aa6781298dc7" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer">
+      <topicdata name="Point3DCollectionValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" />
+      <apidata name="Point3DCollectionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" />
+      </containers>
+      <file name="7f7cdcf9-b4b4-c666-457f-706d03246c11" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer">
+      <topicdata name="Point3DCollectionValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" />
+      <apidata name="Point3DCollectionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" />
+      </containers>
+      <file name="b175845a-c7fa-4c03-05cd-c5d8176bc279" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="d9ad81d6-74df-ed4b-a198-ab2af573b197" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="a58c312f-cdc5-0645-4c7e-50b9d392531c" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="a894e14a-3ec0-6f36-3053-143420742a2a" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="6e82562d-7e0d-ab7a-22ac-d997466062d6" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="adc1b2a0-8c9e-edca-71e8-c1203a7257b0" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" />
+      <apidata name="Point3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="31859039-bb14-f872-32e2-a432a0eb3750" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer">
+      <topicdata name="Point3DValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" />
+      <apidata name="Point3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" />
+      </containers>
+      <file name="bcac00a1-2d06-e558-7016-c0c9e37d6974" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer">
+      <topicdata name="Point3DValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" />
+      <apidata name="Point3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" />
+      </containers>
+      <file name="5e929f1a-1162-29c3-4fe0-b014c50e586b" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" ref="true" />
+      </containers>
+      <file name="dde74cb8-5443-2987-ef41-d540ab6967f9" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" ref="true" />
+      </containers>
+      <file name="33454445-0a76-0069-397f-f800f6081cb8" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" ref="true" />
+      </containers>
+      <file name="5b9760de-d0c1-548c-706f-24ba6a7c9eee" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" ref="true" />
+      </containers>
+      <file name="b32a6fd7-a42f-d31a-ee9e-ff90c008fcac" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point3DValueSerializer" ref="true" />
+      </containers>
+      <file name="73238f1e-bc6c-8b4b-19f9-5fb5b551ec59" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" />
+      <apidata name="Point4DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="b9735e7b-a13c-34f2-b440-5f1b1a975203" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer">
+      <topicdata name="Point4DValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" />
+      <apidata name="Point4DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" />
+      </containers>
+      <file name="0f92e82f-0390-4e3c-81f8-8fe717c3cf1e" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer">
+      <topicdata name="Point4DValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" />
+      <apidata name="Point4DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" />
+      </containers>
+      <file name="3574595c-430f-f49f-431e-cfe2271b773f" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" ref="true" />
+      </containers>
+      <file name="31d14f1c-1413-90b1-a868-42383e2e7742" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" ref="true" />
+      </containers>
+      <file name="8a73060f-5bb6-d89f-8439-f603cc3a5b67" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" ref="true" />
+      </containers>
+      <file name="c5d6c0c8-d43f-2d56-97a6-851f238632d3" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" ref="true" />
+      </containers>
+      <file name="4b665c3c-ad78-5894-db2a-d61f2cc20093" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Point4DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Point4DValueSerializer" ref="true" />
+      </containers>
+      <file name="96f9450d-ec69-0db1-3073-3d9d2aff684c" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" />
+      <apidata name="QuaternionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="ce51c3a7-1973-ebce-b3ac-8f8e3d7c24b5" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer">
+      <topicdata name="QuaternionValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" />
+      <apidata name="QuaternionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" />
+      </containers>
+      <file name="3a04f237-7e19-5699-3091-b01a198b5af1" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer">
+      <topicdata name="QuaternionValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" />
+      <apidata name="QuaternionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" />
+      </containers>
+      <file name="041d45a6-02a0-a64c-2410-8d2fc7a0097e" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" ref="true" />
+      </containers>
+      <file name="437cd768-3542-ecd2-6b8b-374556063c98" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" ref="true" />
+      </containers>
+      <file name="95f227d6-058f-413d-a4a3-e07b8c7ed130" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" ref="true" />
+      </containers>
+      <file name="91f24bf9-85b4-d7bf-b716-d950b9d112ac" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" ref="true" />
+      </containers>
+      <file name="b9b4d8a8-0361-b488-f7b5-dec4ac5ded41" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.QuaternionValueSerializer" ref="true" />
+      </containers>
+      <file name="02547238-79fd-6a48-10fc-1073060c35f2" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" />
+      <apidata name="Rect3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="207078fc-34bc-db44-50f0-187b4925ab3d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer">
+      <topicdata name="Rect3DValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" />
+      <apidata name="Rect3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" />
+      </containers>
+      <file name="b4d8b3a3-6e70-e3b5-5a78-38558c60ad66" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer">
+      <topicdata name="Rect3DValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" />
+      <apidata name="Rect3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" />
+      </containers>
+      <file name="2f3d850c-78e7-a872-929f-19b13fe44372" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" ref="true" />
+      </containers>
+      <file name="a148d3fd-648c-fb4c-922a-c30b8800fdea" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" ref="true" />
+      </containers>
+      <file name="9891bbb7-9bc6-bf57-9cb9-3ef66253a6d3" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" ref="true" />
+      </containers>
+      <file name="b145b50c-4e89-9195-8e0e-8aa8f6457fda" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" ref="true" />
+      </containers>
+      <file name="c9f49829-83e2-ed03-cae1-a095d1badf02" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Rect3DValueSerializer" ref="true" />
+      </containers>
+      <file name="ab123dd5-3c02-1f5e-f41a-b51ab67744e0" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" />
+      <apidata name="Size3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="a7a4f8ce-d06d-2a09-dc4b-998050d4f8a3" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer">
+      <topicdata name="Size3DValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" />
+      <apidata name="Size3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" />
+      </containers>
+      <file name="bc42c4f7-d0df-80b0-8d15-a4eb937cfc85" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer">
+      <topicdata name="Size3DValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" />
+      <apidata name="Size3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" />
+      </containers>
+      <file name="f18ca323-a05f-5646-2af0-519018d5ce51" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" ref="true" />
+      </containers>
+      <file name="3c015c50-5aaf-54f9-d5f0-f8b07b067ace" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" ref="true" />
+      </containers>
+      <file name="3a1f8869-9037-3557-ad1f-971ff1270fff" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" ref="true" />
+      </containers>
+      <file name="6d7ca516-05d5-6d1f-f8b6-633a2719d029" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" ref="true" />
+      </containers>
+      <file name="a8ae5b80-1aca-6b52-186c-59abe47d87ce" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Size3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Size3DValueSerializer" ref="true" />
+      </containers>
+      <file name="399640dd-4c25-b3aa-88a6-1648c9a4c90d" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" />
+      <apidata name="Vector3DCollectionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="1630e125-2034-3dbf-bdbc-4ca44e5b798e" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer">
+      <topicdata name="Vector3DCollectionValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" />
+      <apidata name="Vector3DCollectionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" />
+      </containers>
+      <file name="5a8be527-aa3c-9451-1a76-df48b1d3c6fb" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer">
+      <topicdata name="Vector3DCollectionValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" />
+      <apidata name="Vector3DCollectionValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" />
+      </containers>
+      <file name="d28c3e1a-19df-dfff-217a-cd8a56b5fc3f" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="02f55492-d3cf-778c-8f76-fc6a8bb2788e" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="082887e5-5ed0-d11e-1219-ea97ee02a676" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="e2b3873d-a6b3-1117-17d9-783a648e7f0f" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="983f1a12-ffbf-32e2-c918-26126f656147" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DCollectionValueSerializer" ref="true" />
+      </containers>
+      <file name="26839e99-89e9-f45e-a686-5770dc00fce9" />
+    </api>
+    <api id="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" />
+      <apidata name="Vector3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+      </containers>
+      <file name="f918e038-b77d-d46d-3db7-a8e40e208799" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer">
+      <topicdata name="Vector3DValueSerializer" group="list" subgroup="members" typeTopicId="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" />
+      <apidata name="Vector3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.#ctor" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" />
+      </containers>
+      <file name="8b8343ae-851d-5ef1-61d0-04378aff8d9d" />
+    </api>
+    <api id="Methods.T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer">
+      <topicdata name="Vector3DValueSerializer" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" />
+      <apidata name="Vector3DValueSerializer" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertFromException(System.Object)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.GetConvertToException(System.Object,System.Type)" />
+        <element api="M:System.Windows.Markup.ValueSerializer.TypeReferences(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)" />
+        <element api="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" />
+      </containers>
+      <file name="673c6713-5dbe-2df0-8e65-a3295b5288a9" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" ref="true" />
+      </containers>
+      <file name="0782b1fd-a6c0-9666-73c8-781ec61c5ad5" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" ref="true" />
+      </containers>
+      <file name="fce27764-5a7d-34cc-82e3-81bcc1fdc0d0" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="CanConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.CanConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" ref="true" />
+      </containers>
+      <file name="9c882194-fc3d-3aae-0c24-e5d35b767d72" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertFromString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertFromString(System.String,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" ref="true" />
+      </containers>
+      <file name="7445ce2e-265b-e94b-2ab1-4b6df343cdc2" />
+    </api>
+    <api id="M:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="ConvertToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Markup.ValueSerializer.ConvertToString(System.Object,System.Windows.Markup.IValueSerializerContext)">
+          <type api="T:System.Windows.Markup.ValueSerializer" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationCore" module="PresentationCore" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.0" />
+        </library>
+        <namespace api="N:System.Windows.Media.Media3D.Converters" />
+        <type api="T:System.Windows.Media.Media3D.Converters.Vector3DValueSerializer" ref="true" />
+      </containers>
+      <file name="a25680f9-c8ce-d52b-35cb-8ca4be6c8d95" />
+    </api>
+  </apis>
+</reflection>

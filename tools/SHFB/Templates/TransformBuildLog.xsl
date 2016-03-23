@@ -7,35 +7,31 @@
 // System  : Sandcastle Help File Builder
 // File    : BuildLog.xsl
 // Author  : Eric Woodruff
-// Updated : 12/30/2009
-// Note    : Copyright 2008-2009, Eric Woodruff, All rights reserved
+// Updated : 01/07/2012
+// Note    : Copyright 2008-2012, Eric Woodruff, All rights reserved
 //
 // This is used to convert a SHFB build log into a viewable HTML page.
 -->
 
   <xsl:param name="filterOn" select="'false'" />
+	<xsl:param name="highlightOn" select="'false'" />
 
-  <msxsl:script language="C#" implements-prefix="shfb">
+	<msxsl:script language="C#" implements-prefix="shfb">
   <msxsl:using namespace="System.Text" />
   <msxsl:using namespace="System.Text.RegularExpressions" />
     <![CDATA[
-    private static Regex reScriptName = new Regex(@"^\[.*?\\.*?\]|" +
-        @"Project \x22.*?\..*?proj\x22", RegexOptions.Multiline);
-
     private static Regex reWarning = new Regex(@"(Warn|Warning( HXC\d+)?):|" +
-        @"SHFB\s*:\s*Warning\s.*?:|.*?(\(\d*,\d*\))?:\s*warning\s.*?:",
-        RegexOptions.IgnoreCase);
+        @"SHFB\s*:\s*(W|w)arning\s.*?:|.*?(\(\d*,\d*\))?:\s*(W|w)arning\s.*?:");
 
     private static Regex reErrors = new Regex(
         @"^\s*((Error|UnrecognizedOption|Unhandled Exception|Fatal Error|" +
         @"Unexpected error.*|HHC\d+: Error|(Fatal )?Error HXC\d+):|" +
-        @"Process is terminated|Build FAILED|\w+\s*:\s*Error\s.*?:|" +
-        @".*?\(\d*,\d*\):\s*error\s.*?:)",
-        RegexOptions.IgnoreCase | RegexOptions.Multiline);
+        @"Process is terminated|BUILD FAILED|\w+\s*:\s*(E|e)rror\s.*?:|" +
+        @".*?\(\d*,\d*\):\s*(E|e)rror\s.*?:)", RegexOptions.Multiline);
 
-    // Encode a few special characters, add a style to script names, warnings,
-    // and errors, and return a non-breaking space if empty.
-    public static string StyleLogText(string logText, string filterOn)
+    // Encode a few special characters, add a style to warnings and errors, and
+		// return a non-breaking space if empty.
+    public static string StyleLogText(string logText, string filterOn, string highlightOn)
     {
         // System.Web isn't always available so do some simple encoding
         logText = logText.Trim().Replace("&", "&amp;");
@@ -45,16 +41,18 @@
         // Include all text or just filter for warnings and errors?
         if(filterOn == "false")
         {
-            logText = reScriptName.Replace(logText, "<span class=\"ScriptName\">$0</span>");
-            logText = reWarning.Replace(logText, "<span class=\"Warning\">$0</span>");
-            logText = reErrors.Replace(logText, "<span class=\"Error\">$0</span>");
+						// Highlight warnings and errors in the full text?
+						if(highlightOn == "true")
+						{
+								logText = reWarning.Replace(logText, "<span class=\"Warning\">$0</span>");
+								logText = reErrors.Replace(logText, "<span class=\"Error\">$0</span>");
+						}
         }
         else
         {
             StringBuilder sb = new StringBuilder(2048);
 
             foreach(string s in logText.Split('\n'))
-            {
                 if(reWarning.IsMatch(s))
                 {
                     sb.Append(reWarning.Replace(s, "<span class=\"Warning\">$0</span>"));
@@ -66,7 +64,6 @@
                         sb.Append(reErrors.Replace(s, "<span class=\"Error\">$0</span>"));
                         sb.Append('\n');
                     }
-            }
 
             logText = sb.ToString();
         }
@@ -94,7 +91,6 @@
   .Warning { font-weight: bold; background-color: #ffd700; padding: 2px; }
   .Error { font-weight: bold; background-color: #b22222; color: #ffffff; padding: 2px; }
   .CollapseBox { cursor: pointer; color: black; text-align: center; border-style: solid; border-width: 1px; border-color: gray; margin-left: 0px; margin-right: 2px; margin-top: 0px; padding: 2px; width: 20px; }
-  .ScriptName { font-weight: bold; }
   .PlugIn { border-left: black 5px solid; padding-top: 5px; padding-bottom: 5px; padding-left: 10px; }
   .PlugInHeader { background-color: #cccc99; color: black; width: 95%; padding: 2px; }
 </style>
@@ -171,13 +167,13 @@ function ExpandCollapseAll(expand)
   <!-- Plug-in template -->
   <xsl:template match="plugIn">
     <div class="PlugIn"><span class="PlugInHeader"><b>Plug-In:</b>&#160;<xsl:value-of select="@name" />&#160;&#160;<b>Running:</b>&#160;<xsl:value-of select="@behavior" />&#160;&#160;<b>Priority:</b>&#160;<xsl:value-of select="@priority" /></span><br/>
-      <xsl:value-of select="shfb:StyleLogText(text(), $filterOn)" disable-output-escaping="yes" />
+      <xsl:value-of select="shfb:StyleLogText(text(), $filterOn, $highlightOn)" disable-output-escaping="yes" />
     </div>
   </xsl:template>
 
   <!-- Text template -->
   <xsl:template match="text()">
-    <xsl:value-of select="shfb:StyleLogText(., $filterOn)" disable-output-escaping="yes" />
+    <xsl:value-of select="shfb:StyleLogText(., $filterOn, $highlightOn)" disable-output-escaping="yes" />
   </xsl:template>
 
 </xsl:stylesheet>

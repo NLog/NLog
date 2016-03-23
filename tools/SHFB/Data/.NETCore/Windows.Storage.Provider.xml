@@ -1,0 +1,1301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Storage.Provider">
+      <topicdata group="api" />
+      <apidata name="Windows.Storage.Provider" group="namespace" />
+      <elements>
+        <element api="T:Windows.Storage.Provider.CachedFileTarget" />
+        <element api="T:Windows.Storage.Provider.UIStatus" />
+        <element api="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+        <element api="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+        <element api="T:Windows.Storage.Provider.FileUpdateRequest" />
+        <element api="T:Windows.Storage.Provider.FileUpdateRequestDeferral" />
+        <element api="T:Windows.Storage.Provider.FileUpdateStatus" />
+        <element api="T:Windows.Storage.Provider.CachedFileOptions" />
+        <element api="T:Windows.Storage.Provider.ReadActivationMode" />
+        <element api="T:Windows.Storage.Provider.WriteActivationMode" />
+        <element api="T:Windows.Storage.Provider.CachedFileUpdater" />
+      </elements>
+      <file name="5be161fc-0452-f6a1-5bd6-9264b6fa2640" />
+    </api>
+    <api id="T:Windows.Storage.Provider.CachedFileOptions">
+      <topicdata group="api" />
+      <apidata name="CachedFileOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Storage.Provider.CachedFileOptions.None" />
+        <element api="F:Windows.Storage.Provider.CachedFileOptions.RequireUpdateOnAccess" />
+        <element api="F:Windows.Storage.Provider.CachedFileOptions.UseCachedFileWhenOffline" />
+        <element api="F:Windows.Storage.Provider.CachedFileOptions.DenyAccessWhenOffline" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="cfeb2596-ca43-9f78-ed6d-006b93fc5d8e" />
+    </api>
+    <api id="F:Windows.Storage.Provider.CachedFileOptions.DenyAccessWhenOffline">
+      <topicdata group="api" notopic="" />
+      <apidata name="DenyAccessWhenOffline" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </containers>
+      <file name="00f78d23-9e51-fe34-ed5a-a2075447de02" />
+    </api>
+    <api id="F:Windows.Storage.Provider.CachedFileOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </containers>
+      <file name="c2d738c1-f8d6-08ed-9e23-1960c32f98dc" />
+    </api>
+    <api id="F:Windows.Storage.Provider.CachedFileOptions.RequireUpdateOnAccess">
+      <topicdata group="api" notopic="" />
+      <apidata name="RequireUpdateOnAccess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </containers>
+      <file name="154acbf0-0b81-6b72-82e5-383ddead4037" />
+    </api>
+    <api id="F:Windows.Storage.Provider.CachedFileOptions.UseCachedFileWhenOffline">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseCachedFileWhenOffline" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+      </containers>
+      <file name="64c2a544-4a95-625e-90ae-1f4bd6945ef4" />
+    </api>
+    <api id="T:Windows.Storage.Provider.CachedFileTarget">
+      <topicdata group="api" />
+      <apidata name="CachedFileTarget" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Provider.CachedFileTarget.Local" />
+        <element api="F:Windows.Storage.Provider.CachedFileTarget.Remote" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fcbacb7a-9024-0b85-474b-e59848aeae97" />
+    </api>
+    <api id="F:Windows.Storage.Provider.CachedFileTarget.Local">
+      <topicdata group="api" notopic="" />
+      <apidata name="Local" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileTarget" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileTarget" ref="false" />
+      </containers>
+      <file name="efbe1301-caca-beb0-aaab-c2cd0a85958e" />
+    </api>
+    <api id="F:Windows.Storage.Provider.CachedFileTarget.Remote">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remote" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileTarget" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileTarget" ref="false" />
+      </containers>
+      <file name="aa139f6b-7297-1a7d-ca78-47366c0ea6e9" />
+    </api>
+    <api id="T:Windows.Storage.Provider.CachedFileUpdater">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Provider.CachedFileUpdater" />
+      <apidata name="CachedFileUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="642caeff-297a-5c9f-89e6-c67f4fb6e0f7" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Provider.CachedFileUpdater">
+      <topicdata name="CachedFileUpdater" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Provider.CachedFileUpdater" />
+      <apidata name="CachedFileUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Storage.Provider.CachedFileUpdater.SetUpdateInformation(Windows.Storage.IStorageFile,System.String,Windows.Storage.Provider.ReadActivationMode,Windows.Storage.Provider.WriteActivationMode,Windows.Storage.Provider.CachedFileOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdater" />
+      </containers>
+      <file name="5570ab7c-8333-09f3-9f80-7c5c473c785b" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Provider.CachedFileUpdater">
+      <topicdata name="CachedFileUpdater" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Provider.CachedFileUpdater" />
+      <apidata name="CachedFileUpdater" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Storage.Provider.CachedFileUpdater.SetUpdateInformation(Windows.Storage.IStorageFile,System.String,Windows.Storage.Provider.ReadActivationMode,Windows.Storage.Provider.WriteActivationMode,Windows.Storage.Provider.CachedFileOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdater" />
+      </containers>
+      <file name="caa10b13-f094-82ac-b794-2d111434e0cc" />
+    </api>
+    <api id="M:Windows.Storage.Provider.CachedFileUpdater.SetUpdateInformation(Windows.Storage.IStorageFile,System.String,Windows.Storage.Provider.ReadActivationMode,Windows.Storage.Provider.WriteActivationMode,Windows.Storage.Provider.CachedFileOptions)">
+      <topicdata group="api" />
+      <apidata name="SetUpdateInformation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="contentId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="readMode" in="true">
+          <type api="T:Windows.Storage.Provider.ReadActivationMode" ref="false" />
+        </parameter>
+        <parameter name="writeMode" in="true">
+          <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.Storage.Provider.CachedFileOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdater" ref="true" />
+      </containers>
+      <file name="c7c2fc01-0745-bbe2-730e-1346f649456c" />
+    </api>
+    <api id="T:Windows.Storage.Provider.CachedFileUpdaterUI">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      <apidata name="CachedFileUpdaterUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Provider.ICachedFileUpdaterUI" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75db71ec-5740-4e33-56bd-5d69184000ab" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Provider.CachedFileUpdaterUI">
+      <topicdata name="CachedFileUpdaterUI" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      <apidata name="CachedFileUpdaterUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Storage.Provider.CachedFileUpdaterUI.FileUpdateRequested" />
+        <element api="P:Windows.Storage.Provider.CachedFileUpdaterUI.Title" />
+        <element api="E:Windows.Storage.Provider.CachedFileUpdaterUI.UIRequested" />
+        <element api="P:Windows.Storage.Provider.CachedFileUpdaterUI.UIStatus" />
+        <element api="P:Windows.Storage.Provider.CachedFileUpdaterUI.UpdateTarget" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      </containers>
+      <file name="7a9dcd83-3554-1709-64ba-9c4618967c4f" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Provider.CachedFileUpdaterUI">
+      <topicdata name="CachedFileUpdaterUI" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      <apidata name="CachedFileUpdaterUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      </containers>
+      <file name="8b94a389-83d1-ff6c-9f1f-95df12dc32d2" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Provider.CachedFileUpdaterUI">
+      <topicdata name="CachedFileUpdaterUI" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      <apidata name="CachedFileUpdaterUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Provider.CachedFileUpdaterUI.Title" />
+        <element api="P:Windows.Storage.Provider.CachedFileUpdaterUI.UIStatus" />
+        <element api="P:Windows.Storage.Provider.CachedFileUpdaterUI.UpdateTarget" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      </containers>
+      <file name="1be7a7c1-b686-b537-8702-87fc580c350f" />
+    </api>
+    <api id="Events.T:Windows.Storage.Provider.CachedFileUpdaterUI">
+      <topicdata name="CachedFileUpdaterUI" group="list" subgroup="Events" typeTopicId="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      <apidata name="CachedFileUpdaterUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Storage.Provider.CachedFileUpdaterUI.FileUpdateRequested" />
+        <element api="E:Windows.Storage.Provider.CachedFileUpdaterUI.UIRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" />
+      </containers>
+      <file name="b4bf70ec-da51-5130-49a5-25293f008bd0" />
+    </api>
+    <api id="E:Windows.Storage.Provider.CachedFileUpdaterUI.FileUpdateRequested">
+      <topicdata group="api" />
+      <apidata name="FileUpdateRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_FileUpdateRequested" />
+      <remover name="remove_FileUpdateRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+            <type api="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+      </containers>
+      <file name="eaf18e42-2bc1-10ac-c27f-5e0760cfe24c" />
+    </api>
+    <api id="P:Windows.Storage.Provider.CachedFileUpdaterUI.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+      </containers>
+      <file name="a9db25da-b6e6-d894-7d24-af0b76d9903c" />
+    </api>
+    <api id="E:Windows.Storage.Provider.CachedFileUpdaterUI.UIRequested">
+      <topicdata group="api" />
+      <apidata name="UIRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_UIRequested" />
+      <remover name="remove_UIRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+      </containers>
+      <file name="4e964257-0d89-f042-fd7f-ecd652175a7e" />
+    </api>
+    <api id="P:Windows.Storage.Provider.CachedFileUpdaterUI.UIStatus">
+      <topicdata group="api" />
+      <apidata name="UIStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UIStatus" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+      </containers>
+      <file name="7731bf48-65df-1546-82b8-70236f4c3a46" />
+    </api>
+    <api id="P:Windows.Storage.Provider.CachedFileUpdaterUI.UpdateTarget">
+      <topicdata group="api" />
+      <apidata name="UpdateTarget" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UpdateTarget" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.CachedFileTarget" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.CachedFileUpdaterUI" ref="true" />
+      </containers>
+      <file name="5cd7d5aa-77dd-be14-1bff-a555b2c9d56c" />
+    </api>
+    <api id="T:Windows.Storage.Provider.FileUpdateRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Provider.FileUpdateRequest" />
+      <apidata name="FileUpdateRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Provider.IFileUpdateRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a8f3b7ae-0afc-951c-11b3-0c4a6c10adf4" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Provider.FileUpdateRequest">
+      <topicdata name="FileUpdateRequest" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequest" />
+      <apidata name="FileUpdateRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Provider.FileUpdateRequest.ContentId" />
+        <element api="P:Windows.Storage.Provider.FileUpdateRequest.File" />
+        <element api="M:Windows.Storage.Provider.FileUpdateRequest.GetDeferral" />
+        <element api="P:Windows.Storage.Provider.FileUpdateRequest.Status" />
+        <element api="M:Windows.Storage.Provider.FileUpdateRequest.UpdateLocalFile(Windows.Storage.IStorageFile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" />
+      </containers>
+      <file name="d9206ba0-a4d6-af52-659b-af2f3c1358d2" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Provider.FileUpdateRequest">
+      <topicdata name="FileUpdateRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequest" />
+      <apidata name="FileUpdateRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Provider.FileUpdateRequest.GetDeferral" />
+        <element api="M:Windows.Storage.Provider.FileUpdateRequest.UpdateLocalFile(Windows.Storage.IStorageFile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" />
+      </containers>
+      <file name="ba1006b3-d8e4-0189-aea4-02b91eca7df8" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Provider.FileUpdateRequest">
+      <topicdata name="FileUpdateRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequest" />
+      <apidata name="FileUpdateRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Provider.FileUpdateRequest.ContentId" />
+        <element api="P:Windows.Storage.Provider.FileUpdateRequest.File" />
+        <element api="P:Windows.Storage.Provider.FileUpdateRequest.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" />
+      </containers>
+      <file name="98f4cb60-da46-223a-4650-b36b2f037b93" />
+    </api>
+    <api id="P:Windows.Storage.Provider.FileUpdateRequest.ContentId">
+      <topicdata group="api" />
+      <apidata name="ContentId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ContentId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" ref="true" />
+      </containers>
+      <file name="f71cf63e-090a-fd41-bf11-b999e3789777" />
+    </api>
+    <api id="P:Windows.Storage.Provider.FileUpdateRequest.File">
+      <topicdata group="api" />
+      <apidata name="File" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_File" />
+      <returns>
+        <type api="T:Windows.Storage.StorageFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" ref="true" />
+      </containers>
+      <file name="ecf89246-85ea-193b-6a48-e2717407552a" />
+    </api>
+    <api id="M:Windows.Storage.Provider.FileUpdateRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" ref="true" />
+      </containers>
+      <file name="ccfa45ec-503c-f2c6-d623-10131b7fba85" />
+    </api>
+    <api id="P:Windows.Storage.Provider.FileUpdateRequest.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Status" />
+      <setter name="set_Status" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" ref="true" />
+      </containers>
+      <file name="052c14f0-dccb-c662-f52d-6babd14cb1e8" />
+    </api>
+    <api id="M:Windows.Storage.Provider.FileUpdateRequest.UpdateLocalFile(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="UpdateLocalFile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" ref="true" />
+      </containers>
+      <file name="f9cff81e-c0b2-ef8b-3b9b-646fcd9e11a0" />
+    </api>
+    <api id="T:Windows.Storage.Provider.FileUpdateRequestDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Provider.FileUpdateRequestDeferral" />
+      <apidata name="FileUpdateRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Provider.IFileUpdateRequestDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1d7904a6-41b1-2754-635b-2958c117ca4f" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Provider.FileUpdateRequestDeferral">
+      <topicdata name="FileUpdateRequestDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequestDeferral" />
+      <apidata name="FileUpdateRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Provider.FileUpdateRequestDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestDeferral" />
+      </containers>
+      <file name="16ff7cda-e6b1-d66b-32d8-ec2f4b7dfb59" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Provider.FileUpdateRequestDeferral">
+      <topicdata name="FileUpdateRequestDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequestDeferral" />
+      <apidata name="FileUpdateRequestDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Storage.Provider.FileUpdateRequestDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestDeferral" />
+      </containers>
+      <file name="14104eab-6782-7c28-076e-ef49801710a0" />
+    </api>
+    <api id="M:Windows.Storage.Provider.FileUpdateRequestDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestDeferral" ref="true" />
+      </containers>
+      <file name="0f0ecd0d-52eb-5f2b-0099-af3111c21cfd" />
+    </api>
+    <api id="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      <apidata name="FileUpdateRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Storage.Provider.IFileUpdateRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="02cf7316-aeef-5ea0-9cef-e5321cb34f21" />
+    </api>
+    <api id="AllMembers.T:Windows.Storage.Provider.FileUpdateRequestedEventArgs">
+      <topicdata name="FileUpdateRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      <apidata name="FileUpdateRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Storage.Provider.FileUpdateRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      </containers>
+      <file name="02659b9c-0663-7280-af22-ef81b8336b27" />
+    </api>
+    <api id="Methods.T:Windows.Storage.Provider.FileUpdateRequestedEventArgs">
+      <topicdata name="FileUpdateRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      <apidata name="FileUpdateRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      </containers>
+      <file name="4abc3f02-726a-35e2-5280-d8846320471a" />
+    </api>
+    <api id="Properties.T:Windows.Storage.Provider.FileUpdateRequestedEventArgs">
+      <topicdata name="FileUpdateRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      <apidata name="FileUpdateRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Storage.Provider.FileUpdateRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" />
+      </containers>
+      <file name="0c1fde54-208a-60c3-7242-43a31e796957" />
+    </api>
+    <api id="P:Windows.Storage.Provider.FileUpdateRequestedEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="1a717303-326b-240d-ba7a-a2bc25f51781" />
+    </api>
+    <api id="T:Windows.Storage.Provider.FileUpdateStatus">
+      <topicdata group="api" />
+      <apidata name="FileUpdateStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Provider.FileUpdateStatus.Incomplete" />
+        <element api="F:Windows.Storage.Provider.FileUpdateStatus.Complete" />
+        <element api="F:Windows.Storage.Provider.FileUpdateStatus.UserInputNeeded" />
+        <element api="F:Windows.Storage.Provider.FileUpdateStatus.CurrentlyUnavailable" />
+        <element api="F:Windows.Storage.Provider.FileUpdateStatus.Failed" />
+        <element api="F:Windows.Storage.Provider.FileUpdateStatus.CompleteAndRenamed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="57757e09-10c4-42c6-067a-33a494d55177" />
+    </api>
+    <api id="F:Windows.Storage.Provider.FileUpdateStatus.Complete">
+      <topicdata group="api" notopic="" />
+      <apidata name="Complete" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </containers>
+      <file name="012d93cb-1d9c-73a6-5b69-08421d9b4db3" />
+    </api>
+    <api id="F:Windows.Storage.Provider.FileUpdateStatus.CompleteAndRenamed">
+      <topicdata group="api" notopic="" />
+      <apidata name="CompleteAndRenamed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </containers>
+      <file name="2d845ebe-206a-8d2c-206b-81de7a68e364" />
+    </api>
+    <api id="F:Windows.Storage.Provider.FileUpdateStatus.CurrentlyUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="CurrentlyUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </containers>
+      <file name="32bdde7f-0028-5e38-69bd-806e5aeb16ef" />
+    </api>
+    <api id="F:Windows.Storage.Provider.FileUpdateStatus.Failed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Failed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </containers>
+      <file name="3a5b9fc4-d5eb-6fa9-fde3-25a7a5a1b5f6" />
+    </api>
+    <api id="F:Windows.Storage.Provider.FileUpdateStatus.Incomplete">
+      <topicdata group="api" notopic="" />
+      <apidata name="Incomplete" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </containers>
+      <file name="a2479027-39bc-8d3e-b624-a079d0b10825" />
+    </api>
+    <api id="F:Windows.Storage.Provider.FileUpdateStatus.UserInputNeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserInputNeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.FileUpdateStatus" ref="false" />
+      </containers>
+      <file name="146699e5-02cf-9d63-38a4-3878c9b7de5e" />
+    </api>
+    <api id="T:Windows.Storage.Provider.ReadActivationMode">
+      <topicdata group="api" />
+      <apidata name="ReadActivationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Provider.ReadActivationMode.NotNeeded" />
+        <element api="F:Windows.Storage.Provider.ReadActivationMode.BeforeAccess" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8816ead1-2a4b-427e-b0d7-589d126cafc6" />
+    </api>
+    <api id="F:Windows.Storage.Provider.ReadActivationMode.BeforeAccess">
+      <topicdata group="api" notopic="" />
+      <apidata name="BeforeAccess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.ReadActivationMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.ReadActivationMode" ref="false" />
+      </containers>
+      <file name="74d51172-71c7-3ba1-8c28-9a7a85526974" />
+    </api>
+    <api id="F:Windows.Storage.Provider.ReadActivationMode.NotNeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotNeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.ReadActivationMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.ReadActivationMode" ref="false" />
+      </containers>
+      <file name="ba685cd7-c761-5a99-d232-f2050df369c2" />
+    </api>
+    <api id="T:Windows.Storage.Provider.UIStatus">
+      <topicdata group="api" />
+      <apidata name="UIStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Provider.UIStatus.Unavailable" />
+        <element api="F:Windows.Storage.Provider.UIStatus.Hidden" />
+        <element api="F:Windows.Storage.Provider.UIStatus.Visible" />
+        <element api="F:Windows.Storage.Provider.UIStatus.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2a521190-60dd-e32a-9910-ddcd43242346" />
+    </api>
+    <api id="F:Windows.Storage.Provider.UIStatus.Complete">
+      <topicdata group="api" notopic="" />
+      <apidata name="Complete" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </containers>
+      <file name="256fa553-5bf5-fa9b-99c0-ea4743f03f32" />
+    </api>
+    <api id="F:Windows.Storage.Provider.UIStatus.Hidden">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hidden" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </containers>
+      <file name="aedda7b6-fde5-8441-21e3-384838e5e369" />
+    </api>
+    <api id="F:Windows.Storage.Provider.UIStatus.Unavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </containers>
+      <file name="85aad8d9-0c9d-90b0-6118-22049e30dd9c" />
+    </api>
+    <api id="F:Windows.Storage.Provider.UIStatus.Visible">
+      <topicdata group="api" notopic="" />
+      <apidata name="Visible" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.UIStatus" ref="false" />
+      </containers>
+      <file name="ad58c0fe-6c28-2a55-742c-2119736eb0e5" />
+    </api>
+    <api id="T:Windows.Storage.Provider.WriteActivationMode">
+      <topicdata group="api" />
+      <apidata name="WriteActivationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Storage.Provider.WriteActivationMode.ReadOnly" />
+        <element api="F:Windows.Storage.Provider.WriteActivationMode.NotNeeded" />
+        <element api="F:Windows.Storage.Provider.WriteActivationMode.AfterWrite" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b2e58480-5e7e-34a6-b3a6-b69d38fb5b9e" />
+    </api>
+    <api id="F:Windows.Storage.Provider.WriteActivationMode.AfterWrite">
+      <topicdata group="api" notopic="" />
+      <apidata name="AfterWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+      </containers>
+      <file name="27c8cd09-52d0-98bb-1c65-126b1abe5d39" />
+    </api>
+    <api id="F:Windows.Storage.Provider.WriteActivationMode.NotNeeded">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotNeeded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+      </containers>
+      <file name="d7d0a827-36a4-d086-9a35-1209bac5654a" />
+    </api>
+    <api id="F:Windows.Storage.Provider.WriteActivationMode.ReadOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReadOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Storage.Provider" />
+        <type api="T:Windows.Storage.Provider.WriteActivationMode" ref="false" />
+      </containers>
+      <file name="b3aa27c6-23f2-1994-ab7d-96173da448be" />
+    </api>
+  </apis>
+</reflection>

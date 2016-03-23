@@ -1,0 +1,2346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.IO.MemoryMappedFiles">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.MemoryMappedFiles</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.MemoryMappedFiles</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.IO.MemoryMappedFiles</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.IO.MemoryMappedFiles">
+      <topicdata group="api" />
+      <apidata name="System.IO.MemoryMappedFiles" group="namespace" />
+      <elements>
+        <element api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+        <element api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+        <element api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+        <element api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+        <element api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+        <element api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      </elements>
+      <file name="97970b46-b6a5-11dd-3d27-71d3924a60c4" />
+    </api>
+    <api id="T:System.IO.MemoryMappedFiles.MemoryMappedFile">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="MemoryMappedFile" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+      </containers>
+      <file name="1dc614ab-1a25-5e83-0d1f-36591c48bed1" />
+    </api>
+    <api id="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile">
+      <topicdata name="MemoryMappedFile" group="list" subgroup="members" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="MemoryMappedFile" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.IO.FileStream,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.HandleInheritability,System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights,System.IO.HandleInheritability)" />
+        </element>
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedFile.SafeMemoryMappedFileHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      </containers>
+      <file name="ec4d840e-4f91-9e8e-b0b2-748adecdb304" />
+    </api>
+    <api id="Methods.T:System.IO.MemoryMappedFiles.MemoryMappedFile">
+      <topicdata name="MemoryMappedFile" group="list" subgroup="Methods" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="MemoryMappedFile" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.IO.FileStream,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.HandleInheritability,System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting">
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights)" />
+          <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights,System.IO.HandleInheritability)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      </containers>
+      <file name="3ebe17df-c0eb-bce1-0f31-2f1bba9e8e7e" />
+    </api>
+    <api id="Properties.T:System.IO.MemoryMappedFiles.MemoryMappedFile">
+      <topicdata name="MemoryMappedFile" group="list" subgroup="Properties" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="MemoryMappedFile" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedFile.SafeMemoryMappedFileHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      </containers>
+      <file name="f24c769f-57d6-26dc-23ea-06ceff4eda38" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile">
+      <topicdata name="CreateFromFile" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.IO.FileStream,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.HandleInheritability,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="d2c3019b-3e7f-a3ec-ef21-3482a0edd1fa" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew">
+      <topicdata name="CreateNew" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="CreateNew" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="d8991c11-efac-aff3-db2c-67d16089c2dd" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen">
+      <topicdata name="CreateOrOpen" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="CreateOrOpen" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="773cf198-6144-beda-d76e-3ffafb7c03e4" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor">
+      <topicdata name="CreateViewAccessor" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="CreateViewAccessor" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="0dbedbcb-3567-d38f-0cc3-d445e5c50797" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream">
+      <topicdata name="CreateViewStream" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="CreateViewStream" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="4e6bcf10-b887-2fa6-e184-efafd1065a4e" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="446f7ade-119c-9986-372b-68c60fe306e7" />
+    </api>
+    <api id="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting">
+      <topicdata name="OpenExisting" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFile" />
+      <apidata name="OpenExisting" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights)" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights,System.IO.HandleInheritability)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="9f0f3bbe-b36d-67c3-b879-0786c8195963" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.IO.FileStream,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.HandleInheritability,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="fileStream">
+          <type api="T:System.IO.FileStream" ref="true" />
+        </parameter>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+        <parameter name="inheritability">
+          <type api="T:System.IO.HandleInheritability" ref="true" />
+        </parameter>
+        <parameter name="leaveOpen">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="43a91f4e-9c00-750d-3018-6ad88d41bbc8" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="673a27a2-c14d-24c0-e6ac-4a39ae3bbcc5" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="57c85e72-4f2c-5671-ea09-aabc4c362ae3" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="dead950f-ed59-4d23-351b-6951161a0ad9" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="371f71ee-3c5e-27cd-4871-641dd2be5f2b" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile(System.String,System.IO.FileMode,System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFile" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateFromFile" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="path">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.IO.FileMode" ref="true" />
+        </parameter>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="e2674a98-7bd9-9366-dc72-5fa2ce5bfd55" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="CreateNew" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="4ec0df05-8891-4060-07dd-e323851cd623" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)">
+      <topicdata group="api" />
+      <apidata name="CreateNew" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="f3083509-15e8-21e5-9b2c-9db1745c4a41" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)">
+      <topicdata group="api" />
+      <apidata name="CreateNew" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateNew" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+        </parameter>
+        <parameter name="inheritability">
+          <type api="T:System.IO.HandleInheritability" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="b6e1c65e-1f02-7300-2691-a500e72e3762" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="CreateOrOpen" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="7803f6f1-d4ec-c3fe-fedb-e26eedaec44d" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)">
+      <topicdata group="api" />
+      <apidata name="CreateOrOpen" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="aa7d25b2-fa33-a32b-9fe4-85c6082e877d" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen(System.String,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess,System.IO.MemoryMappedFiles.MemoryMappedFileOptions,System.IO.HandleInheritability)">
+      <topicdata group="api" />
+      <apidata name="CreateOrOpen" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateOrOpen" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="capacity">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+        <parameter name="options">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+        </parameter>
+        <parameter name="inheritability">
+          <type api="T:System.IO.HandleInheritability" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="8a443cd4-f216-8ba4-377f-7acc5187bcd9" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor">
+      <topicdata group="api" />
+      <apidata name="CreateViewAccessor" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="42facb5d-85c2-4a9a-35b4-72963cfdbf52" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="CreateViewAccessor" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="size">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="ad46929e-0b78-2d72-56d1-73d904923041" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)">
+      <topicdata group="api" />
+      <apidata name="CreateViewAccessor" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="size">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="63c555e5-556c-ddcf-8c42-b5ebc4175797" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream">
+      <topicdata group="api" />
+      <apidata name="CreateViewStream" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="2cbb740c-b624-51bd-3045-96d930bd2f77" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="CreateViewStream" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="size">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="5a5dd1fd-4eac-f1c4-5742-d9a83bea5d46" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream(System.Int64,System.Int64,System.IO.MemoryMappedFiles.MemoryMappedFileAccess)">
+      <topicdata group="api" />
+      <apidata name="CreateViewStream" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewStream" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="size">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="access">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="320dd8d0-2fb7-f77d-5639-fe5df908db48" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="bcabe40f-12ba-b497-4da4-a6008a898382" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="ec551e66-5cf9-755d-5be8-fb416be4a544" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String)">
+      <topicdata group="api" />
+      <apidata name="OpenExisting" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="e9763be2-97aa-43ba-133d-73ade3d64dfa" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights)">
+      <topicdata group="api" />
+      <apidata name="OpenExisting" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="desiredAccessRights">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="e9b2fe5d-b76f-ae64-03e4-7fe75ea98da6" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting(System.String,System.IO.MemoryMappedFiles.MemoryMappedFileRights,System.IO.HandleInheritability)">
+      <topicdata group="api" />
+      <apidata name="OpenExisting" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.IO.MemoryMappedFiles.MemoryMappedFile.OpenExisting" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mapName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="desiredAccessRights">
+          <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+        </parameter>
+        <parameter name="inheritability">
+          <type api="T:System.IO.HandleInheritability" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="a7bacd9e-5a41-3009-9635-9109a06f7f88" />
+    </api>
+    <api id="P:System.IO.MemoryMappedFiles.MemoryMappedFile.SafeMemoryMappedFileHandle">
+      <topicdata group="api" />
+      <apidata name="SafeMemoryMappedFileHandle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SafeMemoryMappedFileHandle" />
+      <returns>
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFile" ref="true" />
+      </containers>
+      <file name="34fde165-c82b-a2d3-62ba-aba7a60bf460" />
+    </api>
+    <api id="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      <apidata name="MemoryMappedFileAccess" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+      </containers>
+      <file name="9b99748d-a043-65f9-94e6-12aa83f64a97" />
+    </api>
+    <api id="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess">
+      <topicdata name="MemoryMappedFileAccess" group="list" subgroup="members" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      <apidata name="MemoryMappedFileAccess" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.CopyOnWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.Read" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWriteExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.value__" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.Write" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      </containers>
+      <file name="23eabc0f-7606-eef1-c501-80e66cca9414" />
+    </api>
+    <api id="Methods.T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess">
+      <topicdata name="MemoryMappedFileAccess" group="list" subgroup="Methods" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      <apidata name="MemoryMappedFileAccess" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      </containers>
+      <file name="7ef90048-964a-8917-dbb0-d9d8d8d7d5f2" />
+    </api>
+    <api id="Fields.T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess">
+      <topicdata name="MemoryMappedFileAccess" group="list" subgroup="Fields" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      <apidata name="MemoryMappedFileAccess" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.CopyOnWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.Read" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWriteExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.value__" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.Write" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" />
+      </containers>
+      <file name="9b55de7e-fce3-0ac4-5ec8-53fbe15e4d0b" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.CopyOnWrite">
+      <topicdata group="api" />
+      <apidata name="CopyOnWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="b24503d5-bdac-0a63-03bb-3459e9aaf40a" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.Read">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="0a733799-9b9b-a31c-b4b6-43ec733f0911" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadExecute">
+      <topicdata group="api" />
+      <apidata name="ReadExecute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="8fd8d9bf-4588-1b42-041d-03929cfe3e59" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite">
+      <topicdata group="api" />
+      <apidata name="ReadWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="78f2e21f-984b-6c60-0283-d0c52146d7ec" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWriteExecute">
+      <topicdata group="api" />
+      <apidata name="ReadWriteExecute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="2b4336e8-2ae7-afb5-54f4-f78c8ab4d458" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="db3d8485-4a81-9ea6-c57d-8b43ebb2bfc0" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileAccess.Write">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileAccess" ref="true" />
+      </containers>
+      <file name="3a40b64b-2359-3d12-632f-2687c1fae4fc" />
+    </api>
+    <api id="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      <apidata name="MemoryMappedFileOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c66fc95c-2b7c-64ea-afc0-8f865c4ad179" />
+    </api>
+    <api id="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions">
+      <topicdata name="MemoryMappedFileOptions" group="list" subgroup="members" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      <apidata name="MemoryMappedFileOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.DelayAllocatePages" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.None" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      </containers>
+      <file name="c3307b15-d53d-d469-ac51-07d472177e28" />
+    </api>
+    <api id="Methods.T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions">
+      <topicdata name="MemoryMappedFileOptions" group="list" subgroup="Methods" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      <apidata name="MemoryMappedFileOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      </containers>
+      <file name="fc30cdbe-0b34-b897-eb2c-b678152f5905" />
+    </api>
+    <api id="Fields.T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions">
+      <topicdata name="MemoryMappedFileOptions" group="list" subgroup="Fields" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      <apidata name="MemoryMappedFileOptions" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.DelayAllocatePages" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.None" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" />
+      </containers>
+      <file name="884b9d9e-b631-6db3-e8db-a76ce5f4a77e" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.DelayAllocatePages">
+      <topicdata group="api" />
+      <apidata name="DelayAllocatePages" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+      </returns>
+      <value>67108864</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+      </containers>
+      <file name="3d610ec6-8650-adc4-e914-835bd650584c" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+      </containers>
+      <file name="0ff502fb-0618-fd7b-193b-2af52c17776f" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileOptions.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileOptions" ref="true" />
+      </containers>
+      <file name="dcb9c5b5-7e5c-488c-e052-b81ad219208d" />
+    </api>
+    <api id="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      <apidata name="MemoryMappedFileRights" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="181d50db-fbe2-5463-fc33-9a1f3aaad0b4" />
+    </api>
+    <api id="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedFileRights">
+      <topicdata name="MemoryMappedFileRights" group="list" subgroup="members" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      <apidata name="MemoryMappedFileRights" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.AccessSystemSecurity" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ChangePermissions" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.CopyOnWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Delete" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Execute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.FullControl" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Read" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadPermissions" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadWriteExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.TakeOwnership" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.value__" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Write" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      </containers>
+      <file name="34260124-4d22-c4cb-bf65-d42589432e4b" />
+    </api>
+    <api id="Methods.T:System.IO.MemoryMappedFiles.MemoryMappedFileRights">
+      <topicdata name="MemoryMappedFileRights" group="list" subgroup="Methods" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      <apidata name="MemoryMappedFileRights" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      </containers>
+      <file name="0c9cd77a-bded-c29f-fbd8-112ff9e01b06" />
+    </api>
+    <api id="Fields.T:System.IO.MemoryMappedFiles.MemoryMappedFileRights">
+      <topicdata name="MemoryMappedFileRights" group="list" subgroup="Fields" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      <apidata name="MemoryMappedFileRights" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.AccessSystemSecurity" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ChangePermissions" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.CopyOnWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Delete" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Execute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.FullControl" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Read" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadPermissions" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadWrite" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadWriteExecute" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.TakeOwnership" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.value__" />
+        <element api="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Write" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" />
+      </containers>
+      <file name="bfffd2d3-c8fe-ec5f-aed0-52d793da8435" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.AccessSystemSecurity">
+      <topicdata group="api" />
+      <apidata name="AccessSystemSecurity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>16777216</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="400cffda-54d1-ac8f-7f4f-0f967cf2e202" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ChangePermissions">
+      <topicdata group="api" />
+      <apidata name="ChangePermissions" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>262144</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="bc35e6b1-feea-7f9b-abe4-74794fdd3791" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.CopyOnWrite">
+      <topicdata group="api" />
+      <apidata name="CopyOnWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="4879bcce-d66d-2448-1f0e-11d74eb5a330" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Delete">
+      <topicdata group="api" />
+      <apidata name="Delete" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>65536</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="fdad74b5-9f2f-873e-e53c-f0e22cb25387" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Execute">
+      <topicdata group="api" />
+      <apidata name="Execute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="fba5316a-1a71-fb89-85cc-dc1927a7e69f" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.FullControl">
+      <topicdata group="api" />
+      <apidata name="FullControl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>983055</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="7181b51c-99fd-14a7-0def-00d8a6c7aaad" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Read">
+      <topicdata group="api" />
+      <apidata name="Read" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="e78fb1b6-ac54-260c-71a5-464b6e12b4be" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadExecute">
+      <topicdata group="api" />
+      <apidata name="ReadExecute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="9adf6b88-b384-fbf7-78cf-17bb5246235e" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadPermissions">
+      <topicdata group="api" />
+      <apidata name="ReadPermissions" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>131072</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="550dacce-157f-6344-ecab-25ae088593ee" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadWrite">
+      <topicdata group="api" />
+      <apidata name="ReadWrite" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="3cd478bd-e0aa-584d-dbff-7b3239bd38dd" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.ReadWriteExecute">
+      <topicdata group="api" />
+      <apidata name="ReadWriteExecute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="dc8eeb78-010e-3cee-2775-90763e612278" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.TakeOwnership">
+      <topicdata group="api" />
+      <apidata name="TakeOwnership" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>524288</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="e8169994-55da-762d-54b3-3735fb0681f7" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="fdb6b741-d62a-cc72-c7d6-ad9053477fc7" />
+    </api>
+    <api id="F:System.IO.MemoryMappedFiles.MemoryMappedFileRights.Write">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedFileRights" ref="true" />
+      </containers>
+      <file name="0fcc5eaa-f6cc-ce44-b068-011ad1654a09" />
+    </api>
+    <api id="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      <apidata name="MemoryMappedViewAccessor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.UnmanagedMemoryAccessor" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+      </containers>
+      <file name="d1273608-f3b8-1e12-81d2-640d33715989" />
+    </api>
+    <api id="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor">
+      <topicdata name="MemoryMappedViewAccessor" group="list" subgroup="members" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      <apidata name="MemoryMappedViewAccessor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.UnmanagedMemoryAccessor.CanRead" />
+        <element api="P:System.IO.UnmanagedMemoryAccessor.CanWrite" />
+        <element api="P:System.IO.UnmanagedMemoryAccessor.Capacity" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.Dispose" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadBoolean(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadByte(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadChar(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadDecimal(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadDouble(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadInt16(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadInt32(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadInt64(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadSByte(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadSingle(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadUInt16(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadUInt32(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadUInt64(System.Int64)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.Write">
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Boolean)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Byte)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Char)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Decimal)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Double)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int16)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int32)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int64)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.SByte)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Single)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt16)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt32)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt64)" />
+        </element>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.Flush" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.PointerOffset" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.SafeMemoryMappedViewHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      </containers>
+      <file name="4bc04ed9-feb2-b3ed-b4b2-ad6afd16ff1d" />
+    </api>
+    <api id="Methods.T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor">
+      <topicdata name="MemoryMappedViewAccessor" group="list" subgroup="Methods" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      <apidata name="MemoryMappedViewAccessor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.Dispose" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadBoolean(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadByte(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadChar(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadDecimal(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadDouble(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadInt16(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadInt32(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadInt64(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadSByte(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadSingle(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadUInt16(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadUInt32(System.Int64)" />
+        <element api="M:System.IO.UnmanagedMemoryAccessor.ReadUInt64(System.Int64)" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.Write">
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Boolean)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Byte)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Char)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Decimal)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Double)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int16)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int32)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int64)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.SByte)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Single)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt16)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt32)" />
+          <element api="M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt64)" />
+        </element>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.Flush" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      </containers>
+      <file name="7d0610cc-11d2-5ff6-efb7-940ae8c70aee" />
+    </api>
+    <api id="Properties.T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor">
+      <topicdata name="MemoryMappedViewAccessor" group="list" subgroup="Properties" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      <apidata name="MemoryMappedViewAccessor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.IO.UnmanagedMemoryAccessor.CanRead" />
+        <element api="P:System.IO.UnmanagedMemoryAccessor.CanWrite" />
+        <element api="P:System.IO.UnmanagedMemoryAccessor.Capacity" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.PointerOffset" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.SafeMemoryMappedViewHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" />
+      </containers>
+      <file name="4e37985a-74c4-04fa-2fe9-3b8d514c27a6" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" ref="true" />
+      </containers>
+      <file name="81e1bb60-bd09-aa0f-4039-1e36a93a8f6c" />
+    </api>
+    <api id="P:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.PointerOffset">
+      <topicdata group="api" />
+      <apidata name="PointerOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PointerOffset" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" ref="true" />
+      </containers>
+      <file name="4e7f496d-3c7a-ea0a-3040-24ee407c1816" />
+    </api>
+    <api id="P:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor.SafeMemoryMappedViewHandle">
+      <topicdata group="api" />
+      <apidata name="SafeMemoryMappedViewHandle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SafeMemoryMappedViewHandle" />
+      <returns>
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewAccessor" ref="true" />
+      </containers>
+      <file name="9ce893a0-e1b6-ffc4-8285-5ca5bd794021" />
+    </api>
+    <api id="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      <apidata name="MemoryMappedViewStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.IO.UnmanagedMemoryStream" ref="true" />
+          <type api="T:System.IO.Stream" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+      </containers>
+      <file name="1b78fd90-4b77-5b31-6156-68c0cc49af6d" />
+    </api>
+    <api id="AllMembers.T:System.IO.MemoryMappedFiles.MemoryMappedViewStream">
+      <topicdata name="MemoryMappedViewStream" group="list" subgroup="members" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      <apidata name="MemoryMappedViewStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.UnmanagedMemoryStream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.UnmanagedMemoryStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.UnmanagedMemoryStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="P:System.IO.UnmanagedMemoryStream.CanRead" />
+        <element api="P:System.IO.UnmanagedMemoryStream.CanSeek" />
+        <element api="P:System.IO.UnmanagedMemoryStream.CanWrite" />
+        <element api="P:System.IO.UnmanagedMemoryStream.Capacity" />
+        <element api="P:System.IO.UnmanagedMemoryStream.Length" />
+        <element api="P:System.IO.UnmanagedMemoryStream.Position" />
+        <element api="P:System.IO.UnmanagedMemoryStream.PositionPointer" />
+        <element api="M:System.IO.UnmanagedMemoryStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.UnmanagedMemoryStream.ReadByte" />
+        <element api="M:System.IO.UnmanagedMemoryStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.UnmanagedMemoryStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.UnmanagedMemoryStream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedViewStream.Flush" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewStream.PointerOffset" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewStream.SafeMemoryMappedViewHandle" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedViewStream.SetLength(System.Int64)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      </containers>
+      <file name="6f422cb5-d54e-4600-a191-3175ca45a523" />
+    </api>
+    <api id="Methods.T:System.IO.MemoryMappedFiles.MemoryMappedViewStream">
+      <topicdata name="MemoryMappedViewStream" group="list" subgroup="Methods" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      <apidata name="MemoryMappedViewStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.CopyTo">
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyTo(System.IO.Stream,System.Int32)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.CopyToAsync">
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32)" />
+          <element api="M:System.IO.Stream.CopyToAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.Stream.Dispose" />
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.FlushAsync">
+          <element api="M:System.IO.Stream.FlushAsync" />
+          <element api="M:System.IO.UnmanagedMemoryStream.FlushAsync(System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.ReadAsync">
+          <element api="M:System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.UnmanagedMemoryStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="Overload:System.IO.MemoryMappedFiles.MemoryMappedViewStream.WriteAsync">
+          <element api="M:System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32)" />
+          <element api="M:System.IO.UnmanagedMemoryStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)" />
+        </element>
+        <element api="M:System.IO.UnmanagedMemoryStream.Read(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.UnmanagedMemoryStream.ReadByte" />
+        <element api="M:System.IO.UnmanagedMemoryStream.Seek(System.Int64,System.IO.SeekOrigin)" />
+        <element api="M:System.IO.UnmanagedMemoryStream.Write(System.Byte[],System.Int32,System.Int32)" />
+        <element api="M:System.IO.UnmanagedMemoryStream.WriteByte(System.Byte)" />
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsInputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsInputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsOutputStream(System.IO.Stream)" source="extension">
+          <apidata name="AsOutputStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.WindowsRuntimeStreamExtensions.AsRandomAccessStream(System.IO.Stream)" source="extension">
+          <apidata name="AsRandomAccessStream" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Windows.Storage.Streams.IRandomAccessStream" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="System.Runtime.WindowsRuntime" module="System.Runtime.WindowsRuntime" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.IO" />
+            <type api="T:System.IO.WindowsRuntimeStreamExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedViewStream.Flush" />
+        <element api="M:System.IO.MemoryMappedFiles.MemoryMappedViewStream.SetLength(System.Int64)" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      </containers>
+      <file name="055c1c50-71f1-76f8-138e-efed75d63b25" />
+    </api>
+    <api id="Properties.T:System.IO.MemoryMappedFiles.MemoryMappedViewStream">
+      <topicdata name="MemoryMappedViewStream" group="list" subgroup="Properties" typeTopicId="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      <apidata name="MemoryMappedViewStream" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.IO.Stream.CanTimeout" />
+        <element api="P:System.IO.Stream.ReadTimeout" />
+        <element api="P:System.IO.Stream.WriteTimeout" />
+        <element api="P:System.IO.UnmanagedMemoryStream.CanRead" />
+        <element api="P:System.IO.UnmanagedMemoryStream.CanSeek" />
+        <element api="P:System.IO.UnmanagedMemoryStream.CanWrite" />
+        <element api="P:System.IO.UnmanagedMemoryStream.Capacity" />
+        <element api="P:System.IO.UnmanagedMemoryStream.Length" />
+        <element api="P:System.IO.UnmanagedMemoryStream.Position" />
+        <element api="P:System.IO.UnmanagedMemoryStream.PositionPointer" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewStream.PointerOffset" />
+        <element api="P:System.IO.MemoryMappedFiles.MemoryMappedViewStream.SafeMemoryMappedViewHandle" />
+      </elements>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" />
+      </containers>
+      <file name="a823cc3e-b2ae-8dd8-46af-cbd42ff7d605" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedViewStream.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.UnmanagedMemoryStream.Flush">
+          <type api="T:System.IO.UnmanagedMemoryStream" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </containers>
+      <file name="f7be3149-7a3d-caf9-e6e3-ac50bd4db575" />
+    </api>
+    <api id="P:System.IO.MemoryMappedFiles.MemoryMappedViewStream.PointerOffset">
+      <topicdata group="api" />
+      <apidata name="PointerOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PointerOffset" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </containers>
+      <file name="3dcd1a20-d31b-a1d7-c00c-c11e145da1f3" />
+    </api>
+    <api id="P:System.IO.MemoryMappedFiles.MemoryMappedViewStream.SafeMemoryMappedViewHandle">
+      <topicdata group="api" />
+      <apidata name="SafeMemoryMappedViewHandle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SafeMemoryMappedViewHandle" />
+      <returns>
+        <type api="T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </containers>
+      <file name="156e4514-602d-3a8f-4800-33d04c01c077" />
+    </api>
+    <api id="M:System.IO.MemoryMappedFiles.MemoryMappedViewStream.SetLength(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="SetLength" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.IO.UnmanagedMemoryStream.SetLength(System.Int64)">
+          <type api="T:System.IO.UnmanagedMemoryStream" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.IO.MemoryMappedFiles" module="System.IO.MemoryMappedFiles" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.IO.MemoryMappedFiles" />
+        <type api="T:System.IO.MemoryMappedFiles.MemoryMappedViewStream" ref="true" />
+      </containers>
+      <file name="3125d59e-1650-9249-ef24-b11deb93dd6e" />
+    </api>
+  </apis>
+</reflection>

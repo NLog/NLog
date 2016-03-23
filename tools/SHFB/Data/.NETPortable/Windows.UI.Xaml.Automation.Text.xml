@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Automation.Text">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Automation.Text" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint" />
+        <element api="T:Windows.UI.Xaml.Automation.Text.TextUnit" />
+      </elements>
+      <file name="0bf3d4c0-71ff-67c7-6e05-14a90dbe82ff" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint">
+      <topicdata group="api" />
+      <apidata name="TextPatternRangeEndpoint" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint.Start" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint.End" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c2941bfe-fa48-4ee9-e2a4-68efdd0a2b5c" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint.End">
+      <topicdata group="api" notopic="" />
+      <apidata name="End" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </containers>
+      <file name="83ee5d77-f568-038a-4afa-62eefcacc234" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint.Start">
+      <topicdata group="api" notopic="" />
+      <apidata name="Start" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextPatternRangeEndpoint" ref="false" />
+      </containers>
+      <file name="129e3d90-9f6c-7ce1-35aa-87349833ef27" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Automation.Text.TextUnit">
+      <topicdata group="api" />
+      <apidata name="TextUnit" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Character" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Format" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Word" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Line" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Paragraph" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Page" />
+        <element api="F:Windows.UI.Xaml.Automation.Text.TextUnit.Document" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1bdc3d6a-5d80-eebc-e82d-1267bbb87c2b" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Character">
+      <topicdata group="api" notopic="" />
+      <apidata name="Character" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="bc9d1b6e-bb5b-a4fa-3cd8-bfa4db371219" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Document">
+      <topicdata group="api" notopic="" />
+      <apidata name="Document" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="0bff18ca-6f18-f7a8-a850-a4a3a496b866" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Format">
+      <topicdata group="api" notopic="" />
+      <apidata name="Format" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="e897b701-76d2-49b3-7134-ee2ae4e48daf" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Line">
+      <topicdata group="api" notopic="" />
+      <apidata name="Line" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="9181f982-9e52-b45b-91c7-deb7ed9ec6de" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Page">
+      <topicdata group="api" notopic="" />
+      <apidata name="Page" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="df04771c-7347-9157-1a3e-b9465fa94f7a" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Paragraph">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paragraph" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="3551e7f0-0ac4-0505-5159-bbe323931dd0" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Automation.Text.TextUnit.Word">
+      <topicdata group="api" notopic="" />
+      <apidata name="Word" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Automation.Text" />
+        <type api="T:Windows.UI.Xaml.Automation.Text.TextUnit" ref="false" />
+      </containers>
+      <file name="1f68a6f0-4070-8bb9-fe42-785795175a9e" />
+    </api>
+  </apis>
+</reflection>

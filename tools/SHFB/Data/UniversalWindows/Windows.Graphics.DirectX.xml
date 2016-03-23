@@ -1,0 +1,2427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Graphics.DirectX">
+      <topicdata group="api" />
+      <apidata name="Windows.Graphics.DirectX" group="namespace" />
+      <elements>
+        <element api="T:Windows.Graphics.DirectX.DirectXPixelFormat" />
+      </elements>
+      <file name="6d87da89-efc6-201b-7863-2567e59a6a2a" />
+    </api>
+    <api id="T:Windows.Graphics.DirectX.DirectXPixelFormat">
+      <topicdata group="api" />
+      <apidata name="DirectXPixelFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Unknown" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G8X24Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.D32FloatS8X24UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32FloatX8X24Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.X32TypelessG8X24UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10A2Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10A2UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10A2UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R11G11B10Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.D32Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R24G8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.D24UIntNormalizedS8UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R24UIntNormalizedX8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.X24TypelessG8UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.D16UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8UInt" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8Int" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.A8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R1UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R9G9B9E5SharedExponent" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8G8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.G8R8G8B8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC1Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC1UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC1UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC2Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC2UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC2UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC3Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC3UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC3UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC4Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC4UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC4IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC5Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC5UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC5IntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B5G6R5UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B5G5R5A1UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8A8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8X8UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10XRBiasA2UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8A8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8A8UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8X8Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8X8UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC6HTypeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC6H16UnsignedFloat" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC6H16Float" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC7Typeless" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC7UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC7UIntNormalizedSrgb" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Ayuv" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y410" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y416" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.NV12" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.P010" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.P016" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Opaque420" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Yuy2" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y210" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y216" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.NV11" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.AI44" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.IA44" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.P8" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.A8P8" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.B4G4R4A4UIntNormalized" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.P208" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.V208" />
+        <element api="F:Windows.Graphics.DirectX.DirectXPixelFormat.V408" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eb507fcb-3870-0003-67d6-8a4fd8006784" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.A8P8">
+      <topicdata group="api" notopic="" />
+      <apidata name="A8P8" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>114</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="dfd30960-6786-f645-9d47-c1f81c144321" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.A8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="A8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>65</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="9b3c62c5-c32a-6afc-f474-15a2deb6da0c" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.AI44">
+      <topicdata group="api" notopic="" />
+      <apidata name="AI44" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>111</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d064ff28-4440-1910-b511-ff7269b93486" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Ayuv">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ayuv" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>100</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="a2f919d6-8456-f0ae-db4f-c9c126032c39" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B4G4R4A4UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="B4G4R4A4UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>115</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="26e3bd44-952e-8f42-60b4-0348d847bb8f" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B5G5R5A1UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="B5G5R5A1UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>86</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="439e316a-2b6e-4ad9-cb16-3f9cd35a7c5b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B5G6R5UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="B5G6R5UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>85</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ea0ef3b1-80bf-bbaa-a6d1-fc2d2a683c07" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8A8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="B8G8R8A8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>90</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="83af4c1a-e58f-c39c-abe0-534313c3f1cc" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8A8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="B8G8R8A8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>87</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="bb0e1a45-b774-aca7-d25a-90aa5078a69a" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8A8UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="B8G8R8A8UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>91</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="8e105181-89fc-3f21-d770-dedc2dc0d7a4" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8X8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="B8G8R8X8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>92</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="0e913a63-61db-a26d-7e31-41e618302142" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8X8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="B8G8R8X8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>88</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="06bcc9e7-5005-3b33-226c-93e9bdf78ee3" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.B8G8R8X8UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="B8G8R8X8UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>93</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="09e61452-7bc6-5fb0-5245-197e3fe487ad" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC1Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC1Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>70</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="6e8ba064-2be3-51c0-603e-c3697b5bbc9b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC1UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC1UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>71</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="0875c34c-f7d8-f960-8a76-89dc883b9010" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC1UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC1UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>72</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="14267703-6523-c8db-6ef8-8c6d703a19e9" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC2Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC2Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>73</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="a3d9a71b-91a1-4bf4-91db-6598c7331eee" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC2UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC2UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>74</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="a6b1d252-5daa-5753-c724-503d2a4ce03d" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC2UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC2UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>75</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="3469c399-6e83-8805-1c22-bc8dee826bd8" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC3Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC3Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>76</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="3ad32786-8b6a-6ea9-d145-322b9230acab" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC3UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC3UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>77</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="36f8714c-53bf-5aae-5d7a-71f74d58a772" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC3UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC3UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>78</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="37b613ac-ab61-8a84-ff09-76da67cdba9e" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC4IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC4IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>81</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="134491d0-afdc-91fc-cee7-d1d0f7de2cb3" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC4Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC4Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>79</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="df60b56d-b355-6d6e-db7c-2d31214e20b3" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC4UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC4UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>80</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="bf1c5c79-30d7-0c62-cb9e-543913d0d23b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC5IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC5IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>84</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="08825893-040e-0737-7111-abb9579d21a4" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC5Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC5Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>82</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="b40d5a38-3f5c-cefe-e339-fd6e2135428d" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC5UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC5UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>83</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="813d5a21-734f-e1f2-13cb-5d6e8bd68fda" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC6H16Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC6H16Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>96</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="326d8ca3-f65f-fa5e-4552-43c85a6fae15" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC6H16UnsignedFloat">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC6H16UnsignedFloat" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>95</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="0233a88a-da59-d97e-c6fa-fa787951b3b4" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC6HTypeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC6HTypeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>94</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="5bb73c31-6060-4dbf-b117-df91c794a4ee" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC7Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC7Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>97</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="eae12887-6cf6-e738-ac2f-ffe2a987206c" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC7UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC7UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>98</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d72e25f6-c2ce-d0e8-1676-7cbc8f2c2746" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.BC7UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="BC7UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>99</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="518add76-2753-60f5-23ab-807a337e10e8" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.D16UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="D16UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>55</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="9fcf7419-c1b7-e567-b5eb-86435036b967" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.D24UIntNormalizedS8UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="D24UIntNormalizedS8UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>45</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d7ad7b09-a7c7-b8f5-9a01-7106a144da29" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.D32Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="D32Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>40</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="f14c13e4-6d31-c019-7ff8-b544dafe6a4d" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.D32FloatS8X24UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="D32FloatS8X24UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="5cee31bc-84f0-8924-122c-c6444969d197" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.G8R8G8B8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="G8R8G8B8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>69</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="7231c96b-5a07-df02-a989-e7073db82c51" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.IA44">
+      <topicdata group="api" notopic="" />
+      <apidata name="IA44" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>112</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ec2694ed-dc2d-4bcf-4edb-72a52ae11ef2" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.NV11">
+      <topicdata group="api" notopic="" />
+      <apidata name="NV11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>110</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="10e81ea7-8779-4376-8304-bb3c5332acfb" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.NV12">
+      <topicdata group="api" notopic="" />
+      <apidata name="NV12" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>103</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="e676e77a-b8b5-bf80-9532-e499069087e8" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Opaque420">
+      <topicdata group="api" notopic="" />
+      <apidata name="Opaque420" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>106</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="1cd68f7f-8760-fed1-de14-4bc53443a845" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.P010">
+      <topicdata group="api" notopic="" />
+      <apidata name="P010" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>104</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ec9038bb-0a6d-c1dd-e73b-6088f796dedc" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.P016">
+      <topicdata group="api" notopic="" />
+      <apidata name="P016" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>105</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="b13b6e08-06b0-f31c-d6c7-4b3ce9bd410f" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.P208">
+      <topicdata group="api" notopic="" />
+      <apidata name="P208" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>130</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="83650bfd-0b67-1073-fc72-8a461a38a623" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.P8">
+      <topicdata group="api" notopic="" />
+      <apidata name="P8" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>113</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="f1dae136-481f-655a-6d77-f6bfcdb33d54" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10A2Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R10G10B10A2Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="46f2b65c-7629-5b4b-e9e4-32bb0fe02934" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10A2UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R10G10B10A2UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="c8d34f56-5197-f23e-ca2b-3def9892d5aa" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10A2UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R10G10B10A2UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="400ee7e5-6cc2-b067-43eb-7b58f6c20d05" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R10G10B10XRBiasA2UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R10G10B10XRBiasA2UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>89</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="6d5c6c7d-7818-1fd5-c6e4-9cc4ba976d0c" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R11G11B10Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R11G11B10Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>26</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="77ee3612-37f5-d128-b74c-02c6cbd49870" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>54</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ea5d1394-c873-a7f0-8938-fda4c45d574f" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16B16A16Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="0802effe-d939-ee2a-27c7-f6d533e6e78b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16B16A16Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="244414a9-9d9f-2669-8c6e-9169db069868" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16B16A16IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="e38d92d4-1c7e-f1bd-1a7e-52d194aa3e63" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16B16A16Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="187d12d6-9339-21bb-07aa-8fe17756d455" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16B16A16UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2288c2e7-5f14-b8f9-3b81-207ebc8d8f7e" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16B16A16UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16B16A16UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ad4549e5-a896-037f-f014-de4664d3bd7e" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>34</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d1bad3ea-b68b-a734-3fec-a0497818bf9a" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>38</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="fa52416e-1b10-8b1b-d3a7-385109484caf" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>37</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="e6c66936-15d8-713b-5da5-c24af951f1e2" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>33</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="789c9886-76f2-3702-bd20-b262727fb0d4" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>36</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="01730d5d-d0b8-3d2d-33a5-71b01168d57b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16G16UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16G16UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>35</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="f528bf62-39b0-f2a4-8de2-b1b7099f7111" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>59</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2132d4ab-db3b-7f8b-6a48-46f1996435c6" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>58</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="a5c5fa23-389e-2c43-491c-6495e8bf0e3b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>53</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ec8e8b35-115f-008a-8027-92283f5e61b2" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>57</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="999ffda2-cbc8-9e61-40dd-6de8b50c5dab" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R16UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R16UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>56</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="70796288-1a41-346e-b7be-aeada6c003ae" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R1UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R1UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>66</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="fcbc45c2-bc55-d87a-ae3c-979459285993" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R24G8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R24G8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>44</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="b5580d66-e48f-3b74-3e28-387c0432585a" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R24UIntNormalizedX8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R24UIntNormalizedX8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>46</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="65789d53-12d3-b046-828c-13b5d3b06d29" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>41</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="77cac8f3-666d-cb0e-d4eb-42b33127b6cf" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32FloatX8X24Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32FloatX8X24Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="b5862ecf-17fa-08b4-47d9-6880baf13fbd" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32A32Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d5b592c9-3aca-9011-4c7c-b16d005fc8ba" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32A32Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="dde0d5aa-55b7-8e4c-582c-7adb5d644eac" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32A32Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d93fff13-72d9-4256-616f-8b91c4755a7e" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32A32UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32A32UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d797f096-faaa-4e0e-324d-a93ba4dfb7e3" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="c1dc6b77-7297-478b-2af5-d5f0559719bc" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="73002f01-1273-bac0-defa-607af02df791" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="1a047e30-1487-b5e7-e192-97e695034db9" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32B32UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32B32UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="83132ea6-4a1f-6465-e737-f205e404d1c5" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="d8479aab-737c-4deb-4b86-d4a1554f726b" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="f473a0dc-152b-2558-98a3-b37bcad1c5ab" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="aba48621-d70c-e144-44ca-39e1b0608380" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G32UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G32UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ada01d4a-bf37-9979-45f5-505ac79641aa" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32G8X24Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32G8X24Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="a0240f35-6d02-82b7-401b-70376199d5fd" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>43</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="6f22eae8-453d-aca0-b103-940550985f4c" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>39</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="4c5c3626-80e7-829a-a98b-49f0ad9b7be3" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R32UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R32UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>42</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2722fe38-9b73-3bb3-fd7b-bdc599b20daa" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8A8Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="be24599d-ebc0-6ec3-6443-939897afe3fb" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8A8IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>31</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="cb572cc2-4718-8ac6-1869-379bdc0bcc08" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8A8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>27</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="a8806bbf-1a28-cd05-bfb3-3f04aa596f36" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8A8UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>30</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="5e9dd0ef-30e7-8cdf-041d-25951d382436" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8A8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>28</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2b45e3c5-c963-b2d9-5aba-91b41eefaf77" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8A8UIntNormalizedSrgb">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8A8UIntNormalizedSrgb" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>29</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="14abddae-bc3a-83c3-15d7-02b4e215a5c7" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8B8G8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8B8G8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>68</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="9322a520-31f2-ec89-f29a-24d57faf6772" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>52</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="65a72c89-66e5-44d0-2dae-37988258874c" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>51</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="9a6d6840-75ec-54ad-0ff4-46a375c24855" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>48</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="6935c262-3728-4d31-0f97-25f7d221e369" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>50</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="90b0a455-1ed9-8132-f782-e1f6bf748753" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8G8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8G8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>49</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="71ca9e9e-6d27-7909-c6b3-c7e8eb523e23" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="f655888d-5d80-309b-eefe-6bc7603b8dfa" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8IntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8IntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>63</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="062d486f-1cb9-6216-74ff-d6e91f973576" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8Typeless">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8Typeless" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>60</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="8d9a915b-6918-3e9d-8247-5c58bdb64a23" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>62</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2dfa3509-20ea-da65-15b9-c68c05a9f907" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R8UIntNormalized">
+      <topicdata group="api" notopic="" />
+      <apidata name="R8UIntNormalized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>61</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="289c0072-19f1-5b9e-72a6-303d79d7ff22" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.R9G9B9E5SharedExponent">
+      <topicdata group="api" notopic="" />
+      <apidata name="R9G9B9E5SharedExponent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>67</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="305bab03-1fa4-82b4-65fc-d931a6659591" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2dfb8283-75fd-5a6c-ea0a-2c715e7088ba" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.V208">
+      <topicdata group="api" notopic="" />
+      <apidata name="V208" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>131</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="4b8912df-cf5f-578d-eda9-87313aada497" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.V408">
+      <topicdata group="api" notopic="" />
+      <apidata name="V408" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>132</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="473b767c-359b-2eea-0daf-556cbf065acf" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.X24TypelessG8UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="X24TypelessG8UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>47</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="767e87b7-01fc-0cfc-4dca-fd5984eefdf0" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.X32TypelessG8X24UInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="X32TypelessG8X24UInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="2234d945-6463-f90e-01ff-14ee30124e05" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y210">
+      <topicdata group="api" notopic="" />
+      <apidata name="Y210" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>108</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="42307804-d1a2-3a7c-cad0-db24473117f1" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y216">
+      <topicdata group="api" notopic="" />
+      <apidata name="Y216" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>109</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="ebd5fe4e-4ea6-aa55-c83c-74b4fe804e5a" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y410">
+      <topicdata group="api" notopic="" />
+      <apidata name="Y410" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>101</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="c520273f-1d5f-191d-8401-85b3cc95a910" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Y416">
+      <topicdata group="api" notopic="" />
+      <apidata name="Y416" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>102</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="75d63049-42fa-8c1a-3476-d97ed3eb2757" />
+    </api>
+    <api id="F:Windows.Graphics.DirectX.DirectXPixelFormat.Yuy2">
+      <topicdata group="api" notopic="" />
+      <apidata name="Yuy2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </returns>
+      <value>107</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Graphics.DirectX" />
+        <type api="T:Windows.Graphics.DirectX.DirectXPixelFormat" ref="false" />
+      </containers>
+      <file name="1c22b3bc-0c57-1036-616e-18a61bd512d8" />
+    </api>
+  </apis>
+</reflection>

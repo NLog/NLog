@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+
+	<!-- Media file path -->
+	<item id="mediaPath">media/{0}</item>
+	
+	<!-- Topic title -->
+	<item id="boilerplate_pageTitle">{0}</item>
+	<item id="header"></item>
+
+	<!-- Alert titles -->
+	<item id="alert_title_tip">Tip</item>
+	<item id="alert_title_caution">Caution</item>
+	<item id="alert_title_security">Security Note</item>
+	<item id="alert_title_note">Note</item>
+	<item id="alert_title_important">Important</item>
+	<item id="alert_title_visualBasic">Visual Basic Note</item>
+	<item id="alert_title_visualC#">C# Note</item>
+	<item id="alert_title_visualC++">C++ Note</item>
+	<item id="alert_title_visualJ#">J# Note</item>
+
+	<!-- Alert alt text -->
+	<item id="alert_altText_tip">Tip</item>
+	<item id="alert_altText_caution">Caution note</item>
+	<item id="alert_altText_security">Security note</item>
+	<item id="alert_altText_note">Note</item>
+	<item id="alert_altText_important">Important note</item>
+	<item id="alert_altText_visualBasic">Visual Basic note</item>
+	<item id="alert_altText_visualC#">C# note</item>
+	<item id="alert_altText_visualC++">C++ note</item>
+	<item id="alert_altText_visualJ#">J# note</item>
+
+	<!-- Section titles -->
+	<item id="title_remarks">Remarks</item>
+	<item id="title_changeHistory">Change History</item>
+	<item id="title_events">Events</item>
+	<item id="title_exceptions">Exceptions</item>
+	<item id="title_contracts">Contracts</item>
+	<item id="title_setter">Set</item>
+	<item id="title_getter">Get</item>
+	<item id="title_seeAlso_tasks">Tasks</item>
+	<item id="title_seeAlso_reference">Reference</item>
+	<item id="title_seeAlso_concepts">Concepts</item>
+	<item id="title_seeAlso_otherResources">Other Resources</item>
+
+	<item id="inline_dynamicLink_prefixText">For more information, see </item>
+	<item id="inline_dynamicLink_postfixText">.</item>
+	<item id="inline_dynamicLink_separatorText"> and </item>
+
+	<!-- Development language and code snippet titles for languages without a syntax generator -->
+	<item id="devlang_HTML">HTML</item>
+	<item id="devlang_PShell">PowerShell</item>
+	<item id="devlang_Python">Python</item>
+	<item id="devlang_SQL">SQL</item>
+	<item id="devlang_VBScript">Visual Basic Script</item>
+	<item id="devlang_VisualBasicAndCSharp">Visual Basic and C#</item>
+	<item id="devlang_XML">XML</item>
+
+	<!-- Language keywords -->
+	<item id="devlang_nullKeyword">a null reference (`Nothing` in Visual Basic)</item>
+	<item id="devlang_staticKeyword">`static` (`Shared` in Visual Basic)</item>
+	<item id="devlang_virtualKeyword">`virtual` (`Overridable` in Visual Basic)</item>
+	<item id="devlang_trueKeyword">`true` (`True` in Visual Basic)</item>
+	<item id="devlang_falseKeyword">`false` (`False` in Visual Basic)</item>
+	<item id="devlang_abstractKeyword">`abstract` (`MustInherit` in Visual Basic)</item>
+	<item id="devlang_sealedKeyword">`sealed` (`NotInheritable` in Visual Basic)</item>
+	<item id="devlang_asyncKeyword">`async` (`Async` in Visual Basic)</item>
+	<item id="devlang_awaitKeyword">`await` (`Await` in Visual Basic)</item>
+	<item id="devlang_asyncAwaitKeyword">`async`/`await` (`Async`/`Await` in Visual Basic)</item>
+
+	<!-- Back to Top link text -->
+	<item id="top">Back to Top</item>
+
+</content>

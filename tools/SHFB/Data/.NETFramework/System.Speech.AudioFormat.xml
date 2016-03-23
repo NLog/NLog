@@ -1,0 +1,710 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Speech">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Speech.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Speech.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Speech.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Speech.AudioFormat">
+      <topicdata group="api" />
+      <apidata name="System.Speech.AudioFormat" group="namespace" />
+      <elements>
+        <element api="T:System.Speech.AudioFormat.EncodingFormat" />
+        <element api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+        <element api="T:System.Speech.AudioFormat.AudioChannel" />
+        <element api="T:System.Speech.AudioFormat.AudioBitsPerSample" />
+      </elements>
+      <file name="19a750bd-ea96-7acb-924a-f006d8ac513d" />
+    </api>
+    <api id="T:System.Speech.AudioFormat.AudioBitsPerSample">
+      <topicdata group="api" />
+      <apidata name="AudioBitsPerSample" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Speech.AudioFormat.AudioBitsPerSample.Eight" />
+        <element api="F:System.Speech.AudioFormat.AudioBitsPerSample.Sixteen" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+      </containers>
+      <file name="08b6ba4d-f0a4-d8ab-c717-bcaa9a633011" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.AudioBitsPerSample.Eight">
+      <topicdata group="api" notopic="" />
+      <apidata name="Eight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.AudioBitsPerSample" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.AudioBitsPerSample" ref="false" />
+      </containers>
+      <file name="0b3f94a7-53a6-7926-5704-a2b704c10eac" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.AudioBitsPerSample.Sixteen">
+      <topicdata group="api" notopic="" />
+      <apidata name="Sixteen" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.AudioBitsPerSample" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.AudioBitsPerSample" ref="false" />
+      </containers>
+      <file name="bd80538b-4821-7d79-1184-bb44187eeb0d" />
+    </api>
+    <api id="T:System.Speech.AudioFormat.AudioChannel">
+      <topicdata group="api" />
+      <apidata name="AudioChannel" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Speech.AudioFormat.AudioChannel.Mono" />
+        <element api="F:System.Speech.AudioFormat.AudioChannel.Stereo" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+      </containers>
+      <file name="c2202db2-cf55-0d79-b264-a0f89eb42f82" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.AudioChannel.Mono">
+      <topicdata group="api" notopic="" />
+      <apidata name="Mono" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.AudioChannel" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.AudioChannel" ref="false" />
+      </containers>
+      <file name="b2e6c15b-d6d9-2dd0-8493-586c5852e9db" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.AudioChannel.Stereo">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stereo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.AudioChannel" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.AudioChannel" ref="false" />
+      </containers>
+      <file name="a16f76cf-992d-ab4e-ed48-f974f708a6d4" />
+    </api>
+    <api id="T:System.Speech.AudioFormat.EncodingFormat">
+      <topicdata group="api" />
+      <apidata name="EncodingFormat" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Speech.AudioFormat.EncodingFormat.Pcm" />
+        <element api="F:System.Speech.AudioFormat.EncodingFormat.ALaw" />
+        <element api="F:System.Speech.AudioFormat.EncodingFormat.ULaw" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+      </containers>
+      <file name="5716cc27-9d62-32a9-2c88-08e6f0021c8c" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.EncodingFormat.ALaw">
+      <topicdata group="api" notopic="" />
+      <apidata name="ALaw" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </containers>
+      <file name="6758e13b-fd94-bf38-e957-1f86e5fa0a25" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.EncodingFormat.Pcm">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pcm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </containers>
+      <file name="d6240023-85fa-37f4-a872-7db064770e79" />
+    </api>
+    <api id="F:System.Speech.AudioFormat.EncodingFormat.ULaw">
+      <topicdata group="api" notopic="" />
+      <apidata name="ULaw" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </containers>
+      <file name="f9fb5130-91ee-691d-be85-6ead934f9285" />
+    </api>
+    <api id="T:System.Speech.AudioFormat.SpeechAudioFormatInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      <apidata name="SpeechAudioFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+      </containers>
+      <file name="f48d8e42-b2dc-b66c-6505-4873dd6a6d2d" />
+    </api>
+    <api id="AllMembers.T:System.Speech.AudioFormat.SpeechAudioFormatInfo">
+      <topicdata name="SpeechAudioFormatInfo" group="list" subgroup="members" typeTopicId="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      <apidata name="SpeechAudioFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor">
+          <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor(System.Int32,System.Speech.AudioFormat.AudioBitsPerSample,System.Speech.AudioFormat.AudioChannel)" />
+          <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor(System.Speech.AudioFormat.EncodingFormat,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[])" />
+        </element>
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.AverageBytesPerSecond" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.BitsPerSample" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.BlockAlign" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.ChannelCount" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.EncodingFormat" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.Equals(System.Object)" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.FormatSpecificData" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.GetHashCode" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.SamplesPerSecond" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      </containers>
+      <file name="20b2423f-c6e5-f0f3-f242-19b415814417" />
+    </api>
+    <api id="Methods.T:System.Speech.AudioFormat.SpeechAudioFormatInfo">
+      <topicdata name="SpeechAudioFormatInfo" group="list" subgroup="Methods" typeTopicId="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      <apidata name="SpeechAudioFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.Equals(System.Object)" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.FormatSpecificData" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      </containers>
+      <file name="52926a10-e871-7c5a-3f17-5e611f105943" />
+    </api>
+    <api id="Properties.T:System.Speech.AudioFormat.SpeechAudioFormatInfo">
+      <topicdata name="SpeechAudioFormatInfo" group="list" subgroup="Properties" typeTopicId="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      <apidata name="SpeechAudioFormatInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.AverageBytesPerSecond" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.BitsPerSample" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.BlockAlign" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.ChannelCount" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.EncodingFormat" />
+        <element api="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.SamplesPerSecond" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      </containers>
+      <file name="d7b514e2-ecca-b97f-4a27-c03ee248b408" />
+    </api>
+    <api id="Overload:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Speech.AudioFormat.SpeechAudioFormatInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor(System.Int32,System.Speech.AudioFormat.AudioBitsPerSample,System.Speech.AudioFormat.AudioChannel)" />
+        <element api="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor(System.Speech.AudioFormat.EncodingFormat,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="8dcb5d70-bdd6-8468-518b-25525b762f2e" />
+    </api>
+    <api id="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor(System.Int32,System.Speech.AudioFormat.AudioBitsPerSample,System.Speech.AudioFormat.AudioChannel)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor" />
+      <parameters>
+        <parameter name="samplesPerSecond">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitsPerSample">
+          <type api="T:System.Speech.AudioFormat.AudioBitsPerSample" ref="false" />
+        </parameter>
+        <parameter name="channel">
+          <type api="T:System.Speech.AudioFormat.AudioChannel" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="11f65519-0462-9d96-0b8c-457fd3556cc0" />
+    </api>
+    <api id="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor(System.Speech.AudioFormat.EncodingFormat,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Speech.AudioFormat.SpeechAudioFormatInfo.#ctor" />
+      <parameters>
+        <parameter name="encodingFormat">
+          <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+        </parameter>
+        <parameter name="samplesPerSecond">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitsPerSample">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="channelCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="averageBytesPerSecond">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="blockAlign">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="formatSpecificData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ef9bc265-8747-e65f-2694-e0b7b4717c70" />
+    </api>
+    <api id="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.AverageBytesPerSecond">
+      <topicdata group="api" />
+      <apidata name="AverageBytesPerSecond" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AverageBytesPerSecond" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f586df45-0e1d-0bba-5cf1-6e4321790f3a" />
+    </api>
+    <api id="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.BitsPerSample">
+      <topicdata group="api" />
+      <apidata name="BitsPerSample" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BitsPerSample" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8ff2122b-1355-7bdb-3a5b-1f05b9c642e3" />
+    </api>
+    <api id="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.BlockAlign">
+      <topicdata group="api" />
+      <apidata name="BlockAlign" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BlockAlign" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Advanced" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6907971b-4115-5334-37b2-27483a591478" />
+    </api>
+    <api id="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.ChannelCount">
+      <topicdata group="api" />
+      <apidata name="ChannelCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ChannelCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="7ac7055f-14ec-e996-3a45-8df32258be96" />
+    </api>
+    <api id="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.EncodingFormat">
+      <topicdata group="api" />
+      <apidata name="EncodingFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EncodingFormat" />
+      <returns>
+        <type api="T:System.Speech.AudioFormat.EncodingFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="4cb6d33c-53bf-0728-486e-c7b516584fd0" />
+    </api>
+    <api id="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="97e3a8f5-3a8b-a12c-602f-477339e1b16e" />
+    </api>
+    <api id="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.FormatSpecificData">
+      <topicdata group="api" />
+      <apidata name="FormatSpecificData" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="c3e21583-3e7b-7021-bd05-2f4d8f1169cd" />
+    </api>
+    <api id="M:System.Speech.AudioFormat.SpeechAudioFormatInfo.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="d87c9454-f747-464b-edcd-916812943359" />
+    </api>
+    <api id="P:System.Speech.AudioFormat.SpeechAudioFormatInfo.SamplesPerSecond">
+      <topicdata group="api" />
+      <apidata name="SamplesPerSecond" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SamplesPerSecond" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Speech" module="System.Speech" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Speech.AudioFormat" />
+        <type api="T:System.Speech.AudioFormat.SpeechAudioFormatInfo" ref="true" />
+      </containers>
+      <file name="f495e5f1-ae41-8db3-984f-e80200ea74da" />
+    </api>
+  </apis>
+</reflection>

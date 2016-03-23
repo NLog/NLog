@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Wallet.System">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Wallet.System" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" />
+        <element api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+        <element api="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" />
+      </elements>
+      <file name="c57da3c5-126e-a00a-fb97-3f67eb99e4a2" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation">
+      <topicdata group="api" />
+      <apidata name="WalletItemAppAssociation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation.None" />
+        <element api="F:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation.AppInstalled" />
+        <element api="F:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation.AppNotInstalled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2c3519eb-09f7-223e-1c80-eb89b43d8892" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation.AppInstalled">
+      <topicdata group="api" notopic="" />
+      <apidata name="AppInstalled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </containers>
+      <file name="c91b7445-bfc9-0618-1354-30f185c69af8" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation.AppNotInstalled">
+      <topicdata group="api" notopic="" />
+      <apidata name="AppNotInstalled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </containers>
+      <file name="692cbb92-78b3-0c09-6871-fe27c6e478f1" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </containers>
+      <file name="c768c9a8-dfb8-ef37-dab4-42f12536f764" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      <apidata name="WalletItemSystemStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="da67e133-09a9-a569-face-f9048e0d3cca" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore">
+      <topicdata name="WalletItemSystemStore" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      <apidata name="WalletItemSystemStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.DeleteAsync(Windows.ApplicationModel.Wallet.WalletItem)" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.GetAppStatusForItem(Windows.ApplicationModel.Wallet.WalletItem)" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.GetItemsAsync" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.ImportItemAsync(Windows.Storage.Streams.IRandomAccessStreamReference)" />
+        <element api="E:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.ItemsChanged" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.LaunchAppForItemAsync(Windows.ApplicationModel.Wallet.WalletItem)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      </containers>
+      <file name="3265bc69-995f-3bdd-86ff-cd473830a8dc" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore">
+      <topicdata name="WalletItemSystemStore" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      <apidata name="WalletItemSystemStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.DeleteAsync(Windows.ApplicationModel.Wallet.WalletItem)" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.GetAppStatusForItem(Windows.ApplicationModel.Wallet.WalletItem)" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.GetItemsAsync" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.ImportItemAsync(Windows.Storage.Streams.IRandomAccessStreamReference)" />
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.LaunchAppForItemAsync(Windows.ApplicationModel.Wallet.WalletItem)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      </containers>
+      <file name="c213dac7-605b-5fc1-423b-6f3d59fa8158" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore">
+      <topicdata name="WalletItemSystemStore" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      <apidata name="WalletItemSystemStore" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.ItemsChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" />
+      </containers>
+      <file name="6a947909-0967-3b7e-deca-cc32df58468f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.DeleteAsync(Windows.ApplicationModel.Wallet.WalletItem)">
+      <topicdata group="api" />
+      <apidata name="DeleteAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="item" in="true">
+          <type api="T:Windows.ApplicationModel.Wallet.WalletItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d130e580-4050-7b8d-b2f8-1ae581a43297" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.GetAppStatusForItem(Windows.ApplicationModel.Wallet.WalletItem)">
+      <topicdata group="api" />
+      <apidata name="GetAppStatusForItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="item" in="true">
+          <type api="T:Windows.ApplicationModel.Wallet.WalletItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+      </containers>
+      <file name="1a6033ab-67f8-d338-d730-675a03db2e69" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.GetItemsAsync">
+      <topicdata group="api" />
+      <apidata name="GetItemsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Wallet.WalletItem" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="de61ad70-408e-d9dc-4aaa-26cf9b54f9f0" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.ImportItemAsync(Windows.Storage.Streams.IRandomAccessStreamReference)">
+      <topicdata group="api" />
+      <apidata name="ImportItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="stream" in="true">
+          <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Wallet.WalletItem" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c04ecf9d-6c17-ccc1-b911-ef8587afd247" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.ItemsChanged">
+      <topicdata group="api" />
+      <apidata name="ItemsChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ItemsChanged" />
+      <remover name="remove_ItemsChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+      </containers>
+      <file name="76bc7b0f-f600-82ea-f592-551dd675dc00" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore.LaunchAppForItemAsync(Windows.ApplicationModel.Wallet.WalletItem)">
+      <topicdata group="api" />
+      <apidata name="LaunchAppForItemAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="item" in="true">
+          <type api="T:Windows.ApplicationModel.Wallet.WalletItem" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="26d4308f-f5e7-b2b5-327f-638b02c91b79" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" />
+      <apidata name="WalletManagerSystem" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6513f553-29bd-d2b5-8c20-aeb15120e38a" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem">
+      <topicdata name="WalletManagerSystem" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" />
+      <apidata name="WalletManagerSystem" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletManagerSystem.RequestStoreAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" />
+      </containers>
+      <file name="179b3dbb-f59f-7be6-e011-39bd9325ee91" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem">
+      <topicdata name="WalletManagerSystem" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" />
+      <apidata name="WalletManagerSystem" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Wallet.System.WalletManagerSystem.RequestStoreAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" />
+      </containers>
+      <file name="b9bbe64d-6fa1-e836-29e8-75f666ede1ee" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Wallet.System.WalletManagerSystem.RequestStoreAsync">
+      <topicdata group="api" />
+      <apidata name="RequestStoreAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Wallet.System.WalletItemSystemStore" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Wallet.System" />
+        <type api="T:Windows.ApplicationModel.Wallet.System.WalletManagerSystem" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="203190dd-3671-b4ef-b37e-499028aba821" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,1030 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.TileAgent">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.TileAgent" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+        <element api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" />
+      </elements>
+      <file name="66cbb501-8985-7f8b-8dff-b237a164cccf" />
+    </api>
+    <api id="T:Microsoft.Phone.TileAgent.TileConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      <apidata name="TileConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileConfiguration.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="43134857-19de-d051-c196-c18d477b3bd2" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.TileAgent.TileConfiguration">
+      <topicdata name="TileConfiguration" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      <apidata name="TileConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileConfiguration.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.TileAgent.TileConfiguration.#ctor" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.BadgeFrequency" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.BadgePollingUri" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.Expiration" />
+        <element api="M:Microsoft.Phone.TileAgent.TileConfiguration.GetNotifyPollingUri(System.Int32)" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.MaxPollingUri" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.NotifyCycle" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.NotifyFrequency" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleId" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleNotification" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleTag" />
+        <element api="M:Microsoft.Phone.TileAgent.TileConfiguration.SetNotifyPollingUri(System.String,System.Int32)" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ShowNameOnMedium" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ShowNameOnWide" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.StartTime" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileBaseUri" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileBgColor" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileFgColor" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileID" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageMediumToken" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageMediumUrl" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageTinyToken" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageTinyUrl" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageWideToken" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageWideUrl" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileName" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileType" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      </containers>
+      <file name="2da539bf-233e-6d6b-f60f-bae61a9a096e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.TileAgent.TileConfiguration">
+      <topicdata name="TileConfiguration" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      <apidata name="TileConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileConfiguration.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.TileAgent.TileConfiguration.GetNotifyPollingUri(System.Int32)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileConfiguration.SetNotifyPollingUri(System.String,System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      </containers>
+      <file name="9d9c21a3-c90b-9ed9-5f16-1e9f8454e409" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.TileAgent.TileConfiguration">
+      <topicdata name="TileConfiguration" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      <apidata name="TileConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileConfiguration.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.BadgeFrequency" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.BadgePollingUri" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.Expiration" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.MaxPollingUri" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.NotifyCycle" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.NotifyFrequency" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleId" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleNotification" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleTag" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ShowNameOnMedium" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.ShowNameOnWide" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.StartTime" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileBaseUri" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileBgColor" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileFgColor" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileID" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageMediumToken" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageMediumUrl" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageTinyToken" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageTinyUrl" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageWideToken" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageWideUrl" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileName" />
+        <element api="P:Microsoft.Phone.TileAgent.TileConfiguration.TileType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" />
+      </containers>
+      <file name="1202b811-37ea-4251-79ce-e7b9ba8c3535" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileConfiguration.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="ea28446c-0f08-22c4-9ab0-5b30a42dd01e" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.BadgeFrequency">
+      <topicdata group="api" />
+      <apidata name="BadgeFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BadgeFrequency" />
+      <setter name="set_BadgeFrequency" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="e080fdbf-ecb3-3af8-af2c-21a81e313694" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.BadgePollingUri">
+      <topicdata group="api" />
+      <apidata name="BadgePollingUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BadgePollingUri" />
+      <setter name="set_BadgePollingUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="28fb5b02-3f0f-128a-37ab-0d9828025522" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.Expiration">
+      <topicdata group="api" />
+      <apidata name="Expiration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Expiration" />
+      <setter name="set_Expiration" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="66841fc9-5761-55c2-1a45-4f4f39fec092" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileConfiguration.GetNotifyPollingUri(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GetNotifyPollingUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="cc8afdc8-cb0b-2d94-4a24-58fe2067e643" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.MaxPollingUri">
+      <topicdata group="api" />
+      <apidata name="MaxPollingUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxPollingUri" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="cc832b21-2845-d648-2b65-1d60c6f2f85e" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.NotifyCycle">
+      <topicdata group="api" />
+      <apidata name="NotifyCycle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NotifyCycle" />
+      <setter name="set_NotifyCycle" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="abec09e4-4937-ec94-4cb3-76188c718342" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.NotifyFrequency">
+      <topicdata group="api" />
+      <apidata name="NotifyFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NotifyFrequency" />
+      <setter name="set_NotifyFrequency" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="58e2a379-6fc2-721a-30b8-ca8b1d577c39" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleId">
+      <topicdata group="api" />
+      <apidata name="ScheduleId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ScheduleId" />
+      <setter name="set_ScheduleId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="6c06ac57-bbb7-d62c-3305-d6306e3dacea" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleNotification">
+      <topicdata group="api" />
+      <apidata name="ScheduleNotification" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ScheduleNotification" />
+      <setter name="set_ScheduleNotification" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="62c86d50-054e-3920-3942-106946f19ec5" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.ScheduleTag">
+      <topicdata group="api" />
+      <apidata name="ScheduleTag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ScheduleTag" />
+      <setter name="set_ScheduleTag" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="c81e6989-6726-e69f-1ac5-6b1ca1e185cb" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileConfiguration.SetNotifyPollingUri(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetNotifyPollingUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pollingUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="2f83623c-8e42-38d1-bc9f-3fa1cc008a5b" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.ShowNameOnMedium">
+      <topicdata group="api" />
+      <apidata name="ShowNameOnMedium" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShowNameOnMedium" />
+      <setter name="set_ShowNameOnMedium" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="8e4372a1-7c20-567b-f1dd-912fe3cec564" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.ShowNameOnWide">
+      <topicdata group="api" />
+      <apidata name="ShowNameOnWide" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShowNameOnWide" />
+      <setter name="set_ShowNameOnWide" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="3f801c12-6f2a-cac3-cb74-3cab4296fc70" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.StartTime">
+      <topicdata group="api" />
+      <apidata name="StartTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StartTime" />
+      <setter name="set_StartTime" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="4e03f277-81de-07d3-304e-1851563c8c50" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileBaseUri">
+      <topicdata group="api" />
+      <apidata name="TileBaseUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileBaseUri" />
+      <setter name="set_TileBaseUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="6a826c02-64c3-7674-7cf1-1edb83aa1f5b" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileBgColor">
+      <topicdata group="api" />
+      <apidata name="TileBgColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileBgColor" />
+      <setter name="set_TileBgColor" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="1a2cc2fb-161d-bc54-10bc-89d868df0e90" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileFgColor">
+      <topicdata group="api" />
+      <apidata name="TileFgColor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileFgColor" />
+      <setter name="set_TileFgColor" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="5fa65add-61cb-515c-aa9c-def867444438" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileID">
+      <topicdata group="api" />
+      <apidata name="TileID" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileID" />
+      <setter name="set_TileID" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="a4ecdbc2-cf29-ed99-107a-62c7e3b8409a" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageMediumToken">
+      <topicdata group="api" />
+      <apidata name="TileImageMediumToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileImageMediumToken" />
+      <setter name="set_TileImageMediumToken" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="80600e3b-0fe7-8061-29d8-f206fdec1c96" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageMediumUrl">
+      <topicdata group="api" />
+      <apidata name="TileImageMediumUrl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileImageMediumUrl" />
+      <setter name="set_TileImageMediumUrl" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="b031f982-b763-7641-62b4-fc1f9e1be262" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageTinyToken">
+      <topicdata group="api" />
+      <apidata name="TileImageTinyToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileImageTinyToken" />
+      <setter name="set_TileImageTinyToken" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="f558f900-d4d7-7fbf-a38c-6db14f7d02c5" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageTinyUrl">
+      <topicdata group="api" />
+      <apidata name="TileImageTinyUrl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileImageTinyUrl" />
+      <setter name="set_TileImageTinyUrl" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="95cef4a1-c8c9-9a55-c1e7-e56226ed7388" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageWideToken">
+      <topicdata group="api" />
+      <apidata name="TileImageWideToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileImageWideToken" />
+      <setter name="set_TileImageWideToken" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="6a70b945-d8b2-1570-61b0-a4d118f5a59a" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileImageWideUrl">
+      <topicdata group="api" />
+      <apidata name="TileImageWideUrl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileImageWideUrl" />
+      <setter name="set_TileImageWideUrl" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="e126ed26-e72f-0c16-9693-801808ad3d8f" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileName">
+      <topicdata group="api" />
+      <apidata name="TileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileName" />
+      <setter name="set_TileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="e8d1f907-34f7-4fd7-e5dc-de616f53f97a" />
+    </api>
+    <api id="P:Microsoft.Phone.TileAgent.TileConfiguration.TileType">
+      <topicdata group="api" />
+      <apidata name="TileType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TileType" />
+      <setter name="set_TileType" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+      </containers>
+      <file name="63a2cd76-bf80-90e2-07cf-f7ca734f2b0d" />
+    </api>
+    <api id="T:Microsoft.Phone.TileAgent.TileForegroundAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.TileAgent.TileForegroundAgent" />
+      <apidata name="TileForegroundAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileForegroundAgent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8b221624-6921-b1b4-5a8f-042ed8f4fe93" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.TileAgent.TileForegroundAgent">
+      <topicdata name="TileForegroundAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.TileAgent.TileForegroundAgent" />
+      <apidata name="TileForegroundAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileForegroundAgent.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.#ctor" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnCheckPinningState(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnCleanupTiles" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupPeriodicNotification(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupPinToStart(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupScheduledNotification(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnUpdatePinToStart(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" />
+      </containers>
+      <file name="6fa3e8a9-eb4e-041e-2cda-a1e8621f2140" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.TileAgent.TileForegroundAgent">
+      <topicdata name="TileForegroundAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.TileAgent.TileForegroundAgent" />
+      <apidata name="TileForegroundAgent" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" defaultConstructor="M:Microsoft.Phone.TileAgent.TileForegroundAgent.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnCheckPinningState(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnCleanupTiles" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupPeriodicNotification(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupPinToStart(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupScheduledNotification(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnUpdatePinToStart(Microsoft.Phone.TileAgent.TileConfiguration)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" />
+      </containers>
+      <file name="30061619-3f1f-0f42-689d-d24cdde622df" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="4fd5a1fe-ea70-d487-28d9-6b2f287fb395" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnCheckPinningState(Microsoft.Phone.TileAgent.TileConfiguration)">
+      <topicdata group="api" />
+      <apidata name="OnCheckPinningState" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="241c4d6b-5480-2316-7999-4fe81e998721" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnCleanupTiles">
+      <topicdata group="api" />
+      <apidata name="OnCleanupTiles" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="a54166bb-24c2-6422-0b71-ca71523ad664" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupPeriodicNotification(Microsoft.Phone.TileAgent.TileConfiguration)">
+      <topicdata group="api" />
+      <apidata name="OnSetupPeriodicNotification" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="9d6375d9-792c-1952-6440-950949b66b59" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupPinToStart(Microsoft.Phone.TileAgent.TileConfiguration)">
+      <topicdata group="api" />
+      <apidata name="OnSetupPinToStart" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="3b0005c1-cada-b97b-bb65-49cda10761ff" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnSetupScheduledNotification(Microsoft.Phone.TileAgent.TileConfiguration)">
+      <topicdata group="api" />
+      <apidata name="OnSetupScheduledNotification" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="f559302a-0c37-35a8-3d67-a9730509d95c" />
+    </api>
+    <api id="M:Microsoft.Phone.TileAgent.TileForegroundAgent.OnUpdatePinToStart(Microsoft.Phone.TileAgent.TileConfiguration)">
+      <topicdata group="api" />
+      <apidata name="OnUpdatePinToStart" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="args">
+          <type api="T:Microsoft.Phone.TileAgent.TileConfiguration" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.TileAgent" />
+        <type api="T:Microsoft.Phone.TileAgent.TileForegroundAgent" ref="true" />
+      </containers>
+      <file name="602213b3-137c-8ff8-4a6f-e2224353ca79" />
+    </api>
+  </apis>
+</reflection>

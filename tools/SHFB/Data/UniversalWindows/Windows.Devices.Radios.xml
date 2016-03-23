@@ -1,0 +1,841 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Radios">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Radios" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Radios.RadioState" />
+        <element api="T:Windows.Devices.Radios.RadioKind" />
+        <element api="T:Windows.Devices.Radios.RadioAccessStatus" />
+        <element api="T:Windows.Devices.Radios.Radio" />
+      </elements>
+      <file name="eae465c4-d81e-80e2-7cc4-16e39113b092" />
+    </api>
+    <api id="T:Windows.Devices.Radios.Radio">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Radios.Radio" />
+      <apidata name="Radio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="83ffb237-bd17-5fdf-c9c3-5bb749d229cc" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Radios.Radio">
+      <topicdata name="Radio" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Radios.Radio" />
+      <apidata name="Radio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Radios.Radio.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Radios.Radio.GetDeviceSelector" />
+        <element api="M:Windows.Devices.Radios.Radio.GetRadiosAsync" />
+        <element api="P:Windows.Devices.Radios.Radio.Kind" />
+        <element api="P:Windows.Devices.Radios.Radio.Name" />
+        <element api="M:Windows.Devices.Radios.Radio.RequestAccessAsync" />
+        <element api="M:Windows.Devices.Radios.Radio.SetStateAsync(Windows.Devices.Radios.RadioState)" />
+        <element api="P:Windows.Devices.Radios.Radio.State" />
+        <element api="E:Windows.Devices.Radios.Radio.StateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" />
+      </containers>
+      <file name="f55a5ac0-4467-59fd-9fd7-3cc14ef1e0bf" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Radios.Radio">
+      <topicdata name="Radio" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Radios.Radio" />
+      <apidata name="Radio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Radios.Radio.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Radios.Radio.GetDeviceSelector" />
+        <element api="M:Windows.Devices.Radios.Radio.GetRadiosAsync" />
+        <element api="M:Windows.Devices.Radios.Radio.RequestAccessAsync" />
+        <element api="M:Windows.Devices.Radios.Radio.SetStateAsync(Windows.Devices.Radios.RadioState)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" />
+      </containers>
+      <file name="a9df494a-a282-b634-6afe-6eaabba1f0a5" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Radios.Radio">
+      <topicdata name="Radio" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Radios.Radio" />
+      <apidata name="Radio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Radios.Radio.Kind" />
+        <element api="P:Windows.Devices.Radios.Radio.Name" />
+        <element api="P:Windows.Devices.Radios.Radio.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" />
+      </containers>
+      <file name="56b4a47f-3dc5-6d54-2fca-e914a61778c7" />
+    </api>
+    <api id="Events.T:Windows.Devices.Radios.Radio">
+      <topicdata name="Radio" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Radios.Radio" />
+      <apidata name="Radio" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Radios.Radio.StateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" />
+      </containers>
+      <file name="2d054e79-a7ea-bea7-909b-733ec18a6c36" />
+    </api>
+    <api id="M:Windows.Devices.Radios.Radio.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FromIdAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c011a048-e85d-0f4e-1104-4eae0eda8580" />
+    </api>
+    <api id="M:Windows.Devices.Radios.Radio.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <file name="ad6d3b2c-39e8-4a2f-891a-b2b17955a613" />
+    </api>
+    <api id="M:Windows.Devices.Radios.Radio.GetRadiosAsync">
+      <topicdata group="api" />
+      <apidata name="GetRadiosAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="eac7b610-e816-cafd-885b-426c97947f54" />
+    </api>
+    <api id="P:Windows.Devices.Radios.Radio.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <file name="e4a30262-dde8-d0dd-8194-337f23dd8c21" />
+    </api>
+    <api id="P:Windows.Devices.Radios.Radio.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <file name="7ce6e823-3abd-2dc8-dc3a-01990739c04f" />
+    </api>
+    <api id="M:Windows.Devices.Radios.Radio.RequestAccessAsync">
+      <topicdata group="api" />
+      <apidata name="RequestAccessAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="37d7fd83-57e8-f3ab-f03d-70230f872820" />
+    </api>
+    <api id="M:Windows.Devices.Radios.Radio.SetStateAsync(Windows.Devices.Radios.RadioState)">
+      <topicdata group="api" />
+      <apidata name="SetStateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9fc8a4db-73ba-2010-dd07-5e8e349bbbfc" />
+    </api>
+    <api id="P:Windows.Devices.Radios.Radio.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <file name="6a4e8f9f-23bb-9cc8-5a69-970f2e3641b2" />
+    </api>
+    <api id="E:Windows.Devices.Radios.Radio.StateChanged">
+      <topicdata group="api" />
+      <apidata name="StateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StateChanged" />
+      <remover name="remove_StateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.Radio" ref="true" />
+      </containers>
+      <file name="ec2154f7-02f7-66a1-5602-35051b1f6134" />
+    </api>
+    <api id="T:Windows.Devices.Radios.RadioAccessStatus">
+      <topicdata group="api" />
+      <apidata name="RadioAccessStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Radios.RadioAccessStatus.Unspecified" />
+        <element api="F:Windows.Devices.Radios.RadioAccessStatus.Allowed" />
+        <element api="F:Windows.Devices.Radios.RadioAccessStatus.DeniedByUser" />
+        <element api="F:Windows.Devices.Radios.RadioAccessStatus.DeniedBySystem" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b322535b-5250-23f3-d12e-3098844e5631" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioAccessStatus.Allowed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Allowed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </containers>
+      <file name="34b7f864-c822-fc9b-8e12-910084ae785e" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioAccessStatus.DeniedBySystem">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeniedBySystem" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </containers>
+      <file name="8b63c06d-963d-e84a-cba6-e4e48b5f382f" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioAccessStatus.DeniedByUser">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeniedByUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </containers>
+      <file name="b0e4b333-63db-3318-adcd-aac9f0f39445" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioAccessStatus.Unspecified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioAccessStatus" ref="false" />
+      </containers>
+      <file name="cad3efc3-aaa0-264f-5f2e-562dd4cbc9e2" />
+    </api>
+    <api id="T:Windows.Devices.Radios.RadioKind">
+      <topicdata group="api" />
+      <apidata name="RadioKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Radios.RadioKind.Other" />
+        <element api="F:Windows.Devices.Radios.RadioKind.WiFi" />
+        <element api="F:Windows.Devices.Radios.RadioKind.MobileBroadband" />
+        <element api="F:Windows.Devices.Radios.RadioKind.Bluetooth" />
+        <element api="F:Windows.Devices.Radios.RadioKind.FM" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ec9cd339-6426-3d96-ef60-a14f7d570478" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioKind.Bluetooth">
+      <topicdata group="api" notopic="" />
+      <apidata name="Bluetooth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </containers>
+      <file name="ab3c43eb-48d3-4341-10c0-8ceeeecdb339" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioKind.FM">
+      <topicdata group="api" notopic="" />
+      <apidata name="FM" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </containers>
+      <file name="e33b807e-6ceb-f7f8-11e4-2d37a377ed14" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioKind.MobileBroadband">
+      <topicdata group="api" notopic="" />
+      <apidata name="MobileBroadband" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </containers>
+      <file name="4e84b9b4-6eb9-cfa4-619c-e150a2e86311" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioKind.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </containers>
+      <file name="f50afd40-75ce-edb4-6f16-28c526ae8024" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioKind.WiFi">
+      <topicdata group="api" notopic="" />
+      <apidata name="WiFi" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioKind" ref="false" />
+      </containers>
+      <file name="78cafc4b-0d81-76fe-a072-c01654aa972f" />
+    </api>
+    <api id="T:Windows.Devices.Radios.RadioState">
+      <topicdata group="api" />
+      <apidata name="RadioState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Radios.RadioState.Unknown" />
+        <element api="F:Windows.Devices.Radios.RadioState.On" />
+        <element api="F:Windows.Devices.Radios.RadioState.Off" />
+        <element api="F:Windows.Devices.Radios.RadioState.Disabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="32bf5010-01e6-1ef8-12e6-14b890486733" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioState.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </containers>
+      <file name="b749b1de-2873-c552-2485-1d35ae84ff03" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioState.Off">
+      <topicdata group="api" notopic="" />
+      <apidata name="Off" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </containers>
+      <file name="7971387d-3186-f8cd-81ae-b4754060f22d" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioState.On">
+      <topicdata group="api" notopic="" />
+      <apidata name="On" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </containers>
+      <file name="78825089-81f1-05cc-99f8-9fefcbf1bc82" />
+    </api>
+    <api id="F:Windows.Devices.Radios.RadioState.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Radios" />
+        <type api="T:Windows.Devices.Radios.RadioState" ref="false" />
+      </containers>
+      <file name="6bc17c7f-e43b-d145-70e3-a0c9bcf134d5" />
+    </api>
+  </apis>
+</reflection>

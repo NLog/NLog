@@ -1,0 +1,3421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.PlayTo">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.PlayTo" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlayToReceiver" />
+        <element api="T:Windows.Media.PlayTo.PlayToConnection" />
+        <element api="T:Windows.Media.PlayTo.PlayToSource" />
+        <element api="T:Windows.Media.PlayTo.PlayToConnectionState" />
+        <element api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlayToConnectionError" />
+        <element api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlayToSourceDeferral" />
+        <element api="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+        <element api="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+        <element api="T:Windows.Media.PlayTo.PlayToManager" />
+      </elements>
+      <file name="98de4772-1b39-5f56-02a4-ee8d603da402" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      <apidata name="CurrentTimeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.ICurrentTimeChangeRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="989bddd7-fc6f-02d8-b479-89b353ec53d5" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs">
+      <topicdata name="CurrentTimeChangeRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      <apidata name="CurrentTimeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs.Time" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      </containers>
+      <file name="2fd59f7b-82c2-7b1a-8378-4c03e40c4a56" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs">
+      <topicdata name="CurrentTimeChangeRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      <apidata name="CurrentTimeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      </containers>
+      <file name="472fe477-5dd7-be44-852f-0615b327979b" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs">
+      <topicdata name="CurrentTimeChangeRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      <apidata name="CurrentTimeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs.Time" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" />
+      </containers>
+      <file name="70904399-76da-8a7b-cb17-ff9ce72e41c2" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs.Time">
+      <topicdata group="api" />
+      <apidata name="Time" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Time" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="0f9c54d9-3a05-1877-0b2a-8796b3abfd10" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      <apidata name="MuteChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IMuteChangeRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="225fcd43-4e4a-dfc7-4ad3-523f2e43d0b6" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs">
+      <topicdata name="MuteChangeRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      <apidata name="MuteChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.MuteChangeRequestedEventArgs.Mute" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      </containers>
+      <file name="aeb7b731-6d32-ed1a-6333-8405806c5fa4" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs">
+      <topicdata name="MuteChangeRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      <apidata name="MuteChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      </containers>
+      <file name="58279c42-0e23-22c1-6a7f-c62b22e3afc3" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs">
+      <topicdata name="MuteChangeRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      <apidata name="MuteChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.MuteChangeRequestedEventArgs.Mute" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" />
+      </containers>
+      <file name="42511b41-39f5-635c-b90e-548f2283a962" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.MuteChangeRequestedEventArgs.Mute">
+      <topicdata group="api" />
+      <apidata name="Mute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Mute" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="f430a0e4-a291-b0b8-287b-d4732576f557" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      <apidata name="PlaybackRateChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlaybackRateChangeRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4a7b0cc1-0e8e-3fc6-40b4-6eb89498db56" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs">
+      <topicdata name="PlaybackRateChangeRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      <apidata name="PlaybackRateChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs.Rate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      </containers>
+      <file name="6e7f3c56-4184-c8b1-6aa3-2885bda47fbb" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs">
+      <topicdata name="PlaybackRateChangeRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      <apidata name="PlaybackRateChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      </containers>
+      <file name="628dcfd4-ba38-24d4-2380-8a0c1b990b95" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs">
+      <topicdata name="PlaybackRateChangeRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      <apidata name="PlaybackRateChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs.Rate" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" />
+      </containers>
+      <file name="969500b4-4d9f-77be-ec84-7cb0cfa9510b" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs.Rate">
+      <topicdata group="api" />
+      <apidata name="Rate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Rate" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="a0b2fbac-d4c0-f37d-fc9a-37fa2c48880f" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToConnection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToConnection" />
+      <apidata name="PlayToConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToConnection" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8d079d5a-99fd-2b79-b116-b0a43752550d" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToConnection">
+      <topicdata name="PlayToConnection" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToConnection" />
+      <apidata name="PlayToConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="E:Windows.Media.PlayTo.PlayToConnection.Error" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnection.State" />
+        <element api="E:Windows.Media.PlayTo.PlayToConnection.StateChanged" />
+        <element api="E:Windows.Media.PlayTo.PlayToConnection.Transferred" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" />
+      </containers>
+      <file name="ad97f8bb-9bc4-be8c-94ad-a0f66a096352" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToConnection">
+      <topicdata name="PlayToConnection" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToConnection" />
+      <apidata name="PlayToConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" />
+      </containers>
+      <file name="a4c3307e-af2a-d56d-b3ec-af76a6ade4f3" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToConnection">
+      <topicdata name="PlayToConnection" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToConnection" />
+      <apidata name="PlayToConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToConnection.State" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" />
+      </containers>
+      <file name="96d1c887-8279-22d2-90ad-8c909f08c577" />
+    </api>
+    <api id="Events.T:Windows.Media.PlayTo.PlayToConnection">
+      <topicdata name="PlayToConnection" group="list" subgroup="Events" typeTopicId="T:Windows.Media.PlayTo.PlayToConnection" />
+      <apidata name="PlayToConnection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.PlayTo.PlayToConnection.Error" />
+        <element api="E:Windows.Media.PlayTo.PlayToConnection.StateChanged" />
+        <element api="E:Windows.Media.PlayTo.PlayToConnection.Transferred" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" />
+      </containers>
+      <file name="1636eef7-7b0c-4dfc-7de6-0120f7f7b2f9" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToConnection.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Error" />
+      <remover name="remove_Error" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+            <type api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+      </containers>
+      <file name="bf04067c-6517-79d6-5a08-b5e8dfe79054" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnection.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+      </containers>
+      <file name="28a24d1e-365e-ad06-9fa2-896b1a03b749" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToConnection.StateChanged">
+      <topicdata group="api" />
+      <apidata name="StateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StateChanged" />
+      <remover name="remove_StateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+            <type api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+      </containers>
+      <file name="c6e61a39-a34f-c904-c827-12f87c5977f7" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToConnection.Transferred">
+      <topicdata group="api" />
+      <apidata name="Transferred" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Transferred" />
+      <remover name="remove_Transferred" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+            <type api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+      </containers>
+      <file name="bddf6ef7-6756-36eb-6034-a09a49ba622a" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToConnectionError">
+      <topicdata group="api" />
+      <apidata name="PlayToConnectionError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionError.None" />
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionError.DeviceNotResponding" />
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionError.DeviceError" />
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionError.DeviceLocked" />
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionError.ProtectedPlaybackFailed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6c7194de-a2cc-7122-e3fa-63a384f5af56" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionError.DeviceError">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </containers>
+      <file name="5b69628a-49a6-c1ff-0be3-3848668dd975" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionError.DeviceLocked">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceLocked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </containers>
+      <file name="44905d25-0cc9-5d9a-74ab-82a3464af9b9" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionError.DeviceNotResponding">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceNotResponding" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </containers>
+      <file name="a6a59cb6-fcd7-c5ba-4447-59df6a594954" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionError.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </containers>
+      <file name="59d64db3-45be-b20b-8107-6b6e6ca8d528" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionError.ProtectedPlaybackFailed">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtectedPlaybackFailed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="70d6fcd4-6abb-7813-7c7d-c44ab73ed276" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      <apidata name="PlayToConnectionErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToConnectionErrorEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="92a6d90c-f8b2-a866-c08b-637fe2ddec1a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs">
+      <topicdata name="PlayToConnectionErrorEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      <apidata name="PlayToConnectionErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs.Code" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      </containers>
+      <file name="21cafd8c-e5e0-ad46-47c1-2a503257813d" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs">
+      <topicdata name="PlayToConnectionErrorEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      <apidata name="PlayToConnectionErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      </containers>
+      <file name="16695b64-873b-0400-b702-1bf7b4745c16" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs">
+      <topicdata name="PlayToConnectionErrorEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      <apidata name="PlayToConnectionErrorEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs.Code" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs.Message" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" />
+      </containers>
+      <file name="e9518333-2783-b5a8-5f27-5a353f4a35d6" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs.Code">
+      <topicdata group="api" />
+      <apidata name="Code" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Code" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" ref="true" />
+      </containers>
+      <file name="3862b6f6-2c23-29a3-90ab-91357ebbfdaa" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionErrorEventArgs" ref="true" />
+      </containers>
+      <file name="4a2d845e-54ff-a69f-6e65-f5eb60c219e9" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToConnectionState">
+      <topicdata group="api" />
+      <apidata name="PlayToConnectionState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionState.Disconnected" />
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionState.Connected" />
+        <element api="F:Windows.Media.PlayTo.PlayToConnectionState.Rendering" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e82d153a-2169-aa59-f457-413adde90a66" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionState.Connected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </containers>
+      <file name="7aa2c5f2-602f-2579-4d80-8be1ba8fd665" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionState.Disconnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </containers>
+      <file name="e0ec6744-4391-d782-fb26-90413456fd08" />
+    </api>
+    <api id="F:Windows.Media.PlayTo.PlayToConnectionState.Rendering">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rendering" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </containers>
+      <file name="4b07ed6f-bbae-ad80-9f7f-a6a1780cd7af" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      <apidata name="PlayToConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToConnectionStateChangedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8f6c6500-0575-ccc6-c866-6ca86a0ffb9e" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs">
+      <topicdata name="PlayToConnectionStateChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      <apidata name="PlayToConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs.CurrentState" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs.PreviousState" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      </containers>
+      <file name="68c2893a-238a-cf63-f87d-1c1cc79029b4" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs">
+      <topicdata name="PlayToConnectionStateChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      <apidata name="PlayToConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      </containers>
+      <file name="63d8e110-f46f-3485-7b47-0ae6e0aaee55" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs">
+      <topicdata name="PlayToConnectionStateChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      <apidata name="PlayToConnectionStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs.CurrentState" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs.PreviousState" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" />
+      </containers>
+      <file name="a4d0270e-d4bf-8306-1d8b-b1cb1b2fbe45" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs.CurrentState">
+      <topicdata group="api" />
+      <apidata name="CurrentState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentState" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="2ae1c02d-eda6-d821-d411-ed04118a20a7" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs.PreviousState">
+      <topicdata group="api" />
+      <apidata name="PreviousState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PreviousState" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="ba8f05ef-fa6d-957c-dd81-f1b7791c486b" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      <apidata name="PlayToConnectionTransferredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToConnectionTransferredEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7eeed0dc-bfaa-8524-e671-e6cf992a7792" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs">
+      <topicdata name="PlayToConnectionTransferredEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      <apidata name="PlayToConnectionTransferredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs.CurrentSource" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs.PreviousSource" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      </containers>
+      <file name="39d25faa-e9a7-853e-ea1a-b524b049a186" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs">
+      <topicdata name="PlayToConnectionTransferredEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      <apidata name="PlayToConnectionTransferredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      </containers>
+      <file name="e080b9b9-3313-1d45-be8b-c316d6e88a11" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs">
+      <topicdata name="PlayToConnectionTransferredEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      <apidata name="PlayToConnectionTransferredEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs.CurrentSource" />
+        <element api="P:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs.PreviousSource" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" />
+      </containers>
+      <file name="fff885cf-c37f-40d4-fe8f-5c1698faf9bf" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs.CurrentSource">
+      <topicdata group="api" />
+      <apidata name="CurrentSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentSource" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" ref="true" />
+      </containers>
+      <file name="17070d6a-a4f7-eeea-674d-d07ccf4908e0" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs.PreviousSource">
+      <topicdata group="api" />
+      <apidata name="PreviousSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PreviousSource" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToConnectionTransferredEventArgs" ref="true" />
+      </containers>
+      <file name="0b47aab8-82d4-13c7-742e-a70bbd249f3e" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToManager" />
+      <apidata name="PlayToManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToManager" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="579c74d4-9066-426e-b6a9-70c5cfbd7436" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToManager">
+      <topicdata name="PlayToManager" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToManager" />
+      <apidata name="PlayToManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToManager.DefaultSourceSelection" />
+        <element api="M:Windows.Media.PlayTo.PlayToManager.GetForCurrentView" />
+        <element api="M:Windows.Media.PlayTo.PlayToManager.ShowPlayToUI" />
+        <element api="E:Windows.Media.PlayTo.PlayToManager.SourceRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToManager.SourceSelected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" />
+      </containers>
+      <file name="54a0f919-44b8-f7a9-30f5-0773d8351bfd" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToManager">
+      <topicdata name="PlayToManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToManager" />
+      <apidata name="PlayToManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToManager.GetForCurrentView" />
+        <element api="M:Windows.Media.PlayTo.PlayToManager.ShowPlayToUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" />
+      </containers>
+      <file name="4a6ca0d0-eb24-745e-44c6-071e5fc5e63f" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToManager">
+      <topicdata name="PlayToManager" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToManager" />
+      <apidata name="PlayToManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToManager.DefaultSourceSelection" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" />
+      </containers>
+      <file name="b2dd9fe1-4d10-b929-f533-d472699d850d" />
+    </api>
+    <api id="Events.T:Windows.Media.PlayTo.PlayToManager">
+      <topicdata name="PlayToManager" group="list" subgroup="Events" typeTopicId="T:Windows.Media.PlayTo.PlayToManager" />
+      <apidata name="PlayToManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Media.PlayTo.PlayToManager.SourceRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToManager.SourceSelected" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" />
+      </containers>
+      <file name="ee75a3c6-6895-31dd-19bd-a8608f326515" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToManager.DefaultSourceSelection">
+      <topicdata group="api" />
+      <apidata name="DefaultSourceSelection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DefaultSourceSelection" />
+      <setter name="set_DefaultSourceSelection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+      </containers>
+      <file name="d016b727-3c19-3c45-0d0c-7f0712ad060a" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToManager.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+      </containers>
+      <file name="19aa2b8b-f7ea-5796-4a9a-a66a58878784" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToManager.ShowPlayToUI">
+      <topicdata group="api" />
+      <apidata name="ShowPlayToUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+      </containers>
+      <file name="6b83bb0a-055d-4542-5c40-a1ef67d865d6" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToManager.SourceRequested">
+      <topicdata group="api" />
+      <apidata name="SourceRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SourceRequested" />
+      <remover name="remove_SourceRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+            <type api="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+      </containers>
+      <file name="d86c5d21-9385-aed2-c633-5d04d0d78442" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToManager.SourceSelected">
+      <topicdata group="api" />
+      <apidata name="SourceSelected" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SourceSelected" />
+      <remover name="remove_SourceSelected" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+            <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToManager" ref="true" />
+      </containers>
+      <file name="ad0d5f33-3d02-c70c-eb6b-6ebd2330347a" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToReceiver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToReceiver" />
+      <apidata name="PlayToReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.PlayTo.PlayToReceiver.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToReceiver" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a9729a39-52d8-9aca-ec54-48ed0f1b749f" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToReceiver">
+      <topicdata name="PlayToReceiver" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToReceiver" />
+      <apidata name="PlayToReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.PlayTo.PlayToReceiver.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.#ctor" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.CurrentTimeChangeRequested" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.FriendlyName" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.MuteChangeRequested" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyDurationChange(Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyEnded" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyError" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyLoadedMetadata" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyPaused" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyPlaying" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyRateChange(System.Double)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifySeeked" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifySeeking" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyStopped" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyTimeUpdate(Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyVolumeChange(System.Double,System.Boolean)" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.PauseRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.PlaybackRateChangeRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.PlayRequested" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.Properties" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.SourceChangeRequested" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.StartAsync" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.StopAsync" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.StopRequested" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.SupportsAudio" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.SupportsImage" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.SupportsVideo" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.TimeUpdateRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.VolumeChangeRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" />
+      </containers>
+      <file name="3982bff6-ac16-1853-a648-dd47225fe014" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToReceiver">
+      <topicdata name="PlayToReceiver" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToReceiver" />
+      <apidata name="PlayToReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.PlayTo.PlayToReceiver.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyDurationChange(Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyEnded" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyError" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyLoadedMetadata" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyPaused" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyPlaying" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyRateChange(System.Double)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifySeeked" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifySeeking" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyStopped" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyTimeUpdate(Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.NotifyVolumeChange(System.Double,System.Boolean)" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.StartAsync" />
+        <element api="M:Windows.Media.PlayTo.PlayToReceiver.StopAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" />
+      </containers>
+      <file name="15ab8c70-c01a-a2d0-6599-ff35bf3ff009" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToReceiver">
+      <topicdata name="PlayToReceiver" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToReceiver" />
+      <apidata name="PlayToReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.PlayTo.PlayToReceiver.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.FriendlyName" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.Properties" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.SupportsAudio" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.SupportsImage" />
+        <element api="P:Windows.Media.PlayTo.PlayToReceiver.SupportsVideo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" />
+      </containers>
+      <file name="d84ad9b3-f2b0-9f83-ca6e-0eb68908a0e7" />
+    </api>
+    <api id="Events.T:Windows.Media.PlayTo.PlayToReceiver">
+      <topicdata name="PlayToReceiver" group="list" subgroup="Events" typeTopicId="T:Windows.Media.PlayTo.PlayToReceiver" />
+      <apidata name="PlayToReceiver" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.PlayTo.PlayToReceiver.#ctor" />
+      <elements>
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.CurrentTimeChangeRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.MuteChangeRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.PauseRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.PlaybackRateChangeRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.PlayRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.SourceChangeRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.StopRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.TimeUpdateRequested" />
+        <element api="E:Windows.Media.PlayTo.PlayToReceiver.VolumeChangeRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" />
+      </containers>
+      <file name="70807c5d-35c4-3d2e-3e0a-e7aca92f35ab" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="48a650fd-4788-c39d-a359-bfd5e36a1a54" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.CurrentTimeChangeRequested">
+      <topicdata group="api" />
+      <apidata name="CurrentTimeChangeRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CurrentTimeChangeRequested" />
+      <remover name="remove_CurrentTimeChangeRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:Windows.Media.PlayTo.CurrentTimeChangeRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="8a8c3126-9747-fdaa-06bf-132e0d25fd23" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToReceiver.FriendlyName">
+      <topicdata group="api" />
+      <apidata name="FriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FriendlyName" />
+      <setter name="set_FriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="1ccd72e5-598a-ab3a-604c-0b64fd792421" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.MuteChangeRequested">
+      <topicdata group="api" />
+      <apidata name="MuteChangeRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_MuteChangeRequested" />
+      <remover name="remove_MuteChangeRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:Windows.Media.PlayTo.MuteChangeRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="95358dbb-1cfc-9045-e1c7-6a3e70dd546c" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyDurationChange(Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="NotifyDurationChange" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="duration" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="ed646e13-1f94-d7e8-a8b8-6f912b38cc33" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyEnded">
+      <topicdata group="api" />
+      <apidata name="NotifyEnded" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="75e6db87-9ec6-7dc6-75f5-eaa518d24285" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyError">
+      <topicdata group="api" />
+      <apidata name="NotifyError" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="5fcf4b81-0ab4-0962-d0f3-0d01e8cfa748" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyLoadedMetadata">
+      <topicdata group="api" />
+      <apidata name="NotifyLoadedMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="95687773-cfb2-7648-a3f5-80f0d494ccd2" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyPaused">
+      <topicdata group="api" />
+      <apidata name="NotifyPaused" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="14036786-d48e-afbf-e732-fe15672e8387" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyPlaying">
+      <topicdata group="api" />
+      <apidata name="NotifyPlaying" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="ce978757-e682-4461-6ca1-97877162a654" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyRateChange(System.Double)">
+      <topicdata group="api" />
+      <apidata name="NotifyRateChange" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="rate" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="521c0d74-5983-489c-c0f5-98c530918367" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifySeeked">
+      <topicdata group="api" />
+      <apidata name="NotifySeeked" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="d2582c28-121e-e978-b1e1-1b4b8ae3f811" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifySeeking">
+      <topicdata group="api" />
+      <apidata name="NotifySeeking" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="20a40988-a970-4d75-8481-4585259e1c80" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyStopped">
+      <topicdata group="api" />
+      <apidata name="NotifyStopped" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="020fa728-29a0-0fe3-18ce-a0ad612fa7a5" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyTimeUpdate(Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="NotifyTimeUpdate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="currentTime" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="9b317e32-cb43-d163-ebf6-726abde06565" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.NotifyVolumeChange(System.Double,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="NotifyVolumeChange" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="volume" in="true">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="mute" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="23d0fd7e-bace-5be9-263a-01ac8b839a8e" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.PauseRequested">
+      <topicdata group="api" />
+      <apidata name="PauseRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PauseRequested" />
+      <remover name="remove_PauseRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="8b2f31a2-0fe2-49eb-316f-cbb642ed7eea" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.PlaybackRateChangeRequested">
+      <topicdata group="api" />
+      <apidata name="PlaybackRateChangeRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PlaybackRateChangeRequested" />
+      <remover name="remove_PlaybackRateChangeRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:Windows.Media.PlayTo.PlaybackRateChangeRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="361393a0-e71d-2fc0-7879-2ac6de97d39e" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.PlayRequested">
+      <topicdata group="api" />
+      <apidata name="PlayRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PlayRequested" />
+      <remover name="remove_PlayRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="e13589b0-3f97-7c82-a95e-332d03dd1fe4" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToReceiver.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IPropertySet" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="ecab55b3-fcec-faa6-c9f7-ced2ba2776a2" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.SourceChangeRequested">
+      <topicdata group="api" />
+      <apidata name="SourceChangeRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SourceChangeRequested" />
+      <remover name="remove_SourceChangeRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="a95a8ca3-908a-39ba-58e7-37c25b7298ec" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.StartAsync">
+      <topicdata group="api" />
+      <apidata name="StartAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="7b30ce52-61fe-e201-1969-2d521b29248c" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToReceiver.StopAsync">
+      <topicdata group="api" />
+      <apidata name="StopAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="f8bc613d-2370-41d8-13ac-10f296485acb" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.StopRequested">
+      <topicdata group="api" />
+      <apidata name="StopRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StopRequested" />
+      <remover name="remove_StopRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="3ad4f68a-1d1e-07b1-3cb9-36c362a6c2b6" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToReceiver.SupportsAudio">
+      <topicdata group="api" />
+      <apidata name="SupportsAudio" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportsAudio" />
+      <setter name="set_SupportsAudio" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="a68e4a3f-bdd5-b6d6-8781-9ee2f09cd8dd" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToReceiver.SupportsImage">
+      <topicdata group="api" />
+      <apidata name="SupportsImage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportsImage" />
+      <setter name="set_SupportsImage" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="8d84c50b-fca5-4138-1c40-419d3617361c" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToReceiver.SupportsVideo">
+      <topicdata group="api" />
+      <apidata name="SupportsVideo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportsVideo" />
+      <setter name="set_SupportsVideo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="49706c71-fa27-c10f-bc81-a9663e737084" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.TimeUpdateRequested">
+      <topicdata group="api" />
+      <apidata name="TimeUpdateRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_TimeUpdateRequested" />
+      <remover name="remove_TimeUpdateRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="1332f4e9-c610-8922-7e1c-c0689cc18a75" />
+    </api>
+    <api id="E:Windows.Media.PlayTo.PlayToReceiver.VolumeChangeRequested">
+      <topicdata group="api" />
+      <apidata name="VolumeChangeRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_VolumeChangeRequested" />
+      <remover name="remove_VolumeChangeRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+            <type api="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToReceiver" ref="true" />
+      </containers>
+      <file name="fc5aa50a-d219-1982-97b5-f1e1e1c0a339" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToSource">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToSource" />
+      <apidata name="PlayToSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToSource" ref="true" />
+        <type api="T:Windows.Media.PlayTo.IPlayToSourceWithPreferredSourceUri" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="821e7be9-1ed7-cc93-1758-29faf95a073a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToSource">
+      <topicdata name="PlayToSource" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToSource" />
+      <apidata name="PlayToSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToSource.Connection" />
+        <element api="P:Windows.Media.PlayTo.PlayToSource.Next" />
+        <element api="M:Windows.Media.PlayTo.PlayToSource.PlayNext" />
+        <element api="P:Windows.Media.PlayTo.PlayToSource.PreferredSourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" />
+      </containers>
+      <file name="1d0685db-2c25-3310-113d-fff47900292b" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToSource">
+      <topicdata name="PlayToSource" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToSource" />
+      <apidata name="PlayToSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToSource.PlayNext" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" />
+      </containers>
+      <file name="d5c0a570-23b6-8b23-2759-4f31b7ddf041" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToSource">
+      <topicdata name="PlayToSource" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToSource" />
+      <apidata name="PlayToSource" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToSource.Connection" />
+        <element api="P:Windows.Media.PlayTo.PlayToSource.Next" />
+        <element api="P:Windows.Media.PlayTo.PlayToSource.PreferredSourceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" />
+      </containers>
+      <file name="d8b7228e-d361-6438-88fc-16311ce6c8af" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSource.Connection">
+      <topicdata group="api" />
+      <apidata name="Connection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Connection" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToConnection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </containers>
+      <file name="e1f08778-4f03-c3a8-063c-a1fbcfbb4029" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSource.Next">
+      <topicdata group="api" />
+      <apidata name="Next" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Next" />
+      <setter name="set_Next" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </containers>
+      <file name="7879bdee-81fb-8c54-b443-41e4365e111a" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToSource.PlayNext">
+      <topicdata group="api" />
+      <apidata name="PlayNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </containers>
+      <file name="3538f587-e151-212f-a981-31902c8643ee" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSource.PreferredSourceUri">
+      <topicdata group="api" />
+      <apidata name="PreferredSourceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredSourceUri" />
+      <setter name="set_PreferredSourceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+      </containers>
+      <file name="f09d3b2a-c8af-e0f1-8536-f9a9c8a059ae" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToSourceDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToSourceDeferral" />
+      <apidata name="PlayToSourceDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToSourceDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e9b8dd4f-152a-fbc2-3817-71fc46ef3b09" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToSourceDeferral">
+      <topicdata name="PlayToSourceDeferral" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceDeferral" />
+      <apidata name="PlayToSourceDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceDeferral" />
+      </containers>
+      <file name="6c7304e3-3da7-80e6-8f97-77b6c6fabaab" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToSourceDeferral">
+      <topicdata name="PlayToSourceDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceDeferral" />
+      <apidata name="PlayToSourceDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceDeferral" />
+      </containers>
+      <file name="242a578b-337b-00f3-03b3-cbeabf89a7c9" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToSourceDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceDeferral" ref="true" />
+      </containers>
+      <file name="f3726d09-4d8f-be26-d14f-782373649019" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToSourceRequest">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      <apidata name="PlayToSourceRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToSourceRequest" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ef2442b2-a79f-7a83-7175-eca3dd522e00" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToSourceRequest">
+      <topicdata name="PlayToSourceRequest" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      <apidata name="PlayToSourceRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceRequest.Deadline" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceRequest.DisplayErrorString(System.String)" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceRequest.GetDeferral" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceRequest.SetSource(Windows.Media.PlayTo.PlayToSource)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      </containers>
+      <file name="134e5a06-37d0-e4d1-1c2c-0c5b85a0a08d" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToSourceRequest">
+      <topicdata name="PlayToSourceRequest" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      <apidata name="PlayToSourceRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceRequest.DisplayErrorString(System.String)" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceRequest.GetDeferral" />
+        <element api="M:Windows.Media.PlayTo.PlayToSourceRequest.SetSource(Windows.Media.PlayTo.PlayToSource)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      </containers>
+      <file name="700c1bf3-097f-cbc7-73e2-c863172631f9" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToSourceRequest">
+      <topicdata name="PlayToSourceRequest" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      <apidata name="PlayToSourceRequest" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToSourceRequest.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" />
+      </containers>
+      <file name="8e5af23e-182a-fb90-ace8-0caa530cf171" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceRequest.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" ref="true" />
+      </containers>
+      <file name="780508b8-371e-f36a-576d-8bafe8e69c8a" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToSourceRequest.DisplayErrorString(System.String)">
+      <topicdata group="api" />
+      <apidata name="DisplayErrorString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="errorString" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" ref="true" />
+      </containers>
+      <file name="c8672c69-0209-04bd-b814-11d13a89f110" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToSourceRequest.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToSourceDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" ref="true" />
+      </containers>
+      <file name="2b1c9128-df49-a378-6f64-4fe50b6a30b5" />
+    </api>
+    <api id="M:Windows.Media.PlayTo.PlayToSourceRequest.SetSource(Windows.Media.PlayTo.PlayToSource)">
+      <topicdata group="api" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Media.PlayTo.PlayToSource" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" ref="true" />
+      </containers>
+      <file name="a4074e57-be32-8828-8b15-cb45e56c14f2" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      <apidata name="PlayToSourceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToSourceRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c37fc6b9-7270-53e1-1aaf-faffad728f44" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs">
+      <topicdata name="PlayToSourceRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      <apidata name="PlayToSourceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs.SourceRequest" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      </containers>
+      <file name="a22b76b6-257b-232a-746c-5b475f0885e5" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs">
+      <topicdata name="PlayToSourceRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      <apidata name="PlayToSourceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      </containers>
+      <file name="fe8a6cc4-6e91-9f6a-7db5-25f365a4a1e6" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs">
+      <topicdata name="PlayToSourceRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      <apidata name="PlayToSourceRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs.SourceRequest" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" />
+      </containers>
+      <file name="c33ed938-39c4-a99d-2ba8-a9d128f21115" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs.SourceRequest">
+      <topicdata group="api" />
+      <apidata name="SourceRequest" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourceRequest" />
+      <returns>
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="f37ff529-6277-3d05-fe0c-620a2f28f2f4" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      <apidata name="PlayToSourceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IPlayToSourceSelectedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f2c17765-116f-613d-9a38-32ac7fb75387" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs">
+      <topicdata name="PlayToSourceSelectedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      <apidata name="PlayToSourceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.FriendlyName" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.Icon" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsAudio" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsImage" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsVideo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      </containers>
+      <file name="7056fdb3-4021-7925-cb72-2a2bde899703" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs">
+      <topicdata name="PlayToSourceSelectedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      <apidata name="PlayToSourceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      </containers>
+      <file name="f15e72ab-aacd-e6b9-11bb-d6c2e24fb574" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs">
+      <topicdata name="PlayToSourceSelectedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      <apidata name="PlayToSourceSelectedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.FriendlyName" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.Icon" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsAudio" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsImage" />
+        <element api="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsVideo" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" />
+      </containers>
+      <file name="5d1d5f94-66a9-4e9c-4231-27a96e61ef50" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.FriendlyName">
+      <topicdata group="api" />
+      <apidata name="FriendlyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FriendlyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="0bc08ab5-68d2-55f7-f1b6-42c6f035c1be" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.Icon">
+      <topicdata group="api" />
+      <apidata name="Icon" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Icon" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamWithContentType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="0435ea6b-d3a7-8ec3-d427-7461acaf723e" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsAudio">
+      <topicdata group="api" />
+      <apidata name="SupportsAudio" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportsAudio" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="9101cbbb-9ee5-9483-63ff-d10e3ea653c9" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsImage">
+      <topicdata group="api" />
+      <apidata name="SupportsImage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportsImage" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="6b60d56a-988a-340b-4255-879da054a4e8" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs.SupportsVideo">
+      <topicdata group="api" />
+      <apidata name="SupportsVideo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportsVideo" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.PlayToSourceSelectedEventArgs" ref="true" />
+      </containers>
+      <file name="3a430fd9-dffc-42c8-22f1-cb9c2d17f5d8" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      <apidata name="SourceChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.ISourceChangeRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2e673fcd-ae6d-5195-7e11-e72722f82f19" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs">
+      <topicdata name="SourceChangeRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      <apidata name="SourceChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Album" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Author" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Date" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Description" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Genre" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Properties" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Rating" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Stream" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Thumbnail" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      </containers>
+      <file name="4529afec-3635-28bd-5fe7-8ff53c9b395f" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs">
+      <topicdata name="SourceChangeRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      <apidata name="SourceChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      </containers>
+      <file name="1aa54155-ef76-98be-2b93-82291cfa69cc" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs">
+      <topicdata name="SourceChangeRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      <apidata name="SourceChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Album" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Author" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Date" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Description" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Genre" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Properties" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Rating" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Stream" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Thumbnail" />
+        <element api="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" />
+      </containers>
+      <file name="c9ea80cc-5d59-f0fd-30f8-5651b0a3bf4c" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Album">
+      <topicdata group="api" />
+      <apidata name="Album" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Album" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="05a48501-225e-1f89-0eb7-60650196b391" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Author">
+      <topicdata group="api" />
+      <apidata name="Author" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Author" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="1f992398-3641-77ae-fb75-3441f6307574" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Date">
+      <topicdata group="api" />
+      <apidata name="Date" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Date" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.DateTimeOffset" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="e82231c8-0b22-06a8-51fb-3606c2070aff" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="0b4880e5-15a0-439d-200a-0b5823063f18" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Genre">
+      <topicdata group="api" />
+      <apidata name="Genre" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Genre" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="dc2b54ae-2c54-ce39-37c5-8fb688110f68" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="e480251f-c1bc-d029-d33a-db1dc55e074e" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Rating">
+      <topicdata group="api" />
+      <apidata name="Rating" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Rating" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="1bad09de-7def-904d-77f9-b3c86ebe551f" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Stream">
+      <topicdata group="api" />
+      <apidata name="Stream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Stream" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamWithContentType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="48fdff14-e05c-8ae8-44a3-6c6db50a94cd" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Thumbnail">
+      <topicdata group="api" />
+      <apidata name="Thumbnail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Thumbnail" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="5ba1c576-1758-6161-a99d-9e940172889a" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.SourceChangeRequestedEventArgs.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.SourceChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="b587d35d-939e-a7fe-3c7d-a0c815dc7305" />
+    </api>
+    <api id="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      <apidata name="VolumeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.PlayTo.IVolumeChangeRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e5a3a81a-381d-b66f-3bf4-d01f7ca30f9d" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs">
+      <topicdata name="VolumeChangeRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      <apidata name="VolumeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      </containers>
+      <file name="b2ba27aa-6bfb-0f1b-2ca6-b7fc0d5fe58f" />
+    </api>
+    <api id="Methods.T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs">
+      <topicdata name="VolumeChangeRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      <apidata name="VolumeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      </containers>
+      <file name="ac5f1c20-dce1-96c7-8819-6e3bfa2779ca" />
+    </api>
+    <api id="Properties.T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs">
+      <topicdata name="VolumeChangeRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      <apidata name="VolumeChangeRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" />
+      </containers>
+      <file name="1f03ea76-f015-dcf1-dc1a-4e21175cebc6" />
+    </api>
+    <api id="P:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs.Volume">
+      <topicdata group="api" />
+      <apidata name="Volume" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Volume" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.PlayTo" />
+        <type api="T:Windows.Media.PlayTo.VolumeChangeRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="d244f53f-ee9d-8423-5724-0742aa5b6ca7" />
+    </api>
+  </apis>
+</reflection>

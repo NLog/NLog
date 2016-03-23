@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.RemoteDesktop">
+      <topicdata group="api" />
+      <apidata name="Windows.System.RemoteDesktop" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.RemoteDesktop.InteractiveSession" />
+      </elements>
+      <file name="b89ff88f-0c1e-6382-88dc-c341a3b1bb61" />
+    </api>
+    <api id="T:Windows.System.RemoteDesktop.InteractiveSession">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.RemoteDesktop.InteractiveSession" />
+      <apidata name="InteractiveSession" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.RemoteDesktop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="93548b93-611d-353b-65cc-97d83f8236c0" />
+    </api>
+    <api id="AllMembers.T:Windows.System.RemoteDesktop.InteractiveSession">
+      <topicdata name="InteractiveSession" group="list" subgroup="members" typeTopicId="T:Windows.System.RemoteDesktop.InteractiveSession" />
+      <apidata name="InteractiveSession" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.RemoteDesktop.InteractiveSession.IsRemote" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.RemoteDesktop" />
+        <type api="T:Windows.System.RemoteDesktop.InteractiveSession" />
+      </containers>
+      <file name="280757ef-27e0-2722-ec04-836396ec874e" />
+    </api>
+    <api id="Properties.T:Windows.System.RemoteDesktop.InteractiveSession">
+      <topicdata name="InteractiveSession" group="list" subgroup="Properties" typeTopicId="T:Windows.System.RemoteDesktop.InteractiveSession" />
+      <apidata name="InteractiveSession" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.RemoteDesktop.InteractiveSession.IsRemote" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.RemoteDesktop" />
+        <type api="T:Windows.System.RemoteDesktop.InteractiveSession" />
+      </containers>
+      <file name="90556ccf-1915-554c-c77d-bc9ca0ac885b" />
+    </api>
+    <api id="P:Windows.System.RemoteDesktop.InteractiveSession.IsRemote">
+      <topicdata group="api" />
+      <apidata name="IsRemote" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsRemote" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.RemoteDesktop" />
+        <type api="T:Windows.System.RemoteDesktop.InteractiveSession" ref="true" />
+      </containers>
+      <file name="de28689d-0cb9-a0f4-9612-bc0fe8159dfd" />
+    </api>
+  </apis>
+</reflection>

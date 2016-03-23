@@ -1,0 +1,2835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Core.AnimationMetrics">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Core.AnimationMetrics" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+        <element api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      </elements>
+      <file name="8cef928b-ad3d-7f07-0097-5ca215bb1841" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.AnimationDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      <apidata name="AnimationDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Core.AnimationMetrics.IAnimationDescription" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e0b90e93-660c-846a-9589-eed9ea8cb879" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Core.AnimationMetrics.AnimationDescription">
+      <topicdata name="AnimationDescription" group="list" subgroup="members" typeTopicId="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      <apidata name="AnimationDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Core.AnimationMetrics.AnimationDescription.#ctor(Windows.UI.Core.AnimationMetrics.AnimationEffect,Windows.UI.Core.AnimationMetrics.AnimationEffectTarget)" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.Animations" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.DelayLimit" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.StaggerDelay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.StaggerDelayFactor" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.ZOrder" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      </containers>
+      <file name="55e2d369-69a8-2b05-5133-f11c8b92c138" />
+    </api>
+    <api id="Methods.T:Windows.UI.Core.AnimationMetrics.AnimationDescription">
+      <topicdata name="AnimationDescription" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      <apidata name="AnimationDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      </containers>
+      <file name="64e5c71e-630b-03c6-6c7e-a98755882329" />
+    </api>
+    <api id="Properties.T:Windows.UI.Core.AnimationMetrics.AnimationDescription">
+      <topicdata name="AnimationDescription" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      <apidata name="AnimationDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.Animations" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.DelayLimit" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.StaggerDelay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.StaggerDelayFactor" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.ZOrder" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" />
+      </containers>
+      <file name="70c171f5-3df1-ce01-81bf-11c9580e6fa7" />
+    </api>
+    <api id="M:Windows.UI.Core.AnimationMetrics.AnimationDescription.#ctor(Windows.UI.Core.AnimationMetrics.AnimationEffect,Windows.UI.Core.AnimationMetrics.AnimationEffectTarget)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="effect" in="true">
+          <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+        </parameter>
+        <parameter name="target" in="true">
+          <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" ref="true" />
+      </containers>
+      <file name="9c283514-031d-7fb3-4946-f9b01e1e5083" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.Animations">
+      <topicdata group="api" />
+      <apidata name="Animations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Animations" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" ref="true" />
+      </containers>
+      <file name="073e1a46-f8b0-fe14-1e13-d6ab6fd6a174" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.DelayLimit">
+      <topicdata group="api" />
+      <apidata name="DelayLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DelayLimit" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" ref="true" />
+      </containers>
+      <file name="b1110afd-3141-e297-4776-b1a4982eb3b7" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.StaggerDelay">
+      <topicdata group="api" />
+      <apidata name="StaggerDelay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_StaggerDelay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" ref="true" />
+      </containers>
+      <file name="3575ef0c-c228-2979-5c4b-8bc033babbaf" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.StaggerDelayFactor">
+      <topicdata group="api" />
+      <apidata name="StaggerDelayFactor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_StaggerDelayFactor" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" ref="true" />
+      </containers>
+      <file name="bd093cea-eb96-59cd-6ecf-dfdca96a1ca5" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.AnimationDescription.ZOrder">
+      <topicdata group="api" />
+      <apidata name="ZOrder" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ZOrder" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationDescription" ref="true" />
+      </containers>
+      <file name="322e5378-efe8-a27a-f83f-b7da7103dbf8" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.AnimationEffect">
+      <topicdata group="api" />
+      <apidata name="AnimationEffect" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Expand" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Collapse" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Reposition" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.FadeIn" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.FadeOut" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToList" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromList" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToGrid" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromGrid" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToSearchGrid" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromSearchGrid" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToSearchList" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromSearchList" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.ShowEdgeUI" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.ShowPanel" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.HideEdgeUI" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.HidePanel" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.ShowPopup" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.HidePopup" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.PointerDown" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.PointerUp" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragSourceStart" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragSourceEnd" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.TransitionContent" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Reveal" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Hide" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragBetweenEnter" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragBetweenLeave" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.SwipeSelect" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.SwipeDeselect" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.SwipeReveal" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.EnterPage" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.TransitionPage" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.CrossFade" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Peek" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.UpdateBadge" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5923868a-2d67-2e82-0cbd-33b7327fee02" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToGrid">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddToGrid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="94858f26-2720-09bc-8cbc-356f4c0fbd9a" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToList">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddToList" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="bcc14769-9aea-69ae-6134-51fb91470ceb" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToSearchGrid">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddToSearchGrid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="d1e262cb-0d9f-9d83-c07e-480e1182aa08" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.AddToSearchList">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddToSearchList" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="d02e2b59-9db6-a933-9dab-dd6020a04efa" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Collapse">
+      <topicdata group="api" notopic="" />
+      <apidata name="Collapse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="b9c43004-2ff3-449d-5e73-3a3c43a1827d" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.CrossFade">
+      <topicdata group="api" notopic="" />
+      <apidata name="CrossFade" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>33</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="0e7f5a4b-2c81-60fa-140e-a36b2c9b509b" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromGrid">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeleteFromGrid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="9f095d42-8f65-a423-7e38-312990fae4a8" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromList">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeleteFromList" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="59b6af3f-10d2-19e6-1b0a-2ab9298baafc" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromSearchGrid">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeleteFromSearchGrid" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="3a07e2ab-98aa-c63c-51c4-b2a19ce1db9f" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DeleteFromSearchList">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeleteFromSearchList" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="ecb67dc5-16b2-5294-c642-90b39a014c4c" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragBetweenEnter">
+      <topicdata group="api" notopic="" />
+      <apidata name="DragBetweenEnter" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>26</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="d92844d1-5801-0109-2e06-1ccb05a996fd" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragBetweenLeave">
+      <topicdata group="api" notopic="" />
+      <apidata name="DragBetweenLeave" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>27</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="5db774fa-f34c-a89f-277c-5260433be7af" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragSourceEnd">
+      <topicdata group="api" notopic="" />
+      <apidata name="DragSourceEnd" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="2e4dd42c-bd68-81c7-7584-3f88eae2e56e" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.DragSourceStart">
+      <topicdata group="api" notopic="" />
+      <apidata name="DragSourceStart" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="0283a5b8-5b52-1359-56e7-a78da4f6fb5f" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.EnterPage">
+      <topicdata group="api" notopic="" />
+      <apidata name="EnterPage" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>31</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="c856bb2e-6047-cc27-8ba9-44e8dded1a82" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Expand">
+      <topicdata group="api" notopic="" />
+      <apidata name="Expand" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="d506aecb-1aad-56cb-b862-78abd7ae8513" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.FadeIn">
+      <topicdata group="api" notopic="" />
+      <apidata name="FadeIn" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="b47ef8c2-0125-01c4-b736-a38052890a95" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.FadeOut">
+      <topicdata group="api" notopic="" />
+      <apidata name="FadeOut" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="cbb8ae77-0468-8a24-4905-7ab392ae189c" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Hide">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hide" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="e69b698e-58dc-7b05-0cfa-404e4c34ee64" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.HideEdgeUI">
+      <topicdata group="api" notopic="" />
+      <apidata name="HideEdgeUI" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="ff1252bd-a63d-41d5-096c-24f37e3402ad" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.HidePanel">
+      <topicdata group="api" notopic="" />
+      <apidata name="HidePanel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="d30747a2-56a3-1d5e-2eec-ff07c3955bf1" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.HidePopup">
+      <topicdata group="api" notopic="" />
+      <apidata name="HidePopup" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="e5c4c714-4008-3df4-ac57-75558275a340" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Peek">
+      <topicdata group="api" notopic="" />
+      <apidata name="Peek" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>34</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="9b1fab6e-b005-2bcb-7465-4d14031de140" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.PointerDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="PointerDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="0e2ce283-d27c-4bdd-b7eb-bf781d319ee7" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.PointerUp">
+      <topicdata group="api" notopic="" />
+      <apidata name="PointerUp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="821305a4-0957-c8a2-bd9a-dbb61aecec86" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Reposition">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reposition" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="07bf561b-fdb7-1d05-bce4-301a6895f4d8" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.Reveal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Reveal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="712395a8-3026-6097-5a1a-8b813b92e7d3" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.ShowEdgeUI">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShowEdgeUI" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="254206e4-3855-6178-819e-92fe052e13eb" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.ShowPanel">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShowPanel" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="4ddfc418-c304-1a10-ac60-3e2cb7322488" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.ShowPopup">
+      <topicdata group="api" notopic="" />
+      <apidata name="ShowPopup" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="46d88555-a628-f0ae-f083-214c425bb763" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.SwipeDeselect">
+      <topicdata group="api" notopic="" />
+      <apidata name="SwipeDeselect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>29</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="b742db3f-5e2a-7c9c-1e13-55736014a956" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.SwipeReveal">
+      <topicdata group="api" notopic="" />
+      <apidata name="SwipeReveal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>30</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="ef3ad104-06f1-926a-3a44-91ad95b4035c" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.SwipeSelect">
+      <topicdata group="api" notopic="" />
+      <apidata name="SwipeSelect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>28</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="0de5f6df-2f1e-f9df-503d-d8b3c3bd289e" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.TransitionContent">
+      <topicdata group="api" notopic="" />
+      <apidata name="TransitionContent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="2b75138e-d8a7-a1bd-28d8-e37cca80f442" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.TransitionPage">
+      <topicdata group="api" notopic="" />
+      <apidata name="TransitionPage" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="0035c69b-9964-f7d7-e36f-7e1fed106969" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffect.UpdateBadge">
+      <topicdata group="api" notopic="" />
+      <apidata name="UpdateBadge" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </returns>
+      <value>35</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffect" ref="false" />
+      </containers>
+      <file name="90095351-d806-d0cb-6a16-998e9b5a1269" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget">
+      <topicdata group="api" />
+      <apidata name="AnimationEffectTarget" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Primary" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Added" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Affected" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Background" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Content" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Deleted" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Deselected" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.DragSource" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Hidden" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Incoming" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Outgoing" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Outline" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Remaining" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Revealed" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.RowIn" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.RowOut" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Selected" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Selection" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Shown" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Tapped" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2df42e9b-1da7-9fe1-da18-8f2c1ec47f6e" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Added">
+      <topicdata group="api" notopic="" />
+      <apidata name="Added" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="8f564fe0-932f-95ec-78b7-ce4cdc8d8aef" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Affected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Affected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="9863246e-70c5-3a4d-03ac-4d3c6bd1d1af" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Background">
+      <topicdata group="api" notopic="" />
+      <apidata name="Background" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="ca9f8c48-d9b1-0dbe-ca2a-3645bf3e9f3f" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Content">
+      <topicdata group="api" notopic="" />
+      <apidata name="Content" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="443086b7-5781-f4e6-f7bf-101d3eb4da44" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Deleted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deleted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="55885f28-9e02-6c48-15cf-bf25ee6fcfc4" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Deselected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Deselected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="0b9e0c1d-9692-b128-23ba-88a85c96bdc3" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.DragSource">
+      <topicdata group="api" notopic="" />
+      <apidata name="DragSource" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="2db7e8ae-2d75-33b1-d071-fd796e818d6b" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Hidden">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hidden" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="107e9b0c-4107-033b-5cdc-a126e2ae0a46" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Incoming">
+      <topicdata group="api" notopic="" />
+      <apidata name="Incoming" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="32bfaf34-9627-e489-6d8a-836ddf465fa3" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Outgoing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Outgoing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="70dde873-6f9a-aaa9-ad82-b87ab8a2569a" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Outline">
+      <topicdata group="api" notopic="" />
+      <apidata name="Outline" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="20474a83-6274-9b2d-04ef-c601b2b0085e" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Primary">
+      <topicdata group="api" notopic="" />
+      <apidata name="Primary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="875e9c10-76ac-f6c5-2623-a185d69a0383" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Remaining">
+      <topicdata group="api" notopic="" />
+      <apidata name="Remaining" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="1f141d22-3b80-227c-d4ac-d38ea96ffc37" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Revealed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Revealed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="11d2c829-1403-4239-2dad-b5fc0f6c2540" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.RowIn">
+      <topicdata group="api" notopic="" />
+      <apidata name="RowIn" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="0e6633c0-c401-c7e4-7d67-13a7a83b270a" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.RowOut">
+      <topicdata group="api" notopic="" />
+      <apidata name="RowOut" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="ecf300ab-f0c5-b91a-e607-45449fb918a1" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Selected">
+      <topicdata group="api" notopic="" />
+      <apidata name="Selected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="5a298cf6-195a-ac77-ddad-e214d7c17175" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Selection">
+      <topicdata group="api" notopic="" />
+      <apidata name="Selection" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="4447d8fa-f14c-a544-5275-d87beee95aea" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Shown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="534fd31a-a8cb-ab25-ec9c-dbd67d2de430" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget.Tapped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tapped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.AnimationEffectTarget" ref="false" />
+      </containers>
+      <file name="4cdb91ff-1bc9-cd2b-0768-ac8475e2c191" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" />
+      <apidata name="IPropertyAnimation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" ref="true" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" ref="true" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>973190362</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19852</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16670</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>21</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>26</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>222</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>104</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>58</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>3</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6f04fc6a-3851-63a1-7cbe-52507700ba57" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation">
+      <topicdata name="IPropertyAnimation" group="list" subgroup="members" typeTopicId="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" />
+      <apidata name="IPropertyAnimation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" />
+      </containers>
+      <file name="f98373aa-bebd-e1bd-7ce5-9a1f72c5f63c" />
+    </api>
+    <api id="Properties.T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation">
+      <topicdata name="IPropertyAnimation" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" />
+      <apidata name="IPropertyAnimation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" />
+      </containers>
+      <file name="c2fa1ceb-11d6-fe48-b23c-31062a04079d" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1">
+      <topicdata group="api" />
+      <apidata name="Control1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Control1" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </containers>
+      <file name="e5e174a1-3992-d2ef-536d-b26099769dad" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2">
+      <topicdata group="api" />
+      <apidata name="Control2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Control2" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </containers>
+      <file name="1e01c0e8-2ffb-492d-2e34-2a8bc6188a63" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </containers>
+      <file name="d6274224-d028-2e94-df12-3ebd5579efb3" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </containers>
+      <file name="91a35985-bf4b-f961-9720-1477ce19e4df" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </containers>
+      <file name="5bba65ef-6f85-5731-f772-a261445ad9de" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      <apidata name="OpacityAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Core.AnimationMetrics.IOpacityAnimation" ref="true" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3653203f-2c72-3788-95b7-f8cb2d2bac5b" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Core.AnimationMetrics.OpacityAnimation">
+      <topicdata name="OpacityAnimation" group="list" subgroup="members" typeTopicId="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      <apidata name="OpacityAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.FinalOpacity" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.InitialOpacity" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      </containers>
+      <file name="8055bd62-825f-7354-3ae2-227fcb607595" />
+    </api>
+    <api id="Methods.T:Windows.UI.Core.AnimationMetrics.OpacityAnimation">
+      <topicdata name="OpacityAnimation" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      <apidata name="OpacityAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      </containers>
+      <file name="894cb8cb-ac28-3239-6b4d-76ff6f462507" />
+    </api>
+    <api id="Properties.T:Windows.UI.Core.AnimationMetrics.OpacityAnimation">
+      <topicdata name="OpacityAnimation" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      <apidata name="OpacityAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.FinalOpacity" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.InitialOpacity" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" />
+      </containers>
+      <file name="0830335b-112b-7ecb-530c-bd626652561f" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Control1">
+      <topicdata group="api" />
+      <apidata name="Control1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control1" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="9cbdcf81-1669-ecc8-4851-5a5199ae0819" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Control2">
+      <topicdata group="api" />
+      <apidata name="Control2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control2" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="2e1e44a3-5607-6e54-40cf-0d785ddc3d4c" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="d71661b7-fc29-880c-17e1-9abb29a5b118" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="2f4dd4a6-f36d-450e-8948-e00c8474fd05" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.FinalOpacity">
+      <topicdata group="api" />
+      <apidata name="FinalOpacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FinalOpacity" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="f3624005-bd56-3bad-2401-5c9518a5472c" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.InitialOpacity">
+      <topicdata group="api" />
+      <apidata name="InitialOpacity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InitialOpacity" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Single" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="f1961c21-bba9-6ddd-667e-940872f13d6b" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.OpacityAnimation.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.OpacityAnimation" ref="true" />
+      </containers>
+      <file name="70502eb3-a9c2-84fe-9fb8-27a398c19a39" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      <apidata name="PropertyAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="13a8cad6-505f-18ca-5684-7dd46254a0ca" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Core.AnimationMetrics.PropertyAnimation">
+      <topicdata name="PropertyAnimation" group="list" subgroup="members" typeTopicId="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      <apidata name="PropertyAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      </containers>
+      <file name="08c06a78-4054-a005-5c08-eac9f3a7148c" />
+    </api>
+    <api id="Methods.T:Windows.UI.Core.AnimationMetrics.PropertyAnimation">
+      <topicdata name="PropertyAnimation" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      <apidata name="PropertyAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      </containers>
+      <file name="d0a6edce-715f-f699-4a9e-b8b189e36fda" />
+    </api>
+    <api id="Properties.T:Windows.UI.Core.AnimationMetrics.PropertyAnimation">
+      <topicdata name="PropertyAnimation" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      <apidata name="PropertyAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" />
+      </containers>
+      <file name="efe3ddb2-2ee3-e064-1477-48889548da87" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Control1">
+      <topicdata group="api" />
+      <apidata name="Control1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control1" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" ref="true" />
+      </containers>
+      <file name="6f35b581-1318-20f1-3726-a3a105d27795" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Control2">
+      <topicdata group="api" />
+      <apidata name="Control2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control2" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" ref="true" />
+      </containers>
+      <file name="06c5a577-7dc1-ac12-3203-5448f9864a94" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" ref="true" />
+      </containers>
+      <file name="560232e1-4433-f25b-0c43-e2e69e7a8233" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" ref="true" />
+      </containers>
+      <file name="f437690a-df71-4e3c-d9cb-70a1f30c948e" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.PropertyAnimation.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimation" ref="true" />
+      </containers>
+      <file name="d61ebd6a-5c2e-15ff-9f20-917249f2141a" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType">
+      <topicdata group="api" />
+      <apidata name="PropertyAnimationType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Core.AnimationMetrics.PropertyAnimationType.Scale" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.PropertyAnimationType.Translation" />
+        <element api="F:Windows.UI.Core.AnimationMetrics.PropertyAnimationType.Opacity" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="52ce1bc3-812a-03aa-759c-50bd9d143dc5" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.PropertyAnimationType.Opacity">
+      <topicdata group="api" notopic="" />
+      <apidata name="Opacity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </containers>
+      <file name="22efbc18-76a9-c6f8-2848-e46f6e32e506" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.PropertyAnimationType.Scale">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </containers>
+      <file name="ed61359a-6974-2aac-df50-0619bec791b5" />
+    </api>
+    <api id="F:Windows.UI.Core.AnimationMetrics.PropertyAnimationType.Translation">
+      <topicdata group="api" notopic="" />
+      <apidata name="Translation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </containers>
+      <file name="e6ec7954-24a3-e932-481a-59a21a0ee8af" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      <apidata name="ScaleAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Core.AnimationMetrics.IScaleAnimation" ref="true" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d14f484d-cdd9-b2af-d2dd-2274bb0dcff1" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Core.AnimationMetrics.ScaleAnimation">
+      <topicdata name="ScaleAnimation" group="list" subgroup="members" typeTopicId="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      <apidata name="ScaleAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.FinalScaleX" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.FinalScaleY" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.InitialScaleX" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.InitialScaleY" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.NormalizedOrigin" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      </containers>
+      <file name="a31ad681-9455-0556-83cf-c72a209a3f97" />
+    </api>
+    <api id="Methods.T:Windows.UI.Core.AnimationMetrics.ScaleAnimation">
+      <topicdata name="ScaleAnimation" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      <apidata name="ScaleAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      </containers>
+      <file name="542104d6-c18f-3b45-08bd-a18f040d747a" />
+    </api>
+    <api id="Properties.T:Windows.UI.Core.AnimationMetrics.ScaleAnimation">
+      <topicdata name="ScaleAnimation" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      <apidata name="ScaleAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.FinalScaleX" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.FinalScaleY" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.InitialScaleX" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.InitialScaleY" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.NormalizedOrigin" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" />
+      </containers>
+      <file name="f5cd3608-63ac-2b53-745b-1ee7a02ed464" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Control1">
+      <topicdata group="api" />
+      <apidata name="Control1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control1" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="e2c8f6b9-aae6-3847-6885-a6f8f21d7649" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Control2">
+      <topicdata group="api" />
+      <apidata name="Control2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control2" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="32040a2d-8664-973f-4c26-a1f199b5e652" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="3386d1f7-4794-d1f7-c31f-bc3bd1ea9bf3" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="a55d4fa4-0876-c20e-2c14-d745f46198b8" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.FinalScaleX">
+      <topicdata group="api" />
+      <apidata name="FinalScaleX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FinalScaleX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="dc2e2924-4be2-31b7-50e9-c2dee73088a5" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.FinalScaleY">
+      <topicdata group="api" />
+      <apidata name="FinalScaleY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FinalScaleY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="438de8f4-23a3-32a6-4446-3afff280cf1c" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.InitialScaleX">
+      <topicdata group="api" />
+      <apidata name="InitialScaleX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InitialScaleX" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Single" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="1561b832-1ea0-e96e-7f32-2b382dcfde35" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.InitialScaleY">
+      <topicdata group="api" />
+      <apidata name="InitialScaleY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InitialScaleY" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Single" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="2f403d55-0664-0cbf-761d-402ef707adfe" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.NormalizedOrigin">
+      <topicdata group="api" />
+      <apidata name="NormalizedOrigin" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NormalizedOrigin" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="54838316-56b2-64bb-9360-e982a84c1565" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.ScaleAnimation.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.ScaleAnimation" ref="true" />
+      </containers>
+      <file name="82b62b58-12ae-1e66-c4db-9f74ad88b451" />
+    </api>
+    <api id="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      <apidata name="TranslationAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ae35d42d-71c1-9548-fdd7-faf723e6626d" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Core.AnimationMetrics.TranslationAnimation">
+      <topicdata name="TranslationAnimation" group="list" subgroup="members" typeTopicId="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      <apidata name="TranslationAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      </containers>
+      <file name="17444732-1ce7-8c42-1da6-22bea6ccee23" />
+    </api>
+    <api id="Methods.T:Windows.UI.Core.AnimationMetrics.TranslationAnimation">
+      <topicdata name="TranslationAnimation" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      <apidata name="TranslationAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      </containers>
+      <file name="3b7fa2e6-f3fa-8d80-dcdf-8f64d79bc6e3" />
+    </api>
+    <api id="Properties.T:Windows.UI.Core.AnimationMetrics.TranslationAnimation">
+      <topicdata name="TranslationAnimation" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      <apidata name="TranslationAnimation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Control1" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Control2" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Delay" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Duration" />
+        <element api="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Type" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" />
+      </containers>
+      <file name="a2efad92-8659-37b4-7ffd-af6a92354fa4" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Control1">
+      <topicdata group="api" />
+      <apidata name="Control1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control1" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control1">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" ref="true" />
+      </containers>
+      <file name="1d64afbd-2aae-b1e8-6bee-9e5ea4e916f7" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Control2">
+      <topicdata group="api" />
+      <apidata name="Control2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Control2" />
+      <returns>
+        <type api="T:Windows.Foundation.Point" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Control2">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" ref="true" />
+      </containers>
+      <file name="ca086bad-6775-723d-3885-22395bb87df9" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Delay">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" ref="true" />
+      </containers>
+      <file name="f83d25bb-8156-4641-8881-27624425ba40" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Duration">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" ref="true" />
+      </containers>
+      <file name="4f05f809-cfcb-626b-88b7-6cfe80140a9a" />
+    </api>
+    <api id="P:Windows.UI.Core.AnimationMetrics.TranslationAnimation.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.UI.Core.AnimationMetrics.PropertyAnimationType" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.UI.Core.AnimationMetrics.IPropertyAnimation.Type">
+          <type api="T:Windows.UI.Core.AnimationMetrics.IPropertyAnimation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Core.AnimationMetrics" />
+        <type api="T:Windows.UI.Core.AnimationMetrics.TranslationAnimation" ref="true" />
+      </containers>
+      <file name="9448b16c-2d4b-fe5f-f06b-5b3b7f24596d" />
+    </api>
+  </apis>
+</reflection>

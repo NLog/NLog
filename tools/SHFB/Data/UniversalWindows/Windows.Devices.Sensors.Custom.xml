@@ -1,0 +1,928 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Sensors.Custom">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Sensors.Custom" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+        <element api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+        <element api="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      </elements>
+      <file name="374a897f-c4ee-6d92-28de-04826b02cee1" />
+    </api>
+    <api id="T:Windows.Devices.Sensors.Custom.CustomSensor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      <apidata name="CustomSensor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c2d0689f-9a96-1398-0a4f-7916d8eaf02d" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Sensors.Custom.CustomSensor">
+      <topicdata name="CustomSensor" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      <apidata name="CustomSensor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensor.DeviceId" />
+        <element api="M:Windows.Devices.Sensors.Custom.CustomSensor.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Sensors.Custom.CustomSensor.GetCurrentReading" />
+        <element api="M:Windows.Devices.Sensors.Custom.CustomSensor.GetDeviceSelector(System.Guid)" />
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensor.MinimumReportInterval" />
+        <element api="E:Windows.Devices.Sensors.Custom.CustomSensor.ReadingChanged" />
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensor.ReportInterval" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      </containers>
+      <file name="8b8421e0-1e9e-aff3-0087-8f33e0e610a7" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Sensors.Custom.CustomSensor">
+      <topicdata name="CustomSensor" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      <apidata name="CustomSensor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Sensors.Custom.CustomSensor.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Sensors.Custom.CustomSensor.GetCurrentReading" />
+        <element api="M:Windows.Devices.Sensors.Custom.CustomSensor.GetDeviceSelector(System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      </containers>
+      <file name="965330f8-0c80-6230-d5de-63afc79f1d1b" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Sensors.Custom.CustomSensor">
+      <topicdata name="CustomSensor" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      <apidata name="CustomSensor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensor.DeviceId" />
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensor.MinimumReportInterval" />
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensor.ReportInterval" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      </containers>
+      <file name="525a6dda-87bf-f295-7676-2e195de89c63" />
+    </api>
+    <api id="Events.T:Windows.Devices.Sensors.Custom.CustomSensor">
+      <topicdata name="CustomSensor" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      <apidata name="CustomSensor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Sensors.Custom.CustomSensor.ReadingChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" />
+      </containers>
+      <file name="0be3991f-5442-6351-397a-e0a7c28e0cd9" />
+    </api>
+    <api id="P:Windows.Devices.Sensors.Custom.CustomSensor.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <file name="8735dd3c-cfb8-dc09-67f3-6b7c04ba3527" />
+    </api>
+    <api id="M:Windows.Devices.Sensors.Custom.CustomSensor.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sensorId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3c9c968a-4087-b9b6-ee05-efa62fdb1358" />
+    </api>
+    <api id="M:Windows.Devices.Sensors.Custom.CustomSensor.GetCurrentReading">
+      <topicdata group="api" />
+      <apidata name="GetCurrentReading" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <file name="4e15d949-99cb-9290-b16d-0d2aa883e03f" />
+    </api>
+    <api id="M:Windows.Devices.Sensors.Custom.CustomSensor.GetDeviceSelector(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="interfaceId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <file name="78260046-c052-b1b5-875e-2e4172582309" />
+    </api>
+    <api id="P:Windows.Devices.Sensors.Custom.CustomSensor.MinimumReportInterval">
+      <topicdata group="api" />
+      <apidata name="MinimumReportInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MinimumReportInterval" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <file name="2666c9c9-81e4-b6f6-824b-abe188b619cf" />
+    </api>
+    <api id="E:Windows.Devices.Sensors.Custom.CustomSensor.ReadingChanged">
+      <topicdata group="api" />
+      <apidata name="ReadingChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ReadingChanged" />
+      <remover name="remove_ReadingChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+            <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <file name="22aea19b-41f9-7b5f-9b9b-52818c854f3f" />
+    </api>
+    <api id="P:Windows.Devices.Sensors.Custom.CustomSensor.ReportInterval">
+      <topicdata group="api" />
+      <apidata name="ReportInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReportInterval" />
+      <setter name="set_ReportInterval" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensor" ref="true" />
+      </containers>
+      <file name="34b94394-6872-b396-60b9-5ad9e297f99f" />
+    </api>
+    <api id="T:Windows.Devices.Sensors.Custom.CustomSensorReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      <apidata name="CustomSensorReading" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6c9724c8-c79c-297e-76ce-afd1377c5da6" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Sensors.Custom.CustomSensorReading">
+      <topicdata name="CustomSensorReading" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      <apidata name="CustomSensorReading" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensorReading.Properties" />
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensorReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      </containers>
+      <file name="9a216cc0-fb0f-1faa-556a-d5ac5c9ab0b5" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Sensors.Custom.CustomSensorReading">
+      <topicdata name="CustomSensorReading" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      <apidata name="CustomSensorReading" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      </containers>
+      <file name="fdf52689-f270-68c6-9a69-3550d2d9fdbb" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Sensors.Custom.CustomSensorReading">
+      <topicdata name="CustomSensorReading" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      <apidata name="CustomSensorReading" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensorReading.Properties" />
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensorReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" />
+      </containers>
+      <file name="21bcb0d5-f759-95f0-c63e-4125ffcb608d" />
+    </api>
+    <api id="P:Windows.Devices.Sensors.Custom.CustomSensorReading.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" ref="true" />
+      </containers>
+      <file name="9ffbb488-fa97-3884-4f4f-df5f0dacb19d" />
+    </api>
+    <api id="P:Windows.Devices.Sensors.Custom.CustomSensorReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" ref="true" />
+      </containers>
+      <file name="bc8f43af-0b4f-dfb7-fa84-b8f9be0fb52c" />
+    </api>
+    <api id="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      <apidata name="CustomSensorReadingChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="375982b5-7884-939d-6320-3902d5d2a6fa" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs">
+      <topicdata name="CustomSensorReadingChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      <apidata name="CustomSensorReadingChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs.Reading" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      </containers>
+      <file name="38e16c42-bd32-2288-1e8e-1a188e89fe34" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs">
+      <topicdata name="CustomSensorReadingChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      <apidata name="CustomSensorReadingChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      </containers>
+      <file name="e95f3365-8187-e320-c891-eced1749eb98" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs">
+      <topicdata name="CustomSensorReadingChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      <apidata name="CustomSensorReadingChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs.Reading" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" />
+      </containers>
+      <file name="5c5f8fa6-19ac-a96c-8aa2-ed6f348e9f20" />
+    </api>
+    <api id="P:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs.Reading">
+      <topicdata group="api" />
+      <apidata name="Reading" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Reading" />
+      <returns>
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReading" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Sensors.Custom" />
+        <type api="T:Windows.Devices.Sensors.Custom.CustomSensorReadingChangedEventArgs" ref="true" />
+      </containers>
+      <file name="cb26edbd-db13-3588-b833-bc2f6e80b1f9" />
+    </api>
+  </apis>
+</reflection>

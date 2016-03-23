@@ -1,0 +1,1852 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Printing">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Printing" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Printing.PreviewPageCountType" />
+        <element api="T:Windows.UI.Xaml.Printing.AddPagesEventHandler" />
+        <element api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+        <element api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventHandler" />
+        <element api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+        <element api="T:Windows.UI.Xaml.Printing.PaginateEventHandler" />
+        <element api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+        <element api="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      </elements>
+      <file name="4507bc63-3625-1dda-3fbf-904af3533829" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.AddPagesEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      <apidata name="AddPagesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.AddPagesEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6e457ace-4700-1267-bf3b-f133c6d59a69" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Printing.AddPagesEventArgs">
+      <topicdata name="AddPagesEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      <apidata name="AddPagesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.AddPagesEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Printing.AddPagesEventArgs.#ctor" />
+        <element api="P:Windows.UI.Xaml.Printing.AddPagesEventArgs.PrintTaskOptions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      </containers>
+      <file name="335c455f-6e87-e941-57f7-d8da8af5244c" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Printing.AddPagesEventArgs">
+      <topicdata name="AddPagesEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      <apidata name="AddPagesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.AddPagesEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      </containers>
+      <file name="1bb60c2b-7e38-2c4e-4fbd-f20b0d94b9bc" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Printing.AddPagesEventArgs">
+      <topicdata name="AddPagesEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      <apidata name="AddPagesEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.AddPagesEventArgs.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Printing.AddPagesEventArgs.PrintTaskOptions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" />
+      </containers>
+      <file name="9b7e4a79-bc19-7d73-1c86-c9477e77ddc6" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.AddPagesEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" ref="true" />
+      </containers>
+      <file name="b386759b-f6d1-752b-4512-fd8c78283ec2" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Printing.AddPagesEventArgs.PrintTaskOptions">
+      <topicdata group="api" />
+      <apidata name="PrintTaskOptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PrintTaskOptions" />
+      <returns>
+        <type api="T:Windows.Graphics.Printing.PrintTaskOptions" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" ref="true" />
+      </containers>
+      <file name="204bbdbb-a913-51ae-b3f3-dcd0aa41c791" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.AddPagesEventHandler">
+      <topicdata group="api" />
+      <apidata name="AddPagesEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3568662896</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>22432</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16905</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>132</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>124</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>192</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>147</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>181</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>75</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>199</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>41</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fd557a78-69cb-e704-2932-1b1e7459e0fa" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      <apidata name="GetPreviewPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7fe1209f-e3fd-b3d7-d999-8a43a2ae6cda" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs">
+      <topicdata name="GetPreviewPageEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      <apidata name="GetPreviewPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.#ctor" />
+        <element api="P:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.PageNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      </containers>
+      <file name="48ebe539-df41-ebba-65ec-ba8bd13317f8" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs">
+      <topicdata name="GetPreviewPageEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      <apidata name="GetPreviewPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      </containers>
+      <file name="739a54d5-d846-6c22-d648-91c70affd8ec" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs">
+      <topicdata name="GetPreviewPageEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      <apidata name="GetPreviewPageEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.PageNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" />
+      </containers>
+      <file name="d532d6a1-67f6-c922-8cfb-9683d5ea1ddf" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" ref="true" />
+      </containers>
+      <file name="dc40baa0-1719-a218-1d99-b0521c14c5b8" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs.PageNumber">
+      <topicdata group="api" />
+      <apidata name="PageNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PageNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" ref="true" />
+      </containers>
+      <file name="83569362-4661-595e-9007-4cee0a2ec716" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.GetPreviewPageEventHandler">
+      <topicdata group="api" />
+      <apidata name="GetPreviewPageEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>3434342893</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>39953</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20048</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>171</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>233</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>128</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>134</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>187</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>253</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>239</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4ffa132c-06e4-abb6-2325-43593fcb40e3" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.PaginateEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      <apidata name="PaginateEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PaginateEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="635ea6c9-4821-cceb-4fde-94077e1d59f0" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Printing.PaginateEventArgs">
+      <topicdata name="PaginateEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      <apidata name="PaginateEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PaginateEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Printing.PaginateEventArgs.#ctor" />
+        <element api="P:Windows.UI.Xaml.Printing.PaginateEventArgs.CurrentPreviewPageNumber" />
+        <element api="P:Windows.UI.Xaml.Printing.PaginateEventArgs.PrintTaskOptions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      </containers>
+      <file name="f0bd7317-ff26-8e9a-314d-fd0405f28062" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Printing.PaginateEventArgs">
+      <topicdata name="PaginateEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      <apidata name="PaginateEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PaginateEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      </containers>
+      <file name="3c685e74-15c3-900d-e316-eac246d2eb32" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Printing.PaginateEventArgs">
+      <topicdata name="PaginateEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      <apidata name="PaginateEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PaginateEventArgs.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Printing.PaginateEventArgs.CurrentPreviewPageNumber" />
+        <element api="P:Windows.UI.Xaml.Printing.PaginateEventArgs.PrintTaskOptions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" />
+      </containers>
+      <file name="a5027e1a-5ebe-9870-5048-1f5aec4e1c57" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PaginateEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" ref="true" />
+      </containers>
+      <file name="5e88d9ee-849e-46c9-26db-b91c5138665a" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Printing.PaginateEventArgs.CurrentPreviewPageNumber">
+      <topicdata group="api" />
+      <apidata name="CurrentPreviewPageNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CurrentPreviewPageNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" ref="true" />
+      </containers>
+      <file name="41e4ed3c-e951-7205-d191-99f854599fd7" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Printing.PaginateEventArgs.PrintTaskOptions">
+      <topicdata group="api" />
+      <apidata name="PrintTaskOptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PrintTaskOptions" />
+      <returns>
+        <type api="T:Windows.Graphics.Printing.PrintTaskOptions" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" ref="true" />
+      </containers>
+      <file name="e1cb452d-70d8-da64-691a-2e1b251575e1" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.PaginateEventHandler">
+      <topicdata group="api" />
+      <apidata name="PaginateEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>213932897</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>33051</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18994</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>101</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>19</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>235</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>120</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>219</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>176</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>27</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b5711dba-b8b0-86c2-428d-5a3ea9ee42bc" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.PreviewPageCountType">
+      <topicdata group="api" />
+      <apidata name="PreviewPageCountType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Printing.PreviewPageCountType.Final" />
+        <element api="F:Windows.UI.Xaml.Printing.PreviewPageCountType.Intermediate" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0f100aee-27a0-0f37-2032-dfa7edd814e4" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Printing.PreviewPageCountType.Final">
+      <topicdata group="api" notopic="" />
+      <apidata name="Final" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Printing.PreviewPageCountType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PreviewPageCountType" ref="false" />
+      </containers>
+      <file name="440adfb2-062c-a38b-0529-70546e4eeaeb" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Printing.PreviewPageCountType.Intermediate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Intermediate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Printing.PreviewPageCountType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PreviewPageCountType" ref="false" />
+      </containers>
+      <file name="514bf7d3-091f-e3dd-dc2c-01b93a01e35a" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Printing.PrintDocument">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Windows.UI.Xaml.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2aafc0f7-5765-62ed-f72b-485923779ddc" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.DependencyObject.ClearValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="P:Windows.UI.Xaml.DependencyObject.Dispatcher" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetAnimationBaseValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.ReadLocalValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.RegisterPropertyChangedCallback(Windows.UI.Xaml.DependencyProperty,Windows.UI.Xaml.DependencyPropertyChangedCallback)">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Xaml.DependencyObject.SetValue(Windows.UI.Xaml.DependencyProperty,System.Object)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.UnregisterPropertyChangedCallback(Windows.UI.Xaml.DependencyProperty,System.Int64)">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Finalize">
+          <apidata name="Finalize" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="true" />
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.MemberwiseClone">
+          <apidata name="MemberwiseClone" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Object" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.AddPage(Windows.UI.Xaml.UIElement)" />
+        <element api="E:Windows.UI.Xaml.Printing.PrintDocument.AddPages" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.AddPagesComplete" />
+        <element api="P:Windows.UI.Xaml.Printing.PrintDocument.DocumentSource" />
+        <element api="P:Windows.UI.Xaml.Printing.PrintDocument.DocumentSourceProperty" />
+        <element api="E:Windows.UI.Xaml.Printing.PrintDocument.GetPreviewPage" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.InvalidatePreview" />
+        <element api="E:Windows.UI.Xaml.Printing.PrintDocument.Paginate" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.SetPreviewPage(System.Int32,Windows.UI.Xaml.UIElement)" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.SetPreviewPageCount(System.Int32,Windows.UI.Xaml.Printing.PreviewPageCountType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      </containers>
+      <file name="dc753aba-d15b-31e1-3455-b23116eff84f" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="M:Windows.UI.Xaml.DependencyObject.ClearValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetAnimationBaseValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.ReadLocalValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.RegisterPropertyChangedCallback(Windows.UI.Xaml.DependencyProperty,Windows.UI.Xaml.DependencyPropertyChangedCallback)">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.UI.Xaml.DependencyObject.SetValue(Windows.UI.Xaml.DependencyProperty,System.Object)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.UnregisterPropertyChangedCallback(Windows.UI.Xaml.DependencyProperty,System.Int64)">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Finalize">
+          <apidata name="Finalize" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="true" />
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.MemberwiseClone">
+          <apidata name="MemberwiseClone" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Object" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.AddPage(Windows.UI.Xaml.UIElement)" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.AddPagesComplete" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.InvalidatePreview" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.SetPreviewPage(System.Int32,Windows.UI.Xaml.UIElement)" />
+        <element api="M:Windows.UI.Xaml.Printing.PrintDocument.SetPreviewPageCount(System.Int32,Windows.UI.Xaml.Printing.PreviewPageCountType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      </containers>
+      <file name="8d809a7c-4138-89d2-a8fc-cd4e219b34d0" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.DependencyObject.Dispatcher" />
+        <element api="P:Windows.UI.Xaml.Printing.PrintDocument.DocumentSource" />
+        <element api="P:Windows.UI.Xaml.Printing.PrintDocument.DocumentSourceProperty" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      </containers>
+      <file name="a6055354-3afe-0cb0-52d7-9c8b05df0846" />
+    </api>
+    <api id="Events.T:Windows.UI.Xaml.Printing.PrintDocument">
+      <topicdata name="PrintDocument" group="list" subgroup="Events" typeTopicId="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      <apidata name="PrintDocument" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor" />
+      <elements>
+        <element api="E:Windows.UI.Xaml.Printing.PrintDocument.AddPages" />
+        <element api="E:Windows.UI.Xaml.Printing.PrintDocument.GetPreviewPage" />
+        <element api="E:Windows.UI.Xaml.Printing.PrintDocument.Paginate" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" />
+      </containers>
+      <file name="ebd82ebb-2b59-9aeb-ffc9-64bf55cee56b" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PrintDocument.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="5c73ddb7-5a88-915f-c27e-6d6b20308241" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PrintDocument.AddPage(Windows.UI.Xaml.UIElement)">
+      <topicdata group="api" />
+      <apidata name="AddPage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pageVisual" in="true">
+          <type api="T:Windows.UI.Xaml.UIElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="4e52617a-73b0-f40f-489e-96ee3afa42b7" />
+    </api>
+    <api id="E:Windows.UI.Xaml.Printing.PrintDocument.AddPages">
+      <topicdata group="api" />
+      <apidata name="AddPages" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AddPages" />
+      <remover name="remove_AddPages" />
+      <eventhandler>
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.UI.Xaml.Printing.AddPagesEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="f525386e-620a-2066-b84a-4ed9375c2302" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PrintDocument.AddPagesComplete">
+      <topicdata group="api" />
+      <apidata name="AddPagesComplete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="7528a507-37f5-d338-8f4d-11371c54bbf6" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Printing.PrintDocument.DocumentSource">
+      <topicdata group="api" />
+      <apidata name="DocumentSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DocumentSource" />
+      <returns>
+        <type api="T:Windows.Graphics.Printing.IPrintDocumentSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="f6425a96-eba8-6364-da35-429ce6b114b9" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Printing.PrintDocument.DocumentSourceProperty">
+      <topicdata group="api" />
+      <apidata name="DocumentSourceProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DocumentSourceProperty" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="1942108c-616d-4969-917b-15f9c92720dc" />
+    </api>
+    <api id="E:Windows.UI.Xaml.Printing.PrintDocument.GetPreviewPage">
+      <topicdata group="api" />
+      <apidata name="GetPreviewPage" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GetPreviewPage" />
+      <remover name="remove_GetPreviewPage" />
+      <eventhandler>
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.UI.Xaml.Printing.GetPreviewPageEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="50749f8e-17c3-e2c6-d154-60ef9b16b67f" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PrintDocument.InvalidatePreview">
+      <topicdata group="api" />
+      <apidata name="InvalidatePreview" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="bd370173-e743-ab32-36dd-50e4ad96f3c9" />
+    </api>
+    <api id="E:Windows.UI.Xaml.Printing.PrintDocument.Paginate">
+      <topicdata group="api" />
+      <apidata name="Paginate" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Paginate" />
+      <remover name="remove_Paginate" />
+      <eventhandler>
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.UI.Xaml.Printing.PaginateEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="6bf458c1-861b-ce8d-881e-f74cf69f3827" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PrintDocument.SetPreviewPage(System.Int32,Windows.UI.Xaml.UIElement)">
+      <topicdata group="api" />
+      <apidata name="SetPreviewPage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="pageNumber" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="pageVisual" in="true">
+          <type api="T:Windows.UI.Xaml.UIElement" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="ffa5e97d-9e74-0933-6c3e-bf45cd2b8e30" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Printing.PrintDocument.SetPreviewPageCount(System.Int32,Windows.UI.Xaml.Printing.PreviewPageCountType)">
+      <topicdata group="api" />
+      <apidata name="SetPreviewPageCount" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="count" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="type" in="true">
+          <type api="T:Windows.UI.Xaml.Printing.PreviewPageCountType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Printing" />
+        <type api="T:Windows.UI.Xaml.Printing.PrintDocument" ref="true" />
+      </containers>
+      <file name="d430edf2-9166-9fe0-bfae-b041dfc16366" />
+    </api>
+  </apis>
+</reflection>

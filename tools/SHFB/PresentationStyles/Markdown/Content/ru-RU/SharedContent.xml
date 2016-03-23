@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+<!-- Translations provided by Sergey Zhurikhin -->
+
+  <!-- Topic title -->
+  <item id="boilerplate_pageTitle">{0}</item>
+	<item id="header"></item>
+
+	<!-- Alert titles -->
+	<item id="alert_title_tip">Подсказка</item>
+	<item id="alert_title_caution">Внимание</item>
+	<item id="alert_title_security">Примечание по безопасности</item>
+	<item id="alert_title_note">Примечание</item>
+	<item id="alert_title_important">Важно</item>
+	<item id="alert_title_visualBasic">Примечание для Visual Basic</item>
+	<item id="alert_title_visualC#">Примечание для C#</item>
+  <item id="alert_title_visualC++">Примечание для C++</item>
+	<item id="alert_title_visualJ#">Примечание для J#</item>
+
+	<!-- Alert alt text -->
+	<item id="alert_altText_tip">Подсказка</item>
+	<item id="alert_altText_caution">Внимание</item>
+	<item id="alert_altText_security">Примечание по безопасности</item>
+	<item id="alert_altText_note">Примечание</item>
+	<item id="alert_altText_important">Важно</item>
+	<item id="alert_altText_visualBasic">Примечание для Visual Basic</item>
+	<item id="alert_altText_visualC#">Примечание для C#</item>
+  <item id="alert_altText_visualC++">Примечание для C++</item>
+	<item id="alert_altText_visualJ#">Примечание для J#</item>
+
+  <!-- Section titles -->
+  <item id="title_remarks">Заметки</item>
+  <item id="title_changeHistory">История изменений</item>
+  <item id="title_events">События</item>
+  <item id="title_exceptions">Исключения</item>
+  <item id="title_contracts">Контракты</item>
+  <item id="title_setter">Set</item>
+  <item id="title_getter">Get</item>
+  <item id="title_seeAlso_tasks">Задачи</item>
+  <item id="title_seeAlso_reference">Ссылки</item>
+  <item id="title_seeAlso_concepts">Основные понятия</item>
+  <item id="title_seeAlso_otherResources">Другие ресурсы</item>
+
+	<item id="inline_dynamicLink_prefixText">Для получения дополнительной информации см. </item>
+	<item id="inline_dynamicLink_postfixText">.</item>
+	<item id="inline_dynamicLink_separatorText"> и </item>
+  
+	<!-- Development language and code snippet titles for languages without a syntax generator -->
+	<item id="devlang_HTML">HTML</item>
+	<item id="devlang_PShell">PowerShell</item>
+	<item id="devlang_Python">Python</item>
+	<item id="devlang_SQL">SQL</item>
+	<item id="devlang_VBScript">Visual Basic Script</item>
+	<item id="devlang_VisualBasicAndCSharp">VB и C#</item>
+	<item id="devlang_XML">XML</item>
+
+  <!-- language keywords -->
+  <item id="devlang_nullKeyword">`null` (`Nothing` в Visual Basic)</item>
+  <item id="devlang_staticKeyword">`static` (`Shared` в Visual Basic)</item>
+  <item id="devlang_virtualKeyword">`virtual` (`Overridable` в Visual Basic)</item>
+  <item id="devlang_trueKeyword">`true` (`True` в Visual Basic)</item>
+  <item id="devlang_falseKeyword">`false` (`False` в Visual Basic)</item>
+  <item id="devlang_abstractKeyword">`abstract` (`MustInherit` в Visual Basic)</item>
+  <item id="devlang_sealedKeyword">`sealed` (`NotInheritable` в Visual Basic)</item>
+
+  <!-- Back to Top link text -->
+  <item id="top">В начало страницы</item>
+
+</content>

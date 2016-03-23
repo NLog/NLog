@@ -1,0 +1,2052 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Devices.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Devices.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+        <element api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+        <element api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+        <element api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+        <element api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+        <element api="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+        <element api="T:Windows.Media.Devices.Core.FrameExposureControl" />
+        <element api="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+        <element api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+        <element api="T:Windows.Media.Devices.Core.FrameFocusControl" />
+        <element api="T:Windows.Media.Devices.Core.FrameController" />
+      </elements>
+      <file name="fd081bee-8954-3f13-16e9-64768c3908a2" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameControlCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      <apidata name="FrameControlCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameControlCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0efe1dc9-21bb-552d-bd28-fd5753240299" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameControlCapabilities">
+      <topicdata name="FrameControlCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      <apidata name="FrameControlCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.Exposure" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.ExposureCompensation" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.Focus" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.IsoSpeed" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.PhotoConfirmationSupported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      </containers>
+      <file name="4a49ac33-e24f-848e-adf5-b0244f89cae7" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameControlCapabilities">
+      <topicdata name="FrameControlCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      <apidata name="FrameControlCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      </containers>
+      <file name="3d20c4f7-934b-e44b-bd14-115dd90465d7" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameControlCapabilities">
+      <topicdata name="FrameControlCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      <apidata name="FrameControlCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.Exposure" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.ExposureCompensation" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.Focus" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.IsoSpeed" />
+        <element api="P:Windows.Media.Devices.Core.FrameControlCapabilities.PhotoConfirmationSupported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" />
+      </containers>
+      <file name="67b36cce-18f8-8c01-80b9-dd052c0c3b02" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameControlCapabilities.Exposure">
+      <topicdata group="api" />
+      <apidata name="Exposure" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Exposure" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" ref="true" />
+      </containers>
+      <file name="b40eec56-9b1b-1177-8fb9-809ee778cbb9" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameControlCapabilities.ExposureCompensation">
+      <topicdata group="api" />
+      <apidata name="ExposureCompensation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExposureCompensation" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" ref="true" />
+      </containers>
+      <file name="7c3e6d03-7f04-01d5-0c4e-a28761156a09" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameControlCapabilities.Focus">
+      <topicdata group="api" />
+      <apidata name="Focus" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Focus" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" ref="true" />
+      </containers>
+      <file name="436b030e-d887-fc08-0e97-09e98fa9ad34" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameControlCapabilities.IsoSpeed">
+      <topicdata group="api" />
+      <apidata name="IsoSpeed" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsoSpeed" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" ref="true" />
+      </containers>
+      <file name="fe698d20-de25-8199-576b-2c2a594edb1d" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameControlCapabilities.PhotoConfirmationSupported">
+      <topicdata group="api" />
+      <apidata name="PhotoConfirmationSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhotoConfirmationSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" ref="true" />
+      </containers>
+      <file name="10b2362d-ddc7-1c8a-fd5c-f5539bc13869" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameController" />
+      <apidata name="FrameController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Devices.Core.FrameController.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameController" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0d9c7cc4-0d38-bb0e-dd15-fca212d55a7a" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameController">
+      <topicdata name="FrameController" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameController" />
+      <apidata name="FrameController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Devices.Core.FrameController.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Devices.Core.FrameController.#ctor" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.ExposureCompensationControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.ExposureControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.FocusControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.IsoSpeedControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.PhotoConfirmationEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" />
+      </containers>
+      <file name="f06e1a84-ad86-acf0-b819-756d11a5c9c8" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameController">
+      <topicdata name="FrameController" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameController" />
+      <apidata name="FrameController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Devices.Core.FrameController.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" />
+      </containers>
+      <file name="11cd9596-f2de-67f5-5178-b432f6567dfe" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameController">
+      <topicdata name="FrameController" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameController" />
+      <apidata name="FrameController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Devices.Core.FrameController.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameController.ExposureCompensationControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.ExposureControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.FocusControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.IsoSpeedControl" />
+        <element api="P:Windows.Media.Devices.Core.FrameController.PhotoConfirmationEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" />
+      </containers>
+      <file name="43c1e33b-6161-2cb0-b513-977095b5c27e" />
+    </api>
+    <api id="M:Windows.Media.Devices.Core.FrameController.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+      </containers>
+      <file name="260f9d02-ebfd-4cb8-efb0-4ea9dc980242" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameController.ExposureCompensationControl">
+      <topicdata group="api" />
+      <apidata name="ExposureCompensationControl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExposureCompensationControl" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+      </containers>
+      <file name="ca893222-7372-0494-4523-d2beff2f5f22" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameController.ExposureControl">
+      <topicdata group="api" />
+      <apidata name="ExposureControl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExposureControl" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameExposureControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+      </containers>
+      <file name="ef7e159a-4567-a3b0-2013-3100c386a58f" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameController.FocusControl">
+      <topicdata group="api" />
+      <apidata name="FocusControl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FocusControl" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameFocusControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+      </containers>
+      <file name="5cedda47-baa9-f670-c3b2-71e83f4cd690" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameController.IsoSpeedControl">
+      <topicdata group="api" />
+      <apidata name="IsoSpeedControl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsoSpeedControl" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+      </containers>
+      <file name="ef9bb7cc-1b93-02dc-c85f-25466d48f2a6" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameController.PhotoConfirmationEnabled">
+      <topicdata group="api" />
+      <apidata name="PhotoConfirmationEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PhotoConfirmationEnabled" />
+      <setter name="set_PhotoConfirmationEnabled" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+      </containers>
+      <file name="50c36579-14b7-9a73-2a28-f83b1c33c38a" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameExposureCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      <apidata name="FrameExposureCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameExposureCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b726527f-f62f-8b01-d505-eda837ba9e34" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameExposureCapabilities">
+      <topicdata name="FrameExposureCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      <apidata name="FrameExposureCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      </containers>
+      <file name="9e8e1df4-0528-b1a7-ad69-d6b23cb11de5" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameExposureCapabilities">
+      <topicdata name="FrameExposureCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      <apidata name="FrameExposureCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      </containers>
+      <file name="88661b73-6691-00d2-346d-f361d6dbde11" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameExposureCapabilities">
+      <topicdata name="FrameExposureCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      <apidata name="FrameExposureCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" />
+      </containers>
+      <file name="c8d66dde-322a-4854-699f-ff0a83e58865" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Max">
+      <topicdata group="api" />
+      <apidata name="Max" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Max" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" ref="true" />
+      </containers>
+      <file name="e9a729da-781e-5b4a-f861-23171d50749b" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Min">
+      <topicdata group="api" />
+      <apidata name="Min" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Min" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" ref="true" />
+      </containers>
+      <file name="7d20efbe-ef45-8b36-ed8f-35ffa5849cc9" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Step">
+      <topicdata group="api" />
+      <apidata name="Step" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Step" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" ref="true" />
+      </containers>
+      <file name="35a86e1e-24c7-09be-b985-aca5a08ee2a7" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCapabilities.Supported">
+      <topicdata group="api" />
+      <apidata name="Supported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Supported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCapabilities" ref="true" />
+      </containers>
+      <file name="34cd3ff2-fe7e-9786-1833-ca860716e957" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      <apidata name="FrameExposureCompensationCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameExposureCompensationCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="981f1758-d1e5-9418-40df-19a2e821eea3" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities">
+      <topicdata name="FrameExposureCompensationCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      <apidata name="FrameExposureCompensationCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      </containers>
+      <file name="c7990346-e45f-32a6-f952-5ccb4c610c8f" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities">
+      <topicdata name="FrameExposureCompensationCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      <apidata name="FrameExposureCompensationCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      </containers>
+      <file name="4ded024d-9a34-ad54-05e5-6752e04b3dff" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities">
+      <topicdata name="FrameExposureCompensationCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      <apidata name="FrameExposureCompensationCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" />
+      </containers>
+      <file name="1f02b47d-91bd-b8bf-542d-deb5cef94e75" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Max">
+      <topicdata group="api" />
+      <apidata name="Max" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Max" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" ref="true" />
+      </containers>
+      <file name="6d1b2112-54f7-0522-96db-e498a0f5a95c" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Min">
+      <topicdata group="api" />
+      <apidata name="Min" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Min" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" ref="true" />
+      </containers>
+      <file name="97748f0a-49c6-6082-d715-b216a6020aae" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Step">
+      <topicdata group="api" />
+      <apidata name="Step" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Step" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" ref="true" />
+      </containers>
+      <file name="4907f347-0c6f-1809-a8fa-e6eafc725d46" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities.Supported">
+      <topicdata group="api" />
+      <apidata name="Supported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Supported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationCapabilities" ref="true" />
+      </containers>
+      <file name="70af6f05-0b3d-a8bc-908e-5ca52a3cddb1" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameExposureCompensationControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      <apidata name="FrameExposureCompensationControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameExposureCompensationControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b75ef0ab-3153-eee0-83b9-af5ab6fe16be" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameExposureCompensationControl">
+      <topicdata name="FrameExposureCompensationControl" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      <apidata name="FrameExposureCompensationControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      </containers>
+      <file name="0465cd92-5a69-7ec2-deab-070406a363f8" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameExposureCompensationControl">
+      <topicdata name="FrameExposureCompensationControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      <apidata name="FrameExposureCompensationControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      </containers>
+      <file name="b12565eb-289f-3d74-27b7-6279af14f321" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameExposureCompensationControl">
+      <topicdata name="FrameExposureCompensationControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      <apidata name="FrameExposureCompensationControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameExposureCompensationControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" />
+      </containers>
+      <file name="0b034c41-e9aa-10a7-3f01-30b7f31a7d3f" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureCompensationControl.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.Single" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureCompensationControl" ref="true" />
+      </containers>
+      <file name="80303201-98cf-eb60-9af0-9683165580a8" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameExposureControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameExposureControl" />
+      <apidata name="FrameExposureControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameExposureControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fd978b30-94a7-6c10-702d-812886947e46" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameExposureControl">
+      <topicdata name="FrameExposureControl" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureControl" />
+      <apidata name="FrameExposureControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureControl.Auto" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureControl" />
+      </containers>
+      <file name="e1081054-e312-c268-fdfc-53b612896a39" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameExposureControl">
+      <topicdata name="FrameExposureControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureControl" />
+      <apidata name="FrameExposureControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureControl" />
+      </containers>
+      <file name="5967a571-25c2-4769-f6ef-77d7f7ec2469" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameExposureControl">
+      <topicdata name="FrameExposureControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameExposureControl" />
+      <apidata name="FrameExposureControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameExposureControl.Auto" />
+        <element api="P:Windows.Media.Devices.Core.FrameExposureControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureControl" />
+      </containers>
+      <file name="4ab19a7d-b151-1701-9cff-b6abc5dea920" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureControl.Auto">
+      <topicdata group="api" />
+      <apidata name="Auto" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Auto" />
+      <setter name="set_Auto" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureControl" ref="true" />
+      </containers>
+      <file name="70491d6d-c8a9-89c2-87df-70114dfdbd5c" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameExposureControl.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.TimeSpan" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameExposureControl" ref="true" />
+      </containers>
+      <file name="2d4d2400-7287-0638-5071-2e11fd75aa7c" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameFocusCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      <apidata name="FrameFocusCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameFocusCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="07fb1ab3-8349-f6ae-0a14-d3d1ebc29338" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameFocusCapabilities">
+      <topicdata name="FrameFocusCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      <apidata name="FrameFocusCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      </containers>
+      <file name="808848bd-404b-da41-38d3-bf63441444fa" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameFocusCapabilities">
+      <topicdata name="FrameFocusCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      <apidata name="FrameFocusCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      </containers>
+      <file name="17664d7f-486c-96c2-93bc-35ce6a3c8600" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameFocusCapabilities">
+      <topicdata name="FrameFocusCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      <apidata name="FrameFocusCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" />
+      </containers>
+      <file name="11ea67c3-f94b-8473-4ac0-5a2d9d2a2ccd" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Max">
+      <topicdata group="api" />
+      <apidata name="Max" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Max" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" ref="true" />
+      </containers>
+      <file name="07357ba4-0683-9e31-b828-ec499bf8f6c1" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Min">
+      <topicdata group="api" />
+      <apidata name="Min" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Min" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" ref="true" />
+      </containers>
+      <file name="e11bdcaf-451c-49c7-d691-73f59f17701e" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Step">
+      <topicdata group="api" />
+      <apidata name="Step" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Step" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" ref="true" />
+      </containers>
+      <file name="f6e9353c-8932-32f5-8baa-36a9f739a021" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameFocusCapabilities.Supported">
+      <topicdata group="api" />
+      <apidata name="Supported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Supported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusCapabilities" ref="true" />
+      </containers>
+      <file name="9cadceac-f9f6-2a36-2fc4-496aab8a8af8" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameFocusControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameFocusControl" />
+      <apidata name="FrameFocusControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameFocusControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5fff6d88-eae9-bdc1-d160-5172aad24606" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameFocusControl">
+      <topicdata name="FrameFocusControl" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameFocusControl" />
+      <apidata name="FrameFocusControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameFocusControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusControl" />
+      </containers>
+      <file name="c63f4b6a-4c35-ddd4-4b60-fb54c7c25ff5" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameFocusControl">
+      <topicdata name="FrameFocusControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameFocusControl" />
+      <apidata name="FrameFocusControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusControl" />
+      </containers>
+      <file name="a95e4464-0b8f-99a3-199f-c0fe72516661" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameFocusControl">
+      <topicdata name="FrameFocusControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameFocusControl" />
+      <apidata name="FrameFocusControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameFocusControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusControl" />
+      </containers>
+      <file name="39d6bff0-2778-f694-d7fa-f243cbfccf35" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameFocusControl.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameFocusControl" ref="true" />
+      </containers>
+      <file name="328374e9-174b-6843-7e11-fa5ab88b57a6" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      <apidata name="FrameIsoSpeedCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameIsoSpeedCapabilities" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="091c623e-2157-2f17-5584-08cbcc9e4581" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities">
+      <topicdata name="FrameIsoSpeedCapabilities" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      <apidata name="FrameIsoSpeedCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      </containers>
+      <file name="f17fb3c7-8efe-6912-ec9a-453498c03eaa" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities">
+      <topicdata name="FrameIsoSpeedCapabilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      <apidata name="FrameIsoSpeedCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      </containers>
+      <file name="ebfbb318-0778-5e4c-7e5f-5925029abf21" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities">
+      <topicdata name="FrameIsoSpeedCapabilities" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      <apidata name="FrameIsoSpeedCapabilities" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Max" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Min" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Step" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" />
+      </containers>
+      <file name="07dc26b8-c76e-6e21-600f-81e73b649c3e" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Max">
+      <topicdata group="api" />
+      <apidata name="Max" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Max" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" ref="true" />
+      </containers>
+      <file name="8c8f8ca3-f0d7-50b7-4326-c51ee296213e" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Min">
+      <topicdata group="api" />
+      <apidata name="Min" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Min" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" ref="true" />
+      </containers>
+      <file name="5f2bf1e0-a0b6-513e-1835-ac0bbca4543d" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Step">
+      <topicdata group="api" />
+      <apidata name="Step" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Step" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" ref="true" />
+      </containers>
+      <file name="b61dba7f-b6ce-9023-4235-22787deecd15" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities.Supported">
+      <topicdata group="api" />
+      <apidata name="Supported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Supported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedCapabilities" ref="true" />
+      </containers>
+      <file name="306ec900-e8b0-d8fd-96a3-33b1f88d4907" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.FrameIsoSpeedControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      <apidata name="FrameIsoSpeedControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IFrameIsoSpeedControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3e9333e0-dd44-b771-5279-21c97fea1717" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.FrameIsoSpeedControl">
+      <topicdata name="FrameIsoSpeedControl" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      <apidata name="FrameIsoSpeedControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedControl.Auto" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      </containers>
+      <file name="600bd65e-861f-8f4c-0226-c9f3fc87bfb1" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.FrameIsoSpeedControl">
+      <topicdata name="FrameIsoSpeedControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      <apidata name="FrameIsoSpeedControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      </containers>
+      <file name="d5587405-7358-abe6-41a4-d8e4df5b33b3" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.FrameIsoSpeedControl">
+      <topicdata name="FrameIsoSpeedControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      <apidata name="FrameIsoSpeedControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedControl.Auto" />
+        <element api="P:Windows.Media.Devices.Core.FrameIsoSpeedControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" />
+      </containers>
+      <file name="204499d9-a4ad-12df-6e1c-076257c67e85" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameIsoSpeedControl.Auto">
+      <topicdata group="api" />
+      <apidata name="Auto" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Auto" />
+      <setter name="set_Auto" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" ref="true" />
+      </containers>
+      <file name="dc0f26bc-c973-7358-92c5-a4eb26d762cf" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.FrameIsoSpeedControl.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.FrameIsoSpeedControl" ref="true" />
+      </containers>
+      <file name="b5f7cd11-b727-3404-f487-75c674d7af5c" />
+    </api>
+    <api id="T:Windows.Media.Devices.Core.VariablePhotoSequenceController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      <apidata name="VariablePhotoSequenceController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Devices.Core.IVariablePhotoSequenceController" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="MTA" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="980bef1c-6fdc-87a1-c2b1-63e94d2f41b4" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Devices.Core.VariablePhotoSequenceController">
+      <topicdata name="VariablePhotoSequenceController" group="list" subgroup="members" typeTopicId="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      <apidata name="VariablePhotoSequenceController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.DesiredFrameControllers" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.FrameCapabilities" />
+        <element api="M:Windows.Media.Devices.Core.VariablePhotoSequenceController.GetCurrentFrameRate" />
+        <element api="M:Windows.Media.Devices.Core.VariablePhotoSequenceController.GetHighestConcurrentFrameRate(Windows.Media.MediaProperties.IMediaEncodingProperties)" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.MaxPhotosPerSecond" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.PhotosPerSecondLimit" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      </containers>
+      <file name="2a07c506-6f7f-b062-21a3-dedabed6106f" />
+    </api>
+    <api id="Methods.T:Windows.Media.Devices.Core.VariablePhotoSequenceController">
+      <topicdata name="VariablePhotoSequenceController" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      <apidata name="VariablePhotoSequenceController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Devices.Core.VariablePhotoSequenceController.GetCurrentFrameRate" />
+        <element api="M:Windows.Media.Devices.Core.VariablePhotoSequenceController.GetHighestConcurrentFrameRate(Windows.Media.MediaProperties.IMediaEncodingProperties)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      </containers>
+      <file name="4ff75db8-b655-e89d-777b-3161a8666311" />
+    </api>
+    <api id="Properties.T:Windows.Media.Devices.Core.VariablePhotoSequenceController">
+      <topicdata name="VariablePhotoSequenceController" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      <apidata name="VariablePhotoSequenceController" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.DesiredFrameControllers" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.FrameCapabilities" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.MaxPhotosPerSecond" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.PhotosPerSecondLimit" />
+        <element api="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.Supported" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" />
+      </containers>
+      <file name="0358066d-6325-4985-b5fc-6dce59e979a0" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.DesiredFrameControllers">
+      <topicdata group="api" />
+      <apidata name="DesiredFrameControllers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DesiredFrameControllers" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Devices.Core.FrameController" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="477800b3-0c33-f2b0-3526-2a05a53ab386" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.FrameCapabilities">
+      <topicdata group="api" />
+      <apidata name="FrameCapabilities" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FrameCapabilities" />
+      <returns>
+        <type api="T:Windows.Media.Devices.Core.FrameControlCapabilities" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="3e4a2d91-6a8b-ead4-c462-213667b43d0e" />
+    </api>
+    <api id="M:Windows.Media.Devices.Core.VariablePhotoSequenceController.GetCurrentFrameRate">
+      <topicdata group="api" />
+      <apidata name="GetCurrentFrameRate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaProperties.MediaRatio" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="a055d928-699a-a2c5-0e67-022f8e3aafd8" />
+    </api>
+    <api id="M:Windows.Media.Devices.Core.VariablePhotoSequenceController.GetHighestConcurrentFrameRate(Windows.Media.MediaProperties.IMediaEncodingProperties)">
+      <topicdata group="api" />
+      <apidata name="GetHighestConcurrentFrameRate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="captureProperties" in="true">
+          <type api="T:Windows.Media.MediaProperties.IMediaEncodingProperties" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.MediaProperties.MediaRatio" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="4d2a13e0-d2c5-dc20-066c-ab6826040790" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.MaxPhotosPerSecond">
+      <topicdata group="api" />
+      <apidata name="MaxPhotosPerSecond" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxPhotosPerSecond" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="2ba5de61-54f9-8521-ac9b-d5c7c0ace1c7" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.PhotosPerSecondLimit">
+      <topicdata group="api" />
+      <apidata name="PhotosPerSecondLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PhotosPerSecondLimit" />
+      <setter name="set_PhotosPerSecondLimit" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="3606b121-4572-ddd4-2c85-2263ff0d726a" />
+    </api>
+    <api id="P:Windows.Media.Devices.Core.VariablePhotoSequenceController.Supported">
+      <topicdata group="api" />
+      <apidata name="Supported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Supported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Devices.Core" />
+        <type api="T:Windows.Media.Devices.Core.VariablePhotoSequenceController" ref="true" />
+      </containers>
+      <file name="5a32a248-5497-7eeb-45b5-740f2b64d95c" />
+    </api>
+  </apis>
+</reflection>

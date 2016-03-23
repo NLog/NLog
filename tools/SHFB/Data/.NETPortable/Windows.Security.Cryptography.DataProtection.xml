@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Security.Cryptography.DataProtection">
+      <topicdata group="api" />
+      <apidata name="Windows.Security.Cryptography.DataProtection" group="namespace" />
+      <elements>
+        <element api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      </elements>
+      <file name="895c1348-4d20-af3c-ff8d-e8b5ee9cd1db" />
+    </api>
+    <api id="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      <apidata name="DataProtectionProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Security.Cryptography.DataProtection.IDataProtectionProvider" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ca47c285-01dd-0b1c-e776-31de7042cfb5" />
+    </api>
+    <api id="AllMembers.T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider">
+      <topicdata name="DataProtectionProvider" group="list" subgroup="members" typeTopicId="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      <apidata name="DataProtectionProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor">
+          <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+          <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor(System.String)" />
+        </element>
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.ProtectAsync(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.ProtectStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.UnprotectAsync(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.UnprotectStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Storage.Streams.IOutputStream)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      </containers>
+      <file name="3df8052e-3891-0a68-517d-065e491bb23d" />
+    </api>
+    <api id="Methods.T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider">
+      <topicdata name="DataProtectionProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      <apidata name="DataProtectionProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.ProtectAsync(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.ProtectStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Storage.Streams.IOutputStream)" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.UnprotectAsync(Windows.Storage.Streams.IBuffer)" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.UnprotectStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Storage.Streams.IOutputStream)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      </containers>
+      <file name="906ab098-cb6f-63db-25cf-9bdd58fa5f53" />
+    </api>
+    <api id="Overload:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+        <element api="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="6b1e1554-55e0-43af-9efe-0a55a96cbf56" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="a6ca9794-3e4c-6f3d-575d-16f1635d235d" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.#ctor" />
+      <parameters>
+        <parameter name="protectionDescriptor" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="f1e92ec8-f81c-924c-f366-7e9268df3028" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.ProtectAsync(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="ProtectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="2ede5594-341e-0125-88d6-a3a7c4e978d2" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.ProtectStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Storage.Streams.IOutputStream)">
+      <topicdata group="api" />
+      <apidata name="ProtectStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="src" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+        <parameter name="dest" in="true">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="288751a5-09af-fe1c-d390-99fbac3b32ad" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.UnprotectAsync(Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="UnprotectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="data" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="2029f8fe-707d-c904-e4bf-6c14fb3d1de8" />
+    </api>
+    <api id="M:Windows.Security.Cryptography.DataProtection.DataProtectionProvider.UnprotectStreamAsync(Windows.Storage.Streams.IInputStream,Windows.Storage.Streams.IOutputStream)">
+      <topicdata group="api" />
+      <apidata name="UnprotectStreamAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="src" in="true">
+          <type api="T:Windows.Storage.Streams.IInputStream" ref="true" />
+        </parameter>
+        <parameter name="dest" in="true">
+          <type api="T:Windows.Storage.Streams.IOutputStream" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Security.Cryptography.DataProtection" />
+        <type api="T:Windows.Security.Cryptography.DataProtection.DataProtectionProvider" ref="true" />
+      </containers>
+      <file name="37ffc93a-db98-dd1d-cb54-299010e8a876" />
+    </api>
+  </apis>
+</reflection>

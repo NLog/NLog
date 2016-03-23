@@ -1,0 +1,1332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.Management.Deployment">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.Management.Deployment" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" />
+        <element api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" />
+        <element api="T:Windows.Phone.Management.Deployment.Enterprise" />
+        <element api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+        <element api="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+        <element api="T:Windows.Phone.Management.Deployment.InstallationManager" />
+        <element api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      </elements>
+      <file name="22a0c136-354d-e51a-67ad-67eebb600767" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.Enterprise">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.Enterprise" />
+      <apidata name="Enterprise" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.Management.Deployment.IEnterprise" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5ed4b556-e2c4-3281-9eb7-8085a98890d0" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Management.Deployment.Enterprise">
+      <topicdata name="Enterprise" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Management.Deployment.Enterprise" />
+      <apidata name="Enterprise" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.EnrollmentValidFrom" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.EnrollmentValidTo" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.Id" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.Name" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.Status" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.WorkplaceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" />
+      </containers>
+      <file name="14056286-30d3-4e1e-97fc-ccd95bd89008" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Management.Deployment.Enterprise">
+      <topicdata name="Enterprise" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Management.Deployment.Enterprise" />
+      <apidata name="Enterprise" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" />
+      </containers>
+      <file name="d082f700-0bdd-9f05-71b8-90241c9f4b46" />
+    </api>
+    <api id="Properties.T:Windows.Phone.Management.Deployment.Enterprise">
+      <topicdata name="Enterprise" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.Management.Deployment.Enterprise" />
+      <apidata name="Enterprise" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.EnrollmentValidFrom" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.EnrollmentValidTo" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.Id" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.Name" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.Status" />
+        <element api="P:Windows.Phone.Management.Deployment.Enterprise.WorkplaceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" />
+      </containers>
+      <file name="6e880e5a-a489-20c9-3e7f-6c2e3d606bea" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.Enterprise.EnrollmentValidFrom">
+      <topicdata group="api" />
+      <apidata name="EnrollmentValidFrom" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EnrollmentValidFrom" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </containers>
+      <file name="fa237644-903c-f589-bf7a-7c761cf7fd6d" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.Enterprise.EnrollmentValidTo">
+      <topicdata group="api" />
+      <apidata name="EnrollmentValidTo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EnrollmentValidTo" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </containers>
+      <file name="cff0963a-1cca-3adf-2a76-dec1988979e5" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.Enterprise.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </containers>
+      <file name="5d351cef-b183-2744-f01c-58f6e1478e64" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.Enterprise.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </containers>
+      <file name="757e061d-1db9-5745-119e-9478b7dd5cfe" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.Enterprise.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </containers>
+      <file name="ec3aa69c-55d0-a936-8cee-cba8ab18471d" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.Enterprise.WorkplaceId">
+      <topicdata group="api" />
+      <apidata name="WorkplaceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_WorkplaceId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </containers>
+      <file name="73b8ebf5-42d2-51fa-7016-3605e0e1665c" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      <apidata name="EnterpriseEnrollmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c59ed446-76a7-e6ec-0583-437ae1da4f96" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager">
+      <topicdata name="EnterpriseEnrollmentManager" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      <apidata name="EnterpriseEnrollmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.CurrentEnterprise" />
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.EnrolledEnterprises" />
+        <element api="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.RequestEnrollmentAsync(System.String)" />
+        <element api="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.RequestUnenrollmentAsync(Windows.Phone.Management.Deployment.Enterprise)" />
+        <element api="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.ValidateEnterprisesAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      </containers>
+      <file name="3a6b5ea9-8ad0-7612-1abb-18d2b6cb7094" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager">
+      <topicdata name="EnterpriseEnrollmentManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      <apidata name="EnterpriseEnrollmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.RequestEnrollmentAsync(System.String)" />
+        <element api="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.RequestUnenrollmentAsync(Windows.Phone.Management.Deployment.Enterprise)" />
+        <element api="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.ValidateEnterprisesAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      </containers>
+      <file name="13022f5d-bad9-021d-fa46-248beaac3adf" />
+    </api>
+    <api id="Properties.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager">
+      <topicdata name="EnterpriseEnrollmentManager" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      <apidata name="EnterpriseEnrollmentManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.CurrentEnterprise" />
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.EnrolledEnterprises" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" />
+      </containers>
+      <file name="06992892-d893-1a67-53c5-b1ae0b48c129" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.CurrentEnterprise">
+      <topicdata group="api" />
+      <apidata name="CurrentEnterprise" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentEnterprise" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" ref="true" />
+      </containers>
+      <file name="ec6e16d5-bce3-29f4-56b1-d9c03c341f65" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.EnrolledEnterprises">
+      <topicdata group="api" />
+      <apidata name="EnrolledEnterprises" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EnrolledEnterprises" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" ref="true" />
+      </containers>
+      <file name="5decfb09-9a61-6858-4fe5-fa108773ef86" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.RequestEnrollmentAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="RequestEnrollmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="enrollmentToken" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" ref="true" />
+      </containers>
+      <file name="226bab27-e4fa-9081-662e-c437b3a74047" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.RequestUnenrollmentAsync(Windows.Phone.Management.Deployment.Enterprise)">
+      <topicdata group="api" />
+      <apidata name="RequestUnenrollmentAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="enterprise" in="true">
+          <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" ref="true" />
+      </containers>
+      <file name="28bc5604-e702-645e-935c-086066dbf602" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager.ValidateEnterprisesAsync">
+      <topicdata group="api" />
+      <apidata name="ValidateEnterprisesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentManager" ref="true" />
+      </containers>
+      <file name="6f87837c-1761-e53a-58f7-7a2959b91761" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      <apidata name="EnterpriseEnrollmentResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.Management.Deployment.IEnterpriseEnrollmentResult" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ee493944-7c57-ece7-84fd-4951a95e9104" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult">
+      <topicdata name="EnterpriseEnrollmentResult" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      <apidata name="EnterpriseEnrollmentResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult.EnrolledEnterprise" />
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      </containers>
+      <file name="46647e94-214c-03af-ea9b-63afd47eec37" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult">
+      <topicdata name="EnterpriseEnrollmentResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      <apidata name="EnterpriseEnrollmentResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      </containers>
+      <file name="35c32500-0e15-ae58-9c3f-c406dd7bacdc" />
+    </api>
+    <api id="Properties.T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult">
+      <topicdata name="EnterpriseEnrollmentResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      <apidata name="EnterpriseEnrollmentResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult.EnrolledEnterprise" />
+        <element api="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" />
+      </containers>
+      <file name="fab8ad82-09ec-173b-cf0c-60470bd62182" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult.EnrolledEnterprise">
+      <topicdata group="api" />
+      <apidata name="EnrolledEnterprise" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EnrolledEnterprise" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.Enterprise" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" ref="true" />
+      </containers>
+      <file name="8af6da4a-8ff8-e3a9-5509-65d267f8ec88" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentResult" ref="true" />
+      </containers>
+      <file name="5e810bd8-ca98-57f5-824b-5b9b1414f208" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus">
+      <topicdata group="api" />
+      <apidata name="EnterpriseEnrollmentStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus.Success" />
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus.CancelledByUser" />
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus.UnknownFailure" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6121385b-64c9-4e48-380e-0bfef2fd0c0a" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus.CancelledByUser">
+      <topicdata group="api" notopic="" />
+      <apidata name="CancelledByUser" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </containers>
+      <file name="fcc3bff4-19c6-a396-0ebe-b3d8cf6a59fe" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </containers>
+      <file name="5e5dd9f2-7f87-7519-089a-2eeda4ac5bc5" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus.UnknownFailure">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnknownFailure" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseEnrollmentStatus" ref="false" />
+      </containers>
+      <file name="9698cf60-d0c1-1935-23fa-7b01db72586c" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.EnterpriseStatus">
+      <topicdata group="api" />
+      <apidata name="EnterpriseStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Enrolled" />
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Disabled" />
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Revoked" />
+        <element api="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Expired" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a5152fae-d579-da30-a2f5-1a0c0b6d4dec" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </containers>
+      <file name="252493ec-ca2e-2de1-7c09-90279f0784de" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Enrolled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enrolled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </containers>
+      <file name="44864cd8-a303-2db4-69a5-756d05e849a0" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Expired">
+      <topicdata group="api" notopic="" />
+      <apidata name="Expired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </containers>
+      <file name="a3a76444-443f-a32f-1003-095e1f4f696d" />
+    </api>
+    <api id="F:Windows.Phone.Management.Deployment.EnterpriseStatus.Revoked">
+      <topicdata group="api" notopic="" />
+      <apidata name="Revoked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.EnterpriseStatus" ref="false" />
+      </containers>
+      <file name="0017ee42-60df-c9d3-6235-c16c712495ec" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.InstallationManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.InstallationManager" />
+      <apidata name="InstallationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="616634f8-fe54-1f2f-4d85-9546de2bed0f" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Management.Deployment.InstallationManager">
+      <topicdata name="InstallationManager" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Management.Deployment.InstallationManager" />
+      <apidata name="InstallationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync">
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri)" />
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri,System.String,System.String,Windows.Foundation.Uri)" />
+        </element>
+        <element api="Overload:Windows.Phone.Management.Deployment.InstallationManager.FindPackages">
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages" />
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackagesForCurrentPublisher" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.GetPendingPackageInstalls" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.RegisterPackageAsync(Windows.Foundation.Uri,Windows.Foundation.Collections.IIterable{Windows.Foundation.Uri},Windows.Management.Deployment.DeploymentOptions)" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.RemovePackageAsync(System.String,Windows.Management.Deployment.RemovalOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" />
+      </containers>
+      <file name="6c372541-2577-5bd9-983b-adf02ed3555a" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Management.Deployment.InstallationManager">
+      <topicdata name="InstallationManager" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Management.Deployment.InstallationManager" />
+      <apidata name="InstallationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync">
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri)" />
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri,System.String,System.String,Windows.Foundation.Uri)" />
+        </element>
+        <element api="Overload:Windows.Phone.Management.Deployment.InstallationManager.FindPackages">
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages" />
+          <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackagesForCurrentPublisher" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.GetPendingPackageInstalls" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.RegisterPackageAsync(Windows.Foundation.Uri,Windows.Foundation.Collections.IIterable{Windows.Foundation.Uri},Windows.Management.Deployment.DeploymentOptions)" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.RemovePackageAsync(System.String,Windows.Management.Deployment.RemovalOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" />
+      </containers>
+      <file name="59925e87-d73f-ab84-f3ea-b9bb833bbe1a" />
+    </api>
+    <api id="Overload:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync">
+      <topicdata name="AddPackageAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.InstallationManager" />
+      <apidata name="AddPackageAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri)" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri,System.String,System.String,Windows.Foundation.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <file name="5334e242-1c47-a0fb-10de-a6d1335ca5d8" />
+    </api>
+    <api id="Overload:Windows.Phone.Management.Deployment.InstallationManager.FindPackages">
+      <topicdata name="FindPackages" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.InstallationManager" />
+      <apidata name="FindPackages" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages" />
+        <element api="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <file name="6d4b3e56-39ec-8c6f-d994-56877fde4773" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AddPackageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="title" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sourceLocation" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddPackageAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="aa057c3a-3e8e-0249-2bf1-ba73e3106181" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync(System.String,Windows.Foundation.Uri,System.String,System.String,Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="AddPackageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Phone.Management.Deployment.InstallationManager.AddPackageAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="title" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sourceLocation" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="instanceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="offerId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="license" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddPackagePreloadedAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9a332992-d614-9431-5d24-4f7bfcc95ebc" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages">
+      <topicdata group="api" />
+      <apidata name="FindPackages" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Phone.Management.Deployment.InstallationManager.FindPackages" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Package" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindPackages</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="60b03b84-d6b0-eff1-cadc-950cd146e6ec" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackages(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="FindPackages" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Phone.Management.Deployment.InstallationManager.FindPackages" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="packageName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="packagePublisher" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Package" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>FindPackagesByNamePublisher</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9a000c86-b0a6-5859-e2be-8d24cf730b92" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.FindPackagesForCurrentPublisher">
+      <topicdata group="api" />
+      <apidata name="FindPackagesForCurrentPublisher" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Package" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <file name="e0471fb2-5c21-5914-97a8-09ba373ce595" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.GetPendingPackageInstalls">
+      <topicdata group="api" />
+      <apidata name="GetPendingPackageInstalls" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+              <specialization>
+                <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+                <type api="T:System.UInt32" ref="false" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <file name="877a669b-5fc8-4267-490d-b621d1eed543" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.RegisterPackageAsync(Windows.Foundation.Uri,Windows.Foundation.Collections.IIterable{Windows.Foundation.Uri},Windows.Management.Deployment.DeploymentOptions)">
+      <topicdata group="api" />
+      <apidata name="RegisterPackageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manifestUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="dependencyPackageUris" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Uri" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="deploymentOptions" in="true">
+          <type api="T:Windows.Management.Deployment.DeploymentOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <file name="47fdcd98-a3af-2173-6358-2fa62254dd2e" />
+    </api>
+    <api id="M:Windows.Phone.Management.Deployment.InstallationManager.RemovePackageAsync(System.String,Windows.Management.Deployment.RemovalOptions)">
+      <topicdata group="api" />
+      <apidata name="RemovePackageAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="packageFullName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="removalOptions" in="true">
+          <type api="T:Windows.Management.Deployment.RemovalOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.InstallationManager" ref="true" />
+      </containers>
+      <file name="4ea572ab-1ef1-31ee-2706-e926c2e9ca72" />
+    </api>
+    <api id="T:Windows.Phone.Management.Deployment.PackageInstallResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      <apidata name="PackageInstallResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.Management.Deployment.IPackageInstallResult" ref="true" />
+        <type api="T:Windows.Phone.Management.Deployment.IPackageInstallResult2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e99edece-4d3b-dd83-d753-7de406aa82a2" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.Management.Deployment.PackageInstallResult">
+      <topicdata name="PackageInstallResult" group="list" subgroup="members" typeTopicId="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      <apidata name="PackageInstallResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Phone.Management.Deployment.PackageInstallResult.ErrorText" />
+        <element api="P:Windows.Phone.Management.Deployment.PackageInstallResult.InstallState" />
+        <element api="P:Windows.Phone.Management.Deployment.PackageInstallResult.ProductId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      </containers>
+      <file name="7d51f802-88ec-3fab-8459-46bf4842874d" />
+    </api>
+    <api id="Methods.T:Windows.Phone.Management.Deployment.PackageInstallResult">
+      <topicdata name="PackageInstallResult" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      <apidata name="PackageInstallResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      </containers>
+      <file name="66b74d57-cd26-08dd-a7d9-5593b59d8618" />
+    </api>
+    <api id="Properties.T:Windows.Phone.Management.Deployment.PackageInstallResult">
+      <topicdata name="PackageInstallResult" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      <apidata name="PackageInstallResult" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.Management.Deployment.PackageInstallResult.ErrorText" />
+        <element api="P:Windows.Phone.Management.Deployment.PackageInstallResult.InstallState" />
+        <element api="P:Windows.Phone.Management.Deployment.PackageInstallResult.ProductId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" />
+      </containers>
+      <file name="0b20c99e-1bc7-0df3-f8c0-471f3ced2aec" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.PackageInstallResult.ErrorText">
+      <topicdata group="api" />
+      <apidata name="ErrorText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ErrorText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+      </containers>
+      <file name="ed1435c6-e6c8-908f-9586-033bc8593651" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.PackageInstallResult.InstallState">
+      <topicdata group="api" />
+      <apidata name="InstallState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InstallState" />
+      <returns>
+        <type api="T:Windows.Management.Deployment.PackageInstallState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+      </containers>
+      <file name="8fed73ca-1843-1b71-35a8-4e4dba8198c9" />
+    </api>
+    <api id="P:Windows.Phone.Management.Deployment.PackageInstallResult.ProductId">
+      <topicdata group="api" />
+      <apidata name="ProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.Management.Deployment" />
+        <type api="T:Windows.Phone.Management.Deployment.PackageInstallResult" ref="true" />
+      </containers>
+      <file name="1774b52d-a922-f441-fdb7-d21d3ed77844" />
+    </api>
+  </apis>
+</reflection>

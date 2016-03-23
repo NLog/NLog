@@ -1,0 +1,723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Lights">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Lights" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Lights.Lamp" />
+        <element api="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      </elements>
+      <file name="26ccd9ac-6892-e6fb-e46d-411571125d2c" />
+    </api>
+    <api id="T:Windows.Devices.Lights.Lamp">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Lights.Lamp" />
+      <apidata name="Lamp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="18383512-4e3d-c58f-4739-64ccd21c04f8" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Lights.Lamp">
+      <topicdata name="Lamp" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Lights.Lamp" />
+      <apidata name="Lamp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="E:Windows.Devices.Lights.Lamp.AvailabilityChanged" />
+        <element api="P:Windows.Devices.Lights.Lamp.BrightnessLevel" />
+        <element api="M:Windows.Devices.Lights.Lamp.Close" />
+        <element api="P:Windows.Devices.Lights.Lamp.Color" />
+        <element api="P:Windows.Devices.Lights.Lamp.DeviceId" />
+        <element api="M:Windows.Devices.Lights.Lamp.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Lights.Lamp.GetDefaultAsync" />
+        <element api="M:Windows.Devices.Lights.Lamp.GetDeviceSelector" />
+        <element api="P:Windows.Devices.Lights.Lamp.IsColorSettable" />
+        <element api="P:Windows.Devices.Lights.Lamp.IsEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" />
+      </containers>
+      <file name="b50bece3-b190-b30e-77a4-02031eb0d39e" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Lights.Lamp">
+      <topicdata name="Lamp" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Lights.Lamp" />
+      <apidata name="Lamp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Lights.Lamp.Close" />
+        <element api="M:Windows.Devices.Lights.Lamp.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Lights.Lamp.GetDefaultAsync" />
+        <element api="M:Windows.Devices.Lights.Lamp.GetDeviceSelector" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" />
+      </containers>
+      <file name="ea92f46c-0fc5-8a92-b145-7ea47c7f9f8a" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Lights.Lamp">
+      <topicdata name="Lamp" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Lights.Lamp" />
+      <apidata name="Lamp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Lights.Lamp.BrightnessLevel" />
+        <element api="P:Windows.Devices.Lights.Lamp.Color" />
+        <element api="P:Windows.Devices.Lights.Lamp.DeviceId" />
+        <element api="P:Windows.Devices.Lights.Lamp.IsColorSettable" />
+        <element api="P:Windows.Devices.Lights.Lamp.IsEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" />
+      </containers>
+      <file name="75d54a68-d4bb-9528-1fa4-06c036e33268" />
+    </api>
+    <api id="Events.T:Windows.Devices.Lights.Lamp">
+      <topicdata name="Lamp" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Lights.Lamp" />
+      <apidata name="Lamp" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Lights.Lamp.AvailabilityChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" />
+      </containers>
+      <file name="759d8268-1f9d-4b34-a746-d826571c32a0" />
+    </api>
+    <api id="E:Windows.Devices.Lights.Lamp.AvailabilityChanged">
+      <topicdata group="api" />
+      <apidata name="AvailabilityChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AvailabilityChanged" />
+      <remover name="remove_AvailabilityChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+            <type api="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="e5034f30-cade-4d40-6ce5-adb5451ae36a" />
+    </api>
+    <api id="P:Windows.Devices.Lights.Lamp.BrightnessLevel">
+      <topicdata group="api" />
+      <apidata name="BrightnessLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BrightnessLevel" />
+      <setter name="set_BrightnessLevel" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="bbd22a2a-7b2d-fd53-f8c2-904b1ce9da15" />
+    </api>
+    <api id="M:Windows.Devices.Lights.Lamp.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="172f7763-52ef-ccab-a4a2-822f45b7cab5" />
+    </api>
+    <api id="P:Windows.Devices.Lights.Lamp.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Color" />
+      <setter name="set_Color" />
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="7dc2b42b-d592-befc-9df2-2037bae29547" />
+    </api>
+    <api id="P:Windows.Devices.Lights.Lamp.DeviceId">
+      <topicdata group="api" />
+      <apidata name="DeviceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeviceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="3a580404-7216-0dc4-a135-7df1a40b309f" />
+    </api>
+    <api id="M:Windows.Devices.Lights.Lamp.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5dda7556-9e7b-6328-fc66-6a95f595af2f" />
+    </api>
+    <api id="M:Windows.Devices.Lights.Lamp.GetDefaultAsync">
+      <topicdata group="api" />
+      <apidata name="GetDefaultAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="770ff704-9416-6bc4-98e4-4a83c9ef774b" />
+    </api>
+    <api id="M:Windows.Devices.Lights.Lamp.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="4b0df19c-72cd-e027-4cd9-25bdb9805a54" />
+    </api>
+    <api id="P:Windows.Devices.Lights.Lamp.IsColorSettable">
+      <topicdata group="api" />
+      <apidata name="IsColorSettable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsColorSettable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="50238c55-3181-dd4f-3e5d-03f744244164" />
+    </api>
+    <api id="P:Windows.Devices.Lights.Lamp.IsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsEnabled" />
+      <setter name="set_IsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.Lamp" ref="true" />
+      </containers>
+      <file name="8ac5da41-0d56-9995-cdc2-320a90a3df23" />
+    </api>
+    <api id="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      <apidata name="LampAvailabilityChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4af52e96-2177-e710-4b04-4d412b5bab0e" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs">
+      <topicdata name="LampAvailabilityChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      <apidata name="LampAvailabilityChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.Devices.Lights.LampAvailabilityChangedEventArgs.IsAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      </containers>
+      <file name="a2084d8b-5275-3c0b-851a-c36ebc04bf96" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs">
+      <topicdata name="LampAvailabilityChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      <apidata name="LampAvailabilityChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      </containers>
+      <file name="3d1fdfc8-eb62-4bc7-684c-5c75d697cd76" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs">
+      <topicdata name="LampAvailabilityChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      <apidata name="LampAvailabilityChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Lights.LampAvailabilityChangedEventArgs.IsAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" />
+      </containers>
+      <file name="022bcd25-ca4f-b70d-1812-3e615379cb58" />
+    </api>
+    <api id="P:Windows.Devices.Lights.LampAvailabilityChangedEventArgs.IsAvailable">
+      <topicdata group="api" />
+      <apidata name="IsAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Lights" />
+        <type api="T:Windows.Devices.Lights.LampAvailabilityChangedEventArgs" ref="true" />
+      </containers>
+      <file name="1b065c8b-9a12-6de3-3ff7-d54f069e1bb3" />
+    </api>
+  </apis>
+</reflection>

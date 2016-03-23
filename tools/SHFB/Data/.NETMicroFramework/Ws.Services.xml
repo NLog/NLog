@@ -1,0 +1,2238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services">
+      <topicdata group="api" />
+      <apidata name="Ws.Services" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.IWsServiceEndpoint" />
+        <element api="T:Ws.Services.WsServiceEndpoints" />
+        <element api="T:Ws.Services.WsServiceOperation" />
+        <element api="T:Ws.Services.WsServiceOperations" />
+        <element api="T:Ws.Services.WsWellKnownUri" />
+        <element api="T:Ws.Services.WsNamespacePrefix" />
+        <element api="T:Ws.Services.ProtocolVersion" />
+        <element api="T:Ws.Services.ProtocolVersion10" />
+        <element api="T:Ws.Services.ProtocolVersion11" />
+      </elements>
+      <file name="ea14e0b0-9cd1-863b-1b67-9a504fa05e7a" />
+    </api>
+    <api id="T:Ws.Services.IWsServiceEndpoint">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.IWsServiceEndpoint" />
+      <apidata name="IWsServiceEndpoint" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+        <type api="T:Dpws.Device.Services.DpwsHostedService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="a9b2e194-d12e-8fad-5026-da715baa59a3" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.IWsServiceEndpoint">
+      <topicdata name="IWsServiceEndpoint" group="list" subgroup="members" typeTopicId="T:Ws.Services.IWsServiceEndpoint" />
+      <apidata name="IWsServiceEndpoint" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Ws.Services.IWsServiceEndpoint.BlockingCall" />
+        <element api="P:Ws.Services.IWsServiceEndpoint.EndpointAddress" />
+        <element api="M:Ws.Services.IWsServiceEndpoint.ProcessRequest(Ws.Services.Soap.WsMessage)" />
+        <element api="P:Ws.Services.IWsServiceEndpoint.ServiceOperations" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" />
+      </containers>
+      <file name="58d8dba4-23ca-c28e-ba20-b344fb029b4e" />
+    </api>
+    <api id="Methods.T:Ws.Services.IWsServiceEndpoint">
+      <topicdata name="IWsServiceEndpoint" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.IWsServiceEndpoint" />
+      <apidata name="IWsServiceEndpoint" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Ws.Services.IWsServiceEndpoint.ProcessRequest(Ws.Services.Soap.WsMessage)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" />
+      </containers>
+      <file name="1e678940-9b26-f0c9-08a6-16c2f6e87739" />
+    </api>
+    <api id="Properties.T:Ws.Services.IWsServiceEndpoint">
+      <topicdata name="IWsServiceEndpoint" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.IWsServiceEndpoint" />
+      <apidata name="IWsServiceEndpoint" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Ws.Services.IWsServiceEndpoint.BlockingCall" />
+        <element api="P:Ws.Services.IWsServiceEndpoint.EndpointAddress" />
+        <element api="P:Ws.Services.IWsServiceEndpoint.ServiceOperations" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" />
+      </containers>
+      <file name="bf0fff25-2a9d-c027-63a7-44cc410a97ca" />
+    </api>
+    <api id="P:Ws.Services.IWsServiceEndpoint.BlockingCall">
+      <topicdata group="api" />
+      <apidata name="BlockingCall" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BlockingCall" />
+      <setter name="set_BlockingCall" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </containers>
+      <file name="2307fbd1-d7d8-e6f6-6986-6c4824ac08df" />
+    </api>
+    <api id="P:Ws.Services.IWsServiceEndpoint.EndpointAddress">
+      <topicdata group="api" />
+      <apidata name="EndpointAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EndpointAddress" />
+      <setter name="set_EndpointAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </containers>
+      <file name="f88587f4-11fa-5f3d-72f1-2a7d31dccc7a" />
+    </api>
+    <api id="M:Ws.Services.IWsServiceEndpoint.ProcessRequest(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" />
+      <apidata name="ProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="request">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </containers>
+      <file name="3a1bb33f-6de1-fa23-d2dc-b3d2cb8a74c8" />
+    </api>
+    <api id="P:Ws.Services.IWsServiceEndpoint.ServiceOperations">
+      <topicdata group="api" />
+      <apidata name="ServiceOperations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ServiceOperations" />
+      <returns>
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </containers>
+      <file name="07bfda5d-7643-ad76-d733-aefe32c53b78" />
+    </api>
+    <api id="T:Ws.Services.ProtocolVersion">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.ProtocolVersion" />
+      <apidata name="ProtocolVersion" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+          <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="467a2d09-12b3-11be-1384-666bb7f0161a" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.ProtocolVersion">
+      <topicdata name="ProtocolVersion" group="list" subgroup="members" typeTopicId="T:Ws.Services.ProtocolVersion" />
+      <apidata name="ProtocolVersion" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.ProtocolVersion.#ctor" />
+        <element api="P:Ws.Services.ProtocolVersion.AddressingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion.AnonymousRoleUri" />
+        <element api="P:Ws.Services.ProtocolVersion.AnonymousUri" />
+        <element api="P:Ws.Services.ProtocolVersion.DiscoveryNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion.DiscoveryWellKnownAddress" />
+        <element api="P:Ws.Services.ProtocolVersion.EventingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion.IncludeSoapHeaders" />
+        <element api="P:Ws.Services.ProtocolVersion.Version" />
+        <element api="P:Ws.Services.ProtocolVersion.WsdpNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" />
+      </containers>
+      <file name="5ceb6666-aeb9-53fb-18a8-1d6f74c0b500" />
+    </api>
+    <api id="Methods.T:Ws.Services.ProtocolVersion">
+      <topicdata name="ProtocolVersion" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.ProtocolVersion" />
+      <apidata name="ProtocolVersion" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" />
+      </containers>
+      <file name="dafe7311-6961-5070-722b-3ebd00ba0e8f" />
+    </api>
+    <api id="Properties.T:Ws.Services.ProtocolVersion">
+      <topicdata name="ProtocolVersion" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.ProtocolVersion" />
+      <apidata name="ProtocolVersion" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Ws.Services.ProtocolVersion.AddressingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion.AnonymousRoleUri" />
+        <element api="P:Ws.Services.ProtocolVersion.AnonymousUri" />
+        <element api="P:Ws.Services.ProtocolVersion.DiscoveryNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion.DiscoveryWellKnownAddress" />
+        <element api="P:Ws.Services.ProtocolVersion.EventingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion.IncludeSoapHeaders" />
+        <element api="P:Ws.Services.ProtocolVersion.Version" />
+        <element api="P:Ws.Services.ProtocolVersion.WsdpNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" />
+      </containers>
+      <file name="c5e56540-3371-1956-e23d-25561d8178d5" />
+    </api>
+    <api id="M:Ws.Services.ProtocolVersion.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="1523c1d4-2d55-3528-4b86-1b01f19bcb64" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.AddressingNamespace">
+      <topicdata group="api" />
+      <apidata name="AddressingNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AddressingNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="b7c51df9-190b-24a3-cd26-f3b3a2b5fb8c" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.AnonymousRoleUri">
+      <topicdata group="api" />
+      <apidata name="AnonymousRoleUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AnonymousRoleUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="729fd0f1-708b-52ee-e512-3fa5f7262b60" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.AnonymousUri">
+      <topicdata group="api" />
+      <apidata name="AnonymousUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AnonymousUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="1c00131b-34f7-7f45-c921-deb40125bb8a" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.DiscoveryNamespace">
+      <topicdata group="api" />
+      <apidata name="DiscoveryNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DiscoveryNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="0010c86c-6b08-ace5-e020-af4365ac973f" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.DiscoveryWellKnownAddress">
+      <topicdata group="api" />
+      <apidata name="DiscoveryWellKnownAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DiscoveryWellKnownAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="90daca95-1f29-fea5-7d8a-33e52c20dc02" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.EventingNamespace">
+      <topicdata group="api" />
+      <apidata name="EventingNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_EventingNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="337b4f5f-6f5c-f4bd-60a7-df8a0bf4f909" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.IncludeSoapHeaders">
+      <topicdata group="api" />
+      <apidata name="IncludeSoapHeaders" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IncludeSoapHeaders" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="cf4cb16b-5a82-12c9-a233-b5668b188398" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="477571eb-a66f-41cd-ff32-29e53fd1c87b" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion.WsdpNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="WsdpNamespaceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_WsdpNamespaceUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </containers>
+      <file name="4d8fdb1e-35ee-125a-34a6-29f21f90ab22" />
+    </api>
+    <api id="T:Ws.Services.ProtocolVersion10">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.ProtocolVersion10" />
+      <apidata name="ProtocolVersion10" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion10.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="6028ef0c-bdea-1478-2e21-daad94d961de" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.ProtocolVersion10">
+      <topicdata name="ProtocolVersion10" group="list" subgroup="members" typeTopicId="T:Ws.Services.ProtocolVersion10" />
+      <apidata name="ProtocolVersion10" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion10.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.ProtocolVersion10.#ctor" />
+        <element api="P:Ws.Services.ProtocolVersion10.AddressingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion10.AnonymousRoleUri" />
+        <element api="P:Ws.Services.ProtocolVersion10.AnonymousUri" />
+        <element api="P:Ws.Services.ProtocolVersion10.DiscoveryNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion10.DiscoveryWellKnownAddress" />
+        <element api="P:Ws.Services.ProtocolVersion10.EventingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion10.IncludeSoapHeaders" />
+        <element api="P:Ws.Services.ProtocolVersion10.Version" />
+        <element api="P:Ws.Services.ProtocolVersion10.WsdpNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" />
+      </containers>
+      <file name="1de9b53e-4006-17d3-5e83-5f7c521acfb3" />
+    </api>
+    <api id="Methods.T:Ws.Services.ProtocolVersion10">
+      <topicdata name="ProtocolVersion10" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.ProtocolVersion10" />
+      <apidata name="ProtocolVersion10" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion10.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" />
+      </containers>
+      <file name="4924f11a-f481-172d-717e-ad6f8b85a802" />
+    </api>
+    <api id="Properties.T:Ws.Services.ProtocolVersion10">
+      <topicdata name="ProtocolVersion10" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.ProtocolVersion10" />
+      <apidata name="ProtocolVersion10" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion10.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.ProtocolVersion10.AddressingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion10.AnonymousRoleUri" />
+        <element api="P:Ws.Services.ProtocolVersion10.AnonymousUri" />
+        <element api="P:Ws.Services.ProtocolVersion10.DiscoveryNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion10.DiscoveryWellKnownAddress" />
+        <element api="P:Ws.Services.ProtocolVersion10.EventingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion10.IncludeSoapHeaders" />
+        <element api="P:Ws.Services.ProtocolVersion10.Version" />
+        <element api="P:Ws.Services.ProtocolVersion10.WsdpNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" />
+      </containers>
+      <file name="6088a031-db66-8c89-c0d6-34e9944bdcd4" />
+    </api>
+    <api id="M:Ws.Services.ProtocolVersion10.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="37bfc84e-cfe3-ae9b-7f63-c3edf82a4445" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.AddressingNamespace">
+      <topicdata group="api" />
+      <apidata name="AddressingNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.AddressingNamespace">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_AddressingNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="439e9ac8-8817-337a-bc66-d6350a70a905" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.AnonymousRoleUri">
+      <topicdata group="api" />
+      <apidata name="AnonymousRoleUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.AnonymousRoleUri">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_AnonymousRoleUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="1ec420fc-a491-8824-22e7-5095740be34c" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.AnonymousUri">
+      <topicdata group="api" />
+      <apidata name="AnonymousUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.AnonymousUri">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_AnonymousUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="4cd87c14-15e8-660e-1149-4c774ed21391" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.DiscoveryNamespace">
+      <topicdata group="api" />
+      <apidata name="DiscoveryNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.DiscoveryNamespace">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_DiscoveryNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="c7721b84-3369-ce20-9db3-d10e24233ee9" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.DiscoveryWellKnownAddress">
+      <topicdata group="api" />
+      <apidata name="DiscoveryWellKnownAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.DiscoveryWellKnownAddress">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_DiscoveryWellKnownAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="d663338b-1d6b-2869-1101-deb28b956eb5" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.EventingNamespace">
+      <topicdata group="api" />
+      <apidata name="EventingNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.EventingNamespace">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_EventingNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="1167d549-31ce-20be-6c88-1a7840d90d9d" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.IncludeSoapHeaders">
+      <topicdata group="api" />
+      <apidata name="IncludeSoapHeaders" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.IncludeSoapHeaders">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IncludeSoapHeaders" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="698e8e4c-5f3a-81dd-406f-144cfbe5e5da" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.Version">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="fe9a8a13-de67-f56a-feb8-3dab8af1c592" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion10.WsdpNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="WsdpNamespaceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.WsdpNamespaceUri">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_WsdpNamespaceUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion10" ref="true" />
+      </containers>
+      <file name="bd59503e-d439-123e-6a36-571751748015" />
+    </api>
+    <api id="T:Ws.Services.ProtocolVersion11">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.ProtocolVersion11" />
+      <apidata name="ProtocolVersion11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion11.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="f2e0b32a-f66f-81a8-1f05-5b99a3e114b7" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.ProtocolVersion11">
+      <topicdata name="ProtocolVersion11" group="list" subgroup="members" typeTopicId="T:Ws.Services.ProtocolVersion11" />
+      <apidata name="ProtocolVersion11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion11.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.ProtocolVersion11.#ctor" />
+        <element api="P:Ws.Services.ProtocolVersion11.AddressingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion11.AnonymousRoleUri" />
+        <element api="P:Ws.Services.ProtocolVersion11.AnonymousUri" />
+        <element api="P:Ws.Services.ProtocolVersion11.DiscoveryNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion11.DiscoveryWellKnownAddress" />
+        <element api="P:Ws.Services.ProtocolVersion11.EventingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion11.IncludeSoapHeaders" />
+        <element api="P:Ws.Services.ProtocolVersion11.Version" />
+        <element api="P:Ws.Services.ProtocolVersion11.WsdpNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" />
+      </containers>
+      <file name="f71648bf-a4d1-8cb3-66d1-600f9f4cb051" />
+    </api>
+    <api id="Methods.T:Ws.Services.ProtocolVersion11">
+      <topicdata name="ProtocolVersion11" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.ProtocolVersion11" />
+      <apidata name="ProtocolVersion11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion11.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" />
+      </containers>
+      <file name="9252d1d4-578b-0e31-ed64-7a08d7517d5e" />
+    </api>
+    <api id="Properties.T:Ws.Services.ProtocolVersion11">
+      <topicdata name="ProtocolVersion11" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.ProtocolVersion11" />
+      <apidata name="ProtocolVersion11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.ProtocolVersion11.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.ProtocolVersion11.AddressingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion11.AnonymousRoleUri" />
+        <element api="P:Ws.Services.ProtocolVersion11.AnonymousUri" />
+        <element api="P:Ws.Services.ProtocolVersion11.DiscoveryNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion11.DiscoveryWellKnownAddress" />
+        <element api="P:Ws.Services.ProtocolVersion11.EventingNamespace" />
+        <element api="P:Ws.Services.ProtocolVersion11.IncludeSoapHeaders" />
+        <element api="P:Ws.Services.ProtocolVersion11.Version" />
+        <element api="P:Ws.Services.ProtocolVersion11.WsdpNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" />
+      </containers>
+      <file name="170211b0-59bf-fc31-8e05-32aca472003b" />
+    </api>
+    <api id="M:Ws.Services.ProtocolVersion11.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="cd7524b2-2a63-1f63-57d0-c38cda54d571" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.AddressingNamespace">
+      <topicdata group="api" />
+      <apidata name="AddressingNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.AddressingNamespace">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_AddressingNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="b543f552-7eed-6bc1-c015-c57f1056d99a" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.AnonymousRoleUri">
+      <topicdata group="api" />
+      <apidata name="AnonymousRoleUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.AnonymousRoleUri">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_AnonymousRoleUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="48a0b538-2308-884c-92f2-e26a023c9521" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.AnonymousUri">
+      <topicdata group="api" />
+      <apidata name="AnonymousUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.AnonymousUri">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_AnonymousUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="5c967962-b359-7142-1b5d-7b5954742f16" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.DiscoveryNamespace">
+      <topicdata group="api" />
+      <apidata name="DiscoveryNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.DiscoveryNamespace">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_DiscoveryNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="ec011cb3-40a1-0b36-765f-a3cfc6b8a7d0" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.DiscoveryWellKnownAddress">
+      <topicdata group="api" />
+      <apidata name="DiscoveryWellKnownAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.DiscoveryWellKnownAddress">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_DiscoveryWellKnownAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="be83d7a3-aa13-f8a7-5bf7-f929526fda99" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.EventingNamespace">
+      <topicdata group="api" />
+      <apidata name="EventingNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.EventingNamespace">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_EventingNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="a2f92b7f-dd0a-e3ce-c2bc-54e85b91ffb2" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.IncludeSoapHeaders">
+      <topicdata group="api" />
+      <apidata name="IncludeSoapHeaders" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.IncludeSoapHeaders">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IncludeSoapHeaders" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="920c4bae-b054-b127-d80a-ad32f5e1070d" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.Version">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.Version" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="b344a254-497f-1923-1b98-d69c7c1ca8d6" />
+    </api>
+    <api id="P:Ws.Services.ProtocolVersion11.WsdpNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="WsdpNamespaceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:Ws.Services.ProtocolVersion.WsdpNamespaceUri">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_WsdpNamespaceUri" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.ProtocolVersion11" ref="true" />
+      </containers>
+      <file name="a05cdc4e-b7a1-cf61-a7f1-f6a730e24146" />
+    </api>
+    <api id="T:Ws.Services.WsNamespacePrefix">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.WsNamespacePrefix" />
+      <apidata name="WsNamespacePrefix" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="7c452f64-3026-aca0-66ee-516c93ea50ec" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.WsNamespacePrefix">
+      <topicdata name="WsNamespacePrefix" group="list" subgroup="members" typeTopicId="T:Ws.Services.WsNamespacePrefix" />
+      <apidata name="WsNamespacePrefix" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.WsNamespacePrefix.Soap" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsa" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsd" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsdl" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsdp" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wse" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsu" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsx" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" />
+      </containers>
+      <file name="e39092c1-e0da-7427-e740-e658c447ce0b" />
+    </api>
+    <api id="Fields.T:Ws.Services.WsNamespacePrefix">
+      <topicdata name="WsNamespacePrefix" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.WsNamespacePrefix" />
+      <apidata name="WsNamespacePrefix" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.WsNamespacePrefix.Soap" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsa" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsd" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsdl" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsdp" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wse" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsu" />
+        <element api="F:Ws.Services.WsNamespacePrefix.Wsx" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" />
+      </containers>
+      <file name="baa3968b-93ae-c2b0-6f11-faa1e1e84e04" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Soap">
+      <topicdata group="api" />
+      <apidata name="Soap" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>s</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="4c8b092f-c49e-650a-65f1-bed2d8791daa" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wsa">
+      <topicdata group="api" />
+      <apidata name="Wsa" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>a</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="3bacd2df-9244-62c8-e1a6-006ce02ad4cd" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wsd">
+      <topicdata group="api" />
+      <apidata name="Wsd" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>d</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="021efeab-5b03-5633-a3e2-6f6ac7d02ede" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wsdl">
+      <topicdata group="api" />
+      <apidata name="Wsdl" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>l</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="2d14feec-44be-2e76-8479-7e1d84274abc" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wsdp">
+      <topicdata group="api" />
+      <apidata name="Wsdp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>p</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="c80a1b1d-aa24-92e8-8bca-1e890c37eced" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wse">
+      <topicdata group="api" />
+      <apidata name="Wse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>e</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="41d0705d-a92a-d04c-56af-15a7573ef429" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wsu">
+      <topicdata group="api" />
+      <apidata name="Wsu" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>u</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="8218dce4-fffb-c2ad-32e1-2d3afb4980ce" />
+    </api>
+    <api id="F:Ws.Services.WsNamespacePrefix.Wsx">
+      <topicdata group="api" />
+      <apidata name="Wsx" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>x</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsNamespacePrefix" ref="true" />
+      </containers>
+      <file name="39e31649-c474-425a-a0df-9b057a513e9b" />
+    </api>
+    <api id="T:Ws.Services.WsServiceEndpoints">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.WsServiceEndpoints" />
+      <apidata name="WsServiceEndpoints" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="759bc8b6-92fa-2920-f67a-62211ea3d675" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.WsServiceEndpoints">
+      <topicdata name="WsServiceEndpoints" group="list" subgroup="members" typeTopicId="T:Ws.Services.WsServiceEndpoints" />
+      <apidata name="WsServiceEndpoints" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.WsServiceEndpoints.Add(Ws.Services.IWsServiceEndpoint)" />
+        <element api="M:Ws.Services.WsServiceEndpoints.Clear" />
+        <element api="P:Ws.Services.WsServiceEndpoints.Count" />
+        <element api="P:Ws.Services.WsServiceEndpoints.DiscoMexService" />
+        <element api="Overload:Ws.Services.WsServiceEndpoints.Item">
+          <element api="P:Ws.Services.WsServiceEndpoints.Item(System.Int32)" />
+          <element api="P:Ws.Services.WsServiceEndpoints.Item(System.String)" />
+        </element>
+        <element api="M:Ws.Services.WsServiceEndpoints.Remove(Ws.Services.IWsServiceEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" />
+      </containers>
+      <file name="bf611836-bd7a-0606-447e-3448e1f8e9e0" />
+    </api>
+    <api id="Methods.T:Ws.Services.WsServiceEndpoints">
+      <topicdata name="WsServiceEndpoints" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.WsServiceEndpoints" />
+      <apidata name="WsServiceEndpoints" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.WsServiceEndpoints.Add(Ws.Services.IWsServiceEndpoint)" />
+        <element api="M:Ws.Services.WsServiceEndpoints.Clear" />
+        <element api="M:Ws.Services.WsServiceEndpoints.Remove(Ws.Services.IWsServiceEndpoint)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" />
+      </containers>
+      <file name="ab9054c7-f3e7-9f18-ccb8-0d74ce660a63" />
+    </api>
+    <api id="Properties.T:Ws.Services.WsServiceEndpoints">
+      <topicdata name="WsServiceEndpoints" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.WsServiceEndpoints" />
+      <apidata name="WsServiceEndpoints" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Ws.Services.WsServiceEndpoints.Count" />
+        <element api="P:Ws.Services.WsServiceEndpoints.DiscoMexService" />
+        <element api="Overload:Ws.Services.WsServiceEndpoints.Item">
+          <element api="P:Ws.Services.WsServiceEndpoints.Item(System.Int32)" />
+          <element api="P:Ws.Services.WsServiceEndpoints.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" />
+      </containers>
+      <file name="ee155561-4af5-5aea-9545-9968b1eb9cde" />
+    </api>
+    <api id="Overload:Ws.Services.WsServiceEndpoints.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.WsServiceEndpoints" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:Ws.Services.WsServiceEndpoints.Item(System.Int32)" />
+        <element api="P:Ws.Services.WsServiceEndpoints.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="50207eeb-765d-6d53-7ad6-b7c8c4020f88" />
+    </api>
+    <api id="M:Ws.Services.WsServiceEndpoints.Add(Ws.Services.IWsServiceEndpoint)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="service">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="bcc53d8f-6f54-79e6-06e1-483b3750487b" />
+    </api>
+    <api id="M:Ws.Services.WsServiceEndpoints.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="44f2670c-b1e0-445f-6df6-094d57ea24e5" />
+    </api>
+    <api id="P:Ws.Services.WsServiceEndpoints.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="e66fad13-5adf-288d-29f9-309e2505680d" />
+    </api>
+    <api id="P:Ws.Services.WsServiceEndpoints.DiscoMexService">
+      <topicdata group="api" />
+      <apidata name="DiscoMexService" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DiscoMexService" />
+      <setter name="set_DiscoMexService" />
+      <returns>
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="9694e5bd-b219-da55-f762-20226248a500" />
+    </api>
+    <api id="P:Ws.Services.WsServiceEndpoints.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.WsServiceEndpoints.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="1cd95581-e665-0456-e2d7-405193ebfc79" />
+    </api>
+    <api id="P:Ws.Services.WsServiceEndpoints.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.WsServiceEndpoints.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="serviceAddress">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="fa42686e-8560-227e-dd46-ba806865d077" />
+    </api>
+    <api id="M:Ws.Services.WsServiceEndpoints.Remove(Ws.Services.IWsServiceEndpoint)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="service">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceEndpoints" ref="true" />
+      </containers>
+      <file name="37dd3ff1-cfdf-d024-ae8b-f67bd2355387" />
+    </api>
+    <api id="T:Ws.Services.WsServiceOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.WsServiceOperation" />
+      <apidata name="WsServiceOperation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="586bfbbb-505b-e36d-697e-c2045733a06e" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.WsServiceOperation">
+      <topicdata name="WsServiceOperation" group="list" subgroup="members" typeTopicId="T:Ws.Services.WsServiceOperation" />
+      <apidata name="WsServiceOperation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.WsServiceOperation.#ctor(System.String,System.String)" />
+        <element api="F:Ws.Services.WsServiceOperation.MethodName" />
+        <element api="F:Ws.Services.WsServiceOperation.NamespaceUri" />
+        <element api="F:Ws.Services.WsServiceOperation.QualifiedName" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" />
+      </containers>
+      <file name="25fdbfbe-bff7-a1d1-da53-5d32ae4482eb" />
+    </api>
+    <api id="Methods.T:Ws.Services.WsServiceOperation">
+      <topicdata name="WsServiceOperation" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.WsServiceOperation" />
+      <apidata name="WsServiceOperation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" />
+      </containers>
+      <file name="9fd0a463-9c09-b034-34e0-4743366121bd" />
+    </api>
+    <api id="Fields.T:Ws.Services.WsServiceOperation">
+      <topicdata name="WsServiceOperation" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.WsServiceOperation" />
+      <apidata name="WsServiceOperation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.WsServiceOperation.MethodName" />
+        <element api="F:Ws.Services.WsServiceOperation.NamespaceUri" />
+        <element api="F:Ws.Services.WsServiceOperation.QualifiedName" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" />
+      </containers>
+      <file name="ba0cb842-c934-773d-e6d5-3c964cc12cc8" />
+    </api>
+    <api id="M:Ws.Services.WsServiceOperation.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+      </containers>
+      <file name="d8bc0826-5b32-4bc9-83b3-af8798323b5b" />
+    </api>
+    <api id="F:Ws.Services.WsServiceOperation.MethodName">
+      <topicdata group="api" />
+      <apidata name="MethodName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+      </containers>
+      <file name="3e8ba2e5-9592-e637-182f-ba1a8f32a987" />
+    </api>
+    <api id="F:Ws.Services.WsServiceOperation.NamespaceUri">
+      <topicdata group="api" />
+      <apidata name="NamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+      </containers>
+      <file name="e506c65c-84a7-e55e-5c1f-0230b1b53b2c" />
+    </api>
+    <api id="F:Ws.Services.WsServiceOperation.QualifiedName">
+      <topicdata group="api" />
+      <apidata name="QualifiedName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+      </containers>
+      <file name="b2e88327-8d7e-b7ac-5231-f8c4d9fa1088" />
+    </api>
+    <api id="T:Ws.Services.WsServiceOperations">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.WsServiceOperations" />
+      <apidata name="WsServiceOperations" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="3082b998-ef69-1618-9de4-af1f9be03578" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.WsServiceOperations">
+      <topicdata name="WsServiceOperations" group="list" subgroup="members" typeTopicId="T:Ws.Services.WsServiceOperations" />
+      <apidata name="WsServiceOperations" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.WsServiceOperations.Add(Ws.Services.WsServiceOperation)" />
+        <element api="M:Ws.Services.WsServiceOperations.Clear" />
+        <element api="P:Ws.Services.WsServiceOperations.Count" />
+        <element api="Overload:Ws.Services.WsServiceOperations.Item">
+          <element api="P:Ws.Services.WsServiceOperations.Item(System.Int32)" />
+          <element api="P:Ws.Services.WsServiceOperations.Item(System.String)" />
+        </element>
+        <element api="M:Ws.Services.WsServiceOperations.Remove(Ws.Services.WsServiceOperation)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" />
+      </containers>
+      <file name="f3705b21-76de-08f2-eef3-17f9518031bd" />
+    </api>
+    <api id="Methods.T:Ws.Services.WsServiceOperations">
+      <topicdata name="WsServiceOperations" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.WsServiceOperations" />
+      <apidata name="WsServiceOperations" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.WsServiceOperations.Add(Ws.Services.WsServiceOperation)" />
+        <element api="M:Ws.Services.WsServiceOperations.Clear" />
+        <element api="M:Ws.Services.WsServiceOperations.Remove(Ws.Services.WsServiceOperation)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" />
+      </containers>
+      <file name="4d2d9b39-cc6d-516b-3224-1c9d38d4950a" />
+    </api>
+    <api id="Properties.T:Ws.Services.WsServiceOperations">
+      <topicdata name="WsServiceOperations" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.WsServiceOperations" />
+      <apidata name="WsServiceOperations" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Ws.Services.WsServiceOperations.Count" />
+        <element api="Overload:Ws.Services.WsServiceOperations.Item">
+          <element api="P:Ws.Services.WsServiceOperations.Item(System.Int32)" />
+          <element api="P:Ws.Services.WsServiceOperations.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" />
+      </containers>
+      <file name="403a03fc-148d-649d-409d-00867da65dde" />
+    </api>
+    <api id="Overload:Ws.Services.WsServiceOperations.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.WsServiceOperations" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:Ws.Services.WsServiceOperations.Item(System.Int32)" />
+        <element api="P:Ws.Services.WsServiceOperations.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="a8df9342-7416-7ed8-29d3-050ce8a63b35" />
+    </api>
+    <api id="M:Ws.Services.WsServiceOperations.Add(Ws.Services.WsServiceOperation)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceOperation">
+          <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="9a7b825c-f30d-4b8c-c402-d46296e19b90" />
+    </api>
+    <api id="M:Ws.Services.WsServiceOperations.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="87b81929-faa6-6310-2e8b-5efda79c0643" />
+    </api>
+    <api id="P:Ws.Services.WsServiceOperations.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="e7261f83-add0-c043-10ae-58850085783a" />
+    </api>
+    <api id="P:Ws.Services.WsServiceOperations.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.WsServiceOperations.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="a83d09e9-56ad-17b5-3ecc-a2edb50b0a69" />
+    </api>
+    <api id="P:Ws.Services.WsServiceOperations.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.WsServiceOperations.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="qualifiedName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="bf53bd01-d83d-0e98-0c39-17c8ed6b9c3f" />
+    </api>
+    <api id="M:Ws.Services.WsServiceOperations.Remove(Ws.Services.WsServiceOperation)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceOperation">
+          <type api="T:Ws.Services.WsServiceOperation" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </containers>
+      <file name="f16b4fb5-346c-5f50-c598-01b2c0711218" />
+    </api>
+    <api id="T:Ws.Services.WsWellKnownUri">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.WsWellKnownUri" />
+      <apidata name="WsWellKnownUri" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+      </containers>
+      <file name="882a382a-0888-987f-eddc-89583925a7b7" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.WsWellKnownUri">
+      <topicdata name="WsWellKnownUri" group="list" subgroup="members" typeTopicId="T:Ws.Services.WsWellKnownUri" />
+      <apidata name="WsWellKnownUri" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.WsWellKnownUri.SchemaNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.SoapNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.WseNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.WstNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.WsxNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.XopNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" />
+      </containers>
+      <file name="64a7549f-b7f2-92fd-a707-0a519ecda5d0" />
+    </api>
+    <api id="Fields.T:Ws.Services.WsWellKnownUri">
+      <topicdata name="WsWellKnownUri" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.WsWellKnownUri" />
+      <apidata name="WsWellKnownUri" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Ws.Services.WsWellKnownUri.SchemaNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.SoapNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.WseNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.WstNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.WsxNamespaceUri" />
+        <element api="F:Ws.Services.WsWellKnownUri.XopNamespaceUri" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" />
+      </containers>
+      <file name="c83c1cee-1e9f-4b71-3009-3f8f7ed77e05" />
+    </api>
+    <api id="F:Ws.Services.WsWellKnownUri.SchemaNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="SchemaNamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>http://www.w3.org/2001/XMLSchema-instance</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" ref="true" />
+      </containers>
+      <file name="1676c4f2-8039-cabe-8ec7-9895b989ded8" />
+    </api>
+    <api id="F:Ws.Services.WsWellKnownUri.SoapNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="SoapNamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>http://www.w3.org/2003/05/soap-envelope</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" ref="true" />
+      </containers>
+      <file name="ff87ddd0-52df-d115-e247-5817b8d5ed6d" />
+    </api>
+    <api id="F:Ws.Services.WsWellKnownUri.WseNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="WseNamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>http://schemas.xmlsoap.org/ws/2004/08/eventing</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" ref="true" />
+      </containers>
+      <file name="640e4e02-b56e-f1e8-0500-4feb8de7082f" />
+    </api>
+    <api id="F:Ws.Services.WsWellKnownUri.WstNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="WstNamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>http://schemas.xmlsoap.org/ws/2004/09/transfer</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" ref="true" />
+      </containers>
+      <file name="e31ea25c-c63b-fcfa-8c51-45d2837f2fec" />
+    </api>
+    <api id="F:Ws.Services.WsWellKnownUri.WsxNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="WsxNamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>http://schemas.xmlsoap.org/ws/2004/09/mex</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" ref="true" />
+      </containers>
+      <file name="df2a70a3-11b5-df9a-ae71-533ae03b0a86" />
+    </api>
+    <api id="F:Ws.Services.WsWellKnownUri.XopNamespaceUri">
+      <topicdata group="api" />
+      <apidata name="XopNamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>http://www.w3.org/2004/08/xop/include</value>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services" />
+        <type api="T:Ws.Services.WsWellKnownUri" ref="true" />
+      </containers>
+      <file name="38af3633-1e69-a045-6b80-a1a067266279" />
+    </api>
+  </apis>
+</reflection>

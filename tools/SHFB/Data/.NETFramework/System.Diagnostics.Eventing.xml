@@ -1,0 +1,1892 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Core">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Core.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Diagnostics.Eventing">
+      <topicdata group="api" />
+      <apidata name="System.Diagnostics.Eventing" group="namespace" />
+      <elements>
+        <element api="T:System.Diagnostics.Eventing.EventDescriptor" />
+        <element api="T:System.Diagnostics.Eventing.EventProvider" />
+        <element api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" />
+        <element api="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      </elements>
+      <file name="c296d884-42f2-8e73-014b-fca0ff2c7c40" />
+    </api>
+    <api id="T:System.Diagnostics.Eventing.EventDescriptor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventDescriptor" />
+      <apidata name="EventDescriptor" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="16" format="ansi" noSettableProperties="true" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e526bb50-2625-7382-3aca-cef0f0d8c704" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Eventing.EventDescriptor">
+      <topicdata name="EventDescriptor" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Eventing.EventDescriptor" />
+      <apidata name="EventDescriptor" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="16" format="ansi" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Diagnostics.Eventing.EventDescriptor.#ctor(System.Int32,System.Byte,System.Byte,System.Byte,System.Byte,System.Int32,System.Int64)" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Channel" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.EventId" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Keywords" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Level" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Opcode" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Task" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" />
+      </containers>
+      <file name="d749f56c-5eb9-7255-e743-aadbcdc71b5e" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Eventing.EventDescriptor">
+      <topicdata name="EventDescriptor" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Eventing.EventDescriptor" />
+      <apidata name="EventDescriptor" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="16" format="ansi" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" />
+      </containers>
+      <file name="50134bb8-cc38-6e9d-50fb-7a9e8743cf4e" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Eventing.EventDescriptor">
+      <topicdata name="EventDescriptor" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Eventing.EventDescriptor" />
+      <apidata name="EventDescriptor" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" layout="explicit" size="16" format="ansi" noSettableProperties="true" />
+      <elements>
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Channel" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.EventId" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Keywords" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Level" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Opcode" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Task" />
+        <element api="P:System.Diagnostics.Eventing.EventDescriptor.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" />
+      </containers>
+      <file name="55807212-936b-95e0-4532-95ef5a5dbfb6" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventDescriptor.#ctor(System.Int32,System.Byte,System.Byte,System.Byte,System.Byte,System.Int32,System.Int64)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="version">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="channel">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="level">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="opcode">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="task">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="keywords">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="fff8c035-ef0f-6a7e-da41-f695da85383d" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.Channel">
+      <topicdata group="api" />
+      <apidata name="Channel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Channel" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="aff54167-96c3-f75b-960d-3a17cde29d48" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.EventId">
+      <topicdata group="api" />
+      <apidata name="EventId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="a7c688ee-746e-cf1d-ffc9-85b210ca377d" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.Keywords">
+      <topicdata group="api" />
+      <apidata name="Keywords" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Keywords" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="b86a4f1e-993a-2121-269a-5dc96fd033d2" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.Level">
+      <topicdata group="api" />
+      <apidata name="Level" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Level" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="f288e1fe-3125-a22e-2e25-65b8b48fd825" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.Opcode">
+      <topicdata group="api" />
+      <apidata name="Opcode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Opcode" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="53ef625e-9eb3-77cc-3334-32f521e685c1" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.Task">
+      <topicdata group="api" />
+      <apidata name="Task" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Task" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="85933aac-e5de-70a1-61bc-0a496005637d" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventDescriptor.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+      </containers>
+      <file name="ff0869e4-4190-5895-71d0-8706be626613" />
+    </api>
+    <api id="T:System.Diagnostics.Eventing.EventProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="EventProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="3bf514a7-aa70-67be-de81-30abfc3fcbc2" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Eventing.EventProvider">
+      <topicdata name="EventProvider" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="EventProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.#ctor(System.Guid)" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.Close" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.CreateActivityId" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.Dispose">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.Dispose" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.Finalize" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.GetLastWriteEventError" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.IsEnabled">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.IsEnabled" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.IsEnabled(System.Byte,System.Int64)" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.SetActivityId(System.Guid@)" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.WriteEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Object[])" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Int32,System.IntPtr)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String,System.Byte,System.Int64)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Object[])" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Int32,System.IntPtr)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" />
+      </containers>
+      <file name="a68ba400-83dc-89ce-974e-ca7c3fb19e07" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Eventing.EventProvider">
+      <topicdata name="EventProvider" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="EventProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.Close" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.CreateActivityId" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.Dispose">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.Dispose" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.Finalize" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.GetLastWriteEventError" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.IsEnabled">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.IsEnabled" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.IsEnabled(System.Byte,System.Int64)" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.SetActivityId(System.Guid@)" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.WriteEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Object[])" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Int32,System.IntPtr)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String,System.Byte,System.Int64)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Object[])" />
+          <element api="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Int32,System.IntPtr)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" />
+      </containers>
+      <file name="d9adf671-69b9-9a7e-875b-24fb4bff4a86" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProvider.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.Dispose" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="6411f621-4e1b-b471-2814-a69ca439f89f" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProvider.IsEnabled">
+      <topicdata name="IsEnabled" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="IsEnabled" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.IsEnabled" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.IsEnabled(System.Byte,System.Int64)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="ed650b76-587b-8019-73e6-5b0fdb5fbc97" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProvider.WriteEvent">
+      <topicdata name="WriteEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="WriteEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Object[])" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.String)" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Int32,System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="4a6afb6a-9717-ceda-1510-45fcfdec06e2" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent">
+      <topicdata name="WriteMessageEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="WriteMessageEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String)" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String,System.Byte,System.Int64)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="996e3007-158c-7136-fe2a-41dd8b09496c" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent">
+      <topicdata name="WriteTransferEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProvider" />
+      <apidata name="WriteTransferEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Object[])" />
+        <element api="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Int32,System.IntPtr)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="a5a13a6d-a30c-f590-2122-3220cadfb439" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.#ctor(System.Guid)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="providerGuid">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="ab5d141b-bf3f-552d-9b1e-d3d34ffa1952" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="4071d0c9-13e4-dc27-0536-411acd42d4e3" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.CreateActivityId">
+      <topicdata group="api" />
+      <apidata name="CreateActivityId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ed33a6b0-2359-023f-fb49-d43bd5f9007d" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="25579cf2-f729-bcc8-ceb3-b731387badef" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Diagnostics.Eventing.EventProvider.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="da34147f-686b-66eb-b1b5-417fc24aafc3" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="16465ce8-ce36-4eba-2594-d10457f0804c" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.GetLastWriteEventError">
+      <topicdata group="api" />
+      <apidata name="GetLastWriteEventError" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="1d46a5c5-51cf-0f43-babc-ec70647cf9dd" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.IsEnabled">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.IsEnabled" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="fc60a0d8-bf37-47b3-3ddd-40df711ea233" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.IsEnabled(System.Byte,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="IsEnabled" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.IsEnabled" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="level">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="keywords">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="c1336320-b0f6-c6e3-cdf6-edc012460200" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.SetActivityId(System.Guid@)">
+      <topicdata group="api" />
+      <apidata name="SetActivityId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="id">
+          <referenceTo>
+            <type api="T:System.Guid" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ded3c5b3-b7c5-06d3-1bbd-07348adeef33" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Int32,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="WriteEvent" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventDescriptor">
+          <referenceTo>
+            <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="dataCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a536e12b-922b-c5eb-9fdf-0e00997b2e48" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="WriteEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventDescriptor">
+          <referenceTo>
+            <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="eventPayload" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="8c83d914-b5e0-3f41-85d7-7f636e58580f" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteEvent(System.Diagnostics.Eventing.EventDescriptor@,System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventDescriptor">
+          <referenceTo>
+            <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="36917940-c21a-e4bf-4be5-94f274347470" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteMessageEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="5d98ebb4-591f-de34-7a11-b159b36d941b" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent(System.String,System.Byte,System.Int64)">
+      <topicdata group="api" />
+      <apidata name="WriteMessageEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteMessageEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventLevel">
+          <type api="T:System.Byte" ref="false" />
+        </parameter>
+        <parameter name="eventKeywords">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e54e418d-3d30-6467-d011-4f3f612ea86a" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Int32,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name="WriteTransferEvent" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventDescriptor">
+          <referenceTo>
+            <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="relatedActivityId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="dataCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7770c083-9c76-8ad9-8e57-6f8f63c621a5" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent(System.Diagnostics.Eventing.EventDescriptor@,System.Guid,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="WriteTransferEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProvider.WriteTransferEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="eventDescriptor">
+          <referenceTo>
+            <type api="T:System.Diagnostics.Eventing.EventDescriptor" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="relatedActivityId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="eventPayload" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a750c0df-7a4a-2c54-354a-17e81ed8b355" />
+    </api>
+    <api id="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode">
+      <topicdata group="api" />
+      <apidata name="WriteEventErrorCode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode.NoError" />
+        <element api="F:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode.NoFreeBuffers" />
+        <element api="F:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode.EventTooBig" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+      </containers>
+      <file name="059934cc-a7d1-22d9-9489-1f99d9d53195" />
+    </api>
+    <api id="F:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode.EventTooBig">
+      <topicdata group="api" notopic="" />
+      <apidata name="EventTooBig" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </containers>
+      <file name="ddcc0a58-8c64-dfce-cc37-89160c3a6436" />
+    </api>
+    <api id="F:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode.NoError">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </containers>
+      <file name="2bb704de-60b3-fe37-c859-15f7197aa267" />
+    </api>
+    <api id="F:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode.NoFreeBuffers">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoFreeBuffers" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProvider.WriteEventErrorCode" ref="false">
+          <type api="T:System.Diagnostics.Eventing.EventProvider" ref="true" />
+        </type>
+      </containers>
+      <file name="89430cb8-fcae-6fdc-fb2b-ab7938a27793" />
+    </api>
+    <api id="T:System.Diagnostics.Eventing.EventProviderTraceListener">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="EventProviderTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+          <type api="T:System.MarshalByRefObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.Permissions.HostProtectionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Security.Permissions.SecurityAction" ref="false" />
+            <enumValue>
+              <field name="LinkDemand" />
+            </enumValue>
+          </argument>
+          <assignment name="MayLeakOnAbort">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="e4453139-a150-bed8-fa19-ff6bdf03635d" />
+    </api>
+    <api id="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener">
+      <topicdata name="EventProviderTraceListener" group="list" subgroup="members" typeTopicId="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="EventProviderTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Diagnostics.TraceListener.Attributes" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Dispose">
+          <element api="M:System.Diagnostics.TraceListener.Dispose" />
+          <element api="M:System.Diagnostics.TraceListener.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Fail">
+          <element api="M:System.Diagnostics.TraceListener.Fail(System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Fail(System.String,System.String)" />
+        </element>
+        <element api="P:System.Diagnostics.TraceListener.Filter" />
+        <element api="P:System.Diagnostics.TraceListener.IndentLevel" />
+        <element api="P:System.Diagnostics.TraceListener.IndentSize" />
+        <element api="P:System.Diagnostics.TraceListener.Name" />
+        <element api="P:System.Diagnostics.TraceListener.NeedIndent" />
+        <element api="P:System.Diagnostics.TraceListener.TraceOutputOptions" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Write">
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Write(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.String,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.TraceListener.WriteIndent" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine">
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor">
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String,System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String,System.String,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Close" />
+        <element api="P:System.Diagnostics.Eventing.EventProviderTraceListener.Delimiter" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Flush" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.GetSupportedAttributes" />
+        <element api="P:System.Diagnostics.Eventing.EventProviderTraceListener.IsThreadSafe" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData">
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      </containers>
+      <file name="057706ee-0145-fc1d-6b40-5565bab13f7b" />
+    </api>
+    <api id="Methods.T:System.Diagnostics.Eventing.EventProviderTraceListener">
+      <topicdata name="EventProviderTraceListener" group="list" subgroup="Methods" typeTopicId="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="EventProviderTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.MarshalByRefObject.CreateObjRef(System.Type)" />
+        <element api="M:System.MarshalByRefObject.GetLifetimeService" />
+        <element api="M:System.MarshalByRefObject.InitializeLifetimeService" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.MemberwiseClone">
+          <element api="M:System.Object.MemberwiseClone" />
+          <element api="M:System.MarshalByRefObject.MemberwiseClone(System.Boolean)" />
+        </element>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Dispose">
+          <element api="M:System.Diagnostics.TraceListener.Dispose" />
+          <element api="M:System.Diagnostics.TraceListener.Dispose(System.Boolean)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Fail">
+          <element api="M:System.Diagnostics.TraceListener.Fail(System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Fail(System.String,System.String)" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Write">
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Write(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.Write(System.String,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.TraceListener.WriteIndent" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine">
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine(System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)" />
+          <element api="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Close" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Flush" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.GetSupportedAttributes" />
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData">
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])" />
+        </element>
+        <element api="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent">
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)" />
+          <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])" />
+        </element>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      </containers>
+      <file name="3355679f-7a70-1b8e-f8f3-23fe58e7f4ef" />
+    </api>
+    <api id="Properties.T:System.Diagnostics.Eventing.EventProviderTraceListener">
+      <topicdata name="EventProviderTraceListener" group="list" subgroup="Properties" typeTopicId="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="EventProviderTraceListener" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Diagnostics.TraceListener.Attributes" />
+        <element api="P:System.Diagnostics.TraceListener.Filter" />
+        <element api="P:System.Diagnostics.TraceListener.IndentLevel" />
+        <element api="P:System.Diagnostics.TraceListener.IndentSize" />
+        <element api="P:System.Diagnostics.TraceListener.Name" />
+        <element api="P:System.Diagnostics.TraceListener.NeedIndent" />
+        <element api="P:System.Diagnostics.TraceListener.TraceOutputOptions" />
+        <element api="P:System.Diagnostics.Eventing.EventProviderTraceListener.Delimiter" />
+        <element api="P:System.Diagnostics.Eventing.EventProviderTraceListener.IsThreadSafe" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      </containers>
+      <file name="e705efb9-3b72-f8ca-d140-ca3699c0ec67" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Fail">
+      <topicdata name="Fail" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="Fail" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.Fail(System.String)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Fail(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="ac2a920b-d0a6-ad8a-978d-7ac3682c426c" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Write">
+      <topicdata name="Write" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.Write(System.Object)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.Write(System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.Write(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="1cbc026c-a948-c99e-a3eb-8481405c0876" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine">
+      <topicdata name="WriteLine" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="WriteLine" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine(System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)" />
+        <element api="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="fe7c8cca-99a2-044d-41f3-2ab8eb3e167b" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String,System.String)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="7f617636-2232-04e8-83fd-2917620589f2" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData">
+      <topicdata name="TraceData" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="TraceData" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="c8cd327a-42fd-7760-112b-542cdadbbb16" />
+    </api>
+    <api id="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent">
+      <topicdata name="TraceEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Diagnostics.Eventing.EventProviderTraceListener" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)" />
+        <element api="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="23c4f9a3-b50b-2107-5377-f4bfc06ba04f" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor" />
+      <parameters>
+        <parameter name="providerId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="b636206e-81c2-dea5-ea01-37cd87c6d3c3" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor" />
+      <parameters>
+        <parameter name="providerId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="6dcb7876-3570-a1ff-f49d-40a5a70b2880" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor(System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.#ctor" />
+      <parameters>
+        <parameter name="providerId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="delimiter">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="8e24b1c8-390a-6b53-974c-29cb938359d5" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Close">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="3194304f-f923-65a4-4dbc-b64a6c229280" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventProviderTraceListener.Delimiter">
+      <topicdata group="api" />
+      <apidata name="Delimiter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Delimiter" />
+      <setter name="set_Delimiter" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="c00f71b8-cab1-fc8d-7505-41f704796447" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.Fail(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="Fail" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Fail" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Fail(System.String,System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="detailMessage">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="14fed607-5537-50c8-1f89-25342a2694b0" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.Flush">
+      <topicdata group="api" />
+      <apidata name="Flush" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Flush">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="5bf3ea0c-8f5f-4d00-c497-612bf66b2071" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.GetSupportedAttributes">
+      <topicdata group="api" />
+      <apidata name="GetSupportedAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.GetSupportedAttributes">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="6fcd8522-101a-6894-3de9-ab0325d29827" />
+    </api>
+    <api id="P:System.Diagnostics.Eventing.EventProviderTraceListener.IsThreadSafe">
+      <topicdata group="api" />
+      <apidata name="IsThreadSafe" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="P:System.Diagnostics.TraceListener.IsThreadSafe">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_IsThreadSafe" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="ace72a43-5af4-55af-007a-f39afe3d7da3" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name="TraceData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="a6c934ef-6b0d-6f98-d927-dfc295e80e9f" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="TraceData" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceData" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="data" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="a8513623-f1f5-5648-801b-451c2c8b13c6" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="20126421-c590-fecd-1b55-1bb8983123a2" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+      <topicdata group="api" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="2254ff36-544f-4fbe-c506-2e8b981fdd1a" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="TraceEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.TraceEvent" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="eventType">
+          <type api="T:System.Diagnostics.TraceEventType" ref="false" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="format">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="args" params="true">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="bae5a27d-0a8e-de05-0509-68c569a0a53d" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)">
+      <topicdata group="api" />
+      <apidata name="TraceTransfer" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventCache">
+          <type api="T:System.Diagnostics.TraceEventCache" ref="true" />
+        </parameter>
+        <parameter name="source">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="relatedActivityId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="311523d4-513b-e63e-93fd-49e6cd93cd71" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.Write(System.String)">
+      <topicdata group="api" />
+      <apidata name="Write" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.Write" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.Write(System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="b8cf6cbb-0bb2-2165-32c1-255b776b7d33" />
+    </api>
+    <api id="M:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine(System.String)">
+      <topicdata group="api" />
+      <apidata name="WriteLine" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Diagnostics.Eventing.EventProviderTraceListener.WriteLine" />
+      <proceduredata virtual="true" final="true" />
+      <overrides>
+        <member api="M:System.Diagnostics.TraceListener.WriteLine(System.String)">
+          <type api="T:System.Diagnostics.TraceListener" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Core" module="System.Core" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Diagnostics.Eventing" />
+        <type api="T:System.Diagnostics.Eventing.EventProviderTraceListener" ref="true" />
+      </containers>
+      <file name="dfbb5028-2fba-755a-ecd3-00fc3296933a" />
+    </api>
+  </apis>
+</reflection>

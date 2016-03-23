@@ -1,0 +1,3276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.PeerResolvers">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.PeerResolvers" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+        <element api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" />
+        <element api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+        <element api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" />
+        <element api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" />
+        <element api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+        <element api="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+        <element api="T:System.ServiceModel.PeerResolvers.RefreshResult" />
+        <element api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      </elements>
+      <file name="8a37fcc3-6d06-4df5-3cb8-5f94a99ce9d2" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      <apidata name="CustomPeerResolverService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PeerChannel feature is obsolete and will be removed in the future.</value>
+          </argument>
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceBehaviorAttribute" ref="true" />
+          <assignment name="UseSynchronizationContext">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="InstanceContextMode">
+            <type api="T:System.ServiceModel.InstanceContextMode" ref="false" />
+            <enumValue>
+              <field name="Single" />
+            </enumValue>
+          </assignment>
+          <assignment name="ConcurrencyMode">
+            <type api="T:System.ServiceModel.ConcurrencyMode" ref="false" />
+            <enumValue>
+              <field name="Multiple" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="608c9e82-af77-0921-2274-0da2d29c4a01" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.CustomPeerResolverService">
+      <topicdata name="CustomPeerResolverService" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      <apidata name="CustomPeerResolverService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.#ctor" />
+        <element api="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.CleanupInterval" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Close" />
+        <element api="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.ControlShape" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.GetServiceSettings" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Open" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)" />
+        <element api="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.RefreshInterval" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register">
+          <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.ServiceModel.PeerResolvers.RegisterInfo)" />
+          <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+        </element>
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Update(System.ServiceModel.PeerResolvers.UpdateInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      </containers>
+      <file name="4b58ee44-3390-a945-729d-ac1fb0edb7b9" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.CustomPeerResolverService">
+      <topicdata name="CustomPeerResolverService" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      <apidata name="CustomPeerResolverService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Close" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.GetServiceSettings" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Open" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register">
+          <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.ServiceModel.PeerResolvers.RegisterInfo)" />
+          <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+        </element>
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Update(System.ServiceModel.PeerResolvers.UpdateInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      </containers>
+      <file name="dbac54e3-a92c-5f3f-92e0-7303c6d350a9" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.CustomPeerResolverService">
+      <topicdata name="CustomPeerResolverService" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      <apidata name="CustomPeerResolverService" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.CleanupInterval" />
+        <element api="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.ControlShape" />
+        <element api="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.RefreshInterval" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      </containers>
+      <file name="2219d66b-a7e7-e7c7-e5a2-e4397bf3ad82" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register">
+      <topicdata name="Register" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.ServiceModel.PeerResolvers.RegisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="bc3ffc98-0818-6ae0-3295-4d37b7f34628" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="f1f769e4-df21-2989-0759-e1dba71b5105" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.CleanupInterval">
+      <topicdata group="api" />
+      <apidata name="CleanupInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CleanupInterval" />
+      <setter name="set_CleanupInterval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="71083f1f-37b8-95ba-b9de-8f4d1600f5c1" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="d79a58bb-8c3f-5219-7cca-1de56e6650fb" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.ControlShape">
+      <topicdata group="api" />
+      <apidata name="ControlShape" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ControlShape" />
+      <setter name="set_ControlShape" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="71cf5584-8299-614f-0906-c31a6a80729a" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.GetServiceSettings">
+      <topicdata group="api" />
+      <apidata name="GetServiceSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.GetServiceSettings">
+          <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="c5d73901-8686-ff64-1b30-fbc2de325f61" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Open">
+      <topicdata group="api" />
+      <apidata name="Open" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="a94ea577-eee2-fed3-989b-b2e99cc7c450" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)">
+      <topicdata group="api" />
+      <apidata name="Refresh" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="refreshInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)">
+          <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="bf74d583-76b6-7c06-1a72-ff39ecdb9fb3" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.CustomPeerResolverService.RefreshInterval">
+      <topicdata group="api" />
+      <apidata name="RefreshInterval" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RefreshInterval" />
+      <setter name="set_RefreshInterval" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="497d42f3-668c-4d6e-9ede-8b15760b90da" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="clientId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="meshId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="80f4093b-edfd-3ba4-4e80-d25537f3f897" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register(System.ServiceModel.PeerResolvers.RegisterInfo)">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Register" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="registerInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Register(System.ServiceModel.PeerResolvers.RegisterInfo)">
+          <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="2126e46b-c131-278e-d01a-0350ae5c67e6" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)">
+      <topicdata group="api" />
+      <apidata name="Resolve" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="resolveInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)">
+          <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="007ded2a-6bf6-428b-389e-8841caae3044" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)">
+      <topicdata group="api" />
+      <apidata name="Unregister" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="unregisterInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)">
+          <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="ae307731-19f3-2975-6f1d-5e586c4b9099" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.CustomPeerResolverService.Update(System.ServiceModel.PeerResolvers.UpdateInfo)">
+      <topicdata group="api" />
+      <apidata name="Update" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="updateInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Update(System.ServiceModel.PeerResolvers.UpdateInfo)">
+          <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </containers>
+      <file name="093e2c91-1cd6-d2f6-07c5-ef5f5519a3fa" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.IPeerResolverContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.IPeerResolverContract" />
+      <apidata name="IPeerResolverContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.ServiceModel.PeerResolvers.CustomPeerResolverService" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.ServiceContractAttribute" ref="true" />
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>IPeerResolverContract</value>
+          </assignment>
+          <assignment name="Namespace">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver</value>
+          </assignment>
+          <assignment name="SessionMode">
+            <type api="T:System.ServiceModel.SessionMode" ref="false" />
+            <enumValue>
+              <field name="Allowed" />
+            </enumValue>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ba008c74-b8ec-68d7-4341-7b47c09fa0ff" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.IPeerResolverContract">
+      <topicdata name="IPeerResolverContract" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" />
+      <apidata name="IPeerResolverContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.GetServiceSettings" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Register(System.ServiceModel.PeerResolvers.RegisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Update(System.ServiceModel.PeerResolvers.UpdateInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" />
+      </containers>
+      <file name="63c98f5a-7206-1a9a-4381-833a828e7d71" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.IPeerResolverContract">
+      <topicdata name="IPeerResolverContract" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" />
+      <apidata name="IPeerResolverContract" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.GetServiceSettings" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Register(System.ServiceModel.PeerResolvers.RegisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)" />
+        <element api="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Update(System.ServiceModel.PeerResolvers.UpdateInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" />
+      </containers>
+      <file name="8c0ad3cc-b776-0d13-ff12-3e73c475b603" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.GetServiceSettings">
+      <topicdata group="api" />
+      <apidata name="GetServiceSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>GetServiceInfo</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/GetServiceSettings</value>
+          </assignment>
+          <assignment name="ReplyAction">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/GetServiceSettingsResponse</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="5cf17e13-09fc-f201-ab88-00718154c85f" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Refresh(System.ServiceModel.PeerResolvers.RefreshInfo)">
+      <topicdata group="api" />
+      <apidata name="Refresh" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="refreshInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>Refresh</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/Refresh</value>
+          </assignment>
+          <assignment name="ReplyAction">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/RefreshResponse</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2037876c-3136-92bd-dc69-4dca0227a294" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Register(System.ServiceModel.PeerResolvers.RegisterInfo)">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="registerInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>Register</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/Register</value>
+          </assignment>
+          <assignment name="ReplyAction">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/RegisterResponse</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="60f5874a-de58-d1cf-0415-7689383249be" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Resolve(System.ServiceModel.PeerResolvers.ResolveInfo)">
+      <topicdata group="api" />
+      <apidata name="Resolve" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="resolveInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>Resolve</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/Resolve</value>
+          </assignment>
+          <assignment name="ReplyAction">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/ResolveResponse</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="04aea372-f9bc-5705-7128-fdf4314289e8" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Unregister(System.ServiceModel.PeerResolvers.UnregisterInfo)">
+      <topicdata group="api" />
+      <apidata name="Unregister" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="unregisterInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>Unregister</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/Unregister</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="54c658f8-4178-3e36-2260-8d5977bf41a2" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.IPeerResolverContract.Update(System.ServiceModel.PeerResolvers.UpdateInfo)">
+      <topicdata group="api" />
+      <apidata name="Update" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="updateInfo">
+          <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.IPeerResolverContract" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.OperationContractAttribute" ref="true" />
+          <assignment name="IsOneWay">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Name">
+            <type api="T:System.String" ref="true" />
+            <value>Update</value>
+          </assignment>
+          <assignment name="Action">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/Update</value>
+          </assignment>
+          <assignment name="ReplyAction">
+            <type api="T:System.String" ref="true" />
+            <value>http://schemas.microsoft.com/net/2006/05/peer/resolver/UpdateResponse</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="f34d2dbf-5535-d08f-9181-228ee767bc77" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      <apidata name="PeerCustomResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <file name="636cdf53-4e26-8300-a056-c622a57d471f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings">
+      <topicdata name="PeerCustomResolverSettings" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      <apidata name="PeerCustomResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.#ctor" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Address" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Binding" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.IsBindingSpecified" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Resolver" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      </containers>
+      <file name="f607c0bb-dee6-7860-b8ab-8ed196649263" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings">
+      <topicdata name="PeerCustomResolverSettings" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      <apidata name="PeerCustomResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      </containers>
+      <file name="56061f7a-43a4-3533-e592-5874d6734caf" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings">
+      <topicdata name="PeerCustomResolverSettings" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      <apidata name="PeerCustomResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Address" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Binding" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.IsBindingSpecified" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Resolver" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" />
+      </containers>
+      <file name="9d8357af-b984-110a-84d5-13d38b066641" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" ref="true" />
+      </containers>
+      <file name="868e8996-defe-acbe-10e6-edeba8744e80" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Address" />
+      <setter name="set_Address" />
+      <returns>
+        <type api="T:System.ServiceModel.EndpointAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" ref="true" />
+      </containers>
+      <file name="d3387f49-e8ba-b01e-8782-099e4a2bdb9b" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Binding">
+      <topicdata group="api" />
+      <apidata name="Binding" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Binding" />
+      <setter name="set_Binding" />
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Binding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" ref="true" />
+      </containers>
+      <file name="7abbccb9-8b4e-7b43-c66a-028ebf6e6558" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.IsBindingSpecified">
+      <topicdata group="api" />
+      <apidata name="IsBindingSpecified" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsBindingSpecified" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" ref="true" />
+      </containers>
+      <file name="c68eaa20-4442-b649-06d1-3d22f5d3a5e4" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings.Resolver">
+      <topicdata group="api" />
+      <apidata name="Resolver" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Resolver" />
+      <setter name="set_Resolver" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolver" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" ref="true" />
+      </containers>
+      <file name="be42025d-9b86-426e-40fd-bf87ac2b7f99" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy">
+      <topicdata group="api" />
+      <apidata name="PeerReferralPolicy" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.PeerResolvers.PeerReferralPolicy.Service" />
+        <element api="F:System.ServiceModel.PeerResolvers.PeerReferralPolicy.Share" />
+        <element api="F:System.ServiceModel.PeerResolvers.PeerReferralPolicy.DoNotShare" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <file name="28837103-8e36-e0bd-ede3-b063b8c0b923" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.PeerReferralPolicy.DoNotShare">
+      <topicdata group="api" notopic="" />
+      <apidata name="DoNotShare" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </containers>
+      <file name="cdc85ff9-765c-46e1-f8e2-dafadad29466" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.PeerReferralPolicy.Service">
+      <topicdata group="api" notopic="" />
+      <apidata name="Service" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </containers>
+      <file name="538beb2d-a842-6499-a2de-128f6d5668fd" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.PeerReferralPolicy.Share">
+      <topicdata group="api" notopic="" />
+      <apidata name="Share" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </containers>
+      <file name="e98129ce-c1ed-dca6-4b7f-e2a9371e5af2" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.PeerResolverMode">
+      <topicdata group="api" />
+      <apidata name="PeerResolverMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.PeerResolvers.PeerResolverMode.Auto" />
+        <element api="F:System.ServiceModel.PeerResolvers.PeerResolverMode.Pnrp" />
+        <element api="F:System.ServiceModel.PeerResolvers.PeerResolverMode.Custom" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <file name="2921b7bc-b3c9-db71-648a-14f0e43d8808" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.PeerResolverMode.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </containers>
+      <file name="6f79f5c1-c471-c23c-ab4d-01422ac64981" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.PeerResolverMode.Custom">
+      <topicdata group="api" notopic="" />
+      <apidata name="Custom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </containers>
+      <file name="f17dae6f-83e9-1fd9-4af4-7f58be334812" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.PeerResolverMode.Pnrp">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pnrp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </containers>
+      <file name="56ee8764-6c16-5371-24e2-5cfce3b836fe" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.PeerResolverSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      <apidata name="PeerResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerResolverSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <file name="6eaa08ca-9b13-0c78-6497-3223eb4594c8" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.PeerResolverSettings">
+      <topicdata name="PeerResolverSettings" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      <apidata name="PeerResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerResolverSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.PeerResolverSettings.#ctor" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.Custom" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.Mode" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.ReferralPolicy" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      </containers>
+      <file name="8356a7dd-a568-a0e6-8cfe-eb31dd39e544" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.PeerResolverSettings">
+      <topicdata name="PeerResolverSettings" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      <apidata name="PeerResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerResolverSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      </containers>
+      <file name="d7a94aba-9f64-027d-ca9a-4c4505c084ff" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.PeerResolverSettings">
+      <topicdata name="PeerResolverSettings" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      <apidata name="PeerResolverSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.PeerResolverSettings.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.Custom" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.Mode" />
+        <element api="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.ReferralPolicy" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" />
+      </containers>
+      <file name="8ccd8bd3-feb4-6c4d-c8ff-4c141ef147fb" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.PeerResolverSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" ref="true" />
+      </containers>
+      <file name="e695f8a6-483b-4bec-ca73-97c542cc9f4b" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.Custom">
+      <topicdata group="api" />
+      <apidata name="Custom" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Custom" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerCustomResolverSettings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" ref="true" />
+      </containers>
+      <file name="eb45b664-ca63-0493-582d-92ab5a3f03de" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.Mode">
+      <topicdata group="api" />
+      <apidata name="Mode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Mode" />
+      <setter name="set_Mode" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" ref="true" />
+      </containers>
+      <file name="b32789de-c222-69f1-22bd-73db7e095993" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.PeerResolverSettings.ReferralPolicy">
+      <topicdata group="api" />
+      <apidata name="ReferralPolicy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReferralPolicy" />
+      <setter name="set_ReferralPolicy" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.PeerReferralPolicy" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.PeerResolverSettings" ref="true" />
+      </containers>
+      <file name="d3f2d5a1-ea9d-9d2e-1407-f2b5b736ccdf" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.RefreshInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      <apidata name="RefreshInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c4faf84a-dc71-3262-ce97-18d14958984e" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.RefreshInfo">
+      <topicdata name="RefreshInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      <apidata name="RefreshInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor(System.String,System.Guid)" />
+        </element>
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshInfo.RegistrationId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      </containers>
+      <file name="2c41f799-0ddc-7284-3868-1883ace0c9f2" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.RefreshInfo">
+      <topicdata name="RefreshInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      <apidata name="RefreshInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      </containers>
+      <file name="4b82925d-b1fe-44d2-dedf-96a2b7e6358c" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.RefreshInfo">
+      <topicdata name="RefreshInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      <apidata name="RefreshInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshInfo.RegistrationId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      </containers>
+      <file name="f7d62197-d436-d2ed-666b-9e7e5125b367" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RefreshInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor(System.String,System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+      </containers>
+      <file name="67a5919c-f7f6-aa5c-7ed7-f429a94b92bc" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+      </containers>
+      <file name="9689341f-d95b-eb8d-ba81-e13393f7d34e" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor(System.String,System.Guid)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RefreshInfo.#ctor" />
+      <parameters>
+        <parameter name="meshId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="regId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+      </containers>
+      <file name="221cb726-5854-2bda-091a-90a15afe390d" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RefreshInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+      </containers>
+      <file name="6b13f410-98a4-1b77-2c74-3296c245d428" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RefreshInfo.MeshId">
+      <topicdata group="api" />
+      <apidata name="MeshId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MeshId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+      </containers>
+      <file name="9eb5ef64-60d9-c05a-c47b-4ec8df2b77f6" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RefreshInfo.RegistrationId">
+      <topicdata group="api" />
+      <apidata name="RegistrationId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RegistrationId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshInfo" ref="true" />
+      </containers>
+      <file name="017c8d29-7c35-2493-f8db-d44796b59a17" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      <apidata name="RefreshResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="9cacffca-ebcc-323e-e997-9b140b8ff6da" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.RefreshResponseInfo">
+      <topicdata name="RefreshResponseInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      <apidata name="RefreshResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor(System.TimeSpan,System.ServiceModel.PeerResolvers.RefreshResult)" />
+        </element>
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshResponseInfo.RegistrationLifetime" />
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshResponseInfo.Result" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      </containers>
+      <file name="a4555273-aee2-45ac-1fcd-be0921e0297a" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.RefreshResponseInfo">
+      <topicdata name="RefreshResponseInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      <apidata name="RefreshResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      </containers>
+      <file name="304d0477-ace0-53e7-73ae-2a1eaa571281" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.RefreshResponseInfo">
+      <topicdata name="RefreshResponseInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      <apidata name="RefreshResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshResponseInfo.RegistrationLifetime" />
+        <element api="P:System.ServiceModel.PeerResolvers.RefreshResponseInfo.Result" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      </containers>
+      <file name="321f9773-2525-a950-5db8-36f202857871" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor(System.TimeSpan,System.ServiceModel.PeerResolvers.RefreshResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </containers>
+      <file name="965c66a0-33d6-29dd-482f-bb681e93aef5" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </containers>
+      <file name="2a9a7fd3-8aab-b688-583e-d3a77ddde406" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor(System.TimeSpan,System.ServiceModel.PeerResolvers.RefreshResult)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RefreshResponseInfo.#ctor" />
+      <parameters>
+        <parameter name="registrationLifetime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="result">
+          <type api="T:System.ServiceModel.PeerResolvers.RefreshResult" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </containers>
+      <file name="0020e2d2-90e6-39eb-5671-ad0c300f8faa" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RefreshResponseInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </containers>
+      <file name="4d1dafaf-599a-9bd3-a820-e9a186aa6f4e" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RefreshResponseInfo.RegistrationLifetime">
+      <topicdata group="api" />
+      <apidata name="RegistrationLifetime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RegistrationLifetime" />
+      <setter name="set_RegistrationLifetime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </containers>
+      <file name="5023e356-c651-6319-4732-f1cfa002dfcd" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RefreshResponseInfo.Result">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Result" />
+      <setter name="set_Result" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResponseInfo" ref="true" />
+      </containers>
+      <file name="2c918ec3-d01e-83ff-9138-1b59995ef6e9" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.RefreshResult">
+      <topicdata group="api" />
+      <apidata name="RefreshResult" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.ServiceModel.PeerResolvers.RefreshResult.Success" />
+        <element api="F:System.ServiceModel.PeerResolvers.RefreshResult.RegistrationNotFound" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <file name="23a73a38-54de-192c-5a1d-ac73b717be41" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.RefreshResult.RegistrationNotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="RegistrationNotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResult" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResult" ref="false" />
+      </containers>
+      <file name="cf1b494a-4c54-dcda-66e5-71221212b33f" />
+    </api>
+    <api id="F:System.ServiceModel.PeerResolvers.RefreshResult.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResult" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RefreshResult" ref="false" />
+      </containers>
+      <file name="b3d6c581-2819-4c3d-5282-37140ca2ed06" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.RegisterInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      <apidata name="RegisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="2120cb34-a3ce-76f1-7217-fb63b0d72af5" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.RegisterInfo">
+      <topicdata name="RegisterInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      <apidata name="RegisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+        </element>
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterInfo.ClientId" />
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterInfo.NodeAddress" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      </containers>
+      <file name="535ab759-b0f9-e674-b75d-d3aa6e5f305d" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.RegisterInfo">
+      <topicdata name="RegisterInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      <apidata name="RegisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      </containers>
+      <file name="02f910c9-b913-706c-240b-a3159eba4731" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.RegisterInfo">
+      <topicdata name="RegisterInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      <apidata name="RegisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterInfo.ClientId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterInfo.NodeAddress" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      </containers>
+      <file name="e7bcf7ff-0727-869d-e5ed-b4e48e97c91e" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RegisterInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="fb129433-4876-894a-aae0-7bb12975e1b8" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="72903c09-e1b0-b6ee-7feb-3ff142cb4f14" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor(System.Guid,System.String,System.ServiceModel.PeerNodeAddress)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RegisterInfo.#ctor" />
+      <parameters>
+        <parameter name="client">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="meshId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="1527ce84-3520-0714-67e2-0b9b13a435d2" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RegisterInfo.ClientId">
+      <topicdata group="api" />
+      <apidata name="ClientId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="844d01e8-aa9e-69de-882b-26d25493ef31" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RegisterInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="f82a16c9-7475-3900-efc1-dc819899803d" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RegisterInfo.MeshId">
+      <topicdata group="api" />
+      <apidata name="MeshId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MeshId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="1d0a1c4f-cb1c-cf6d-7b60-37f81e5cd419" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RegisterInfo.NodeAddress">
+      <topicdata group="api" />
+      <apidata name="NodeAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NodeAddress" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterInfo" ref="true" />
+      </containers>
+      <file name="f9331882-37d1-b2c8-e10e-b6fe11bb7975" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      <apidata name="RegisterResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c1c5ffb9-479c-98d3-c2ff-4f5a1259cd0a" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.RegisterResponseInfo">
+      <topicdata name="RegisterResponseInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      <apidata name="RegisterResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor(System.Guid,System.TimeSpan)" />
+        </element>
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterResponseInfo.RegistrationId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterResponseInfo.RegistrationLifetime" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      </containers>
+      <file name="2c5c95f7-bb37-1034-06c8-25e25b10539d" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.RegisterResponseInfo">
+      <topicdata name="RegisterResponseInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      <apidata name="RegisterResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      </containers>
+      <file name="697dbd86-e215-01c0-68f9-a484ec666209" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.RegisterResponseInfo">
+      <topicdata name="RegisterResponseInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      <apidata name="RegisterResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterResponseInfo.RegistrationId" />
+        <element api="P:System.ServiceModel.PeerResolvers.RegisterResponseInfo.RegistrationLifetime" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      </containers>
+      <file name="1e5a5fd2-d2d4-2984-2692-29b73b716bbc" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor(System.Guid,System.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </containers>
+      <file name="cca63990-f79e-4ee8-829a-7f14da42267a" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </containers>
+      <file name="dd96dcd4-bdbb-aa48-8de3-0e9771b9eb02" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor(System.Guid,System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.RegisterResponseInfo.#ctor" />
+      <parameters>
+        <parameter name="registrationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="registrationLifetime">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </containers>
+      <file name="416c55f4-d472-8dbd-c9de-d04d96d4ea7c" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.RegisterResponseInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </containers>
+      <file name="a17e3990-65b1-bc50-5c90-7f5fe9fe2ea1" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RegisterResponseInfo.RegistrationId">
+      <topicdata group="api" />
+      <apidata name="RegistrationId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RegistrationId" />
+      <setter name="set_RegistrationId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </containers>
+      <file name="0f944f0e-6cd3-5b7f-4e6c-d2ed4583fa53" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.RegisterResponseInfo.RegistrationLifetime">
+      <topicdata group="api" />
+      <apidata name="RegistrationLifetime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RegistrationLifetime" />
+      <setter name="set_RegistrationLifetime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.RegisterResponseInfo" ref="true" />
+      </containers>
+      <file name="47a0e68c-c2c1-4b3d-9e15-b939293eee6b" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.ResolveInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      <apidata name="ResolveInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6a588c51-0e32-fb75-f581-1a9c5880fe51" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.ResolveInfo">
+      <topicdata name="ResolveInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      <apidata name="ResolveInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor(System.Guid,System.String,System.Int32)" />
+        </element>
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveInfo.ClientId" />
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveInfo.MaxAddresses" />
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveInfo.MeshId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      </containers>
+      <file name="6c437329-e953-9d40-17ec-ce624c5314fa" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.ResolveInfo">
+      <topicdata name="ResolveInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      <apidata name="ResolveInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      </containers>
+      <file name="c5f3d05b-d14b-8cf2-b2c7-527b1f734255" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.ResolveInfo">
+      <topicdata name="ResolveInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      <apidata name="ResolveInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveInfo.ClientId" />
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveInfo.MaxAddresses" />
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveInfo.MeshId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      </containers>
+      <file name="c2a7a8b1-15d0-b4e3-ba54-47d52c053600" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.ResolveInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor(System.Guid,System.String,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="49340661-9a52-545b-0033-1b58f2fa3083" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="b4ee03d8-7bae-d875-20df-203bf56e5f44" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor(System.Guid,System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.ResolveInfo.#ctor" />
+      <parameters>
+        <parameter name="clientId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="meshId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="maxAddresses">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="583e4bda-3b15-aaf2-99e7-a591adf80c3b" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.ResolveInfo.ClientId">
+      <topicdata group="api" />
+      <apidata name="ClientId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="64e1e92d-3706-7465-d662-c02755b2440e" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ResolveInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="fdfa295c-922b-d03d-4748-fa0830159ce5" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.ResolveInfo.MaxAddresses">
+      <topicdata group="api" />
+      <apidata name="MaxAddresses" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxAddresses" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="e70ab2f8-b318-7f3f-dd7c-9aba8e1e86b6" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.ResolveInfo.MeshId">
+      <topicdata group="api" />
+      <apidata name="MeshId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MeshId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveInfo" ref="true" />
+      </containers>
+      <file name="1450e052-fd62-7034-5d52-2949964a5cc9" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      <apidata name="ResolveResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="025fc3b1-046a-635a-bea6-30580f3c60ca" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.ResolveResponseInfo">
+      <topicdata name="ResolveResponseInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      <apidata name="ResolveResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor(System.ServiceModel.PeerNodeAddress[])" />
+        </element>
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveResponseInfo.Addresses" />
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      </containers>
+      <file name="09c51745-5aa5-d835-a303-91b0311cd3d4" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.ResolveResponseInfo">
+      <topicdata name="ResolveResponseInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      <apidata name="ResolveResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      </containers>
+      <file name="bf9564a2-945e-1213-9316-ee289821f165" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.ResolveResponseInfo">
+      <topicdata name="ResolveResponseInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      <apidata name="ResolveResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.ResolveResponseInfo.Addresses" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      </containers>
+      <file name="9f70ee8b-4d0e-0342-8b44-b5a95aa5d6f1" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor(System.ServiceModel.PeerNodeAddress[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </containers>
+      <file name="29fa1625-6bd4-cbab-d557-c676a0e7f791" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </containers>
+      <file name="e3a0cb28-1267-04f3-a629-89e3475ce7bc" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor(System.ServiceModel.PeerNodeAddress[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.ResolveResponseInfo.#ctor" />
+      <parameters>
+        <parameter name="addresses">
+          <arrayOf rank="1">
+            <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </containers>
+      <file name="1d342e43-7c2f-926c-9d7e-be2efc2c662d" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.ResolveResponseInfo.Addresses">
+      <topicdata group="api" />
+      <apidata name="Addresses" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Addresses" />
+      <setter name="set_Addresses" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </containers>
+      <file name="acce9e70-d513-9113-55f3-def5254f6a24" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ResolveResponseInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ResolveResponseInfo" ref="true" />
+      </containers>
+      <file name="e4f4ebef-5858-8443-8b54-b2a0e6f85866" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      <apidata name="ServiceSettingsResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="53f518db-9c46-1936-4224-119568ab5399" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo">
+      <topicdata name="ServiceSettingsResponseInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      <apidata name="ServiceSettingsResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor(System.Boolean)" />
+        </element>
+        <element api="P:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.ControlMeshShape" />
+        <element api="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      </containers>
+      <file name="244f21d2-0ced-93b4-4e80-293537088cbf" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo">
+      <topicdata name="ServiceSettingsResponseInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      <apidata name="ServiceSettingsResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      </containers>
+      <file name="2d472048-0b02-907d-40b8-34292a51b998" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo">
+      <topicdata name="ServiceSettingsResponseInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      <apidata name="ServiceSettingsResponseInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.ControlMeshShape" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      </containers>
+      <file name="16cc2521-c866-8a14-da4a-d40118284985" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </containers>
+      <file name="c79911f9-4e6d-f1f9-0a41-481b4512a878" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </containers>
+      <file name="992ed5ea-4966-c08d-9bbb-517483852686" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.#ctor" />
+      <parameters>
+        <parameter name="control">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </containers>
+      <file name="9159c743-d802-cd63-7e04-84af89d16850" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.ControlMeshShape">
+      <topicdata group="api" />
+      <apidata name="ControlMeshShape" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ControlMeshShape" />
+      <setter name="set_ControlMeshShape" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </containers>
+      <file name="5d1783b4-baeb-53ed-410d-6827758a0f76" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.ServiceSettingsResponseInfo" ref="true" />
+      </containers>
+      <file name="452370d5-23a7-6306-7260-374aa0d293b8" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.UnregisterInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      <apidata name="UnregisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="979ec7e7-d97f-e0e7-7b1b-049499efcdb7" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.UnregisterInfo">
+      <topicdata name="UnregisterInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      <apidata name="UnregisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor(System.String,System.Guid)" />
+        </element>
+        <element api="M:System.ServiceModel.PeerResolvers.UnregisterInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.UnregisterInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.UnregisterInfo.RegistrationId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      </containers>
+      <file name="247dbcba-9ba2-8adf-9c75-0f4b8165f714" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.UnregisterInfo">
+      <topicdata name="UnregisterInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      <apidata name="UnregisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.UnregisterInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      </containers>
+      <file name="100a181c-3747-eb95-b2c6-7ab0d1db938b" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.UnregisterInfo">
+      <topicdata name="UnregisterInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      <apidata name="UnregisterInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.UnregisterInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.UnregisterInfo.RegistrationId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      </containers>
+      <file name="647cd146-8cf4-8c46-74f1-d760d07f3b0c" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.UnregisterInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor(System.String,System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+      </containers>
+      <file name="ea02d464-2cda-135a-1574-d830cbc89856" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+      </containers>
+      <file name="9cbd3c74-f0ec-9f75-05aa-07e1bdcd4ec2" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor(System.String,System.Guid)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.UnregisterInfo.#ctor" />
+      <parameters>
+        <parameter name="meshId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="registrationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+      </containers>
+      <file name="15b62e1f-645b-2092-91f1-70f20f97278c" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.UnregisterInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+      </containers>
+      <file name="e2374600-1b57-1548-ad8e-ecfd9b7bb106" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.UnregisterInfo.MeshId">
+      <topicdata group="api" />
+      <apidata name="MeshId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MeshId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+      </containers>
+      <file name="4c236b21-2fcf-c6f0-3b77-756365f82529" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.UnregisterInfo.RegistrationId">
+      <topicdata group="api" />
+      <apidata name="RegistrationId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RegistrationId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UnregisterInfo" ref="true" />
+      </containers>
+      <file name="af36c94e-a7ee-c376-e4e4-381afcf154f6" />
+    </api>
+    <api id="T:System.ServiceModel.PeerResolvers.UpdateInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      <apidata name="UpdateInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ServiceModel.MessageContractAttribute" ref="true" />
+          <assignment name="IsWrapped">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="8069cdcc-6dfd-5a07-ec0b-37b68fe8de8e" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.PeerResolvers.UpdateInfo">
+      <topicdata name="UpdateInfo" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      <apidata name="UpdateInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor">
+          <element api="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+          <element api="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor(System.Guid,System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+        </element>
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.ClientId" />
+        <element api="M:System.ServiceModel.PeerResolvers.UpdateInfo.HasBody" />
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.NodeAddress" />
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.RegistrationId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      </containers>
+      <file name="a25cfe91-59a6-f21a-a3e0-c004eec797d7" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.PeerResolvers.UpdateInfo">
+      <topicdata name="UpdateInfo" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      <apidata name="UpdateInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.PeerResolvers.UpdateInfo.HasBody" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      </containers>
+      <file name="8523f8df-e63e-d513-4822-14102cad23f7" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.PeerResolvers.UpdateInfo">
+      <topicdata name="UpdateInfo" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      <apidata name="UpdateInfo" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+      <elements>
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.ClientId" />
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.MeshId" />
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.NodeAddress" />
+        <element api="P:System.ServiceModel.PeerResolvers.UpdateInfo.RegistrationId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      </containers>
+      <file name="1f3f859b-1d4c-5e43-6c90-248b59795eb6" />
+    </api>
+    <api id="Overload:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.PeerResolvers.UpdateInfo" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+        <element api="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor(System.Guid,System.Guid,System.String,System.ServiceModel.PeerNodeAddress)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="2b47592f-677b-823e-31e9-c5703e0f532f" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="0e517118-fd4c-4fd6-b5dd-5fd70843c55d" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor(System.Guid,System.Guid,System.String,System.ServiceModel.PeerNodeAddress)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.PeerResolvers.UpdateInfo.#ctor" />
+      <parameters>
+        <parameter name="registrationId">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="client">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+        <parameter name="meshId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="address">
+          <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="1017896f-8fa1-7c2a-3d23-1859ba21cbab" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.UpdateInfo.ClientId">
+      <topicdata group="api" />
+      <apidata name="ClientId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="fd46603e-d38f-dba0-a5c0-a5e7f276ea73" />
+    </api>
+    <api id="M:System.ServiceModel.PeerResolvers.UpdateInfo.HasBody">
+      <topicdata group="api" />
+      <apidata name="HasBody" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="f2632bbe-6179-dfa7-408a-2ff4f34070db" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.UpdateInfo.MeshId">
+      <topicdata group="api" />
+      <apidata name="MeshId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MeshId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="6b1a6365-d3b7-7d2e-8d1f-ab089746e2a3" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.UpdateInfo.NodeAddress">
+      <topicdata group="api" />
+      <apidata name="NodeAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NodeAddress" />
+      <returns>
+        <type api="T:System.ServiceModel.PeerNodeAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="46f494a7-e80e-87e0-ca74-c097ebed067a" />
+    </api>
+    <api id="P:System.ServiceModel.PeerResolvers.UpdateInfo.RegistrationId">
+      <topicdata group="api" />
+      <apidata name="RegistrationId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RegistrationId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel" module="System.ServiceModel" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.PeerResolvers" />
+        <type api="T:System.ServiceModel.PeerResolvers.UpdateInfo" ref="true" />
+      </containers>
+      <file name="654befd4-60c0-ee1a-c3eb-a1549438a9c2" />
+    </api>
+  </apis>
+</reflection>

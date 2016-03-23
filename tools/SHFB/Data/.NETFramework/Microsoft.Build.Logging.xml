@@ -1,0 +1,2082 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Build">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Build.Logging">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Build.Logging" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+        <element api="T:Microsoft.Build.Logging.WriteHandler" />
+        <element api="T:Microsoft.Build.Logging.ColorSetter" />
+        <element api="T:Microsoft.Build.Logging.ColorResetter" />
+        <element api="T:Microsoft.Build.Logging.ConsoleLogger" />
+        <element api="T:Microsoft.Build.Logging.DistributedFileLogger" />
+        <element api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+        <element api="T:Microsoft.Build.Logging.LoggerDescription" />
+        <element api="T:Microsoft.Build.Logging.FileLogger" />
+      </elements>
+      <file name="214ee3a0-1009-3042-c4d1-3e0dcc258fac" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.ColorResetter">
+      <topicdata group="api" />
+      <apidata name="ColorResetter" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="3d1c6639-ae83-aaaf-ad58-cb5cb39cafd7" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.ColorSetter">
+      <topicdata group="api" />
+      <apidata name="ColorSetter" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="color">
+          <type api="T:System.ConsoleColor" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="0d1fda65-2100-dc56-b5ca-8bb87a1a4a29" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.ConfigurableForwardingLogger">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      <apidata name="ConfigurableForwardingLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Build.Framework.IForwardingLogger" ref="true" />
+        <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="69761deb-11e6-945c-21fb-eaed1cdf91af" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Logging.ConfigurableForwardingLogger">
+      <topicdata name="ConfigurableForwardingLogger" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      <apidata name="ConfigurableForwardingLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.#ctor" />
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.BuildEventRedirector" />
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.ForwardToCentralLogger(Microsoft.Build.Framework.BuildEventArgs)" />
+        <element api="Overload:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.NodeId" />
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.Parameters" />
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Shutdown" />
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.Verbosity" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      </containers>
+      <file name="041feb52-93b5-24ec-2cdd-785f462aa9ba" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Logging.ConfigurableForwardingLogger">
+      <topicdata name="ConfigurableForwardingLogger" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      <apidata name="ConfigurableForwardingLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.ForwardToCentralLogger(Microsoft.Build.Framework.BuildEventArgs)" />
+        <element api="Overload:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Shutdown" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      </containers>
+      <file name="9158f972-69d8-60f1-d603-9bfd979e74dc" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Logging.ConfigurableForwardingLogger">
+      <topicdata name="ConfigurableForwardingLogger" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      <apidata name="ConfigurableForwardingLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.BuildEventRedirector" />
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.NodeId" />
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.Parameters" />
+        <element api="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.Verbosity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      </containers>
+      <file name="bc9ce126-d28f-cb89-899c-9e95e2a0635d" />
+    </api>
+    <api id="Overload:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize">
+      <topicdata name="Initialize" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.ConfigurableForwardingLogger" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+        <element api="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="93741336-a5fc-d323-1121-05040e0ee8e6" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="00a4187a-db69-739b-e2c0-f8c5db655d78" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.BuildEventRedirector">
+      <topicdata group="api" />
+      <apidata name="BuildEventRedirector" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BuildEventRedirector" />
+      <setter name="set_BuildEventRedirector" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.IEventRedirector" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.IForwardingLogger.BuildEventRedirector">
+          <type api="T:Microsoft.Build.Framework.IForwardingLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="de8f661d-ea3b-bda3-b1f1-98c18007ff82" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.ForwardToCentralLogger(Microsoft.Build.Framework.BuildEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ForwardToCentralLogger" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.BuildEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="4ef48dbe-ada5-182a-3683-fb1582b4bd75" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="e3a7f88d-3d6d-5205-0a80-8ba3a94fb8a8" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.ConfigurableForwardingLogger.Initialize" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+        <parameter name="nodeCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.INodeLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+          <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="255ff89d-e3b9-c835-ec12-0efc1507e5ed" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.NodeId">
+      <topicdata group="api" />
+      <apidata name="NodeId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeId" />
+      <setter name="set_NodeId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.IForwardingLogger.NodeId">
+          <type api="T:Microsoft.Build.Framework.IForwardingLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="2b1d568b-1bae-399e-7600-572bb7817df1" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parameters" />
+      <setter name="set_Parameters" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.ILogger.Parameters">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="dea0c71e-adef-78df-6a64-81a0b8603e3b" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConfigurableForwardingLogger.Shutdown">
+      <topicdata group="api" />
+      <apidata name="Shutdown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Shutdown">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="850fb7d2-b60c-adf0-8e18-8ebf1139bb9e" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConfigurableForwardingLogger.Verbosity">
+      <topicdata group="api" />
+      <apidata name="Verbosity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Verbosity" />
+      <setter name="set_Verbosity" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.ILogger.Verbosity">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConfigurableForwardingLogger" ref="true" />
+      </containers>
+      <file name="c0fb637f-95e1-33ec-953c-b091bd434d7b" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.ConsoleLogger">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.ConsoleLogger" />
+      <apidata name="ConsoleLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Build.Logging.FileLogger" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="55c3791a-dc8f-396f-1a34-c247b971c1d7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Logging.ConsoleLogger">
+      <topicdata name="ConsoleLogger" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Logging.ConsoleLogger" />
+      <apidata name="ConsoleLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Build.Logging.ConsoleLogger.#ctor">
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.#ctor(Microsoft.Build.Framework.LoggerVerbosity)" />
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.#ctor(Microsoft.Build.Framework.LoggerVerbosity,Microsoft.Build.Logging.WriteHandler,Microsoft.Build.Logging.ColorSetter,Microsoft.Build.Logging.ColorResetter)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ApplyParameter(System.String,System.String)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildFinishedHandler(System.Object,Microsoft.Build.Framework.BuildFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildStartedHandler(System.Object,Microsoft.Build.Framework.BuildStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.CustomEventHandler(System.Object,Microsoft.Build.Framework.CustomBuildEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ErrorHandler(System.Object,Microsoft.Build.Framework.BuildErrorEventArgs)" />
+        <element api="Overload:Microsoft.Build.Logging.ConsoleLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.MessageHandler(System.Object,Microsoft.Build.Framework.BuildMessageEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Parameters" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectFinishedHandler(System.Object,Microsoft.Build.Framework.ProjectFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectStartedHandler(System.Object,Microsoft.Build.Framework.ProjectStartedEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.ShowSummary" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.Shutdown" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.SkipProjectStartedText" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetFinishedHandler(System.Object,Microsoft.Build.Framework.TargetFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetStartedHandler(System.Object,Microsoft.Build.Framework.TargetStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskFinishedHandler(System.Object,Microsoft.Build.Framework.TaskFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskStartedHandler(System.Object,Microsoft.Build.Framework.TaskStartedEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Verbosity" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.WarningHandler(System.Object,Microsoft.Build.Framework.BuildWarningEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.WriteHandler" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" />
+      </containers>
+      <file name="b01b1d11-afee-c8cd-1afb-3a6740cbd0ea" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Logging.ConsoleLogger">
+      <topicdata name="ConsoleLogger" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Logging.ConsoleLogger" />
+      <apidata name="ConsoleLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ApplyParameter(System.String,System.String)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildFinishedHandler(System.Object,Microsoft.Build.Framework.BuildFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildStartedHandler(System.Object,Microsoft.Build.Framework.BuildStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.CustomEventHandler(System.Object,Microsoft.Build.Framework.CustomBuildEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ErrorHandler(System.Object,Microsoft.Build.Framework.BuildErrorEventArgs)" />
+        <element api="Overload:Microsoft.Build.Logging.ConsoleLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.MessageHandler(System.Object,Microsoft.Build.Framework.BuildMessageEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectFinishedHandler(System.Object,Microsoft.Build.Framework.ProjectFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectStartedHandler(System.Object,Microsoft.Build.Framework.ProjectStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.Shutdown" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetFinishedHandler(System.Object,Microsoft.Build.Framework.TargetFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetStartedHandler(System.Object,Microsoft.Build.Framework.TargetStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskFinishedHandler(System.Object,Microsoft.Build.Framework.TaskFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskStartedHandler(System.Object,Microsoft.Build.Framework.TaskStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.WarningHandler(System.Object,Microsoft.Build.Framework.BuildWarningEventArgs)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" />
+      </containers>
+      <file name="a44543fa-99b8-1a4c-ab6f-3c7a1e4e5e2a" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Logging.ConsoleLogger">
+      <topicdata name="ConsoleLogger" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Logging.ConsoleLogger" />
+      <apidata name="ConsoleLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Parameters" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.ShowSummary" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.SkipProjectStartedText" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Verbosity" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.WriteHandler" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" />
+      </containers>
+      <file name="9a0c8603-0b50-221b-bc2a-805eb536cc35" />
+    </api>
+    <api id="Overload:Microsoft.Build.Logging.ConsoleLogger.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.ConsoleLogger" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.#ctor(Microsoft.Build.Framework.LoggerVerbosity)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.#ctor(Microsoft.Build.Framework.LoggerVerbosity,Microsoft.Build.Logging.WriteHandler,Microsoft.Build.Logging.ColorSetter,Microsoft.Build.Logging.ColorResetter)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="e1c0c7f7-6483-507a-8a16-c0af4e853301" />
+    </api>
+    <api id="Overload:Microsoft.Build.Logging.ConsoleLogger.Initialize">
+      <topicdata name="Initialize" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.ConsoleLogger" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="be2809a3-1169-852b-d987-2169a3b84ccf" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="7fc611bb-6550-5755-73ea-a8e157ef0725" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.#ctor(Microsoft.Build.Framework.LoggerVerbosity)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <parameters>
+        <parameter name="verbosity">
+          <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="2b63c9cd-1578-dec3-3a95-751e14f54cbe" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.#ctor(Microsoft.Build.Framework.LoggerVerbosity,Microsoft.Build.Logging.WriteHandler,Microsoft.Build.Logging.ColorSetter,Microsoft.Build.Logging.ColorResetter)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Build.Logging.ConsoleLogger.#ctor" />
+      <parameters>
+        <parameter name="verbosity">
+          <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+        </parameter>
+        <parameter name="write">
+          <type api="T:Microsoft.Build.Logging.WriteHandler" ref="true" />
+        </parameter>
+        <parameter name="colorSet">
+          <type api="T:Microsoft.Build.Logging.ColorSetter" ref="true" />
+        </parameter>
+        <parameter name="colorReset">
+          <type api="T:Microsoft.Build.Logging.ColorResetter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="d2f886a1-1c9d-38cf-2303-d9fd707c1bee" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.ApplyParameter(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ApplyParameter" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="parameterName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="parameterValue">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="39fd77e1-2de9-260c-0375-02895b91aedb" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.BuildFinishedHandler(System.Object,Microsoft.Build.Framework.BuildFinishedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="BuildFinishedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.BuildFinishedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="a470523a-49eb-b9a8-55d7-d5b8a22bd089" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.BuildStartedHandler(System.Object,Microsoft.Build.Framework.BuildStartedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="BuildStartedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.BuildStartedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="edc2527d-fb4a-6e7e-8798-f37380b441be" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.CustomEventHandler(System.Object,Microsoft.Build.Framework.CustomBuildEventArgs)">
+      <topicdata group="api" />
+      <apidata name="CustomEventHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.CustomBuildEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="419124aa-9a91-92a6-8e80-d435cd1ec912" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.ErrorHandler(System.Object,Microsoft.Build.Framework.BuildErrorEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ErrorHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.BuildErrorEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="23936a39-d789-7508-4658-cf7aeda41596" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.ConsoleLogger.Initialize" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="e5f0a699-4720-b9c5-2a01-0ebea9a41ea0" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.ConsoleLogger.Initialize" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+        <parameter name="nodeCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.INodeLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+          <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="01f70f85-d476-046c-2c68-f34d880ed09e" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.MessageHandler(System.Object,Microsoft.Build.Framework.BuildMessageEventArgs)">
+      <topicdata group="api" />
+      <apidata name="MessageHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.BuildMessageEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="f7c7e1b8-a78a-3cb5-0e66-012653f2f459" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConsoleLogger.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parameters" />
+      <setter name="set_Parameters" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.ILogger.Parameters">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="5d449321-2d2d-3150-a3c5-35afba1a23d5" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.ProjectFinishedHandler(System.Object,Microsoft.Build.Framework.ProjectFinishedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ProjectFinishedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.ProjectFinishedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="59d7e6ed-18c9-1b41-fed8-a1c84bfa4ed5" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.ProjectStartedHandler(System.Object,Microsoft.Build.Framework.ProjectStartedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ProjectStartedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.ProjectStartedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="7ffedcb2-3e04-382a-2be1-dd68ad852149" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConsoleLogger.ShowSummary">
+      <topicdata group="api" />
+      <apidata name="ShowSummary" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ShowSummary" />
+      <setter name="set_ShowSummary" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="caf7249c-4cd0-ad16-4fe2-5a70e4add8b8" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.Shutdown">
+      <topicdata group="api" />
+      <apidata name="Shutdown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Shutdown">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="7449a72c-56ea-723c-1379-1a1fb5bbb499" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConsoleLogger.SkipProjectStartedText">
+      <topicdata group="api" />
+      <apidata name="SkipProjectStartedText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SkipProjectStartedText" />
+      <setter name="set_SkipProjectStartedText" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="4315ef64-626a-bb85-422a-503152ff0a47" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.TargetFinishedHandler(System.Object,Microsoft.Build.Framework.TargetFinishedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="TargetFinishedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.TargetFinishedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="67e8c3dc-440b-9729-763d-9b08a45f4171" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.TargetStartedHandler(System.Object,Microsoft.Build.Framework.TargetStartedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="TargetStartedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.TargetStartedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="f8e99a82-0398-acd7-bac1-9b03e191eea0" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.TaskFinishedHandler(System.Object,Microsoft.Build.Framework.TaskFinishedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="TaskFinishedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.TaskFinishedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="fc4c933e-b016-79e7-961f-8da8e56b4b6b" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.TaskStartedHandler(System.Object,Microsoft.Build.Framework.TaskStartedEventArgs)">
+      <topicdata group="api" />
+      <apidata name="TaskStartedHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.TaskStartedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="9e571671-ae6c-3eb4-a28d-e6773855201e" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConsoleLogger.Verbosity">
+      <topicdata group="api" />
+      <apidata name="Verbosity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Verbosity" />
+      <setter name="set_Verbosity" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.ILogger.Verbosity">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="db58e318-e65d-9a41-ea96-3217157213a5" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ConsoleLogger.WarningHandler(System.Object,Microsoft.Build.Framework.BuildWarningEventArgs)">
+      <topicdata group="api" />
+      <apidata name="WarningHandler" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.Build.Framework.BuildWarningEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="75f1ca91-63a2-bbc2-7ec8-bf26955ed797" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ConsoleLogger.WriteHandler">
+      <topicdata group="api" />
+      <apidata name="WriteHandler" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_WriteHandler" />
+      <setter name="set_WriteHandler" />
+      <returns>
+        <type api="T:Microsoft.Build.Logging.WriteHandler" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+      </containers>
+      <file name="95ae84e6-a1e5-4ac0-cea1-a24abd76a0e8" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.DistributedFileLogger">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.DistributedFileLogger" />
+      <apidata name="DistributedFileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.DistributedFileLogger.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Build.Framework.IForwardingLogger" ref="true" />
+        <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="65348b82-a7cd-1363-7c95-c77fb5fc72bf" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Logging.DistributedFileLogger">
+      <topicdata name="DistributedFileLogger" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Logging.DistributedFileLogger" />
+      <apidata name="DistributedFileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.DistributedFileLogger.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.DistributedFileLogger.#ctor" />
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.BuildEventRedirector" />
+        <element api="Overload:Microsoft.Build.Logging.DistributedFileLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.NodeId" />
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.Parameters" />
+        <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Shutdown" />
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.Verbosity" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" />
+      </containers>
+      <file name="00a53aff-9f69-7418-4cb4-ace470e71b8d" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Logging.DistributedFileLogger">
+      <topicdata name="DistributedFileLogger" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Logging.DistributedFileLogger" />
+      <apidata name="DistributedFileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.DistributedFileLogger.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Build.Logging.DistributedFileLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Shutdown" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" />
+      </containers>
+      <file name="2ff57ab0-15df-9ca0-27be-e839e8c6ba4a" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Logging.DistributedFileLogger">
+      <topicdata name="DistributedFileLogger" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Logging.DistributedFileLogger" />
+      <apidata name="DistributedFileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.DistributedFileLogger.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.BuildEventRedirector" />
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.NodeId" />
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.Parameters" />
+        <element api="P:Microsoft.Build.Logging.DistributedFileLogger.Verbosity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" />
+      </containers>
+      <file name="f6ebd369-61a5-57ef-3ab3-250969cd6a5f" />
+    </api>
+    <api id="Overload:Microsoft.Build.Logging.DistributedFileLogger.Initialize">
+      <topicdata name="Initialize" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.DistributedFileLogger" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+        <element api="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="d70da288-b748-0873-172b-b7553375b8bc" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.DistributedFileLogger.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="81b24681-5a4c-8cd2-c4db-4e9358d3c647" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.DistributedFileLogger.BuildEventRedirector">
+      <topicdata group="api" />
+      <apidata name="BuildEventRedirector" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BuildEventRedirector" />
+      <setter name="set_BuildEventRedirector" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.IEventRedirector" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.IForwardingLogger.BuildEventRedirector">
+          <type api="T:Microsoft.Build.Framework.IForwardingLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="228fba22-1514-7032-b5d0-e6c25214dc3c" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.DistributedFileLogger.Initialize" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="570eeaec-8360-25cd-8505-5253a5ae6f01" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.DistributedFileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.DistributedFileLogger.Initialize" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+        <parameter name="nodeCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.INodeLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+          <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="9557f5a9-0530-a593-2526-7d9abea7fecf" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.DistributedFileLogger.NodeId">
+      <topicdata group="api" />
+      <apidata name="NodeId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NodeId" />
+      <setter name="set_NodeId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.IForwardingLogger.NodeId">
+          <type api="T:Microsoft.Build.Framework.IForwardingLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="60209bf1-6637-dd95-8c06-9efb3b8032b0" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.DistributedFileLogger.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Parameters" />
+      <setter name="set_Parameters" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.ILogger.Parameters">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="26b7533f-5684-2f09-2f17-8c39517c56fa" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.DistributedFileLogger.Shutdown">
+      <topicdata group="api" />
+      <apidata name="Shutdown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Shutdown">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="6bbe89ef-17dc-8ae0-476b-24b632b0d29c" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.DistributedFileLogger.Verbosity">
+      <topicdata group="api" />
+      <apidata name="Verbosity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Verbosity" />
+      <setter name="set_Verbosity" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Build.Framework.ILogger.Verbosity">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.DistributedFileLogger" ref="true" />
+      </containers>
+      <file name="e60abdab-13ab-49c6-9a5a-34b5f6710d16" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.FileLogger">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.FileLogger" />
+      <apidata name="FileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.FileLogger.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="6e666c78-0281-c953-95e4-49cebe16d55c" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Logging.FileLogger">
+      <topicdata name="FileLogger" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Logging.FileLogger" />
+      <apidata name="FileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.FileLogger.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ApplyParameter(System.String,System.String)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildFinishedHandler(System.Object,Microsoft.Build.Framework.BuildFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildStartedHandler(System.Object,Microsoft.Build.Framework.BuildStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.CustomEventHandler(System.Object,Microsoft.Build.Framework.CustomBuildEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ErrorHandler(System.Object,Microsoft.Build.Framework.BuildErrorEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.MessageHandler(System.Object,Microsoft.Build.Framework.BuildMessageEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Parameters" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectFinishedHandler(System.Object,Microsoft.Build.Framework.ProjectFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectStartedHandler(System.Object,Microsoft.Build.Framework.ProjectStartedEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.ShowSummary" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.SkipProjectStartedText" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetFinishedHandler(System.Object,Microsoft.Build.Framework.TargetFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetStartedHandler(System.Object,Microsoft.Build.Framework.TargetStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskFinishedHandler(System.Object,Microsoft.Build.Framework.TaskFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskStartedHandler(System.Object,Microsoft.Build.Framework.TaskStartedEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Verbosity" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.WarningHandler(System.Object,Microsoft.Build.Framework.BuildWarningEventArgs)" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.WriteHandler" />
+        <element api="M:Microsoft.Build.Logging.FileLogger.#ctor" />
+        <element api="Overload:Microsoft.Build.Logging.FileLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.FileLogger.Shutdown" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" />
+      </containers>
+      <file name="7202156a-40c6-8741-2f75-594a6016244b" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Logging.FileLogger">
+      <topicdata name="FileLogger" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Logging.FileLogger" />
+      <apidata name="FileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.FileLogger.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ApplyParameter(System.String,System.String)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildFinishedHandler(System.Object,Microsoft.Build.Framework.BuildFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.BuildStartedHandler(System.Object,Microsoft.Build.Framework.BuildStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.CustomEventHandler(System.Object,Microsoft.Build.Framework.CustomBuildEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ErrorHandler(System.Object,Microsoft.Build.Framework.BuildErrorEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.MessageHandler(System.Object,Microsoft.Build.Framework.BuildMessageEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectFinishedHandler(System.Object,Microsoft.Build.Framework.ProjectFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.ProjectStartedHandler(System.Object,Microsoft.Build.Framework.ProjectStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetFinishedHandler(System.Object,Microsoft.Build.Framework.TargetFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TargetStartedHandler(System.Object,Microsoft.Build.Framework.TargetStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskFinishedHandler(System.Object,Microsoft.Build.Framework.TaskFinishedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.TaskStartedHandler(System.Object,Microsoft.Build.Framework.TaskStartedEventArgs)" />
+        <element api="M:Microsoft.Build.Logging.ConsoleLogger.WarningHandler(System.Object,Microsoft.Build.Framework.BuildWarningEventArgs)" />
+        <element api="Overload:Microsoft.Build.Logging.FileLogger.Initialize">
+          <element api="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+          <element api="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.Build.Logging.FileLogger.Shutdown" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" />
+      </containers>
+      <file name="2f3bce3b-c15d-f811-1a35-e37758d64e40" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Logging.FileLogger">
+      <topicdata name="FileLogger" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Logging.FileLogger" />
+      <apidata name="FileLogger" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Build.Logging.FileLogger.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Parameters" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.ShowSummary" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.SkipProjectStartedText" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.Verbosity" />
+        <element api="P:Microsoft.Build.Logging.ConsoleLogger.WriteHandler" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" />
+      </containers>
+      <file name="abc722ba-75ad-70f8-5ffd-52c68c9cbe1c" />
+    </api>
+    <api id="Overload:Microsoft.Build.Logging.FileLogger.Initialize">
+      <topicdata name="Initialize" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.FileLogger" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource)" />
+        <element api="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" ref="true" />
+      </containers>
+      <file name="1377e345-6f2f-2a55-5360-ad7dc830661f" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.FileLogger.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" ref="true" />
+      </containers>
+      <file name="dad75cc9-8277-f992-e90c-4ada4b97d607" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.FileLogger.Initialize" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+          <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Initialize(Microsoft.Build.Framework.IEventSource)">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" ref="true" />
+      </containers>
+      <file name="4440d62d-3293-40ff-464e-43b604ab17fd" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.FileLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Build.Logging.FileLogger.Initialize" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Build.Logging.ConsoleLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+          <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="eventSource">
+          <type api="T:Microsoft.Build.Framework.IEventSource" ref="true" />
+        </parameter>
+        <parameter name="nodeCount">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.INodeLogger.Initialize(Microsoft.Build.Framework.IEventSource,System.Int32)">
+          <type api="T:Microsoft.Build.Framework.INodeLogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" ref="true" />
+      </containers>
+      <file name="13d94911-24f6-1eea-21bb-a91505303350" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.FileLogger.Shutdown">
+      <topicdata group="api" />
+      <apidata name="Shutdown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Build.Logging.ConsoleLogger.Shutdown">
+          <type api="T:Microsoft.Build.Logging.ConsoleLogger" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:Microsoft.Build.Framework.ILogger.Shutdown">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.FileLogger" ref="true" />
+      </containers>
+      <file name="320e4e2c-e567-3233-1c3c-a0581015f41a" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.ForwardingLoggerRecord">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      <apidata name="ForwardingLoggerRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="a6721540-29b9-f84c-1f65-7a1a093e05f9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Logging.ForwardingLoggerRecord">
+      <topicdata name="ForwardingLoggerRecord" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      <apidata name="ForwardingLoggerRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.ForwardingLoggerRecord.#ctor(Microsoft.Build.Framework.ILogger,Microsoft.Build.Logging.LoggerDescription)" />
+        <element api="P:Microsoft.Build.Logging.ForwardingLoggerRecord.CentralLogger" />
+        <element api="P:Microsoft.Build.Logging.ForwardingLoggerRecord.ForwardingLoggerDescription" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      </containers>
+      <file name="3b464ad6-ae52-7d92-0069-de6399b31b36" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Logging.ForwardingLoggerRecord">
+      <topicdata name="ForwardingLoggerRecord" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      <apidata name="ForwardingLoggerRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      </containers>
+      <file name="2f76008f-07dc-5ac9-6d58-c5f8d855b22f" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Logging.ForwardingLoggerRecord">
+      <topicdata name="ForwardingLoggerRecord" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      <apidata name="ForwardingLoggerRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Build.Logging.ForwardingLoggerRecord.CentralLogger" />
+        <element api="P:Microsoft.Build.Logging.ForwardingLoggerRecord.ForwardingLoggerDescription" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" />
+      </containers>
+      <file name="2b620d49-c9b9-00e1-d313-abbbd11a6781" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.ForwardingLoggerRecord.#ctor(Microsoft.Build.Framework.ILogger,Microsoft.Build.Logging.LoggerDescription)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="centralLogger">
+          <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+        </parameter>
+        <parameter name="forwardingLoggerDescription">
+          <type api="T:Microsoft.Build.Logging.LoggerDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" ref="true" />
+      </containers>
+      <file name="83e75b16-81da-46a5-432c-b43996a86462" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ForwardingLoggerRecord.CentralLogger">
+      <topicdata group="api" />
+      <apidata name="CentralLogger" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CentralLogger" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" ref="true" />
+      </containers>
+      <file name="25e68ca7-4823-c7a0-a3d6-1c6c962760e4" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.ForwardingLoggerRecord.ForwardingLoggerDescription">
+      <topicdata group="api" />
+      <apidata name="ForwardingLoggerDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ForwardingLoggerDescription" />
+      <returns>
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.ForwardingLoggerRecord" ref="true" />
+      </containers>
+      <file name="367aaf03-f07b-5574-ef23-885599716dda" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.LoggerDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Build.Logging.LoggerDescription" />
+      <apidata name="LoggerDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="61921da7-fef8-cf0e-20ee-012ddd949966" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Build.Logging.LoggerDescription">
+      <topicdata name="LoggerDescription" group="list" subgroup="members" typeTopicId="T:Microsoft.Build.Logging.LoggerDescription" />
+      <apidata name="LoggerDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.LoggerDescription.#ctor(System.String,System.String,System.String,System.String,Microsoft.Build.Framework.LoggerVerbosity)" />
+        <element api="M:Microsoft.Build.Logging.LoggerDescription.CreateLogger" />
+        <element api="P:Microsoft.Build.Logging.LoggerDescription.LoggerSwitchParameters" />
+        <element api="P:Microsoft.Build.Logging.LoggerDescription.Verbosity" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" />
+      </containers>
+      <file name="5b3f0c8f-232f-e38a-4174-315aecd617fb" />
+    </api>
+    <api id="Methods.T:Microsoft.Build.Logging.LoggerDescription">
+      <topicdata name="LoggerDescription" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Build.Logging.LoggerDescription" />
+      <apidata name="LoggerDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Build.Logging.LoggerDescription.CreateLogger" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" />
+      </containers>
+      <file name="53d68fc0-bdb1-9506-111e-f20900d28b35" />
+    </api>
+    <api id="Properties.T:Microsoft.Build.Logging.LoggerDescription">
+      <topicdata name="LoggerDescription" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Build.Logging.LoggerDescription" />
+      <apidata name="LoggerDescription" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Build.Logging.LoggerDescription.LoggerSwitchParameters" />
+        <element api="P:Microsoft.Build.Logging.LoggerDescription.Verbosity" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" />
+      </containers>
+      <file name="3efaff0a-da18-e2df-f2c6-6a3fc5e18abd" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.LoggerDescription.#ctor(System.String,System.String,System.String,System.String,Microsoft.Build.Framework.LoggerVerbosity)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="loggerClassName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="loggerAssemblyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="loggerAssemblyFile">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="loggerSwitchParameters">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="verbosity">
+          <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" ref="true" />
+      </containers>
+      <file name="57132f4e-24cd-cecd-92bf-2c5f7d7045f6" />
+    </api>
+    <api id="M:Microsoft.Build.Logging.LoggerDescription.CreateLogger">
+      <topicdata group="api" />
+      <apidata name="CreateLogger" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.ILogger" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" ref="true" />
+      </containers>
+      <file name="5c7eedb1-4917-b00e-4a09-b606ae4cd4cd" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.LoggerDescription.LoggerSwitchParameters">
+      <topicdata group="api" />
+      <apidata name="LoggerSwitchParameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LoggerSwitchParameters" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" ref="true" />
+      </containers>
+      <file name="ef8d21b6-67d7-c781-a720-6db02243dfcf" />
+    </api>
+    <api id="P:Microsoft.Build.Logging.LoggerDescription.Verbosity">
+      <topicdata group="api" />
+      <apidata name="Verbosity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Verbosity" />
+      <returns>
+        <type api="T:Microsoft.Build.Framework.LoggerVerbosity" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+        <type api="T:Microsoft.Build.Logging.LoggerDescription" ref="true" />
+      </containers>
+      <file name="bee49803-fd32-f4aa-4df4-ed157a56e285" />
+    </api>
+    <api id="T:Microsoft.Build.Logging.WriteHandler">
+      <topicdata group="api" />
+      <apidata name="WriteHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Build" module="Microsoft.Build" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:Microsoft.Build.Logging" />
+      </containers>
+      <file name="7958bf99-6908-3ff8-ab4a-8ed0b8e481a1" />
+    </api>
+  </apis>
+</reflection>

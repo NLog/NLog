@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Globalization.Collation">
+      <topicdata group="api" />
+      <apidata name="Windows.Globalization.Collation" group="namespace" />
+      <elements>
+        <element api="T:Windows.Globalization.Collation.CharacterGrouping" />
+        <element api="T:Windows.Globalization.Collation.CharacterGroupings" />
+      </elements>
+      <file name="523e0a0e-aca6-1ea8-4034-39358274b07e" />
+    </api>
+    <api id="T:Windows.Globalization.Collation.CharacterGrouping">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Globalization.Collation.CharacterGrouping" />
+      <apidata name="CharacterGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Globalization.Collation.ICharacterGrouping" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5f1cd33d-373d-3429-6b8a-407f89ea1eaf" />
+    </api>
+    <api id="AllMembers.T:Windows.Globalization.Collation.CharacterGrouping">
+      <topicdata name="CharacterGrouping" group="list" subgroup="members" typeTopicId="T:Windows.Globalization.Collation.CharacterGrouping" />
+      <apidata name="CharacterGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Globalization.Collation.CharacterGrouping.First" />
+        <element api="P:Windows.Globalization.Collation.CharacterGrouping.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGrouping" />
+      </containers>
+      <file name="a5d385c1-fdcc-637e-1951-12bfac4cb906" />
+    </api>
+    <api id="Methods.T:Windows.Globalization.Collation.CharacterGrouping">
+      <topicdata name="CharacterGrouping" group="list" subgroup="Methods" typeTopicId="T:Windows.Globalization.Collation.CharacterGrouping" />
+      <apidata name="CharacterGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGrouping" />
+      </containers>
+      <file name="d71f1bdd-f330-b420-edf4-5d1fe9ce8340" />
+    </api>
+    <api id="Properties.T:Windows.Globalization.Collation.CharacterGrouping">
+      <topicdata name="CharacterGrouping" group="list" subgroup="Properties" typeTopicId="T:Windows.Globalization.Collation.CharacterGrouping" />
+      <apidata name="CharacterGrouping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Globalization.Collation.CharacterGrouping.First" />
+        <element api="P:Windows.Globalization.Collation.CharacterGrouping.Label" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGrouping" />
+      </containers>
+      <file name="94a3c39e-f9d6-5beb-f3ba-b1e771c4caeb" />
+    </api>
+    <api id="P:Windows.Globalization.Collation.CharacterGrouping.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_First" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+      </containers>
+      <file name="fea5cbe2-33db-fec9-4aa1-7b4e2bb4584d" />
+    </api>
+    <api id="P:Windows.Globalization.Collation.CharacterGrouping.Label">
+      <topicdata group="api" />
+      <apidata name="Label" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Label" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+      </containers>
+      <file name="9284de7d-9c4a-023f-18da-963805eda725" />
+    </api>
+    <api id="T:Windows.Globalization.Collation.CharacterGroupings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Globalization.Collation.CharacterGroupings" />
+      <apidata name="CharacterGroupings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Globalization.Collation.CharacterGroupings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Globalization.Collation.ICharacterGroupings" ref="true" />
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+          </specialization>
+        </type>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+          </specialization>
+        </type>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9380448d-7f6c-010d-58f8-58b45905d12c" />
+    </api>
+    <api id="AllMembers.T:Windows.Globalization.Collation.CharacterGroupings">
+      <topicdata name="CharacterGroupings" group="list" subgroup="members" typeTopicId="T:Windows.Globalization.Collation.CharacterGroupings" />
+      <apidata name="CharacterGroupings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Globalization.Collation.CharacterGroupings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.#ctor" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.First" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.GetAt(System.UInt32)" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.GetMany(System.UInt32,Windows.Globalization.Collation.CharacterGrouping[])" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.IndexOf(Windows.Globalization.Collation.CharacterGrouping,System.UInt32@)" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.Lookup(System.String)" />
+        <element api="P:Windows.Globalization.Collation.CharacterGroupings.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" />
+      </containers>
+      <file name="2928b438-60e3-04fb-da2f-735dd6b1becd" />
+    </api>
+    <api id="Methods.T:Windows.Globalization.Collation.CharacterGroupings">
+      <topicdata name="CharacterGroupings" group="list" subgroup="Methods" typeTopicId="T:Windows.Globalization.Collation.CharacterGroupings" />
+      <apidata name="CharacterGroupings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Globalization.Collation.CharacterGroupings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.First" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.GetAt(System.UInt32)" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.GetMany(System.UInt32,Windows.Globalization.Collation.CharacterGrouping[])" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.IndexOf(Windows.Globalization.Collation.CharacterGrouping,System.UInt32@)" />
+        <element api="M:Windows.Globalization.Collation.CharacterGroupings.Lookup(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" />
+      </containers>
+      <file name="dd441ac7-f99f-db53-88f6-8887eb8540c5" />
+    </api>
+    <api id="Properties.T:Windows.Globalization.Collation.CharacterGroupings">
+      <topicdata name="CharacterGroupings" group="list" subgroup="Properties" typeTopicId="T:Windows.Globalization.Collation.CharacterGroupings" />
+      <apidata name="CharacterGroupings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Globalization.Collation.CharacterGroupings.#ctor" />
+      <elements>
+        <element api="P:Windows.Globalization.Collation.CharacterGroupings.Size" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" />
+      </containers>
+      <file name="c7948512-25f7-8eb0-932b-3cd4f7f5802d" />
+    </api>
+    <api id="M:Windows.Globalization.Collation.CharacterGroupings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="f244b35b-37c0-7d4a-e05f-a71cf12a8507" />
+    </api>
+    <api id="M:Windows.Globalization.Collation.CharacterGroupings.First">
+      <topicdata group="api" />
+      <apidata name="First" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IIterator`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IIterable`1.First">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="6e3a7a09-f177-6c39-cd12-333b31a80601" />
+    </api>
+    <api id="M:Windows.Globalization.Collation.CharacterGroupings.GetAt(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GetAt" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="index" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetAt(System.UInt32)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="e91c5c87-5adf-cbc0-8ec9-f8778317789a" />
+    </api>
+    <api id="M:Windows.Globalization.Collation.CharacterGroupings.GetMany(System.UInt32,Windows.Globalization.Collation.CharacterGrouping[])">
+      <topicdata group="api" />
+      <apidata name="GetMany" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="startIndex" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="items" out="true">
+          <arrayOf rank="1">
+            <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.GetMany(System.UInt32,`0[])">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="6c998bf0-ec66-5661-483f-df519ba01870" />
+    </api>
+    <api id="M:Windows.Globalization.Collation.CharacterGroupings.IndexOf(Windows.Globalization.Collation.CharacterGrouping,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="IndexOf" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+        </parameter>
+        <parameter name="index" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Windows.Foundation.Collections.IVectorView`1.IndexOf(`0,System.UInt32@)">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="ff414103-0806-1319-1e89-19eac06e49c5" />
+    </api>
+    <api id="M:Windows.Globalization.Collation.CharacterGroupings.Lookup(System.String)">
+      <topicdata group="api" />
+      <apidata name="Lookup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="text" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="21208d81-db97-1490-da92-2195c82c0620" />
+    </api>
+    <api id="P:Windows.Globalization.Collation.CharacterGroupings.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Size" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.Foundation.Collections.IVectorView`1.Size">
+          <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+            <specialization>
+              <type api="T:Windows.Globalization.Collation.CharacterGrouping" ref="true" />
+            </specialization>
+          </type>
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Globalization.Collation" />
+        <type api="T:Windows.Globalization.Collation.CharacterGroupings" ref="true" />
+      </containers>
+      <file name="716c557c-0b27-514f-fc63-fb005c83e0ea" />
+    </api>
+  </apis>
+</reflection>

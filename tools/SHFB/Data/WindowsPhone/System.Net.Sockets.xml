@@ -1,0 +1,4099 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Net">
+      <assemblydata version="2.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.dll</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.Sockets">
+      <topicdata group="api" />
+      <apidata name="System.Net.Sockets" group="namespace" />
+      <elements>
+        <element api="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+        <element api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+        <element api="T:System.Net.Sockets.SocketException" />
+        <element api="T:System.Net.Sockets.AddressFamily" />
+        <element api="T:System.Net.Sockets.Socket" />
+        <element api="T:System.Net.Sockets.ProtocolType" />
+        <element api="T:System.Net.Sockets.SocketAsyncOperation" />
+        <element api="T:System.Net.Sockets.SocketAsyncEventArgs" />
+        <element api="T:System.Net.Sockets.SocketError" />
+        <element api="T:System.Net.Sockets.SocketShutdown" />
+        <element api="T:System.Net.Sockets.SocketType" />
+      </elements>
+      <file name="3f61e628-bdac-fe51-166d-c2bf17bc4dc7" />
+    </api>
+    <api id="T:System.Net.Sockets.AddressFamily">
+      <topicdata group="api" />
+      <apidata name="AddressFamily" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.AddressFamily.Unknown" />
+        <element api="F:System.Net.Sockets.AddressFamily.Unspecified" />
+        <element api="F:System.Net.Sockets.AddressFamily.InterNetwork" />
+        <element api="F:System.Net.Sockets.AddressFamily.InterNetworkV6" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="e7803233-34e8-64ab-cc05-bd49870d31b1" />
+    </api>
+    <api id="F:System.Net.Sockets.AddressFamily.InterNetwork">
+      <topicdata group="api" notopic="" />
+      <apidata name="InterNetwork" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </containers>
+      <file name="1ecf5e11-71ed-ebb2-f00c-9f6b06555033" />
+    </api>
+    <api id="F:System.Net.Sockets.AddressFamily.InterNetworkV6">
+      <topicdata group="api" notopic="" />
+      <apidata name="InterNetworkV6" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </containers>
+      <file name="002425c4-9d72-8762-b98c-a4b371da5a88" />
+    </api>
+    <api id="F:System.Net.Sockets.AddressFamily.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </containers>
+      <file name="a120838e-e616-2a7a-8b36-5ee37e9a1b52" />
+    </api>
+    <api id="F:System.Net.Sockets.AddressFamily.Unspecified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </containers>
+      <file name="3d23db75-57a7-9c5f-5e34-9f1dd258f336" />
+    </api>
+    <api id="T:System.Net.Sockets.ProtocolType">
+      <topicdata group="api" />
+      <apidata name="ProtocolType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.ProtocolType.Tcp" />
+        <element api="F:System.Net.Sockets.ProtocolType.Udp" />
+        <element api="F:System.Net.Sockets.ProtocolType.Unspecified" />
+        <element api="F:System.Net.Sockets.ProtocolType.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="fd56dc1f-4eb7-dc77-5acf-c08714005476" />
+    </api>
+    <api id="F:System.Net.Sockets.ProtocolType.Tcp">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tcp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </containers>
+      <file name="e9ec0ae3-d091-b83c-06ad-9f510829abc7" />
+    </api>
+    <api id="F:System.Net.Sockets.ProtocolType.Udp">
+      <topicdata group="api" notopic="" />
+      <apidata name="Udp" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </containers>
+      <file name="cfeeccb6-bcea-e89c-de92-49bd2c612d2a" />
+    </api>
+    <api id="F:System.Net.Sockets.ProtocolType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </containers>
+      <file name="c3ceda10-3fd6-73b0-9f94-340cc79ede69" />
+    </api>
+    <api id="F:System.Net.Sockets.ProtocolType.Unspecified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unspecified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </containers>
+      <file name="289ea518-e991-286a-43c9-a0f9fbdbed8a" />
+    </api>
+    <api id="T:System.Net.Sockets.Socket">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Sockets.Socket" />
+      <apidata name="Socket" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="a40740c8-b398-5f8b-eba0-95c46ffb02c2" />
+    </api>
+    <api id="AllMembers.T:System.Net.Sockets.Socket">
+      <topicdata name="Socket" group="list" subgroup="members" typeTopicId="T:System.Net.Sockets.Socket" />
+      <apidata name="Socket" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.SetNetworkPreference(System.Net.Sockets.Socket,Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics)" source="extension">
+          <apidata name="SetNetworkPreference" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="preference">
+              <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.SetNetworkRequirement(System.Net.Sockets.Socket,Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics)" source="extension">
+          <apidata name="SetNetworkRequirement" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="requirement">
+              <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.GetCurrentNetworkInterface(System.Net.Sockets.Socket)" source="extension">
+          <apidata name="GetCurrentNetworkInterface" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.AssociateToNetworkInterface(System.Net.Sockets.Socket,Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceInfo)" source="extension">
+          <apidata name="AssociateToNetworkInterface" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="networkInterface">
+              <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceInfo" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Net.Sockets.Socket.#ctor(System.Net.Sockets.AddressFamily,System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType)" />
+        <element api="M:System.Net.Sockets.Socket.AcceptAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="P:System.Net.Sockets.Socket.AddressFamily" />
+        <element api="M:System.Net.Sockets.Socket.Bind(System.Net.EndPoint)" />
+        <element api="M:System.Net.Sockets.Socket.CancelConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="Overload:System.Net.Sockets.Socket.Close">
+          <element api="M:System.Net.Sockets.Socket.Close" />
+          <element api="M:System.Net.Sockets.Socket.Close(System.Int32)" />
+        </element>
+        <element api="Overload:System.Net.Sockets.Socket.ConnectAsync">
+          <element api="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+          <element api="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType,System.Net.Sockets.SocketAsyncEventArgs)" />
+        </element>
+        <element api="P:System.Net.Sockets.Socket.Connected" />
+        <element api="Overload:System.Net.Sockets.Socket.Dispose">
+          <element api="M:System.Net.Sockets.Socket.Dispose" />
+          <element api="M:System.Net.Sockets.Socket.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Net.Sockets.Socket.Finalize" />
+        <element api="M:System.Net.Sockets.Socket.Listen(System.Int32)" />
+        <element api="P:System.Net.Sockets.Socket.LocalEndPoint" />
+        <element api="P:System.Net.Sockets.Socket.NoDelay" />
+        <element api="P:System.Net.Sockets.Socket.OSSupportsIPv4" />
+        <element api="P:System.Net.Sockets.Socket.OSSupportsIPv6" />
+        <element api="P:System.Net.Sockets.Socket.ProtocolType" />
+        <element api="M:System.Net.Sockets.Socket.ReceiveAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="P:System.Net.Sockets.Socket.ReceiveBufferSize" />
+        <element api="M:System.Net.Sockets.Socket.ReceiveFromAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="P:System.Net.Sockets.Socket.RemoteEndPoint" />
+        <element api="M:System.Net.Sockets.Socket.SendAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="P:System.Net.Sockets.Socket.SendBufferSize" />
+        <element api="M:System.Net.Sockets.Socket.SendToAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.Shutdown(System.Net.Sockets.SocketShutdown)" />
+        <element api="P:System.Net.Sockets.Socket.Ttl" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" />
+      </containers>
+      <file name="a40adcb1-8e56-a48d-f129-318ce84a5663" />
+    </api>
+    <api id="Methods.T:System.Net.Sockets.Socket">
+      <topicdata name="Socket" group="list" subgroup="Methods" typeTopicId="T:System.Net.Sockets.Socket" />
+      <apidata name="Socket" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.SetNetworkPreference(System.Net.Sockets.Socket,Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics)" source="extension">
+          <apidata name="SetNetworkPreference" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="preference">
+              <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.SetNetworkRequirement(System.Net.Sockets.Socket,Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics)" source="extension">
+          <apidata name="SetNetworkRequirement" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="requirement">
+              <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkSelectionCharacteristics" ref="false" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.GetCurrentNetworkInterface(System.Net.Sockets.Socket)" source="extension">
+          <apidata name="GetCurrentNetworkInterface" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceInfo" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Net.NetworkInformation.SocketExtensions.AssociateToNetworkInterface(System.Net.Sockets.Socket,Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceInfo)" source="extension">
+          <apidata name="AssociateToNetworkInterface" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <parameters>
+            <parameter name="networkInterface">
+              <type api="T:Microsoft.Phone.Net.NetworkInformation.NetworkInterfaceInfo" ref="true" />
+            </parameter>
+          </parameters>
+          <containers>
+            <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Net.NetworkInformation" />
+            <type api="T:Microsoft.Phone.Net.NetworkInformation.SocketExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Net.Sockets.Socket.AcceptAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.Bind(System.Net.EndPoint)" />
+        <element api="M:System.Net.Sockets.Socket.CancelConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="Overload:System.Net.Sockets.Socket.Close">
+          <element api="M:System.Net.Sockets.Socket.Close" />
+          <element api="M:System.Net.Sockets.Socket.Close(System.Int32)" />
+        </element>
+        <element api="Overload:System.Net.Sockets.Socket.ConnectAsync">
+          <element api="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+          <element api="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType,System.Net.Sockets.SocketAsyncEventArgs)" />
+        </element>
+        <element api="Overload:System.Net.Sockets.Socket.Dispose">
+          <element api="M:System.Net.Sockets.Socket.Dispose" />
+          <element api="M:System.Net.Sockets.Socket.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Net.Sockets.Socket.Finalize" />
+        <element api="M:System.Net.Sockets.Socket.Listen(System.Int32)" />
+        <element api="M:System.Net.Sockets.Socket.ReceiveAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.ReceiveFromAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.SendAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.SendToAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.Shutdown(System.Net.Sockets.SocketShutdown)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" />
+      </containers>
+      <file name="d3864a81-aa95-e682-5d38-957aa389a2ec" />
+    </api>
+    <api id="Properties.T:System.Net.Sockets.Socket">
+      <topicdata name="Socket" group="list" subgroup="Properties" typeTopicId="T:System.Net.Sockets.Socket" />
+      <apidata name="Socket" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Net.Sockets.Socket.AddressFamily" />
+        <element api="P:System.Net.Sockets.Socket.Connected" />
+        <element api="P:System.Net.Sockets.Socket.LocalEndPoint" />
+        <element api="P:System.Net.Sockets.Socket.NoDelay" />
+        <element api="P:System.Net.Sockets.Socket.OSSupportsIPv4" />
+        <element api="P:System.Net.Sockets.Socket.OSSupportsIPv6" />
+        <element api="P:System.Net.Sockets.Socket.ProtocolType" />
+        <element api="P:System.Net.Sockets.Socket.ReceiveBufferSize" />
+        <element api="P:System.Net.Sockets.Socket.RemoteEndPoint" />
+        <element api="P:System.Net.Sockets.Socket.SendBufferSize" />
+        <element api="P:System.Net.Sockets.Socket.Ttl" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" />
+      </containers>
+      <file name="23a92461-d53d-1ef7-0f79-78a2e392a216" />
+    </api>
+    <api id="Overload:System.Net.Sockets.Socket.Close">
+      <topicdata name="Close" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Sockets.Socket" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Sockets.Socket.Close" />
+        <element api="M:System.Net.Sockets.Socket.Close(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="146394c4-1c90-9d3c-750a-bfaf85fad794" />
+    </api>
+    <api id="Overload:System.Net.Sockets.Socket.ConnectAsync">
+      <topicdata name="ConnectAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Sockets.Socket" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType,System.Net.Sockets.SocketAsyncEventArgs)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="0785ea84-1e09-3a51-1295-f0f252d899ca" />
+    </api>
+    <api id="Overload:System.Net.Sockets.Socket.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Sockets.Socket" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Sockets.Socket.Dispose" />
+        <element api="M:System.Net.Sockets.Socket.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="d43711fc-94ea-7d38-df4a-90c7ed8d706b" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.#ctor(System.Net.Sockets.AddressFamily,System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="addressFamily">
+          <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+        </parameter>
+        <parameter name="socketType">
+          <type api="T:System.Net.Sockets.SocketType" ref="false" />
+        </parameter>
+        <parameter name="protocolType">
+          <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="1a530b8a-670b-2e86-c5c1-8bdc754d4bd1" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.AcceptAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="AcceptAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="bb57111c-b5a5-ecd6-2f30-8c623291d2f0" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.AddressFamily">
+      <topicdata group="api" />
+      <apidata name="AddressFamily" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AddressFamily" />
+      <returns>
+        <type api="T:System.Net.Sockets.AddressFamily" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="76764bfc-75a7-fd21-b6c6-c5f056e06001" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Bind(System.Net.EndPoint)">
+      <topicdata group="api" />
+      <apidata name="Bind" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="localEP">
+          <type api="T:System.Net.EndPoint" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="9de9f5a7-ef6b-8521-c124-28ade04002ed" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.CancelConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="CancelConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="443e9abc-a096-f56f-0569-3e6d2e61187b" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Sockets.Socket.Close" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="54316ee1-179d-6530-4a1f-a31304ee860f" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Close(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Sockets.Socket.Close" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timeout">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="d193d057-d893-d3c3-bda4-55c0ddf8b8b0" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Sockets.Socket.ConnectAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="ae522cf6-146d-b3a9-3f8b-377799b5dd80" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.ConnectAsync(System.Net.Sockets.SocketType,System.Net.Sockets.ProtocolType,System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ConnectAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Net.Sockets.Socket.ConnectAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="socketType">
+          <type api="T:System.Net.Sockets.SocketType" ref="false" />
+        </parameter>
+        <parameter name="protocolType">
+          <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="c46b1d6c-aef5-b3c3-cc00-68964c457d9f" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.Connected">
+      <topicdata group="api" />
+      <apidata name="Connected" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Connected" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="cb053393-5e5e-27fb-4f87-32df31f94e44" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Sockets.Socket.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="dbae8ba3-5981-f1c4-c226-e3d8ad5183de" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Net.Sockets.Socket.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="68cfb779-1bc0-9ebf-6d0e-d28defd3a0bc" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="45309f68-73ed-767b-3186-fc21b61dc514" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Listen(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Listen" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="backlog">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="9d73afda-a206-cefc-10fd-26afd828d672" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.LocalEndPoint">
+      <topicdata group="api" />
+      <apidata name="LocalEndPoint" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LocalEndPoint" />
+      <returns>
+        <type api="T:System.Net.EndPoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="82e682fd-47aa-75a9-4576-cd7887b448e4" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.NoDelay">
+      <topicdata group="api" />
+      <apidata name="NoDelay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NoDelay" />
+      <setter name="set_NoDelay" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="10d5a54f-1dcc-ecc1-64ff-eabd0f527768" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.OSSupportsIPv4">
+      <topicdata group="api" />
+      <apidata name="OSSupportsIPv4" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OSSupportsIPv4" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="2c2a541d-9d46-63e4-f6fa-794085fb994c" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.OSSupportsIPv6">
+      <topicdata group="api" />
+      <apidata name="OSSupportsIPv6" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OSSupportsIPv6" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="cdc86568-3b90-61e0-b20f-00627f3feb2a" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.ProtocolType">
+      <topicdata group="api" />
+      <apidata name="ProtocolType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProtocolType" />
+      <returns>
+        <type api="T:System.Net.Sockets.ProtocolType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="8fe62eae-a7ad-80e8-7ae4-cc8fecebbe14" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.ReceiveAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ReceiveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="12e44a19-fb17-74af-6e71-8ae202e50235" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.ReceiveBufferSize">
+      <topicdata group="api" />
+      <apidata name="ReceiveBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReceiveBufferSize" />
+      <setter name="set_ReceiveBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="92a767e7-3681-764c-b12c-e4cb82419b7c" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.ReceiveFromAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="ReceiveFromAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="deccc8d0-4c47-eb8a-dd53-780830c5e505" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.RemoteEndPoint">
+      <topicdata group="api" />
+      <apidata name="RemoteEndPoint" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RemoteEndPoint" />
+      <returns>
+        <type api="T:System.Net.EndPoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="5e6117cf-e33c-536d-ddb6-1b10eb678ef5" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.SendAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="SendAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="74832e10-8a33-cb49-417f-843959da333c" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.SendBufferSize">
+      <topicdata group="api" />
+      <apidata name="SendBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SendBufferSize" />
+      <setter name="set_SendBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="29a6adc5-08be-5bcf-a812-1645b655a035" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.SendToAsync(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="SendToAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="9be77736-b7b2-f15a-d835-11fba981ba2d" />
+    </api>
+    <api id="M:System.Net.Sockets.Socket.Shutdown(System.Net.Sockets.SocketShutdown)">
+      <topicdata group="api" />
+      <apidata name="Shutdown" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="how">
+          <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="1110c62b-7b21-4476-b150-904866cf4579" />
+    </api>
+    <api id="P:System.Net.Sockets.Socket.Ttl">
+      <topicdata group="api" />
+      <apidata name="Ttl" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Ttl" />
+      <setter name="set_Ttl" />
+      <returns>
+        <type api="T:System.Int16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </containers>
+      <file name="904022cb-2d3f-0f75-5dc5-42411855a5a5" />
+    </api>
+    <api id="T:System.Net.Sockets.SocketAsyncEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Sockets.SocketAsyncEventArgs" />
+      <apidata name="SocketAsyncEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="aabd7835-e917-d575-bf8f-beeff53a70e7" />
+    </api>
+    <api id="AllMembers.T:System.Net.Sockets.SocketAsyncEventArgs">
+      <topicdata name="SocketAsyncEventArgs" group="list" subgroup="members" typeTopicId="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      <apidata name="SocketAsyncEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.AcceptSocket" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.Buffer" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.BufferList" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.BytesTransferred" />
+        <element api="E:System.Net.Sockets.SocketAsyncEventArgs.Completed" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.ConnectByNameError" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.ConnectSocket" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.Count" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.Dispose" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.Finalize" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.LastOperation" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.Offset" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.OnCompleted(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.RemoteEndPoint" />
+        <element api="Overload:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer">
+          <element api="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Int32,System.Int32)" />
+          <element api="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.SocketError" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.UserToken" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      </containers>
+      <file name="c8fe6809-fda6-d552-2deb-bffb710eacc9" />
+    </api>
+    <api id="Methods.T:System.Net.Sockets.SocketAsyncEventArgs">
+      <topicdata name="SocketAsyncEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      <apidata name="SocketAsyncEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.Dispose" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.Finalize" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.OnCompleted(System.Net.Sockets.SocketAsyncEventArgs)" />
+        <element api="Overload:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer">
+          <element api="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Int32,System.Int32)" />
+          <element api="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Byte[],System.Int32,System.Int32)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      </containers>
+      <file name="0acf8c9f-a7e5-961d-414c-74c4edfc1eb0" />
+    </api>
+    <api id="Properties.T:System.Net.Sockets.SocketAsyncEventArgs">
+      <topicdata name="SocketAsyncEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      <apidata name="SocketAsyncEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor" />
+      <elements>
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.AcceptSocket" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.Buffer" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.BufferList" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.BytesTransferred" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.ConnectByNameError" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.ConnectSocket" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.Count" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.LastOperation" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.Offset" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.RemoteEndPoint" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.SocketError" />
+        <element api="P:System.Net.Sockets.SocketAsyncEventArgs.UserToken" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      </containers>
+      <file name="57ff1efd-b13b-3c45-06b9-c95e7d609ce5" />
+    </api>
+    <api id="Events.T:System.Net.Sockets.SocketAsyncEventArgs">
+      <topicdata name="SocketAsyncEventArgs" group="list" subgroup="Events" typeTopicId="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      <apidata name="SocketAsyncEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor" />
+      <elements>
+        <element api="E:System.Net.Sockets.SocketAsyncEventArgs.Completed" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" />
+      </containers>
+      <file name="baaa48a6-84f9-2a5d-c235-2c0e00fc9dc8" />
+    </api>
+    <api id="Overload:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer">
+      <topicdata name="SetBuffer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Sockets.SocketAsyncEventArgs" />
+      <apidata name="SetBuffer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Int32,System.Int32)" />
+        <element api="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Byte[],System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="b01e026b-8526-9c87-6534-6b6ed9f4269c" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketAsyncEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="cfec92d4-c71a-374f-9d24-7b2609559d71" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.AcceptSocket">
+      <topicdata group="api" />
+      <apidata name="AcceptSocket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AcceptSocket" />
+      <setter name="set_AcceptSocket" />
+      <returns>
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="74b8618d-094a-6eaa-f740-6e4c1c9aa679" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.Buffer">
+      <topicdata group="api" />
+      <apidata name="Buffer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Buffer" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="d93897b8-0033-88aa-d8b9-1c425ed14af4" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.BufferList">
+      <topicdata group="api" />
+      <apidata name="BufferList" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BufferList" />
+      <setter name="set_BufferList" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.ArraySegment`1" ref="false">
+              <specialization>
+                <type api="T:System.Byte" ref="false" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="89f270a2-0d73-073a-8665-cba4fe0971f3" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.BytesTransferred">
+      <topicdata group="api" />
+      <apidata name="BytesTransferred" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BytesTransferred" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="910e878e-c7fd-cffd-819e-27c2ccced95d" />
+    </api>
+    <api id="E:System.Net.Sockets.SocketAsyncEventArgs.Completed">
+      <topicdata group="api" />
+      <apidata name="Completed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Completed" />
+      <remover name="remove_Completed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="16d69f3b-db79-837d-5e3a-29d3523dd121" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.ConnectByNameError">
+      <topicdata group="api" />
+      <apidata name="ConnectByNameError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ConnectByNameError" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="bc98f3b3-8119-32a4-bf49-479dc6886a6e" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.ConnectSocket">
+      <topicdata group="api" />
+      <apidata name="ConnectSocket" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ConnectSocket" />
+      <returns>
+        <type api="T:System.Net.Sockets.Socket" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="d876923e-d9cf-8839-66be-e0f5bb47625b" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="cbc5c35f-914a-9c58-9307-8bdaa3be1745" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketAsyncEventArgs.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="c2b00d18-3f26-f2cf-d20d-9b99b179619e" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketAsyncEventArgs.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="5af1fb36-02b9-40b2-cdb2-672f40390fd2" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.LastOperation">
+      <topicdata group="api" />
+      <apidata name="LastOperation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LastOperation" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="2d774fdb-5ad6-49b3-ba81-6c41262f1899" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.Offset">
+      <topicdata group="api" />
+      <apidata name="Offset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Offset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="070be52a-8c49-0ab2-961e-830ebc8f23da" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketAsyncEventArgs.OnCompleted(System.Net.Sockets.SocketAsyncEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnCompleted" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="fb4ffce4-9f91-0dd4-c2c8-5bef4590b30d" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.RemoteEndPoint">
+      <topicdata group="api" />
+      <apidata name="RemoteEndPoint" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RemoteEndPoint" />
+      <setter name="set_RemoteEndPoint" />
+      <returns>
+        <type api="T:System.Net.EndPoint" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="f42854e0-9924-e07e-6e1f-d6e36effcc02" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Byte[],System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="ab2549a3-b1e0-439b-6b76-09cca1cf9286" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetBuffer" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Net.Sockets.SocketAsyncEventArgs.SetBuffer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="1d8c8cf1-0c65-6f43-613c-32c4f8ad9d7b" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.SocketError">
+      <topicdata group="api" />
+      <apidata name="SocketError" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SocketError" />
+      <setter name="set_SocketError" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="8bc1752b-0121-9224-8489-b9eadf515c19" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketAsyncEventArgs.UserToken">
+      <topicdata group="api" />
+      <apidata name="UserToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_UserToken" />
+      <setter name="set_UserToken" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncEventArgs" ref="true" />
+      </containers>
+      <file name="ae159bb8-549f-f424-d974-7c757827e3ef" />
+    </api>
+    <api id="T:System.Net.Sockets.SocketAsyncOperation">
+      <topicdata group="api" />
+      <apidata name="SocketAsyncOperation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.None" />
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.Accept" />
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.Connect" />
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.Receive" />
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.ReceiveFrom" />
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.Send" />
+        <element api="F:System.Net.Sockets.SocketAsyncOperation.SendTo" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="979cc236-b7aa-e3d3-e5e1-81d0d4e5d5a4" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.Accept">
+      <topicdata group="api" notopic="" />
+      <apidata name="Accept" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="07c84e63-3308-ba8f-e188-c360cbd85f54" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.Connect">
+      <topicdata group="api" notopic="" />
+      <apidata name="Connect" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="b4e4e132-461b-a6eb-cdd0-a88fe09d0a1d" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="a28fe731-59de-af22-1629-b7d55bab83a9" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.Receive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Receive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="bbb47144-d1e9-4295-c0ee-e1ad9d4680bc" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.ReceiveFrom">
+      <topicdata group="api" notopic="" />
+      <apidata name="ReceiveFrom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="520db5cb-0c1c-9099-de21-35035b6c2fb0" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.Send">
+      <topicdata group="api" notopic="" />
+      <apidata name="Send" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="d1a95554-e5f4-e7ee-a8d7-314ac465ea51" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketAsyncOperation.SendTo">
+      <topicdata group="api" notopic="" />
+      <apidata name="SendTo" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketAsyncOperation" ref="false" />
+      </containers>
+      <file name="90e09c74-baa2-c249-855d-33f998d23b22" />
+    </api>
+    <api id="T:System.Net.Sockets.SocketError">
+      <topicdata group="api" />
+      <apidata name="SocketError" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.SocketError.Success" />
+        <element api="F:System.Net.Sockets.SocketError.SocketError" />
+        <element api="F:System.Net.Sockets.SocketError.Interrupted" />
+        <element api="F:System.Net.Sockets.SocketError.AccessDenied" />
+        <element api="F:System.Net.Sockets.SocketError.Fault" />
+        <element api="F:System.Net.Sockets.SocketError.InvalidArgument" />
+        <element api="F:System.Net.Sockets.SocketError.TooManyOpenSockets" />
+        <element api="F:System.Net.Sockets.SocketError.WouldBlock" />
+        <element api="F:System.Net.Sockets.SocketError.InProgress" />
+        <element api="F:System.Net.Sockets.SocketError.AlreadyInProgress" />
+        <element api="F:System.Net.Sockets.SocketError.NotSocket" />
+        <element api="F:System.Net.Sockets.SocketError.DestinationAddressRequired" />
+        <element api="F:System.Net.Sockets.SocketError.MessageSize" />
+        <element api="F:System.Net.Sockets.SocketError.ProtocolType" />
+        <element api="F:System.Net.Sockets.SocketError.ProtocolOption" />
+        <element api="F:System.Net.Sockets.SocketError.ProtocolNotSupported" />
+        <element api="F:System.Net.Sockets.SocketError.SocketNotSupported" />
+        <element api="F:System.Net.Sockets.SocketError.OperationNotSupported" />
+        <element api="F:System.Net.Sockets.SocketError.ProtocolFamilyNotSupported" />
+        <element api="F:System.Net.Sockets.SocketError.AddressFamilyNotSupported" />
+        <element api="F:System.Net.Sockets.SocketError.AddressAlreadyInUse" />
+        <element api="F:System.Net.Sockets.SocketError.AddressNotAvailable" />
+        <element api="F:System.Net.Sockets.SocketError.NetworkDown" />
+        <element api="F:System.Net.Sockets.SocketError.NetworkUnreachable" />
+        <element api="F:System.Net.Sockets.SocketError.NetworkReset" />
+        <element api="F:System.Net.Sockets.SocketError.ConnectionAborted" />
+        <element api="F:System.Net.Sockets.SocketError.ConnectionReset" />
+        <element api="F:System.Net.Sockets.SocketError.NoBufferSpaceAvailable" />
+        <element api="F:System.Net.Sockets.SocketError.IsConnected" />
+        <element api="F:System.Net.Sockets.SocketError.NotConnected" />
+        <element api="F:System.Net.Sockets.SocketError.Shutdown" />
+        <element api="F:System.Net.Sockets.SocketError.TimedOut" />
+        <element api="F:System.Net.Sockets.SocketError.ConnectionRefused" />
+        <element api="F:System.Net.Sockets.SocketError.HostDown" />
+        <element api="F:System.Net.Sockets.SocketError.HostUnreachable" />
+        <element api="F:System.Net.Sockets.SocketError.ProcessLimit" />
+        <element api="F:System.Net.Sockets.SocketError.SystemNotReady" />
+        <element api="F:System.Net.Sockets.SocketError.VersionNotSupported" />
+        <element api="F:System.Net.Sockets.SocketError.NotInitialized" />
+        <element api="F:System.Net.Sockets.SocketError.Disconnecting" />
+        <element api="F:System.Net.Sockets.SocketError.TypeNotFound" />
+        <element api="F:System.Net.Sockets.SocketError.HostNotFound" />
+        <element api="F:System.Net.Sockets.SocketError.TryAgain" />
+        <element api="F:System.Net.Sockets.SocketError.NoRecovery" />
+        <element api="F:System.Net.Sockets.SocketError.NoData" />
+        <element api="F:System.Net.Sockets.SocketError.IOPending" />
+        <element api="F:System.Net.Sockets.SocketError.OperationAborted" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="d57546cb-a2a1-47c8-fbd5-12926e530663" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.AccessDenied">
+      <topicdata group="api" notopic="" />
+      <apidata name="AccessDenied" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10013</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="02ab3bd0-2a40-0ce0-5b12-74c4e08d244c" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.AddressAlreadyInUse">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddressAlreadyInUse" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10048</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="000a1858-e43b-a54a-70e4-f42e5611ecd9" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.AddressFamilyNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddressFamilyNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10047</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="6d08ad52-04b1-21fe-65fc-ba1317c29b6c" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.AddressNotAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="AddressNotAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10049</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="79de6737-050e-9e9f-da7f-5a3cae04bced" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.AlreadyInProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="AlreadyInProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10037</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="66694e4d-2ad5-70af-68e9-d3f33030bea3" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ConnectionAborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectionAborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10053</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="b0a63686-529c-6d01-d502-cda0b53f172c" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ConnectionRefused">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectionRefused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10061</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="4efbe2b6-17fe-f2bb-d003-b43b6becdaef" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ConnectionReset">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConnectionReset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10054</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="bafb94ed-d4ee-7196-f90e-c83dd957ff63" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.DestinationAddressRequired">
+      <topicdata group="api" notopic="" />
+      <apidata name="DestinationAddressRequired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10039</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="4c8e1e0a-7cff-3145-d383-60be64288836" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.Disconnecting">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disconnecting" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10101</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="a6c6bfb6-b0bf-2141-c7d1-fe5d39f30ec7" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.Fault">
+      <topicdata group="api" notopic="" />
+      <apidata name="Fault" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10014</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="38c725af-1082-5584-2e99-81f7790f2a48" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.HostDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="HostDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10064</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="30e71f37-dd33-073a-cf4a-6512351e017f" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.HostNotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="HostNotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>11001</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="9434b7b2-8a6b-1617-7245-baf38d29b221" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.HostUnreachable">
+      <topicdata group="api" notopic="" />
+      <apidata name="HostUnreachable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10065</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="e4128a2d-0111-e191-76d8-5ba6b6d7195f" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.InProgress">
+      <topicdata group="api" notopic="" />
+      <apidata name="InProgress" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10036</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="a969be86-07d7-a8db-99eb-9ea7e5a7d99a" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.Interrupted">
+      <topicdata group="api" notopic="" />
+      <apidata name="Interrupted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10004</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="2bb56e0b-a094-1d26-ee4c-e0fcefc45651" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.InvalidArgument">
+      <topicdata group="api" notopic="" />
+      <apidata name="InvalidArgument" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10022</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="8f76e7fd-5b1b-353a-f76c-b4cdd5534e87" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.IOPending">
+      <topicdata group="api" notopic="" />
+      <apidata name="IOPending" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>997</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="02d5006d-2a12-97bd-b463-2d0ab7b5962f" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.IsConnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="IsConnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10056</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="b1c22f8a-9ce5-0cc3-e8d6-02376126c31c" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.MessageSize">
+      <topicdata group="api" notopic="" />
+      <apidata name="MessageSize" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10040</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="20d80909-a2b2-57a2-cea0-e4cf6311c3d2" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NetworkDown">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkDown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10050</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="5e9aa7be-13d5-85ca-d132-ff9392f8099d" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NetworkReset">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkReset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10052</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="390239af-850a-c88f-22ad-801cfe981034" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NetworkUnreachable">
+      <topicdata group="api" notopic="" />
+      <apidata name="NetworkUnreachable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10051</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="3e0cc9a3-9bbf-2532-c17a-9cb2f6df8216" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NoBufferSpaceAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoBufferSpaceAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10055</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="995dd173-5998-6e38-f4f5-d9d4dbf73905" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NoData">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>11004</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="5c20a094-97bf-ebe3-dfc6-50bc705c725a" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NoRecovery">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoRecovery" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>11003</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="b135af64-09da-7a42-a8c4-b5112326eace" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NotConnected">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotConnected" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10057</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="718695ac-b5cb-6508-519b-8a57562a5b04" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NotInitialized">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotInitialized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10093</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="d0480318-9ccd-fc61-3334-4038f5970606" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.NotSocket">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotSocket" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10038</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="d489fba7-157a-890f-a878-0ca0022ea6ad" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.OperationAborted">
+      <topicdata group="api" notopic="" />
+      <apidata name="OperationAborted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>995</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="dfcb344a-1609-9212-28e6-329f96486ce8" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.OperationNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="OperationNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10045</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="7127c013-705d-5ce2-4d58-17cfeeef9083" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ProcessLimit">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProcessLimit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10067</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="6a1420a5-9926-b8ce-d887-2232fd00eb7c" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ProtocolFamilyNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtocolFamilyNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10046</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="a8a17cde-bf4d-9a78-9db4-706a8d28cbff" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ProtocolNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtocolNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10043</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="0424868f-3b7f-9777-51c9-38d258d30743" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ProtocolOption">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtocolOption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10042</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="cb85ff54-2f46-3ddf-5624-3b0e7408c086" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.ProtocolType">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProtocolType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10041</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="f0bd9100-4ea4-4f9d-0565-6f95812e9534" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.Shutdown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shutdown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10058</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="54e176f5-a39d-be51-f186-52f1c9dd9a80" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.SocketError">
+      <topicdata group="api" notopic="" />
+      <apidata name="SocketError" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="df6541e4-399f-40f5-e598-18f0316b0ea6" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.SocketNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="SocketNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10044</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="8c0d9a52-0f11-bcb6-6ea4-90a2401cb4b3" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.Success">
+      <topicdata group="api" notopic="" />
+      <apidata name="Success" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="876c6238-a773-d88c-f7ba-bf4fdfe1944c" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.SystemNotReady">
+      <topicdata group="api" notopic="" />
+      <apidata name="SystemNotReady" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10091</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="a8aeac55-1e16-46c8-1d92-fb448e5a130f" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.TimedOut">
+      <topicdata group="api" notopic="" />
+      <apidata name="TimedOut" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10060</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="ea5c7634-bc5a-b7df-b0ca-894c43489628" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.TooManyOpenSockets">
+      <topicdata group="api" notopic="" />
+      <apidata name="TooManyOpenSockets" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10024</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="279b3bf7-0147-fd6f-13a6-a9ba5fee0648" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.TryAgain">
+      <topicdata group="api" notopic="" />
+      <apidata name="TryAgain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>11002</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="dd923996-c590-3fb4-4973-8561f9c5d960" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.TypeNotFound">
+      <topicdata group="api" notopic="" />
+      <apidata name="TypeNotFound" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10109</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="aaf7f4e7-31a6-241d-e9af-512e399e3b84" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.VersionNotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="VersionNotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10092</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="4abc201a-a410-68d6-1058-da8d230199e2" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketError.WouldBlock">
+      <topicdata group="api" notopic="" />
+      <apidata name="WouldBlock" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <value>10035</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </containers>
+      <file name="0c591dd8-1cc8-245d-697b-79e29518ab38" />
+    </api>
+    <api id="T:System.Net.Sockets.SocketException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Sockets.SocketException" />
+      <apidata name="SocketException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="8e9eedfe-f2d7-2702-6f07-241e98b3d401" />
+    </api>
+    <api id="AllMembers.T:System.Net.Sockets.SocketException">
+      <topicdata name="SocketException" group="list" subgroup="members" typeTopicId="T:System.Net.Sockets.SocketException" />
+      <apidata name="SocketException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:System.Net.Sockets.SocketException.#ctor">
+          <element api="M:System.Net.Sockets.SocketException.#ctor" />
+          <element api="M:System.Net.Sockets.SocketException.#ctor(System.Int32)" />
+        </element>
+        <element api="P:System.Net.Sockets.SocketException.ErrorCode" />
+        <element api="P:System.Net.Sockets.SocketException.SocketErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" />
+      </containers>
+      <file name="2ab072c1-6333-2e23-37c1-760579266722" />
+    </api>
+    <api id="Methods.T:System.Net.Sockets.SocketException">
+      <topicdata name="SocketException" group="list" subgroup="Methods" typeTopicId="T:System.Net.Sockets.SocketException" />
+      <apidata name="SocketException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" />
+      </containers>
+      <file name="4ed0f4c8-09ba-478c-c6c0-b540460fafbd" />
+    </api>
+    <api id="Properties.T:System.Net.Sockets.SocketException">
+      <topicdata name="SocketException" group="list" subgroup="Properties" typeTopicId="T:System.Net.Sockets.SocketException" />
+      <apidata name="SocketException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Sockets.SocketException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Net.Sockets.SocketException.ErrorCode" />
+        <element api="P:System.Net.Sockets.SocketException.SocketErrorCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" />
+      </containers>
+      <file name="9d3a0b6e-27e0-a20e-9920-ce2dd656bc39" />
+    </api>
+    <api id="Overload:System.Net.Sockets.SocketException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Sockets.SocketException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.Sockets.SocketException.#ctor" />
+        <element api="M:System.Net.Sockets.SocketException.#ctor(System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" ref="true" />
+      </containers>
+      <file name="7cf565ce-325a-c18b-a727-4912080c52b9" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Sockets.SocketException.#ctor" />
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" ref="true" />
+      </containers>
+      <file name="51b2280e-f52f-2e19-f16a-602a5e6dd6fa" />
+    </api>
+    <api id="M:System.Net.Sockets.SocketException.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Sockets.SocketException.#ctor" />
+      <parameters>
+        <parameter name="errorCode">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" ref="true" />
+      </containers>
+      <file name="d0fd94d0-2e99-e169-e2a2-96e17a1f41a1" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketException.ErrorCode">
+      <topicdata group="api" />
+      <apidata name="ErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorCode" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" ref="true" />
+      </containers>
+      <file name="581d7619-0a26-760b-1e04-9a55650b6943" />
+    </api>
+    <api id="P:System.Net.Sockets.SocketException.SocketErrorCode">
+      <topicdata group="api" />
+      <apidata name="SocketErrorCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SocketErrorCode" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketError" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketException" ref="true" />
+      </containers>
+      <file name="a75df06b-79c1-369e-82ba-2be3712f69a9" />
+    </api>
+    <api id="T:System.Net.Sockets.SocketShutdown">
+      <topicdata group="api" />
+      <apidata name="SocketShutdown" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.SocketShutdown.Receive" />
+        <element api="F:System.Net.Sockets.SocketShutdown.Send" />
+        <element api="F:System.Net.Sockets.SocketShutdown.Both" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="8f9cee54-9848-a9f6-c73f-b5baa885add3" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketShutdown.Both">
+      <topicdata group="api" notopic="" />
+      <apidata name="Both" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+      </containers>
+      <file name="c0dda258-a097-e582-99ff-20ce2971f720" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketShutdown.Receive">
+      <topicdata group="api" notopic="" />
+      <apidata name="Receive" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+      </containers>
+      <file name="be3a54ec-0d8f-7a56-77d2-e79505cc8de4" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketShutdown.Send">
+      <topicdata group="api" notopic="" />
+      <apidata name="Send" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketShutdown" ref="false" />
+      </containers>
+      <file name="6de3d2ef-103d-09d4-6168-2bcb0503b57c" />
+    </api>
+    <api id="T:System.Net.Sockets.SocketType">
+      <topicdata group="api" />
+      <apidata name="SocketType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Sockets.SocketType.Stream" />
+        <element api="F:System.Net.Sockets.SocketType.Dgram" />
+        <element api="F:System.Net.Sockets.SocketType.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="f13fa92d-dd8f-aa24-ff8f-2f02e70aa297" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketType.Dgram">
+      <topicdata group="api" notopic="" />
+      <apidata name="Dgram" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketType" ref="false" />
+      </containers>
+      <file name="bda23f3e-24c1-ba41-dc72-a0b4d510f049" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketType.Stream">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stream" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketType" ref="false" />
+      </containers>
+      <file name="25652fb2-7cee-221d-fb23-399e08a79288" />
+    </api>
+    <api id="F:System.Net.Sockets.SocketType.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Sockets.SocketType" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.SocketType" ref="false" />
+      </containers>
+      <file name="ec7b7a82-5b70-56f4-7c2f-fe17b1edfe70" />
+    </api>
+    <api id="T:System.Net.Sockets.UdpAnySourceMulticastClient">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      <apidata name="UdpAnySourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="fb0d42cf-2ff3-cc27-e218-1c2340401dac" />
+    </api>
+    <api id="AllMembers.T:System.Net.Sockets.UdpAnySourceMulticastClient">
+      <topicdata name="UdpAnySourceMulticastClient" group="list" subgroup="members" typeTopicId="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      <apidata name="UdpAnySourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.#ctor(System.Net.IPAddress,System.Int32)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginReceiveFromGroup(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginSendTo(System.Byte[],System.Int32,System.Int32,System.Net.IPEndPoint,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginSendToGroup(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BlockSource(System.Net.IPAddress)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.Dispose" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndJoinGroup(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndReceiveFromGroup(System.IAsyncResult,System.Net.IPEndPoint@)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndSendTo(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndSendToGroup(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.Finalize" />
+        <element api="P:System.Net.Sockets.UdpAnySourceMulticastClient.MulticastLoopback" />
+        <element api="P:System.Net.Sockets.UdpAnySourceMulticastClient.ReceiveBufferSize" />
+        <element api="P:System.Net.Sockets.UdpAnySourceMulticastClient.SendBufferSize" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.UnblockSource(System.Net.IPAddress)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      </containers>
+      <file name="44f2b26a-7d41-1113-b805-c71bf2e20a5e" />
+    </api>
+    <api id="Methods.T:System.Net.Sockets.UdpAnySourceMulticastClient">
+      <topicdata name="UdpAnySourceMulticastClient" group="list" subgroup="Methods" typeTopicId="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      <apidata name="UdpAnySourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginReceiveFromGroup(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginSendTo(System.Byte[],System.Int32,System.Int32,System.Net.IPEndPoint,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginSendToGroup(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.BlockSource(System.Net.IPAddress)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.Dispose" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndJoinGroup(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndReceiveFromGroup(System.IAsyncResult,System.Net.IPEndPoint@)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndSendTo(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndSendToGroup(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.Finalize" />
+        <element api="M:System.Net.Sockets.UdpAnySourceMulticastClient.UnblockSource(System.Net.IPAddress)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      </containers>
+      <file name="19832844-6e79-d577-f836-8b4382ecf846" />
+    </api>
+    <api id="Properties.T:System.Net.Sockets.UdpAnySourceMulticastClient">
+      <topicdata name="UdpAnySourceMulticastClient" group="list" subgroup="Properties" typeTopicId="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      <apidata name="UdpAnySourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Net.Sockets.UdpAnySourceMulticastClient.MulticastLoopback" />
+        <element api="P:System.Net.Sockets.UdpAnySourceMulticastClient.ReceiveBufferSize" />
+        <element api="P:System.Net.Sockets.UdpAnySourceMulticastClient.SendBufferSize" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" />
+      </containers>
+      <file name="5d0871df-01dc-d5a7-2911-f229a33298e0" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.#ctor(System.Net.IPAddress,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="groupAddress">
+          <type api="T:System.Net.IPAddress" ref="true" />
+        </parameter>
+        <parameter name="localPort">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="73511d7e-3ae8-0aae-aa9c-d57fa837ad49" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginJoinGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="2bde9fd4-d485-2790-3c38-e5108f283246" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginReceiveFromGroup(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginReceiveFromGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="9a9606f4-62b4-7508-a993-6ed4f72c54e2" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginSendTo(System.Byte[],System.Int32,System.Int32,System.Net.IPEndPoint,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginSendTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="remoteEndPoint">
+          <type api="T:System.Net.IPEndPoint" ref="true" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="319a9646-8375-7938-a0c1-5635f4c61d57" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.BeginSendToGroup(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginSendToGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="52d269f9-c412-ac75-b533-b3f2d00525f6" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.BlockSource(System.Net.IPAddress)">
+      <topicdata group="api" />
+      <apidata name="BlockSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceAddress">
+          <type api="T:System.Net.IPAddress" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="97c7bb70-4623-de0a-d457-ce1c00fd83da" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="151656af-d6a5-fad2-951f-db42170f70d1" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndJoinGroup(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndJoinGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="3bd47d0a-40b5-da76-6580-6a472ac1f562" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndReceiveFromGroup(System.IAsyncResult,System.Net.IPEndPoint@)">
+      <topicdata group="api" />
+      <apidata name="EndReceiveFromGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+        <parameter name="source" out="true">
+          <referenceTo>
+            <type api="T:System.Net.IPEndPoint" ref="true" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="b2433e26-ba00-1b87-6476-6847f9631927" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndSendTo(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndSendTo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="2dc7bfd4-921e-0b81-cef5-ddd8b0513855" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.EndSendToGroup(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndSendToGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="bb833e37-4517-6c90-01f9-c61f9f2d517e" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="5c947318-9069-8319-2827-8c9cc63c8a00" />
+    </api>
+    <api id="P:System.Net.Sockets.UdpAnySourceMulticastClient.MulticastLoopback">
+      <topicdata group="api" />
+      <apidata name="MulticastLoopback" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MulticastLoopback" />
+      <setter name="set_MulticastLoopback" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="06a60887-8777-38a8-5c3b-1d63b1249b6e" />
+    </api>
+    <api id="P:System.Net.Sockets.UdpAnySourceMulticastClient.ReceiveBufferSize">
+      <topicdata group="api" />
+      <apidata name="ReceiveBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReceiveBufferSize" />
+      <setter name="set_ReceiveBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="109f43eb-0ddb-2ca4-a4b4-2aa3afca2fef" />
+    </api>
+    <api id="P:System.Net.Sockets.UdpAnySourceMulticastClient.SendBufferSize">
+      <topicdata group="api" />
+      <apidata name="SendBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SendBufferSize" />
+      <setter name="set_SendBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="b36aa7d9-6339-5ccc-eee6-42031f8063f6" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpAnySourceMulticastClient.UnblockSource(System.Net.IPAddress)">
+      <topicdata group="api" />
+      <apidata name="UnblockSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="sourceAddress">
+          <type api="T:System.Net.IPAddress" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpAnySourceMulticastClient" ref="true" />
+      </containers>
+      <file name="91d1c434-6555-4893-9cba-d8ac847c1ec4" />
+    </api>
+    <api id="T:System.Net.Sockets.UdpSingleSourceMulticastClient">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      <apidata name="UdpSingleSourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+      </containers>
+      <file name="8850a52f-4565-ea64-8e42-b0ee7eece2b9" />
+    </api>
+    <api id="AllMembers.T:System.Net.Sockets.UdpSingleSourceMulticastClient">
+      <topicdata name="UdpSingleSourceMulticastClient" group="list" subgroup="members" typeTopicId="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      <apidata name="UdpSingleSourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.#ctor(System.Net.IPAddress,System.Net.IPAddress,System.Int32)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource(System.Byte[],System.Int32,System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource(System.IAsyncResult,System.Int32@)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.Finalize" />
+        <element api="P:System.Net.Sockets.UdpSingleSourceMulticastClient.ReceiveBufferSize" />
+        <element api="P:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      </containers>
+      <file name="05a6ef2d-c2c7-8e60-33f3-fb4af74f1e42" />
+    </api>
+    <api id="Methods.T:System.Net.Sockets.UdpSingleSourceMulticastClient">
+      <topicdata name="UdpSingleSourceMulticastClient" group="list" subgroup="Methods" typeTopicId="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      <apidata name="UdpSingleSourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource(System.Byte[],System.Int32,System.Int32,System.Int32,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource(System.IAsyncResult,System.Int32@)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource(System.IAsyncResult)" />
+        <element api="M:System.Net.Sockets.UdpSingleSourceMulticastClient.Finalize" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      </containers>
+      <file name="7132f1ed-df8c-14bc-526c-a82b7e39b098" />
+    </api>
+    <api id="Properties.T:System.Net.Sockets.UdpSingleSourceMulticastClient">
+      <topicdata name="UdpSingleSourceMulticastClient" group="list" subgroup="Properties" typeTopicId="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      <apidata name="UdpSingleSourceMulticastClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Net.Sockets.UdpSingleSourceMulticastClient.ReceiveBufferSize" />
+        <element api="P:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize" />
+      </elements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" />
+      </containers>
+      <file name="7bb7fb59-fec2-b785-5e9b-2b3d667723a4" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.#ctor(System.Net.IPAddress,System.Net.IPAddress,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="sourceAddress">
+          <type api="T:System.Net.IPAddress" ref="true" />
+        </parameter>
+        <parameter name="groupAddress">
+          <type api="T:System.Net.IPAddress" ref="true" />
+        </parameter>
+        <parameter name="localPort">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="a4075338-269d-7d63-f7f2-734022ae2d39" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginJoinGroup(System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginJoinGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="84cec744-67f7-0050-1faf-d53f7935f607" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginReceiveFromSource(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginReceiveFromSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="d6209f74-5cca-a7f0-d00c-55cb78f8afb7" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.BeginSendToSource(System.Byte[],System.Int32,System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginSendToSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="remotePort">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="callback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="ff755296-f3a8-6324-5690-b4fbb4c72b73" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="10388b40-4dba-6247-61a8-c05506444280" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndJoinGroup(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndJoinGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="d37edc56-8f31-df3f-f0c5-e9d1c4c9c6f8" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndReceiveFromSource(System.IAsyncResult,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="EndReceiveFromSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+        <parameter name="sourcePort" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="0e5cb007-757e-ac21-cc3a-288c72b91caa" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.EndSendToSource(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndSendToSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="result">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="39a65063-4c75-c49d-7d63-d3726ab6ddf5" />
+    </api>
+    <api id="M:System.Net.Sockets.UdpSingleSourceMulticastClient.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="baf3f94f-449b-c4e0-954d-d5d5ab39f30d" />
+    </api>
+    <api id="P:System.Net.Sockets.UdpSingleSourceMulticastClient.ReceiveBufferSize">
+      <topicdata group="api" />
+      <apidata name="ReceiveBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReceiveBufferSize" />
+      <setter name="set_ReceiveBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="523a1b5f-21d1-0def-1339-ebbf8f3cab0f" />
+    </api>
+    <api id="P:System.Net.Sockets.UdpSingleSourceMulticastClient.SendBufferSize">
+      <topicdata group="api" />
+      <apidata name="SendBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SendBufferSize" />
+      <setter name="set_SendBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net" module="System.Net" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.7.50915.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Net.Sockets" />
+        <type api="T:System.Net.Sockets.UdpSingleSourceMulticastClient" ref="true" />
+      </containers>
+      <file name="79ed187f-f808-ded5-72fe-b86197dd2325" />
+    </api>
+  </apis>
+</reflection>

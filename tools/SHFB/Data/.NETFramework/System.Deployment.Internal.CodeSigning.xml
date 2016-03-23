@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Build.Tasks.v4.0">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>E3D4D3B9-944C-407b-A82E-B19719EA7FB3</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.Tasks.v4.0.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.Tasks.v4.0.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Build.Tasks.v4.0.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Deployment.Internal.CodeSigning">
+      <topicdata group="api" />
+      <apidata name="System.Deployment.Internal.CodeSigning" group="namespace" />
+      <elements>
+        <element api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      </elements>
+      <file name="2f781d59-74d1-e38f-e046-04ed3e46465f" />
+    </api>
+    <api id="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      <apidata name="RSAPKCS1SHA256SignatureDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Security.Cryptography.SignatureDescription" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+      </containers>
+      <file name="68314f29-401c-2dd0-7f39-f865c2fd6e1d" />
+    </api>
+    <api id="AllMembers.T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription">
+      <topicdata name="RSAPKCS1SHA256SignatureDescription" group="list" subgroup="members" typeTopicId="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      <apidata name="RSAPKCS1SHA256SignatureDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.#ctor" />
+        <element api="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.CreateDeformatter(System.Security.Cryptography.AsymmetricAlgorithm)" />
+        <element api="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.CreateFormatter(System.Security.Cryptography.AsymmetricAlgorithm)" />
+        <element api="M:System.Security.Cryptography.SignatureDescription.CreateDigest" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.DeformatterAlgorithm" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.DigestAlgorithm" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.FormatterAlgorithm" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.KeyAlgorithm" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+        <type api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      </containers>
+      <file name="eecc0620-7fea-7723-2147-827fc20cc20d" />
+    </api>
+    <api id="Methods.T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription">
+      <topicdata name="RSAPKCS1SHA256SignatureDescription" group="list" subgroup="Methods" typeTopicId="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      <apidata name="RSAPKCS1SHA256SignatureDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.CreateDeformatter(System.Security.Cryptography.AsymmetricAlgorithm)" />
+        <element api="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.CreateFormatter(System.Security.Cryptography.AsymmetricAlgorithm)" />
+        <element api="M:System.Security.Cryptography.SignatureDescription.CreateDigest" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+        <type api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      </containers>
+      <file name="daf9326e-cd58-ada2-9cbd-3099ba76008e" />
+    </api>
+    <api id="Properties.T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription">
+      <topicdata name="RSAPKCS1SHA256SignatureDescription" group="list" subgroup="Properties" typeTopicId="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      <apidata name="RSAPKCS1SHA256SignatureDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.#ctor" />
+      <elements>
+        <element api="P:System.Security.Cryptography.SignatureDescription.DeformatterAlgorithm" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.DigestAlgorithm" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.FormatterAlgorithm" />
+        <element api="P:System.Security.Cryptography.SignatureDescription.KeyAlgorithm" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+        <type api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" />
+      </containers>
+      <file name="111ae31d-1d48-44d6-0dcc-3e4104a16dd0" />
+    </api>
+    <api id="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+        <type api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" ref="true" />
+      </containers>
+      <file name="167cda8f-07f7-b310-77ae-5f44bd13875e" />
+    </api>
+    <api id="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.CreateDeformatter(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <topicdata group="api" />
+      <apidata name="CreateDeformatter" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.Cryptography.SignatureDescription.CreateDeformatter(System.Security.Cryptography.AsymmetricAlgorithm)">
+          <type api="T:System.Security.Cryptography.SignatureDescription" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Security.Cryptography.AsymmetricAlgorithm" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Cryptography.AsymmetricSignatureDeformatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+        <type api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" ref="true" />
+      </containers>
+      <file name="41bb0d31-aac6-2b28-6ce3-470323436fa0" />
+    </api>
+    <api id="M:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription.CreateFormatter(System.Security.Cryptography.AsymmetricAlgorithm)">
+      <topicdata group="api" />
+      <apidata name="CreateFormatter" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Security.Cryptography.SignatureDescription.CreateFormatter(System.Security.Cryptography.AsymmetricAlgorithm)">
+          <type api="T:System.Security.Cryptography.SignatureDescription" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="key">
+          <type api="T:System.Security.Cryptography.AsymmetricAlgorithm" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Security.Cryptography.AsymmetricSignatureFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Build.Tasks.v4.0" module="Microsoft.Build.Tasks.v4.0" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <library assembly="System.Deployment" module="System.Deployment" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Deployment.Internal.CodeSigning" />
+        <type api="T:System.Deployment.Internal.CodeSigning.RSAPKCS1SHA256SignatureDescription" ref="true" />
+      </containers>
+      <file name="edbf72d8-986a-653d-a9f4-0c41a0f8ab01" />
+    </api>
+  </apis>
+</reflection>

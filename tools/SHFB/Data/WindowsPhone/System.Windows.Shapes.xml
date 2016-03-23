@@ -1,0 +1,3169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Shapes">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Shapes" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Shapes.Shape" />
+        <element api="T:System.Windows.Shapes.Path" />
+        <element api="T:System.Windows.Shapes.Ellipse" />
+        <element api="T:System.Windows.Shapes.Line" />
+        <element api="T:System.Windows.Shapes.Polygon" />
+        <element api="T:System.Windows.Shapes.Polyline" />
+        <element api="T:System.Windows.Shapes.Rectangle" />
+      </elements>
+      <file name="512aaaec-2c72-7e1b-ca66-f91c5ab17987" />
+    </api>
+    <api id="T:System.Windows.Shapes.Ellipse">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Ellipse.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Shapes.Shape" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="10a7df6f-6333-0654-3dbc-6af39abc6193" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Ellipse.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Ellipse.#ctor" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Ellipse" />
+      </containers>
+      <file name="1a6e38a9-a78d-d318-bdc5-7cba50a342d4" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Ellipse.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Ellipse" />
+      </containers>
+      <file name="95c05eeb-6238-3aae-64b5-413496ba98cc" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Ellipse.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Ellipse" />
+      </containers>
+      <file name="7550a1a3-e427-783d-bc08-4e8bb5b8e7f5" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Ellipse">
+      <topicdata name="Ellipse" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Ellipse" />
+      <apidata name="Ellipse" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Ellipse.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Ellipse" />
+      </containers>
+      <file name="fae07e60-d2d1-9320-28d3-86b2efc5602c" />
+    </api>
+    <api id="M:System.Windows.Shapes.Ellipse.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Ellipse" ref="true" />
+      </containers>
+      <file name="56e40312-7cdc-c1e5-1bb7-ca3072031f04" />
+    </api>
+    <api id="T:System.Windows.Shapes.Line">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Line.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Shapes.Shape" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="5871853c-44cd-5a8b-0e0a-06c398da41e1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Line.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Line.#ctor" />
+        <element api="P:System.Windows.Shapes.Line.X1" />
+        <element api="F:System.Windows.Shapes.Line.X1Property" />
+        <element api="P:System.Windows.Shapes.Line.X2" />
+        <element api="F:System.Windows.Shapes.Line.X2Property" />
+        <element api="P:System.Windows.Shapes.Line.Y1" />
+        <element api="F:System.Windows.Shapes.Line.Y1Property" />
+        <element api="P:System.Windows.Shapes.Line.Y2" />
+        <element api="F:System.Windows.Shapes.Line.Y2Property" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" />
+      </containers>
+      <file name="77077489-75c4-016e-1319-9230d63f9572" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Line.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" />
+      </containers>
+      <file name="a17fe21f-3cda-ab78-89d8-a5fff6ee1537" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Line.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Line.X1" />
+        <element api="P:System.Windows.Shapes.Line.X2" />
+        <element api="P:System.Windows.Shapes.Line.Y1" />
+        <element api="P:System.Windows.Shapes.Line.Y2" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" />
+      </containers>
+      <file name="0631a3a7-1a26-ae91-8e19-013f14d3e98d" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Line.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" />
+      </containers>
+      <file name="f834a67e-96f4-08de-2ecd-5bcb51e8e19e" />
+    </api>
+    <api id="Fields.T:System.Windows.Shapes.Line">
+      <topicdata name="Line" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Shapes.Line" />
+      <apidata name="Line" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Line.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Shapes.Line.X1Property" />
+        <element api="F:System.Windows.Shapes.Line.X2Property" />
+        <element api="F:System.Windows.Shapes.Line.Y1Property" />
+        <element api="F:System.Windows.Shapes.Line.Y2Property" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" />
+      </containers>
+      <file name="a8849a67-1d97-1e3b-0081-1b9ea4df18cf" />
+    </api>
+    <api id="M:System.Windows.Shapes.Line.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="a6a005f9-5c29-5b1e-01cb-3a5005d9de4b" />
+    </api>
+    <api id="P:System.Windows.Shapes.Line.X1">
+      <topicdata group="api" />
+      <apidata name="X1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_X1" />
+      <setter name="set_X1" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="0f18d9da-a7f5-e89a-f104-b659f3b68416" />
+    </api>
+    <api id="F:System.Windows.Shapes.Line.X1Property">
+      <topicdata group="api" />
+      <apidata name="X1Property" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="7d55e00f-8147-be64-92b0-83e00be0ed0b" />
+    </api>
+    <api id="P:System.Windows.Shapes.Line.X2">
+      <topicdata group="api" />
+      <apidata name="X2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_X2" />
+      <setter name="set_X2" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="596dbbbe-6d9c-f4b0-0881-e2417c98f8fa" />
+    </api>
+    <api id="F:System.Windows.Shapes.Line.X2Property">
+      <topicdata group="api" />
+      <apidata name="X2Property" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="0cf7a5e7-d065-c137-d02e-f58d4963ccab" />
+    </api>
+    <api id="P:System.Windows.Shapes.Line.Y1">
+      <topicdata group="api" />
+      <apidata name="Y1" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Y1" />
+      <setter name="set_Y1" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="c23fda17-35cd-2ce8-3534-7a49e97a7831" />
+    </api>
+    <api id="F:System.Windows.Shapes.Line.Y1Property">
+      <topicdata group="api" />
+      <apidata name="Y1Property" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="5729e697-6cd0-f582-288d-b194c96a63f0" />
+    </api>
+    <api id="P:System.Windows.Shapes.Line.Y2">
+      <topicdata group="api" />
+      <apidata name="Y2" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Y2" />
+      <setter name="set_Y2" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="92271ff7-631c-b27f-c102-eb9ad49ff342" />
+    </api>
+    <api id="F:System.Windows.Shapes.Line.Y2Property">
+      <topicdata group="api" />
+      <apidata name="Y2Property" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Line" ref="true" />
+      </containers>
+      <file name="e0a3f5ea-9fd2-af49-0c59-d98953a90906" />
+    </api>
+    <api id="T:System.Windows.Shapes.Path">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Path" />
+      <apidata name="Path" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Shapes.Path.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Shapes.Shape" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="1072e7ed-0ef2-f98c-f787-959a852904e7" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Path">
+      <topicdata name="Path" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Path" />
+      <apidata name="Path" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Shapes.Path.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="M:System.Windows.UIElement.OnCreateAutomationPeer" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Path.#ctor" />
+        <element api="P:System.Windows.Shapes.Path.Data" />
+        <element api="F:System.Windows.Shapes.Path.DataProperty" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" />
+      </containers>
+      <file name="076186c7-abd2-31db-ce9b-e335b29db6c7" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Path">
+      <topicdata name="Path" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Path" />
+      <apidata name="Path" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Shapes.Path.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.OnCreateAutomationPeer" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" />
+      </containers>
+      <file name="19879c65-5d92-97bc-df24-a3e2708e250a" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Path">
+      <topicdata name="Path" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Path" />
+      <apidata name="Path" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Shapes.Path.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Path.Data" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" />
+      </containers>
+      <file name="3b32e7bf-3c93-98e6-8d7f-ad614e10a8c2" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Path">
+      <topicdata name="Path" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Path" />
+      <apidata name="Path" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Shapes.Path.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" />
+      </containers>
+      <file name="46c0e40f-439c-175e-81f4-aef5fa7c9446" />
+    </api>
+    <api id="Fields.T:System.Windows.Shapes.Path">
+      <topicdata name="Path" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Shapes.Path" />
+      <apidata name="Path" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Shapes.Path.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Shapes.Path.DataProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" />
+      </containers>
+      <file name="ea614df4-c4bc-9602-6ce4-9b4ee2e824b2" />
+    </api>
+    <api id="M:System.Windows.Shapes.Path.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" ref="true" />
+      </containers>
+      <file name="0ecef0eb-a014-519b-714c-94a9b2a12ee8" />
+    </api>
+    <api id="P:System.Windows.Shapes.Path.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Data" />
+      <setter name="set_Data" />
+      <returns>
+        <type api="T:System.Windows.Media.Geometry" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" ref="true" />
+      </containers>
+      <file name="4524473f-d895-3dfa-22cb-270d059f6aad" />
+    </api>
+    <api id="F:System.Windows.Shapes.Path.DataProperty">
+      <topicdata group="api" />
+      <apidata name="DataProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Path" ref="true" />
+      </containers>
+      <file name="fb8dd761-4e03-0e1c-ef15-949d6146e0f1" />
+    </api>
+    <api id="T:System.Windows.Shapes.Polygon">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polygon.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Shapes.Shape" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="e203b5eb-7782-01a0-4fc0-87581f72efb4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Polygon.#ctor" />
+        <element api="P:System.Windows.Shapes.Polygon.FillRule" />
+        <element api="F:System.Windows.Shapes.Polygon.FillRuleProperty" />
+        <element api="P:System.Windows.Shapes.Polygon.Points" />
+        <element api="F:System.Windows.Shapes.Polygon.PointsProperty" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" />
+      </containers>
+      <file name="2c08ad7a-a922-1b70-6cb9-b0b95500eb47" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" />
+      </containers>
+      <file name="0203e529-b923-fc47-5c6f-641682dd76e8" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Polygon.FillRule" />
+        <element api="P:System.Windows.Shapes.Polygon.Points" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" />
+      </containers>
+      <file name="557ae1cf-b6f5-0b77-9d2e-4815c949357d" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" />
+      </containers>
+      <file name="ceee16a5-a732-9e4f-66ae-5638a8d10b36" />
+    </api>
+    <api id="Fields.T:System.Windows.Shapes.Polygon">
+      <topicdata name="Polygon" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Shapes.Polygon" />
+      <apidata name="Polygon" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polygon.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Shapes.Polygon.FillRuleProperty" />
+        <element api="F:System.Windows.Shapes.Polygon.PointsProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" />
+      </containers>
+      <file name="a2f9d845-bda7-d86c-54fa-4b9e0146ba8b" />
+    </api>
+    <api id="M:System.Windows.Shapes.Polygon.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="30875f42-4b0a-0a10-1585-e765177910e6" />
+    </api>
+    <api id="P:System.Windows.Shapes.Polygon.FillRule">
+      <topicdata group="api" />
+      <apidata name="FillRule" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FillRule" />
+      <setter name="set_FillRule" />
+      <returns>
+        <type api="T:System.Windows.Media.FillRule" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="a0b3970b-d37d-75c3-54b1-d804ff2859df" />
+    </api>
+    <api id="F:System.Windows.Shapes.Polygon.FillRuleProperty">
+      <topicdata group="api" />
+      <apidata name="FillRuleProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="a3d39397-402e-cf29-e4a4-c210c1c614a9" />
+    </api>
+    <api id="P:System.Windows.Shapes.Polygon.Points">
+      <topicdata group="api" />
+      <apidata name="Points" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Points" />
+      <setter name="set_Points" />
+      <returns>
+        <type api="T:System.Windows.Media.PointCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="914a797f-c21e-1f36-ceb5-11f1724a64b9" />
+    </api>
+    <api id="F:System.Windows.Shapes.Polygon.PointsProperty">
+      <topicdata group="api" />
+      <apidata name="PointsProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polygon" ref="true" />
+      </containers>
+      <file name="f9fd377f-cff1-1475-b3a4-18aa70c17f97" />
+    </api>
+    <api id="T:System.Windows.Shapes.Polyline">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Polyline" />
+      <apidata name="Polyline" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polyline.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Shapes.Shape" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="f3300aaa-69f1-63af-7824-bd4adb506626" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Polyline">
+      <topicdata name="Polyline" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Polyline" />
+      <apidata name="Polyline" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polyline.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Polyline.#ctor" />
+        <element api="P:System.Windows.Shapes.Polyline.FillRule" />
+        <element api="F:System.Windows.Shapes.Polyline.FillRuleProperty" />
+        <element api="P:System.Windows.Shapes.Polyline.Points" />
+        <element api="F:System.Windows.Shapes.Polyline.PointsProperty" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" />
+      </containers>
+      <file name="40d6559a-f732-c3d3-957d-2eeaf69b2599" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Polyline">
+      <topicdata name="Polyline" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Polyline" />
+      <apidata name="Polyline" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polyline.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" />
+      </containers>
+      <file name="150a05e0-e11a-9bcf-439e-6679faa26929" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Polyline">
+      <topicdata name="Polyline" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Polyline" />
+      <apidata name="Polyline" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polyline.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Polyline.FillRule" />
+        <element api="P:System.Windows.Shapes.Polyline.Points" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" />
+      </containers>
+      <file name="fe8c6b60-b241-6dc5-024e-bc5aca6716d3" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Polyline">
+      <topicdata name="Polyline" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Polyline" />
+      <apidata name="Polyline" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polyline.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" />
+      </containers>
+      <file name="bfcb9994-d2a4-67ae-ab2e-92d48c6a3c00" />
+    </api>
+    <api id="Fields.T:System.Windows.Shapes.Polyline">
+      <topicdata name="Polyline" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Shapes.Polyline" />
+      <apidata name="Polyline" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Polyline.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Shapes.Polyline.FillRuleProperty" />
+        <element api="F:System.Windows.Shapes.Polyline.PointsProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" />
+      </containers>
+      <file name="b8504a2a-50ef-58ca-94f2-094be7718d98" />
+    </api>
+    <api id="M:System.Windows.Shapes.Polyline.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" ref="true" />
+      </containers>
+      <file name="1d984c49-dcad-ab73-bc26-270954ca3024" />
+    </api>
+    <api id="P:System.Windows.Shapes.Polyline.FillRule">
+      <topicdata group="api" />
+      <apidata name="FillRule" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FillRule" />
+      <setter name="set_FillRule" />
+      <returns>
+        <type api="T:System.Windows.Media.FillRule" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" ref="true" />
+      </containers>
+      <file name="9973087e-a99f-c38e-d655-ade0e8ade1e7" />
+    </api>
+    <api id="F:System.Windows.Shapes.Polyline.FillRuleProperty">
+      <topicdata group="api" />
+      <apidata name="FillRuleProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" ref="true" />
+      </containers>
+      <file name="79022b9b-5044-9360-eef0-e2e228b31821" />
+    </api>
+    <api id="P:System.Windows.Shapes.Polyline.Points">
+      <topicdata group="api" />
+      <apidata name="Points" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Points" />
+      <setter name="set_Points" />
+      <returns>
+        <type api="T:System.Windows.Media.PointCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" ref="true" />
+      </containers>
+      <file name="a13d5cba-1c46-4e94-080a-19936ea7d630" />
+    </api>
+    <api id="F:System.Windows.Shapes.Polyline.PointsProperty">
+      <topicdata group="api" />
+      <apidata name="PointsProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Polyline" ref="true" />
+      </containers>
+      <file name="a1c581d8-fa7f-227f-6046-8da690d768af" />
+    </api>
+    <api id="T:System.Windows.Shapes.Rectangle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Rectangle.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Shapes.Shape" ref="true" />
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="5beabe11-e2bd-1a5b-5f54-1789fe2479e7" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Rectangle.#ctor" />
+        <element api="P:System.Windows.Shapes.Rectangle.RadiusX" />
+        <element api="F:System.Windows.Shapes.Rectangle.RadiusXProperty" />
+        <element api="P:System.Windows.Shapes.Rectangle.RadiusY" />
+        <element api="F:System.Windows.Shapes.Rectangle.RadiusYProperty" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" />
+      </containers>
+      <file name="0d385a6b-43e3-50ad-2744-7d9c7a5cd914" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" />
+      </containers>
+      <file name="fd510545-de83-128d-0282-4a9dfc1e3dd9" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Rectangle.RadiusX" />
+        <element api="P:System.Windows.Shapes.Rectangle.RadiusY" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" />
+      </containers>
+      <file name="97ecc36e-2b64-cb5d-2bd7-44d42be6fcb6" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" />
+      </containers>
+      <file name="1c6a60c3-07e7-fb09-20ec-cf6eec8c7361" />
+    </api>
+    <api id="Fields.T:System.Windows.Shapes.Rectangle">
+      <topicdata name="Rectangle" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Shapes.Rectangle" />
+      <apidata name="Rectangle" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Shapes.Rectangle.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Shapes.Rectangle.RadiusXProperty" />
+        <element api="F:System.Windows.Shapes.Rectangle.RadiusYProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" />
+      </containers>
+      <file name="dc5192ca-e1e4-3006-40a7-2705b1613537" />
+    </api>
+    <api id="M:System.Windows.Shapes.Rectangle.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="2e7eff99-3f39-c2c0-ea7c-e267278318da" />
+    </api>
+    <api id="P:System.Windows.Shapes.Rectangle.RadiusX">
+      <topicdata group="api" />
+      <apidata name="RadiusX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RadiusX" />
+      <setter name="set_RadiusX" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="4cb082c7-65bc-391c-8ca4-009a4625db8b" />
+    </api>
+    <api id="F:System.Windows.Shapes.Rectangle.RadiusXProperty">
+      <topicdata group="api" />
+      <apidata name="RadiusXProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="5b64a109-cb74-c186-e936-dab1a97756a1" />
+    </api>
+    <api id="P:System.Windows.Shapes.Rectangle.RadiusY">
+      <topicdata group="api" />
+      <apidata name="RadiusY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RadiusY" />
+      <setter name="set_RadiusY" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="d7d817c2-adcc-0f09-775d-d146ccbe9c1c" />
+    </api>
+    <api id="F:System.Windows.Shapes.Rectangle.RadiusYProperty">
+      <topicdata group="api" />
+      <apidata name="RadiusYProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Rectangle" ref="true" />
+      </containers>
+      <file name="831a3a62-e8dd-3017-aac3-ac192d4ef8e7" />
+    </api>
+    <api id="T:System.Windows.Shapes.Shape">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.FrameworkElement" ref="true" />
+          <type api="T:System.Windows.UIElement" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Shapes.Path" ref="true" />
+          <type api="T:System.Windows.Shapes.Ellipse" ref="true" />
+          <type api="T:System.Windows.Shapes.Line" ref="true" />
+          <type api="T:System.Windows.Shapes.Polygon" ref="true" />
+          <type api="T:System.Windows.Shapes.Polyline" ref="true" />
+          <type api="T:System.Windows.Shapes.Rectangle" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+      </containers>
+      <file name="89679305-7dd0-ac6e-5423-e0736f89bb54" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="members" typeTopicId="T:System.Windows.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)" />
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="M:System.Windows.UIElement.OnCreateAutomationPeer" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="M:System.Windows.Shapes.Shape.#ctor" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="F:System.Windows.Shapes.Shape.FillProperty" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="F:System.Windows.Shapes.Shape.StretchProperty" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeDashArrayProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeDashCapProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeDashOffsetProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeEndLineCapProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeLineJoinProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeMiterLimitProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeStartLineCapProperty" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeThicknessProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" />
+      </containers>
+      <file name="c0ac3e52-b088-fee6-e238-033e1f70248d" />
+    </api>
+    <api id="Methods.T:System.Windows.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.FrameworkElement.ArrangeOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.FrameworkElement.FindName(System.String)" />
+        <element api="M:System.Windows.FrameworkElement.GetBindingExpression(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.FrameworkElement.MeasureOverride(System.Windows.Size)" />
+        <element api="M:System.Windows.FrameworkElement.OnApplyTemplate" />
+        <element api="M:System.Windows.FrameworkElement.SetBinding(System.Windows.DependencyProperty,System.Windows.Data.Binding)" />
+        <element api="M:System.Windows.UIElement.AddHandler(System.Windows.RoutedEvent,System.Delegate,System.Boolean)" />
+        <element api="M:System.Windows.UIElement.Arrange(System.Windows.Rect)" />
+        <element api="M:System.Windows.UIElement.CaptureMouse" />
+        <element api="M:System.Windows.UIElement.InvalidateArrange" />
+        <element api="M:System.Windows.UIElement.InvalidateMeasure" />
+        <element api="M:System.Windows.UIElement.Measure(System.Windows.Size)" />
+        <element api="M:System.Windows.UIElement.OnCreateAutomationPeer" />
+        <element api="M:System.Windows.UIElement.ReleaseMouseCapture" />
+        <element api="M:System.Windows.UIElement.RemoveHandler(System.Windows.RoutedEvent,System.Delegate)" />
+        <element api="M:System.Windows.UIElement.TransformToVisual(System.Windows.UIElement)" />
+        <element api="M:System.Windows.UIElement.UpdateLayout" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" />
+      </containers>
+      <file name="684e3986-73bf-0612-dba8-8e839b710a65" />
+    </api>
+    <api id="Properties.T:System.Windows.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.FrameworkElement.ActualHeight" />
+        <element api="P:System.Windows.FrameworkElement.ActualWidth" />
+        <element api="P:System.Windows.FrameworkElement.Cursor" />
+        <element api="P:System.Windows.FrameworkElement.DataContext" />
+        <element api="P:System.Windows.FrameworkElement.FlowDirection" />
+        <element api="P:System.Windows.FrameworkElement.Height" />
+        <element api="P:System.Windows.FrameworkElement.HorizontalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Language" />
+        <element api="P:System.Windows.FrameworkElement.Margin" />
+        <element api="P:System.Windows.FrameworkElement.MaxHeight" />
+        <element api="P:System.Windows.FrameworkElement.MaxWidth" />
+        <element api="P:System.Windows.FrameworkElement.MinHeight" />
+        <element api="P:System.Windows.FrameworkElement.MinWidth" />
+        <element api="P:System.Windows.FrameworkElement.Name" />
+        <element api="P:System.Windows.FrameworkElement.Parent" />
+        <element api="P:System.Windows.FrameworkElement.Resources" />
+        <element api="P:System.Windows.FrameworkElement.Style" />
+        <element api="P:System.Windows.FrameworkElement.Tag" />
+        <element api="P:System.Windows.FrameworkElement.Triggers" />
+        <element api="P:System.Windows.FrameworkElement.UseOptimizedManipulationRouting" />
+        <element api="P:System.Windows.FrameworkElement.VerticalAlignment" />
+        <element api="P:System.Windows.FrameworkElement.Width" />
+        <element api="P:System.Windows.UIElement.AllowDrop" />
+        <element api="P:System.Windows.UIElement.CacheMode" />
+        <element api="P:System.Windows.UIElement.Clip" />
+        <element api="P:System.Windows.UIElement.DesiredSize" />
+        <element api="P:System.Windows.UIElement.IsHitTestVisible" />
+        <element api="P:System.Windows.UIElement.Opacity" />
+        <element api="P:System.Windows.UIElement.OpacityMask" />
+        <element api="P:System.Windows.UIElement.Projection" />
+        <element api="P:System.Windows.UIElement.RenderSize" />
+        <element api="P:System.Windows.UIElement.RenderTransform" />
+        <element api="P:System.Windows.UIElement.RenderTransformOrigin" />
+        <element api="P:System.Windows.UIElement.UseLayoutRounding" />
+        <element api="P:System.Windows.UIElement.Visibility" />
+        <element api="P:System.Windows.Shapes.Shape.Fill" />
+        <element api="P:System.Windows.Shapes.Shape.GeometryTransform" />
+        <element api="P:System.Windows.Shapes.Shape.Stretch" />
+        <element api="P:System.Windows.Shapes.Shape.Stroke" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashArray" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeDashOffset" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeEndLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeLineJoin" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeMiterLimit" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeStartLineCap" />
+        <element api="P:System.Windows.Shapes.Shape.StrokeThickness" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" />
+      </containers>
+      <file name="0ab5cfba-92a7-149b-dd63-06844b1202cd" />
+    </api>
+    <api id="Events.T:System.Windows.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Events" typeTopicId="T:System.Windows.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.FrameworkElement.BindingValidationError" />
+        <element api="E:System.Windows.FrameworkElement.LayoutUpdated" />
+        <element api="E:System.Windows.FrameworkElement.Loaded" />
+        <element api="E:System.Windows.FrameworkElement.SizeChanged" />
+        <element api="E:System.Windows.FrameworkElement.Unloaded" />
+        <element api="E:System.Windows.UIElement.DoubleTap" />
+        <element api="E:System.Windows.UIElement.GotFocus" />
+        <element api="E:System.Windows.UIElement.Hold" />
+        <element api="E:System.Windows.UIElement.KeyDown" />
+        <element api="E:System.Windows.UIElement.KeyUp" />
+        <element api="E:System.Windows.UIElement.LostFocus" />
+        <element api="E:System.Windows.UIElement.LostMouseCapture" />
+        <element api="E:System.Windows.UIElement.ManipulationCompleted" />
+        <element api="E:System.Windows.UIElement.ManipulationDelta" />
+        <element api="E:System.Windows.UIElement.ManipulationStarted" />
+        <element api="E:System.Windows.UIElement.MouseEnter" />
+        <element api="E:System.Windows.UIElement.MouseLeave" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonDown" />
+        <element api="E:System.Windows.UIElement.MouseLeftButtonUp" />
+        <element api="E:System.Windows.UIElement.MouseMove" />
+        <element api="E:System.Windows.UIElement.MouseWheel" />
+        <element api="E:System.Windows.UIElement.Tap" />
+        <element api="E:System.Windows.UIElement.TextInput" />
+        <element api="E:System.Windows.UIElement.TextInputStart" />
+        <element api="E:System.Windows.UIElement.TextInputUpdate" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" />
+      </containers>
+      <file name="412c3fcf-b317-7807-d842-86c12957dbf3" />
+    </api>
+    <api id="Fields.T:System.Windows.Shapes.Shape">
+      <topicdata name="Shape" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Shapes.Shape" />
+      <apidata name="Shape" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Shapes.Shape.FillProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StretchProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeDashArrayProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeDashCapProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeDashOffsetProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeEndLineCapProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeLineJoinProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeMiterLimitProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeStartLineCapProperty" />
+        <element api="F:System.Windows.Shapes.Shape.StrokeThicknessProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" />
+      </containers>
+      <file name="11eb0f1f-cd91-4e5a-aeb4-5fe60e0f800f" />
+    </api>
+    <api id="M:System.Windows.Shapes.Shape.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="57935389-8042-63ac-da47-2f61ddf69312" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.Fill">
+      <topicdata group="api" />
+      <apidata name="Fill" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Fill" />
+      <setter name="set_Fill" />
+      <returns>
+        <type api="T:System.Windows.Media.Brush" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="9bb72691-de79-674c-438e-d5e6b871f1d5" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.FillProperty">
+      <topicdata group="api" />
+      <apidata name="FillProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="e4a60193-689e-7a5f-32ab-93c22dd21cf2" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.GeometryTransform">
+      <topicdata group="api" />
+      <apidata name="GeometryTransform" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_GeometryTransform" />
+      <returns>
+        <type api="T:System.Windows.Media.Transform" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="6d44bf1b-e4ee-5e98-7963-23c66701e5ee" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.Stretch">
+      <topicdata group="api" />
+      <apidata name="Stretch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Stretch" />
+      <setter name="set_Stretch" />
+      <returns>
+        <type api="T:System.Windows.Media.Stretch" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="4c4d7a20-90f4-9b30-f42d-7f001a4ce4d8" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StretchProperty">
+      <topicdata group="api" />
+      <apidata name="StretchProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="70d40ef3-00b3-334b-610b-a266af27f10f" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.Stroke">
+      <topicdata group="api" />
+      <apidata name="Stroke" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Stroke" />
+      <setter name="set_Stroke" />
+      <returns>
+        <type api="T:System.Windows.Media.Brush" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="174c5ad8-b553-bd67-9f21-a375f2db5389" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeDashArray">
+      <topicdata group="api" />
+      <apidata name="StrokeDashArray" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeDashArray" />
+      <setter name="set_StrokeDashArray" />
+      <returns>
+        <type api="T:System.Windows.Media.DoubleCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="b989e3f1-f57d-96de-5a22-1702a8af66c1" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeDashArrayProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeDashArrayProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="e130c555-cd10-4b38-0623-3849d4dcd199" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeDashCap">
+      <topicdata group="api" />
+      <apidata name="StrokeDashCap" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeDashCap" />
+      <setter name="set_StrokeDashCap" />
+      <returns>
+        <type api="T:System.Windows.Media.PenLineCap" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="7985e3fe-2822-b85a-c38f-42a129193e74" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeDashCapProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeDashCapProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="a35240de-df11-750a-d190-9cea35e8cce9" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeDashOffset">
+      <topicdata group="api" />
+      <apidata name="StrokeDashOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeDashOffset" />
+      <setter name="set_StrokeDashOffset" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="f322e597-df91-b38d-1ccb-07578428bbdc" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeDashOffsetProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeDashOffsetProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="51324d53-0f16-4b41-3a8f-f2218748fad7" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeEndLineCap">
+      <topicdata group="api" />
+      <apidata name="StrokeEndLineCap" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeEndLineCap" />
+      <setter name="set_StrokeEndLineCap" />
+      <returns>
+        <type api="T:System.Windows.Media.PenLineCap" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="0abec24e-f7fa-dfa5-738a-6cf529d1551d" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeEndLineCapProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeEndLineCapProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="3c07f898-4976-6816-fd88-7150302457e9" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeLineJoin">
+      <topicdata group="api" />
+      <apidata name="StrokeLineJoin" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeLineJoin" />
+      <setter name="set_StrokeLineJoin" />
+      <returns>
+        <type api="T:System.Windows.Media.PenLineJoin" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="696a0127-646b-6282-2657-6e84cdffc26c" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeLineJoinProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeLineJoinProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="e646d6e5-80db-19f9-b239-c34dfaead339" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeMiterLimit">
+      <topicdata group="api" />
+      <apidata name="StrokeMiterLimit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeMiterLimit" />
+      <setter name="set_StrokeMiterLimit" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="6c1921b4-1e9e-b8d0-e29e-62a007d3b35d" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeMiterLimitProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeMiterLimitProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="c2b93ec4-57e3-9f63-6725-645be97bf771" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="d6a36893-d8cd-0528-be2a-409a027aa1ce" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeStartLineCap">
+      <topicdata group="api" />
+      <apidata name="StrokeStartLineCap" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeStartLineCap" />
+      <setter name="set_StrokeStartLineCap" />
+      <returns>
+        <type api="T:System.Windows.Media.PenLineCap" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="e81f982d-35e9-8e4f-2bd0-c02131f65b71" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeStartLineCapProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeStartLineCapProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="060439de-d449-328b-5511-cf2cc97d47a9" />
+    </api>
+    <api id="P:System.Windows.Shapes.Shape.StrokeThickness">
+      <topicdata group="api" />
+      <apidata name="StrokeThickness" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_StrokeThickness" />
+      <setter name="set_StrokeThickness" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="5f0317d8-943a-72e2-1ad3-4662d4c0f0b5" />
+    </api>
+    <api id="F:System.Windows.Shapes.Shape.StrokeThicknessProperty">
+      <topicdata group="api" />
+      <apidata name="StrokeThicknessProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Shapes" />
+        <type api="T:System.Windows.Shapes.Shape" ref="true" />
+      </containers>
+      <file name="fa05ba07-80ca-10c0-733d-c20292d6951d" />
+    </api>
+  </apis>
+</reflection>

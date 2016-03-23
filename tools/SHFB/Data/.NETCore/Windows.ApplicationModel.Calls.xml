@@ -1,0 +1,459 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Calls">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Calls" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" />
+        <element api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+        <element api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      </elements>
+      <file name="23f23e4f-e56c-a07b-b697-bc09795c4f84" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" />
+      <apidata name="LockScreenCallEndCallDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Calls.ILockScreenCallEndCallDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="53b835cf-2ff5-8566-35d3-efe0a1819a15" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral">
+      <topicdata name="LockScreenCallEndCallDeferral" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" />
+      <apidata name="LockScreenCallEndCallDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" />
+      </containers>
+      <file name="dd9a80c4-8e39-0db7-c44a-d9218c32c2b4" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral">
+      <topicdata name="LockScreenCallEndCallDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" />
+      <apidata name="LockScreenCallEndCallDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" />
+      </containers>
+      <file name="00f4acd9-73a4-7a8a-d1d8-2eee71d52cf3" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" ref="true" />
+      </containers>
+      <file name="c1c2fd90-0189-b466-0422-23fda648378a" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      <apidata name="LockScreenCallEndRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Calls.ILockScreenCallEndRequestedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9691d0cd-a162-4471-df8f-7e61b0986da3" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs">
+      <topicdata name="LockScreenCallEndRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      <apidata name="LockScreenCallEndRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs.Deadline" />
+        <element api="M:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      </containers>
+      <file name="f4efeae5-296d-f0b5-9404-c359bc4ec799" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs">
+      <topicdata name="LockScreenCallEndRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      <apidata name="LockScreenCallEndRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      </containers>
+      <file name="1b771367-9e15-60f7-f6ce-35a783805adc" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs">
+      <topicdata name="LockScreenCallEndRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      <apidata name="LockScreenCallEndRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" />
+      </containers>
+      <file name="e824b225-cfa6-eab3-2041-34784e6d6393" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="f0c80fab-ecda-f938-0e13-4c3c7a5c7f19" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndCallDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="46da7089-5d40-4d05-fdac-d79f7311f2b4" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Calls.LockScreenCallUI">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      <apidata name="LockScreenCallUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.Calls.ILockScreenCallUI" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0e8fb649-d8ff-70e7-0263-801d858db947" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Calls.LockScreenCallUI">
+      <topicdata name="LockScreenCallUI" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      <apidata name="LockScreenCallUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.Calls.LockScreenCallUI.CallTitle" />
+        <element api="E:Windows.ApplicationModel.Calls.LockScreenCallUI.Closed" />
+        <element api="M:Windows.ApplicationModel.Calls.LockScreenCallUI.Dismiss" />
+        <element api="E:Windows.ApplicationModel.Calls.LockScreenCallUI.EndRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      </containers>
+      <file name="8598fa61-81f8-d33d-d42c-2957480f573c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Calls.LockScreenCallUI">
+      <topicdata name="LockScreenCallUI" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      <apidata name="LockScreenCallUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.Calls.LockScreenCallUI.Dismiss" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      </containers>
+      <file name="9adf8702-57c7-a1fb-943d-1c309a5faa26" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Calls.LockScreenCallUI">
+      <topicdata name="LockScreenCallUI" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      <apidata name="LockScreenCallUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Calls.LockScreenCallUI.CallTitle" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      </containers>
+      <file name="31b0cebc-c94b-d870-449c-88127eb01549" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Calls.LockScreenCallUI">
+      <topicdata name="LockScreenCallUI" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      <apidata name="LockScreenCallUI" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Calls.LockScreenCallUI.Closed" />
+        <element api="E:Windows.ApplicationModel.Calls.LockScreenCallUI.EndRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" />
+      </containers>
+      <file name="d48c34cc-7e94-b938-fe13-bb8b6b2898aa" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Calls.LockScreenCallUI.CallTitle">
+      <topicdata group="api" />
+      <apidata name="CallTitle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CallTitle" />
+      <setter name="set_CallTitle" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" ref="true" />
+      </containers>
+      <file name="3877eda4-c923-a784-8305-9a8e29d4073b" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Calls.LockScreenCallUI.Closed">
+      <topicdata group="api" />
+      <apidata name="Closed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Closed" />
+      <remover name="remove_Closed" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" ref="true" />
+      </containers>
+      <file name="230a9169-62ab-21cc-8f29-94799cae07ec" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Calls.LockScreenCallUI.Dismiss">
+      <topicdata group="api" />
+      <apidata name="Dismiss" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" ref="true" />
+      </containers>
+      <file name="5af71234-b631-62b1-f9a3-796c837b6f82" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Calls.LockScreenCallUI.EndRequested">
+      <topicdata group="api" />
+      <apidata name="EndRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EndRequested" />
+      <remover name="remove_EndRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" ref="true" />
+            <type api="T:Windows.ApplicationModel.Calls.LockScreenCallEndRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Calls" />
+        <type api="T:Windows.ApplicationModel.Calls.LockScreenCallUI" ref="true" />
+      </containers>
+      <file name="4d9cc3b1-ae0c-30cc-6395-5ed9f3bca0e3" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,2096 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.BackgroundAudio">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.BackgroundAudio" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.PlayState" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+        <element api="T:Microsoft.Phone.BackgroundAudio.UserAction" />
+      </elements>
+      <file name="5976bda5-386c-61ad-6243-9aad4aace8b9" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" />
+      <apidata name="AudioPlayerAgent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="c8a502c3-e7b9-ebb0-2175-a9fefa70af08" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent">
+      <topicdata name="AudioPlayerAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" />
+      <apidata name="AudioPlayerAgent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.#ctor" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnError(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,System.Exception,System.Boolean)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnPlayStateChanged(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.PlayState)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnUserAction(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.UserAction,System.Object)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" />
+      </containers>
+      <file name="a395d2d2-7870-9559-8d3e-a2123d32e818" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent">
+      <topicdata name="AudioPlayerAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" />
+      <apidata name="AudioPlayerAgent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.OnCancel" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnError(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,System.Exception,System.Boolean)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnPlayStateChanged(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.PlayState)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnUserAction(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.UserAction,System.Object)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" />
+      </containers>
+      <file name="cc3a104d-0c21-cb3a-e008-2fab9463d174" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" ref="true" />
+      </containers>
+      <file name="1d7bc711-b52f-e02a-c618-47b7661a5ec4" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnError(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,System.Exception,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="OnError" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="player">
+          <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+        </parameter>
+        <parameter name="track">
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+        </parameter>
+        <parameter name="error">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+        <parameter name="isFatal">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" ref="true" />
+      </containers>
+      <file name="2cb03a3d-a630-ab55-01af-be1f942487d9" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnPlayStateChanged(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.PlayState)">
+      <topicdata group="api" />
+      <apidata name="OnPlayStateChanged" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="player">
+          <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+        </parameter>
+        <parameter name="track">
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+        </parameter>
+        <parameter name="playState">
+          <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" ref="true" />
+      </containers>
+      <file name="7e96ad1f-8cfc-5a36-5e56-cb218e517a11" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent.OnUserAction(Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer,Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.UserAction,System.Object)">
+      <topicdata group="api" />
+      <apidata name="OnUserAction" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="player">
+          <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+        </parameter>
+        <parameter name="track">
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+        </parameter>
+        <parameter name="action">
+          <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+        </parameter>
+        <parameter name="param">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioPlayerAgent" ref="true" />
+      </containers>
+      <file name="4b94ce26-74ad-5b64-f9fa-48a497cce339" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.AudioStreamer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioStreamer" />
+      <apidata name="AudioStreamer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="9a16c62e-6ba6-9860-7cd8-4b05ebf328a4" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioStreamer">
+      <topicdata name="AudioStreamer" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" />
+      <apidata name="AudioStreamer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamer.SetSource(System.Windows.Media.MediaStreamSource)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" />
+      </containers>
+      <file name="ba2ac451-3dbe-1cb1-5a3e-c2939705c2e4" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAudio.AudioStreamer">
+      <topicdata name="AudioStreamer" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" />
+      <apidata name="AudioStreamer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamer.SetSource(System.Windows.Media.MediaStreamSource)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" />
+      </containers>
+      <file name="612e9786-0479-cd6a-0f3a-5e7d31d3712a" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioStreamer.SetSource(System.Windows.Media.MediaStreamSource)">
+      <topicdata group="api" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Windows.Media.MediaStreamSource" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" ref="true" />
+      </containers>
+      <file name="587e82fb-958d-8ea2-f69d-94750052938e" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" />
+      <apidata name="AudioStreamingAgent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="5c186054-c7b0-76dd-22d9-24ca24060bb3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent">
+      <topicdata name="AudioStreamingAgent" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" />
+      <apidata name="AudioStreamingAgent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.#ctor" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.OnBeginStreaming(Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.AudioStreamer)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.OnCancel" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" />
+      </containers>
+      <file name="716e5243-4328-44ca-9623-3004282486bf" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent">
+      <topicdata name="AudioStreamingAgent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" />
+      <apidata name="AudioStreamingAgent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAgent.Abort" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyComplete" />
+        <element api="M:Microsoft.Phone.BackgroundAgent.NotifyCompleteWithResult(System.Int32)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.OnBeginStreaming(Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.AudioStreamer)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.OnCancel" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" />
+      </containers>
+      <file name="09e24b64-7999-d3bd-bb67-d076eb36ba14" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" ref="true" />
+      </containers>
+      <file name="4e5fd6f7-2862-8a63-9198-358bb3137d37" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.OnBeginStreaming(Microsoft.Phone.BackgroundAudio.AudioTrack,Microsoft.Phone.BackgroundAudio.AudioStreamer)">
+      <topicdata group="api" />
+      <apidata name="OnBeginStreaming" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="track">
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+        </parameter>
+        <parameter name="streamer">
+          <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" ref="true" />
+      </containers>
+      <file name="f9cce4c6-e6b2-a0f3-7eb8-ddc8bf822bc0" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent.OnCancel">
+      <topicdata group="api" />
+      <apidata name="OnCancel" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.Phone.BackgroundAgent.OnCancel">
+          <type api="T:Microsoft.Phone.BackgroundAgent" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioStreamingAgent" ref="true" />
+      </containers>
+      <file name="61687fe2-2e6c-0f34-9813-e1ca933345d7" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.AudioTrack">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      <apidata name="AudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="f4615361-8980-eb69-0986-90047196f7f7" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioTrack">
+      <topicdata name="AudioTrack" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      <apidata name="AudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor">
+          <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+          <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor(System.Uri,System.String,System.String,System.String,System.Uri)" />
+          <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor(System.Uri,System.String,System.String,System.String,System.Uri,System.String,Microsoft.Phone.BackgroundAudio.EnabledPlayerControls)" />
+        </element>
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Album" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.AlbumArt" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Artist" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.BeginEdit" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.CancelEdit" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Duration" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.EndEdit" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.PlayerControls" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Source" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Tag" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Title" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      </containers>
+      <file name="260617ac-708c-60e0-50b7-a81859dcbde7" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAudio.AudioTrack">
+      <topicdata name="AudioTrack" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      <apidata name="AudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.BeginEdit" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.CancelEdit" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.EndEdit" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      </containers>
+      <file name="12e512b9-3421-3496-9fe7-799dd92a32c0" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundAudio.AudioTrack">
+      <topicdata name="AudioTrack" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      <apidata name="AudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Album" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.AlbumArt" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Artist" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Duration" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.PlayerControls" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Source" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Tag" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Title" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      </containers>
+      <file name="fc70743e-6da6-bad6-49c4-f8b2f235e888" />
+    </api>
+    <api id="Overload:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.AudioTrack" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor(System.Uri,System.String,System.String,System.String,System.Uri)" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor(System.Uri,System.String,System.String,System.String,System.Uri,System.String,Microsoft.Phone.BackgroundAudio.EnabledPlayerControls)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="8c23b0f2-077e-e462-7457-08f861c16be8" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="caa7fc6c-a3af-bc98-2823-e1cb184f75b7" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor(System.Uri,System.String,System.String,System.String,System.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="title">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="artist">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="album">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="albumArt">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="0ff60360-6ec6-3ae3-c589-f9913d4e2151" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor(System.Uri,System.String,System.String,System.String,System.Uri,System.String,Microsoft.Phone.BackgroundAudio.EnabledPlayerControls)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.BackgroundAudio.AudioTrack.#ctor" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="title">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="artist">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="album">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="albumArt">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="tag">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="enabledControls">
+          <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="c867cfa4-79ed-d312-3e26-11148c49236d" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Album">
+      <topicdata group="api" />
+      <apidata name="Album" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Album" />
+      <setter name="set_Album" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="0d29fd68-8eaa-e017-03ce-ae5b19a1dce3" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.AlbumArt">
+      <topicdata group="api" />
+      <apidata name="AlbumArt" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AlbumArt" />
+      <setter name="set_AlbumArt" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="38d532ec-0917-e726-4275-b5177521b95a" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Artist">
+      <topicdata group="api" />
+      <apidata name="Artist" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Artist" />
+      <setter name="set_Artist" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="e9ea72a0-1bf1-2e3d-8013-ffe31f907ef9" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioTrack.BeginEdit">
+      <topicdata group="api" />
+      <apidata name="BeginEdit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.ComponentModel.IEditableObject.BeginEdit">
+          <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="de9143bb-834c-fd58-f96a-659842749de8" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioTrack.CancelEdit">
+      <topicdata group="api" />
+      <apidata name="CancelEdit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.ComponentModel.IEditableObject.CancelEdit">
+          <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="cd4a82c4-37c2-931d-60a0-30f95d0bc7b1" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="1689cba6-434e-9db0-27f4-5e6d4cf76846" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.AudioTrack.EndEdit">
+      <topicdata group="api" />
+      <apidata name="EndEdit" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.ComponentModel.IEditableObject.EndEdit">
+          <type api="T:System.ComponentModel.IEditableObject" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="4a324b5f-c52e-a74a-022e-a766eae4a0d7" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.PlayerControls">
+      <topicdata group="api" />
+      <apidata name="PlayerControls" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PlayerControls" />
+      <setter name="set_PlayerControls" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="9513439d-1a3f-56fb-dccf-9636d50d6911" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Source" />
+      <setter name="set_Source" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="445b859b-267b-0672-9ffa-3c4b994fd8e1" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Tag">
+      <topicdata group="api" />
+      <apidata name="Tag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Tag" />
+      <setter name="set_Tag" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="383fdfa4-15bc-5b8e-061f-0dadc6aa9d84" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.AudioTrack.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </containers>
+      <file name="9b91e0bc-195f-209b-4998-5b0a8f004d4f" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      <apidata name="BackgroundAudioPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="9e6e3620-d648-f516-0af3-747b060404db" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer">
+      <topicdata name="BackgroundAudioPlayer" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      <apidata name="BackgroundAudioPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.BufferingProgress" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.CanPause" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.CanSeek" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Close" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Error" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.FastForward" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Instance" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Pause" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Play" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.PlayerState" />
+        <element api="E:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.PlayStateChanged" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Position" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Rewind" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.SkipNext" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.SkipPrevious" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Stop" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Track" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Volume" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      </containers>
+      <file name="e687ce76-6e80-3348-335c-8f73b9c0ef8a" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer">
+      <topicdata name="BackgroundAudioPlayer" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      <apidata name="BackgroundAudioPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Close" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.FastForward" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Pause" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Play" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Rewind" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.SkipNext" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.SkipPrevious" />
+        <element api="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      </containers>
+      <file name="17f12e2c-f0bd-40f1-b6a5-d74176e3d1d2" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer">
+      <topicdata name="BackgroundAudioPlayer" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      <apidata name="BackgroundAudioPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.BufferingProgress" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.CanPause" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.CanSeek" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Error" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Instance" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.PlayerState" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Position" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Track" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      </containers>
+      <file name="f3128d6a-5c3d-65d1-6fa1-a0580ddbc449" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer">
+      <topicdata name="BackgroundAudioPlayer" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      <apidata name="BackgroundAudioPlayer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.PlayStateChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" />
+      </containers>
+      <file name="a7c16da0-ec79-5476-34b0-aefd9951b7ab" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.BufferingProgress">
+      <topicdata group="api" />
+      <apidata name="BufferingProgress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BufferingProgress" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="34ac554b-92b2-8e3e-8b1b-07729da469b5" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.CanPause">
+      <topicdata group="api" />
+      <apidata name="CanPause" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanPause" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="7c900025-1d41-fcff-46cd-fec9d4b2fc9a" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.CanSeek">
+      <topicdata group="api" />
+      <apidata name="CanSeek" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanSeek" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="8e8c87f2-ce14-ae22-87df-a642437caf94" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="04d7721e-9107-a463-addc-a681f1f08fc6" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Error">
+      <topicdata group="api" />
+      <apidata name="Error" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Error" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="22268a08-b63e-8fbd-6faa-cd0c0ef89bc2" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.FastForward">
+      <topicdata group="api" />
+      <apidata name="FastForward" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="3627fc90-a0a9-4952-0d63-86d4d8299a46" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Instance">
+      <topicdata group="api" />
+      <apidata name="Instance" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Instance" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="e6f737c3-c938-b838-8c77-157f333e6f84" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Pause">
+      <topicdata group="api" />
+      <apidata name="Pause" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="e2af562c-a587-9ed3-2186-3b64696774e7" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Play">
+      <topicdata group="api" />
+      <apidata name="Play" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="4f1f332d-d1d3-29ae-c138-1fb9abe3f726" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.PlayerState">
+      <topicdata group="api" />
+      <apidata name="PlayerState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PlayerState" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="ab0bbd7d-f7d8-a1a0-6e1d-cee0f237bb6c" />
+    </api>
+    <api id="E:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.PlayStateChanged">
+      <topicdata group="api" />
+      <apidata name="PlayStateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PlayStateChanged" />
+      <remover name="remove_PlayStateChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="f252655f-81bb-950e-ce4a-5de6cf1450ad" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Position" />
+      <setter name="set_Position" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="b02a0556-b9ab-17b0-5123-54919ac501d2" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Rewind">
+      <topicdata group="api" />
+      <apidata name="Rewind" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="1c419f77-209a-831b-f486-f9f85793c2e1" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.SkipNext">
+      <topicdata group="api" />
+      <apidata name="SkipNext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="2955f534-082f-1cc1-434b-9a39fb4bcbdd" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.SkipPrevious">
+      <topicdata group="api" />
+      <apidata name="SkipPrevious" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="cab6dff8-9c90-8a0d-09cd-c1f83854ee80" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="f1392b23-ec16-daca-daf5-bc5693085ed9" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Track">
+      <topicdata group="api" />
+      <apidata name="Track" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Track" />
+      <setter name="set_Track" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.AudioTrack" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="3e72862d-cafe-126a-39da-c838e8430906" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer.Volume">
+      <topicdata group="api" />
+      <apidata name="Volume" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Volume" />
+      <setter name="set_Volume" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.BackgroundAudioPlayer" ref="true" />
+      </containers>
+      <file name="33086beb-5808-0259-71cb-d7709c69a4bd" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls">
+      <topicdata group="api" />
+      <apidata name="EnabledPlayerControls" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.Int64" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.None" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.SkipNext" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.SkipPrevious" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.FastForward" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.Rewind" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.Pause" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.All" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="818768bc-cb16-a38d-aad6-d618358c1e2b" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>31</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="dbdc6095-9db7-196c-5eba-f4db25d75f8b" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.FastForward">
+      <topicdata group="api" notopic="" />
+      <apidata name="FastForward" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="a0112976-8c58-a7e0-166f-d9e4a2cf5311" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="ded6a0b8-36df-96ad-bcfe-cccb5497bf44" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.Pause">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pause" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="f088f828-f812-e3eb-27b1-61ca4be618ff" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.Rewind">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rewind" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="4dc3c986-9af7-f90e-f0f9-d82eca881906" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.SkipNext">
+      <topicdata group="api" notopic="" />
+      <apidata name="SkipNext" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="613de3b3-1f06-bc9e-f181-1f34b6aa9e03" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls.SkipPrevious">
+      <topicdata group="api" notopic="" />
+      <apidata name="SkipPrevious" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.EnabledPlayerControls" ref="false" />
+      </containers>
+      <file name="0f3eeec7-8474-da7c-4e84-935dbc44f7ac" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.PlayState">
+      <topicdata group="api" />
+      <apidata name="PlayState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Unknown" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Stopped" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Paused" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Playing" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.BufferingStarted" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.BufferingStopped" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.TrackReady" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.TrackEnded" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Rewinding" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.FastForwarding" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Shutdown" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.PlayState.Error" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="33bd7418-58db-e707-5307-da8baf0594f4" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.BufferingStarted">
+      <topicdata group="api" notopic="" />
+      <apidata name="BufferingStarted" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="ffbd1147-71fa-ed69-49ec-36179626cf7b" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.BufferingStopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="BufferingStopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="f7e6d24f-31b2-3f13-69c4-cda96d398e56" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Error">
+      <topicdata group="api" notopic="" />
+      <apidata name="Error" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="230a521b-a39c-51b0-f01e-0593600891f9" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.FastForwarding">
+      <topicdata group="api" notopic="" />
+      <apidata name="FastForwarding" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="e650b6a8-e9f4-731d-7d63-ede676753bb7" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Paused">
+      <topicdata group="api" notopic="" />
+      <apidata name="Paused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="13daaba8-2746-1b9d-dd0c-b815d33fc2a7" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Playing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Playing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="4c789317-64cd-415b-1088-6cb0e9956355" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Rewinding">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rewinding" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="dd142690-732a-202f-a6a9-ada33ffd5f7e" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Shutdown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Shutdown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="54a5436d-197e-2d7b-42b7-cba54348f2cb" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Stopped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="3b178ec1-0015-f48f-8c4f-7459cb26580b" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.TrackEnded">
+      <topicdata group="api" notopic="" />
+      <apidata name="TrackEnded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="50b0efae-9742-8930-f444-0b2dac1850e4" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.TrackReady">
+      <topicdata group="api" notopic="" />
+      <apidata name="TrackReady" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="1b9e55f1-d7ea-bf07-9aae-09b2715bf994" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.PlayState.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </containers>
+      <file name="819d36c8-70df-168c-116b-9b2e425d8e5f" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      <apidata name="PlayStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="565bff1a-7747-d7a9-9df8-1af9723a1d94" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs">
+      <topicdata name="PlayStateChangedEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      <apidata name="PlayStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.#ctor(Microsoft.Phone.BackgroundAudio.PlayState)" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.CurrentPlayState" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.IntermediatePlayState" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      </containers>
+      <file name="4c2eeff5-ec8d-4b08-8c4e-5713ccae92b2" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs">
+      <topicdata name="PlayStateChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      <apidata name="PlayStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      </containers>
+      <file name="a68462f9-a106-ec9d-93b8-5bc00e44ffe1" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs">
+      <topicdata name="PlayStateChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      <apidata name="PlayStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.CurrentPlayState" />
+        <element api="P:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.IntermediatePlayState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" />
+      </containers>
+      <file name="cc67409f-8ed5-2830-e840-ba02136b8737" />
+    </api>
+    <api id="M:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.#ctor(Microsoft.Phone.BackgroundAudio.PlayState)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="playstate">
+          <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="6d27fac4-4df6-fa90-3a72-b80d7ffa3bc0" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.CurrentPlayState">
+      <topicdata group="api" />
+      <apidata name="CurrentPlayState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentPlayState" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="27a52007-a2db-1e99-6e86-a530810c1c00" />
+    </api>
+    <api id="P:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs.IntermediatePlayState">
+      <topicdata group="api" />
+      <apidata name="IntermediatePlayState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IntermediatePlayState" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.PlayStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="73832546-3b83-fa04-5559-4a67eea025ad" />
+    </api>
+    <api id="T:Microsoft.Phone.BackgroundAudio.UserAction">
+      <topicdata group="api" />
+      <apidata name="UserAction" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.Stop" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.Pause" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.Play" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.SkipNext" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.SkipPrevious" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.FastForward" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.Rewind" />
+        <element api="F:Microsoft.Phone.BackgroundAudio.UserAction.Seek" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+      </containers>
+      <file name="8c7055bf-03d6-67c6-3105-c7f02b4c6c37" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.FastForward">
+      <topicdata group="api" notopic="" />
+      <apidata name="FastForward" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="eff35f0e-e276-7f6d-001a-f9d372764a09" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.Pause">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pause" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="abe79aa1-df6b-b5cc-35ec-cb187f3c9c05" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.Play">
+      <topicdata group="api" notopic="" />
+      <apidata name="Play" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="dd44bc98-af6b-2fed-a15c-4db25a9d9583" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.Rewind">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rewind" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="a911ab0b-c839-a451-1f08-66dcab31dea8" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.Seek">
+      <topicdata group="api" notopic="" />
+      <apidata name="Seek" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="d0aeeb2e-745d-d25b-6ab8-4f9f857f6909" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.SkipNext">
+      <topicdata group="api" notopic="" />
+      <apidata name="SkipNext" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="80a03468-30ac-7f52-f3b4-8370e80564b9" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.SkipPrevious">
+      <topicdata group="api" notopic="" />
+      <apidata name="SkipPrevious" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="e6333022-4095-6ee3-0eda-5733bb27f494" />
+    </api>
+    <api id="F:Microsoft.Phone.BackgroundAudio.UserAction.Stop">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stop" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.BackgroundAudio" />
+        <type api="T:Microsoft.Phone.BackgroundAudio.UserAction" ref="false" />
+      </containers>
+      <file name="88d963ca-c53c-61b7-6c32-9d1744fbe956" />
+    </api>
+  </apis>
+</reflection>

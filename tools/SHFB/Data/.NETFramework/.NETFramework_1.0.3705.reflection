@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform=".NETFramework" Version="1.0.3705" Title=".NET Framework 1.0">
+  <Notes>The assemblies for .NET 1.0 do not always exist in Windows 7 and later so it will be redirected to .NET 1.1 or later if selected.</Notes>
+  <AssemblyLocations>
+    <Location Path="%SystemRoot%\Microsoft.NET\Framework\v1.0.3705" />
+  </AssemblyLocations>
+  <IgnoredNamespaces />
+  <IgnoredUnresolved />
+  <BindingRedirections />
+</ReflectionDataSet>

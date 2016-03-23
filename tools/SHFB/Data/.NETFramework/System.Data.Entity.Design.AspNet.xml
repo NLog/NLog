@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Data.Entity.Design">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Entity.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Entity.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Data.Entity.Design.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Data.Entity.Design.AspNet">
+      <topicdata group="api" />
+      <apidata name="System.Data.Entity.Design.AspNet" group="namespace" />
+      <elements>
+        <element api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+        <element api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+        <element api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+        <element api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      </elements>
+      <file name="87e8f447-ecff-175e-d36b-76c66f63e3bb" />
+    </api>
+    <api id="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      <apidata name="EntityDesignerBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+      </containers>
+      <file name="3e92ad4a-338e-894a-4e04-9b6b87cd7763" />
+    </api>
+    <api id="AllMembers.T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider">
+      <topicdata name="EntityDesignerBuildProvider" group="list" subgroup="members" typeTopicId="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      <apidata name="EntityDesignerBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.#ctor" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      </containers>
+      <file name="81226595-e8fb-cde8-f260-4f5cb4fa0522" />
+    </api>
+    <api id="Methods.T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider">
+      <topicdata name="EntityDesignerBuildProvider" group="list" subgroup="Methods" typeTopicId="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      <apidata name="EntityDesignerBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      </containers>
+      <file name="74784e1c-513e-3897-86be-3dc1b06ebacd" />
+    </api>
+    <api id="Properties.T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider">
+      <topicdata name="EntityDesignerBuildProvider" group="list" subgroup="Properties" typeTopicId="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      <apidata name="EntityDesignerBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.#ctor" />
+      <elements>
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" />
+      </containers>
+      <file name="d6d2d36e-6f8c-9513-d316-5145693c2894" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" ref="true" />
+      </containers>
+      <file name="c008915e-6c58-be0e-56dd-c58aa0d1fe5a" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <topicdata group="api" />
+      <apidata name="GenerateCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assemblyBuilder">
+          <type api="T:System.Web.Compilation.AssemblyBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" ref="true" />
+      </containers>
+      <file name="e76fcb03-cd4f-5e72-7d79-f56c6ebbd238" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+      <topicdata group="api" />
+      <apidata name="GetResultFlags" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="results">
+          <type api="T:System.CodeDom.Compiler.CompilerResults" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Compilation.BuildProviderResultFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityDesignerBuildProvider" ref="true" />
+      </containers>
+      <file name="d84dcb77-2f5a-11a1-6d3a-280140594268" />
+    </api>
+    <api id="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      <apidata name="EntityModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+      </containers>
+      <file name="7bd5e884-5081-38cf-88ee-2af535b7ca57" />
+    </api>
+    <api id="AllMembers.T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider">
+      <topicdata name="EntityModelBuildProvider" group="list" subgroup="members" typeTopicId="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      <apidata name="EntityModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.#ctor" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      </containers>
+      <file name="323e601f-587b-c6ea-bcee-5c8c10696c4f" />
+    </api>
+    <api id="Methods.T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider">
+      <topicdata name="EntityModelBuildProvider" group="list" subgroup="Methods" typeTopicId="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      <apidata name="EntityModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      </containers>
+      <file name="727faf6f-eb9b-938b-ecaf-092acda2250c" />
+    </api>
+    <api id="Properties.T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider">
+      <topicdata name="EntityModelBuildProvider" group="list" subgroup="Properties" typeTopicId="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      <apidata name="EntityModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.#ctor" />
+      <elements>
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" />
+      </containers>
+      <file name="f3fdb3ef-5daa-05e5-6a62-23f88295ae17" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" ref="true" />
+      </containers>
+      <file name="f01e80fd-fa5e-f17a-5308-d66fd44ddc9c" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <topicdata group="api" />
+      <apidata name="GenerateCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assemblyBuilder">
+          <type api="T:System.Web.Compilation.AssemblyBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" ref="true" />
+      </containers>
+      <file name="192dbfb7-1fb9-c4ac-0def-d64b03f93ac5" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.EntityModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+      <topicdata group="api" />
+      <apidata name="GetResultFlags" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="results">
+          <type api="T:System.CodeDom.Compiler.CompilerResults" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Compilation.BuildProviderResultFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.EntityModelBuildProvider" ref="true" />
+      </containers>
+      <file name="465919f5-0612-a27a-6574-1f6ac6da1996" />
+    </api>
+    <api id="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      <apidata name="MappingModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+      </containers>
+      <file name="523d5e64-357c-69b4-e9e4-195ae31cca10" />
+    </api>
+    <api id="AllMembers.T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider">
+      <topicdata name="MappingModelBuildProvider" group="list" subgroup="members" typeTopicId="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      <apidata name="MappingModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.#ctor" />
+        <element api="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      </containers>
+      <file name="e4447d76-f7a7-5efe-7d8d-ed668b4cd09a" />
+    </api>
+    <api id="Methods.T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider">
+      <topicdata name="MappingModelBuildProvider" group="list" subgroup="Methods" typeTopicId="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      <apidata name="MappingModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      </containers>
+      <file name="0b24ab18-3164-a6c8-a200-e624eb02444f" />
+    </api>
+    <api id="Properties.T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider">
+      <topicdata name="MappingModelBuildProvider" group="list" subgroup="Properties" typeTopicId="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      <apidata name="MappingModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.#ctor" />
+      <elements>
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" />
+      </containers>
+      <file name="8a75889b-33c2-03f0-6ebc-42becf5ece83" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" ref="true" />
+      </containers>
+      <file name="979e201f-b5a7-7947-60a7-51d2024d75bd" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <topicdata group="api" />
+      <apidata name="GenerateCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assemblyBuilder">
+          <type api="T:System.Web.Compilation.AssemblyBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" ref="true" />
+      </containers>
+      <file name="b5054104-a7ed-d0b7-fadd-9c797e3fd86b" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.MappingModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+      <topicdata group="api" />
+      <apidata name="GetResultFlags" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="results">
+          <type api="T:System.CodeDom.Compiler.CompilerResults" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Compilation.BuildProviderResultFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.MappingModelBuildProvider" ref="true" />
+      </containers>
+      <file name="e68761ee-f512-4064-a72e-b1aef8341541" />
+    </api>
+    <api id="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      <apidata name="StorageModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+      </containers>
+      <file name="9722fe54-aeb0-8540-a4bd-a2982b6e2f88" />
+    </api>
+    <api id="AllMembers.T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider">
+      <topicdata name="StorageModelBuildProvider" group="list" subgroup="members" typeTopicId="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      <apidata name="StorageModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.#ctor" />
+        <element api="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      </containers>
+      <file name="835474ca-7284-2ccb-ad61-6608768ce206" />
+    </api>
+    <api id="Methods.T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider">
+      <topicdata name="StorageModelBuildProvider" group="list" subgroup="Methods" typeTopicId="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      <apidata name="StorageModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)" />
+        <element api="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCodeCompileUnit(System.Collections.IDictionary@)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetCustomString(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerType" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetDefaultCompilerTypeForLanguage(System.String)" />
+        <element api="M:System.Web.Compilation.BuildProvider.GetGeneratedType(System.CodeDom.Compiler.CompilerResults)" />
+        <element api="Overload:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.OpenReader">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenReader(System.String)" />
+        </element>
+        <element api="Overload:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.OpenStream">
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream" />
+          <element api="M:System.Web.Compilation.BuildProvider.OpenStream(System.String)" />
+        </element>
+        <element api="M:System.Web.Compilation.BuildProvider.ProcessCompileErrors(System.CodeDom.Compiler.CompilerResults)" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      </containers>
+      <file name="9f1a3df0-a564-d130-2568-232d751c8e86" />
+    </api>
+    <api id="Properties.T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider">
+      <topicdata name="StorageModelBuildProvider" group="list" subgroup="Properties" typeTopicId="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      <apidata name="StorageModelBuildProvider" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.#ctor" />
+      <elements>
+        <element api="P:System.Web.Compilation.BuildProvider.CodeCompilerType" />
+        <element api="P:System.Web.Compilation.BuildProvider.ReferencedAssemblies" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPath" />
+        <element api="P:System.Web.Compilation.BuildProvider.VirtualPathDependencies" />
+      </elements>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" />
+      </containers>
+      <file name="11f1eaac-8bdb-3a53-e7e6-0fd0ee1e0525" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" ref="true" />
+      </containers>
+      <file name="474bf6d3-bacd-716d-9cc0-2d60e9c87944" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+      <topicdata group="api" />
+      <apidata name="GenerateCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GenerateCode(System.Web.Compilation.AssemblyBuilder)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="assemblyBuilder">
+          <type api="T:System.Web.Compilation.AssemblyBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" ref="true" />
+      </containers>
+      <file name="bc4e26d9-a75b-ed17-f4de-11f1569c0057" />
+    </api>
+    <api id="M:System.Data.Entity.Design.AspNet.StorageModelBuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+      <topicdata group="api" />
+      <apidata name="GetResultFlags" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Web.Compilation.BuildProvider.GetResultFlags(System.CodeDom.Compiler.CompilerResults)">
+          <type api="T:System.Web.Compilation.BuildProvider" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="results">
+          <type api="T:System.CodeDom.Compiler.CompilerResults" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Web.Compilation.BuildProviderResultFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Data.Entity.Design" module="System.Data.Entity.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Data.Entity.Design.AspNet" />
+        <type api="T:System.Data.Entity.Design.AspNet.StorageModelBuildProvider" ref="true" />
+      </containers>
+      <file name="644dae4a-72ca-df6d-233c-f0d36ebe1dc2" />
+    </api>
+  </apis>
+</reflection>

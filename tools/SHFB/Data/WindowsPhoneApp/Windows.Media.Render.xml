@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Render">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Render" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Render.AudioRenderCategory" />
+      </elements>
+      <file name="04e3a194-1f04-f51e-b26b-9ed2d4e0636a" />
+    </api>
+    <api id="T:Windows.Media.Render.AudioRenderCategory">
+      <topicdata group="api" />
+      <apidata name="AudioRenderCategory" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Render.AudioRenderCategory.Other" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.ForegroundOnlyMedia" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.BackgroundCapableMedia" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.Communications" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.Alerts" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.SoundEffects" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.GameEffects" />
+        <element api="F:Windows.Media.Render.AudioRenderCategory.GameMedia" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b91646c9-cf9e-e5ee-a5ac-9eda0a28901f" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.Alerts">
+      <topicdata group="api" notopic="" />
+      <apidata name="Alerts" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="99fd1dae-222b-5a78-38eb-f73226d45d7e" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.BackgroundCapableMedia">
+      <topicdata group="api" notopic="" />
+      <apidata name="BackgroundCapableMedia" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="c9c2d024-b2a4-2439-6307-33abd17cd22d" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.Communications">
+      <topicdata group="api" notopic="" />
+      <apidata name="Communications" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="fff71f6e-ddea-2194-8d86-893cc724e0b1" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.ForegroundOnlyMedia">
+      <topicdata group="api" notopic="" />
+      <apidata name="ForegroundOnlyMedia" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="3e4509b3-b906-1794-6b84-f9386e77bd0e" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.GameEffects">
+      <topicdata group="api" notopic="" />
+      <apidata name="GameEffects" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="07387673-d9c3-ea8f-b383-316ae94eb70a" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.GameMedia">
+      <topicdata group="api" notopic="" />
+      <apidata name="GameMedia" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="7d4b6395-eac9-10e8-1c35-86bd6ad444f9" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="86dc049a-e14f-8fd3-7405-8b6b9f05d5cd" />
+    </api>
+    <api id="F:Windows.Media.Render.AudioRenderCategory.SoundEffects">
+      <topicdata group="api" notopic="" />
+      <apidata name="SoundEffects" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Render" />
+        <type api="T:Windows.Media.Render.AudioRenderCategory" ref="false" />
+      </containers>
+      <file name="7877dc0f-0b73-79bd-384b-2229c86abbd9" />
+    </api>
+  </apis>
+</reflection>

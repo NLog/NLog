@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Activities.Tracking">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Activities.Tracking" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+        <element api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      </elements>
+      <file name="5d1dd9fe-816c-7eb8-a3b7-1a68257bc5fc" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      <apidata name="ReceiveMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Tracking.CustomTrackingRecord" ref="true" />
+          <type api="T:System.Activities.Tracking.TrackingRecord" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+      </containers>
+      <file name="62a80395-935b-9289-348d-68fc557dc5f0" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord">
+      <topicdata name="ReceiveMessageRecord" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      <apidata name="ReceiveMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Activity" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Data" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Name" />
+        <element api="M:System.Activities.Tracking.CustomTrackingRecord.ToString" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Annotations" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.EventTime" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.InstanceId" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Level" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.RecordNumber" />
+        <element api="Overload:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor">
+          <element api="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor(System.ServiceModel.Activities.Tracking.ReceiveMessageRecord)" />
+          <element api="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor(System.String)" />
+        </element>
+        <element api="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.Clone" />
+        <element api="P:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.E2EActivityId" />
+        <element api="P:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.MessageId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      </containers>
+      <file name="963034de-8fa3-8c92-8c75-471f01aa0b72" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord">
+      <topicdata name="ReceiveMessageRecord" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      <apidata name="ReceiveMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Tracking.CustomTrackingRecord.ToString" />
+        <element api="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      </containers>
+      <file name="5a4bc678-c5f4-84c8-2a40-911a0705e147" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord">
+      <topicdata name="ReceiveMessageRecord" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      <apidata name="ReceiveMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Activity" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Data" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Name" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Annotations" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.EventTime" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.InstanceId" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Level" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.RecordNumber" />
+        <element api="P:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.E2EActivityId" />
+        <element api="P:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.MessageId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      </containers>
+      <file name="f63fa7d6-2298-bfc5-9e34-53e2479f3e1b" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor(System.ServiceModel.Activities.Tracking.ReceiveMessageRecord)" />
+        <element api="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+      </containers>
+      <file name="d3b20dc1-13b0-0f37-c186-c7747dbf1dfa" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor(System.ServiceModel.Activities.Tracking.ReceiveMessageRecord)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor" />
+      <parameters>
+        <parameter name="record">
+          <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+      </containers>
+      <file name="06c835ff-96dc-ea8b-31dd-3b5390110f81" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+      </containers>
+      <file name="497d904a-4cf6-55ed-0793-1a0fa1d2200b" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.Tracking.CustomTrackingRecord.Clone">
+          <type api="T:System.Activities.Tracking.CustomTrackingRecord" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Activities.Tracking.TrackingRecord" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+      </containers>
+      <file name="eed62620-e1c9-c47c-068f-652000efae52" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.E2EActivityId">
+      <topicdata group="api" />
+      <apidata name="E2EActivityId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_E2EActivityId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+      </containers>
+      <file name="61b2f4fc-3cac-831e-5852-527ed3a86a3c" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord.MessageId">
+      <topicdata group="api" />
+      <apidata name="MessageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MessageId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.ReceiveMessageRecord" ref="true" />
+      </containers>
+      <file name="134b77c0-20d8-3204-4e95-484cc4cbb043" />
+    </api>
+    <api id="T:System.ServiceModel.Activities.Tracking.SendMessageRecord">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      <apidata name="SendMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Tracking.CustomTrackingRecord" ref="true" />
+          <type api="T:System.Activities.Tracking.TrackingRecord" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+      </containers>
+      <file name="17e320e5-1302-9a99-f863-bba788981ebe" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Activities.Tracking.SendMessageRecord">
+      <topicdata name="SendMessageRecord" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      <apidata name="SendMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Activity" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Data" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Name" />
+        <element api="M:System.Activities.Tracking.CustomTrackingRecord.ToString" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Annotations" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.EventTime" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.InstanceId" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Level" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.RecordNumber" />
+        <element api="Overload:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor">
+          <element api="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor(System.ServiceModel.Activities.Tracking.SendMessageRecord)" />
+          <element api="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor(System.String)" />
+        </element>
+        <element api="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.Clone" />
+        <element api="P:System.ServiceModel.Activities.Tracking.SendMessageRecord.E2EActivityId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      </containers>
+      <file name="dc05f33a-6e6a-762c-618b-b4f094c5c808" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Activities.Tracking.SendMessageRecord">
+      <topicdata name="SendMessageRecord" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      <apidata name="SendMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Tracking.CustomTrackingRecord.ToString" />
+        <element api="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.Clone" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      </containers>
+      <file name="4b250365-13bf-053f-84f7-5fdda434ddc3" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Activities.Tracking.SendMessageRecord">
+      <topicdata name="SendMessageRecord" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      <apidata name="SendMessageRecord" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Activity" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Data" />
+        <element api="P:System.Activities.Tracking.CustomTrackingRecord.Name" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Annotations" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.EventTime" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.InstanceId" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.Level" />
+        <element api="P:System.Activities.Tracking.TrackingRecord.RecordNumber" />
+        <element api="P:System.ServiceModel.Activities.Tracking.SendMessageRecord.E2EActivityId" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      </containers>
+      <file name="9673b24e-766d-fc9f-a14e-25c3e1d24d42" />
+    </api>
+    <api id="Overload:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Activities.Tracking.SendMessageRecord" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor(System.ServiceModel.Activities.Tracking.SendMessageRecord)" />
+        <element api="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" ref="true" />
+      </containers>
+      <file name="2642822b-1d6f-4bbe-d2ca-4144605b4344" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor(System.ServiceModel.Activities.Tracking.SendMessageRecord)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor" />
+      <parameters>
+        <parameter name="record">
+          <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" ref="true" />
+      </containers>
+      <file name="ab013d29-bd55-b894-5df1-1e633b28e0e0" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Activities.Tracking.SendMessageRecord.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" ref="true" />
+      </containers>
+      <file name="d7161de1-4c33-938f-070a-396acaa06d4d" />
+    </api>
+    <api id="M:System.ServiceModel.Activities.Tracking.SendMessageRecord.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.Tracking.CustomTrackingRecord.Clone">
+          <type api="T:System.Activities.Tracking.CustomTrackingRecord" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Activities.Tracking.TrackingRecord" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" ref="true" />
+      </containers>
+      <file name="c03d64f6-1903-bdbb-618b-89892a5ac459" />
+    </api>
+    <api id="P:System.ServiceModel.Activities.Tracking.SendMessageRecord.E2EActivityId">
+      <topicdata group="api" />
+      <apidata name="E2EActivityId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_E2EActivityId" />
+      <setter name="set_E2EActivityId" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Activities" module="System.ServiceModel.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Activities.Tracking" />
+        <type api="T:System.ServiceModel.Activities.Tracking.SendMessageRecord" ref="true" />
+      </containers>
+      <file name="3e0a060b-6862-0fc7-2130-ed6d085c9722" />
+    </api>
+  </apis>
+</reflection>

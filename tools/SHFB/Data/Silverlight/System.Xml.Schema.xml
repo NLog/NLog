@@ -1,0 +1,1526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xml">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\silverlightplatformpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xml.Schema">
+      <topicdata group="api" />
+      <apidata name="System.Xml.Schema" group="namespace" />
+      <elements>
+        <element api="T:System.Xml.Schema.XmlSchemaObject" />
+        <element api="T:System.Xml.Schema.XmlSchema" />
+        <element api="T:System.Xml.Schema.XmlSchemaForm" />
+        <element api="T:System.Xml.Schema.XmlSchemaSet" />
+        <element api="T:System.Xml.Schema.XmlSeverityType" />
+        <element api="T:System.Xml.Schema.XmlTypeCode" />
+      </elements>
+      <file name="5de1619d-edb1-0317-7a53-bab5cfe4a1ee" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSchema">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Schema.XmlSchema" />
+      <apidata name="XmlSchema" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xml.Schema.XmlSchemaObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="75ba01b1-e667-10a6-71a0-1083b924de9e" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Schema.XmlSchema">
+      <topicdata name="XmlSchema" group="list" subgroup="members" typeTopicId="T:System.Xml.Schema.XmlSchema" />
+      <apidata name="XmlSchema" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchema" />
+      </containers>
+      <file name="8387c161-ee1e-a51d-eedb-e24cad7a5e5d" />
+    </api>
+    <api id="Methods.T:System.Xml.Schema.XmlSchema">
+      <topicdata name="XmlSchema" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Schema.XmlSchema" />
+      <apidata name="XmlSchema" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchema" />
+      </containers>
+      <file name="8df9d69f-fdbf-5a13-6638-04ca9eaf58d5" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSchemaForm">
+      <topicdata group="api" />
+      <apidata name="XmlSchemaForm" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Xml.Schema.XmlSchemaForm.None" />
+        <element api="F:System.Xml.Schema.XmlSchemaForm.Qualified" />
+        <element api="F:System.Xml.Schema.XmlSchemaForm.Unqualified" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="838f543c-4edb-ed64-20c9-1f1e7793d00e" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSchemaForm.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlIgnoreAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e7a07769-b019-94db-fa37-934fb2058380" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSchemaForm.Qualified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Qualified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlEnumAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>qualified</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1bd47e0a-3936-ea2d-1d51-49b9578f982e" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSchemaForm.Unqualified">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unqualified" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaForm" ref="false" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlEnumAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>unqualified</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1a7b7e12-264f-decf-234e-e4fc08d5d306" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSchemaObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Schema.XmlSchemaObject" />
+      <apidata name="XmlSchemaObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Xml.Schema.XmlSchema" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="7a4b5aa3-47c0-25da-2864-874e859e3736" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Schema.XmlSchemaObject">
+      <topicdata name="XmlSchemaObject" group="list" subgroup="members" typeTopicId="T:System.Xml.Schema.XmlSchemaObject" />
+      <apidata name="XmlSchemaObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.Schema.XmlSchemaObject.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaObject" />
+      </containers>
+      <file name="a5e54b08-ae20-64b6-1ac4-ff7dfbf1b0b9" />
+    </api>
+    <api id="Methods.T:System.Xml.Schema.XmlSchemaObject">
+      <topicdata name="XmlSchemaObject" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Schema.XmlSchemaObject" />
+      <apidata name="XmlSchemaObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaObject" />
+      </containers>
+      <file name="df6874bc-fdb4-a39d-62a1-f3f856ed3e19" />
+    </api>
+    <api id="M:System.Xml.Schema.XmlSchemaObject.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaObject" ref="true" />
+      </containers>
+      <file name="2ba7d051-233a-7ee6-df0e-e22f4f1cefcf" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSchemaSet">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Schema.XmlSchemaSet" />
+      <apidata name="XmlSchemaSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="d4956671-6f1e-3507-5865-352c9dfb154c" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Schema.XmlSchemaSet">
+      <topicdata name="XmlSchemaSet" group="list" subgroup="members" typeTopicId="T:System.Xml.Schema.XmlSchemaSet" />
+      <apidata name="XmlSchemaSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaSet" />
+      </containers>
+      <file name="c82d86a3-9b76-9bb2-d37d-f5dfa2644932" />
+    </api>
+    <api id="Methods.T:System.Xml.Schema.XmlSchemaSet">
+      <topicdata name="XmlSchemaSet" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Schema.XmlSchemaSet" />
+      <apidata name="XmlSchemaSet" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSchemaSet" />
+      </containers>
+      <file name="22b5cb02-cb8a-dc89-b1ce-b4661b386105" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlSeverityType">
+      <topicdata group="api" />
+      <apidata name="XmlSeverityType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Xml.Schema.XmlSeverityType.Error" />
+        <element api="F:System.Xml.Schema.XmlSeverityType.Warning" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="f6c9816e-f9b9-1f9f-2a59-0f16f7a45590" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSeverityType.Error">
+      <topicdata group="api" notopic="" />
+      <apidata name="Error" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSeverityType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSeverityType" ref="false" />
+      </containers>
+      <file name="22929cc3-ee4f-7107-6c42-1d56a5abe66b" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlSeverityType.Warning">
+      <topicdata group="api" notopic="" />
+      <apidata name="Warning" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSeverityType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlSeverityType" ref="false" />
+      </containers>
+      <file name="1c16348c-5dfc-cba5-0cf5-e3119209e53a" />
+    </api>
+    <api id="T:System.Xml.Schema.XmlTypeCode">
+      <topicdata group="api" />
+      <apidata name="XmlTypeCode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Xml.Schema.XmlTypeCode.None" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Item" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Node" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Document" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Element" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Attribute" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Namespace" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.ProcessingInstruction" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Comment" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Text" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.AnyAtomicType" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.UntypedAtomic" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.String" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Boolean" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Decimal" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Float" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Double" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Duration" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.DateTime" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Time" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Date" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.GYearMonth" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.GYear" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.GMonthDay" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.GDay" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.GMonth" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.HexBinary" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Base64Binary" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.AnyUri" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.QName" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Notation" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.NormalizedString" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Token" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Language" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.NmToken" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Name" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.NCName" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Id" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Idref" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Entity" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Integer" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.NonPositiveInteger" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.NegativeInteger" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Long" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Int" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Short" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.Byte" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.NonNegativeInteger" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.UnsignedLong" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.UnsignedInt" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.UnsignedShort" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.UnsignedByte" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.PositiveInteger" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.YearMonthDuration" />
+        <element api="F:System.Xml.Schema.XmlTypeCode.DayTimeDuration" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+      </containers>
+      <file name="5c3731d0-0da2-346c-5814-4a37c4659e69" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.AnyAtomicType">
+      <topicdata group="api" notopic="" />
+      <apidata name="AnyAtomicType" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="7d01c16d-0870-48bf-c40a-56de9a396fd9" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.AnyUri">
+      <topicdata group="api" notopic="" />
+      <apidata name="AnyUri" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>28</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="f9f5ff35-2ea8-3b26-7496-f2f028a71e75" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Attribute">
+      <topicdata group="api" notopic="" />
+      <apidata name="Attribute" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="3f4dd891-4fe0-2e19-35d0-9c0297439c30" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Base64Binary">
+      <topicdata group="api" notopic="" />
+      <apidata name="Base64Binary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>27</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="5a433df1-765c-be53-19ad-12a5e52f0c0b" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Boolean">
+      <topicdata group="api" notopic="" />
+      <apidata name="Boolean" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="c86ade2d-4c68-afdb-553b-b1360531e79a" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Byte">
+      <topicdata group="api" notopic="" />
+      <apidata name="Byte" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>46</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="e71db193-7a82-eccf-a03c-f1143ba911dc" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Comment">
+      <topicdata group="api" notopic="" />
+      <apidata name="Comment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="227d06dd-1883-88c7-cc91-3049bc37e61f" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Date">
+      <topicdata group="api" notopic="" />
+      <apidata name="Date" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="078a61a1-8465-09b4-040e-30503285fce7" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.DateTime">
+      <topicdata group="api" notopic="" />
+      <apidata name="DateTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="88219720-864f-b49a-f699-cce059538ee0" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.DayTimeDuration">
+      <topicdata group="api" notopic="" />
+      <apidata name="DayTimeDuration" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>54</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="0e4c7e0f-a8b3-8384-a349-c108d62304c6" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Decimal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Decimal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="e85c2a10-1019-6f5f-c62a-b7ee38ebbe66" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Document">
+      <topicdata group="api" notopic="" />
+      <apidata name="Document" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="3b5ba5f8-b8a2-3676-fb0f-c35febcda306" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Double">
+      <topicdata group="api" notopic="" />
+      <apidata name="Double" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="c1bbcfe7-d7a0-332d-4832-fd363c102381" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Duration">
+      <topicdata group="api" notopic="" />
+      <apidata name="Duration" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="005c5ce6-c146-e035-34ff-2f2b9a3df8d3" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Element">
+      <topicdata group="api" notopic="" />
+      <apidata name="Element" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="352e6e34-8d8b-e188-057c-bd936b692be3" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Entity">
+      <topicdata group="api" notopic="" />
+      <apidata name="Entity" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>39</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="651953eb-2896-4917-53e5-8a2c9e921fb7" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Float">
+      <topicdata group="api" notopic="" />
+      <apidata name="Float" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="8857c7eb-239f-0660-16fa-574910604ef8" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.GDay">
+      <topicdata group="api" notopic="" />
+      <apidata name="GDay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="15265174-758d-490f-edc9-0b8011cbeb4f" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.GMonth">
+      <topicdata group="api" notopic="" />
+      <apidata name="GMonth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>25</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="ce8594f0-3cab-0078-2ec1-66880b9b0b65" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.GMonthDay">
+      <topicdata group="api" notopic="" />
+      <apidata name="GMonthDay" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="2931ef8e-2e20-0896-6dc8-749970f17433" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.GYear">
+      <topicdata group="api" notopic="" />
+      <apidata name="GYear" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="423aebbf-142d-b51f-5b99-e9715110898c" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.GYearMonth">
+      <topicdata group="api" notopic="" />
+      <apidata name="GYearMonth" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="43ede289-565f-8595-4255-637a4a6e3a97" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.HexBinary">
+      <topicdata group="api" notopic="" />
+      <apidata name="HexBinary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>26</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="024b453b-26a3-0a64-7409-b504421b88ec" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Id">
+      <topicdata group="api" notopic="" />
+      <apidata name="Id" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>37</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="51a7989d-d8d5-7400-810c-5b20e61e9aa3" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Idref">
+      <topicdata group="api" notopic="" />
+      <apidata name="Idref" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>38</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="70c186f7-d531-379b-1df4-9a46c21e774a" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Int">
+      <topicdata group="api" notopic="" />
+      <apidata name="Int" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>44</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="ec0d7446-8149-a9b7-e269-314d85c5bc6a" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Integer">
+      <topicdata group="api" notopic="" />
+      <apidata name="Integer" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>40</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="97d28823-0e8b-5dc3-fd48-99c67ba11674" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Item">
+      <topicdata group="api" notopic="" />
+      <apidata name="Item" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="995e7aaf-96cf-02b5-a770-5ef9497a86e3" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Language">
+      <topicdata group="api" notopic="" />
+      <apidata name="Language" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>33</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="e9b90a7b-1e83-2839-ba8e-d815a81adefd" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Long">
+      <topicdata group="api" notopic="" />
+      <apidata name="Long" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>43</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="228a0ac4-6f92-067d-0854-96a169a37780" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Name">
+      <topicdata group="api" notopic="" />
+      <apidata name="Name" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>35</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="d2dc8034-1375-4dc3-370e-4d44d3ced88d" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Namespace">
+      <topicdata group="api" notopic="" />
+      <apidata name="Namespace" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="09f8e909-17a9-d1c9-fc4f-049d67e94aa8" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.NCName">
+      <topicdata group="api" notopic="" />
+      <apidata name="NCName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>36</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="7b3d3258-496b-5925-402e-53c7ce8bb122" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.NegativeInteger">
+      <topicdata group="api" notopic="" />
+      <apidata name="NegativeInteger" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>42</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="73c27732-8f54-7fb8-165e-bc18511eead2" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.NmToken">
+      <topicdata group="api" notopic="" />
+      <apidata name="NmToken" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>34</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="d7406997-8718-01a7-2825-ef0c1324a7a6" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Node">
+      <topicdata group="api" notopic="" />
+      <apidata name="Node" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="8c4c806a-2e44-9fc4-b6de-54399ac06870" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="a6704a53-ad84-91ae-937c-8069496d13e8" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.NonNegativeInteger">
+      <topicdata group="api" notopic="" />
+      <apidata name="NonNegativeInteger" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>47</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="020f096c-d0e2-adc6-acd7-9d99f0db39a3" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.NonPositiveInteger">
+      <topicdata group="api" notopic="" />
+      <apidata name="NonPositiveInteger" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>41</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="25359414-06b5-caec-536c-be1d913e8ad3" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.NormalizedString">
+      <topicdata group="api" notopic="" />
+      <apidata name="NormalizedString" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>31</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="7e2335c3-4fb0-e6c6-23ad-409e372d90b9" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Notation">
+      <topicdata group="api" notopic="" />
+      <apidata name="Notation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>30</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="cfd4826e-8059-8f36-b5ae-1962076686f4" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.PositiveInteger">
+      <topicdata group="api" notopic="" />
+      <apidata name="PositiveInteger" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>52</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="4491fedf-59b1-8559-defc-d51ccfe4b636" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.ProcessingInstruction">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProcessingInstruction" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="5139573f-f0b9-0aef-4f7e-0d6c15b25cc4" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.QName">
+      <topicdata group="api" notopic="" />
+      <apidata name="QName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>29</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="41b7527d-666d-4963-519d-0fad15236825" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Short">
+      <topicdata group="api" notopic="" />
+      <apidata name="Short" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>45</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="04dec323-1e50-d2d6-b5d3-4f447bc31141" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.String">
+      <topicdata group="api" notopic="" />
+      <apidata name="String" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="d62a1f1d-f4c8-badd-064f-2430015bf7e0" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Text">
+      <topicdata group="api" notopic="" />
+      <apidata name="Text" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="9cb6f681-9e00-31d5-02f8-87542c1dae1b" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Time">
+      <topicdata group="api" notopic="" />
+      <apidata name="Time" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="c832f103-4e5c-25b4-a753-13647de72a05" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.Token">
+      <topicdata group="api" notopic="" />
+      <apidata name="Token" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>32</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="03dea140-f6a3-46d1-b883-ff8d1e12a618" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.UnsignedByte">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsignedByte" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>51</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="f3a2d613-62ed-872a-4f14-173cdfda1163" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.UnsignedInt">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsignedInt" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>49</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="2d453811-13f9-bc81-6a6d-594a156f774a" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.UnsignedLong">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsignedLong" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>48</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="32f77f8f-3321-859f-62a9-3df98e1bd810" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.UnsignedShort">
+      <topicdata group="api" notopic="" />
+      <apidata name="UnsignedShort" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>50</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="5aa298b0-3f9a-b04a-29fe-09ccf71043be" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.UntypedAtomic">
+      <topicdata group="api" notopic="" />
+      <apidata name="UntypedAtomic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="79fa5d6b-2521-32bc-92c1-51e0ed8444e7" />
+    </api>
+    <api id="F:System.Xml.Schema.XmlTypeCode.YearMonthDuration">
+      <topicdata group="api" notopic="" />
+      <apidata name="YearMonthDuration" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </returns>
+      <value>53</value>
+      <containers>
+        <library assembly="System.Xml" module="System.Xml" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Schema" />
+        <type api="T:System.Xml.Schema.XmlTypeCode" ref="false" />
+      </containers>
+      <file name="8b9c2d60-b0a4-90d4-3200-dc38dde6b336" />
+    </api>
+  </apis>
+</reflection>

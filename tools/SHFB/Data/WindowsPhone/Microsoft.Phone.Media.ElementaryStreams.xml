@@ -1,0 +1,1644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone.Media.ElementaryStreams">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Media Elemtary Streams Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>86e6bda1-118a-47da-b6fc-25ec38cde6a0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone.Media.ElementaryStreams</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>1.0.0.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Media.ElementaryStreams">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Media.ElementaryStreams" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.AddNewStreamHandler" />
+        <element api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" />
+      </elements>
+      <file name="52b18032-a968-20cd-0032-2b199c0551b0" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.AddNewStreamHandler">
+      <topicdata group="api" />
+      <apidata name="AddNewStreamHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="streamType">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="elementaryPid">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="e3e18930-b564-7b33-3d79-d6c8d833052f" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      <apidata name="BitExtractor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="0e2a2676-81c5-f4df-cefd-647f737758bf" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor">
+      <topicdata name="BitExtractor" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      <apidata name="BitExtractor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <elements>
+        <element api="Overload:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor">
+          <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+          <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor(System.Byte[])" />
+          <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor(System.Byte[],System.Int32)" />
+        </element>
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.BitOffset" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Buffer" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.CurrentBitOffset" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Initialize(System.Byte[],System.Int32)" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Offset" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadBits(System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadBitsULong(System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadByte" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadFlag" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadSignedExponentialGolomb" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadUBits(System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadUnsignedExponentialGolomb" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.RemainingBits" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.RemainingBytes" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.SkipBits(System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      </containers>
+      <file name="bf3267b0-607e-5f50-822c-3d01b6e1b881" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor">
+      <topicdata name="BitExtractor" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      <apidata name="BitExtractor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Initialize(System.Byte[],System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadBits(System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadBitsULong(System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadByte" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadFlag" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadSignedExponentialGolomb" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadUBits(System.Int32)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadUnsignedExponentialGolomb" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.SkipBits(System.Int32)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      </containers>
+      <file name="254fb7b9-b4ce-c528-7ea0-552e2adac34d" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor">
+      <topicdata name="BitExtractor" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      <apidata name="BitExtractor" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.BitOffset" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Buffer" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.CurrentBitOffset" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Offset" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.RemainingBits" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.RemainingBytes" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      </containers>
+      <file name="f33b876e-bf4a-f94b-faff-d9ca67245e68" />
+    </api>
+    <api id="Overload:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor(System.Byte[])" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor(System.Byte[],System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="7813ac7c-fe02-e452-24bf-060d8dfbfa12" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="9a489b8d-cb02-bcf4-d602-3b7ce89a2b2a" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="b25513cf-07aa-2ace-7c90-dc5c0bdd2c07" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor(System.Byte[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.#ctor" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="93abba79-58b7-0904-c473-32fab3b3274b" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.BitOffset">
+      <topicdata group="api" />
+      <apidata name="BitOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BitOffset" />
+      <setter name="set_BitOffset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="154b1f9e-0737-f399-e44d-026db8552cdf" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Buffer">
+      <topicdata group="api" />
+      <apidata name="Buffer" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Buffer" />
+      <setter name="set_Buffer" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Byte" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="74f32ce8-7253-6ad3-a16b-469f2568606e" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.CurrentBitOffset">
+      <topicdata group="api" />
+      <apidata name="CurrentBitOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentBitOffset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="c97b319c-ea3e-396d-9508-82af5174e023" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Initialize(System.Byte[],System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="buffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="559e393b-db22-1aaf-4a97-ddeabb423567" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.Offset">
+      <topicdata group="api" />
+      <apidata name="Offset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Offset" />
+      <setter name="set_Offset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="9b471a9e-a71f-6222-8889-b55997e9b04b" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadBits(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ReadBits" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="n">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="c4d9e8a0-8f5e-594a-d589-bf1a7ab23a42" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadBitsULong(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ReadBitsULong" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="n">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="413521ea-9deb-bd82-e5d9-2b8dbcfe4232" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadByte">
+      <topicdata group="api" />
+      <apidata name="ReadByte" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="e4ee2bac-673b-6bcf-e4cf-efb346a5da1c" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadFlag">
+      <topicdata group="api" />
+      <apidata name="ReadFlag" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="1b71ac62-4975-726a-da4e-53f79e53bffa" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadSignedExponentialGolomb">
+      <topicdata group="api" />
+      <apidata name="ReadSignedExponentialGolomb" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="2172f5ba-6ea2-ebbb-6e15-5807f152c7f4" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadUBits(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="ReadUBits" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="n">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="6ade5d40-7f66-aa24-6400-b9fa5fdf0c6e" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.ReadUnsignedExponentialGolomb">
+      <topicdata group="api" />
+      <apidata name="ReadUnsignedExponentialGolomb" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="ac06a585-c389-26e7-c252-e2a5c3f22235" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.RemainingBits">
+      <topicdata group="api" />
+      <apidata name="RemainingBits" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RemainingBits" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="0a67171a-dbbb-6167-619d-ca8069d3ef48" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.RemainingBytes">
+      <topicdata group="api" />
+      <apidata name="RemainingBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RemainingBytes" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="ff836138-fb5b-ef15-8433-23cd0a279df4" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractor.SkipBits(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SkipBits" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="n">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+      </containers>
+      <file name="e51a774b-659f-e820-5dbc-9343edb90c9c" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      <apidata name="BitExtractorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="bacdcf20-2c83-72f9-552b-7df658e62460" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException">
+      <topicdata name="BitExtractorException" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      <apidata name="BitExtractorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException.#ctor(System.String)" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      </containers>
+      <file name="dc27d525-6334-c5c2-bf6b-fc3759403a7c" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException">
+      <topicdata name="BitExtractorException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      <apidata name="BitExtractorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      </containers>
+      <file name="c04cdd34-793e-c66a-6242-e63687db51f1" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException">
+      <topicdata name="BitExtractorException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      <apidata name="BitExtractorException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" />
+      </containers>
+      <file name="0f0aa4ad-6429-f065-0e47-2203420b2fa2" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractorException" ref="true" />
+      </containers>
+      <file name="03b51727-74ce-7c52-62db-710c20dd586b" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" />
+      <apidata name="PacketizedElementaryStreamParser" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="4891105d-e3cb-cad5-d5ec-d6c96716b822" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser">
+      <topicdata name="PacketizedElementaryStreamParser" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" />
+      <apidata name="PacketizedElementaryStreamParser" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.#ctor" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.ParseHeader(System.Byte[],System.Int32,System.UInt32,Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Boolean@,System.UInt32@,System.UInt32@,System.UInt32@,System.UInt32@,System.Int32@,System.Int64@,System.Int64@)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" />
+      </containers>
+      <file name="e8e9aa1f-5802-310d-856b-22f9798fc7e6" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser">
+      <topicdata name="PacketizedElementaryStreamParser" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" />
+      <apidata name="PacketizedElementaryStreamParser" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.ParseHeader(System.Byte[],System.Int32,System.UInt32,Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Boolean@,System.UInt32@,System.UInt32@,System.UInt32@,System.UInt32@,System.Int32@,System.Int64@,System.Int64@)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" />
+      </containers>
+      <file name="416ebeaf-2738-0e37-fb21-b7c7154582ce" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" ref="true" />
+      </containers>
+      <file name="c2968d8e-59d3-dda8-5324-c991726c5bb5" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser.ParseHeader(System.Byte[],System.Int32,System.UInt32,Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Boolean@,System.UInt32@,System.UInt32@,System.UInt32@,System.UInt32@,System.Int32@,System.Int64@,System.Int64@)">
+      <topicdata group="api" />
+      <apidata name="ParseHeader" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="data">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="count">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="bitstream">
+          <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+        </parameter>
+        <parameter name="newStream">
+          <referenceTo>
+            <type api="T:System.Boolean" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="skippedBytes">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="streamID">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="markerCount">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="markerBuffer">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="bytesToRead" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="presentationTimestamp" out="true">
+          <referenceTo>
+            <type api="T:System.Int64" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="decoderTimestamp" out="true">
+          <referenceTo>
+            <type api="T:System.Int64" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParser" ref="true" />
+      </containers>
+      <file name="d6e337c2-ad55-a39c-8e4b-149b8ae150e6" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      <apidata name="PacketizedElementaryStreamParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.FormatException" ref="true" />
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="cfa088b6-6b4a-e681-6663-878b5ab7709a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException">
+      <topicdata name="PacketizedElementaryStreamParserException" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      <apidata name="PacketizedElementaryStreamParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException.#ctor(System.String)" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      </containers>
+      <file name="3563e8b4-fae4-e87b-6b92-bac96312010c" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException">
+      <topicdata name="PacketizedElementaryStreamParserException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      <apidata name="PacketizedElementaryStreamParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      </containers>
+      <file name="0783bc90-a25b-3bf3-79d2-143f3d2afaad" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException">
+      <topicdata name="PacketizedElementaryStreamParserException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      <apidata name="PacketizedElementaryStreamParserException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" />
+      </containers>
+      <file name="ded59a42-0e82-a054-5bc2-07bdb7efab54" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.PacketizedElementaryStreamParserException" ref="true" />
+      </containers>
+      <file name="679e70e4-138b-dc37-8bbd-b2491f780b8b" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" />
+      <apidata name="TransportStreamDemux" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="4f1097c0-b731-3288-06a8-ef9b538b4553" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux">
+      <topicdata name="TransportStreamDemux" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" />
+      <apidata name="TransportStreamDemux" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.#ctor" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParsePacket(System.Int32,System.Byte[],Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Collections.Generic.IDictionary{System.UInt32,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram},System.UInt32@,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram@,System.UInt32@,System.UInt32@)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParseProgramAssociationTable(Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Boolean@,System.Collections.Generic.IDictionary{System.UInt32,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram}@)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParseProgramMapTable(Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram,Microsoft.Phone.Media.ElementaryStreams.BitExtractor,Microsoft.Phone.Media.ElementaryStreams.AddNewStreamHandler)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" />
+      </containers>
+      <file name="a786ca7c-7b4a-696d-e2bb-6b360891d652" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux">
+      <topicdata name="TransportStreamDemux" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" />
+      <apidata name="TransportStreamDemux" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParsePacket(System.Int32,System.Byte[],Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Collections.Generic.IDictionary{System.UInt32,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram},System.UInt32@,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram@,System.UInt32@,System.UInt32@)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParseProgramAssociationTable(Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Boolean@,System.Collections.Generic.IDictionary{System.UInt32,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram}@)" />
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParseProgramMapTable(Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram,Microsoft.Phone.Media.ElementaryStreams.BitExtractor,Microsoft.Phone.Media.ElementaryStreams.AddNewStreamHandler)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" />
+      </containers>
+      <file name="65d25bbf-a3a8-6451-422f-d7f08e9f566c" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" ref="true" />
+      </containers>
+      <file name="5989c8c3-f22b-7361-5e64-90a4daca2850" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParsePacket(System.Int32,System.Byte[],Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Collections.Generic.IDictionary{System.UInt32,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram},System.UInt32@,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram@,System.UInt32@,System.UInt32@)">
+      <topicdata group="api" />
+      <apidata name="ParsePacket" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="offset">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="packetBuffer">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="bitExtractor">
+          <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+        </parameter>
+        <parameter name="programs">
+          <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+            <specialization>
+              <type api="T:System.UInt32" ref="false" />
+              <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="pid" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="program" out="true">
+          <referenceTo>
+            <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="streamOffset" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="streamCount" out="true">
+          <referenceTo>
+            <type api="T:System.UInt32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" ref="true" />
+      </containers>
+      <file name="1afde1e7-612b-d588-d4c8-1f71c6433874" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParseProgramAssociationTable(Microsoft.Phone.Media.ElementaryStreams.BitExtractor,System.Boolean@,System.Collections.Generic.IDictionary{System.UInt32,Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram}@)">
+      <topicdata group="api" />
+      <apidata name="ParseProgramAssociationTable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bitExtractor">
+          <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+        </parameter>
+        <parameter name="parsedProgramAssociationTable">
+          <referenceTo>
+            <type api="T:System.Boolean" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="programs">
+          <referenceTo>
+            <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.UInt32" ref="false" />
+                <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+              </specialization>
+            </type>
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" ref="true" />
+      </containers>
+      <file name="73aaec06-5359-787c-17e1-393702cff254" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux.ParseProgramMapTable(Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram,Microsoft.Phone.Media.ElementaryStreams.BitExtractor,Microsoft.Phone.Media.ElementaryStreams.AddNewStreamHandler)">
+      <topicdata group="api" />
+      <apidata name="ParseProgramMapTable" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="program">
+          <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+        </parameter>
+        <parameter name="bitExtractor">
+          <type api="T:Microsoft.Phone.Media.ElementaryStreams.BitExtractor" ref="true" />
+        </parameter>
+        <parameter name="AddNewStream">
+          <type api="T:Microsoft.Phone.Media.ElementaryStreams.AddNewStreamHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemux" ref="true" />
+      </containers>
+      <file name="6e4fa717-13d4-66c4-15b2-42660efff3f2" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      <apidata name="TransportStreamDemuxException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="62abb8c0-282c-c387-6189-6e5d82f1f672" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException">
+      <topicdata name="TransportStreamDemuxException" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      <apidata name="TransportStreamDemuxException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException.#ctor(System.String)" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      </containers>
+      <file name="cc6ac817-afb8-7834-8134-9adfbd52bd61" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException">
+      <topicdata name="TransportStreamDemuxException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      <apidata name="TransportStreamDemuxException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      </containers>
+      <file name="ee56bef5-9bb7-964d-6044-c816bb90a209" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException">
+      <topicdata name="TransportStreamDemuxException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      <apidata name="TransportStreamDemuxException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" />
+      </containers>
+      <file name="35256ba3-42be-354b-7c5a-21a9b227672a" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamDemuxException" ref="true" />
+      </containers>
+      <file name="e24a65ca-a8e9-e1e2-778d-bb84eae99b76" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType">
+      <topicdata group="api" />
+      <apidata name="TransportStreamPacketPayloadType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.None" />
+        <element api="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.ProgramAssociationTable" />
+        <element api="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.ProgramMapTable" />
+        <element api="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.Stream" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="460acdb5-19cd-d984-14e1-5c7a8dc88867" />
+    </api>
+    <api id="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </containers>
+      <file name="b32b0680-e78c-d98e-11dc-f4479a010bb8" />
+    </api>
+    <api id="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.ProgramAssociationTable">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProgramAssociationTable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </containers>
+      <file name="bc3b2cea-c001-3c67-b5ed-d751381a229a" />
+    </api>
+    <api id="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.ProgramMapTable">
+      <topicdata group="api" notopic="" />
+      <apidata name="ProgramMapTable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </containers>
+      <file name="98071571-0243-7746-fe98-4e867d670463" />
+    </api>
+    <api id="F:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType.Stream">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stream" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamPacketPayloadType" ref="false" />
+      </containers>
+      <file name="f121c225-702d-5dea-6585-96a989be95b6" />
+    </api>
+    <api id="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      <apidata name="TransportStreamProgram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+      </containers>
+      <file name="950a9e7b-8c19-01f7-d8bf-c68e0bc4cc5a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram">
+      <topicdata name="TransportStreamProgram" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      <apidata name="TransportStreamProgram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.#ctor(System.UInt32,System.UInt32)" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ParsedPmt" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ProgramNumber" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ProgramPid" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      </containers>
+      <file name="e47225fa-2e3d-1f2c-8a48-72cd189b2675" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram">
+      <topicdata name="TransportStreamProgram" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      <apidata name="TransportStreamProgram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      </containers>
+      <file name="f5575a8c-9200-8c41-a8f9-659ae9c0f3ca" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram">
+      <topicdata name="TransportStreamProgram" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      <apidata name="TransportStreamProgram" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ParsedPmt" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ProgramNumber" />
+        <element api="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ProgramPid" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" />
+      </containers>
+      <file name="f8aa6d5c-678a-1998-9531-3f843d53c0b2" />
+    </api>
+    <api id="M:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.#ctor(System.UInt32,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="programPid">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="programNumber">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+      </containers>
+      <file name="75a8faa1-5a08-53ec-a520-3d33ec32fb2b" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ParsedPmt">
+      <topicdata group="api" />
+      <apidata name="ParsedPmt" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ParsedPmt" />
+      <setter name="set_ParsedPmt" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+      </containers>
+      <file name="e16c6dfe-698c-d8de-ca8b-0aee30766a3c" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ProgramNumber">
+      <topicdata group="api" />
+      <apidata name="ProgramNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProgramNumber" />
+      <setter name="set_ProgramNumber" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+      </containers>
+      <file name="00e64ce0-fee4-79ae-bbc3-0b630b31ea16" />
+    </api>
+    <api id="P:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram.ProgramPid">
+      <topicdata group="api" />
+      <apidata name="ProgramPid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ProgramPid" />
+      <setter name="set_ProgramPid" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Media.ElementaryStreams" module="Microsoft.Phone.Media.ElementaryStreams" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (1.0.0.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Media.ElementaryStreams" />
+        <type api="T:Microsoft.Phone.Media.ElementaryStreams.TransportStreamProgram" ref="true" />
+      </containers>
+      <file name="35abbbde-e238-b1f0-e4a6-e51014669e3c" />
+    </api>
+  </apis>
+</reflection>

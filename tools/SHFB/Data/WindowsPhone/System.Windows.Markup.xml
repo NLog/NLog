@@ -1,0 +1,1050 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="2.0.6.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.7.50915.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>2.0.6.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Markup">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Markup" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Markup.XamlParseException" />
+        <element api="T:System.Windows.Markup.XamlReader" />
+        <element api="T:System.Windows.Markup.ContentPropertyAttribute" />
+        <element api="T:System.Windows.Markup.XmlLanguage" />
+        <element api="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+        <element api="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      </elements>
+      <file name="f01b011e-8aab-bdc6-6c1e-88e27bf2187a" />
+    </api>
+    <api id="T:System.Windows.Markup.ContentPropertyAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="956d8797-2088-4f5b-a1a9-f05c418893be" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.ContentPropertyAttribute">
+      <topicdata name="ContentPropertyAttribute" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Markup.ContentPropertyAttribute.#ctor">
+          <element api="M:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+          <element api="M:System.Windows.Markup.ContentPropertyAttribute.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Windows.Markup.ContentPropertyAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" />
+      </containers>
+      <file name="e8ec2e6c-5f5a-99b5-9312-74bbd96f47bf" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.ContentPropertyAttribute">
+      <topicdata name="ContentPropertyAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" />
+      </containers>
+      <file name="5a8c4180-7751-d791-0006-56cf00ec7fe8" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.ContentPropertyAttribute">
+      <topicdata name="ContentPropertyAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.ContentPropertyAttribute" />
+      <apidata name="ContentPropertyAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Markup.ContentPropertyAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" />
+      </containers>
+      <file name="42547c21-7551-ee56-5337-b8df270051f1" />
+    </api>
+    <api id="Overload:System.Windows.Markup.ContentPropertyAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Markup.ContentPropertyAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+        <element api="M:System.Windows.Markup.ContentPropertyAttribute.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+      </containers>
+      <file name="2b602541-3cb1-9075-ed9d-805b21230628" />
+    </api>
+    <api id="M:System.Windows.Markup.ContentPropertyAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+      </containers>
+      <file name="d5e8cf70-01eb-0c74-ed16-a99d716edddc" />
+    </api>
+    <api id="M:System.Windows.Markup.ContentPropertyAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Markup.ContentPropertyAttribute.#ctor" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+      </containers>
+      <file name="6c1189ca-2d0e-00e0-1df7-57d0da42ccc8" />
+    </api>
+    <api id="P:System.Windows.Markup.ContentPropertyAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+      </containers>
+      <file name="20b924da-dbd6-11f0-0bfd-90c5c770257e" />
+    </api>
+    <api id="T:System.Windows.Markup.XamlParseException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.SystemException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+      </containers>
+      <file name="fc3460e4-2d73-ec2d-b806-d4e239b8a00d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.XamlParseException">
+      <topicdata name="XamlParseException" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="P:System.Windows.Markup.XamlParseException.LineNumber" />
+        <element api="P:System.Windows.Markup.XamlParseException.LinePosition" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlParseException" />
+      </containers>
+      <file name="b816ca23-5f55-5eb6-8c5c-41f0f63fee8f" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.XamlParseException">
+      <topicdata name="XamlParseException" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlParseException" />
+      </containers>
+      <file name="973899a0-7320-f3b9-2f73-0c65edc599ee" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.XamlParseException">
+      <topicdata name="XamlParseException" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.XamlParseException" />
+      <apidata name="XamlParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Windows.Markup.XamlParseException.LineNumber" />
+        <element api="P:System.Windows.Markup.XamlParseException.LinePosition" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlParseException" />
+      </containers>
+      <file name="8e873eda-03cd-3976-7e38-97bde8270c26" />
+    </api>
+    <api id="P:System.Windows.Markup.XamlParseException.LineNumber">
+      <topicdata group="api" />
+      <apidata name="LineNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LineNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlParseException" ref="true" />
+      </containers>
+      <file name="743582a4-d096-b88d-36c7-aa5a286aae44" />
+    </api>
+    <api id="P:System.Windows.Markup.XamlParseException.LinePosition">
+      <topicdata group="api" />
+      <apidata name="LinePosition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LinePosition" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlParseException" ref="true" />
+      </containers>
+      <file name="4a4c59ef-df21-ce22-f24c-13403f8e41ac" />
+    </api>
+    <api id="T:System.Windows.Markup.XamlReader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.XamlReader" />
+      <apidata name="XamlReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+      </containers>
+      <file name="f9ea4974-9337-9422-2c93-1d44cfa813da" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.XamlReader">
+      <topicdata name="XamlReader" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.XamlReader" />
+      <apidata name="XamlReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Markup.XamlReader.Load(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlReader" />
+      </containers>
+      <file name="9e02857d-65db-2fd7-540c-35789281a2c6" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.XamlReader">
+      <topicdata name="XamlReader" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.XamlReader" />
+      <apidata name="XamlReader" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Markup.XamlReader.Load(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlReader" />
+      </containers>
+      <file name="cf319869-57e1-75df-e6b0-c983f6e9529b" />
+    </api>
+    <api id="M:System.Windows.Markup.XamlReader.Load(System.String)">
+      <topicdata group="api" />
+      <apidata name="Load" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xaml">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XamlReader" ref="true" />
+      </containers>
+      <file name="851365ce-a7f6-2f56-e828-37bf38374d16" />
+    </api>
+    <api id="T:System.Windows.Markup.XmlLanguage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.XmlLanguage" />
+      <apidata name="XmlLanguage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+      </containers>
+      <file name="e8bc37f8-1fd0-5b7c-1dc1-dd7adb06d519" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.XmlLanguage">
+      <topicdata name="XmlLanguage" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.XmlLanguage" />
+      <apidata name="XmlLanguage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.XmlLanguage.Equals(System.Object)" />
+        <element api="M:System.Windows.Markup.XmlLanguage.GetHashCode" />
+        <element api="M:System.Windows.Markup.XmlLanguage.GetLanguage(System.String)" />
+        <element api="P:System.Windows.Markup.XmlLanguage.IetfLanguageTag" />
+        <element api="M:System.Windows.Markup.XmlLanguage.op_Equality(System.Windows.Markup.XmlLanguage,System.Windows.Markup.XmlLanguage)" />
+        <element api="M:System.Windows.Markup.XmlLanguage.op_Inequality(System.Windows.Markup.XmlLanguage,System.Windows.Markup.XmlLanguage)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" />
+      </containers>
+      <file name="5c09d21b-c4df-a5e7-9d33-92cc9a9792ec" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.XmlLanguage">
+      <topicdata name="XmlLanguage" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.XmlLanguage" />
+      <apidata name="XmlLanguage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.XmlLanguage.Equals(System.Object)" />
+        <element api="M:System.Windows.Markup.XmlLanguage.GetHashCode" />
+        <element api="M:System.Windows.Markup.XmlLanguage.GetLanguage(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" />
+      </containers>
+      <file name="5612656f-afc1-f439-21d1-3d6cc65f5714" />
+    </api>
+    <api id="Operators.T:System.Windows.Markup.XmlLanguage">
+      <topicdata name="XmlLanguage" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:System.Windows.Markup.XmlLanguage" />
+      <apidata name="XmlLanguage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Markup.XmlLanguage.op_Equality(System.Windows.Markup.XmlLanguage,System.Windows.Markup.XmlLanguage)" />
+        <element api="M:System.Windows.Markup.XmlLanguage.op_Inequality(System.Windows.Markup.XmlLanguage,System.Windows.Markup.XmlLanguage)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" />
+      </containers>
+      <file name="0465bd4a-674b-371c-ed14-80c8fa16dece" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.XmlLanguage">
+      <topicdata name="XmlLanguage" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.XmlLanguage" />
+      <apidata name="XmlLanguage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.XmlLanguage.IetfLanguageTag" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" />
+      </containers>
+      <file name="0f1939bb-a09d-3165-7447-29dcc4daa875" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlLanguage.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </containers>
+      <file name="7aad57b4-c2bc-fef6-5845-6e7d331e2001" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlLanguage.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </containers>
+      <file name="c135533d-5ffc-309a-7920-95d258cce112" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlLanguage.GetLanguage(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetLanguage" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="ietfLanguageTag">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </containers>
+      <file name="a304be22-ba5d-9b4d-6923-35628bf2ce2d" />
+    </api>
+    <api id="P:System.Windows.Markup.XmlLanguage.IetfLanguageTag">
+      <topicdata group="api" />
+      <apidata name="IetfLanguageTag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IetfLanguageTag" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </containers>
+      <file name="faa4dec0-413f-bc3a-7426-b5ba5e8f9420" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlLanguage.op_Equality(System.Windows.Markup.XmlLanguage,System.Windows.Markup.XmlLanguage)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xmlLanguage1">
+          <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+        </parameter>
+        <parameter name="xmlLanguage2">
+          <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </containers>
+      <file name="f0328d1a-358c-c1cb-df89-117b00fb620e" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlLanguage.op_Inequality(System.Windows.Markup.XmlLanguage,System.Windows.Markup.XmlLanguage)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="xmlLanguage1">
+          <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+        </parameter>
+        <parameter name="xmlLanguage2">
+          <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlLanguage" ref="true" />
+      </containers>
+      <file name="7f8a3a7a-2066-92c1-99b3-b3d80c769ed6" />
+    </api>
+    <api id="T:System.Windows.Markup.XmlnsDefinitionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      <apidata name="XmlnsDefinitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ff341798-9dee-0c49-11fe-fc3d38415274" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.XmlnsDefinitionAttribute">
+      <topicdata name="XmlnsDefinitionAttribute" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      <apidata name="XmlnsDefinitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.XmlnsDefinitionAttribute.#ctor(System.String,System.String)" />
+        <element api="P:System.Windows.Markup.XmlnsDefinitionAttribute.AssemblyName" />
+        <element api="P:System.Windows.Markup.XmlnsDefinitionAttribute.ClrNamespace" />
+        <element api="P:System.Windows.Markup.XmlnsDefinitionAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      </containers>
+      <file name="c18770f8-b306-87bb-5b35-7a3734f07f2d" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.XmlnsDefinitionAttribute">
+      <topicdata name="XmlnsDefinitionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      <apidata name="XmlnsDefinitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      </containers>
+      <file name="736cb26c-7000-ceba-7f03-d45f24cf4dc8" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.XmlnsDefinitionAttribute">
+      <topicdata name="XmlnsDefinitionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      <apidata name="XmlnsDefinitionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.XmlnsDefinitionAttribute.AssemblyName" />
+        <element api="P:System.Windows.Markup.XmlnsDefinitionAttribute.ClrNamespace" />
+        <element api="P:System.Windows.Markup.XmlnsDefinitionAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" />
+      </containers>
+      <file name="fc59ea52-548f-e6d6-084d-7eec0cbe6a30" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlnsDefinitionAttribute.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="xmlNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="clrNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" ref="true" />
+      </containers>
+      <file name="d37d027c-199f-7f12-4529-819a03386514" />
+    </api>
+    <api id="P:System.Windows.Markup.XmlnsDefinitionAttribute.AssemblyName">
+      <topicdata group="api" />
+      <apidata name="AssemblyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AssemblyName" />
+      <setter name="set_AssemblyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" ref="true" />
+      </containers>
+      <file name="3237bb19-d48e-f4f1-8d9c-cbff7b7fc067" />
+    </api>
+    <api id="P:System.Windows.Markup.XmlnsDefinitionAttribute.ClrNamespace">
+      <topicdata group="api" />
+      <apidata name="ClrNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClrNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" ref="true" />
+      </containers>
+      <file name="8fd8559f-9679-52d4-f0e3-461257b4cf1c" />
+    </api>
+    <api id="P:System.Windows.Markup.XmlnsDefinitionAttribute.XmlNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_XmlNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsDefinitionAttribute" ref="true" />
+      </containers>
+      <file name="4aa95746-9729-be45-f370-91b87ccbc5bb" />
+    </api>
+    <api id="T:System.Windows.Markup.XmlnsPrefixAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      <apidata name="XmlnsPrefixAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="a8feac08-b5bd-767c-0fb4-bc02da390aea" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.XmlnsPrefixAttribute">
+      <topicdata name="XmlnsPrefixAttribute" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      <apidata name="XmlnsPrefixAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.XmlnsPrefixAttribute.#ctor(System.String,System.String)" />
+        <element api="P:System.Windows.Markup.XmlnsPrefixAttribute.Prefix" />
+        <element api="P:System.Windows.Markup.XmlnsPrefixAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      </containers>
+      <file name="12997d3c-5bd2-c919-86fe-f87c4c795beb" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.XmlnsPrefixAttribute">
+      <topicdata name="XmlnsPrefixAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      <apidata name="XmlnsPrefixAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      </containers>
+      <file name="8fc38497-6105-7003-b48b-697b9a27671a" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.XmlnsPrefixAttribute">
+      <topicdata name="XmlnsPrefixAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      <apidata name="XmlnsPrefixAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.XmlnsPrefixAttribute.Prefix" />
+        <element api="P:System.Windows.Markup.XmlnsPrefixAttribute.XmlNamespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsPrefixAttribute" />
+      </containers>
+      <file name="68ee7d21-1648-53ef-216f-9c9e9e82adf8" />
+    </api>
+    <api id="M:System.Windows.Markup.XmlnsPrefixAttribute.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="xmlNamespace">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsPrefixAttribute" ref="true" />
+      </containers>
+      <file name="74a134fd-9b50-bda1-f4e2-3e464a56c680" />
+    </api>
+    <api id="P:System.Windows.Markup.XmlnsPrefixAttribute.Prefix">
+      <topicdata group="api" />
+      <apidata name="Prefix" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Prefix" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsPrefixAttribute" ref="true" />
+      </containers>
+      <file name="1f58b8e5-eab8-1023-2c55-cfbef7371df3" />
+    </api>
+    <api id="P:System.Windows.Markup.XmlnsPrefixAttribute.XmlNamespace">
+      <topicdata group="api" />
+      <apidata name="XmlNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_XmlNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="2.0.6.0 (4.7.50915.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Markup" />
+        <type api="T:System.Windows.Markup.XmlnsPrefixAttribute" ref="true" />
+      </containers>
+      <file name="586b6a1c-dd4a-e4f4-6ec4-c6d284adb166" />
+    </api>
+  </apis>
+</reflection>

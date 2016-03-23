@@ -1,0 +1,749 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Resources.ResourceManager">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Resources.ResourceManager.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Resources.ResourceManager.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Resources.ResourceManager.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Resources">
+      <topicdata group="api" />
+      <apidata name="System.Resources" group="namespace" />
+      <elements>
+        <element api="T:System.Resources.MissingManifestResourceException" />
+        <element api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+        <element api="T:System.Resources.ResourceManager" />
+        <element api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </elements>
+      <file name="18b85e30-6960-7bc0-c2b2-43f2f4b1a2a4" />
+    </api>
+    <api id="T:System.Resources.MissingManifestResourceException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="df171e31-8a7a-7dfe-12c4-9dfc0c14963e" />
+    </api>
+    <api id="AllMembers.T:System.Resources.MissingManifestResourceException">
+      <topicdata name="MissingManifestResourceException" group="list" subgroup="members" typeTopicId="T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Resources.MissingManifestResourceException.#ctor">
+          <element api="M:System.Resources.MissingManifestResourceException.#ctor" />
+          <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String)" />
+          <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" />
+      </containers>
+      <file name="bccfd2d1-11be-769f-c052-0bd65da2b390" />
+    </api>
+    <api id="Methods.T:System.Resources.MissingManifestResourceException">
+      <topicdata name="MissingManifestResourceException" group="list" subgroup="Methods" typeTopicId="T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" />
+      </containers>
+      <file name="a0cbfdad-6484-4143-a4fa-fc43f6a99f4d" />
+    </api>
+    <api id="Properties.T:System.Resources.MissingManifestResourceException">
+      <topicdata name="MissingManifestResourceException" group="list" subgroup="Properties" typeTopicId="T:System.Resources.MissingManifestResourceException" />
+      <apidata name="MissingManifestResourceException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Resources.MissingManifestResourceException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" />
+      </containers>
+      <file name="ddb05c34-a3a6-773d-9cad-e2005913f146" />
+    </api>
+    <api id="Overload:System.Resources.MissingManifestResourceException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.MissingManifestResourceException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Resources.MissingManifestResourceException.#ctor" />
+        <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String)" />
+        <element api="M:System.Resources.MissingManifestResourceException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="6228d505-b729-ab1e-320f-3ca8e1d2347c" />
+    </api>
+    <api id="M:System.Resources.MissingManifestResourceException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.MissingManifestResourceException.#ctor" />
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="eeb2dd26-ff53-a9b6-4698-b850cbb9fef0" />
+    </api>
+    <api id="M:System.Resources.MissingManifestResourceException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.MissingManifestResourceException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="2975164e-6bb1-9347-c1a7-f5cea9632554" />
+    </api>
+    <api id="M:System.Resources.MissingManifestResourceException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.MissingManifestResourceException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inner">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.MissingManifestResourceException" ref="true" />
+      </containers>
+      <file name="ac19a3ac-58ec-2cca-d3f7-dbcabeb23c35" />
+    </api>
+    <api id="T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="0e1a72d3-b50a-1b98-d8f5-fdab1d576244" />
+    </api>
+    <api id="AllMembers.T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata name="NeutralResourcesLanguageAttribute" group="list" subgroup="members" typeTopicId="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String)" />
+        <element api="P:System.Resources.NeutralResourcesLanguageAttribute.CultureName" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      </containers>
+      <file name="3bdf3339-5615-622a-e618-cb4ae8e5fca9" />
+    </api>
+    <api id="Methods.T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata name="NeutralResourcesLanguageAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      </containers>
+      <file name="16e37e3a-8f57-eb33-37c3-a0e0825459ef" />
+    </api>
+    <api id="Properties.T:System.Resources.NeutralResourcesLanguageAttribute">
+      <topicdata name="NeutralResourcesLanguageAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      <apidata name="NeutralResourcesLanguageAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Resources.NeutralResourcesLanguageAttribute.CultureName" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" />
+      </containers>
+      <file name="43b69f86-08d6-0919-c12e-bf438faa16b0" />
+    </api>
+    <api id="M:System.Resources.NeutralResourcesLanguageAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="cultureName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="a2f8330f-1115-0182-647b-c37aae0110ed" />
+    </api>
+    <api id="P:System.Resources.NeutralResourcesLanguageAttribute.CultureName">
+      <topicdata group="api" />
+      <apidata name="CultureName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CultureName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+      </containers>
+      <file name="f6bfc323-8136-b190-f99d-0154e14646a6" />
+    </api>
+    <api id="T:System.Resources.ResourceManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3ad9deea-8616-27cd-8364-3313fd47d111" />
+    </api>
+    <api id="AllMembers.T:System.Resources.ResourceManager">
+      <topicdata name="ResourceManager" group="list" subgroup="members" typeTopicId="T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Resources.ResourceManager.#ctor">
+          <element api="M:System.Resources.ResourceManager.#ctor(System.Type)" />
+          <element api="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly)" />
+        </element>
+        <element api="Overload:System.Resources.ResourceManager.GetString">
+          <element api="M:System.Resources.ResourceManager.GetString(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" />
+      </containers>
+      <file name="be82bb4c-ca38-91e4-10bc-1352e153988b" />
+    </api>
+    <api id="Methods.T:System.Resources.ResourceManager">
+      <topicdata name="ResourceManager" group="list" subgroup="Methods" typeTopicId="T:System.Resources.ResourceManager" />
+      <apidata name="ResourceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Resources.ResourceManager.GetString">
+          <element api="M:System.Resources.ResourceManager.GetString(System.String)" />
+          <element api="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" />
+      </containers>
+      <file name="4daeb021-4002-8e4c-ecb5-374226aae8c6" />
+    </api>
+    <api id="Overload:System.Resources.ResourceManager.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Resources.ResourceManager.#ctor(System.Type)" />
+        <element api="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly)" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="030b2b4a-31c8-1311-4a6b-f3495ff01c03" />
+    </api>
+    <api id="Overload:System.Resources.ResourceManager.GetString">
+      <topicdata name="GetString" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Resources.ResourceManager" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Resources.ResourceManager.GetString(System.String)" />
+        <element api="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="84190a62-5ce7-83a5-9598-de1ab7ee86ea" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.#ctor(System.String,System.Reflection.Assembly)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.ResourceManager.#ctor" />
+      <parameters>
+        <parameter name="baseName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="assembly">
+          <type api="T:System.Reflection.Assembly" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="7b1ec927-91d0-f93d-e276-2f915951ead5" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.#ctor(System.Type)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Resources.ResourceManager.#ctor" />
+      <parameters>
+        <parameter name="resourceSource">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="9d7bee55-1a84-8795-67be-3b5c5ee58840" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetString(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetString" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="520732b7-ff94-bb81-65a1-06124284e299" />
+    </api>
+    <api id="M:System.Resources.ResourceManager.GetString(System.String,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="GetString" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Resources.ResourceManager.GetString" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.ResourceManager" ref="true" />
+      </containers>
+      <file name="85ce2e89-033f-e92c-e8b3-6ec778f36135" />
+    </api>
+    <api id="T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Assembly" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="247f473c-7c50-cfbd-b417-8b6b6013f16c" />
+    </api>
+    <api id="AllMembers.T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata name="SatelliteContractVersionAttribute" group="list" subgroup="members" typeTopicId="T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Resources.SatelliteContractVersionAttribute.#ctor(System.String)" />
+        <element api="P:System.Resources.SatelliteContractVersionAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </containers>
+      <file name="f7da14e4-f2e4-74c7-ab35-0f1844ca8ec3" />
+    </api>
+    <api id="Methods.T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata name="SatelliteContractVersionAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </containers>
+      <file name="c153944e-1bf2-831d-916c-e13b5c22fbc3" />
+    </api>
+    <api id="Properties.T:System.Resources.SatelliteContractVersionAttribute">
+      <topicdata name="SatelliteContractVersionAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Resources.SatelliteContractVersionAttribute" />
+      <apidata name="SatelliteContractVersionAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Resources.SatelliteContractVersionAttribute.Version" />
+      </elements>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" />
+      </containers>
+      <file name="bd351874-b68f-f13c-6959-0a7cbaeddc0a" />
+    </api>
+    <api id="M:System.Resources.SatelliteContractVersionAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="version">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+      </containers>
+      <file name="6b2f96de-e1a8-8909-4ff0-d455bb84a723" />
+    </api>
+    <api id="P:System.Resources.SatelliteContractVersionAttribute.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Resources.ResourceManager" module="System.Resources.ResourceManager" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.Resources" />
+        <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+      </containers>
+      <file name="299c9143-e7ce-f629-5388-8fec34244b9a" />
+    </api>
+  </apis>
+</reflection>

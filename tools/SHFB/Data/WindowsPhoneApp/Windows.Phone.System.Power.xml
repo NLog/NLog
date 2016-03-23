@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.System.Power">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.System.Power" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.System.Power.PowerSavingMode" />
+        <element api="T:Windows.Phone.System.Power.PowerManager" />
+      </elements>
+      <file name="922f6723-3128-d279-0aa6-1aac86378f59" />
+    </api>
+    <api id="T:Windows.Phone.System.Power.PowerManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5b288270-234f-4c6c-48e1-67dc4603630d" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.System.Power.PowerManager">
+      <topicdata name="PowerManager" group="list" subgroup="members" typeTopicId="T:Windows.Phone.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.System.Power.PowerManager.PowerSavingMode" />
+        <element api="E:Windows.Phone.System.Power.PowerManager.PowerSavingModeChanged" />
+        <element api="P:Windows.Phone.System.Power.PowerManager.PowerSavingModeEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerManager" />
+      </containers>
+      <file name="1e97dc7d-6350-242c-afae-68125012e9a7" />
+    </api>
+    <api id="Properties.T:Windows.Phone.System.Power.PowerManager">
+      <topicdata name="PowerManager" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.System.Power.PowerManager.PowerSavingMode" />
+        <element api="P:Windows.Phone.System.Power.PowerManager.PowerSavingModeEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerManager" />
+      </containers>
+      <file name="31db0ecd-d9a7-fe2b-d1cd-09a96c167412" />
+    </api>
+    <api id="Events.T:Windows.Phone.System.Power.PowerManager">
+      <topicdata name="PowerManager" group="list" subgroup="Events" typeTopicId="T:Windows.Phone.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Phone.System.Power.PowerManager.PowerSavingModeChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerManager" />
+      </containers>
+      <file name="026caecd-8782-d64b-6e3a-d758e2578a4e" />
+    </api>
+    <api id="P:Windows.Phone.System.Power.PowerManager.PowerSavingMode">
+      <topicdata group="api" />
+      <apidata name="PowerSavingMode" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PowerSavingMode" />
+      <returns>
+        <type api="T:Windows.Phone.System.Power.PowerSavingMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="5ac88073-0b4d-baaf-0809-534207f0f878" />
+    </api>
+    <api id="E:Windows.Phone.System.Power.PowerManager.PowerSavingModeChanged">
+      <topicdata group="api" />
+      <apidata name="PowerSavingModeChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PowerSavingModeChanged" />
+      <remover name="remove_PowerSavingModeChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="fe355332-47ac-ed70-9c25-12dbe4e599fe" />
+    </api>
+    <api id="P:Windows.Phone.System.Power.PowerManager.PowerSavingModeEnabled">
+      <topicdata group="api" />
+      <apidata name="PowerSavingModeEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PowerSavingModeEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="a82466da-c8da-1d69-58bd-81cee1783557" />
+    </api>
+    <api id="T:Windows.Phone.System.Power.PowerSavingMode">
+      <topicdata group="api" />
+      <apidata name="PowerSavingMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.System.Power.PowerSavingMode.Off" />
+        <element api="F:Windows.Phone.System.Power.PowerSavingMode.On" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ddc9e590-8197-7525-7c6e-0c42c170184f" />
+    </api>
+    <api id="F:Windows.Phone.System.Power.PowerSavingMode.Off">
+      <topicdata group="api" notopic="" />
+      <apidata name="Off" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.Power.PowerSavingMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerSavingMode" ref="false" />
+      </containers>
+      <file name="e59464ba-764a-c0b9-1064-3863ee138937" />
+    </api>
+    <api id="F:Windows.Phone.System.Power.PowerSavingMode.On">
+      <topicdata group="api" notopic="" />
+      <apidata name="On" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.Power.PowerSavingMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.Power" />
+        <type api="T:Windows.Phone.System.Power.PowerSavingMode" ref="false" />
+      </containers>
+      <file name="d47a0d6e-61fd-5d9c-effa-bd5e2a635968" />
+    </api>
+  </apis>
+</reflection>

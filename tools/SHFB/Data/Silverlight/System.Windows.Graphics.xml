@@ -1,0 +1,1511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Xna">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Xna.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Xna.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Xna.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Graphics">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Graphics" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Graphics.GraphicsDeviceManager" />
+        <element api="T:System.Windows.Graphics.RenderModeReason" />
+        <element api="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+        <element api="T:System.Windows.Graphics.CompositionMode" />
+        <element api="T:System.Windows.Graphics.OffscreenCompositionMode" />
+        <element api="T:System.Windows.Graphics.RenderMode" />
+      </elements>
+      <file name="aa382c70-fa44-46d9-fd74-ebca17aaaefc" />
+    </api>
+    <api id="T:System.Windows.Graphics.CompositionMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Graphics.CompositionMode" />
+      <apidata name="CompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+      </containers>
+      <file name="dbcf503c-c834-1f35-f7e7-ad39f06c386c" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Graphics.CompositionMode">
+      <topicdata name="CompositionMode" group="list" subgroup="members" typeTopicId="T:System.Windows.Graphics.CompositionMode" />
+      <apidata name="CompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.CompositionMode" />
+      </containers>
+      <file name="235dcd7a-a469-39c9-07a0-5030131d74cd" />
+    </api>
+    <api id="Methods.T:System.Windows.Graphics.CompositionMode">
+      <topicdata name="CompositionMode" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Graphics.CompositionMode" />
+      <apidata name="CompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.CompositionMode" />
+      </containers>
+      <file name="df14fb45-8fd7-0a47-e629-a3b116e6075e" />
+    </api>
+    <api id="Properties.T:System.Windows.Graphics.CompositionMode">
+      <topicdata name="CompositionMode" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Graphics.CompositionMode" />
+      <apidata name="CompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.CompositionMode" />
+      </containers>
+      <file name="211b7575-0979-aceb-4fc3-c3cdc78134e2" />
+    </api>
+    <api id="T:System.Windows.Graphics.GraphicsDeviceManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Graphics.GraphicsDeviceManager" />
+      <apidata name="GraphicsDeviceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+      </containers>
+      <file name="22a5130e-402d-5bc7-d64f-876966937448" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Graphics.GraphicsDeviceManager">
+      <topicdata name="GraphicsDeviceManager" group="list" subgroup="members" typeTopicId="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      <apidata name="GraphicsDeviceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.Current" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.GraphicsDevice" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.RenderMode" />
+        <element api="E:System.Windows.Graphics.GraphicsDeviceManager.RenderModeChanged" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.RenderModeReason" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      </containers>
+      <file name="cdd19e83-4282-b844-d4e1-09c185daa17c" />
+    </api>
+    <api id="Methods.T:System.Windows.Graphics.GraphicsDeviceManager">
+      <topicdata name="GraphicsDeviceManager" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      <apidata name="GraphicsDeviceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      </containers>
+      <file name="f22a0c3d-fee1-fb86-3cfb-7d5e19f6e7ec" />
+    </api>
+    <api id="Properties.T:System.Windows.Graphics.GraphicsDeviceManager">
+      <topicdata name="GraphicsDeviceManager" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      <apidata name="GraphicsDeviceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.Current" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.GraphicsDevice" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.RenderMode" />
+        <element api="P:System.Windows.Graphics.GraphicsDeviceManager.RenderModeReason" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      </containers>
+      <file name="cfd43c39-2ab8-9198-ce26-b3c20de280a8" />
+    </api>
+    <api id="Events.T:System.Windows.Graphics.GraphicsDeviceManager">
+      <topicdata name="GraphicsDeviceManager" group="list" subgroup="Events" typeTopicId="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      <apidata name="GraphicsDeviceManager" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Graphics.GraphicsDeviceManager.RenderModeChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" />
+      </containers>
+      <file name="5aa16bc1-f579-16fa-1f1d-74dfa17b36ad" />
+    </api>
+    <api id="P:System.Windows.Graphics.GraphicsDeviceManager.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" ref="true" />
+      </containers>
+      <file name="fc9b65ec-fa94-0bee-64d0-2eedd7d75ee5" />
+    </api>
+    <api id="P:System.Windows.Graphics.GraphicsDeviceManager.GraphicsDevice">
+      <topicdata group="api" />
+      <apidata name="GraphicsDevice" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GraphicsDevice" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Graphics.GraphicsDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" ref="true" />
+      </containers>
+      <file name="20ae3709-e366-85fa-5968-50bdd77bfbf8" />
+    </api>
+    <api id="P:System.Windows.Graphics.GraphicsDeviceManager.RenderMode">
+      <topicdata group="api" />
+      <apidata name="RenderMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RenderMode" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" ref="true" />
+      </containers>
+      <file name="02a47903-8c3a-3e1c-0d4e-b8968e497207" />
+    </api>
+    <api id="E:System.Windows.Graphics.GraphicsDeviceManager.RenderModeChanged">
+      <topicdata group="api" />
+      <apidata name="RenderModeChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RenderModeChanged" />
+      <remover name="remove_RenderModeChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" ref="true" />
+      </containers>
+      <file name="4283fd2f-e3e7-3910-fc79-fc34b50013ad" />
+    </api>
+    <api id="P:System.Windows.Graphics.GraphicsDeviceManager.RenderModeReason">
+      <topicdata group="api" />
+      <apidata name="RenderModeReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RenderModeReason" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.GraphicsDeviceManager" ref="true" />
+      </containers>
+      <file name="4764ac62-e5d1-a75e-770a-c1661e3a6b23" />
+    </api>
+    <api id="T:System.Windows.Graphics.OffscreenCompositionMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Graphics.OffscreenCompositionMode" />
+      <apidata name="OffscreenCompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Graphics.CompositionMode" ref="true" />
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+      </containers>
+      <file name="e8084daa-bd0e-dcc5-1417-70fce322ec7e" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Graphics.OffscreenCompositionMode">
+      <topicdata name="OffscreenCompositionMode" group="list" subgroup="members" typeTopicId="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      <apidata name="OffscreenCompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor" />
+        <element api="P:System.Windows.Graphics.OffscreenCompositionMode.PreferredDepthStencilFormat" />
+        <element api="F:System.Windows.Graphics.OffscreenCompositionMode.PreferredDepthStencilFormatProperty" />
+        <element api="P:System.Windows.Graphics.OffscreenCompositionMode.PreferredMultiSampleCount" />
+        <element api="F:System.Windows.Graphics.OffscreenCompositionMode.PreferredMultiSampleCountProperty" />
+        <element api="P:System.Windows.Graphics.OffscreenCompositionMode.RenderTargetUsage" />
+        <element api="F:System.Windows.Graphics.OffscreenCompositionMode.RenderTargetUsageProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      </containers>
+      <file name="9646c750-54e6-b7fe-efc2-e75fcf714fd8" />
+    </api>
+    <api id="Methods.T:System.Windows.Graphics.OffscreenCompositionMode">
+      <topicdata name="OffscreenCompositionMode" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      <apidata name="OffscreenCompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.DependencyObject.CheckAccess" />
+        <element api="M:System.Windows.DependencyObject.ClearValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetAnimationBaseValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.GetValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.ReadLocalValue(System.Windows.DependencyProperty)" />
+        <element api="M:System.Windows.DependencyObject.SetValue(System.Windows.DependencyProperty,System.Object)" />
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestors(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestors" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualAncestorsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualAncestorsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildren(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildren" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualChildrenAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualChildrenAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendants(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendants" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualDescendantsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualDescendantsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblings(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblings" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Windows.Controls.Primitives.VisualTreeExtensions.GetVisualSiblingsAndSelf(System.Windows.DependencyObject)" source="extension">
+          <apidata name="GetVisualSiblingsAndSelf" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+              <specialization>
+                <type api="T:System.Windows.DependencyObject" ref="true" />
+              </specialization>
+            </type>
+          </returns>
+          <containers>
+            <library assembly="System.Windows.Controls.Toolkit" module="System.Windows.Controls.Toolkit" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System.Windows.Controls.Primitives" />
+            <type api="T:System.Windows.Controls.Primitives.VisualTreeExtensions" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      </containers>
+      <file name="4a7a97a8-9d14-5073-322f-1792b868642e" />
+    </api>
+    <api id="Properties.T:System.Windows.Graphics.OffscreenCompositionMode">
+      <topicdata name="OffscreenCompositionMode" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      <apidata name="OffscreenCompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor" />
+      <elements>
+        <element api="P:System.Windows.DependencyObject.Dispatcher" />
+        <element api="P:System.Windows.Graphics.OffscreenCompositionMode.PreferredDepthStencilFormat" />
+        <element api="P:System.Windows.Graphics.OffscreenCompositionMode.PreferredMultiSampleCount" />
+        <element api="P:System.Windows.Graphics.OffscreenCompositionMode.RenderTargetUsage" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      </containers>
+      <file name="65dc98a3-6064-f029-2a99-e36a9e1f2843" />
+    </api>
+    <api id="Fields.T:System.Windows.Graphics.OffscreenCompositionMode">
+      <topicdata name="OffscreenCompositionMode" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      <apidata name="OffscreenCompositionMode" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Graphics.OffscreenCompositionMode.PreferredDepthStencilFormatProperty" />
+        <element api="F:System.Windows.Graphics.OffscreenCompositionMode.PreferredMultiSampleCountProperty" />
+        <element api="F:System.Windows.Graphics.OffscreenCompositionMode.RenderTargetUsageProperty" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" />
+      </containers>
+      <file name="a59066ec-15f6-eb3b-4475-0eb1938634dd" />
+    </api>
+    <api id="M:System.Windows.Graphics.OffscreenCompositionMode.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="570d4995-fa8c-d119-1d38-dfbd6dfc68a0" />
+    </api>
+    <api id="P:System.Windows.Graphics.OffscreenCompositionMode.PreferredDepthStencilFormat">
+      <topicdata group="api" />
+      <apidata name="PreferredDepthStencilFormat" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredDepthStencilFormat" />
+      <setter name="set_PreferredDepthStencilFormat" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Graphics.DepthFormat" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="d5385d1f-d870-8542-11fd-8c6de66cc945" />
+    </api>
+    <api id="F:System.Windows.Graphics.OffscreenCompositionMode.PreferredDepthStencilFormatProperty">
+      <topicdata group="api" />
+      <apidata name="PreferredDepthStencilFormatProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="0b16d280-e5e2-9a5f-2b2d-57314bb01831" />
+    </api>
+    <api id="P:System.Windows.Graphics.OffscreenCompositionMode.PreferredMultiSampleCount">
+      <topicdata group="api" />
+      <apidata name="PreferredMultiSampleCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PreferredMultiSampleCount" />
+      <setter name="set_PreferredMultiSampleCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="8abb78ef-a4af-9ec8-a2cf-825b8f49a184" />
+    </api>
+    <api id="F:System.Windows.Graphics.OffscreenCompositionMode.PreferredMultiSampleCountProperty">
+      <topicdata group="api" />
+      <apidata name="PreferredMultiSampleCountProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="4b588cbc-61d6-b4ad-2221-f4dd78cbe6cd" />
+    </api>
+    <api id="P:System.Windows.Graphics.OffscreenCompositionMode.RenderTargetUsage">
+      <topicdata group="api" />
+      <apidata name="RenderTargetUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RenderTargetUsage" />
+      <setter name="set_RenderTargetUsage" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Graphics.RenderTargetUsage" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="ad46696e-7a09-9baf-f15a-af4f7be2fb18" />
+    </api>
+    <api id="F:System.Windows.Graphics.OffscreenCompositionMode.RenderTargetUsageProperty">
+      <topicdata group="api" />
+      <apidata name="RenderTargetUsageProperty" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.OffscreenCompositionMode" ref="true" />
+      </containers>
+      <file name="f64a5234-467e-5b9b-00c3-d8b4bde01cb2" />
+    </api>
+    <api id="T:System.Windows.Graphics.RenderMode">
+      <topicdata group="api" />
+      <apidata name="RenderMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Graphics.RenderMode.Unavailable" />
+        <element api="F:System.Windows.Graphics.RenderMode.Hardware" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+      </containers>
+      <file name="3bc99cde-3ab8-e5b2-601f-b6f46a9e9462" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderMode.Hardware">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hardware" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </containers>
+      <file name="99ab3999-b7ab-9550-7b3e-f0829e605afe" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderMode.Unavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </containers>
+      <file name="f437679f-af9d-3b7c-94cd-f7439400a102" />
+    </api>
+    <api id="T:System.Windows.Graphics.RenderModeChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      <apidata name="RenderModeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+      </containers>
+      <file name="fc4d5f11-3864-5bc4-9f45-cb8099539dd9" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Graphics.RenderModeChangedEventArgs">
+      <topicdata name="RenderModeChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      <apidata name="RenderModeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.OldRenderMode" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.OldRenderModeReason" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.RenderMode" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.RenderModeReason" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      </containers>
+      <file name="ab47f36f-bd1e-c822-9d01-34a3f07e5adb" />
+    </api>
+    <api id="Methods.T:System.Windows.Graphics.RenderModeChangedEventArgs">
+      <topicdata name="RenderModeChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      <apidata name="RenderModeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      </containers>
+      <file name="3e20b003-9024-98ec-aa6e-c340bda878fc" />
+    </api>
+    <api id="Properties.T:System.Windows.Graphics.RenderModeChangedEventArgs">
+      <topicdata name="RenderModeChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      <apidata name="RenderModeChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.OldRenderMode" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.OldRenderModeReason" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.RenderMode" />
+        <element api="P:System.Windows.Graphics.RenderModeChangedEventArgs.RenderModeReason" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" />
+      </containers>
+      <file name="e37e0e95-7d4a-d4be-1da6-50c5dc2ccc7f" />
+    </api>
+    <api id="P:System.Windows.Graphics.RenderModeChangedEventArgs.OldRenderMode">
+      <topicdata group="api" />
+      <apidata name="OldRenderMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OldRenderMode" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="93464dd6-87e5-4dbf-5f8c-e42852f06e6a" />
+    </api>
+    <api id="P:System.Windows.Graphics.RenderModeChangedEventArgs.OldRenderModeReason">
+      <topicdata group="api" />
+      <apidata name="OldRenderModeReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OldRenderModeReason" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="9d00349e-161e-6171-9366-9f58b30df9dd" />
+    </api>
+    <api id="P:System.Windows.Graphics.RenderModeChangedEventArgs.RenderMode">
+      <topicdata group="api" />
+      <apidata name="RenderMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RenderMode" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="af66b91e-8faf-5c87-d1b2-ac660a056701" />
+    </api>
+    <api id="P:System.Windows.Graphics.RenderModeChangedEventArgs.RenderModeReason">
+      <topicdata group="api" />
+      <apidata name="RenderModeReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RenderModeReason" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeChangedEventArgs" ref="true" />
+      </containers>
+      <file name="4b772e63-a4be-7931-01db-7b738684f4d3" />
+    </api>
+    <api id="T:System.Windows.Graphics.RenderModeReason">
+      <topicdata group="api" />
+      <apidata name="RenderModeReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Graphics.RenderModeReason.Normal" />
+        <element api="F:System.Windows.Graphics.RenderModeReason.GPUAccelerationDisabled" />
+        <element api="F:System.Windows.Graphics.RenderModeReason.SecurityBlocked" />
+        <element api="F:System.Windows.Graphics.RenderModeReason.Not3DCapable" />
+        <element api="F:System.Windows.Graphics.RenderModeReason.TemporarilyUnavailable" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+      </containers>
+      <file name="b0fbdfba-8873-1e98-1367-4911fde45894" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderModeReason.GPUAccelerationDisabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="GPUAccelerationDisabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </containers>
+      <file name="2112e6f8-a0e2-b9cd-9591-17ca4a870cdd" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderModeReason.Normal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Normal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </containers>
+      <file name="d6aedfdd-a72e-6bb1-7b7f-003c2b6ef52b" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderModeReason.Not3DCapable">
+      <topicdata group="api" notopic="" />
+      <apidata name="Not3DCapable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </containers>
+      <file name="38c1dcbb-51dc-0a64-ce5c-00eb4637ede7" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderModeReason.SecurityBlocked">
+      <topicdata group="api" notopic="" />
+      <apidata name="SecurityBlocked" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </containers>
+      <file name="16fa8d27-b7f1-63f8-17b7-82267d09f9be" />
+    </api>
+    <api id="F:System.Windows.Graphics.RenderModeReason.TemporarilyUnavailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="TemporarilyUnavailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows.Xna" module="System.Windows.Xna" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Graphics" />
+        <type api="T:System.Windows.Graphics.RenderModeReason" ref="false" />
+      </containers>
+      <file name="d26544d1-1ef4-1e7a-f911-8805811ff099" />
+    </api>
+  </apis>
+</reflection>

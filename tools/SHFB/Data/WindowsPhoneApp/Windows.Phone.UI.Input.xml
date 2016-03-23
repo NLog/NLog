@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.UI.Input">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.UI.Input" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+        <element api="T:Windows.Phone.UI.Input.CameraEventArgs" />
+        <element api="T:Windows.Phone.UI.Input.HardwareButtons" />
+      </elements>
+      <file name="bb63665d-04da-4770-34ae-2ab36d89822e" />
+    </api>
+    <api id="T:Windows.Phone.UI.Input.BackPressedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      <apidata name="BackPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.UI.Input.IBackPressedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b5d5522d-aa0e-abef-d5da-3a9b33b640b8" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.UI.Input.BackPressedEventArgs">
+      <topicdata name="BackPressedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      <apidata name="BackPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Phone.UI.Input.BackPressedEventArgs.Handled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      </containers>
+      <file name="fe088f6b-f681-3393-bfed-ef5ac3bf0f45" />
+    </api>
+    <api id="Methods.T:Windows.Phone.UI.Input.BackPressedEventArgs">
+      <topicdata name="BackPressedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      <apidata name="BackPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      </containers>
+      <file name="14d4cab2-5505-df79-3149-ed6a31ef72b8" />
+    </api>
+    <api id="Properties.T:Windows.Phone.UI.Input.BackPressedEventArgs">
+      <topicdata name="BackPressedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      <apidata name="BackPressedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.UI.Input.BackPressedEventArgs.Handled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.BackPressedEventArgs" />
+      </containers>
+      <file name="aae902c2-0561-f8ef-6046-55258f05411b" />
+    </api>
+    <api id="P:Windows.Phone.UI.Input.BackPressedEventArgs.Handled">
+      <topicdata group="api" />
+      <apidata name="Handled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handled" />
+      <setter name="set_Handled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.BackPressedEventArgs" ref="true" />
+      </containers>
+      <file name="38538cd4-1a16-51a4-6f0e-4f5a83358c61" />
+    </api>
+    <api id="T:Windows.Phone.UI.Input.CameraEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.UI.Input.CameraEventArgs" />
+      <apidata name="CameraEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.UI.Input.ICameraEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="57dd36f0-89a2-deef-8877-2b5e49e94465" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.UI.Input.CameraEventArgs">
+      <topicdata name="CameraEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Phone.UI.Input.CameraEventArgs" />
+      <apidata name="CameraEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.CameraEventArgs" />
+      </containers>
+      <file name="740abd6a-dcab-8c8b-e809-20134d2c5342" />
+    </api>
+    <api id="Methods.T:Windows.Phone.UI.Input.CameraEventArgs">
+      <topicdata name="CameraEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.UI.Input.CameraEventArgs" />
+      <apidata name="CameraEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.CameraEventArgs" />
+      </containers>
+      <file name="08c2810a-e9fb-602d-c9f8-3220c455adb6" />
+    </api>
+    <api id="T:Windows.Phone.UI.Input.HardwareButtons">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.UI.Input.HardwareButtons" />
+      <apidata name="HardwareButtons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="18c63b1e-3419-ec94-0cd2-d9bbcb95dc7b" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.UI.Input.HardwareButtons">
+      <topicdata name="HardwareButtons" group="list" subgroup="members" typeTopicId="T:Windows.Phone.UI.Input.HardwareButtons" />
+      <apidata name="HardwareButtons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.BackPressed" />
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.CameraHalfPressed" />
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.CameraPressed" />
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.CameraReleased" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.HardwareButtons" />
+      </containers>
+      <file name="d0d0dc2f-cff8-c260-ce06-04e22737aa08" />
+    </api>
+    <api id="Events.T:Windows.Phone.UI.Input.HardwareButtons">
+      <topicdata name="HardwareButtons" group="list" subgroup="Events" typeTopicId="T:Windows.Phone.UI.Input.HardwareButtons" />
+      <apidata name="HardwareButtons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.BackPressed" />
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.CameraHalfPressed" />
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.CameraPressed" />
+        <element api="E:Windows.Phone.UI.Input.HardwareButtons.CameraReleased" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.HardwareButtons" />
+      </containers>
+      <file name="fd57fda9-12e8-2420-4599-13f999dc953a" />
+    </api>
+    <api id="E:Windows.Phone.UI.Input.HardwareButtons.BackPressed">
+      <topicdata group="api" />
+      <apidata name="BackPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BackPressed" />
+      <remover name="remove_BackPressed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.UI.Input.BackPressedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Phone.UI.Input.BackPressedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.HardwareButtons" ref="true" />
+      </containers>
+      <file name="06856b43-34ca-1478-4ec8-4fbc987b8fb2" />
+    </api>
+    <api id="E:Windows.Phone.UI.Input.HardwareButtons.CameraHalfPressed">
+      <topicdata group="api" />
+      <apidata name="CameraHalfPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CameraHalfPressed" />
+      <remover name="remove_CameraHalfPressed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.UI.Input.CameraEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Phone.UI.Input.CameraEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.HardwareButtons" ref="true" />
+      </containers>
+      <file name="b6e47f61-5439-bc15-c9b4-48baffa7fa7f" />
+    </api>
+    <api id="E:Windows.Phone.UI.Input.HardwareButtons.CameraPressed">
+      <topicdata group="api" />
+      <apidata name="CameraPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CameraPressed" />
+      <remover name="remove_CameraPressed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.UI.Input.CameraEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Phone.UI.Input.CameraEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.HardwareButtons" ref="true" />
+      </containers>
+      <file name="c2304c14-ed7b-671b-b5f6-d677a67de212" />
+    </api>
+    <api id="E:Windows.Phone.UI.Input.HardwareButtons.CameraReleased">
+      <topicdata group="api" />
+      <apidata name="CameraReleased" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CameraReleased" />
+      <remover name="remove_CameraReleased" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.UI.Input.CameraEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Windows.Phone.UI.Input.CameraEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.UI.Input" />
+        <type api="T:Windows.Phone.UI.Input.HardwareButtons" ref="true" />
+      </containers>
+      <file name="229ef7ec-37fa-fd9c-a463-72f621129423" />
+    </api>
+  </apis>
+</reflection>

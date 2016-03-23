@@ -1,0 +1,566 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.DataTransfer.ShareTarget">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.DataTransfer.ShareTarget" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+        <element api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      </elements>
+      <file name="5babd449-74fa-53c2-65ce-8a4fd5a4d7f1" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      <apidata name="QuickLink" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="133820b8-ae2d-1169-6378-9eb8146d56ad" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink">
+      <topicdata name="QuickLink" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      <apidata name="QuickLink" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.#ctor" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Id" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.SupportedDataFormats" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.SupportedFileTypes" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Thumbnail" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      </containers>
+      <file name="d45e62ef-2fb0-de94-8891-b19e3dbb3eb3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink">
+      <topicdata name="QuickLink" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      <apidata name="QuickLink" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      </containers>
+      <file name="27e0b019-433f-97c6-1a48-bac6c05eb046" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink">
+      <topicdata name="QuickLink" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      <apidata name="QuickLink" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Id" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.SupportedDataFormats" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.SupportedFileTypes" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Thumbnail" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Title" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" />
+      </containers>
+      <file name="a5e73e73-5edd-3ecc-0eca-c559a88e66da" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+      </containers>
+      <file name="405b0e1f-3522-c04a-6189-f058506b6378" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+      </containers>
+      <file name="b93a76f6-7345-4ec4-2867-83dbaf324bd0" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.SupportedDataFormats">
+      <topicdata group="api" />
+      <apidata name="SupportedDataFormats" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedDataFormats" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+      </containers>
+      <file name="b38fb1a4-826d-32c3-adf0-700af2dde2c5" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.SupportedFileTypes">
+      <topicdata group="api" />
+      <apidata name="SupportedFileTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SupportedFileTypes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+      </containers>
+      <file name="12669ae1-7dea-e555-87a9-7c2af28700e7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Thumbnail">
+      <topicdata group="api" />
+      <apidata name="Thumbnail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Thumbnail" />
+      <setter name="set_Thumbnail" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.RandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+      </containers>
+      <file name="fedee0e8-a036-c74b-7dfd-d1bb2deb699a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+      </containers>
+      <file name="1558e470-8de6-aa05-ce74-a7c9577ec339" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      <apidata name="ShareOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="76e1d4ae-5a16-66e0-268c-d944043dceb9" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation">
+      <topicdata name="ShareOperation" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      <apidata name="ShareOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.Data" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.QuickLinkId" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.RemoveThisQuickLink" />
+        <element api="Overload:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted">
+          <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted" />
+          <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted(Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportDataRetrieved" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportError(System.String)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportStarted" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportSubmittedBackgroundTask" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      </containers>
+      <file name="5fcb64cf-19de-b54d-922b-7f9fa46a9505" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation">
+      <topicdata name="ShareOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      <apidata name="ShareOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.RemoveThisQuickLink" />
+        <element api="Overload:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted">
+          <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted" />
+          <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted(Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportDataRetrieved" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportError(System.String)" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportStarted" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportSubmittedBackgroundTask" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      </containers>
+      <file name="c528072c-80c1-291a-dd48-631080b2e7db" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation">
+      <topicdata name="ShareOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      <apidata name="ShareOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.Data" />
+        <element api="P:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.QuickLinkId" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      </containers>
+      <file name="f915bae4-5787-dc7c-8f54-f4e36a07951d" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted">
+      <topicdata name="ReportCompleted" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" />
+      <apidata name="ReportCompleted" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted" />
+        <element api="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted(Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="bd25c8f0-4f48-2b59-c698-4be2f58531d6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Data" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.DataTransfer.DataPackageView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="04e71896-60fe-6746-7cf9-3172ef0bf2d2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.QuickLinkId">
+      <topicdata group="api" />
+      <apidata name="QuickLinkId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_QuickLinkId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="8c965f75-1b3e-b80c-5b74-b03c0c06523d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.RemoveThisQuickLink">
+      <topicdata group="api" />
+      <apidata name="RemoveThisQuickLink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="b6b06eee-b959-9a1b-bd50-ffef9c4c762d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted">
+      <topicdata group="api" />
+      <apidata name="ReportCompleted" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ReportCompleted</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f4bbb618-9dc8-b166-3fa5-693cd1672121" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted(Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink)">
+      <topicdata group="api" />
+      <apidata name="ReportCompleted" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportCompleted" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="quicklink" in="true">
+          <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ReportCompletedWithQuickLink</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f5a0858d-cfca-efc7-5e7d-b190051d7126" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportDataRetrieved">
+      <topicdata group="api" />
+      <apidata name="ReportDataRetrieved" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="fe85cf78-d583-b16b-951d-0b6c786fd59f" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportError(System.String)">
+      <topicdata group="api" />
+      <apidata name="ReportError" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="ced7db3f-52bb-8059-6311-58503572d6e8" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportStarted">
+      <topicdata group="api" />
+      <apidata name="ReportStarted" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="77ff6be2-0766-207e-df3a-2a51b2228c9b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation.ReportSubmittedBackgroundTask">
+      <topicdata group="api" />
+      <apidata name="ReportSubmittedBackgroundTask" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.DataTransfer.ShareTarget" />
+        <type api="T:Windows.ApplicationModel.DataTransfer.ShareTarget.ShareOperation" ref="true" />
+      </containers>
+      <file name="0d5274d3-0087-bfbf-c86a-889dc2e4abd5" />
+    </api>
+  </apis>
+</reflection>

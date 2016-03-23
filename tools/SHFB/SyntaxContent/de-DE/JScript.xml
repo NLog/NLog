@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Michael Buchner -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_JScript">JScript</item>
+  <item id="devlang_jscript#">JScript</item>
+  <item id="devlang_jsc">JScript</item>
+  <item id="devlang_jscript.net">JScript</item>
+  <item id="devlang_kbjscript">JScript</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_JScript">JScript</item>
+  <item id="metaLang_jscript#">JScript</item>
+  <item id="metaLang_jsc">JScript</item>
+  <item id="metaLang_jscript.net">JScript</item>
+  <item id="metaLang_kbjscript">JScript</item>
+
+	<!-- JScript syntax section messages -->
+	<item id="UnsupportedUnsafe_JScript">JScript unterstützt keine APIs, die unsichere Typen akzeptieren oder zurückgeben.</item>
+	<item id="UnsupportedGeneric_JScript">JScript unterstützt keine generischen Typen oder Methoden.</item>
+	<item id="UnsupportedExplicit_Jscript">JScript unterstützt keine expliziten Schnittstellenimplementierungen.</item>
+	<item id="UnsupportedOperator_JScript">JScript unterstützt keine überladenen Operatoren.</item>
+	<item id="UnsupportedEvent_JScript">JScript unterstützt keine Ereignisse.</item>
+	<item id="UnsupportedDelegate_JScript">JScript unterstützt keine Delegaten.</item>
+	<item id="UnsupportedStructure_JScript">JScript unterstützt den Gebrauch von Strukturen aber nicht die Definition von neuen Strukturen.</item>
+	<item id="UnsupportedIndex_JScript">JScript unterstützt keine indizierten Eigenschaften.</item>
+	<item id="UnsupportedCast_JScript">JScript unterstützt keine Deklaration von neuen Cast-Operatoren.</item>
+	<item id="UnsupportedStaticConstructor_JScript">JScript unterstützt keine statischen Konstruktoren.</item>
+	<item id="UnsupportedVarargs_JScript">JScript unterstützt keine Methoden mit variabler Argumentanzahl
+(<span class="code">varargs</span>).  Der Compiler löst automatisch alle Aufrufe dieser Methode zur selben
+Methode mit Parameter-Array auf.</item>
+
+</content>

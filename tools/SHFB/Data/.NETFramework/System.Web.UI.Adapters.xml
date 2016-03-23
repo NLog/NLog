@@ -1,0 +1,2198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>add_permissions_for_users.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>properties_security_tab_w_user.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>properties_security_tab.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebForms.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/WebForms.js</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Focus.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Focus.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.WebForm_FindFirstFocusableChild</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SmartNav.htm</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>text/html</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SmartNav.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebUIValidation.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/WebUIValidation.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Page_ValidationVer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/TreeView.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.TreeView_HoverNode</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Menu.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Menu_ClearInterval</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MenuStandards.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MenuStandards.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms &amp;&amp; Sys.WebForms.Menu</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebParts.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/WebParts.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.WebPart</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GridView.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/GridView.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.GridView</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>DetailsView.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/DetailsView.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.DetailsView</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Spacer.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_Default_Separator.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_Popout.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_ScrollDown.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Menu_ScrollUp.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_Dash.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_DashCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_DashExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_I.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_L.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_LCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_LExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_R.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_RCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_RExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_T.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_TCollapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_TExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Default_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_XP_Explorer_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_MSDN_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_MSDN_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_MSDN_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Windows_Help_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Windows_Help_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Windows_Help_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Arrows_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Arrows_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Arrows_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList2_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList2_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList2_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList3_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList3_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList3_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList4_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList4_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList4_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_BulletedList_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Contacts_Collapse.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Contacts_Expand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Contacts_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Events_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Events_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Events_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_FAQ_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_FAQ_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_FAQ_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Inbox_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Inbox_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Inbox_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_News_LeafNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_News_ParentNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_News_RootNode.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Simple2_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TreeView_Simple_NoExpand.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WebPartMenu_Check.gif</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>image/gif</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+          <assignment name="PartialTrustVisibilityLevel">
+            <type api="T:System.Security.PartialTrustVisibilityLevel" ref="false" />
+            <enumValue>
+              <field name="NotVisibleByDefault" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.UI.Adapters">
+      <topicdata group="api" />
+      <apidata name="System.Web.UI.Adapters" group="namespace" />
+      <elements>
+        <element api="T:System.Web.UI.Adapters.ControlAdapter" />
+        <element api="T:System.Web.UI.Adapters.PageAdapter" />
+      </elements>
+      <file name="2c066554-0fc8-4bb3-f32a-50e0c17565c9" />
+    </api>
+    <api id="T:System.Web.UI.Adapters.ControlAdapter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.UI.Adapters.ControlAdapter" />
+      <apidata name="ControlAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+          <type api="T:System.Web.UI.WebControls.Adapters.WebControlAdapter" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+      </containers>
+      <file name="0559361f-6621-4b8f-dfa6-4bcbb3131045" />
+    </api>
+    <api id="AllMembers.T:System.Web.UI.Adapters.ControlAdapter">
+      <topicdata name="ControlAdapter" group="list" subgroup="members" typeTopicId="T:System.Web.UI.Adapters.ControlAdapter" />
+      <apidata name="ControlAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.#ctor" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Browser" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Control" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Page" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.PageAdapter" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" />
+      </containers>
+      <file name="507b0899-d0d4-a7da-e717-870e5be96aa5" />
+    </api>
+    <api id="Methods.T:System.Web.UI.Adapters.ControlAdapter">
+      <topicdata name="ControlAdapter" group="list" subgroup="Methods" typeTopicId="T:System.Web.UI.Adapters.ControlAdapter" />
+      <apidata name="ControlAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" />
+      </containers>
+      <file name="a4db79dc-a39b-d929-0c48-d054d9a39b49" />
+    </api>
+    <api id="Properties.T:System.Web.UI.Adapters.ControlAdapter">
+      <topicdata name="ControlAdapter" group="list" subgroup="Properties" typeTopicId="T:System.Web.UI.Adapters.ControlAdapter" />
+      <apidata name="ControlAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Browser" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Control" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Page" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.PageAdapter" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" />
+      </containers>
+      <file name="66056960-7074-6995-15fb-d8c0c7167ff8" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="1e63fb48-a3df-2082-e8c6-97cda86b4012" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)">
+      <topicdata group="api" />
+      <apidata name="BeginRender" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="b3ec7532-9b12-61bc-f809-f06a4f404485" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.ControlAdapter.Browser">
+      <topicdata group="api" />
+      <apidata name="Browser" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Browser" />
+      <returns>
+        <type api="T:System.Web.HttpBrowserCapabilities" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="e6c7d694-dbf7-9318-264c-99a15079994b" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.ControlAdapter.Control">
+      <topicdata group="api" />
+      <apidata name="Control" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Control" />
+      <returns>
+        <type api="T:System.Web.UI.Control" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7669fe4f-a7d0-705c-c36d-20b1925e6f0b" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls">
+      <topicdata group="api" />
+      <apidata name="CreateChildControls" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="84724476-b6f5-320b-a6f9-13a3f73bfeb5" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)">
+      <topicdata group="api" />
+      <apidata name="EndRender" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="85699178-5f45-2c16-9c3f-aa8bc4493ec4" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState(System.Object)">
+      <topicdata group="api" />
+      <apidata name="LoadAdapterControlState" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="cfa19aa6-5583-d05d-58b8-91a529a9387d" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState(System.Object)">
+      <topicdata group="api" />
+      <apidata name="LoadAdapterViewState" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="state">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="896b4b1a-8467-3f10-c171-9acec69ea227" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnInit" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="2c4317ec-cfab-4d2e-afa7-7cbe357baf74" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnLoad" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="a8906c6c-8dc0-6819-0d6a-ff020ef60905" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnPreRender" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="a5a1ed56-871d-79ad-b4d2-fcac4b1e9f2e" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnUnload" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="e">
+          <type api="T:System.EventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="c101e16a-0332-348f-211a-edb59bcb21ef" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.ControlAdapter.Page">
+      <topicdata group="api" />
+      <apidata name="Page" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Page" />
+      <returns>
+        <type api="T:System.Web.UI.Page" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b5b90113-46d3-abf4-4ade-a023986fab9a" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.ControlAdapter.PageAdapter">
+      <topicdata group="api" />
+      <apidata name="PageAdapter" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PageAdapter" />
+      <returns>
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.BrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.DesignerSerializationVisibility" ref="false" />
+            <enumValue>
+              <field name="Hidden" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9afc4e8c-c1c8-4cbe-5946-7b1b147f380e" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)">
+      <topicdata group="api" />
+      <apidata name="Render" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="76fdcefd-bb1e-a2e7-1df2-f536b2320c53" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)">
+      <topicdata group="api" />
+      <apidata name="RenderChildren" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="4955a369-5d7e-5147-4bc7-6bd993088e7f" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState">
+      <topicdata group="api" />
+      <apidata name="SaveAdapterControlState" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="082317d6-b0f8-2562-fcc9-aaadce436d71" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState">
+      <topicdata group="api" />
+      <apidata name="SaveAdapterViewState" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+      </containers>
+      <file name="0bf55942-d68e-38a5-2eb3-f33e352bb331" />
+    </api>
+    <api id="T:System.Web.UI.Adapters.PageAdapter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.UI.Adapters.PageAdapter" />
+      <apidata name="PageAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Web.UI.Adapters.ControlAdapter" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+      </containers>
+      <file name="230cb18b-a96c-97a3-10df-a3761ab73181" />
+    </api>
+    <api id="AllMembers.T:System.Web.UI.Adapters.PageAdapter">
+      <topicdata name="PageAdapter" group="list" subgroup="members" typeTopicId="T:System.Web.UI.Adapters.PageAdapter" />
+      <apidata name="PageAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Browser" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Control" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Page" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.PageAdapter" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.#ctor" />
+        <element api="P:System.Web.UI.Adapters.PageAdapter.CacheVaryByHeaders" />
+        <element api="P:System.Web.UI.Adapters.PageAdapter.CacheVaryByParams" />
+        <element api="P:System.Web.UI.Adapters.PageAdapter.ClientState" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.DeterminePostBackMode" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.DeterminePostBackModeUnvalidated" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.GetPostBackFormReference(System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.GetRadioButtonsByGroup(System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.GetStatePersister" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RegisterRadioButton(System.Web.UI.WebControls.RadioButton)" />
+        <element api="Overload:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink">
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String)" />
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String,System.String)" />
+        </element>
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderEndHyperlink(System.Web.UI.HtmlTextWriter)" />
+        <element api="Overload:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent">
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String)" />
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String)" />
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)" />
+        </element>
+        <element api="M:System.Web.UI.Adapters.PageAdapter.TransformText(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" />
+      </containers>
+      <file name="13245313-c85e-1faf-f2b8-fdf93467b77c" />
+    </api>
+    <api id="Methods.T:System.Web.UI.Adapters.PageAdapter">
+      <topicdata name="PageAdapter" group="list" subgroup="Methods" typeTopicId="T:System.Web.UI.Adapters.PageAdapter" />
+      <apidata name="PageAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.BeginRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.CreateChildControls" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.EndRender(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterControlState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.LoadAdapterViewState(System.Object)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnInit(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnLoad(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnPreRender(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.OnUnload(System.EventArgs)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.Render(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.RenderChildren(System.Web.UI.HtmlTextWriter)" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterControlState" />
+        <element api="M:System.Web.UI.Adapters.ControlAdapter.SaveAdapterViewState" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.DeterminePostBackMode" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.DeterminePostBackModeUnvalidated" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.GetPostBackFormReference(System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.GetRadioButtonsByGroup(System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.GetStatePersister" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RegisterRadioButton(System.Web.UI.WebControls.RadioButton)" />
+        <element api="Overload:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink">
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String)" />
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String,System.String)" />
+        </element>
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderEndHyperlink(System.Web.UI.HtmlTextWriter)" />
+        <element api="Overload:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent">
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String)" />
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String)" />
+          <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)" />
+        </element>
+        <element api="M:System.Web.UI.Adapters.PageAdapter.TransformText(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" />
+      </containers>
+      <file name="f8045f95-bb36-33de-bfb4-690d94f76e47" />
+    </api>
+    <api id="Properties.T:System.Web.UI.Adapters.PageAdapter">
+      <topicdata name="PageAdapter" group="list" subgroup="Properties" typeTopicId="T:System.Web.UI.Adapters.PageAdapter" />
+      <apidata name="PageAdapter" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Browser" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Control" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.Page" />
+        <element api="P:System.Web.UI.Adapters.ControlAdapter.PageAdapter" />
+        <element api="P:System.Web.UI.Adapters.PageAdapter.CacheVaryByHeaders" />
+        <element api="P:System.Web.UI.Adapters.PageAdapter.CacheVaryByParams" />
+        <element api="P:System.Web.UI.Adapters.PageAdapter.ClientState" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" />
+      </containers>
+      <file name="d50b61fa-915a-01ec-2539-f4182c6570f4" />
+    </api>
+    <api id="Overload:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink">
+      <topicdata name="RenderBeginHyperlink" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Adapters.PageAdapter" />
+      <apidata name="RenderBeginHyperlink" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="bab25195-014a-203e-34b8-46262d84329d" />
+    </api>
+    <api id="Overload:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent">
+      <topicdata name="RenderPostBackEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Web.UI.Adapters.PageAdapter" />
+      <apidata name="RenderPostBackEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String)" />
+        <element api="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="17a50ab9-6735-c066-af18-a344f473ad8b" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="117e47bc-10f7-fcf8-6e35-88cfbc683267" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.PageAdapter.CacheVaryByHeaders">
+      <topicdata group="api" />
+      <apidata name="CacheVaryByHeaders" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CacheVaryByHeaders" />
+      <returns>
+        <type api="T:System.Collections.Specialized.StringCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="512bba38-c9d2-5b98-f98d-07bfa01da73c" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.PageAdapter.CacheVaryByParams">
+      <topicdata group="api" />
+      <apidata name="CacheVaryByParams" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_CacheVaryByParams" />
+      <returns>
+        <type api="T:System.Collections.Specialized.StringCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="64a8cabc-b985-a2ee-399e-550747cfcad2" />
+    </api>
+    <api id="P:System.Web.UI.Adapters.PageAdapter.ClientState">
+      <topicdata group="api" />
+      <apidata name="ClientState" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientState" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="04125f6f-3f41-5e5c-dbe6-dce332e0f250" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.DeterminePostBackMode">
+      <topicdata group="api" />
+      <apidata name="DeterminePostBackMode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NameValueCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="38f8e8ff-52d2-16c9-06fe-599bb6354666" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.DeterminePostBackModeUnvalidated">
+      <topicdata group="api" />
+      <apidata name="DeterminePostBackModeUnvalidated" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Collections.Specialized.NameValueCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="6d2c0084-ce60-21b0-de99-812abdd7e1e8" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.GetPostBackFormReference(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetPostBackFormReference" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="formId">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="a2ce16dc-90fa-8eb8-17d8-2f8a2fa3e857" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.GetRadioButtonsByGroup(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetRadioButtonsByGroup" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="groupName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.ICollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="6cb7bb0d-8396-f9c2-6696-c72c0296745a" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.GetStatePersister">
+      <topicdata group="api" />
+      <apidata name="GetStatePersister" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.Web.UI.PageStatePersister" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="1f890b71-ac01-7d51-62bf-6bd718a13353" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RegisterRadioButton(System.Web.UI.WebControls.RadioButton)">
+      <topicdata group="api" />
+      <apidata name="RegisterRadioButton" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="radioButton">
+          <type api="T:System.Web.UI.WebControls.RadioButton" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="536e42ac-8ef9-2810-ed10-22d98e8b9384" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name="RenderBeginHyperlink" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+        <parameter name="targetUrl">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encodeUrl">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="softkeyLabel">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="f97df0d5-76be-fc47-31b8-072efdb9e852" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink(System.Web.UI.HtmlTextWriter,System.String,System.Boolean,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RenderBeginHyperlink" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Adapters.PageAdapter.RenderBeginHyperlink" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+        <parameter name="targetUrl">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encodeUrl">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="softkeyLabel">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="accessKey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="52016b2e-ac77-8502-e082-afd0f45d644a" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RenderEndHyperlink(System.Web.UI.HtmlTextWriter)">
+      <topicdata group="api" />
+      <apidata name="RenderEndHyperlink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="05f00752-2fc0-6c4f-a601-61e1d29ea2e6" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RenderPostBackEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="argument">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="softkeyLabel">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="d163a934-5ca3-875e-e3c0-7945634ccedc" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="RenderPostBackEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="argument">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="softkeyLabel">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="postUrl">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="accessKey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="00053082-b29f-ea3d-5008-344016c0752f" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent(System.Web.UI.HtmlTextWriter,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="RenderPostBackEvent" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Web.UI.Adapters.PageAdapter.RenderPostBackEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Web.UI.HtmlTextWriter" ref="true" />
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="argument">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="softkeyLabel">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="postUrl">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="accessKey">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="encode">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="64747adc-fed2-03f0-edd6-aa141bf1714a" />
+    </api>
+    <api id="M:System.Web.UI.Adapters.PageAdapter.TransformText(System.String)">
+      <topicdata group="api" />
+      <apidata name="TransformText" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="text">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web" module="System.Web" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.UI.Adapters" />
+        <type api="T:System.Web.UI.Adapters.PageAdapter" ref="true" />
+      </containers>
+      <file name="2c496cad-a505-01db-6ede-cd6a9be39b91" />
+    </api>
+  </apis>
+</reflection>

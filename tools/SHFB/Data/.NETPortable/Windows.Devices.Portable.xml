@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Portable">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Portable" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Portable.ServiceDeviceType" />
+        <element api="T:Windows.Devices.Portable.StorageDevice" />
+        <element api="T:Windows.Devices.Portable.ServiceDevice" />
+      </elements>
+      <file name="eaafb4e0-ed4e-85bf-df12-7db3913e0d00" />
+    </api>
+    <api id="T:Windows.Devices.Portable.ServiceDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Portable.ServiceDevice" />
+      <apidata name="ServiceDevice" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ce22ec26-f6ed-31bd-b8fa-8d769efb2b58" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Portable.ServiceDevice">
+      <topicdata name="ServiceDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Portable.ServiceDevice" />
+      <apidata name="ServiceDevice" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Portable.ServiceDevice.GetDeviceSelector(Windows.Devices.Portable.ServiceDeviceType)" />
+        <element api="M:Windows.Devices.Portable.ServiceDevice.GetDeviceSelectorFromServiceId(System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDevice" />
+      </containers>
+      <file name="8782aab1-1318-3380-8793-87b7f1441ac9" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Portable.ServiceDevice">
+      <topicdata name="ServiceDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Portable.ServiceDevice" />
+      <apidata name="ServiceDevice" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Portable.ServiceDevice.GetDeviceSelector(Windows.Devices.Portable.ServiceDeviceType)" />
+        <element api="M:Windows.Devices.Portable.ServiceDevice.GetDeviceSelectorFromServiceId(System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDevice" />
+      </containers>
+      <file name="9facc397-0b2d-b26e-86f0-bacac67076ec" />
+    </api>
+    <api id="M:Windows.Devices.Portable.ServiceDevice.GetDeviceSelector(Windows.Devices.Portable.ServiceDeviceType)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceType" in="true">
+          <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDevice" ref="true" />
+      </containers>
+      <file name="05842d52-76da-927e-b179-30737bc68d08" />
+    </api>
+    <api id="M:Windows.Devices.Portable.ServiceDevice.GetDeviceSelectorFromServiceId(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelectorFromServiceId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceId" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDevice" ref="true" />
+      </containers>
+      <file name="7c58334c-ce9e-20a6-29e5-278872b4b48f" />
+    </api>
+    <api id="T:Windows.Devices.Portable.ServiceDeviceType">
+      <topicdata group="api" />
+      <apidata name="ServiceDeviceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.CalendarService" />
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.ContactsService" />
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.DeviceStatusService" />
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.NotesService" />
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.RingtonesService" />
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.SmsService" />
+        <element api="F:Windows.Devices.Portable.ServiceDeviceType.TasksService" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90308854-1d7a-8e83-21ec-3065df64cd7d" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.CalendarService">
+      <topicdata group="api" notopic="" />
+      <apidata name="CalendarService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="e7c93386-c47b-de70-8136-bc22dfdedce7" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.ContactsService">
+      <topicdata group="api" notopic="" />
+      <apidata name="ContactsService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="c3a7e067-22da-7176-57c3-74c830f781bc" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.DeviceStatusService">
+      <topicdata group="api" notopic="" />
+      <apidata name="DeviceStatusService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="46533688-6c35-65ba-9953-ec73d98b7781" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.NotesService">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotesService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="c031bca8-8ed6-dac9-eba6-44a6bd1669b3" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.RingtonesService">
+      <topicdata group="api" notopic="" />
+      <apidata name="RingtonesService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="0abc3e50-3915-e4ff-64b4-3cf008cb48a2" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.SmsService">
+      <topicdata group="api" notopic="" />
+      <apidata name="SmsService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="d681e9ba-59c0-b3dc-49be-18e8abe0cff9" />
+    </api>
+    <api id="F:Windows.Devices.Portable.ServiceDeviceType.TasksService">
+      <topicdata group="api" notopic="" />
+      <apidata name="TasksService" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.ServiceDeviceType" ref="false" />
+      </containers>
+      <file name="c309c8a8-e3c4-efe1-be31-a80d7701ddb9" />
+    </api>
+    <api id="T:Windows.Devices.Portable.StorageDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Portable.StorageDevice" />
+      <apidata name="StorageDevice" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6a568586-49b2-5a36-5616-acbe195c71b7" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Portable.StorageDevice">
+      <topicdata name="StorageDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Portable.StorageDevice" />
+      <apidata name="StorageDevice" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Portable.StorageDevice.FromId(System.String)" />
+        <element api="M:Windows.Devices.Portable.StorageDevice.GetDeviceSelector" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.StorageDevice" />
+      </containers>
+      <file name="92ba1588-f061-598e-6582-984e5a1aafa6" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Portable.StorageDevice">
+      <topicdata name="StorageDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Portable.StorageDevice" />
+      <apidata name="StorageDevice" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Devices.Portable.StorageDevice.FromId(System.String)" />
+        <element api="M:Windows.Devices.Portable.StorageDevice.GetDeviceSelector" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.StorageDevice" />
+      </containers>
+      <file name="ed29d385-aa34-a076-59f5-61f5a6411703" />
+    </api>
+    <api id="M:Windows.Devices.Portable.StorageDevice.FromId(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.StorageFolder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.StorageDevice" ref="true" />
+      </containers>
+      <file name="a7ec4007-8936-55d8-5cba-efbde547cf34" />
+    </api>
+    <api id="M:Windows.Devices.Portable.StorageDevice.GetDeviceSelector">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Portable" />
+        <type api="T:Windows.Devices.Portable.StorageDevice" ref="true" />
+      </containers>
+      <file name="e15ea5c5-4aa4-6e8f-7481-8926bb519c61" />
+    </api>
+  </apis>
+</reflection>

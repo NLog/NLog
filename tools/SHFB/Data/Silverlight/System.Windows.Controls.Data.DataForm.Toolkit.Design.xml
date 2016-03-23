@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Controls.Data.DataForm.Toolkit.Design">
+      <assemblydata version="4.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.Data.DataForm.Toolkit.Design</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Silverlight Toolkit Controls Design Time Experience</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight™ Toolkit</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.40413.2002</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Microsoft.Windows.Design.Metadata.ProvideMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" ref="true" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Controls.Data.DataForm.Toolkit.Design">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Controls.Data.DataForm.Toolkit.Design" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      </elements>
+      <file name="f9580e45-a579-3014-29ec-0aa2aea82e26" />
+    </api>
+    <api id="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      <apidata name="MetadataRegistration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Controls.Design.Common.MetadataRegistrationBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Windows.Design.Metadata.IProvideAttributeTable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+      </containers>
+      <file name="b08f63fe-cb7a-83d2-2985-2e4177a7ff66" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration">
+      <topicdata name="MetadataRegistration" group="list" subgroup="members" typeTopicId="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      <apidata name="MetadataRegistration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.#ctor" />
+        <element api="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.AddAttributes(Microsoft.Windows.Design.Metadata.AttributeTableBuilder)" />
+        <element api="P:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.AttributeTable" />
+        <element api="P:System.Windows.Controls.Design.Common.MetadataRegistrationBase.AssemblyFullName" />
+        <element api="M:System.Windows.Controls.Design.Common.MetadataRegistrationBase.BuildAttributeTable" />
+        <element api="P:System.Windows.Controls.Design.Common.MetadataRegistrationBase.XmlResourceName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+        <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      </containers>
+      <file name="49aabe86-ce31-c4b2-3449-6925fe793b6c" />
+    </api>
+    <api id="Methods.T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration">
+      <topicdata name="MetadataRegistration" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      <apidata name="MetadataRegistration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.AddAttributes(Microsoft.Windows.Design.Metadata.AttributeTableBuilder)" />
+        <element api="M:System.Windows.Controls.Design.Common.MetadataRegistrationBase.BuildAttributeTable" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+        <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      </containers>
+      <file name="8e1b29f1-9091-3cdf-5568-e9f31a426e45" />
+    </api>
+    <api id="Properties.T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration">
+      <topicdata name="MetadataRegistration" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      <apidata name="MetadataRegistration" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.AttributeTable" />
+        <element api="P:System.Windows.Controls.Design.Common.MetadataRegistrationBase.AssemblyFullName" />
+        <element api="P:System.Windows.Controls.Design.Common.MetadataRegistrationBase.XmlResourceName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+        <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" />
+      </containers>
+      <file name="ea42212b-e8ee-36ce-2018-87c840d2e0e1" />
+    </api>
+    <api id="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+        <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" ref="true" />
+      </containers>
+      <file name="149be1dd-c8c7-6d4c-92cc-19ccc063e4c0" />
+    </api>
+    <api id="M:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.AddAttributes(Microsoft.Windows.Design.Metadata.AttributeTableBuilder)">
+      <topicdata group="api" />
+      <apidata name="AddAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Controls.Design.Common.MetadataRegistrationBase.AddAttributes(Microsoft.Windows.Design.Metadata.AttributeTableBuilder)">
+          <type api="T:System.Windows.Controls.Design.Common.MetadataRegistrationBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="builder">
+          <type api="T:Microsoft.Windows.Design.Metadata.AttributeTableBuilder" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+        <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" ref="true" />
+      </containers>
+      <file name="410bb96f-eaf3-50e6-1f9c-34a8e33e582c" />
+    </api>
+    <api id="P:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration.AttributeTable">
+      <topicdata group="api" />
+      <apidata name="AttributeTable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AttributeTable" />
+      <returns>
+        <type api="T:Microsoft.Windows.Design.Metadata.AttributeTable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Data.DataForm.Toolkit.Design" module="System.Windows.Controls.Data.DataForm.Toolkit.Design" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.5.0 (4.0.40413.2002)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Controls.Data.DataForm.Toolkit.Design" />
+        <type api="T:System.Windows.Controls.Data.DataForm.Toolkit.Design.MetadataRegistration" ref="true" />
+      </containers>
+      <file name="7b7134b4-a209-1461-9483-a473f1dfb134" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,3105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Touch">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Touch</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="Microsoft.SPOT.Native">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Native</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Touch">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Touch" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Touch.TouchInputFlags" />
+        <element api="T:Microsoft.SPOT.Touch.TouchMessages" />
+        <element api="T:Microsoft.SPOT.Touch.TouchInput" />
+        <element api="T:Microsoft.SPOT.Touch.TouchEvent" />
+        <element api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+        <element api="T:Microsoft.SPOT.Touch.TouchScreenEventHandler" />
+        <element api="T:Microsoft.SPOT.Touch.TouchGesture" />
+        <element api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+        <element api="T:Microsoft.SPOT.Touch.TouchGestureEventHandler" />
+        <element api="T:Microsoft.SPOT.Touch.TouchPanel" />
+        <element api="T:Microsoft.SPOT.Touch.Touch" />
+        <element api="T:Microsoft.SPOT.Touch.CollectionMethod" />
+        <element api="T:Microsoft.SPOT.Touch.CollectionMode" />
+        <element api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+        <element api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" />
+        <element api="T:Microsoft.SPOT.Touch.TouchScreen" />
+        <element api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+        <element api="T:Microsoft.SPOT.Touch.Ink" />
+      </elements>
+      <file name="c83cb987-ac7b-7062-f6ba-41274d470a3d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.CollectionMethod">
+      <topicdata group="api" />
+      <apidata name="CollectionMethod" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.CollectionMethod.Managed" />
+        <element api="F:Microsoft.SPOT.Touch.CollectionMethod.Native" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="71d503d9-ede5-9b30-31d1-a15fdf5f4771" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.CollectionMethod.Managed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Managed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMethod" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.CollectionMethod" ref="false" />
+      </containers>
+      <file name="4efa0c30-e2f6-9b93-621e-8eeddc46ede2" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.CollectionMethod.Native">
+      <topicdata group="api" notopic="" />
+      <apidata name="Native" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMethod" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.CollectionMethod" ref="false" />
+      </containers>
+      <file name="23f0cc87-d924-a320-17aa-b45829b87c70" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.CollectionMode">
+      <topicdata group="api" />
+      <apidata name="CollectionMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.CollectionMode.InkOnly" />
+        <element api="F:Microsoft.SPOT.Touch.CollectionMode.GestureOnly" />
+        <element api="F:Microsoft.SPOT.Touch.CollectionMode.InkAndGesture" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6a00cf13-3201-ac53-aaa1-03d122d31a3a" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.CollectionMode.GestureOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="GestureOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </containers>
+      <file name="63bbbaa1-0502-e52e-d8d9-6ab54cae66ba" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.CollectionMode.InkAndGesture">
+      <topicdata group="api" notopic="" />
+      <apidata name="InkAndGesture" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </containers>
+      <file name="905f8b23-e5bb-9645-c729-47e3d47ff3d2" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.CollectionMode.InkOnly">
+      <topicdata group="api" notopic="" />
+      <apidata name="InkOnly" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </containers>
+      <file name="19ab8347-c4e2-c9fa-9987-eec271cfd4d3" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.Ink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.Ink" />
+      <apidata name="Ink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.Ink.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="5bd0187d-50e2-6c51-feef-9e1b3d9f2bf5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.Ink">
+      <topicdata name="Ink" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.Ink" />
+      <apidata name="Ink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.Ink.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.Ink.#ctor" />
+        <element api="M:Microsoft.SPOT.Touch.Ink.ResetInkRegion" />
+        <element api="M:Microsoft.SPOT.Touch.Ink.SetInkRegion(System.UInt32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Ink" />
+      </containers>
+      <file name="aba8474c-eddd-aed5-17cc-9d7d4011eec3" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.Ink">
+      <topicdata name="Ink" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.Ink" />
+      <apidata name="Ink" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.Ink.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.Ink.ResetInkRegion" />
+        <element api="M:Microsoft.SPOT.Touch.Ink.SetInkRegion(System.UInt32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Ink" />
+      </containers>
+      <file name="2491b697-cf72-6402-86c0-87fdbc2ec7bf" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.Ink.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Ink" ref="true" />
+      </containers>
+      <file name="fa72e396-ae0a-b5a0-643b-bdc2b59992dc" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.Ink.ResetInkRegion">
+      <topicdata group="api" />
+      <apidata name="ResetInkRegion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Ink" ref="true" />
+      </containers>
+      <file name="fd474c12-b292-78ea-cb62-c159b47eff9c" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.Ink.SetInkRegion(System.UInt32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Microsoft.SPOT.Bitmap)">
+      <topicdata group="api" />
+      <apidata name="SetInkRegion" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flags">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="x1">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y1">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="x2">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y2">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="borderWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="color">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="penWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitmap">
+          <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Ink" ref="true" />
+      </containers>
+      <file name="1a9c8738-af75-a7a6-71f9-fc7d38016c24" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.Touch">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.Touch" />
+      <apidata name="Touch" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="e64bbda9-434f-d375-a9d7-53aefbf30191" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.Touch">
+      <topicdata name="Touch" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.Touch" />
+      <apidata name="Touch" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.Touch.ActiveTouchPanel" />
+        <element api="M:Microsoft.SPOT.Touch.Touch.Initialize(Microsoft.SPOT.IEventListener)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Touch" />
+      </containers>
+      <file name="0b211db8-0587-92fa-bc68-37d32c573431" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.Touch">
+      <topicdata name="Touch" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.Touch" />
+      <apidata name="Touch" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.Touch.Initialize(Microsoft.SPOT.IEventListener)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Touch" />
+      </containers>
+      <file name="c418fe81-0a34-67d3-ca27-2db2bcd979f2" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Touch.Touch">
+      <topicdata name="Touch" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Touch.Touch" />
+      <apidata name="Touch" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.Touch.ActiveTouchPanel" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Touch" />
+      </containers>
+      <file name="9a8e71b6-cbd6-0e1f-586b-209ee5ce5c03" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.Touch.ActiveTouchPanel">
+      <topicdata group="api" />
+      <apidata name="ActiveTouchPanel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ActiveTouchPanel" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Touch" ref="true" />
+      </containers>
+      <file name="39a69caa-0c79-161c-7d6d-de7409f4cc9f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.Touch.Initialize(Microsoft.SPOT.IEventListener)">
+      <topicdata group="api" />
+      <apidata name="Initialize" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="touchEventListener">
+          <type api="T:Microsoft.SPOT.IEventListener" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.Touch" ref="true" />
+      </containers>
+      <file name="064e8020-9dc8-6943-bc20-db40e76e827e" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      <apidata name="TouchCollectorConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="953fad84-f4dc-1984-5e6e-dccf83a700a0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchCollectorConfiguration">
+      <topicdata name="TouchCollectorConfiguration" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      <apidata name="TouchCollectorConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.CollectionMethod" />
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.CollectionMode" />
+        <element api="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetLastTouchPoint(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetTouchInput(Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.SamplingFrequency" />
+        <element api="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.SetTouchInput(Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchMoveFrequency" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      </containers>
+      <file name="0ee81803-8b27-4f2b-59d1-c207cc1adc55" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchCollectorConfiguration">
+      <topicdata name="TouchCollectorConfiguration" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      <apidata name="TouchCollectorConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetLastTouchPoint(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetTouchInput(Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.SetTouchInput(Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      </containers>
+      <file name="44bdaf59-ab64-6ba3-ff0f-0e9d0f6b8aba" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Touch.TouchCollectorConfiguration">
+      <topicdata name="TouchCollectorConfiguration" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      <apidata name="TouchCollectorConfiguration" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.CollectionMethod" />
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.CollectionMode" />
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.SamplingFrequency" />
+        <element api="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchMoveFrequency" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" />
+      </containers>
+      <file name="c9f1fa67-37f4-77cd-8a7f-67c93c35dc35" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.CollectionMethod">
+      <topicdata group="api" />
+      <apidata name="CollectionMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CollectionMethod" />
+      <setter name="set_CollectionMethod" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMethod" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="b9f1365b-ec10-0122-6ae9-95111abfa899" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.CollectionMode">
+      <topicdata group="api" />
+      <apidata name="CollectionMode" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CollectionMode" />
+      <setter name="set_CollectionMode" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.CollectionMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="37d42338-330d-1468-a185-71d976fa2423" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetLastTouchPoint(System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetLastTouchPoint" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="x">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="y">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="564c7385-f987-c39f-08ae-67fb188780df" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.GetTouchInput(Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput,System.Int32@,System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetTouchInput" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flag">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+            <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+          </type>
+        </parameter>
+        <parameter name="param1">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="param2">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="param3">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="d1edc208-bf24-ec65-06fb-3767ec809650" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.SamplingFrequency">
+      <topicdata group="api" />
+      <apidata name="SamplingFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SamplingFrequency" />
+      <setter name="set_SamplingFrequency" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="2c93a92d-db12-a4ec-e749-bda03dac3ebf" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchCollectorConfiguration.SetTouchInput(Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SetTouchInput" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="flag">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+            <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+          </type>
+        </parameter>
+        <parameter name="param1">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="param2">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="param3">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="54488c03-c99d-2cb5-0eea-e7afca42d91c" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchMoveFrequency">
+      <topicdata group="api" />
+      <apidata name="TouchMoveFrequency" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TouchMoveFrequency" />
+      <setter name="set_TouchMoveFrequency" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <file name="d7d2ec00-1225-5e62-bd2b-1d39e4ce6ba1" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput">
+      <topicdata group="api" />
+      <apidata name="TouchInput" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput.LastTouchPoint" />
+        <element api="F:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput.SamplingDistance" />
+        <element api="F:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput.TouchMoveFrequency" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="270da2d0-ddc3-e8d2-f0fa-fdcfa1a822f5" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput.LastTouchPoint">
+      <topicdata group="api" notopic="" />
+      <apidata name="LastTouchPoint" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+        </type>
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+        </type>
+      </containers>
+      <file name="3ca2d6eb-dd45-83a6-ab13-5bc8543352a1" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput.SamplingDistance">
+      <topicdata group="api" notopic="" />
+      <apidata name="SamplingDistance" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+        </type>
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+        </type>
+      </containers>
+      <file name="7f7f8851-596a-4784-712c-58cf6cab5da6" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput.TouchMoveFrequency">
+      <topicdata group="api" notopic="" />
+      <apidata name="TouchMoveFrequency" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+        </type>
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration.TouchInput" ref="false">
+          <type api="T:Microsoft.SPOT.Touch.TouchCollectorConfiguration" ref="true" />
+        </type>
+      </containers>
+      <file name="c5f29c29-185a-3233-67dd-e062f330bc40" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchEvent">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchEvent" />
+      <apidata name="TouchEvent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchEvent.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.BaseEvent" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="bb7124ca-0164-852b-16ec-ede491f88a31" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchEvent">
+      <topicdata name="TouchEvent" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchEvent" />
+      <apidata name="TouchEvent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchEvent.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.BaseEvent.EventMessage" />
+        <element api="F:Microsoft.SPOT.BaseEvent.Source" />
+        <element api="M:Microsoft.SPOT.Touch.TouchEvent.#ctor" />
+        <element api="F:Microsoft.SPOT.Touch.TouchEvent.Time" />
+        <element api="F:Microsoft.SPOT.Touch.TouchEvent.Touches" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchEvent" />
+      </containers>
+      <file name="151876ff-7109-7442-7e16-a98cb5aefde0" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchEvent">
+      <topicdata name="TouchEvent" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchEvent" />
+      <apidata name="TouchEvent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchEvent.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchEvent" />
+      </containers>
+      <file name="290dceb5-ce91-bb2d-ca00-3dc60ec5b814" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Touch.TouchEvent">
+      <topicdata name="TouchEvent" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Touch.TouchEvent" />
+      <apidata name="TouchEvent" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchEvent.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.BaseEvent.EventMessage" />
+        <element api="F:Microsoft.SPOT.BaseEvent.Source" />
+        <element api="F:Microsoft.SPOT.Touch.TouchEvent.Time" />
+        <element api="F:Microsoft.SPOT.Touch.TouchEvent.Touches" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchEvent" />
+      </containers>
+      <file name="7b39dfdd-e616-3928-2d60-2fd7f3e8a9a5" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchEvent.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchEvent" ref="true" />
+      </containers>
+      <file name="5ca66826-a2eb-2c8b-3309-4d817973e58d" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchEvent.Time">
+      <topicdata group="api" />
+      <apidata name="Time" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchEvent" ref="true" />
+      </containers>
+      <file name="79e5b040-fc81-e84a-2cde-fb210a899489" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchEvent.Touches">
+      <topicdata group="api" />
+      <apidata name="Touches" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchEvent" ref="true" />
+      </containers>
+      <file name="0e247c2f-4c10-a12e-5bf7-6798a950dd8b" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchGesture">
+      <topicdata group="api" />
+      <apidata name="TouchGesture" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.NoGesture" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Begin" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.End" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Right" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.UpRight" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Up" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.UpLeft" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Left" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.DownLeft" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Down" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.DownRight" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Tap" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.DoubleTap" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Zoom" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Pan" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Rotate" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.TwoFingerTap" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.Rollover" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGesture.UserDefined" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="22aff124-e2d3-5602-0cf0-79195088aed4" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Begin">
+      <topicdata group="api" notopic="" />
+      <apidata name="Begin" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="111d3550-02ff-2191-99bd-003212607378" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.DoubleTap">
+      <topicdata group="api" notopic="" />
+      <apidata name="DoubleTap" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="c18bde87-a34f-d68d-cdb5-3f775fac98fc" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Down">
+      <topicdata group="api" notopic="" />
+      <apidata name="Down" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="bca63c27-8eaf-e4d6-13ec-6181bfaf7806" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.DownLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="DownLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="73ce4e4a-bc1d-3862-818f-979eb2abf651" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.DownRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="DownRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="5fdfc4e7-3e81-22fa-af77-764536041529" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.End">
+      <topicdata group="api" notopic="" />
+      <apidata name="End" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="774e8489-6fb8-302d-e927-258bc8211aec" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Left">
+      <topicdata group="api" notopic="" />
+      <apidata name="Left" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="b276be0d-6599-ddad-a531-6152a3e24cbd" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.NoGesture">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoGesture" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="6efe446d-ef06-c480-cb19-bbb308f0f2c9" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Pan">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pan" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>115</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="52ae6fdd-7121-38ce-fc98-95d0a8d89767" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Right">
+      <topicdata group="api" notopic="" />
+      <apidata name="Right" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="60f7d9d8-5001-e625-683a-fd018f7583de" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Rollover">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rollover" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>118</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="ad42bfe1-a957-71ca-0d02-9ed281968c39" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Rotate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rotate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>116</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="1b430f7c-6799-5d2f-6abb-2b6dc41c94be" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Tap">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tap" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="202321e6-b4b5-c0a8-65a1-b75a257e5cee" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.TwoFingerTap">
+      <topicdata group="api" notopic="" />
+      <apidata name="TwoFingerTap" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>117</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="4a29340c-76d5-2858-bb38-5d4956e49108" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Up">
+      <topicdata group="api" notopic="" />
+      <apidata name="Up" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="fdfb45e9-533c-286e-a58f-e6c4690b3668" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.UpLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="UpLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="2c3053aa-c806-94ac-8f55-e0dbd7a9a938" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.UpRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="UpRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="94982a45-4e8b-4c1c-161c-5e8b3c5b0476" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.UserDefined">
+      <topicdata group="api" notopic="" />
+      <apidata name="UserDefined" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>200</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="7ae0d40c-6cf5-ca1c-42b5-412a8d1819cd" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGesture.Zoom">
+      <topicdata group="api" notopic="" />
+      <apidata name="Zoom" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <value>114</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </containers>
+      <file name="3f79d403-6686-d6dd-131a-12afdfb6c551" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchGestureEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      <apidata name="TouchGestureEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="68006428-ca8e-ce25-4997-f6584b77dbcb" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchGestureEventArgs">
+      <topicdata name="TouchGestureEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      <apidata name="TouchGestureEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor" />
+        <element api="P:Microsoft.SPOT.Touch.TouchGestureEventArgs.Angle" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Arguments" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Gesture" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Timestamp" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.X" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Y" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      </containers>
+      <file name="3d56f7ee-ab48-fcc5-f72f-ffc45dfc2d66" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchGestureEventArgs">
+      <topicdata name="TouchGestureEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      <apidata name="TouchGestureEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      </containers>
+      <file name="1a4621b1-4605-3769-9e0d-b7246c62f41d" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Touch.TouchGestureEventArgs">
+      <topicdata name="TouchGestureEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      <apidata name="TouchGestureEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.TouchGestureEventArgs.Angle" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      </containers>
+      <file name="2d667444-d94d-8c56-f844-99f9df5005ed" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Touch.TouchGestureEventArgs">
+      <topicdata name="TouchGestureEventArgs" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      <apidata name="TouchGestureEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Arguments" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Gesture" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Timestamp" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.X" />
+        <element api="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Y" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" />
+      </containers>
+      <file name="0906b339-87e4-0668-e0f0-938c08a6596e" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchGestureEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="bd0d4a4f-270b-6722-5eeb-5c1f589dcb55" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchGestureEventArgs.Angle">
+      <topicdata group="api" />
+      <apidata name="Angle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Angle" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="2f596299-09e1-ba35-501e-264bad6dace4" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Arguments">
+      <topicdata group="api" />
+      <apidata name="Arguments" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="b1d858c6-48a7-ba2c-17cc-145a48c590de" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Gesture">
+      <topicdata group="api" />
+      <apidata name="Gesture" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchGesture" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="5c5e2f37-880f-29ef-c101-5b5199305f41" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="79aff2dc-5c2f-32ec-40ea-d4accebefe8f" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="d1dd6ed0-6e29-b6da-4b7d-fe9a9565cd65" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchGestureEventArgs.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </containers>
+      <file name="142a1280-3ab6-6e68-c0eb-3f873d38e580" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchGestureEventHandler">
+      <topicdata group="api" />
+      <apidata name="TouchGestureEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="2e18d629-2c9f-2f8a-b4c5-895d78d3573d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchInput">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchInput" />
+      <apidata name="TouchInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchInput.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="fd31caca-d83a-9eb1-5c8f-3d9e328fa694" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchInput">
+      <topicdata name="TouchInput" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchInput" />
+      <apidata name="TouchInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchInput.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchInput.#ctor" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.ContactHeight" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.ContactWidth" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.Flags" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.SourceID" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.X" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.Y" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" />
+      </containers>
+      <file name="19dbf26f-0917-6a79-6b2e-e95bda0ef0c8" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchInput">
+      <topicdata name="TouchInput" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchInput" />
+      <apidata name="TouchInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchInput.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" />
+      </containers>
+      <file name="c96eb844-3ab3-c5f9-3704-28022775e673" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Touch.TouchInput">
+      <topicdata name="TouchInput" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Touch.TouchInput" />
+      <apidata name="TouchInput" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchInput.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.ContactHeight" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.ContactWidth" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.Flags" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.SourceID" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.X" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInput.Y" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" />
+      </containers>
+      <file name="a111a1fc-8d4f-3384-5b7d-a934ef9caa10" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchInput.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="f1c316cc-77de-22cf-9c2e-9ce8a7ce56b8" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInput.ContactHeight">
+      <topicdata group="api" />
+      <apidata name="ContactHeight" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="b008edc0-eb22-1ded-b1d2-74dc5378a134" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInput.ContactWidth">
+      <topicdata group="api" />
+      <apidata name="ContactWidth" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="6962a90f-eec9-fda7-882f-2245d84c7da8" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInput.Flags">
+      <topicdata group="api" />
+      <apidata name="Flags" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="1b414dc8-3e40-dd4e-3b22-ec72a8498192" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInput.SourceID">
+      <topicdata group="api" />
+      <apidata name="SourceID" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Byte" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="316c2cfe-c97c-89e7-ce3e-1929cb3a8683" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInput.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="41fda35c-b1cf-05bb-6bce-9c8ed40e9e2b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInput.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+      </containers>
+      <file name="77ac4a43-e9ed-110d-1a89-c890cc2f0944" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchInputFlags">
+      <topicdata group="api" />
+      <apidata name="TouchInputFlags" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchInputFlags.None" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInputFlags.Primary" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInputFlags.Pen" />
+        <element api="F:Microsoft.SPOT.Touch.TouchInputFlags.Palm" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="17c6c4c8-c681-74a6-b342-41f32c472ce2" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInputFlags.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </containers>
+      <file name="5f21ac7a-a877-f831-c024-a32fa13c83ea" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInputFlags.Palm">
+      <topicdata group="api" notopic="" />
+      <apidata name="Palm" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </returns>
+      <value>128</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </containers>
+      <file name="3bf55d49-8e63-d3ff-7a16-7d8aefed10b9" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInputFlags.Pen">
+      <topicdata group="api" notopic="" />
+      <apidata name="Pen" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </returns>
+      <value>64</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </containers>
+      <file name="1f29fde7-a646-8ccf-b94f-3623ac9f5f8b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchInputFlags.Primary">
+      <topicdata group="api" notopic="" />
+      <apidata name="Primary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchInputFlags" ref="false" />
+      </containers>
+      <file name="37f60bff-881e-be53-b198-bbf960343b6f" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchMessages">
+      <topicdata group="api" />
+      <apidata name="TouchMessages" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.Byte" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchMessages.Down" />
+        <element api="F:Microsoft.SPOT.Touch.TouchMessages.Up" />
+        <element api="F:Microsoft.SPOT.Touch.TouchMessages.Move" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="0063934e-8bac-04c3-3f7d-a5b9fc9224c6" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchMessages.Down">
+      <topicdata group="api" notopic="" />
+      <apidata name="Down" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchMessages" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchMessages" ref="false" />
+      </containers>
+      <file name="b406626f-bc61-9648-f1fe-f57870578e2a" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchMessages.Move">
+      <topicdata group="api" notopic="" />
+      <apidata name="Move" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchMessages" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchMessages" ref="false" />
+      </containers>
+      <file name="26356c89-5e31-a294-30e7-2e399955529b" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchMessages.Up">
+      <topicdata group="api" notopic="" />
+      <apidata name="Up" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Touch.TouchMessages" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchMessages" ref="false" />
+      </containers>
+      <file name="ad5c6268-ff0c-3d24-100a-702ae186c10a" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchPanel">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchPanel" />
+      <apidata name="TouchPanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchPanel.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="442ce3ac-b0ae-474f-51ae-bcee39558ec6" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchPanel">
+      <topicdata name="TouchPanel" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchPanel" />
+      <apidata name="TouchPanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchPanel.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.#ctor" />
+        <element api="P:Microsoft.SPOT.Touch.TouchPanel.Enabled" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.GetCalibrationPoint(System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.GetCalibrationPointCount(System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.SetCalibration(System.Int32,System.Int16[],System.Int16[],System.Int16[],System.Int16[])" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.StartCalibration" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" />
+      </containers>
+      <file name="e6721e9f-e973-9709-d1d5-d7a584b93540" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchPanel">
+      <topicdata name="TouchPanel" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchPanel" />
+      <apidata name="TouchPanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchPanel.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.GetCalibrationPoint(System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.GetCalibrationPointCount(System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.SetCalibration(System.Int32,System.Int16[],System.Int16[],System.Int16[],System.Int16[])" />
+        <element api="M:Microsoft.SPOT.Touch.TouchPanel.StartCalibration" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" />
+      </containers>
+      <file name="9ef94d20-7518-163d-366d-ae1f83d4f8a8" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Touch.TouchPanel">
+      <topicdata name="TouchPanel" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Touch.TouchPanel" />
+      <apidata name="TouchPanel" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Touch.TouchPanel.#ctor" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.TouchPanel.Enabled" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" />
+      </containers>
+      <file name="30371e1b-acca-e807-6446-1b76e4df2c26" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchPanel.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </containers>
+      <file name="4bf6b77b-3df0-f77d-ea0b-0d1460f0e538" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchPanel.Enabled">
+      <topicdata group="api" />
+      <apidata name="Enabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Enabled" />
+      <setter name="set_Enabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </containers>
+      <file name="13c0f69b-5d2a-b750-7743-a4db62481a0b" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchPanel.GetCalibrationPoint(System.Int32,System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetCalibrationPoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="x">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="y">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </containers>
+      <file name="ac8da0bf-c59b-5554-907e-c02b45761c97" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchPanel.GetCalibrationPointCount(System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetCalibrationPointCount" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="count">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </containers>
+      <file name="6c43ef9c-6914-bc47-0735-58d7cf4f8691" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchPanel.SetCalibration(System.Int32,System.Int16[],System.Int16[],System.Int16[],System.Int16[])">
+      <topicdata group="api" />
+      <apidata name="SetCalibration" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="cCalibrationPoints">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="screenXBuffer">
+          <arrayOf rank="1">
+            <type api="T:System.Int16" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="screenYBuffer">
+          <arrayOf rank="1">
+            <type api="T:System.Int16" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="uncalXBuffer">
+          <arrayOf rank="1">
+            <type api="T:System.Int16" ref="false" />
+          </arrayOf>
+        </parameter>
+        <parameter name="uncalYBuffer">
+          <arrayOf rank="1">
+            <type api="T:System.Int16" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </containers>
+      <file name="3d41e437-1fef-4b4b-07a6-ed33e1baa97e" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchPanel.StartCalibration">
+      <topicdata group="api" />
+      <apidata name="StartCalibration" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchPanel" ref="true" />
+      </containers>
+      <file name="53222fd7-c4ec-15e6-b499-ce3e83e7cf9d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchScreen">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchScreen" />
+      <apidata name="TouchScreen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.SPOT.IEventListener" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="1b7dab9c-2ca4-1629-0985-e06627ea8d8b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchScreen">
+      <topicdata name="TouchScreen" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen" />
+      <apidata name="TouchScreen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.#ctor(Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle[])" />
+        <element api="P:Microsoft.SPOT.Touch.TouchScreen.ActiveRegions" />
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.Microsoft#SPOT#IEventListener#InitializeForEventSource" />
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.Microsoft#SPOT#IEventListener#OnEvent(Microsoft.SPOT.BaseEvent)" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureChanged" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureEnded" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureStarted" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchDown" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchMove" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchUp" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" />
+      </containers>
+      <file name="13a08b63-a371-bc36-fddd-8673a21e99c9" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchScreen">
+      <topicdata name="TouchScreen" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen" />
+      <apidata name="TouchScreen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.Microsoft#SPOT#IEventListener#InitializeForEventSource" />
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.Microsoft#SPOT#IEventListener#OnEvent(Microsoft.SPOT.BaseEvent)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" />
+      </containers>
+      <file name="9f7acd7c-9e9b-3625-272f-f26ff978497b" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Touch.TouchScreen">
+      <topicdata name="TouchScreen" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen" />
+      <apidata name="TouchScreen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Touch.TouchScreen.ActiveRegions" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" />
+      </containers>
+      <file name="b6605c09-8c98-c9b2-7400-2a6138aefc8e" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Touch.TouchScreen">
+      <topicdata name="TouchScreen" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen" />
+      <apidata name="TouchScreen" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureChanged" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureEnded" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureStarted" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchDown" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchMove" />
+        <element api="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" />
+      </containers>
+      <file name="7c1bcab4-5f5f-73f8-9e0c-fd342fbaf520" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreen.#ctor(Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle[])">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="activeRectangles">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+              <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+            </type>
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="12dc94e8-9ba1-747b-1024-6e5caf514106" />
+    </api>
+    <api id="P:Microsoft.SPOT.Touch.TouchScreen.ActiveRegions">
+      <topicdata group="api" />
+      <apidata name="ActiveRegions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ActiveRegions" />
+      <setter name="set_ActiveRegions" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+            <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+          </type>
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="133abcc7-de1a-0dc1-998e-7d56ac09a44c" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreen.Microsoft#SPOT#IEventListener#InitializeForEventSource">
+      <topicdata group="api" eiiName="IEventListener.InitializeForEventSource" />
+      <apidata name="InitializeForEventSource" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <implements>
+        <member api="M:Microsoft.SPOT.IEventListener.InitializeForEventSource">
+          <type api="T:Microsoft.SPOT.IEventListener" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="e9ed64e9-51ce-b29e-e3cf-b9275c31caab" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreen.Microsoft#SPOT#IEventListener#OnEvent(Microsoft.SPOT.BaseEvent)">
+      <topicdata group="api" eiiName="IEventListener.OnEvent" />
+      <apidata name="OnEvent" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="ev">
+          <type api="T:Microsoft.SPOT.BaseEvent" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:Microsoft.SPOT.IEventListener.OnEvent(Microsoft.SPOT.BaseEvent)">
+          <type api="T:Microsoft.SPOT.IEventListener" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="7bddcb6c-4554-2d21-1e32-7e7c6bb71808" />
+    </api>
+    <api id="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureChanged">
+      <topicdata group="api" />
+      <apidata name="OnGestureChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OnGestureChanged" />
+      <remover name="remove_OnGestureChanged" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="ed84814a-7000-338b-8087-7f9c4bef5397" />
+    </api>
+    <api id="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureEnded">
+      <topicdata group="api" />
+      <apidata name="OnGestureEnded" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OnGestureEnded" />
+      <remover name="remove_OnGestureEnded" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="5fecfa7b-5634-3d14-4e09-ff56533c0b58" />
+    </api>
+    <api id="E:Microsoft.SPOT.Touch.TouchScreen.OnGestureStarted">
+      <topicdata group="api" />
+      <apidata name="OnGestureStarted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OnGestureStarted" />
+      <remover name="remove_OnGestureStarted" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Touch.TouchGestureEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="61a112f9-a400-4555-04c2-b399b0dc6ec8" />
+    </api>
+    <api id="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchDown">
+      <topicdata group="api" />
+      <apidata name="OnTouchDown" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OnTouchDown" />
+      <remover name="remove_OnTouchDown" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="ce1b00a1-c625-f129-56d1-2d0f94e37197" />
+    </api>
+    <api id="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchMove">
+      <topicdata group="api" />
+      <apidata name="OnTouchMove" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OnTouchMove" />
+      <remover name="remove_OnTouchMove" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="01454a3c-10da-b5bd-b264-97707b2a13a1" />
+    </api>
+    <api id="E:Microsoft.SPOT.Touch.TouchScreen.OnTouchUp">
+      <topicdata group="api" />
+      <apidata name="OnTouchUp" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_OnTouchUp" />
+      <remover name="remove_OnTouchUp" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="845c2b4f-5cac-d0af-10d0-d80b9c27d53d" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      <apidata name="ActiveRectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+      </containers>
+      <file name="03f18332-c21c-8278-ef59-4530c12d7703" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle">
+      <topicdata name="ActiveRectangle" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      <apidata name="ActiveRectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Object)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Contains(Microsoft.SPOT.Touch.TouchInput)" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Height" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Target" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Width" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.X" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Y" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      </containers>
+      <file name="6033acd7-78d4-430a-7706-d690fac816a9" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle">
+      <topicdata name="ActiveRectangle" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      <apidata name="ActiveRectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Contains(Microsoft.SPOT.Touch.TouchInput)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      </containers>
+      <file name="019a2e7c-74ef-a8e1-1bf0-2925fc69e505" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle">
+      <topicdata name="ActiveRectangle" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      <apidata name="ActiveRectangle" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Height" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Target" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Width" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.X" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Y" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" />
+      </containers>
+      <file name="9957ac9b-8ea7-1d94-eab1-2df540b86a79" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="cf2a1f10-313a-c2d6-6c74-25ffa9ed9b6e" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Contains(Microsoft.SPOT.Touch.TouchInput)">
+      <topicdata group="api" />
+      <apidata name="Contains" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="input">
+          <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="076574c9-6821-4f1b-e7d5-8146d8d8d15c" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Height">
+      <topicdata group="api" />
+      <apidata name="Height" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="608ba1e3-3dc5-3161-a926-5eaf09280da1" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Target">
+      <topicdata group="api" />
+      <apidata name="Target" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="8dc35281-8b40-592a-4992-394a5102bd0e" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Width">
+      <topicdata group="api" />
+      <apidata name="Width" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="48057e16-e62b-140d-dc0d-63d503c3bd52" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="1f28366f-7cb7-1800-43cf-ff21a47e9d64" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Touch" module="Microsoft.SPOT.Touch" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreen.ActiveRectangle" ref="true">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreen" ref="true" />
+        </type>
+      </containers>
+      <file name="f2178da1-b991-bf63-0991-b901b11be535" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchScreenEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      <apidata name="TouchScreenEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="ef1590fc-06fa-5f5a-13e6-361f2d8fa336" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Touch.TouchScreenEventArgs">
+      <topicdata name="TouchScreenEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      <apidata name="TouchScreenEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchScreenEventArgs.#ctor(System.DateTime,Microsoft.SPOT.Touch.TouchInput[],System.Object)" />
+        <element api="M:Microsoft.SPOT.Touch.TouchScreenEventArgs.GetPosition(System.Int32,System.Int32@,System.Int32@)" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.Target" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.TimeStamp" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.Touches" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      </containers>
+      <file name="bca2d9bd-f867-d5a0-ef75-2ac0fce7f07f" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Touch.TouchScreenEventArgs">
+      <topicdata name="TouchScreenEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      <apidata name="TouchScreenEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Touch.TouchScreenEventArgs.GetPosition(System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      </containers>
+      <file name="5a0d4eed-1262-1d1e-cacf-126b32457e0b" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Touch.TouchScreenEventArgs">
+      <topicdata name="TouchScreenEventArgs" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      <apidata name="TouchScreenEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.Target" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.TimeStamp" />
+        <element api="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.Touches" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" />
+      </containers>
+      <file name="7ed57123-b7c7-9f60-966e-f4df119cd17b" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreenEventArgs.#ctor(System.DateTime,Microsoft.SPOT.Touch.TouchInput[],System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="timestamp">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+        <parameter name="touches">
+          <arrayOf rank="1">
+            <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="target">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </containers>
+      <file name="76f91116-ca6c-c433-8c62-a5ff87c288af" />
+    </api>
+    <api id="M:Microsoft.SPOT.Touch.TouchScreenEventArgs.GetPosition(System.Int32,System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="GetPosition" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="touchIndex">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="x" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="y" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </containers>
+      <file name="9ae759ab-1696-bd9d-c828-a5fd4f1cf484" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.Target">
+      <topicdata group="api" />
+      <apidata name="Target" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </containers>
+      <file name="53c9a2bb-261c-008a-fc6c-3a1dca2a4d05" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.TimeStamp">
+      <topicdata group="api" />
+      <apidata name="TimeStamp" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </containers>
+      <file name="39676ba2-80f4-a784-f890-8b3fd90fe86c" />
+    </api>
+    <api id="F:Microsoft.SPOT.Touch.TouchScreenEventArgs.Touches">
+      <topicdata group="api" />
+      <apidata name="Touches" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Microsoft.SPOT.Touch.TouchInput" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+        <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+      </containers>
+      <file name="cd949c4d-62ad-3f9d-325c-dac60c77f771" />
+    </api>
+    <api id="T:Microsoft.SPOT.Touch.TouchScreenEventHandler">
+      <topicdata group="api" />
+      <apidata name="TouchScreenEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Touch.TouchScreenEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Native" module="Microsoft.SPOT.Native" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Touch" />
+      </containers>
+      <file name="b58b9bf2-091e-6cdd-b712-7471bfec862e" />
+    </api>
+  </apis>
+</reflection>

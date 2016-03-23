@@ -1,0 +1,2140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Diagnostics">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Diagnostics" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+        <element api="T:Windows.System.Diagnostics.ProcessDiskUsage" />
+        <element api="T:Windows.System.Diagnostics.ProcessMemoryUsage" />
+        <element api="T:Windows.System.Diagnostics.ProcessCpuUsage" />
+        <element api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+        <element api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+        <element api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      </elements>
+      <file name="7458840a-b2c8-b817-47f1-ce7a7278d570" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessCpuUsage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessCpuUsage" />
+      <apidata name="ProcessCpuUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="162f3b1f-41ae-abc3-0990-e23f0832fc13" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessCpuUsage">
+      <topicdata name="ProcessCpuUsage" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessCpuUsage" />
+      <apidata name="ProcessCpuUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessCpuUsage.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsage" />
+      </containers>
+      <file name="8875f6c5-a5cd-73a3-e0ad-0e51cb8d5b0f" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessCpuUsage">
+      <topicdata name="ProcessCpuUsage" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessCpuUsage" />
+      <apidata name="ProcessCpuUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessCpuUsage.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsage" />
+      </containers>
+      <file name="e3ad7179-a61b-40c0-6522-3509c034f8e4" />
+    </api>
+    <api id="M:Windows.System.Diagnostics.ProcessCpuUsage.GetReport">
+      <topicdata group="api" />
+      <apidata name="GetReport" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsage" ref="true" />
+      </containers>
+      <file name="d10666f7-0734-3368-f8ac-b72dccf8abce" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessCpuUsageReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      <apidata name="ProcessCpuUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="70bb8103-7518-67f1-ff3b-9c31363efa81" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessCpuUsageReport">
+      <topicdata name="ProcessCpuUsageReport" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      <apidata name="ProcessCpuUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.System.Diagnostics.ProcessCpuUsageReport.KernelTime" />
+        <element api="P:Windows.System.Diagnostics.ProcessCpuUsageReport.UserTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      </containers>
+      <file name="5cd78871-b243-0d82-678e-8a8affce2827" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessCpuUsageReport">
+      <topicdata name="ProcessCpuUsageReport" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      <apidata name="ProcessCpuUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      </containers>
+      <file name="e8c12821-1666-c838-4e7b-42c2a031917b" />
+    </api>
+    <api id="Properties.T:Windows.System.Diagnostics.ProcessCpuUsageReport">
+      <topicdata name="ProcessCpuUsageReport" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      <apidata name="ProcessCpuUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Diagnostics.ProcessCpuUsageReport.KernelTime" />
+        <element api="P:Windows.System.Diagnostics.ProcessCpuUsageReport.UserTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" />
+      </containers>
+      <file name="64f02dc5-3440-d506-e12b-49d3ab438df4" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessCpuUsageReport.KernelTime">
+      <topicdata group="api" />
+      <apidata name="KernelTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_KernelTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" ref="true" />
+      </containers>
+      <file name="dfb8f56c-4796-d4e3-1bc8-3ede84f4954d" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessCpuUsageReport.UserTime">
+      <topicdata group="api" />
+      <apidata name="UserTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UserTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsageReport" ref="true" />
+      </containers>
+      <file name="1107edb8-7c2f-9607-90ba-24b4ced5bf73" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessDiagnosticInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      <apidata name="ProcessDiagnosticInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a193684a-534b-2f41-b2ba-8a7e2e655d37" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessDiagnosticInfo">
+      <topicdata name="ProcessDiagnosticInfo" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      <apidata name="ProcessDiagnosticInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.CpuUsage" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.DiskUsage" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ExecutableFileName" />
+        <element api="M:Windows.System.Diagnostics.ProcessDiagnosticInfo.GetForCurrentProcess" />
+        <element api="M:Windows.System.Diagnostics.ProcessDiagnosticInfo.GetForProcesses" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.MemoryUsage" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.Parent" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ProcessId" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ProcessStartTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      </containers>
+      <file name="0c9c364f-7a29-e70a-8d63-fc2546f546cd" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessDiagnosticInfo">
+      <topicdata name="ProcessDiagnosticInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      <apidata name="ProcessDiagnosticInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessDiagnosticInfo.GetForCurrentProcess" />
+        <element api="M:Windows.System.Diagnostics.ProcessDiagnosticInfo.GetForProcesses" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      </containers>
+      <file name="252f32c9-c422-721a-2604-02ed16f42f78" />
+    </api>
+    <api id="Properties.T:Windows.System.Diagnostics.ProcessDiagnosticInfo">
+      <topicdata name="ProcessDiagnosticInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      <apidata name="ProcessDiagnosticInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.CpuUsage" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.DiskUsage" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ExecutableFileName" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.MemoryUsage" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.Parent" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ProcessId" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ProcessStartTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" />
+      </containers>
+      <file name="181ff159-2bfd-7888-89bd-1ccbea1e6ebe" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.CpuUsage">
+      <topicdata group="api" />
+      <apidata name="CpuUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CpuUsage" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessCpuUsage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="186cc125-67e5-4187-c12b-c15136cd1483" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.DiskUsage">
+      <topicdata group="api" />
+      <apidata name="DiskUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DiskUsage" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="f31db7ce-6b55-5060-2ebe-39fb59dbe38b" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ExecutableFileName">
+      <topicdata group="api" />
+      <apidata name="ExecutableFileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ExecutableFileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="b10b8012-7238-3396-de00-09e3c0b3a9f6" />
+    </api>
+    <api id="M:Windows.System.Diagnostics.ProcessDiagnosticInfo.GetForCurrentProcess">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentProcess" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="99752e40-9ad9-4a13-0c3d-69bf644492a7" />
+    </api>
+    <api id="M:Windows.System.Diagnostics.ProcessDiagnosticInfo.GetForProcesses">
+      <topicdata group="api" />
+      <apidata name="GetForProcesses" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="4990e3f6-1db4-e856-5239-5db02c0bc154" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.MemoryUsage">
+      <topicdata group="api" />
+      <apidata name="MemoryUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MemoryUsage" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsage" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="c85b649d-b728-dd86-7432-081a9863acc0" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Parent" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="ef875224-6f9f-3553-5efb-1c6e06f7105b" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ProcessId">
+      <topicdata group="api" />
+      <apidata name="ProcessId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProcessId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="7d3ecfa7-e80c-6544-d39d-b4e32af1b91c" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiagnosticInfo.ProcessStartTime">
+      <topicdata group="api" />
+      <apidata name="ProcessStartTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProcessStartTime" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiagnosticInfo" ref="true" />
+      </containers>
+      <file name="567c4ac6-bb1e-c7db-221b-0c5ccaf3b530" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessDiskUsage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessDiskUsage" />
+      <apidata name="ProcessDiskUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7c095224-85f8-2cee-f04d-75f0ffe67a4b" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessDiskUsage">
+      <topicdata name="ProcessDiskUsage" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessDiskUsage" />
+      <apidata name="ProcessDiskUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessDiskUsage.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsage" />
+      </containers>
+      <file name="3c43cb4c-6e32-4e57-aca5-152c91fd87fe" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessDiskUsage">
+      <topicdata name="ProcessDiskUsage" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessDiskUsage" />
+      <apidata name="ProcessDiskUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessDiskUsage.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsage" />
+      </containers>
+      <file name="92c69182-732c-07a6-2232-bd13ce9820ee" />
+    </api>
+    <api id="M:Windows.System.Diagnostics.ProcessDiskUsage.GetReport">
+      <topicdata group="api" />
+      <apidata name="GetReport" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsage" ref="true" />
+      </containers>
+      <file name="50523761-b555-3112-2263-331806760d8b" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessDiskUsageReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      <apidata name="ProcessDiskUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="195626f4-a589-2f93-6e98-cac61975241e" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessDiskUsageReport">
+      <topicdata name="ProcessDiskUsageReport" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      <apidata name="ProcessDiskUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.BytesReadCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.BytesWrittenCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.OtherBytesCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.OtherOperationCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.ReadOperationCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.WriteOperationCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      </containers>
+      <file name="4bee2f0a-1e68-077d-5193-433f9c1e698b" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessDiskUsageReport">
+      <topicdata name="ProcessDiskUsageReport" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      <apidata name="ProcessDiskUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      </containers>
+      <file name="ed3710dd-aa5c-01fe-c20e-377f5104e412" />
+    </api>
+    <api id="Properties.T:Windows.System.Diagnostics.ProcessDiskUsageReport">
+      <topicdata name="ProcessDiskUsageReport" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      <apidata name="ProcessDiskUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.BytesReadCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.BytesWrittenCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.OtherBytesCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.OtherOperationCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.ReadOperationCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessDiskUsageReport.WriteOperationCount" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" />
+      </containers>
+      <file name="1e1d2096-8eb0-cd8d-eeaf-6f52149b185f" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiskUsageReport.BytesReadCount">
+      <topicdata group="api" />
+      <apidata name="BytesReadCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BytesReadCount" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </containers>
+      <file name="df5aa654-4590-066d-a9f5-e30863643ac1" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiskUsageReport.BytesWrittenCount">
+      <topicdata group="api" />
+      <apidata name="BytesWrittenCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BytesWrittenCount" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </containers>
+      <file name="dec3ad7a-d9b9-1c8a-99b6-33b2672e1e47" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiskUsageReport.OtherBytesCount">
+      <topicdata group="api" />
+      <apidata name="OtherBytesCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OtherBytesCount" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </containers>
+      <file name="f0148079-3ea9-243a-7d12-550e32b015d3" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiskUsageReport.OtherOperationCount">
+      <topicdata group="api" />
+      <apidata name="OtherOperationCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OtherOperationCount" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </containers>
+      <file name="b04f9562-208c-f0b0-7f9b-454354ab04c4" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiskUsageReport.ReadOperationCount">
+      <topicdata group="api" />
+      <apidata name="ReadOperationCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReadOperationCount" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </containers>
+      <file name="9a4c7cf2-1a8b-eabb-a09e-7b7343a4f313" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessDiskUsageReport.WriteOperationCount">
+      <topicdata group="api" />
+      <apidata name="WriteOperationCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_WriteOperationCount" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessDiskUsageReport" ref="true" />
+      </containers>
+      <file name="13e1b7fa-c421-d1b5-75c1-92f93e5b2470" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessMemoryUsage">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessMemoryUsage" />
+      <apidata name="ProcessMemoryUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="325b218c-7943-3e78-e8bf-a4ce64234081" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessMemoryUsage">
+      <topicdata name="ProcessMemoryUsage" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessMemoryUsage" />
+      <apidata name="ProcessMemoryUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessMemoryUsage.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsage" />
+      </containers>
+      <file name="1083c774-12ff-727e-10e4-6a69a7384d95" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessMemoryUsage">
+      <topicdata name="ProcessMemoryUsage" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessMemoryUsage" />
+      <apidata name="ProcessMemoryUsage" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Diagnostics.ProcessMemoryUsage.GetReport" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsage" />
+      </containers>
+      <file name="b4066d2a-06e7-287b-c4ec-bb03871e508b" />
+    </api>
+    <api id="M:Windows.System.Diagnostics.ProcessMemoryUsage.GetReport">
+      <topicdata group="api" />
+      <apidata name="GetReport" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsage" ref="true" />
+      </containers>
+      <file name="74742c82-6d59-72dd-1f08-08513fafd736" />
+    </api>
+    <api id="T:Windows.System.Diagnostics.ProcessMemoryUsageReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      <apidata name="ProcessMemoryUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="332def09-c6e2-c96c-b687-94fd9fa8a891" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Diagnostics.ProcessMemoryUsageReport">
+      <topicdata name="ProcessMemoryUsageReport" group="list" subgroup="members" typeTopicId="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      <apidata name="ProcessMemoryUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.NonPagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PageFaultCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PageFileSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakNonPagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakPagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakPageFileSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakVirtualMemorySizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakWorkingSetSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PrivatePageCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.VirtualMemorySizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.WorkingSetSizeInBytes" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      </containers>
+      <file name="9fb498cb-9eee-90b3-3125-9deb38c2cef3" />
+    </api>
+    <api id="Methods.T:Windows.System.Diagnostics.ProcessMemoryUsageReport">
+      <topicdata name="ProcessMemoryUsageReport" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      <apidata name="ProcessMemoryUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      </containers>
+      <file name="63dfcd8f-17b2-c622-78c8-a6f2ceea1300" />
+    </api>
+    <api id="Properties.T:Windows.System.Diagnostics.ProcessMemoryUsageReport">
+      <topicdata name="ProcessMemoryUsageReport" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      <apidata name="ProcessMemoryUsageReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.NonPagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PageFaultCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PageFileSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakNonPagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakPagedPoolSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakPageFileSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakVirtualMemorySizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakWorkingSetSizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PrivatePageCount" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.VirtualMemorySizeInBytes" />
+        <element api="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.WorkingSetSizeInBytes" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" />
+      </containers>
+      <file name="443d5b95-e94c-c3fd-6543-bd66228c7911" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.NonPagedPoolSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="NonPagedPoolSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NonPagedPoolSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="66dc7e63-9431-c4d1-42fd-9efa9673a7b2" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PagedPoolSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PagedPoolSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PagedPoolSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="353503e8-7895-8a15-4927-cdb066647c8c" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PageFaultCount">
+      <topicdata group="api" />
+      <apidata name="PageFaultCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PageFaultCount" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="a261e51d-cb6a-a483-683b-c402dfc5b297" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PageFileSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PageFileSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PageFileSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="450368a3-6d05-ac7a-3d41-1bbd0b72dd55" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakNonPagedPoolSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PeakNonPagedPoolSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PeakNonPagedPoolSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="9c8f4714-7121-d47e-e0c0-328c8369a8c1" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakPagedPoolSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PeakPagedPoolSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PeakPagedPoolSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="4b11b96e-6337-8935-3fcd-1aabb06fe4b5" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakPageFileSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PeakPageFileSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PeakPageFileSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="0c8029bb-1433-c283-000b-f68cf5b6a08d" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakVirtualMemorySizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PeakVirtualMemorySizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PeakVirtualMemorySizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="f3d456fd-7c93-e803-3155-8f36f79fc675" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PeakWorkingSetSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="PeakWorkingSetSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PeakWorkingSetSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="b8793958-09e8-feda-fb6b-4325a9a6039a" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.PrivatePageCount">
+      <topicdata group="api" />
+      <apidata name="PrivatePageCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PrivatePageCount" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="0ca35584-bae7-0d68-ec18-070d66e57874" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.VirtualMemorySizeInBytes">
+      <topicdata group="api" />
+      <apidata name="VirtualMemorySizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VirtualMemorySizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="7c56d6c4-d29a-a3ea-04d4-db399bf36652" />
+    </api>
+    <api id="P:Windows.System.Diagnostics.ProcessMemoryUsageReport.WorkingSetSizeInBytes">
+      <topicdata group="api" />
+      <apidata name="WorkingSetSizeInBytes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_WorkingSetSizeInBytes" />
+      <returns>
+        <type api="T:System.UInt64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Diagnostics" />
+        <type api="T:Windows.System.Diagnostics.ProcessMemoryUsageReport" ref="true" />
+      </containers>
+      <file name="bb69b4f4-8faa-04ef-a02b-438bc2ac3266" />
+    </api>
+  </apis>
+</reflection>

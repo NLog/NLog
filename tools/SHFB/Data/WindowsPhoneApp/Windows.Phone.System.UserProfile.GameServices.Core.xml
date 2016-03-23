@@ -1,0 +1,644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.System.UserProfile.GameServices.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.System.UserProfile.GameServices.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" />
+        <element api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind" />
+        <element api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" />
+        <element api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      </elements>
+      <file name="b5ef8693-c313-2afa-0743-767b381e6a47" />
+    </api>
+    <api id="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      <apidata name="GameService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2c77e131-c834-af3f-0837-e9b5b093f511" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.System.UserProfile.GameServices.Core.GameService">
+      <topicdata name="GameService" group="list" subgroup="members" typeTopicId="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      <apidata name="GameService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetAuthenticationStatus" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetGamerProfileAsync" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetInstalledGameItemsAsync" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetPartnerTokenAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetPrivilegesAsync" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GrantAchievement(System.UInt32)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GrantAvatarAward(System.UInt32)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.NotifyPartnerTokenExpired(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.PostResult(System.UInt32,Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind,System.Int64,Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome,Windows.Storage.Streams.IBuffer)" />
+        <element api="P:Windows.Phone.System.UserProfile.GameServices.Core.GameService.ServiceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      </containers>
+      <file name="1257969f-0bec-c75f-2679-d47799d2e0f4" />
+    </api>
+    <api id="Methods.T:Windows.Phone.System.UserProfile.GameServices.Core.GameService">
+      <topicdata name="GameService" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      <apidata name="GameService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetAuthenticationStatus" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetGamerProfileAsync" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetInstalledGameItemsAsync" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetPartnerTokenAsync(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetPrivilegesAsync" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GrantAchievement(System.UInt32)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GrantAvatarAward(System.UInt32)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.NotifyPartnerTokenExpired(Windows.Foundation.Uri)" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.PostResult(System.UInt32,Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind,System.Int64,Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome,Windows.Storage.Streams.IBuffer)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      </containers>
+      <file name="4410aafb-e535-2931-f99a-c849072d26a9" />
+    </api>
+    <api id="Properties.T:Windows.Phone.System.UserProfile.GameServices.Core.GameService">
+      <topicdata name="GameService" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      <apidata name="GameService" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.System.UserProfile.GameServices.Core.GameService.ServiceUri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" />
+      </containers>
+      <file name="c0b595bb-7f11-2c59-126d-f73ae6c8df9c" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetAuthenticationStatus">
+      <topicdata group="api" />
+      <apidata name="GetAuthenticationStatus" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="89a9c654-1c09-761a-77c1-6b97d2da6b23" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetGamerProfileAsync">
+      <topicdata group="api" />
+      <apidata name="GetGamerProfileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="818eb3c7-e084-e948-fb2a-4b427de40df4" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetInstalledGameItemsAsync">
+      <topicdata group="api" />
+      <apidata name="GetInstalledGameItemsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="62571fbb-109b-3128-3798-9aa8badf4378" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetPartnerTokenAsync(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="GetPartnerTokenAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="audienceUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="4bb4a41b-593c-40ab-5303-206585446766" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GetPrivilegesAsync">
+      <topicdata group="api" />
+      <apidata name="GetPrivilegesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="8ccc6a97-4eee-9ab0-0bce-3e7592990c97" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GrantAchievement(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GrantAchievement" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="achievementId" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="3ffb9b83-6acc-7d4d-be1c-3a129160deb3" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.GrantAvatarAward(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="GrantAvatarAward" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="avatarAwardId" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="0af05538-810f-12fa-99f9-9cadee2a454e" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.NotifyPartnerTokenExpired(Windows.Foundation.Uri)">
+      <topicdata group="api" />
+      <apidata name="NotifyPartnerTokenExpired" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="audienceUri" in="true">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="4427ea5b-c555-da93-8e6f-c6f13a22fdec" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameService.PostResult(System.UInt32,Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind,System.Int64,Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome,Windows.Storage.Streams.IBuffer)">
+      <topicdata group="api" />
+      <apidata name="PostResult" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="gameVariant" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="scoreKind" in="true">
+          <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind" ref="false" />
+        </parameter>
+        <parameter name="scoreValue" in="true">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="gameOutcome" in="true">
+          <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+        </parameter>
+        <parameter name="buffer" in="true">
+          <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="8e62ec5e-7754-bd09-03cc-bead4a59264f" />
+    </api>
+    <api id="P:Windows.Phone.System.UserProfile.GameServices.Core.GameService.ServiceUri">
+      <topicdata group="api" />
+      <apidata name="ServiceUri" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ServiceUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameService" ref="true" />
+      </containers>
+      <file name="1abc6c93-9bab-fe5a-bfac-05b885cf9cf5" />
+    </api>
+    <api id="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome">
+      <topicdata group="api" />
+      <apidata name="GameServiceGameOutcome" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.None" />
+        <element api="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.Win" />
+        <element api="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.Loss" />
+        <element api="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.Tie" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c538126a-d5a0-5231-5b74-3ec1a3658a7f" />
+    </api>
+    <api id="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.Loss">
+      <topicdata group="api" notopic="" />
+      <apidata name="Loss" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </containers>
+      <file name="fc849830-6209-454f-4a6c-7248943a5fe1" />
+    </api>
+    <api id="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </containers>
+      <file name="2e28a218-bfba-be21-e763-4bbbffdeaac7" />
+    </api>
+    <api id="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.Tie">
+      <topicdata group="api" notopic="" />
+      <apidata name="Tie" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </containers>
+      <file name="8ed2a8d2-347b-f938-35ba-960a2156f010" />
+    </api>
+    <api id="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome.Win">
+      <topicdata group="api" notopic="" />
+      <apidata name="Win" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceGameOutcome" ref="false" />
+      </containers>
+      <file name="a7437ed7-e8ba-6c07-4a33-55ec2a867d12" />
+    </api>
+    <api id="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" />
+      <apidata name="GameServicePropertyCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.IGameServicePropertyCollection" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3e0d9fa5-077f-dde4-b9e9-3a262e42d542" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection">
+      <topicdata name="GameServicePropertyCollection" group="list" subgroup="members" typeTopicId="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" />
+      <apidata name="GameServicePropertyCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection.GetPropertyAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" />
+      </containers>
+      <file name="64441dda-1a14-93c7-0a81-d43210bf35c7" />
+    </api>
+    <api id="Methods.T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection">
+      <topicdata name="GameServicePropertyCollection" group="list" subgroup="Methods" typeTopicId="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" />
+      <apidata name="GameServicePropertyCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection.GetPropertyAsync(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" />
+      </containers>
+      <file name="dbe65818-48cd-7e27-296d-3da9713a67fa" />
+    </api>
+    <api id="M:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection.GetPropertyAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetPropertyAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="propertyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServicePropertyCollection" ref="true" />
+      </containers>
+      <file name="c63e6ba2-f064-5839-60bf-9d755dd31029" />
+    </api>
+    <api id="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind">
+      <topicdata group="api" />
+      <apidata name="GameServiceScoreKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind.Number" />
+        <element api="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind.Time" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a7f159a5-946d-96a7-b38d-f9a427281e96" />
+    </api>
+    <api id="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind.Number">
+      <topicdata group="api" notopic="" />
+      <apidata name="Number" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind" ref="false" />
+      </containers>
+      <file name="e97f8039-374b-0500-b319-aa9679207067" />
+    </api>
+    <api id="F:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind.Time">
+      <topicdata group="api" notopic="" />
+      <apidata name="Time" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.UserProfile.GameServices.Core" />
+        <type api="T:Windows.Phone.System.UserProfile.GameServices.Core.GameServiceScoreKind" ref="false" />
+      </containers>
+      <file name="5494e85e-a16b-d855-95b6-3faac6e56a47" />
+    </api>
+  </apis>
+</reflection>

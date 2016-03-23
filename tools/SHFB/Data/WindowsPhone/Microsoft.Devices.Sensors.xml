@@ -1,0 +1,2846 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Devices.Sensors">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>33d33820-ecce-4f25-9dac-ead5a9a2ab5d</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Sensors</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Devices.Sensors</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright © Microsoft 2009</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Devices.Sensors">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Devices.Sensors" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Devices.Sensors.SensorState" />
+        <element api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+        <element api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" />
+        <element api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+        <element api="T:Microsoft.Devices.Sensors.ISensorReading" />
+        <element api="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+        <element api="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+        <element api="T:Microsoft.Devices.Sensors.CompassReading" />
+        <element api="T:Microsoft.Devices.Sensors.MotionReading" />
+        <element api="T:Microsoft.Devices.Sensors.AttitudeReading" />
+        <element api="T:Microsoft.Devices.Sensors.SensorFailedException" />
+        <element api="T:Microsoft.Devices.Sensors.Motion" />
+        <element api="T:Microsoft.Devices.Sensors.Gyroscope" />
+        <element api="T:Microsoft.Devices.Sensors.Compass" />
+        <element api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+        <element api="T:Microsoft.Devices.Sensors.Accelerometer" />
+        <element api="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      </elements>
+      <file name="cb899289-870e-223e-68d9-c378f461f0d8" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.Accelerometer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.Accelerometer" />
+      <apidata name="Accelerometer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Accelerometer.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" ref="false" />
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="9cff609a-843b-10eb-aded-65583a448e5f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.Accelerometer">
+      <topicdata name="Accelerometer" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.Accelerometer" />
+      <apidata name="Accelerometer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Accelerometer.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.#ctor" />
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.Dispose" />
+        <element api="P:Microsoft.Devices.Sensors.Accelerometer.IsSupported" />
+        <element api="E:Microsoft.Devices.Sensors.Accelerometer.ReadingChanged" />
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.Start" />
+        <element api="P:Microsoft.Devices.Sensors.Accelerometer.State" />
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.Stop" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" />
+      </containers>
+      <file name="eaa401f7-e3e0-8627-96a4-e0bb73bfae32" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.Accelerometer">
+      <topicdata name="Accelerometer" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.Accelerometer" />
+      <apidata name="Accelerometer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Accelerometer.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.Dispose" />
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.Start" />
+        <element api="M:Microsoft.Devices.Sensors.Accelerometer.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" />
+      </containers>
+      <file name="c5495b3b-3d45-64df-f64b-9e6e6c0a62c3" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.Accelerometer">
+      <topicdata name="Accelerometer" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.Accelerometer" />
+      <apidata name="Accelerometer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Accelerometer.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.Accelerometer.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.Accelerometer.State" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" />
+      </containers>
+      <file name="6c9f26ec-4fca-daab-5ce1-158fc3753d84" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.Sensors.Accelerometer">
+      <topicdata name="Accelerometer" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.Sensors.Accelerometer" />
+      <apidata name="Accelerometer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Accelerometer.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Devices.Sensors.Accelerometer.ReadingChanged" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" />
+      </containers>
+      <file name="40eb1687-3ed7-eb30-400f-78ebe8b5a2c8" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Accelerometer.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <file name="5e65c1ed-03a4-c8d1-efeb-d29f089d44e7" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Accelerometer.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <file name="264a4c4d-5a8a-d072-54bd-f03aeb02b2ab" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.Accelerometer.IsSupported">
+      <topicdata group="api" />
+      <apidata name="IsSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <file name="0f9d9770-3069-980d-96cd-205edb7a3f85" />
+    </api>
+    <api id="E:Microsoft.Devices.Sensors.Accelerometer.ReadingChanged">
+      <topicdata group="api" />
+      <apidata name="ReadingChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ReadingChanged" />
+      <remover name="remove_ReadingChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ObsoleteAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>use CurrentValueChanged</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9b5be652-ca1d-3588-9072-b98653ff0842" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Accelerometer.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <file name="01b7b4e6-7703-fed4-9558-9466992ed8bc" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.Accelerometer.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <file name="3de3be23-469d-bd5f-a484-77743a9280c6" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Accelerometer.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+      </containers>
+      <file name="06a6754e-ee0d-54e1-afbe-767046268946" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.AccelerometerFailedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      <apidata name="AccelerometerFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Devices.Sensors.SensorFailedException" ref="true" />
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="cefe4a82-2e11-7575-44d4-bb7c4074c901" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.AccelerometerFailedException">
+      <topicdata name="AccelerometerFailedException" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      <apidata name="AccelerometerFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerFailedException.ErrorId" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      </containers>
+      <file name="432f4024-b736-6039-4be4-4bd075136bab" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.AccelerometerFailedException">
+      <topicdata name="AccelerometerFailedException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      <apidata name="AccelerometerFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      </containers>
+      <file name="761dcf88-e514-bdca-feb9-279fc742794b" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.AccelerometerFailedException">
+      <topicdata name="AccelerometerFailedException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      <apidata name="AccelerometerFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerFailedException.ErrorId" />
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerFailedException" />
+      </containers>
+      <file name="2c47ba60-d966-b35b-e3e1-501d9051db3c" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerFailedException.ErrorId">
+      <topicdata group="api" />
+      <apidata name="ErrorId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerFailedException" ref="true" />
+      </containers>
+      <file name="3452de19-58a0-0e7f-fe54-c6e13de881d2" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.AccelerometerReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      <apidata name="AccelerometerReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <implements>
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="c35ab85b-fd39-16d8-e2a4-ffedd048ae28" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.AccelerometerReading">
+      <topicdata name="AccelerometerReading" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      <apidata name="AccelerometerReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReading.Acceleration" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReading.Timestamp" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      </containers>
+      <file name="7a8741c5-1351-9b19-df61-206e76be78f0" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.AccelerometerReading">
+      <topicdata name="AccelerometerReading" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      <apidata name="AccelerometerReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      </containers>
+      <file name="614a1596-6c64-dc86-d23d-193b0fadaf18" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.AccelerometerReading">
+      <topicdata name="AccelerometerReading" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      <apidata name="AccelerometerReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReading.Acceleration" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" />
+      </containers>
+      <file name="1313484f-b04e-5f62-92d4-ce8b7b2fcf02" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerReading.Acceleration">
+      <topicdata group="api" />
+      <apidata name="Acceleration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Acceleration" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" ref="false" />
+      </containers>
+      <file name="17ef8bd4-64f1-68f9-350d-5b8a89c431e8" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp">
+          <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" ref="false" />
+      </containers>
+      <file name="2dc1b572-b208-841c-0b4a-be8d9bd86dac" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      <apidata name="AccelerometerReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="ac0c92ea-2884-a9c7-e0ac-0ab9e18b7071" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs">
+      <topicdata name="AccelerometerReadingEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      <apidata name="AccelerometerReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Timestamp" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.X" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Y" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Z" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      </containers>
+      <file name="4d6a8de2-2ff0-b203-24e6-94ebbd369afb" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs">
+      <topicdata name="AccelerometerReadingEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      <apidata name="AccelerometerReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      </containers>
+      <file name="63e89419-3d13-f88a-bbfa-e1621e3853b7" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs">
+      <topicdata name="AccelerometerReadingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      <apidata name="AccelerometerReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Timestamp" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.X" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Y" />
+        <element api="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Z" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" />
+      </containers>
+      <file name="ec63499f-aa44-9c87-6653-41d8d4eaad55" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" ref="true" />
+      </containers>
+      <file name="2822ec15-bf32-9a0e-56ab-82448e570724" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_X" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" ref="true" />
+      </containers>
+      <file name="459f0f25-ee2a-0354-b46e-3535338ab839" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Y" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" ref="true" />
+      </containers>
+      <file name="67a6abf6-dfd9-b156-dd16-ad7b40e48d78" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs.Z">
+      <topicdata group="api" />
+      <apidata name="Z" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Z" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReadingEventArgs" ref="true" />
+      </containers>
+      <file name="b8995517-01e3-bfbc-4c0d-07b958a35fa0" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.AttitudeReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.AttitudeReading" />
+      <apidata name="AttitudeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <implements>
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="53b857dd-8898-dd86-96bd-06a94dbb70a0" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.AttitudeReading">
+      <topicdata name="AttitudeReading" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.AttitudeReading" />
+      <apidata name="AttitudeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Pitch" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Quaternion" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Roll" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.RotationMatrix" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Timestamp" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Yaw" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" />
+      </containers>
+      <file name="f852ad5e-208c-254e-9692-1e94bfdf4693" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.AttitudeReading">
+      <topicdata name="AttitudeReading" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.AttitudeReading" />
+      <apidata name="AttitudeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" />
+      </containers>
+      <file name="28c91f30-8ee5-797d-138d-b691b0e8e172" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.AttitudeReading">
+      <topicdata name="AttitudeReading" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.AttitudeReading" />
+      <apidata name="AttitudeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Pitch" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Quaternion" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Roll" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.RotationMatrix" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Timestamp" />
+        <element api="P:Microsoft.Devices.Sensors.AttitudeReading.Yaw" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" />
+      </containers>
+      <file name="116cad95-b0a1-5f61-434a-2cc716e6d0b7" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AttitudeReading.Pitch">
+      <topicdata group="api" />
+      <apidata name="Pitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Pitch" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </containers>
+      <file name="34f19be1-d65c-ae45-6a8b-a210208e5e55" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AttitudeReading.Quaternion">
+      <topicdata group="api" />
+      <apidata name="Quaternion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Quaternion" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Quaternion" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </containers>
+      <file name="6e3f1f71-8bfd-63fc-e8d9-058e81a79518" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AttitudeReading.Roll">
+      <topicdata group="api" />
+      <apidata name="Roll" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Roll" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </containers>
+      <file name="3cb8e209-9e3a-7814-7c69-f2b6b4a2413e" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AttitudeReading.RotationMatrix">
+      <topicdata group="api" />
+      <apidata name="RotationMatrix" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RotationMatrix" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Matrix" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </containers>
+      <file name="e31bc589-cf0a-106d-cb7f-738f984638b2" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AttitudeReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp">
+          <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </containers>
+      <file name="ba889d4a-2844-7c06-2059-f6f0a2db1d2d" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.AttitudeReading.Yaw">
+      <topicdata group="api" />
+      <apidata name="Yaw" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Yaw" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </containers>
+      <file name="e4b97eaf-038a-aa90-43e6-f0f8bc5486f1" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.CalibrationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.CalibrationEventArgs" />
+      <apidata name="CalibrationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.CalibrationEventArgs.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="7be44b1c-44f1-d442-9161-f449738e1010" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.CalibrationEventArgs">
+      <topicdata name="CalibrationEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.CalibrationEventArgs" />
+      <apidata name="CalibrationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.CalibrationEventArgs.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.CalibrationEventArgs.#ctor" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" />
+      </containers>
+      <file name="a26d0a16-4119-e86b-d906-700582410640" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.CalibrationEventArgs">
+      <topicdata name="CalibrationEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.CalibrationEventArgs" />
+      <apidata name="CalibrationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.CalibrationEventArgs.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" />
+      </containers>
+      <file name="d8b1bd61-f4d5-64fe-5d4c-213f42c19565" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.CalibrationEventArgs.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" ref="true" />
+      </containers>
+      <file name="fd70fb60-1fc4-9de2-48b5-762c0d76ca6b" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.Compass">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.Compass" />
+      <apidata name="Compass" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Compass.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="a1541765-35ae-8fdd-d4ed-cac549c6c91f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.Compass">
+      <topicdata name="Compass" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.Compass" />
+      <apidata name="Compass" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Compass.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.Compass.#ctor" />
+        <element api="E:Microsoft.Devices.Sensors.Compass.Calibrate" />
+        <element api="P:Microsoft.Devices.Sensors.Compass.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" />
+      </containers>
+      <file name="3e1af6f1-f269-88f7-72bf-2545d46a724b" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.Compass">
+      <topicdata name="Compass" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.Compass" />
+      <apidata name="Compass" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Compass.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" />
+      </containers>
+      <file name="3dc9c80c-914d-e906-f12e-4e502249cf3e" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.Compass">
+      <topicdata name="Compass" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.Compass" />
+      <apidata name="Compass" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Compass.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.Compass.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" />
+      </containers>
+      <file name="65efbe01-89f1-0c89-18b6-c63a234067ca" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.Sensors.Compass">
+      <topicdata name="Compass" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.Sensors.Compass" />
+      <apidata name="Compass" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Compass.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Devices.Sensors.Compass.Calibrate" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" />
+      </containers>
+      <file name="8326ccc4-102c-8729-2a4d-2ee78197f5be" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Compass.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" ref="true" />
+      </containers>
+      <file name="23030365-ccbe-8ec2-616b-f753bd5ce788" />
+    </api>
+    <api id="E:Microsoft.Devices.Sensors.Compass.Calibrate">
+      <topicdata group="api" />
+      <apidata name="Calibrate" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Calibrate" />
+      <remover name="remove_Calibrate" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" ref="true" />
+      </containers>
+      <file name="c3b0352c-1dae-44b9-bb39-9d07b7f0fde2" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.Compass.IsSupported">
+      <topicdata group="api" />
+      <apidata name="IsSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Compass" ref="true" />
+      </containers>
+      <file name="89876285-42e8-436b-d8cb-26cd6286adfc" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.CompassReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.CompassReading" />
+      <apidata name="CompassReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <implements>
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="b9a2718c-7153-403b-47b7-e9d90d4aea76" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.CompassReading">
+      <topicdata name="CompassReading" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.CompassReading" />
+      <apidata name="CompassReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.HeadingAccuracy" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.MagneticHeading" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.MagnetometerReading" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.Timestamp" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.TrueHeading" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" />
+      </containers>
+      <file name="418d4c8e-4efd-83d9-ecb5-5dcef82709b2" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.CompassReading">
+      <topicdata name="CompassReading" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.CompassReading" />
+      <apidata name="CompassReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" />
+      </containers>
+      <file name="b798fb56-30d5-534f-b0a2-0da56e79bbdf" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.CompassReading">
+      <topicdata name="CompassReading" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.CompassReading" />
+      <apidata name="CompassReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.HeadingAccuracy" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.MagneticHeading" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.MagnetometerReading" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.Timestamp" />
+        <element api="P:Microsoft.Devices.Sensors.CompassReading.TrueHeading" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" />
+      </containers>
+      <file name="2ecf7fbb-cc28-a74c-d460-019957f59d2c" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.CompassReading.HeadingAccuracy">
+      <topicdata group="api" />
+      <apidata name="HeadingAccuracy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HeadingAccuracy" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+      </containers>
+      <file name="96ff8fb2-94b6-b162-8f8b-1f33fdb2ceea" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.CompassReading.MagneticHeading">
+      <topicdata group="api" />
+      <apidata name="MagneticHeading" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MagneticHeading" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+      </containers>
+      <file name="3ea394d2-ee78-235b-44c0-15b5e92af6ce" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.CompassReading.MagnetometerReading">
+      <topicdata group="api" />
+      <apidata name="MagnetometerReading" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MagnetometerReading" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+      </containers>
+      <file name="c8e0cd5c-b16a-0285-9b7d-d1922b393bec" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.CompassReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp">
+          <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+      </containers>
+      <file name="964441f5-6363-1da9-617a-e5c725d188ef" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.CompassReading.TrueHeading">
+      <topicdata group="api" />
+      <apidata name="TrueHeading" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TrueHeading" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+      </containers>
+      <file name="fee67da1-3b8e-75ec-6cbc-a20ec83e2ddf" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.Gyroscope">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.Gyroscope" />
+      <apidata name="Gyroscope" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Gyroscope.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" ref="false" />
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="355242dc-875e-fae0-fcbf-842fb0e651ef" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.Gyroscope">
+      <topicdata name="Gyroscope" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.Gyroscope" />
+      <apidata name="Gyroscope" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Gyroscope.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.Gyroscope.#ctor" />
+        <element api="P:Microsoft.Devices.Sensors.Gyroscope.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Gyroscope" />
+      </containers>
+      <file name="4c028916-f13f-5527-8a18-a68ca2bb37d2" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.Gyroscope">
+      <topicdata name="Gyroscope" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.Gyroscope" />
+      <apidata name="Gyroscope" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Gyroscope.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Gyroscope" />
+      </containers>
+      <file name="ffbfaf15-d20d-cdf0-afb7-4a56dc41c39a" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.Gyroscope">
+      <topicdata name="Gyroscope" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.Gyroscope" />
+      <apidata name="Gyroscope" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Gyroscope.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.Gyroscope.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Gyroscope" />
+      </containers>
+      <file name="a9733e38-90f0-2373-8cff-3d795c796642" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.Sensors.Gyroscope">
+      <topicdata name="Gyroscope" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.Sensors.Gyroscope" />
+      <apidata name="Gyroscope" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Gyroscope.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Gyroscope" />
+      </containers>
+      <file name="606d91ed-a6fa-0f5d-0acf-36f90ef5a466" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Gyroscope.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Gyroscope" ref="true" />
+      </containers>
+      <file name="a391d67b-6896-1b8c-eb54-f1d9097be2d7" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.Gyroscope.IsSupported">
+      <topicdata group="api" />
+      <apidata name="IsSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Gyroscope" ref="true" />
+      </containers>
+      <file name="07f61240-7b42-a79a-334c-1135d650e476" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.GyroscopeReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      <apidata name="GyroscopeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <implements>
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="700660ea-f7a6-8db5-a648-75d5edd4896e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.GyroscopeReading">
+      <topicdata name="GyroscopeReading" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      <apidata name="GyroscopeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.GyroscopeReading.RotationRate" />
+        <element api="P:Microsoft.Devices.Sensors.GyroscopeReading.Timestamp" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      </containers>
+      <file name="916f68b6-0539-0c03-a225-c23e7c4047e6" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.GyroscopeReading">
+      <topicdata name="GyroscopeReading" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      <apidata name="GyroscopeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      </containers>
+      <file name="557e4723-ab19-30cb-fe8e-32d63821066a" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.GyroscopeReading">
+      <topicdata name="GyroscopeReading" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      <apidata name="GyroscopeReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.GyroscopeReading.RotationRate" />
+        <element api="P:Microsoft.Devices.Sensors.GyroscopeReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" />
+      </containers>
+      <file name="b605907b-8d3e-2bd5-2fe3-22b6ded664c7" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.GyroscopeReading.RotationRate">
+      <topicdata group="api" />
+      <apidata name="RotationRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RotationRate" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" ref="false" />
+      </containers>
+      <file name="1462fcfb-1536-fc65-3edf-c8a52d45bb48" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.GyroscopeReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp">
+          <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" ref="false" />
+      </containers>
+      <file name="0c805662-c9a9-1a97-d19a-43fc85a1e5e5" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.ISensorReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.ISensorReading" />
+      <apidata name="ISensorReading" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Devices.Sensors.AccelerometerReading" ref="false" />
+        <type api="T:Microsoft.Devices.Sensors.GyroscopeReading" ref="false" />
+        <type api="T:Microsoft.Devices.Sensors.CompassReading" ref="false" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </implementors>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="8ff693a1-2cfb-2e52-d7ce-6c5ddb8bc8a1" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.ISensorReading">
+      <topicdata name="ISensorReading" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.ISensorReading" />
+      <apidata name="ISensorReading" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" />
+      </containers>
+      <file name="93f5250e-dd2c-f740-f44c-cb4b0f467154" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.ISensorReading">
+      <topicdata name="ISensorReading" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.ISensorReading" />
+      <apidata name="ISensorReading" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" />
+      </containers>
+      <file name="6e6cb598-c5bc-aa82-3e17-8c2582432227" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+      </containers>
+      <file name="9fed5a9d-6433-5788-57e3-fd5f94a1d714" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.Motion">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.Motion" />
+      <apidata name="Motion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Motion.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="3379beda-245e-0d8a-6608-7dadefe4ef49" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.Motion">
+      <topicdata name="Motion" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.Motion" />
+      <apidata name="Motion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Motion.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.Motion.#ctor" />
+        <element api="E:Microsoft.Devices.Sensors.Motion.Calibrate" />
+        <element api="P:Microsoft.Devices.Sensors.Motion.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" />
+      </containers>
+      <file name="125e97c1-64e1-45e7-be37-141124865dc5" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.Motion">
+      <topicdata name="Motion" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.Motion" />
+      <apidata name="Motion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Motion.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" />
+      </containers>
+      <file name="09aa1502-bfcf-3eba-1cb7-b53b127e65fb" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.Motion">
+      <topicdata name="Motion" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.Motion" />
+      <apidata name="Motion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Motion.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.Motion.IsSupported" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" />
+      </containers>
+      <file name="12eab4ea-d76f-9c55-62ec-4edbca8ae3d0" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.Sensors.Motion">
+      <topicdata name="Motion" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.Sensors.Motion" />
+      <apidata name="Motion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.Motion.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Devices.Sensors.Motion.Calibrate" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" />
+      </containers>
+      <file name="22f70e5f-0c80-2a93-da11-3ac6493db0b9" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.Motion.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" ref="true" />
+      </containers>
+      <file name="0a17ad40-7681-135c-1e12-b0973a2d5d33" />
+    </api>
+    <api id="E:Microsoft.Devices.Sensors.Motion.Calibrate">
+      <topicdata group="api" />
+      <apidata name="Calibrate" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Calibrate" />
+      <remover name="remove_Calibrate" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.Sensors.CalibrationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" ref="true" />
+      </containers>
+      <file name="1a4a8001-d714-0658-dd36-08363bd079ec" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.Motion.IsSupported">
+      <topicdata group="api" />
+      <apidata name="IsSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.Motion" ref="true" />
+      </containers>
+      <file name="46b6aa91-42e5-1813-2521-d665aee469d9" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.MotionReading">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.MotionReading" />
+      <apidata name="MotionReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <implements>
+        <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="5a5a1981-157d-b2c5-718e-fcba684b1af8" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.MotionReading">
+      <topicdata name="MotionReading" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.MotionReading" />
+      <apidata name="MotionReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.Attitude" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.DeviceAcceleration" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.DeviceRotationRate" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.Gravity" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.Timestamp" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" />
+      </containers>
+      <file name="da816950-6c8c-c580-46b0-c209a428b754" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.MotionReading">
+      <topicdata name="MotionReading" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.MotionReading" />
+      <apidata name="MotionReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.Equals(System.Object)" />
+        <element api="M:System.ValueType.GetHashCode" />
+        <element api="M:System.ValueType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" />
+      </containers>
+      <file name="a5d3cacb-725c-7d2c-03fa-d613d43e8bb7" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.MotionReading">
+      <topicdata name="MotionReading" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.MotionReading" />
+      <apidata name="MotionReading" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.Attitude" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.DeviceAcceleration" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.DeviceRotationRate" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.Gravity" />
+        <element api="P:Microsoft.Devices.Sensors.MotionReading.Timestamp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" />
+      </containers>
+      <file name="d38b39ee-ae7c-465c-90a8-2b9813da1d68" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.MotionReading.Attitude">
+      <topicdata group="api" />
+      <apidata name="Attitude" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Attitude" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.AttitudeReading" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+      </containers>
+      <file name="478b1908-f4df-04db-6890-72a46c19c89d" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.MotionReading.DeviceAcceleration">
+      <topicdata group="api" />
+      <apidata name="DeviceAcceleration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceAcceleration" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+      </containers>
+      <file name="8cd05e51-4b6b-2510-ce06-82db25f94412" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.MotionReading.DeviceRotationRate">
+      <topicdata group="api" />
+      <apidata name="DeviceRotationRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceRotationRate" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+      </containers>
+      <file name="d26bf177-2d56-f81f-e8c3-ce04bc98f60e" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.MotionReading.Gravity">
+      <topicdata group="api" />
+      <apidata name="Gravity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Gravity" />
+      <returns>
+        <type api="T:Microsoft.Xna.Framework.Vector3" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+      </containers>
+      <file name="eb7f8aa2-d55d-9826-5423-9a77de67a311" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.MotionReading.Timestamp">
+      <topicdata group="api" />
+      <apidata name="Timestamp" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Timestamp" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Devices.Sensors.ISensorReading.Timestamp">
+          <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.MotionReading" ref="false" />
+      </containers>
+      <file name="a89c2a67-e078-85fb-4c63-e3b2d5c27607" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.SensorBase`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.SensorBase`1" />
+      <apidata name="SensorBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Devices.Sensors.Motion" ref="true" />
+          <type api="T:Microsoft.Devices.Sensors.Gyroscope" ref="true" />
+          <type api="T:Microsoft.Devices.Sensors.Compass" ref="true" />
+          <type api="T:Microsoft.Devices.Sensors.Accelerometer" ref="true" />
+        </descendents>
+      </family>
+      <templates>
+        <template name="TSensorReading">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="fbd7ec65-be65-44f0-21ff-e618beb84815" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.SensorBase`1">
+      <topicdata name="SensorBase" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      <apidata name="SensorBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TSensorReading">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Finalize" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      </containers>
+      <file name="50557a4d-85d9-9642-1da9-2a471e99a218" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.SensorBase`1">
+      <topicdata name="SensorBase" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      <apidata name="SensorBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TSensorReading">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Finalize" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Start" />
+        <element api="M:Microsoft.Devices.Sensors.SensorBase`1.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      </containers>
+      <file name="b76cb199-1c5e-ed15-5b97-2c71d6143d2e" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.SensorBase`1">
+      <topicdata name="SensorBase" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      <apidata name="SensorBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TSensorReading">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid" />
+        <element api="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      </containers>
+      <file name="468eb587-e630-f1bf-2986-93c195b3008f" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.Sensors.SensorBase`1">
+      <topicdata name="SensorBase" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      <apidata name="SensorBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="TSensorReading">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      </containers>
+      <file name="f298ce9a-c828-f20f-28ee-a1f990757d75" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.SensorBase`1.CurrentValue">
+      <topicdata group="api" />
+      <apidata name="CurrentValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentValue" />
+      <returns>
+        <template name="TSensorReading" index="0" api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="46050256-c3d1-3df2-3327-1d2579564252" />
+    </api>
+    <api id="E:Microsoft.Devices.Sensors.SensorBase`1.CurrentValueChanged">
+      <topicdata group="api" />
+      <apidata name="CurrentValueChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CurrentValueChanged" />
+      <remover name="remove_CurrentValueChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" ref="true">
+              <specialization>
+                <template name="TSensorReading" index="0" api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" ref="true">
+          <specialization>
+            <template name="TSensorReading" index="0" api="T:Microsoft.Devices.Sensors.SensorBase`1" />
+          </specialization>
+        </type>
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="16c44790-be5f-a373-18be-d474488290ff" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.SensorBase`1.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="4ba59d52-2809-3c27-1c12-82a9f0770331" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.SensorBase`1.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="f11b07af-a42a-0497-a55d-72c34e3681f9" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.SensorBase`1.IsDataValid">
+      <topicdata group="api" />
+      <apidata name="IsDataValid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsDataValid" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="805b7e0b-466c-e0bb-def4-46d07aa9d1a5" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.SensorBase`1.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="9a91f967-225d-aa36-6ce0-0a91edc3ad25" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.SensorBase`1.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="6cbee1b1-495c-91ec-b312-ddc90071b2fa" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.SensorBase`1.TimeBetweenUpdates">
+      <topicdata group="api" />
+      <apidata name="TimeBetweenUpdates" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TimeBetweenUpdates" />
+      <setter name="set_TimeBetweenUpdates" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorBase`1" ref="true" />
+      </containers>
+      <file name="98f3d957-a798-0564-1d34-515543f24260" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.SensorFailedException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.SensorFailedException" />
+      <apidata name="SensorFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Devices.Sensors.AccelerometerFailedException" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="440350d7-5c98-dc87-4c69-de623e4c49aa" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.SensorFailedException">
+      <topicdata name="SensorFailedException" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.SensorFailedException" />
+      <apidata name="SensorFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Microsoft.Devices.Sensors.SensorFailedException.ErrorId" />
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorFailedException" />
+      </containers>
+      <file name="a6e296f6-d733-aebb-3d2b-50e6c6eddaf6" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.SensorFailedException">
+      <topicdata name="SensorFailedException" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.SensorFailedException" />
+      <apidata name="SensorFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Phone.Reactive.ExceptionExtensions.PrepareForRethrow(System.Exception)" source="extension">
+          <apidata name="PrepareForRethrow" group="member" subgroup="method" subsubgroup="extension" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Exception" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="Microsoft.Phone.Reactive" module="Microsoft.Phone.Reactive" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:Microsoft.Phone.Reactive" />
+            <type api="T:Microsoft.Phone.Reactive.ExceptionExtensions" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorFailedException" />
+      </containers>
+      <file name="3541fc67-f1c7-dc7c-b666-fb9606230ff9" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.SensorFailedException">
+      <topicdata name="SensorFailedException" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.SensorFailedException" />
+      <apidata name="SensorFailedException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.SensorFailedException.ErrorId" />
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorFailedException" />
+      </containers>
+      <file name="6c966330-b97f-0238-43bd-e25ee574cef2" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.SensorFailedException.ErrorId">
+      <topicdata group="api" />
+      <apidata name="ErrorId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ErrorId" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorFailedException" ref="true" />
+      </containers>
+      <file name="170b1e57-64eb-cbb6-23e6-12c6f5d09f92" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      <apidata name="SensorReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="43e5402c-c7d2-f49e-d83b-64c515146088" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1">
+      <topicdata name="SensorReadingEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      <apidata name="SensorReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.#ctor" />
+        <element api="P:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.SensorReading" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      </containers>
+      <file name="cdfcf5f6-dd6e-cd5c-9a95-47e7435af682" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1">
+      <topicdata name="SensorReadingEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      <apidata name="SensorReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      </containers>
+      <file name="0492a5e2-45e2-73e3-9ace-d27c4cbd2e3c" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1">
+      <topicdata name="SensorReadingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      <apidata name="SensorReadingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.#ctor" />
+      <templates>
+        <template name="T">
+          <constrained>
+            <implements>
+              <type api="T:Microsoft.Devices.Sensors.ISensorReading" ref="true" />
+            </implements>
+          </constrained>
+        </template>
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.SensorReading" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      </containers>
+      <file name="68287feb-8184-bf73-9e5f-4f969b1e74a0" />
+    </api>
+    <api id="M:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" ref="true" />
+      </containers>
+      <file name="cfc30fd0-8496-ba77-c56f-d395e99d0a24" />
+    </api>
+    <api id="P:Microsoft.Devices.Sensors.SensorReadingEventArgs`1.SensorReading">
+      <topicdata group="api" />
+      <apidata name="SensorReading" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SensorReading" />
+      <setter name="set_SensorReading" />
+      <returns>
+        <template name="T" index="0" api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorReadingEventArgs`1" ref="true" />
+      </containers>
+      <file name="e8265911-592f-abf5-8824-39fd2099ce4c" />
+    </api>
+    <api id="T:Microsoft.Devices.Sensors.SensorState">
+      <topicdata group="api" />
+      <apidata name="SensorState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.Sensors.SensorState.NotSupported" />
+        <element api="F:Microsoft.Devices.Sensors.SensorState.Ready" />
+        <element api="F:Microsoft.Devices.Sensors.SensorState.Initializing" />
+        <element api="F:Microsoft.Devices.Sensors.SensorState.NoData" />
+        <element api="F:Microsoft.Devices.Sensors.SensorState.NoPermissions" />
+        <element api="F:Microsoft.Devices.Sensors.SensorState.Disabled" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+      </containers>
+      <file name="9ee19b28-49a3-17e4-86a4-f1d053218260" />
+    </api>
+    <api id="F:Microsoft.Devices.Sensors.SensorState.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </containers>
+      <file name="cf91f484-45f1-ef7b-b9a1-1654a6618ea9" />
+    </api>
+    <api id="F:Microsoft.Devices.Sensors.SensorState.Initializing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Initializing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </containers>
+      <file name="34530160-6c9f-3881-feaa-9f53aa0bdf36" />
+    </api>
+    <api id="F:Microsoft.Devices.Sensors.SensorState.NoData">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </containers>
+      <file name="5992f4e3-37e1-1052-cfc1-b2420d1bfc9c" />
+    </api>
+    <api id="F:Microsoft.Devices.Sensors.SensorState.NoPermissions">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoPermissions" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </containers>
+      <file name="92368cb4-6d59-c14f-d365-7c7a5648ee68" />
+    </api>
+    <api id="F:Microsoft.Devices.Sensors.SensorState.NotSupported">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotSupported" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </containers>
+      <file name="a6c54f14-3b8e-5b85-3c87-e770f2313768" />
+    </api>
+    <api id="F:Microsoft.Devices.Sensors.SensorState.Ready">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ready" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Devices.Sensors" module="Microsoft.Devices.Sensors" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices.Sensors" />
+        <type api="T:Microsoft.Devices.Sensors.SensorState" ref="false" />
+      </containers>
+      <file name="2aaf2cac-1ae7-7af8-1abc-531b6b289b72" />
+    </api>
+  </apis>
+</reflection>

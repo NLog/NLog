@@ -1,0 +1,508 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.ExceptionServices">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.ExceptionServices" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+        <element api="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+        <element api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </elements>
+      <file name="74fa3480-1856-f130-a9ab-0afcd62e67d1" />
+    </api>
+    <api id="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+      </containers>
+      <file name="70444314-7525-4698-d21e-f4efdc9be835" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata name="ExceptionDispatchInfo" group="list" subgroup="members" typeTopicId="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(System.Exception)" />
+        <element api="P:System.Runtime.ExceptionServices.ExceptionDispatchInfo.SourceException" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </containers>
+      <file name="646fd013-8a3f-6b6c-0698-2993e659d03e" />
+    </api>
+    <api id="Methods.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata name="ExceptionDispatchInfo" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(System.Exception)" />
+        <element api="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </containers>
+      <file name="6bcefecf-ce98-616d-de19-db4163d85861" />
+    </api>
+    <api id="Properties.T:System.Runtime.ExceptionServices.ExceptionDispatchInfo">
+      <topicdata name="ExceptionDispatchInfo" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      <apidata name="ExceptionDispatchInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.ExceptionServices.ExceptionDispatchInfo.SourceException" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" />
+      </containers>
+      <file name="bed330de-a215-5d92-b440-45d02cb456b0" />
+    </api>
+    <api id="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(System.Exception)">
+      <topicdata group="api" />
+      <apidata name="Capture" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </containers>
+      <file name="89239913-419a-5a7d-a572-a2033165231f" />
+    </api>
+    <api id="P:System.Runtime.ExceptionServices.ExceptionDispatchInfo.SourceException">
+      <topicdata group="api" />
+      <apidata name="SourceException" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourceException" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </containers>
+      <file name="a321e719-0bc1-c2aa-6ee2-c805fd84efb1" />
+    </api>
+    <api id="M:System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw">
+      <topicdata group="api" />
+      <apidata name="Throw" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.ExceptionDispatchInfo" ref="true" />
+      </containers>
+      <file name="2e313bfc-0a2d-7ab8-2fc8-3f47c2fd87b4" />
+    </api>
+    <api id="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      <apidata name="FirstChanceExceptionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+      </containers>
+      <file name="b5533b95-1297-2f19-c09b-c09bfb8901b5" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs">
+      <topicdata name="FirstChanceExceptionEventArgs" group="list" subgroup="members" typeTopicId="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      <apidata name="FirstChanceExceptionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs.#ctor(System.Exception)" />
+        <element api="P:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs.Exception" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      </containers>
+      <file name="6d2590af-4da6-9fb3-9cd7-8bbffe9f784e" />
+    </api>
+    <api id="Methods.T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs">
+      <topicdata name="FirstChanceExceptionEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      <apidata name="FirstChanceExceptionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      </containers>
+      <file name="cd7f9f79-7e60-0099-d588-5df2fd7d37c0" />
+    </api>
+    <api id="Properties.T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs">
+      <topicdata name="FirstChanceExceptionEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      <apidata name="FirstChanceExceptionEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs.Exception" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" />
+      </containers>
+      <file name="7ee85808-7d4e-eed6-376e-a0b3df8003f4" />
+    </api>
+    <api id="M:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs.#ctor(System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="exception">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" ref="true" />
+      </containers>
+      <file name="db8a83a8-48b2-fd4d-5242-ae8fefc552e3" />
+    </api>
+    <api id="P:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs.Exception">
+      <topicdata group="api" />
+      <apidata name="Exception" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Exception" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.FirstChanceExceptionEventArgs" ref="true" />
+      </containers>
+      <file name="3dba4cd0-e816-3713-2954-4431513af54e" />
+    </api>
+    <api id="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      <apidata name="HandleProcessCorruptedStateExceptionsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Method" />
+            </enumValue>
+          </argument>
+          <assignment name="AllowMultiple">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+          <assignment name="Inherited">
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="08b85c65-382f-1b4d-f802-d296d8f0bc19" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute">
+      <topicdata name="HandleProcessCorruptedStateExceptionsAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      <apidata name="HandleProcessCorruptedStateExceptionsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      </containers>
+      <file name="d7aae6de-db20-b58b-af91-d7f1b5597c40" />
+    </api>
+    <api id="Methods.T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute">
+      <topicdata name="HandleProcessCorruptedStateExceptionsAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      <apidata name="HandleProcessCorruptedStateExceptionsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.Equals(System.Object)" />
+        <element api="M:System.Attribute.GetHashCode" />
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      </containers>
+      <file name="11d5e703-e59f-fca5-0d3d-52a4d08fcba2" />
+    </api>
+    <api id="Properties.T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute">
+      <topicdata name="HandleProcessCorruptedStateExceptionsAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      <apidata name="HandleProcessCorruptedStateExceptionsAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" />
+      </containers>
+      <file name="46a46aa5-118f-2569-1bc8-4b9f7cf0555f" />
+    </api>
+    <api id="M:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.ExceptionServices" />
+        <type api="T:System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptionsAttribute" ref="true" />
+      </containers>
+      <file name="9eee6080-a37f-99e3-b8e3-ed0be7507d77" />
+    </api>
+  </apis>
+</reflection>

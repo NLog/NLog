@@ -1,0 +1,2818 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="mscorlib">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>BED7F4EA-1A96-11d2-8F08-00A0C9A6186D</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>mscorlib.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Runtime.Remoting.Contexts">
+      <topicdata group="api" />
+      <apidata name="System.Runtime.Remoting.Contexts" group="namespace" />
+      <elements>
+        <element api="T:System.Runtime.Remoting.Contexts.CrossContextDelegate" />
+        <element api="T:System.Runtime.Remoting.Contexts.Context" />
+        <element api="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContextAttribute" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" />
+        <element api="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContributeObjectSink" />
+        <element api="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" />
+        <element api="T:System.Runtime.Remoting.Contexts.IDynamicProperty" />
+        <element api="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" />
+        <element api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      </elements>
+      <file name="01d3bb6b-8dfe-62d5-3de1-a40c495d25c0" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.Context">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.Context" />
+      <apidata name="Context" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Contexts.Context.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3904f528-4128-1247-36cc-a804567a6034" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.Context">
+      <topicdata name="Context" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.Context" />
+      <apidata name="Context" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Contexts.Context.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.#ctor" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.AllocateDataSlot" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.AllocateNamedDataSlot(System.String)" />
+        <element api="P:System.Runtime.Remoting.Contexts.Context.ContextID" />
+        <element api="P:System.Runtime.Remoting.Contexts.Context.ContextProperties" />
+        <element api="P:System.Runtime.Remoting.Contexts.Context.DefaultContext" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.DoCallBack(System.Runtime.Remoting.Contexts.CrossContextDelegate)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.Finalize" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.FreeNamedDataSlot(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.Freeze" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.GetData(System.LocalDataStoreSlot)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.GetNamedDataSlot(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.GetProperty(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.RegisterDynamicProperty(System.Runtime.Remoting.Contexts.IDynamicProperty,System.ContextBoundObject,System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.SetData(System.LocalDataStoreSlot,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.SetProperty(System.Runtime.Remoting.Contexts.IContextProperty)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.ToString" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.UnregisterDynamicProperty(System.String,System.ContextBoundObject,System.Runtime.Remoting.Contexts.Context)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" />
+      </containers>
+      <file name="55f0c810-08b9-8e14-4e0a-b469a487fc36" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.Context">
+      <topicdata name="Context" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.Context" />
+      <apidata name="Context" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Contexts.Context.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.AllocateDataSlot" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.AllocateNamedDataSlot(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.DoCallBack(System.Runtime.Remoting.Contexts.CrossContextDelegate)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.Finalize" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.FreeNamedDataSlot(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.Freeze" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.GetData(System.LocalDataStoreSlot)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.GetNamedDataSlot(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.GetProperty(System.String)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.RegisterDynamicProperty(System.Runtime.Remoting.Contexts.IDynamicProperty,System.ContextBoundObject,System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.SetData(System.LocalDataStoreSlot,System.Object)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.SetProperty(System.Runtime.Remoting.Contexts.IContextProperty)" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.ToString" />
+        <element api="M:System.Runtime.Remoting.Contexts.Context.UnregisterDynamicProperty(System.String,System.ContextBoundObject,System.Runtime.Remoting.Contexts.Context)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" />
+      </containers>
+      <file name="2c489380-17d4-6d52-e045-31600cf05536" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Contexts.Context">
+      <topicdata name="Context" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Contexts.Context" />
+      <apidata name="Context" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Runtime.Remoting.Contexts.Context.#ctor" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Contexts.Context.ContextID" />
+        <element api="P:System.Runtime.Remoting.Contexts.Context.ContextProperties" />
+        <element api="P:System.Runtime.Remoting.Contexts.Context.DefaultContext" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" />
+      </containers>
+      <file name="f407b215-d406-7f61-2a93-e002760af36b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a372069a-3039-ef8b-cb16-7d2624b35529" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.AllocateDataSlot">
+      <topicdata group="api" />
+      <apidata name="AllocateDataSlot" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.LocalDataStoreSlot" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="5e2a893b-ec85-a630-4eb7-d74d4adad19f" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.AllocateNamedDataSlot(System.String)">
+      <topicdata group="api" />
+      <apidata name="AllocateNamedDataSlot" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.LocalDataStoreSlot" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="f20d4b9d-7d69-95c1-e127-8f91652f921c" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.Context.ContextID">
+      <topicdata group="api" />
+      <apidata name="ContextID" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ContextID">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="2abb179d-b6da-a2f0-e53d-e3aa3e267a05" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.Context.ContextProperties">
+      <topicdata group="api" />
+      <apidata name="ContextProperties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ContextProperties">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="01e79c65-57ae-e4bd-5514-513e9a7e015a" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.Context.DefaultContext">
+      <topicdata group="api" />
+      <apidata name="DefaultContext" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DefaultContext">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="4100be18-d8a3-68a2-0e62-11255d179298" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.DoCallBack(System.Runtime.Remoting.Contexts.CrossContextDelegate)">
+      <topicdata group="api" />
+      <apidata name="DoCallBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deleg">
+          <type api="T:System.Runtime.Remoting.Contexts.CrossContextDelegate" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="97ae99db-8844-2752-d400-213390bc1087" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <implements>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="4ac9c77b-511c-7ed0-2390-503996d7994e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.FreeNamedDataSlot(System.String)">
+      <topicdata group="api" />
+      <apidata name="FreeNamedDataSlot" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="abdcdae5-beca-1fbd-2d1c-e41d05b7aef6" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.Freeze">
+      <topicdata group="api" />
+      <apidata name="Freeze" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b4eb61b4-67eb-6bfe-c589-66ac60bde8cf" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.GetData(System.LocalDataStoreSlot)">
+      <topicdata group="api" />
+      <apidata name="GetData" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="slot">
+          <type api="T:System.LocalDataStoreSlot" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="dd1225a1-9def-d949-2fc5-1c9f6dc6b49b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.GetNamedDataSlot(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetNamedDataSlot" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.LocalDataStoreSlot" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ed81eae1-9852-8b2a-03b4-65609758421e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.GetProperty(System.String)">
+      <topicdata group="api" />
+      <apidata name="GetProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ac843ce6-5b60-3fb6-4911-4853d8dfccaa" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.RegisterDynamicProperty(System.Runtime.Remoting.Contexts.IDynamicProperty,System.ContextBoundObject,System.Runtime.Remoting.Contexts.Context)">
+      <topicdata group="api" />
+      <apidata name="RegisterDynamicProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="prop">
+          <type api="T:System.Runtime.Remoting.Contexts.IDynamicProperty" ref="true" />
+        </parameter>
+        <parameter name="obj">
+          <type api="T:System.ContextBoundObject" ref="true" />
+        </parameter>
+        <parameter name="ctx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="1299a372-0103-743f-f0ec-b9be08a331ba" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.SetData(System.LocalDataStoreSlot,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetData" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="slot">
+          <type api="T:System.LocalDataStoreSlot" ref="true" />
+        </parameter>
+        <parameter name="data">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="9622d951-2bd2-3816-ab5b-e826011ba03b" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.SetProperty(System.Runtime.Remoting.Contexts.IContextProperty)">
+      <topicdata group="api" />
+      <apidata name="SetProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="prop">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="3e1f5555-b03b-2955-c292-4e2717f1e494" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="abc4681b-e045-5a00-f20c-4b67084f26e7" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.Context.UnregisterDynamicProperty(System.String,System.ContextBoundObject,System.Runtime.Remoting.Contexts.Context)">
+      <topicdata group="api" />
+      <apidata name="UnregisterDynamicProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="obj">
+          <type api="T:System.ContextBoundObject" ref="true" />
+        </parameter>
+        <parameter name="ctx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+      </containers>
+      <file name="55ea0b0f-9230-f993-a2d7-fbd7420596ea" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.ContextAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      <apidata name="ContextAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <family>
+        <ancestors>
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+          <type api="T:System.Runtime.Remoting.Activation.UrlAttribute" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9a9fb355-9348-7fe0-0057-2ae30bb34f1a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.ContextAttribute">
+      <topicdata name="ContextAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      <apidata name="ContextAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.#ctor(System.String)" />
+        <element api="F:System.Runtime.Remoting.Contexts.ContextAttribute.AttributeName" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Equals(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Freeze(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetHashCode" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      </containers>
+      <file name="d1c64e2b-b4f5-acff-052a-30922d3bfc68" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.ContextAttribute">
+      <topicdata name="ContextAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      <apidata name="ContextAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Equals(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Freeze(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetHashCode" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      </containers>
+      <file name="44dba0cd-3f98-2a68-5bbc-d8b8cf366dea" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Contexts.ContextAttribute">
+      <topicdata name="ContextAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      <apidata name="ContextAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextAttribute.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      </containers>
+      <file name="e319b85b-0b77-141b-19df-1a27edbb091b" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Contexts.ContextAttribute">
+      <topicdata name="ContextAttribute" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      <apidata name="ContextAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Contexts.ContextAttribute.AttributeName" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" />
+      </containers>
+      <file name="42e90992-1aab-a30d-7fea-687e7f5de393" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <file name="8ccc5a0f-4a00-e08c-922b-d22dd2a6272e" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Contexts.ContextAttribute.AttributeName">
+      <topicdata group="api" />
+      <apidata name="AttributeName" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <file name="783097d7-567a-a1cd-e58a-935f53052089" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Attribute.Equals(System.Object)">
+          <type api="T:System.Attribute" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="o">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <file name="51becf5e-67fa-8341-7fc5-efd2899934d6" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.Freeze(System.Runtime.Remoting.Contexts.Context)">
+      <topicdata group="api" />
+      <apidata name="Freeze" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="newContext">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContextProperty.Freeze(System.Runtime.Remoting.Contexts.Context)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b23016a5-2128-c939-3892-b662440be2da" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Attribute.GetHashCode">
+          <type api="T:System.Attribute" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <file name="cde87c20-23f3-5e4f-f5e8-cedccd82cb70" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="GetPropertiesForNewContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="ctorMsg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="782af712-d182-bd02-1163-1e92304e9938" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="IsContextOK" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="ctx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+        <parameter name="ctorMsg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="0035d357-c572-1ac4-cab2-55239e2ef18e" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)">
+      <topicdata group="api" />
+      <apidata name="IsNewContextOK" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="newCtx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContextProperty.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6f26794b-89c3-93c2-e086-98937842e9b7" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.ContextAttribute.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:System.Runtime.Remoting.Contexts.IContextProperty.Name">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </containers>
+      <file name="bb9232c6-ebf9-ad3a-bdf7-7f84c37880d5" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.ContextProperty">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      <apidata name="ContextProperty" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cf7bc2c9-73ff-9551-6ee1-49394e7d9834" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.ContextProperty">
+      <topicdata name="ContextProperty" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      <apidata name="ContextProperty" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextProperty.Name" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextProperty.Property" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      </containers>
+      <file name="4c6089c9-7c92-0fa6-0fe0-f2d87ca79521" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.ContextProperty">
+      <topicdata name="ContextProperty" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      <apidata name="ContextProperty" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      </containers>
+      <file name="99a1ea7f-80ad-063e-4031-37a145f52f09" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Contexts.ContextProperty">
+      <topicdata name="ContextProperty" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      <apidata name="ContextProperty" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Contexts.ContextProperty.Name" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextProperty.Property" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextProperty" />
+      </containers>
+      <file name="6ac374c7-4515-e739-bfae-48ca00b6a8a9" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.ContextProperty.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextProperty" ref="true" />
+      </containers>
+      <file name="f5b4ad61-619d-b93a-8ffe-5b1b71799c48" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.ContextProperty.Property">
+      <topicdata group="api" />
+      <apidata name="Property" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Property" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextProperty" ref="true" />
+      </containers>
+      <file name="6031f2f6-2067-2a74-178c-ee7bad335568" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.CrossContextDelegate">
+      <topicdata group="api" />
+      <apidata name="CrossContextDelegate" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="46059cf4-bbd5-ca4b-87aa-3519293590e6" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContextAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContextAttribute" />
+      <apidata name="IContextAttribute" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Runtime.Remoting.Proxies.ProxyAttribute" ref="true" />
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="db8d2782-1547-34a1-c424-2c75f8b47912" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContextAttribute">
+      <topicdata name="IContextAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextAttribute" />
+      <apidata name="IContextAttribute" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" />
+      </containers>
+      <file name="4f50967e-fb05-e07b-e923-7ecd87454747" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContextAttribute">
+      <topicdata name="IContextAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextAttribute" />
+      <apidata name="IContextAttribute" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" />
+      </containers>
+      <file name="0dde89bf-f67c-fef0-44c8-7e7d90fd33fc" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="GetPropertiesForNewContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="723ae7e2-5a7a-49c8-90da-94f7225805eb" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="IsContextOK" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="ctx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="556c6b3c-e7da-3134-f0d9-16e3979f5aec" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContextProperty">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      <apidata name="IContextProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="114398b2-38a3-5ab1-06f3-2b9f8da21873" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContextProperty">
+      <topicdata name="IContextProperty" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      <apidata name="IContextProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContextProperty.Freeze(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextProperty.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="P:System.Runtime.Remoting.Contexts.IContextProperty.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      </containers>
+      <file name="90c8470c-1de7-0bee-eb4a-564abec24d94" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContextProperty">
+      <topicdata name="IContextProperty" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      <apidata name="IContextProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContextProperty.Freeze(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextProperty.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      </containers>
+      <file name="3d64cbed-c27a-fc30-58f5-2237692dd99a" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Contexts.IContextProperty">
+      <topicdata name="IContextProperty" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      <apidata name="IContextProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Contexts.IContextProperty.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" />
+      </containers>
+      <file name="91844e9a-b38d-25cd-ce98-8d46a3fb0475" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextProperty.Freeze(System.Runtime.Remoting.Contexts.Context)">
+      <topicdata group="api" />
+      <apidata name="Freeze" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="newContext">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a8a7b457-c2d2-6703-2601-f2a23a6dae2a" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextProperty.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)">
+      <topicdata group="api" />
+      <apidata name="IsNewContextOK" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="newCtx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d1bc841d-f6ce-ad93-c439-abe41b8c46a1" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.IContextProperty.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextProperty" ref="true" />
+      </containers>
+      <file name="07076a7e-96fc-86ce-68bd-0c00eab8fba7" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" />
+      <apidata name="IContextPropertyActivator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b0302c90-8838-832c-c13e-5e1710e25719" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContextPropertyActivator">
+      <topicdata name="IContextPropertyActivator" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" />
+      <apidata name="IContextPropertyActivator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.CollectFromClientContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.CollectFromServerContext(System.Runtime.Remoting.Activation.IConstructionReturnMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.DeliverClientContextToServerContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.DeliverServerContextToClientContext(System.Runtime.Remoting.Activation.IConstructionReturnMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.IsOKToActivate(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" />
+      </containers>
+      <file name="2867b4f1-7f19-b6b5-1cdb-7ed23140e95b" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContextPropertyActivator">
+      <topicdata name="IContextPropertyActivator" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" />
+      <apidata name="IContextPropertyActivator" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.CollectFromClientContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.CollectFromServerContext(System.Runtime.Remoting.Activation.IConstructionReturnMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.DeliverClientContextToServerContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.DeliverServerContextToClientContext(System.Runtime.Remoting.Activation.IConstructionReturnMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.IsOKToActivate(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" />
+      </containers>
+      <file name="9f5664ec-aacf-e312-f828-8086fe3ad907" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.CollectFromClientContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="CollectFromClientContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7a2f790e-db55-cded-3bd5-8aae7a4f4e87" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.CollectFromServerContext(System.Runtime.Remoting.Activation.IConstructionReturnMessage)">
+      <topicdata group="api" />
+      <apidata name="CollectFromServerContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionReturnMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e8d6c66e-6674-d050-405f-89d26bd4f557" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.DeliverClientContextToServerContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="DeliverClientContextToServerContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4a19cdd5-dc27-e2be-28a7-6ded8882a6c1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.DeliverServerContextToClientContext(System.Runtime.Remoting.Activation.IConstructionReturnMessage)">
+      <topicdata group="api" />
+      <apidata name="DeliverServerContextToClientContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionReturnMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="86728611-0103-0a1b-2585-38561c25a2a6" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContextPropertyActivator.IsOKToActivate(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="IsOKToActivate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContextPropertyActivator" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b7399111-1069-d699-c6f9-528e8f1e070b" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" />
+      <apidata name="IContributeClientContextSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9542ea79-df43-3bf1-3b56-1dd6bb0adb0e" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeClientContextSink">
+      <topicdata name="IContributeClientContextSink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" />
+      <apidata name="IContributeClientContextSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeClientContextSink.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" />
+      </containers>
+      <file name="2fc28158-5305-fe4b-d6ec-71818c181d5d" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContributeClientContextSink">
+      <topicdata name="IContributeClientContextSink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" />
+      <apidata name="IContributeClientContextSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeClientContextSink.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" />
+      </containers>
+      <file name="27e30208-5cf2-fc3e-1b36-5fd1d23f1b62" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContributeClientContextSink.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+      <topicdata group="api" />
+      <apidata name="GetClientContextSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="380e5172-68cd-4f5a-9b80-ef2ea838ba90" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" />
+      <apidata name="IContributeDynamicSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c5eb3231-ea30-e5a4-6d94-9ecd057cc188" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeDynamicSink">
+      <topicdata name="IContributeDynamicSink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" />
+      <apidata name="IContributeDynamicSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeDynamicSink.GetDynamicSink" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" />
+      </containers>
+      <file name="62f00e1d-dbdf-d283-47b6-1c3fdaf00d43" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContributeDynamicSink">
+      <topicdata name="IContributeDynamicSink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" />
+      <apidata name="IContributeDynamicSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeDynamicSink.GetDynamicSink" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" />
+      </containers>
+      <file name="87fbe9dd-b299-a137-ac53-ad25dde63bea" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContributeDynamicSink.GetDynamicSink">
+      <topicdata group="api" />
+      <apidata name="GetDynamicSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeDynamicSink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="8083bbb3-7a55-223f-b027-8a2ba94b188b" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" />
+      <apidata name="IContributeEnvoySink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c9793cc1-7f1d-7566-3461-3f70871e894a" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeEnvoySink">
+      <topicdata name="IContributeEnvoySink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" />
+      <apidata name="IContributeEnvoySink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeEnvoySink.GetEnvoySink(System.MarshalByRefObject,System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" />
+      </containers>
+      <file name="f9f0f693-9c31-27e4-4c62-446eb9fd41af" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContributeEnvoySink">
+      <topicdata name="IContributeEnvoySink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" />
+      <apidata name="IContributeEnvoySink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeEnvoySink.GetEnvoySink(System.MarshalByRefObject,System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" />
+      </containers>
+      <file name="8ec55882-f2b4-cb26-9245-b789d6e71dbb" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContributeEnvoySink.GetEnvoySink(System.MarshalByRefObject,System.Runtime.Remoting.Messaging.IMessageSink)">
+      <topicdata group="api" />
+      <apidata name="GetEnvoySink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.MarshalByRefObject" ref="true" />
+        </parameter>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeEnvoySink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1b464898-beea-6d82-837c-0d33e364bc86" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContributeObjectSink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeObjectSink" />
+      <apidata name="IContributeObjectSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="af0df1ae-191e-6c7a-ae05-0ffd7e074c4d" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeObjectSink">
+      <topicdata name="IContributeObjectSink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeObjectSink" />
+      <apidata name="IContributeObjectSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeObjectSink.GetObjectSink(System.MarshalByRefObject,System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeObjectSink" />
+      </containers>
+      <file name="0b3b0e1a-ce28-5322-b891-413e23a4ca04" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContributeObjectSink">
+      <topicdata name="IContributeObjectSink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeObjectSink" />
+      <apidata name="IContributeObjectSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeObjectSink.GetObjectSink(System.MarshalByRefObject,System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeObjectSink" />
+      </containers>
+      <file name="e89ed81d-aa3a-6601-02f3-d604c5aa0683" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContributeObjectSink.GetObjectSink(System.MarshalByRefObject,System.Runtime.Remoting.Messaging.IMessageSink)">
+      <topicdata group="api" />
+      <apidata name="GetObjectSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.MarshalByRefObject" ref="true" />
+        </parameter>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeObjectSink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="da4f790e-38a7-9fc3-ebfb-3f1f21049411" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" />
+      <apidata name="IContributeServerContextSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="04bd74ae-8c10-7f8c-52dc-b824607d79c2" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IContributeServerContextSink">
+      <topicdata name="IContributeServerContextSink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" />
+      <apidata name="IContributeServerContextSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeServerContextSink.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" />
+      </containers>
+      <file name="e7e93f05-9e3a-0863-508e-7893fd1abe2e" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IContributeServerContextSink">
+      <topicdata name="IContributeServerContextSink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" />
+      <apidata name="IContributeServerContextSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IContributeServerContextSink.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" />
+      </containers>
+      <file name="29257c6c-e5e8-928f-a3d6-5f396e7728d1" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IContributeServerContextSink.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+      <topicdata group="api" />
+      <apidata name="GetServerContextSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="44f88aed-3447-b59b-a164-8e3c947289e4" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" />
+      <apidata name="IDynamicMessageSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="21ee2c79-f337-baa8-d34a-799b8571da11" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IDynamicMessageSink">
+      <topicdata name="IDynamicMessageSink" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" />
+      <apidata name="IDynamicMessageSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IDynamicMessageSink.ProcessMessageFinish(System.Runtime.Remoting.Messaging.IMessage,System.Boolean,System.Boolean)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IDynamicMessageSink.ProcessMessageStart(System.Runtime.Remoting.Messaging.IMessage,System.Boolean,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" />
+      </containers>
+      <file name="71bfff81-f5d1-f5e7-9c55-a2d72cb7ece6" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.IDynamicMessageSink">
+      <topicdata name="IDynamicMessageSink" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" />
+      <apidata name="IDynamicMessageSink" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.IDynamicMessageSink.ProcessMessageFinish(System.Runtime.Remoting.Messaging.IMessage,System.Boolean,System.Boolean)" />
+        <element api="M:System.Runtime.Remoting.Contexts.IDynamicMessageSink.ProcessMessageStart(System.Runtime.Remoting.Messaging.IMessage,System.Boolean,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" />
+      </containers>
+      <file name="b5417b72-40b6-4021-9912-d85b2d152246" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IDynamicMessageSink.ProcessMessageFinish(System.Runtime.Remoting.Messaging.IMessage,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ProcessMessageFinish" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="replyMsg">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessage" ref="true" />
+        </parameter>
+        <parameter name="bCliSide">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="bAsync">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="59307fa4-56eb-3ccd-b694-849148100be0" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.IDynamicMessageSink.ProcessMessageStart(System.Runtime.Remoting.Messaging.IMessage,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ProcessMessageStart" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="reqMsg">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessage" ref="true" />
+        </parameter>
+        <parameter name="bCliSide">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="bAsync">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicMessageSink" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="b8b9f345-ac5f-80b3-0851-5f835bd9b839" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.IDynamicProperty">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.IDynamicProperty" />
+      <apidata name="IDynamicProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b790686e-ba04-d37f-454d-199927e31ace" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.IDynamicProperty">
+      <topicdata name="IDynamicProperty" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.IDynamicProperty" />
+      <apidata name="IDynamicProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Contexts.IDynamicProperty.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicProperty" />
+      </containers>
+      <file name="5131d219-50fc-0a78-16b6-0145df734978" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Contexts.IDynamicProperty">
+      <topicdata name="IDynamicProperty" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Contexts.IDynamicProperty" />
+      <apidata name="IDynamicProperty" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Runtime.Remoting.Contexts.IDynamicProperty.Name" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicProperty" />
+      </containers>
+      <file name="3cadba50-2e3a-b06a-255a-bdf479c020f0" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.IDynamicProperty.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name">
+        <attributes>
+          <attribute>
+            <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.IDynamicProperty" ref="true" />
+      </containers>
+      <file name="bc1c29ea-0e5c-53fa-c086-f3502e4b873c" />
+    </api>
+    <api id="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      <apidata name="SynchronizationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+          <type api="T:System.Attribute" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" ref="true" />
+        <type api="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.AttributeUsageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.AttributeTargets" ref="false" />
+            <enumValue>
+              <field name="Class" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4c96c528-ccdf-7e60-3452-45d5c38aca43" />
+    </api>
+    <api id="AllMembers.T:System.Runtime.Remoting.Contexts.SynchronizationAttribute">
+      <topicdata name="SynchronizationAttribute" group="list" subgroup="members" typeTopicId="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      <apidata name="SynchronizationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="P:System.Attribute.TypeId" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="F:System.Runtime.Remoting.Contexts.ContextAttribute.AttributeName" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Equals(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Freeze(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetHashCode" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextAttribute.Name" />
+        <element api="Overload:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor">
+          <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+          <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Boolean)" />
+          <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Int32)" />
+          <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Int32,System.Boolean)" />
+        </element>
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="P:System.Runtime.Remoting.Contexts.SynchronizationAttribute.IsReEntrant" />
+        <element api="P:System.Runtime.Remoting.Contexts.SynchronizationAttribute.Locked" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.NOT_SUPPORTED" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.REQUIRED" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.REQUIRES_NEW" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.SUPPORTED" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      </containers>
+      <file name="9443d26b-0233-f9ea-df8f-7fcd979d69bf" />
+    </api>
+    <api id="Methods.T:System.Runtime.Remoting.Contexts.SynchronizationAttribute">
+      <topicdata name="SynchronizationAttribute" group="list" subgroup="Methods" typeTopicId="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      <apidata name="SynchronizationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <elements>
+        <element api="M:System.Attribute.IsDefaultAttribute" />
+        <element api="M:System.Attribute.Match(System.Object)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetIDsOfNames(System.Guid@,System.IntPtr,System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfo(System.UInt32,System.UInt32,System.IntPtr)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#GetTypeInfoCount(System.UInt32@)" />
+        <element api="M:System.Attribute.System#Runtime#InteropServices#_Attribute#Invoke(System.UInt32,System.Guid@,System.UInt32,System.Int16,System.IntPtr,System.IntPtr,System.IntPtr,System.IntPtr)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Equals(System.Object)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.Freeze(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetHashCode" />
+        <element api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsNewContextOK(System.Runtime.Remoting.Contexts.Context)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      </containers>
+      <file name="94b0b8bf-7ed5-4dc0-5b18-e8af43a75a82" />
+    </api>
+    <api id="Properties.T:System.Runtime.Remoting.Contexts.SynchronizationAttribute">
+      <topicdata name="SynchronizationAttribute" group="list" subgroup="Properties" typeTopicId="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      <apidata name="SynchronizationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <elements>
+        <element api="P:System.Attribute.TypeId" />
+        <element api="P:System.Runtime.Remoting.Contexts.ContextAttribute.Name" />
+        <element api="P:System.Runtime.Remoting.Contexts.SynchronizationAttribute.IsReEntrant" />
+        <element api="P:System.Runtime.Remoting.Contexts.SynchronizationAttribute.Locked" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      </containers>
+      <file name="87de1da7-9413-cf7b-81b8-39156dd8c503" />
+    </api>
+    <api id="Fields.T:System.Runtime.Remoting.Contexts.SynchronizationAttribute">
+      <topicdata name="SynchronizationAttribute" group="list" subgroup="Fields" typeTopicId="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      <apidata name="SynchronizationAttribute" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="true" defaultConstructor="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <elements>
+        <element api="F:System.Runtime.Remoting.Contexts.ContextAttribute.AttributeName" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.NOT_SUPPORTED" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.REQUIRED" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.REQUIRES_NEW" />
+        <element api="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.SUPPORTED" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      </containers>
+      <file name="d2e4781f-eabf-d42e-b7d4-df3bd35b0858" />
+    </api>
+    <api id="Overload:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Boolean)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Int32)" />
+        <element api="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Int32,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="2274767f-5e29-d979-f6ea-be9365d78d0d" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="8b38a9a5-5894-ed0f-ea3e-f5a4118f411a" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <parameters>
+        <parameter name="reEntrant">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="dd4c4dc9-9e71-0a92-79cf-4e0fa8912445" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <parameters>
+        <parameter name="flag">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="2209a1da-768c-0614-cfc1-e550a6289baf" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor(System.Int32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Runtime.Remoting.Contexts.SynchronizationAttribute.#ctor" />
+      <parameters>
+        <parameter name="flag">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="reEntrant">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="3fe341d8-3b70-4914-d66e-9af1c5cfac06" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+      <topicdata group="api" />
+      <apidata name="GetClientContextSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContributeClientContextSink.GetClientContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContributeClientContextSink" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="331dd65c-2e4c-32ae-9245-825ef13449ea" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="GetPropertiesForNewContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Runtime.Remoting.Contexts.ContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+          <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="ctorMsg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContextAttribute.GetPropertiesForNewContext(System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="451f96b9-adcf-4dea-359c-e0bf669d2d7c" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+      <topicdata group="api" />
+      <apidata name="GetServerContextSink" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="nextSink">
+          <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Runtime.Remoting.Messaging.IMessageSink" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContributeServerContextSink.GetServerContextSink(System.Runtime.Remoting.Messaging.IMessageSink)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContributeServerContextSink" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1033dbcb-bb24-1f92-1da1-aa70d0f4e108" />
+    </api>
+    <api id="M:System.Runtime.Remoting.Contexts.SynchronizationAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+      <topicdata group="api" />
+      <apidata name="IsContextOK" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Runtime.Remoting.Contexts.ContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+          <type api="T:System.Runtime.Remoting.Contexts.ContextAttribute" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="ctx">
+          <type api="T:System.Runtime.Remoting.Contexts.Context" ref="true" />
+        </parameter>
+        <parameter name="msg">
+          <type api="T:System.Runtime.Remoting.Activation.IConstructionCallMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.Remoting.Contexts.IContextAttribute.IsContextOK(System.Runtime.Remoting.Contexts.Context,System.Runtime.Remoting.Activation.IConstructionCallMessage)">
+          <type api="T:System.Runtime.Remoting.Contexts.IContextAttribute" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3d68ceae-f213-15a4-d338-a3b682bb8152" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.SynchronizationAttribute.IsReEntrant">
+      <topicdata group="api" />
+      <apidata name="IsReEntrant" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsReEntrant" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="26059697-a5c9-b04d-0c21-969707faf781" />
+    </api>
+    <api id="P:System.Runtime.Remoting.Contexts.SynchronizationAttribute.Locked">
+      <topicdata group="api" />
+      <apidata name="Locked" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Locked" />
+      <setter name="set_Locked" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="8796bc34-36f9-0635-0a79-c2a103c52b0b" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.NOT_SUPPORTED">
+      <topicdata group="api" />
+      <apidata name="NOT_SUPPORTED" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="143a3181-7cce-a332-0c53-7dbd889f5123" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.REQUIRED">
+      <topicdata group="api" />
+      <apidata name="REQUIRED" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="8e3d9d26-9673-a20e-8c61-8680cc76ec36" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.REQUIRES_NEW">
+      <topicdata group="api" />
+      <apidata name="REQUIRES_NEW" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="37decd99-1b71-1475-dbd5-2795d94dfb27" />
+    </api>
+    <api id="F:System.Runtime.Remoting.Contexts.SynchronizationAttribute.SUPPORTED">
+      <topicdata group="api" />
+      <apidata name="SUPPORTED" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Runtime.Remoting.Contexts" />
+        <type api="T:System.Runtime.Remoting.Contexts.SynchronizationAttribute" ref="true" />
+      </containers>
+      <file name="07bf9b6a-dfe3-41eb-62f0-5486b0f79da6" />
+    </api>
+  </apis>
+</reflection>

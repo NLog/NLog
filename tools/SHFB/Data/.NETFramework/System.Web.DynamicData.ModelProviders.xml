@@ -1,0 +1,1535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.DynamicData">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+          <assignment name="PartialTrustVisibilityLevel">
+            <type api="T:System.Security.PartialTrustVisibilityLevel" ref="false" />
+            <enumValue>
+              <field name="NotVisibleByDefault" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.DynamicData.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.DynamicData.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.DynamicData.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.DynamicData.ModelProviders">
+      <topicdata group="api" />
+      <apidata name="System.Web.DynamicData.ModelProviders" group="namespace" />
+      <elements>
+        <element api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" />
+        <element api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+        <element api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+        <element api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+        <element api="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      </elements>
+      <file name="9fbdf716-2236-4222-8c7b-41722dabb755" />
+    </api>
+    <api id="T:System.Web.DynamicData.ModelProviders.AssociationDirection">
+      <topicdata group="api" />
+      <apidata name="AssociationDirection" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Web.DynamicData.ModelProviders.AssociationDirection.OneToOne" />
+        <element api="F:System.Web.DynamicData.ModelProviders.AssociationDirection.OneToMany" />
+        <element api="F:System.Web.DynamicData.ModelProviders.AssociationDirection.ManyToOne" />
+        <element api="F:System.Web.DynamicData.ModelProviders.AssociationDirection.ManyToMany" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+      </containers>
+      <file name="934f3e59-d40e-df9d-7e96-bf1c7169e329" />
+    </api>
+    <api id="F:System.Web.DynamicData.ModelProviders.AssociationDirection.ManyToMany">
+      <topicdata group="api" notopic="" />
+      <apidata name="ManyToMany" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </containers>
+      <file name="2408ad87-904b-fa5b-a2c8-7f209cd02598" />
+    </api>
+    <api id="F:System.Web.DynamicData.ModelProviders.AssociationDirection.ManyToOne">
+      <topicdata group="api" notopic="" />
+      <apidata name="ManyToOne" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </containers>
+      <file name="80e674ba-d62e-c468-d864-a45b7ae5e80c" />
+    </api>
+    <api id="F:System.Web.DynamicData.ModelProviders.AssociationDirection.OneToMany">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneToMany" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </containers>
+      <file name="80583edf-533c-5eb8-c826-f6ab379edde8" />
+    </api>
+    <api id="F:System.Web.DynamicData.ModelProviders.AssociationDirection.OneToOne">
+      <topicdata group="api" notopic="" />
+      <apidata name="OneToOne" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </containers>
+      <file name="b356e433-760a-bba1-7584-24000b530560" />
+    </api>
+    <api id="T:System.Web.DynamicData.ModelProviders.AssociationProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      <apidata name="AssociationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+      </containers>
+      <file name="553ee1d3-c919-aa87-b372-1e5b7681f2c5" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.ModelProviders.AssociationProvider">
+      <topicdata name="AssociationProvider" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      <apidata name="AssociationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.DynamicData.ModelProviders.AssociationProvider.#ctor" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.Direction" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ForeignKeyNames" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.FromColumn" />
+        <element api="M:System.Web.DynamicData.ModelProviders.AssociationProvider.GetSortExpression(System.Web.DynamicData.ModelProviders.ColumnProvider)" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.IsPrimaryKeyInThisTable" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ToColumn" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ToTable" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      </containers>
+      <file name="8fbaf96e-18e0-a9e4-459f-2acc61d25192" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.ModelProviders.AssociationProvider">
+      <topicdata name="AssociationProvider" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      <apidata name="AssociationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.DynamicData.ModelProviders.AssociationProvider.GetSortExpression(System.Web.DynamicData.ModelProviders.ColumnProvider)" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      </containers>
+      <file name="d3442601-abf4-990c-5d2b-565dfc97cf69" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.ModelProviders.AssociationProvider">
+      <topicdata name="AssociationProvider" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      <apidata name="AssociationProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.Direction" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ForeignKeyNames" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.FromColumn" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.IsPrimaryKeyInThisTable" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ToColumn" />
+        <element api="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ToTable" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" />
+      </containers>
+      <file name="3f97f5b0-2307-7882-b6c2-5c16b2466f56" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.AssociationProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="6694a947-5541-47a6-cc98-358bff56eae7" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.AssociationProvider.Direction">
+      <topicdata group="api" />
+      <apidata name="Direction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_Direction" />
+      <setter name="set_Direction" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationDirection" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="494eb423-9527-2f47-6671-a9f13b137b7d" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ForeignKeyNames">
+      <topicdata group="api" />
+      <apidata name="ForeignKeyNames" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_ForeignKeyNames" />
+      <setter name="set_ForeignKeyNames" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="833caf56-8a9e-7e1e-9c3e-574062ceb588" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.AssociationProvider.FromColumn">
+      <topicdata group="api" />
+      <apidata name="FromColumn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_FromColumn" />
+      <setter name="set_FromColumn" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="837f4882-03d2-df01-2213-6b17dbbcac1b" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.AssociationProvider.GetSortExpression(System.Web.DynamicData.ModelProviders.ColumnProvider)">
+      <topicdata group="api" />
+      <apidata name="GetSortExpression" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="sortColumn">
+          <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="a669db58-f5ba-3b4c-b018-46eecfa8565b" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.AssociationProvider.IsPrimaryKeyInThisTable">
+      <topicdata group="api" />
+      <apidata name="IsPrimaryKeyInThisTable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsPrimaryKeyInThisTable" />
+      <setter name="set_IsPrimaryKeyInThisTable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="999deefc-e5b2-5198-dd36-627535b504af" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ToColumn">
+      <topicdata group="api" />
+      <apidata name="ToColumn" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_ToColumn" />
+      <setter name="set_ToColumn" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="204eefb3-3b9f-5eb3-5e9a-baaa8eeb0545" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.AssociationProvider.ToTable">
+      <topicdata group="api" />
+      <apidata name="ToTable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_ToTable" />
+      <setter name="set_ToTable" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </containers>
+      <file name="8ebde2f4-d4eb-eb0e-492c-6c5a10b8f63f" />
+    </api>
+    <api id="T:System.Web.DynamicData.ModelProviders.ColumnProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      <apidata name="ColumnProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+      </containers>
+      <file name="19361f24-5960-1693-bfbd-b173765b01c5" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.ModelProviders.ColumnProvider">
+      <topicdata name="ColumnProvider" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      <apidata name="ColumnProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.DynamicData.ModelProviders.ColumnProvider.#ctor(System.Web.DynamicData.ModelProviders.TableProvider)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.ColumnProvider.AddDefaultAttributes(System.Web.DynamicData.ModelProviders.ColumnProvider,System.ComponentModel.AttributeCollection)" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Association" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Attributes" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.ColumnType" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.EntityTypeProperty" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsCustomProperty" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsForeignKeyComponent" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsGenerated" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsPrimaryKey" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsReadOnly" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsSortable" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.MaxLength" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Name" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Nullable" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Table" />
+        <element api="M:System.Web.DynamicData.ModelProviders.ColumnProvider.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      </containers>
+      <file name="b303c892-4d90-c5fb-1f84-8a186704b744" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.ModelProviders.ColumnProvider">
+      <topicdata name="ColumnProvider" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      <apidata name="ColumnProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.DynamicData.ModelProviders.ColumnProvider.AddDefaultAttributes(System.Web.DynamicData.ModelProviders.ColumnProvider,System.ComponentModel.AttributeCollection)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.ColumnProvider.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      </containers>
+      <file name="77a5d62a-b3cc-9985-9d83-eedef78efd39" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.ModelProviders.ColumnProvider">
+      <topicdata name="ColumnProvider" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      <apidata name="ColumnProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Association" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Attributes" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.ColumnType" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.EntityTypeProperty" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsCustomProperty" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsForeignKeyComponent" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsGenerated" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsPrimaryKey" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsReadOnly" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsSortable" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.MaxLength" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Name" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Nullable" />
+        <element api="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Table" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" />
+      </containers>
+      <file name="d51f0f23-b2e1-e605-b498-800634e72320" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.ColumnProvider.#ctor(System.Web.DynamicData.ModelProviders.TableProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="table">
+          <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="6d6b10ce-f9a2-a1e9-e5f1-2698322ddce0" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.ColumnProvider.AddDefaultAttributes(System.Web.DynamicData.ModelProviders.ColumnProvider,System.ComponentModel.AttributeCollection)">
+      <topicdata group="api" />
+      <apidata name="AddDefaultAttributes" group="member" subgroup="method" />
+      <memberdata visibility="family" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="columnProvider">
+          <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+        </parameter>
+        <parameter name="attributes">
+          <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="3b5d4bf8-634a-f142-e39c-1beeea6de400" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Association">
+      <topicdata group="api" />
+      <apidata name="Association" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_Association" />
+      <setter name="set_Association" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.AssociationProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="a87828a4-673a-fe57-11c1-f35250803062" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Attributes">
+      <topicdata group="api" />
+      <apidata name="Attributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Attributes" />
+      <returns>
+        <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="5e08f644-4334-3c90-573c-6ee1456cd8c6" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.ColumnType">
+      <topicdata group="api" />
+      <apidata name="ColumnType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_ColumnType" />
+      <setter name="set_ColumnType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="cebb76b2-e5b3-06da-06e1-274d094dc65c" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.EntityTypeProperty">
+      <topicdata group="api" />
+      <apidata name="EntityTypeProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_EntityTypeProperty" />
+      <setter name="set_EntityTypeProperty" />
+      <returns>
+        <type api="T:System.Reflection.PropertyInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="70708497-fc2f-923d-d940-52d4634f9a41" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsCustomProperty">
+      <topicdata group="api" />
+      <apidata name="IsCustomProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsCustomProperty" />
+      <setter name="set_IsCustomProperty" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="104f36c8-b8db-711f-43b5-e753ea62ba4f" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsForeignKeyComponent">
+      <topicdata group="api" />
+      <apidata name="IsForeignKeyComponent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsForeignKeyComponent" />
+      <setter name="set_IsForeignKeyComponent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="7e754998-5cab-a757-9909-4d63554608af" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsGenerated">
+      <topicdata group="api" />
+      <apidata name="IsGenerated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsGenerated" />
+      <setter name="set_IsGenerated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="81887f65-dcad-2e77-e12f-f8a26585109a" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsPrimaryKey">
+      <topicdata group="api" />
+      <apidata name="IsPrimaryKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsPrimaryKey" />
+      <setter name="set_IsPrimaryKey" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="13909165-bda3-0059-6f3c-3ca7907eccb0" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsReadOnly">
+      <topicdata group="api" />
+      <apidata name="IsReadOnly" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsReadOnly" />
+      <setter name="set_IsReadOnly" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="cdd88b9c-35b1-45c6-3aa9-790afef64c9c" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.IsSortable">
+      <topicdata group="api" />
+      <apidata name="IsSortable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_IsSortable" />
+      <setter name="set_IsSortable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="01a4b8e4-983d-7816-1226-43e285f62ff1" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.MaxLength">
+      <topicdata group="api" />
+      <apidata name="MaxLength" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_MaxLength" />
+      <setter name="set_MaxLength" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="91f66fa5-b32b-e3a9-b413-317ce085af79" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="4d44a092-a892-261e-99b0-fd96f1b86d42" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Nullable">
+      <topicdata group="api" />
+      <apidata name="Nullable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_Nullable" />
+      <setter name="set_Nullable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="8395d626-165f-385a-99fe-d38da3e963d1" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.ColumnProvider.Table">
+      <topicdata group="api" />
+      <apidata name="Table" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Table" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="42dc2894-acf9-0aa3-8316-1326d1c6df55" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.ColumnProvider.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+      </containers>
+      <file name="7d47ed21-9f17-b29a-93f2-27fb2b71cdaa" />
+    </api>
+    <api id="T:System.Web.DynamicData.ModelProviders.DataModelProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      <apidata name="DataModelProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+      </containers>
+      <file name="abb7e44c-91c0-f0cf-2d6d-ed8155b91aa7" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.ModelProviders.DataModelProvider">
+      <topicdata name="DataModelProvider" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      <apidata name="DataModelProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.DynamicData.ModelProviders.DataModelProvider.#ctor" />
+        <element api="P:System.Web.DynamicData.ModelProviders.DataModelProvider.ContextType" />
+        <element api="M:System.Web.DynamicData.ModelProviders.DataModelProvider.CreateContext" />
+        <element api="P:System.Web.DynamicData.ModelProviders.DataModelProvider.Tables" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      </containers>
+      <file name="08f04eb3-8bc6-ea37-1ac7-fca954097fab" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.ModelProviders.DataModelProvider">
+      <topicdata name="DataModelProvider" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      <apidata name="DataModelProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Web.DynamicData.ModelProviders.DataModelProvider.CreateContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      </containers>
+      <file name="c9df2019-705b-90b0-04c8-327a1eb9d2fa" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.ModelProviders.DataModelProvider">
+      <topicdata name="DataModelProvider" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      <apidata name="DataModelProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.DynamicData.ModelProviders.DataModelProvider.ContextType" />
+        <element api="P:System.Web.DynamicData.ModelProviders.DataModelProvider.Tables" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" />
+      </containers>
+      <file name="20bcf76f-8e38-40c5-d8c9-1f08a68533a2" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.DataModelProvider.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" ref="true" />
+      </containers>
+      <file name="1f2bb07f-cc79-a147-f027-fd78e9e90c31" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.DataModelProvider.ContextType">
+      <topicdata group="api" />
+      <apidata name="ContextType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_ContextType" />
+      <setter name="set_ContextType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" ref="true" />
+      </containers>
+      <file name="27cc5703-913f-68f6-da01-82e1724786c9" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.DataModelProvider.CreateContext">
+      <topicdata group="api" />
+      <apidata name="CreateContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" ref="true" />
+      </containers>
+      <file name="0ddd899f-6a74-89a4-850c-07043f453e8d" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.DataModelProvider.Tables">
+      <topicdata group="api" />
+      <apidata name="Tables" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Tables" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" ref="true" />
+      </containers>
+      <file name="e411a1bc-e6bd-9807-582b-686561e3a094" />
+    </api>
+    <api id="T:System.Web.DynamicData.ModelProviders.TableProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      <apidata name="TableProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+      </containers>
+      <file name="1096b6bc-64d0-6673-b0c4-989893b5a02e" />
+    </api>
+    <api id="AllMembers.T:System.Web.DynamicData.ModelProviders.TableProvider">
+      <topicdata name="TableProvider" group="list" subgroup="members" typeTopicId="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      <apidata name="TableProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.#ctor(System.Web.DynamicData.ModelProviders.DataModelProvider)" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.Attributes" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanDelete(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanInsert(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanRead(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanUpdate(System.Security.Principal.IPrincipal)" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.Columns" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.DataContextPropertyName" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.DataModel" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.EntityType" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.EvaluateForeignKey(System.Object,System.String)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.GetQuery(System.Object)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.GetTypeDescriptor" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.Name" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.ParentEntityType" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.RootEntityType" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      </containers>
+      <file name="366c3d30-32b1-59d4-3580-fab259629e11" />
+    </api>
+    <api id="Methods.T:System.Web.DynamicData.ModelProviders.TableProvider">
+      <topicdata name="TableProvider" group="list" subgroup="Methods" typeTopicId="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      <apidata name="TableProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanDelete(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanInsert(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanRead(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.CanUpdate(System.Security.Principal.IPrincipal)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.EvaluateForeignKey(System.Object,System.String)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.GetQuery(System.Object)" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.GetTypeDescriptor" />
+        <element api="M:System.Web.DynamicData.ModelProviders.TableProvider.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      </containers>
+      <file name="2f77eafe-0b6c-38ba-b5b9-f87d3888ca37" />
+    </api>
+    <api id="Properties.T:System.Web.DynamicData.ModelProviders.TableProvider">
+      <topicdata name="TableProvider" group="list" subgroup="Properties" typeTopicId="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      <apidata name="TableProvider" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.Attributes" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.Columns" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.DataContextPropertyName" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.DataModel" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.EntityType" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.Name" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.ParentEntityType" />
+        <element api="P:System.Web.DynamicData.ModelProviders.TableProvider.RootEntityType" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" />
+      </containers>
+      <file name="706f804d-4ed0-41fc-37da-5f4eaaadea4d" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.#ctor(System.Web.DynamicData.ModelProviders.DataModelProvider)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <parameters>
+        <parameter name="model">
+          <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="4d1a41db-204a-c51e-f746-f4df7c5573bc" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.Attributes">
+      <topicdata group="api" />
+      <apidata name="Attributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Attributes" />
+      <returns>
+        <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="475edc76-67e9-57a6-5b1b-d81706a9e559" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.CanDelete(System.Security.Principal.IPrincipal)">
+      <topicdata group="api" />
+      <apidata name="CanDelete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="principal">
+          <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="991049d1-3276-6a8c-fa48-a06f3bf7e2f3" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.CanInsert(System.Security.Principal.IPrincipal)">
+      <topicdata group="api" />
+      <apidata name="CanInsert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="principal">
+          <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="6cc19ceb-9c83-a5a0-d357-fdb773e5f099" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.CanRead(System.Security.Principal.IPrincipal)">
+      <topicdata group="api" />
+      <apidata name="CanRead" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="principal">
+          <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="34390b84-94d6-54e8-6ecf-e41487a46f8d" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.CanUpdate(System.Security.Principal.IPrincipal)">
+      <topicdata group="api" />
+      <apidata name="CanUpdate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="principal">
+          <type api="T:System.Security.Principal.IPrincipal" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="9091ec1f-88a2-5a39-70b6-d4e2045b0255" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.Columns">
+      <topicdata group="api" />
+      <apidata name="Columns" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Columns" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Web.DynamicData.ModelProviders.ColumnProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="b2ac1d80-1571-1057-10c1-01646243576e" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.DataContextPropertyName">
+      <topicdata group="api" />
+      <apidata name="DataContextPropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_DataContextPropertyName" />
+      <setter name="set_DataContextPropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="2d91322f-0362-d9cf-d142-fe70480e94d1" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.DataModel">
+      <topicdata group="api" />
+      <apidata name="DataModel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DataModel" />
+      <returns>
+        <type api="T:System.Web.DynamicData.ModelProviders.DataModelProvider" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="3835a422-73d9-e2c7-c977-1d27eb6e8abe" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.EntityType">
+      <topicdata group="api" />
+      <apidata name="EntityType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_EntityType" />
+      <setter name="set_EntityType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="40b2fa1c-8da7-2644-cbe9-60f631419d79" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.EvaluateForeignKey(System.Object,System.String)">
+      <topicdata group="api" />
+      <apidata name="EvaluateForeignKey" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="row">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="foreignKeyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="d0928f5e-c24a-4839-6b7f-2ce0ad279cb9" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.GetQuery(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetQuery" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Linq.IQueryable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="1453690a-2a01-6353-5676-049431c64df9" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.GetTypeDescriptor">
+      <topicdata group="api" />
+      <apidata name="GetTypeDescriptor" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <returns>
+        <type api="T:System.ComponentModel.ICustomTypeDescriptor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="96e4c23e-5d44-ab27-8dd5-2c5fdc4a3ed7" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="732fba23-cc6e-4a78-652e-7a8d321f6b32" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.ParentEntityType">
+      <topicdata group="api" />
+      <apidata name="ParentEntityType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_ParentEntityType" />
+      <setter name="set_ParentEntityType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="ac7ddb1b-716e-4a1d-bfd9-8e80c5c563a0" />
+    </api>
+    <api id="P:System.Web.DynamicData.ModelProviders.TableProvider.RootEntityType">
+      <topicdata group="api" />
+      <apidata name="RootEntityType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_RootEntityType" />
+      <setter name="set_RootEntityType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="23f0fe74-67c3-e6d1-7601-ae7fc2c93e81" />
+    </api>
+    <api id="M:System.Web.DynamicData.ModelProviders.TableProvider.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.DynamicData" module="System.Web.DynamicData" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.DynamicData.ModelProviders" />
+        <type api="T:System.Web.DynamicData.ModelProviders.TableProvider" ref="true" />
+      </containers>
+      <file name="5fda521d-80c7-4fa8-6131-6fbf9cd7c9dd" />
+    </api>
+  </apis>
+</reflection>

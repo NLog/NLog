@@ -1,0 +1,722 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Forms">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Forms.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Forms.PropertyGridInternal">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Forms.PropertyGridInternal" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+        <element api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+        <element api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      </elements>
+      <file name="001893cc-3ff7-3b6a-e9bc-c653ac75efff" />
+    </api>
+    <api id="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      <apidata name="IRootGridEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+      </containers>
+      <file name="b9254646-f47b-a472-c0ff-241e95fb44f3" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry">
+      <topicdata name="IRootGridEntry" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      <apidata name="IRootGridEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.BrowsableAttributes" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.ResetBrowsableAttributes" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.ShowCategories(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      </containers>
+      <file name="a50aba99-a8ed-486c-88b8-f0b97633c728" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry">
+      <topicdata name="IRootGridEntry" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      <apidata name="IRootGridEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.ResetBrowsableAttributes" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.ShowCategories(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      </containers>
+      <file name="1dc187f2-da08-86f9-b383-116fa32abe74" />
+    </api>
+    <api id="Properties.T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry">
+      <topicdata name="IRootGridEntry" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      <apidata name="IRootGridEntry" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.BrowsableAttributes" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" />
+      </containers>
+      <file name="847caa48-1d90-aee3-dc91-27487df6b418" />
+    </api>
+    <api id="P:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.BrowsableAttributes">
+      <topicdata group="api" />
+      <apidata name="BrowsableAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_BrowsableAttributes" />
+      <setter name="set_BrowsableAttributes" />
+      <returns>
+        <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" ref="true" />
+      </containers>
+      <file name="6aeefa02-dc9b-425e-d07d-6d3228b0fcf4" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.ResetBrowsableAttributes">
+      <topicdata group="api" />
+      <apidata name="ResetBrowsableAttributes" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" ref="true" />
+      </containers>
+      <file name="33b81703-bb88-a14f-e348-d148697cb30e" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.IRootGridEntry.ShowCategories(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="ShowCategories" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="showCategories">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.IRootGridEntry" ref="true" />
+      </containers>
+      <file name="6e1b6f04-bc36-45b5-b8eb-a0b5fa6a3341" />
+    </api>
+    <api id="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      <apidata name="PropertiesTab" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Forms.Design.PropertyTab" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+      </containers>
+      <file name="09f33eb4-68a6-9d1c-21ec-d627791dfd41" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.PropertyGridInternal.PropertiesTab">
+      <topicdata name="PropertiesTab" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      <apidata name="PropertiesTab" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Forms.Design.PropertyTab.Bitmap" />
+        <element api="M:System.Windows.Forms.Design.PropertyTab.CanExtend(System.Object)" />
+        <element api="P:System.Windows.Forms.Design.PropertyTab.Components" />
+        <element api="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.Dispose">
+          <element api="M:System.Windows.Forms.Design.PropertyTab.Dispose" />
+          <element api="M:System.Windows.Forms.Design.PropertyTab.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Forms.Design.PropertyTab.Finalize" />
+        <element api="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties">
+          <element api="M:System.Windows.Forms.Design.PropertyTab.GetProperties(System.Object)" />
+          <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.Object,System.Attribute[])" />
+          <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.#ctor" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetDefaultProperty(System.Object)" />
+        <element api="P:System.Windows.Forms.PropertyGridInternal.PropertiesTab.HelpKeyword" />
+        <element api="P:System.Windows.Forms.PropertyGridInternal.PropertiesTab.TabName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      </containers>
+      <file name="8fe0d189-9456-8a66-3bba-abfa80e60e8b" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.PropertyGridInternal.PropertiesTab">
+      <topicdata name="PropertiesTab" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      <apidata name="PropertiesTab" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Forms.Design.PropertyTab.CanExtend(System.Object)" />
+        <element api="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.Dispose">
+          <element api="M:System.Windows.Forms.Design.PropertyTab.Dispose" />
+          <element api="M:System.Windows.Forms.Design.PropertyTab.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:System.Windows.Forms.Design.PropertyTab.Finalize" />
+        <element api="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties">
+          <element api="M:System.Windows.Forms.Design.PropertyTab.GetProperties(System.Object)" />
+          <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.Object,System.Attribute[])" />
+          <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+        </element>
+        <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetDefaultProperty(System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      </containers>
+      <file name="d948e418-032b-b444-e9c8-3e53b413ce75" />
+    </api>
+    <api id="Properties.T:System.Windows.Forms.PropertyGridInternal.PropertiesTab">
+      <topicdata name="PropertiesTab" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      <apidata name="PropertiesTab" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Forms.Design.PropertyTab.Bitmap" />
+        <element api="P:System.Windows.Forms.Design.PropertyTab.Components" />
+        <element api="P:System.Windows.Forms.PropertyGridInternal.PropertiesTab.HelpKeyword" />
+        <element api="P:System.Windows.Forms.PropertyGridInternal.PropertiesTab.TabName" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      </containers>
+      <file name="995cf2f1-1ce1-0639-72bd-df54ae9edeae" />
+    </api>
+    <api id="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties">
+      <topicdata name="GetProperties" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" />
+      <apidata name="GetProperties" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Forms.Design.PropertyTab.GetProperties(System.Object)" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.Object,System.Attribute[])" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="d659e982-e12c-35da-71f7-12c137b4569d" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="f63d87f4-6c1c-ff5e-21f3-048daa2f2240" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetDefaultProperty(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetDefaultProperty" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Forms.Design.PropertyTab.GetDefaultProperty(System.Object)">
+          <type api="T:System.Windows.Forms.Design.PropertyTab" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.PropertyDescriptor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="1afd74bd-df17-5878-cc6f-6159dac091b0" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+      <topicdata group="api" />
+      <apidata name="GetProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Forms.Design.PropertyTab.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])">
+          <type api="T:System.Windows.Forms.Design.PropertyTab" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.ComponentModel.ITypeDescriptorContext" ref="true" />
+        </parameter>
+        <parameter name="component">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="attributes">
+          <arrayOf rank="1">
+            <type api="T:System.Attribute" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.PropertyDescriptorCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="c390e018-f318-9ee4-6ac4-01dd5e6c8826" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties(System.Object,System.Attribute[])">
+      <topicdata group="api" />
+      <apidata name="GetProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.Windows.Forms.PropertyGridInternal.PropertiesTab.GetProperties" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Forms.Design.PropertyTab.GetProperties(System.Object,System.Attribute[])">
+          <type api="T:System.Windows.Forms.Design.PropertyTab" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="component">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="attributes">
+          <arrayOf rank="1">
+            <type api="T:System.Attribute" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ComponentModel.PropertyDescriptorCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="c6d98d40-f6bc-934c-b8cc-8f8407e7226a" />
+    </api>
+    <api id="P:System.Windows.Forms.PropertyGridInternal.PropertiesTab.HelpKeyword">
+      <topicdata group="api" />
+      <apidata name="HelpKeyword" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Windows.Forms.Design.PropertyTab.HelpKeyword">
+          <type api="T:System.Windows.Forms.Design.PropertyTab" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_HelpKeyword" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="6573438d-134f-e187-5916-843c075d0fad" />
+    </api>
+    <api id="P:System.Windows.Forms.PropertyGridInternal.PropertiesTab.TabName">
+      <topicdata group="api" />
+      <apidata name="TabName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="P:System.Windows.Forms.Design.PropertyTab.TabName">
+          <type api="T:System.Windows.Forms.Design.PropertyTab" ref="true" />
+        </member>
+      </overrides>
+      <propertydata get="true" />
+      <getter name="get_TabName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertiesTab" ref="true" />
+      </containers>
+      <file name="cc57afd5-5a09-47e3-4f2f-e121763cc4f7" />
+    </api>
+    <api id="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      <apidata name="PropertyGridCommands" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+      </containers>
+      <file name="c466c454-17c5-0e5a-7d73-d39a68ee1d3b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands">
+      <topicdata name="PropertyGridCommands" group="list" subgroup="members" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      <apidata name="PropertyGridCommands" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.#ctor" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Commands" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Description" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Hide" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Reset" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.wfcMenuCommand" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.wfcMenuGroup" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      </containers>
+      <file name="f4fde380-7651-8925-f927-98638ba88e93" />
+    </api>
+    <api id="Methods.T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands">
+      <topicdata name="PropertyGridCommands" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      <apidata name="PropertyGridCommands" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      </containers>
+      <file name="0544d953-0c4b-73c0-5af4-3044e19d1aa9" />
+    </api>
+    <api id="Fields.T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands">
+      <topicdata name="PropertyGridCommands" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      <apidata name="PropertyGridCommands" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.#ctor" />
+      <elements>
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Commands" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Description" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Hide" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Reset" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.wfcMenuCommand" />
+        <element api="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.wfcMenuGroup" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" />
+      </containers>
+      <file name="9915127b-b6f0-2eb4-000f-5a1c0eb0d128" />
+    </api>
+    <api id="M:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="c0164c4d-4367-40a8-fa07-f2a366c9deeb" />
+    </api>
+    <api id="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Commands">
+      <topicdata group="api" />
+      <apidata name="Commands" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.Design.CommandID" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="cb3d90fc-fbf8-f6dc-38ff-7a5cbbcc3861" />
+    </api>
+    <api id="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.Design.CommandID" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="0f9663b0-f659-489c-d046-db318c13495d" />
+    </api>
+    <api id="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Hide">
+      <topicdata group="api" />
+      <apidata name="Hide" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.Design.CommandID" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="0242817f-4022-c289-f54a-171f73f848f6" />
+    </api>
+    <api id="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.Reset">
+      <topicdata group="api" />
+      <apidata name="Reset" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.ComponentModel.Design.CommandID" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="97e5bb89-7360-6b90-8c62-ec788caee47a" />
+    </api>
+    <api id="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.wfcMenuCommand">
+      <topicdata group="api" />
+      <apidata name="wfcMenuCommand" group="member" subgroup="field" />
+      <memberdata visibility="family" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="bfa2a8c9-5b7f-6da5-05a2-80e7172e216b" />
+    </api>
+    <api id="F:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands.wfcMenuGroup">
+      <topicdata group="api" />
+      <apidata name="wfcMenuGroup" group="member" subgroup="field" />
+      <memberdata visibility="family" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Forms" module="System.Windows.Forms" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Forms.PropertyGridInternal" />
+        <type api="T:System.Windows.Forms.PropertyGridInternal.PropertyGridCommands" ref="true" />
+      </containers>
+      <file name="e15d7684-77c0-bb24-8a22-6085f75c659f" />
+    </api>
+  </apis>
+</reflection>

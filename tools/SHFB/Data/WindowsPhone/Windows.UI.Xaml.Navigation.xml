@@ -1,0 +1,1478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Navigation">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Navigation" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigationMode" />
+        <element api="T:Windows.UI.Xaml.Navigation.LoadCompletedEventHandler" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigatedEventHandler" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventHandler" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventHandler" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+        <element api="T:Windows.UI.Xaml.Navigation.NavigationStoppedEventHandler" />
+        <element api="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      </elements>
+      <file name="127848f3-e455-6743-8cbc-b30a5a518b69" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.LoadCompletedEventHandler">
+      <topicdata group="api" />
+      <apidata name="LoadCompletedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2931488645</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17404</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20012</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>149</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>195</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>151</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>174</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>132</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>234</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>188</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>142</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="75c3e0d3-bd2d-6c68-93da-5c66c6e2d84b" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigatedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigatedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2077347668</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>9167</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19662</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>178</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>245</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>76</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>231</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>141</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>150</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>137</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>110</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8a4c2450-394b-5c5d-1a0a-58e24e6d0121" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs" ref="true" />
+        <type api="T:Windows.UI.Xaml.Navigation.INavigatingCancelEventArgs2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="cacec8da-0762-8d17-3dd8-2da1727f2152" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs">
+      <topicdata name="NavigatingCancelEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.Cancel" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.NavigationMode" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.NavigationTransitionInfo" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.Parameter" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.SourcePageType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      </containers>
+      <file name="f4834cf1-ee6a-25d3-8d83-861cc77ea97f" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs">
+      <topicdata name="NavigatingCancelEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      </containers>
+      <file name="998a761e-e00e-5cea-b605-ab8a2bad2c9a" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs">
+      <topicdata name="NavigatingCancelEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.Cancel" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.NavigationMode" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.NavigationTransitionInfo" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.Parameter" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.SourcePageType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" />
+      </containers>
+      <file name="4c796594-96a4-5198-e8c2-271135cc4225" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Cancel" />
+      <setter name="set_Cancel" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="86200184-1c60-591e-8320-25b87491b13a" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.NavigationMode">
+      <topicdata group="api" />
+      <apidata name="NavigationMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NavigationMode" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="b1bbd179-bba8-9430-5f9c-3f10c56813b9" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.NavigationTransitionInfo">
+      <topicdata group="api" />
+      <apidata name="NavigationTransitionInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NavigationTransitionInfo" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="58583a3e-b511-c739-d789-7f6d21ab025e" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.Parameter">
+      <topicdata group="api" />
+      <apidata name="Parameter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Parameter" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="e6935396-02f3-466c-ea08-e6d6be9eaf03" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs.SourcePageType">
+      <topicdata group="api" />
+      <apidata name="SourcePageType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourcePageType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="ca7f35a9-2363-acdf-7134-869cd108db42" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigatingCancelEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Navigation.NavigatingCancelEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1977001871</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>41730</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17545</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>152</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>152</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>36</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>234</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>73</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>24</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>41</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>16</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4e37bcae-6de1-d4d7-50c4-7a84a15aa09e" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigationCacheMode">
+      <topicdata group="api" />
+      <apidata name="NavigationCacheMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled" />
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationCacheMode.Required" />
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="48b0e0fc-540f-2f46-36d9-4e334d7ce25a" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" ref="false" />
+      </containers>
+      <file name="5abcfc57-94aa-9419-f92f-df88e8e58c72" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" ref="false" />
+      </containers>
+      <file name="a4ce05e0-0094-1273-68fa-b62ca9396417" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationCacheMode.Required">
+      <topicdata group="api" notopic="" />
+      <apidata name="Required" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationCacheMode" ref="false" />
+      </containers>
+      <file name="3b371ad7-4e3b-3073-773f-2933569bf184" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Navigation.INavigationEventArgs" ref="true" />
+        <type api="T:Windows.UI.Xaml.Navigation.INavigationEventArgs2" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9c2aa46d-be1e-111e-0099-8bfd1353f875" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Navigation.NavigationEventArgs">
+      <topicdata name="NavigationEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Content" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.NavigationMode" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.NavigationTransitionInfo" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Parameter" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.SourcePageType" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      </containers>
+      <file name="49a86856-338e-078e-3049-8a7a15435271" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Navigation.NavigationEventArgs">
+      <topicdata name="NavigationEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      </containers>
+      <file name="03b93180-79b6-bd87-7964-a29a5a02f239" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Navigation.NavigationEventArgs">
+      <topicdata name="NavigationEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Content" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.NavigationMode" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.NavigationTransitionInfo" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Parameter" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.SourcePageType" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" />
+      </containers>
+      <file name="b0275e1c-6008-86ae-c4f7-63e8cf66083e" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Content" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="aec8fd84-9acb-dc29-8020-a8973a56ac36" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.NavigationMode">
+      <topicdata group="api" />
+      <apidata name="NavigationMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NavigationMode" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="12ecc624-c67d-3c47-abbf-a2cd07634ca3" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.NavigationTransitionInfo">
+      <topicdata group="api" />
+      <apidata name="NavigationTransitionInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NavigationTransitionInfo" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="27aac45a-99a0-96d0-4c5d-f914049823fa" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Parameter">
+      <topicdata group="api" />
+      <apidata name="Parameter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Parameter" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="66ba3a66-6c3b-b7a3-517f-bfb74631eb98" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.SourcePageType">
+      <topicdata group="api" />
+      <apidata name="SourcePageType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourcePageType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="1fbbea0c-c633-57a7-d27c-52d8a9b087ee" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationEventArgs.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Uri" />
+      <setter name="set_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="df9fd2f7-655e-d83e-a3ce-8687cd23f7ae" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Navigation.INavigationFailedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2fba73c8-8504-0881-8d18-c4d39df9f277" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs">
+      <topicdata name="NavigationFailedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.Exception" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.Handled" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.SourcePageType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      </containers>
+      <file name="f461a0f3-f021-160d-c8e0-22073e27d04a" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs">
+      <topicdata name="NavigationFailedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      </containers>
+      <file name="34e80a0f-3e9b-abab-dd99-35414281071e" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs">
+      <topicdata name="NavigationFailedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.Exception" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.Handled" />
+        <element api="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.SourcePageType" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" />
+      </containers>
+      <file name="98f55d13-a141-32d8-6a4e-ba75af5e4cd0" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.Exception">
+      <topicdata group="api" />
+      <apidata name="Exception" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Exception" />
+      <returns>
+        <type api="T:Windows.Foundation.HResult" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" ref="true" />
+      </containers>
+      <file name="e3a02855-034b-bd86-04b3-6eaf5a2c308e" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.Handled">
+      <topicdata group="api" />
+      <apidata name="Handled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handled" />
+      <setter name="set_Handled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" ref="true" />
+      </containers>
+      <file name="bd6112c5-8e8a-2165-1771-c6fd3e7615a7" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs.SourcePageType">
+      <topicdata group="api" />
+      <apidata name="SourcePageType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourcePageType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" ref="true" />
+      </containers>
+      <file name="4e1e8d23-cd80-3b58-d192-d6ce66cbd474" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigationFailedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigationFailedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Navigation.NavigationFailedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1303070321</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>4786</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17351</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>184</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>146</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>155</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>226</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>220</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>211</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>232</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>141</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="28ce5ec4-078c-339c-d358-08acc3367f60" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigationMode">
+      <topicdata group="api" />
+      <apidata name="NavigationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationMode.New" />
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationMode.Back" />
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationMode.Forward" />
+        <element api="F:Windows.UI.Xaml.Navigation.NavigationMode.Refresh" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2e5bd3db-ac3f-731a-b3e8-67af4c627648" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationMode.Back">
+      <topicdata group="api" notopic="" />
+      <apidata name="Back" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="dd815e0f-dc21-009d-16e3-3b4042bad2d8" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationMode.Forward">
+      <topicdata group="api" notopic="" />
+      <apidata name="Forward" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="bf472d18-d542-8aec-4158-8bf13a90f11a" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationMode.New">
+      <topicdata group="api" notopic="" />
+      <apidata name="New" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="701b934a-e79b-ae4f-0c41-b4b3f26f5a4d" />
+    </api>
+    <api id="F:Windows.UI.Xaml.Navigation.NavigationMode.Refresh">
+      <topicdata group="api" notopic="" />
+      <apidata name="Refresh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="b02ad071-0b57-f37a-9e37-c2053d541c18" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.NavigationStoppedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigationStoppedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e" in="true">
+          <type api="T:Windows.UI.Xaml.Navigation.NavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4027678171</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>4858</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19853</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>139</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>38</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>179</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>131</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>208</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>43</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>60</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="e0fb5779-c11d-0bec-a6f3-2f36743864d6" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Navigation.PageStackEntry">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      <apidata name="PageStackEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Windows.UI.Xaml.DependencyObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.Xaml.Navigation.IPageStackEntry" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f03042cd-e2d7-4cad-aff7-eba8a9c0c2f8" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Navigation.PageStackEntry">
+      <topicdata name="PageStackEntry" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      <apidata name="PageStackEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.ClearValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="P:Windows.UI.Xaml.DependencyObject.Dispatcher" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetAnimationBaseValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.ReadLocalValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.SetValue(Windows.UI.Xaml.DependencyProperty,System.Object)" />
+        <element api="M:Windows.UI.Xaml.Navigation.PageStackEntry.#ctor(Windows.UI.Xaml.Interop.TypeName,System.Object,Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo)" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.NavigationTransitionInfo" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.Parameter" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.SourcePageType" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.SourcePageTypeProperty" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      </containers>
+      <file name="26ae5c37-a3ec-d8ee-a1c7-b04d297113ab" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Navigation.PageStackEntry">
+      <topicdata name="PageStackEntry" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      <apidata name="PageStackEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.ClearValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetAnimationBaseValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.GetValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.ReadLocalValue(Windows.UI.Xaml.DependencyProperty)" />
+        <element api="M:Windows.UI.Xaml.DependencyObject.SetValue(Windows.UI.Xaml.DependencyProperty,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      </containers>
+      <file name="53b58777-7a93-0830-07f4-af75a4993edb" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Navigation.PageStackEntry">
+      <topicdata name="PageStackEntry" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      <apidata name="PageStackEntry" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.DependencyObject.Dispatcher" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.NavigationTransitionInfo" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.Parameter" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.SourcePageType" />
+        <element api="P:Windows.UI.Xaml.Navigation.PageStackEntry.SourcePageTypeProperty" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" />
+      </containers>
+      <file name="46e41c1f-6a31-5268-bcd6-0adec98edab3" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Navigation.PageStackEntry.#ctor(Windows.UI.Xaml.Interop.TypeName,System.Object,Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="sourcePageType" in="true">
+          <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+        </parameter>
+        <parameter name="parameter" in="true">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="navigationTransitionInfo" in="true">
+          <type api="T:Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" ref="true" />
+      </containers>
+      <file name="e2283163-86b0-856b-59b3-8b41c2ad2306" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.PageStackEntry.NavigationTransitionInfo">
+      <topicdata group="api" />
+      <apidata name="NavigationTransitionInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NavigationTransitionInfo" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Media.Animation.NavigationTransitionInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" ref="true" />
+      </containers>
+      <file name="6e9a6e01-5e7b-1011-49ac-3d3fc6b84cd9" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.PageStackEntry.Parameter">
+      <topicdata group="api" />
+      <apidata name="Parameter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Parameter" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" ref="true" />
+      </containers>
+      <file name="5afe2b3e-951e-6e81-055c-ab2773be0c11" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.PageStackEntry.SourcePageType">
+      <topicdata group="api" />
+      <apidata name="SourcePageType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SourcePageType" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Interop.TypeName" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" ref="true" />
+      </containers>
+      <file name="db63f528-7dd4-b61b-5a5e-6f53a67c4886" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Navigation.PageStackEntry.SourcePageTypeProperty">
+      <topicdata group="api" />
+      <apidata name="SourcePageTypeProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourcePageTypeProperty" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Navigation" />
+        <type api="T:Windows.UI.Xaml.Navigation.PageStackEntry" ref="true" />
+      </containers>
+      <file name="5237bb95-f43d-5c15-9975-8999dc09ed79" />
+    </api>
+  </apis>
+</reflection>

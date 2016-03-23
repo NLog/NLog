@@ -1,0 +1,3443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.HumanInterfaceDevice">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.HumanInterfaceDevice" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+        <element api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      </elements>
+      <file name="d29be2aa-fe9b-780a-11fd-9a7520648efc" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      <apidata name="HidBooleanControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidBooleanControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="add2d2f6-a82d-3d93-a348-d053b62d973e" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl">
+      <topicdata name="HidBooleanControl" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      <apidata name="HidBooleanControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.ControlDescription" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.IsActive" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      </containers>
+      <file name="6b3a7dc1-ed5c-717a-83f5-e95ef268600a" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl">
+      <topicdata name="HidBooleanControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      <apidata name="HidBooleanControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      </containers>
+      <file name="76612212-8d89-116f-a0f2-951071e2ccc8" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl">
+      <topicdata name="HidBooleanControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      <apidata name="HidBooleanControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.ControlDescription" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.IsActive" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" />
+      </containers>
+      <file name="79063f84-f72a-8085-b3df-2494433f5bb9" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.ControlDescription">
+      <topicdata group="api" />
+      <apidata name="ControlDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ControlDescription" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </containers>
+      <file name="77e92588-077e-3e5a-270f-6c811557fc4f" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </containers>
+      <file name="8772be17-ef34-5ee6-094e-91c9136e44cf" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.IsActive">
+      <topicdata group="api" />
+      <apidata name="IsActive" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsActive" />
+      <setter name="set_IsActive" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </containers>
+      <file name="5c5dd5f9-c033-5aa2-971e-dc4297d82ad3" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.UsageId">
+      <topicdata group="api" />
+      <apidata name="UsageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsageId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </containers>
+      <file name="cce1251f-a2b4-475d-4d99-6d52a9a5e0f0" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControl.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsagePage" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </containers>
+      <file name="ffb94608-44e0-fcc3-be1c-da3940ee4502" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      <apidata name="HidBooleanControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidBooleanControlDescription" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="d4207969-edcd-d255-2e68-4a9353679615" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription">
+      <topicdata name="HidBooleanControlDescription" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      <apidata name="HidBooleanControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ParentCollections" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ReportId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ReportType" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      </containers>
+      <file name="34136225-bf47-9f4f-0658-6ec97308aa7d" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription">
+      <topicdata name="HidBooleanControlDescription" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      <apidata name="HidBooleanControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      </containers>
+      <file name="a9d62b02-7fa6-8668-79b8-13c5c3993246" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription">
+      <topicdata name="HidBooleanControlDescription" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      <apidata name="HidBooleanControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ParentCollections" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ReportId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ReportType" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" />
+      </containers>
+      <file name="02942908-81e6-b920-718f-d8573d6f2e24" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </containers>
+      <file name="e7ed4f25-0327-65d9-481a-b67f3e71ce01" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ParentCollections">
+      <topicdata group="api" />
+      <apidata name="ParentCollections" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ParentCollections" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </containers>
+      <file name="3bd7add3-c435-e072-c0a3-fecf7e5ba3eb" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ReportId">
+      <topicdata group="api" />
+      <apidata name="ReportId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReportId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </containers>
+      <file name="d72194b4-192f-048a-4722-1e86161bb495" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.ReportType">
+      <topicdata group="api" />
+      <apidata name="ReportType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReportType" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </containers>
+      <file name="86318ef2-98cc-1d46-764b-6c83e8342319" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.UsageId">
+      <topicdata group="api" />
+      <apidata name="UsageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsageId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </containers>
+      <file name="642ebb18-0896-2977-16aa-a08e69cf9086" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsagePage" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+      </containers>
+      <file name="2488cd18-219d-de19-e47d-49b10c28253a" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidCollection">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      <apidata name="HidCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidCollection" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4771f79b-048d-e886-b09e-30dfdd2d2325" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidCollection">
+      <topicdata name="HidCollection" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      <apidata name="HidCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.Type" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      </containers>
+      <file name="96b7a9c0-1745-c6cc-0fee-b1af4c67755c" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidCollection">
+      <topicdata name="HidCollection" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      <apidata name="HidCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      </containers>
+      <file name="2b51c3b2-27bf-a54b-0435-51e901ac9019" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidCollection">
+      <topicdata name="HidCollection" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      <apidata name="HidCollection" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.Type" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidCollection.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" />
+      </containers>
+      <file name="3a146ff8-a868-5429-0c06-7dba93bc90af" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidCollection.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" ref="true" />
+      </containers>
+      <file name="13120107-cb45-4a32-b325-f73046aa3bde" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidCollection.Type">
+      <topicdata group="api" />
+      <apidata name="Type" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Type" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" ref="true" />
+      </containers>
+      <file name="afbcacfb-e549-6a55-1741-8bd6112f8861" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidCollection.UsageId">
+      <topicdata group="api" />
+      <apidata name="UsageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsageId" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" ref="true" />
+      </containers>
+      <file name="c0b0f90e-801b-f2da-a292-ab07070f248d" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidCollection.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsagePage" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" ref="true" />
+      </containers>
+      <file name="4c4e03e5-1c82-e83a-15f1-77714adf540e" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType">
+      <topicdata group="api" />
+      <apidata name="HidCollectionType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Physical" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Application" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Logical" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Report" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.NamedArray" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.UsageSwitch" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.UsageModifier" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Other" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="35fef0df-de44-5390-e64d-ad5db16b6f4a" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Application">
+      <topicdata group="api" notopic="" />
+      <apidata name="Application" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="86055186-0a11-5389-3bd6-453fe5b9dffc" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Logical">
+      <topicdata group="api" notopic="" />
+      <apidata name="Logical" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="b25d0e35-57a3-d4f0-870a-99f173d26674" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.NamedArray">
+      <topicdata group="api" notopic="" />
+      <apidata name="NamedArray" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="df0601b1-48b8-d8b1-cc9a-be03959e7094" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Other">
+      <topicdata group="api" notopic="" />
+      <apidata name="Other" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="35a5e98a-addf-61ea-b7c5-991ac6ba1150" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Physical">
+      <topicdata group="api" notopic="" />
+      <apidata name="Physical" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="7366cf69-000f-57dd-e517-e20359520358" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.Report">
+      <topicdata group="api" notopic="" />
+      <apidata name="Report" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="61fa2371-8ab0-cb60-81b8-f6518e22e8d5" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.UsageModifier">
+      <topicdata group="api" notopic="" />
+      <apidata name="UsageModifier" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="0bd78c0d-414f-ecff-aa8b-6421ae2e25f0" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidCollectionType.UsageSwitch">
+      <topicdata group="api" notopic="" />
+      <apidata name="UsageSwitch" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollectionType" ref="false" />
+      </containers>
+      <file name="5f75168a-f0bc-687a-bd04-bbe64806809f" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidDevice">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="HidDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidDevice" ref="true" />
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="01b90f3e-a952-fc1b-2598-8cce8492f23c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice">
+      <topicdata name="HidDevice" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="HidDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.Close" />
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport(System.UInt16)" />
+        </element>
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport(System.UInt16)" />
+        </element>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.FromIdAsync(System.String,Windows.Storage.FileAccessMode)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetBooleanControlDescriptions(Windows.Devices.HumanInterfaceDevice.HidReportType,System.UInt16,System.UInt16)" />
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16)" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16,System.UInt16,System.UInt16)" />
+        </element>
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync(System.UInt16)" />
+        </element>
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync(System.UInt16)" />
+        </element>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetNumericControlDescriptions(Windows.Devices.HumanInterfaceDevice.HidReportType,System.UInt16,System.UInt16)" />
+        <element api="E:Windows.Devices.HumanInterfaceDevice.HidDevice.InputReportReceived" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.ProductId" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.SendFeatureReportAsync(Windows.Devices.HumanInterfaceDevice.HidFeatureReport)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.SendOutputReportAsync(Windows.Devices.HumanInterfaceDevice.HidOutputReport)" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.UsagePage" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.VendorId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.Version" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      </containers>
+      <file name="25ee49c5-d3cb-c450-4e61-0dc581fe1e4c" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidDevice">
+      <topicdata name="HidDevice" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="HidDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.Close" />
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport(System.UInt16)" />
+        </element>
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport(System.UInt16)" />
+        </element>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.FromIdAsync(System.String,Windows.Storage.FileAccessMode)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetBooleanControlDescriptions(Windows.Devices.HumanInterfaceDevice.HidReportType,System.UInt16,System.UInt16)" />
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16)" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16,System.UInt16,System.UInt16)" />
+        </element>
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync(System.UInt16)" />
+        </element>
+        <element api="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync">
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync" />
+          <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync(System.UInt16)" />
+        </element>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetNumericControlDescriptions(Windows.Devices.HumanInterfaceDevice.HidReportType,System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.SendFeatureReportAsync(Windows.Devices.HumanInterfaceDevice.HidFeatureReport)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.SendOutputReportAsync(Windows.Devices.HumanInterfaceDevice.HidOutputReport)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      </containers>
+      <file name="4babd20d-6d5e-b426-d4ee-73bc953b2dcc" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidDevice">
+      <topicdata name="HidDevice" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="HidDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.ProductId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.UsagePage" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.VendorId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidDevice.Version" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      </containers>
+      <file name="93fc54ba-6c8f-e46b-1c08-b6b99a9793ad" />
+    </api>
+    <api id="Events.T:Windows.Devices.HumanInterfaceDevice.HidDevice">
+      <topicdata name="HidDevice" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="HidDevice" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.HumanInterfaceDevice.HidDevice.InputReportReceived" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      </containers>
+      <file name="1eb43b48-6c07-1756-0e28-3e49378a6932" />
+    </api>
+    <api id="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport">
+      <topicdata name="CreateFeatureReport" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="CreateFeatureReport" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport(System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="a8ccfb26-7f45-7b06-31bd-3482e35ca2b0" />
+    </api>
+    <api id="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport">
+      <topicdata name="CreateOutputReport" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="CreateOutputReport" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport(System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="6ad7306d-678b-1597-5c94-3b3e54979680" />
+    </api>
+    <api id="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector">
+      <topicdata name="GetDeviceSelector" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16,System.UInt16,System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="24051b6a-4821-a9bb-7744-eda2fde4cfa7" />
+    </api>
+    <api id="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync">
+      <topicdata name="GetFeatureReportAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="GetFeatureReportAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync(System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="92103468-acce-b6ab-6dd5-961b6043fd76" />
+    </api>
+    <api id="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync">
+      <topicdata name="GetInputReportAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidDevice" />
+      <apidata name="GetInputReportAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync(System.UInt16)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="c6b90d01-c6c0-c498-425b-b455e602d970" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="e351bff8-8da9-51d3-4a67-a5ea43d71234" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport">
+      <topicdata group="api" />
+      <apidata name="CreateFeatureReport" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFeatureReport</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f980db75-ee8a-1657-a274-0bd750d0756b" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="CreateFeatureReport" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateFeatureReport" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reportId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateFeatureReportById</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2efa9625-fc44-8268-041c-fb3e62e037ec" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport">
+      <topicdata group="api" />
+      <apidata name="CreateOutputReport" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateOutputReport</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="866fe8bc-450a-17a3-6bb6-db9000ed4d75" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="CreateOutputReport" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.CreateOutputReport" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reportId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateOutputReportById</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4ee69a9f-8858-7aaa-f776-b01949ccf655" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.FromIdAsync(System.String,Windows.Storage.FileAccessMode)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="accessMode" in="true">
+          <type api="T:Windows.Storage.FileAccessMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="85605b11-b45b-08f3-b7ea-cfbf68895491" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetBooleanControlDescriptions(Windows.Devices.HumanInterfaceDevice.HidReportType,System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControlDescriptions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reportType" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+        </parameter>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="9f90933b-39f1-0dde-e3c2-8778a92f128a" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetDeviceSelector</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="6be3899c-7e9e-ce87-2502-7b42f856bb13" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetDeviceSelector" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="vendorId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="productId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetDeviceSelectorVidPid</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ea95d0fc-1044-a622-59a7-790e8fd7f224" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync">
+      <topicdata group="api" />
+      <apidata name="GetFeatureReportAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFeatureReportAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b2442716-d6eb-82a0-e425-df3665908cff" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetFeatureReportAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetFeatureReportAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reportId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetFeatureReportByIdAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="224235c8-18ee-9f4a-fd23-92db530e6d61" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync">
+      <topicdata group="api" />
+      <apidata name="GetInputReportAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetInputReportAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="05186210-20a1-1ff3-09d5-34d823a1fea4" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync(System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetInputReportAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.HumanInterfaceDevice.HidDevice.GetInputReportAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reportId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetInputReportByIdAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a9f960da-2625-ca47-4d9a-69ea2c49f2f2" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.GetNumericControlDescriptions(Windows.Devices.HumanInterfaceDevice.HidReportType,System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControlDescriptions" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reportType" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+        </parameter>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="58584f90-13e9-3145-3544-1a0eee708eb1" />
+    </api>
+    <api id="E:Windows.Devices.HumanInterfaceDevice.HidDevice.InputReportReceived">
+      <topicdata group="api" />
+      <apidata name="InputReportReceived" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_InputReportReceived" />
+      <remover name="remove_InputReportReceived" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="2acb4f94-585a-7fe9-7d04-bffc5468b423" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidDevice.ProductId">
+      <topicdata group="api" />
+      <apidata name="ProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="c7dfd18a-5c3e-953b-3dd3-a0682776b19a" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.SendFeatureReportAsync(Windows.Devices.HumanInterfaceDevice.HidFeatureReport)">
+      <topicdata group="api" />
+      <apidata name="SendFeatureReportAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="featureReport" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="d8352e74-9fb5-8fdb-c0e9-cc3df3fdcbe2" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidDevice.SendOutputReportAsync(Windows.Devices.HumanInterfaceDevice.HidOutputReport)">
+      <topicdata group="api" />
+      <apidata name="SendOutputReportAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="outputReport" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="c538a6fc-3188-6284-cab1-01ff5cbf6d70" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidDevice.UsageId">
+      <topicdata group="api" />
+      <apidata name="UsageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsageId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="798ae485-89b0-876d-5d5a-03aebba4d5a2" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidDevice.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsagePage" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="c98ab9e3-8dfd-fede-f03d-3a510c3fcdca" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidDevice.VendorId">
+      <topicdata group="api" />
+      <apidata name="VendorId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VendorId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="2c911032-e7b5-2956-6446-26689f8a06cf" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidDevice.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidDevice" ref="true" />
+      </containers>
+      <file name="9360ffad-412c-3d0a-b70e-7b199696b4f3" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      <apidata name="HidFeatureReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidFeatureReport" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="6007917f-70ea-3af8-a639-94865343822c" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport">
+      <topicdata name="HidFeatureReport" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      <apidata name="HidFeatureReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.Data" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetBooleanControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetNumericControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      </containers>
+      <file name="4b6062d9-6d98-2894-0a99-f48670d5ba49" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport">
+      <topicdata name="HidFeatureReport" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      <apidata name="HidFeatureReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetBooleanControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetNumericControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      </containers>
+      <file name="86f3fbd6-6b2d-d8fa-a5fd-0d2e11a91567" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport">
+      <topicdata name="HidFeatureReport" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      <apidata name="HidFeatureReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.Data" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" />
+      </containers>
+      <file name="9a266e48-e57a-b59a-833c-f1f357a8cfcc" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Data" />
+      <setter name="set_Data" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </containers>
+      <file name="7a733ce6-59bb-4476-0232-bdc1d55d67b5" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetBooleanControl(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControl" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </containers>
+      <file name="0128847f-87da-0341-d4a5-8616b6a94efc" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControlByDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="controlDescription" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </containers>
+      <file name="8bbd420c-9197-a898-5d3b-185e31b60753" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetNumericControl(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControl" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </containers>
+      <file name="e6f9abb4-e29b-2df9-0668-54cdc48cd6a5" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControlByDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="controlDescription" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </containers>
+      <file name="1c3f7523-92b0-1fcc-7915-3d04a16612ff" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidFeatureReport.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidFeatureReport" ref="true" />
+      </containers>
+      <file name="0bd52729-d923-7198-ce4c-33328d69cbbb" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidInputReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      <apidata name="HidInputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidInputReport" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8c401165-e6ce-7181-f0fd-f9b3dd018d4f" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidInputReport">
+      <topicdata name="HidInputReport" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      <apidata name="HidInputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.ActivatedBooleanControls" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.Data" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetBooleanControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetNumericControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.TransitionedBooleanControls" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      </containers>
+      <file name="914fa713-16a6-0a53-deaa-bf430fce3938" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidInputReport">
+      <topicdata name="HidInputReport" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      <apidata name="HidInputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetBooleanControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetNumericControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      </containers>
+      <file name="e5b9bc4c-c96c-7f63-7381-2db4f898c79b" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidInputReport">
+      <topicdata name="HidInputReport" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      <apidata name="HidInputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.ActivatedBooleanControls" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.Data" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.TransitionedBooleanControls" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" />
+      </containers>
+      <file name="2f2c6704-4829-24f7-5e48-cbac68bedd5e" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.ActivatedBooleanControls">
+      <topicdata group="api" />
+      <apidata name="ActivatedBooleanControls" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ActivatedBooleanControls" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="963b99ad-ba4b-25a5-e190-920961375199" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Data" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="bc6dd4c9-ce79-e2c1-3a4d-4e54e2b66e5b" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetBooleanControl(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControl" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="b7222953-2ae4-c61c-f368-90e242893062" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControlByDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="controlDescription" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="0855e6d7-b67c-41d7-5701-4de3ddd26377" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetNumericControl(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControl" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="6802030d-af1c-9690-834e-3fdd3114b9ee" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidInputReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControlByDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="controlDescription" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="4b16f5bd-3ef2-fae7-05fd-32ccfa54fde2" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="9c0f1339-8d07-82fe-40b1-6f08adc50224" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidInputReport.TransitionedBooleanControls">
+      <topicdata group="api" />
+      <apidata name="TransitionedBooleanControls" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TransitionedBooleanControls" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </containers>
+      <file name="8e3341b3-3f95-3b9d-9e84-5d17a8e45a1d" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      <apidata name="HidInputReportReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidInputReportReceivedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="094bf431-1fd4-fde0-ead1-c749e3aece4e" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs">
+      <topicdata name="HidInputReportReceivedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      <apidata name="HidInputReportReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs.Report" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      </containers>
+      <file name="57bcb571-af4b-aa86-2195-7334488007bc" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs">
+      <topicdata name="HidInputReportReceivedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      <apidata name="HidInputReportReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      </containers>
+      <file name="99c2f2d2-d8b1-6cbc-499c-790b4196de97" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs">
+      <topicdata name="HidInputReportReceivedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      <apidata name="HidInputReportReceivedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs.Report" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" />
+      </containers>
+      <file name="04939311-c2f6-8e00-8f9b-1c453a555ac1" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs.Report">
+      <topicdata group="api" />
+      <apidata name="Report" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Report" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReport" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidInputReportReceivedEventArgs" ref="true" />
+      </containers>
+      <file name="426868f8-eed3-3a8b-c734-64d125c568f8" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      <apidata name="HidNumericControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidNumericControl" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7bb3a8e9-1bba-eebb-3631-b732b2642e94" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidNumericControl">
+      <topicdata name="HidNumericControl" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      <apidata name="HidNumericControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.ControlDescription" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.IsGrouped" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.ScaledValue" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.UsagePage" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      </containers>
+      <file name="213d510c-7dd9-52f2-434c-bf1390e48250" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidNumericControl">
+      <topicdata name="HidNumericControl" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      <apidata name="HidNumericControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      </containers>
+      <file name="4deffe2f-ced8-b9d7-c6a5-9d87a7bdbc4f" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidNumericControl">
+      <topicdata name="HidNumericControl" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      <apidata name="HidNumericControl" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.ControlDescription" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.IsGrouped" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.ScaledValue" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.UsagePage" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" />
+      </containers>
+      <file name="edf24ed0-fea4-3b6e-f743-f16dd0781eed" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.ControlDescription">
+      <topicdata group="api" />
+      <apidata name="ControlDescription" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ControlDescription" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="691ed832-08b5-720b-6cc0-34dc5fa6ddbd" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="0d48bec9-555d-3442-3d23-41f35bcbfd63" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.IsGrouped">
+      <topicdata group="api" />
+      <apidata name="IsGrouped" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsGrouped" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="400a1880-97d7-557d-1640-00e993c09725" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.ScaledValue">
+      <topicdata group="api" />
+      <apidata name="ScaledValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ScaledValue" />
+      <setter name="set_ScaledValue" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="206b4b7c-2238-7a2b-c000-4b0ab484d79d" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.UsageId">
+      <topicdata group="api" />
+      <apidata name="UsageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsageId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="99f809df-23c8-0bfc-c155-bec4b80769aa" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsagePage" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="3dfe5bc1-3cc6-c794-bbb6-2890043f8990" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControl.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Value" />
+      <setter name="set_Value" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </containers>
+      <file name="96a573ee-5da3-af78-c3fc-24dc48ae9d4f" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      <apidata name="HidNumericControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidNumericControlDescription" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="11b145b0-b44c-ae5a-6229-c6805eae04bf" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription">
+      <topicdata name="HidNumericControlDescription" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      <apidata name="HidNumericControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.HasNull" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.IsAbsolute" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.LogicalMaximum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.LogicalMinimum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ParentCollections" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.PhysicalMaximum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.PhysicalMinimum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportCount" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportSize" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportType" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.Unit" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UnitExponent" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      </containers>
+      <file name="d166b6b6-9e1f-d9b1-5348-d89de3a825c4" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription">
+      <topicdata name="HidNumericControlDescription" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      <apidata name="HidNumericControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      </containers>
+      <file name="c8002732-550d-4424-958d-037a8f4d7538" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription">
+      <topicdata name="HidNumericControlDescription" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      <apidata name="HidNumericControlDescription" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.HasNull" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.Id" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.IsAbsolute" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.LogicalMaximum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.LogicalMinimum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ParentCollections" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.PhysicalMaximum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.PhysicalMinimum" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportCount" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportSize" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportType" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.Unit" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UnitExponent" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UsageId" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UsagePage" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" />
+      </containers>
+      <file name="f874c4fd-f51d-75e6-164c-0e63129cbad1" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.HasNull">
+      <topicdata group="api" />
+      <apidata name="HasNull" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HasNull" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="7352ca14-07f9-e974-ff93-2d4111e34fbe" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="1ffe7de0-a972-5610-ad28-cc119f66a67f" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.IsAbsolute">
+      <topicdata group="api" />
+      <apidata name="IsAbsolute" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAbsolute" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="42d5fda8-9164-6cb8-26c2-70c3840fa9bf" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.LogicalMaximum">
+      <topicdata group="api" />
+      <apidata name="LogicalMaximum" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LogicalMaximum" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="9d6de6a3-b9a3-6bb9-8c0e-0ccc582aa13e" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.LogicalMinimum">
+      <topicdata group="api" />
+      <apidata name="LogicalMinimum" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LogicalMinimum" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="fda45aef-f4b4-cdd2-c84c-4abb92fa6045" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ParentCollections">
+      <topicdata group="api" />
+      <apidata name="ParentCollections" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ParentCollections" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.HumanInterfaceDevice.HidCollection" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="e270f6f3-964f-997a-6fd7-6d8024ab87a9" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.PhysicalMaximum">
+      <topicdata group="api" />
+      <apidata name="PhysicalMaximum" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhysicalMaximum" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="a279cd00-0104-579d-5e91-4622ea4715a5" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.PhysicalMinimum">
+      <topicdata group="api" />
+      <apidata name="PhysicalMinimum" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PhysicalMinimum" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="01b59d8b-cca8-0d5f-bab2-bcda87708f28" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportCount">
+      <topicdata group="api" />
+      <apidata name="ReportCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReportCount" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="9e8c623c-f7c4-edaf-5b24-c301862b908c" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportId">
+      <topicdata group="api" />
+      <apidata name="ReportId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReportId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="7463c3ab-bb88-ca4c-e047-9f8bca8f3dc4" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportSize">
+      <topicdata group="api" />
+      <apidata name="ReportSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReportSize" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="d3381d82-3a7f-12cb-fc93-613dd45e0eec" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.ReportType">
+      <topicdata group="api" />
+      <apidata name="ReportType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ReportType" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="55e7db2a-dfb4-ef9e-cfd1-b7411b0c94f4" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.Unit">
+      <topicdata group="api" />
+      <apidata name="Unit" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Unit" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="5c61b487-dac4-b74d-f78d-bb1ceec25aef" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UnitExponent">
+      <topicdata group="api" />
+      <apidata name="UnitExponent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UnitExponent" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="bba5f79b-2500-295c-ee4d-a87257fd9b79" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UsageId">
+      <topicdata group="api" />
+      <apidata name="UsageId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsageId" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="4bc59baf-85c6-a6c8-ff86-93309f28efc4" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription.UsagePage">
+      <topicdata group="api" />
+      <apidata name="UsagePage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UsagePage" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+      </containers>
+      <file name="09ed0783-6a03-043e-6bee-179385eb6797" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      <apidata name="HidOutputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.IHidOutputReport" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c4b5d964-6c03-075b-c428-119464e23d32" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.HumanInterfaceDevice.HidOutputReport">
+      <topicdata name="HidOutputReport" group="list" subgroup="members" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      <apidata name="HidOutputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidOutputReport.Data" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetBooleanControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetNumericControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidOutputReport.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      </containers>
+      <file name="a9c9f159-425c-5ea6-b0c9-d20d101c70a9" />
+    </api>
+    <api id="Methods.T:Windows.Devices.HumanInterfaceDevice.HidOutputReport">
+      <topicdata name="HidOutputReport" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      <apidata name="HidOutputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetBooleanControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetNumericControl(System.UInt16,System.UInt16)" />
+        <element api="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      </containers>
+      <file name="f929d641-8f82-a0a3-8629-2fcadaad37f7" />
+    </api>
+    <api id="Properties.T:Windows.Devices.HumanInterfaceDevice.HidOutputReport">
+      <topicdata name="HidOutputReport" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      <apidata name="HidOutputReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidOutputReport.Data" />
+        <element api="P:Windows.Devices.HumanInterfaceDevice.HidOutputReport.Id" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" />
+      </containers>
+      <file name="97fc40d2-12a6-af54-f6eb-614e87815ff5" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidOutputReport.Data">
+      <topicdata group="api" />
+      <apidata name="Data" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Data" />
+      <setter name="set_Data" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </containers>
+      <file name="9b975e6c-e8ee-b735-a3db-3fb7d9cb0c4d" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetBooleanControl(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControl" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </containers>
+      <file name="b507a104-f616-bdfa-3729-d8ec1dc7072b" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetBooleanControlByDescription(Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription)">
+      <topicdata group="api" />
+      <apidata name="GetBooleanControlByDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="controlDescription" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControlDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidBooleanControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </containers>
+      <file name="b9505a25-abe4-c631-d5db-1ac14620ff39" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetNumericControl(System.UInt16,System.UInt16)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControl" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="usagePage" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+        <parameter name="usageId" in="true">
+          <type api="T:System.UInt16" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </containers>
+      <file name="38645aa8-14fc-295e-203d-d93cffd2a3a1" />
+    </api>
+    <api id="M:Windows.Devices.HumanInterfaceDevice.HidOutputReport.GetNumericControlByDescription(Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription)">
+      <topicdata group="api" />
+      <apidata name="GetNumericControlByDescription" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="controlDescription" in="true">
+          <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControlDescription" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidNumericControl" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </containers>
+      <file name="6f0d700d-e0d4-be3d-6aa0-35e529b4c2c2" />
+    </api>
+    <api id="P:Windows.Devices.HumanInterfaceDevice.HidOutputReport.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidOutputReport" ref="true" />
+      </containers>
+      <file name="7abcc94f-d77c-714b-72b2-ae36923fda12" />
+    </api>
+    <api id="T:Windows.Devices.HumanInterfaceDevice.HidReportType">
+      <topicdata group="api" />
+      <apidata name="HidReportType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidReportType.Input" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidReportType.Output" />
+        <element api="F:Windows.Devices.HumanInterfaceDevice.HidReportType.Feature" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e56aa8b4-e8c5-9d26-ba59-d9a42587b04d" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidReportType.Feature">
+      <topicdata group="api" notopic="" />
+      <apidata name="Feature" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </containers>
+      <file name="630be1f1-0f40-9985-cec8-ff4767d7946d" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidReportType.Input">
+      <topicdata group="api" notopic="" />
+      <apidata name="Input" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </containers>
+      <file name="786f242a-1d23-fca9-9d2a-b1b7e367b25c" />
+    </api>
+    <api id="F:Windows.Devices.HumanInterfaceDevice.HidReportType.Output">
+      <topicdata group="api" notopic="" />
+      <apidata name="Output" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.HumanInterfaceDevice" />
+        <type api="T:Windows.Devices.HumanInterfaceDevice.HidReportType" ref="false" />
+      </containers>
+      <file name="959a4e7e-0bf7-0525-e542-b6ed8fee48f5" />
+    </api>
+  </apis>
+</reflection>

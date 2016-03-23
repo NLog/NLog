@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform=".NETFramework" Version="2.0.50727" Title=".NET Framework 2.0">
+  <AssemblyLocations>
+    <Location Path="%SystemRoot%\Microsoft.NET\Framework\v2.0.50727">
+      <AssemblyDetails Filename="Accessibility.dll" Name="Accessibility" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="AspNetMMCExt.dll" Name="AspNetMMCExt" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" IsExcluded="true" />
+      <AssemblyDetails Filename="cscompmgd.dll" Name="cscompmgd" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" IsExcluded="true" />
+      <AssemblyDetails Filename="CustomMarshalers.dll" Name="CustomMarshalers" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="IEExecRemote.dll" Name="IEExecRemote" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="IEHost.dll" Name="IEHost" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="IIEHost.dll" Name="IIEHost" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="ISymWrapper.dll" Name="ISymWrapper" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Build.Engine.dll" Name="Microsoft.Build.Engine" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Build.Framework.dll" Name="Microsoft.Build.Framework" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Build.Tasks.dll" Name="Microsoft.Build.Tasks" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Build.Utilities.dll" Name="Microsoft.Build.Utilities" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.JScript.dll" Name="Microsoft.JScript" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.VisualBasic.dll" Name="Microsoft.VisualBasic" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.VisualBasic.Compatibility.dll" Name="Microsoft.VisualBasic.Compatibility" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.VisualBasic.Compatibility.Data.dll" Name="Microsoft.VisualBasic.Compatibility.Data" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.VisualBasic.Vsa.dll" Name="Microsoft.VisualBasic.Vsa" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.VisualC.Dll" Name="Microsoft.VisualC" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Vsa.dll" Name="Microsoft.Vsa" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft.Vsa.Vb.CodeDOMProcessor.dll" Name="Microsoft.Vsa.Vb.CodeDOMProcessor" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="Microsoft_VsaVb.dll" Name="Microsoft_VsaVb" Version="8.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="mscorlib.dll" Name="mscorlib" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="sysglobl.dll" Name="sysglobl" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.dll" Name="System" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.configuration.dll" Name="System.Configuration" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Configuration.Install.dll" Name="System.Configuration.Install" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Data.dll" Name="System.Data" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.Data.OracleClient.dll" Name="System.Data.OracleClient" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.Data.SqlXml.dll" Name="System.Data.SqlXml" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.Deployment.dll" Name="System.Deployment" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Design.dll" Name="System.Design" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.DirectoryServices.dll" Name="System.DirectoryServices" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.DirectoryServices.Protocols.dll" Name="System.DirectoryServices.Protocols" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Drawing.dll" Name="System.Drawing" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Drawing.Design.dll" Name="System.Drawing.Design" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.EnterpriseServices.dll" Name="System.EnterpriseServices" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Management.dll" Name="System.Management" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Messaging.dll" Name="System.Messaging" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Runtime.Remoting.dll" Name="System.Runtime.Remoting" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.Formatters.Soap.dll" Name="System.Runtime.Serialization.Formatters.Soap" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Security.dll" Name="System.Security" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.ServiceProcess.dll" Name="System.ServiceProcess" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Transactions.dll" Name="System.Transactions" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.Web.dll" Name="System.Web" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Web.Mobile.dll" Name="System.Web.Mobile" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Web.RegularExpressions.dll" Name="System.Web.RegularExpressions" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Web.Services.dll" Name="System.Web.Services" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+      <AssemblyDetails Filename="System.Windows.Forms.dll" Name="System.Windows.Forms" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+      <AssemblyDetails Filename="System.XML.dll" Name="System.Xml" Version="2.0.0.0" PublicKeyToken="b77a5c561934e089" />
+    </Location>
+    <Location Path="%ProgramFiles(x86)%\Reference Assemblies\Microsoft\FSharp\2.0\Runtime\v2.0">
+      <AssemblyDetails Filename="FSharp.Core.dll" Name="FSharp.Core" Version="2.0.0.0" PublicKeyToken="b03f5f7f11d50a3a" />
+    </Location>
+  </AssemblyLocations>
+  <IgnoredNamespaces>
+    <Namespace>&lt;CppImplementationDetails&gt;</Namespace>
+    <Namespace>&lt;CrtImplementationDetails&gt;</Namespace>
+  </IgnoredNamespaces>
+  <IgnoredUnresolved />
+  <BindingRedirections />
+</ReflectionDataSet>

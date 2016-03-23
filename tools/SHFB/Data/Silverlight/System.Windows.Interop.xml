@@ -1,0 +1,1298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Interop">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Interop" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Interop.Settings" />
+        <element api="T:System.Windows.Interop.FullScreenOptions" />
+        <element api="T:System.Windows.Interop.Content" />
+        <element api="T:System.Windows.Interop.SilverlightHost" />
+        <element api="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+        <element api="T:System.Windows.Interop.HostingRenderTargetBitmap" />
+      </elements>
+      <file name="82fbc697-2523-496e-89a6-a00a8f5fe3c6" />
+    </api>
+    <api id="T:System.Windows.Interop.Content">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Interop.Content" />
+      <apidata name="Content" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Content.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+      </containers>
+      <file name="60940d9b-af96-dd11-ce98-c8ac3415e8e1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Interop.Content">
+      <topicdata name="Content" group="list" subgroup="members" typeTopicId="T:System.Windows.Interop.Content" />
+      <apidata name="Content" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Content.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.Content.#ctor" />
+        <element api="P:System.Windows.Interop.Content.ActualHeight" />
+        <element api="P:System.Windows.Interop.Content.ActualWidth" />
+        <element api="E:System.Windows.Interop.Content.FullScreenChanged" />
+        <element api="P:System.Windows.Interop.Content.FullScreenOptions" />
+        <element api="P:System.Windows.Interop.Content.IsFullScreen" />
+        <element api="E:System.Windows.Interop.Content.Resized" />
+        <element api="E:System.Windows.Interop.Content.Zoomed" />
+        <element api="P:System.Windows.Interop.Content.ZoomFactor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" />
+      </containers>
+      <file name="b0f7893b-d978-e959-1489-9f1ad12a1793" />
+    </api>
+    <api id="Methods.T:System.Windows.Interop.Content">
+      <topicdata name="Content" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Interop.Content" />
+      <apidata name="Content" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Content.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" />
+      </containers>
+      <file name="993dd531-d563-7b5c-3d49-55cdcbe703ce" />
+    </api>
+    <api id="Properties.T:System.Windows.Interop.Content">
+      <topicdata name="Content" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Interop.Content" />
+      <apidata name="Content" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Content.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Interop.Content.ActualHeight" />
+        <element api="P:System.Windows.Interop.Content.ActualWidth" />
+        <element api="P:System.Windows.Interop.Content.FullScreenOptions" />
+        <element api="P:System.Windows.Interop.Content.IsFullScreen" />
+        <element api="P:System.Windows.Interop.Content.ZoomFactor" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" />
+      </containers>
+      <file name="7b9ceb10-67a6-44d4-a5a4-6eb74336d0cf" />
+    </api>
+    <api id="Events.T:System.Windows.Interop.Content">
+      <topicdata name="Content" group="list" subgroup="Events" typeTopicId="T:System.Windows.Interop.Content" />
+      <apidata name="Content" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Content.#ctor" />
+      <elements>
+        <element api="E:System.Windows.Interop.Content.FullScreenChanged" />
+        <element api="E:System.Windows.Interop.Content.Resized" />
+        <element api="E:System.Windows.Interop.Content.Zoomed" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" />
+      </containers>
+      <file name="9cdd2898-9cf5-fb3a-2389-07d75fe7aa40" />
+    </api>
+    <api id="M:System.Windows.Interop.Content.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="fdbb81da-3900-9e81-2373-d3a8da6de7a6" />
+    </api>
+    <api id="P:System.Windows.Interop.Content.ActualHeight">
+      <topicdata group="api" />
+      <apidata name="ActualHeight" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ActualHeight" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="13d0963d-8e1f-12a4-ad5c-84324f33f8bf" />
+    </api>
+    <api id="P:System.Windows.Interop.Content.ActualWidth">
+      <topicdata group="api" />
+      <apidata name="ActualWidth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ActualWidth" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="1e018118-d3a4-2bf5-1b5a-1079ab67b746" />
+    </api>
+    <api id="E:System.Windows.Interop.Content.FullScreenChanged">
+      <topicdata group="api" />
+      <apidata name="FullScreenChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_FullScreenChanged" />
+      <remover name="remove_FullScreenChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="d8c5ade4-05c7-962f-feb5-7dbb92f85e7d" />
+    </api>
+    <api id="P:System.Windows.Interop.Content.FullScreenOptions">
+      <topicdata group="api" />
+      <apidata name="FullScreenOptions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FullScreenOptions" />
+      <setter name="set_FullScreenOptions" />
+      <returns>
+        <type api="T:System.Windows.Interop.FullScreenOptions" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="4ecbab9c-3f54-6a13-5371-68fe55ab2cbe" />
+    </api>
+    <api id="P:System.Windows.Interop.Content.IsFullScreen">
+      <topicdata group="api" />
+      <apidata name="IsFullScreen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsFullScreen" />
+      <setter name="set_IsFullScreen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="32e5b40f-54fc-caa8-a539-307f876726b9" />
+    </api>
+    <api id="E:System.Windows.Interop.Content.Resized">
+      <topicdata group="api" />
+      <apidata name="Resized" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Resized" />
+      <remover name="remove_Resized" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="d696844e-339d-9ab3-3139-8a440d615dec" />
+    </api>
+    <api id="E:System.Windows.Interop.Content.Zoomed">
+      <topicdata group="api" />
+      <apidata name="Zoomed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Zoomed" />
+      <remover name="remove_Zoomed" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="a0e19586-e31d-68c3-86c1-c75feba4c7be" />
+    </api>
+    <api id="P:System.Windows.Interop.Content.ZoomFactor">
+      <topicdata group="api" />
+      <apidata name="ZoomFactor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ZoomFactor" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </containers>
+      <file name="9a66e527-c869-3d22-f74a-2986243be51a" />
+    </api>
+    <api id="T:System.Windows.Interop.FullScreenOptions">
+      <topicdata group="api" />
+      <apidata name="FullScreenOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Interop.FullScreenOptions.None" />
+        <element api="F:System.Windows.Interop.FullScreenOptions.StaysFullScreenWhenUnfocused" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d6c5bf28-e198-365d-da82-bdd8950dd4e8" />
+    </api>
+    <api id="F:System.Windows.Interop.FullScreenOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Interop.FullScreenOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.FullScreenOptions" ref="false" />
+      </containers>
+      <file name="ac65e811-3213-8799-c1d4-0bd5e75e685e" />
+    </api>
+    <api id="F:System.Windows.Interop.FullScreenOptions.StaysFullScreenWhenUnfocused">
+      <topicdata group="api" notopic="" />
+      <apidata name="StaysFullScreenWhenUnfocused" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Interop.FullScreenOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.FullScreenOptions" ref="false" />
+      </containers>
+      <file name="b5de50b6-4f69-4a28-56bc-007a0aaf549f" />
+    </api>
+    <api id="T:System.Windows.Interop.HostingRenderTargetBitmap">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Interop.HostingRenderTargetBitmap" />
+      <apidata name="HostingRenderTargetBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:MS.Internal.IManagedPeer" ref="true" />
+        <type api="T:MS.Internal.IManagedPeerBase" ref="true" />
+        <type api="T:MS.Internal.INativeCoreTypeWrapper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+      </containers>
+      <file name="af4443b4-758f-95ce-b023-5040bacecff8" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Interop.HostingRenderTargetBitmap">
+      <topicdata name="HostingRenderTargetBitmap" group="list" subgroup="members" typeTopicId="T:System.Windows.Interop.HostingRenderTargetBitmap" />
+      <apidata name="HostingRenderTargetBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.HostingRenderTargetBitmap.#ctor(System.Int32,System.Int32,System.IntPtr)" />
+        <element api="M:System.Windows.Interop.HostingRenderTargetBitmap.Render(System.Windows.UIElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.HostingRenderTargetBitmap" />
+      </containers>
+      <file name="12a49bfb-b80a-531a-097a-7f0242ffc46d" />
+    </api>
+    <api id="Methods.T:System.Windows.Interop.HostingRenderTargetBitmap">
+      <topicdata name="HostingRenderTargetBitmap" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Interop.HostingRenderTargetBitmap" />
+      <apidata name="HostingRenderTargetBitmap" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.HostingRenderTargetBitmap.Render(System.Windows.UIElement)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.HostingRenderTargetBitmap" />
+      </containers>
+      <file name="d34929f6-8775-4879-f0d7-2209c830ec7f" />
+    </api>
+    <api id="M:System.Windows.Interop.HostingRenderTargetBitmap.#ctor(System.Int32,System.Int32,System.IntPtr)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="bitmap">
+          <type api="T:System.IntPtr" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.HostingRenderTargetBitmap" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="1045b359-3f58-14b9-5fa0-825285cadc1d" />
+    </api>
+    <api id="M:System.Windows.Interop.HostingRenderTargetBitmap.Render(System.Windows.UIElement)">
+      <topicdata group="api" />
+      <apidata name="Render" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="visual">
+          <type api="T:System.Windows.UIElement" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Windows.Rect" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.HostingRenderTargetBitmap" ref="true" />
+      </containers>
+      <file name="6b736e71-1acd-f842-5840-26cfa94df56b" />
+    </api>
+    <api id="T:System.Windows.Interop.NavigationStateChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      <apidata name="NavigationStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+      </containers>
+      <file name="33d88bb9-9c17-d09d-206c-6e0cf2f7f00b" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Interop.NavigationStateChangedEventArgs">
+      <topicdata name="NavigationStateChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      <apidata name="NavigationStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.NavigationStateChangedEventArgs.#ctor(System.String,System.String)" />
+        <element api="P:System.Windows.Interop.NavigationStateChangedEventArgs.NewNavigationState" />
+        <element api="P:System.Windows.Interop.NavigationStateChangedEventArgs.PreviousNavigationState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      </containers>
+      <file name="29053e34-72f0-05f8-0a7a-7e4fb49a9c92" />
+    </api>
+    <api id="Methods.T:System.Windows.Interop.NavigationStateChangedEventArgs">
+      <topicdata name="NavigationStateChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      <apidata name="NavigationStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      </containers>
+      <file name="b56fdc5c-a723-fe49-c3de-7dca05f039e1" />
+    </api>
+    <api id="Properties.T:System.Windows.Interop.NavigationStateChangedEventArgs">
+      <topicdata name="NavigationStateChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      <apidata name="NavigationStateChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Interop.NavigationStateChangedEventArgs.NewNavigationState" />
+        <element api="P:System.Windows.Interop.NavigationStateChangedEventArgs.PreviousNavigationState" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" />
+      </containers>
+      <file name="b52dd262-c778-e6f3-28a2-31872de73c49" />
+    </api>
+    <api id="M:System.Windows.Interop.NavigationStateChangedEventArgs.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="previousNavigationState">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="newNavigationState">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="566bfc96-323a-2d1a-4cb6-7c202737c284" />
+    </api>
+    <api id="P:System.Windows.Interop.NavigationStateChangedEventArgs.NewNavigationState">
+      <topicdata group="api" />
+      <apidata name="NewNavigationState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NewNavigationState" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="2026a867-a080-8aa6-ba01-a2496c779bc6" />
+    </api>
+    <api id="P:System.Windows.Interop.NavigationStateChangedEventArgs.PreviousNavigationState">
+      <topicdata group="api" />
+      <apidata name="PreviousNavigationState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PreviousNavigationState" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" ref="true" />
+      </containers>
+      <file name="52cd80d1-6daa-9891-f549-9214a6a997f3" />
+    </api>
+    <api id="T:System.Windows.Interop.Settings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Interop.Settings" />
+      <apidata name="Settings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Settings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+      </containers>
+      <file name="2a8dde0a-89a1-731a-9d74-2e6635f32422" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Interop.Settings">
+      <topicdata name="Settings" group="list" subgroup="members" typeTopicId="T:System.Windows.Interop.Settings" />
+      <apidata name="Settings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Settings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.Settings.#ctor" />
+        <element api="P:System.Windows.Interop.Settings.DefaultDesignImage" />
+        <element api="P:System.Windows.Interop.Settings.EnableAutoZoom" />
+        <element api="P:System.Windows.Interop.Settings.EnableCacheVisualization" />
+        <element api="P:System.Windows.Interop.Settings.EnableFrameRateCounter" />
+        <element api="P:System.Windows.Interop.Settings.EnableGPUAcceleration" />
+        <element api="P:System.Windows.Interop.Settings.EnableHTMLAccess" />
+        <element api="P:System.Windows.Interop.Settings.EnableRedrawRegions" />
+        <element api="P:System.Windows.Interop.Settings.MaxFrameRate" />
+        <element api="P:System.Windows.Interop.Settings.Windowless" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" />
+      </containers>
+      <file name="291d6d62-53c1-2904-49e0-f088ca3cf788" />
+    </api>
+    <api id="Methods.T:System.Windows.Interop.Settings">
+      <topicdata name="Settings" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Interop.Settings" />
+      <apidata name="Settings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Settings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" />
+      </containers>
+      <file name="d9e9cb11-144e-e458-273e-2f8e1fe31fba" />
+    </api>
+    <api id="Properties.T:System.Windows.Interop.Settings">
+      <topicdata name="Settings" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Interop.Settings" />
+      <apidata name="Settings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Interop.Settings.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Interop.Settings.DefaultDesignImage" />
+        <element api="P:System.Windows.Interop.Settings.EnableAutoZoom" />
+        <element api="P:System.Windows.Interop.Settings.EnableCacheVisualization" />
+        <element api="P:System.Windows.Interop.Settings.EnableFrameRateCounter" />
+        <element api="P:System.Windows.Interop.Settings.EnableGPUAcceleration" />
+        <element api="P:System.Windows.Interop.Settings.EnableHTMLAccess" />
+        <element api="P:System.Windows.Interop.Settings.EnableRedrawRegions" />
+        <element api="P:System.Windows.Interop.Settings.MaxFrameRate" />
+        <element api="P:System.Windows.Interop.Settings.Windowless" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" />
+      </containers>
+      <file name="8d392cad-9721-67c2-37b4-e371a1e576ae" />
+    </api>
+    <api id="M:System.Windows.Interop.Settings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="a71cb9f7-3b93-2f98-157a-81002772a1b7" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.DefaultDesignImage">
+      <topicdata group="api" />
+      <apidata name="DefaultDesignImage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DefaultDesignImage" />
+      <setter name="set_DefaultDesignImage" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="f8e950b3-c43f-74ca-5ffb-eccbac8e209a" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.EnableAutoZoom">
+      <topicdata group="api" />
+      <apidata name="EnableAutoZoom" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableAutoZoom" />
+      <setter name="set_EnableAutoZoom" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="b6e59070-7195-8cc8-2a4e-44882523ab43" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.EnableCacheVisualization">
+      <topicdata group="api" />
+      <apidata name="EnableCacheVisualization" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableCacheVisualization" />
+      <setter name="set_EnableCacheVisualization" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="f0065d10-5cd4-1a29-49f0-301381978a51" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.EnableFrameRateCounter">
+      <topicdata group="api" />
+      <apidata name="EnableFrameRateCounter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableFrameRateCounter" />
+      <setter name="set_EnableFrameRateCounter" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="996f55bb-c267-5e8c-bc07-b91d9b02c712" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.EnableGPUAcceleration">
+      <topicdata group="api" />
+      <apidata name="EnableGPUAcceleration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EnableGPUAcceleration" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="8d3bb26f-c2ae-84c3-c0c6-99a6d062a1d4" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.EnableHTMLAccess">
+      <topicdata group="api" />
+      <apidata name="EnableHTMLAccess" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EnableHTMLAccess" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="a3680795-81fb-86c5-5ca9-2486d7e81d54" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.EnableRedrawRegions">
+      <topicdata group="api" />
+      <apidata name="EnableRedrawRegions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnableRedrawRegions" />
+      <setter name="set_EnableRedrawRegions" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="1cfff22c-d97f-f450-2d14-2914b515191a" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.MaxFrameRate">
+      <topicdata group="api" />
+      <apidata name="MaxFrameRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxFrameRate" />
+      <setter name="set_MaxFrameRate" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="2e620aa5-cddc-a1e7-e5f9-ffa8c433ed87" />
+    </api>
+    <api id="P:System.Windows.Interop.Settings.Windowless">
+      <topicdata group="api" />
+      <apidata name="Windowless" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Windowless" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </containers>
+      <file name="0687d146-ceb2-ffdb-777f-9997c463cdfd" />
+    </api>
+    <api id="T:System.Windows.Interop.SilverlightHost">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Interop.SilverlightHost" />
+      <apidata name="SilverlightHost" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Interop.SilverlightHost.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+      </containers>
+      <file name="1be553e0-720a-f2a5-3ff5-7f16ace091ae" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Interop.SilverlightHost">
+      <topicdata name="SilverlightHost" group="list" subgroup="members" typeTopicId="T:System.Windows.Interop.SilverlightHost" />
+      <apidata name="SilverlightHost" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Interop.SilverlightHost.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.SilverlightHost.#ctor" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Background" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Content" />
+        <element api="P:System.Windows.Interop.SilverlightHost.InitParams" />
+        <element api="P:System.Windows.Interop.SilverlightHost.IsLoaded" />
+        <element api="M:System.Windows.Interop.SilverlightHost.IsVersionSupported(System.String)" />
+        <element api="P:System.Windows.Interop.SilverlightHost.NavigationState" />
+        <element api="E:System.Windows.Interop.SilverlightHost.NavigationStateChanged" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Settings" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Source" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" />
+      </containers>
+      <file name="fc608272-2a80-3dc2-0752-d5dda1c1eee3" />
+    </api>
+    <api id="Methods.T:System.Windows.Interop.SilverlightHost">
+      <topicdata name="SilverlightHost" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Interop.SilverlightHost" />
+      <apidata name="SilverlightHost" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Interop.SilverlightHost.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Interop.SilverlightHost.IsVersionSupported(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" />
+      </containers>
+      <file name="6b56fe7b-a07b-c29a-293d-1a044e09c592" />
+    </api>
+    <api id="Properties.T:System.Windows.Interop.SilverlightHost">
+      <topicdata name="SilverlightHost" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Interop.SilverlightHost" />
+      <apidata name="SilverlightHost" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Interop.SilverlightHost.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Interop.SilverlightHost.Background" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Content" />
+        <element api="P:System.Windows.Interop.SilverlightHost.InitParams" />
+        <element api="P:System.Windows.Interop.SilverlightHost.IsLoaded" />
+        <element api="P:System.Windows.Interop.SilverlightHost.NavigationState" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Settings" />
+        <element api="P:System.Windows.Interop.SilverlightHost.Source" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" />
+      </containers>
+      <file name="dc2d144e-1dd8-3dba-c88c-ac224313f48a" />
+    </api>
+    <api id="Events.T:System.Windows.Interop.SilverlightHost">
+      <topicdata name="SilverlightHost" group="list" subgroup="Events" typeTopicId="T:System.Windows.Interop.SilverlightHost" />
+      <apidata name="SilverlightHost" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Interop.SilverlightHost.#ctor" />
+      <elements>
+        <element api="E:System.Windows.Interop.SilverlightHost.NavigationStateChanged" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" />
+      </containers>
+      <file name="a0487116-902f-dc2d-4ccd-366627be15ca" />
+    </api>
+    <api id="M:System.Windows.Interop.SilverlightHost.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="b162ffef-271b-7b60-b831-4f99bf1d2c3e" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.Background">
+      <topicdata group="api" />
+      <apidata name="Background" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Background" />
+      <returns>
+        <type api="T:System.Windows.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="23ede05c-7399-0595-b647-d20c63955fc3" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Content" />
+      <returns>
+        <type api="T:System.Windows.Interop.Content" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="4fc92b3e-f15c-e776-caf1-796d2bfb9c62" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.InitParams">
+      <topicdata group="api" />
+      <apidata name="InitParams" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InitParams" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="6bd1a15d-5a11-6082-c4a4-0012a6a2e07d" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.IsLoaded">
+      <topicdata group="api" />
+      <apidata name="IsLoaded" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsLoaded" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="68ab12ba-de3f-136a-277c-cffb6b0f40c7" />
+    </api>
+    <api id="M:System.Windows.Interop.SilverlightHost.IsVersionSupported(System.String)">
+      <topicdata group="api" />
+      <apidata name="IsVersionSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="versionStr">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="833b3d22-3efb-8a35-84ce-b76558de80d7" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.NavigationState">
+      <topicdata group="api" />
+      <apidata name="NavigationState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NavigationState" />
+      <setter name="set_NavigationState" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="2dfaf499-ac1c-05a4-001c-e2427f427bd8" />
+    </api>
+    <api id="E:System.Windows.Interop.SilverlightHost.NavigationStateChanged">
+      <topicdata group="api" />
+      <apidata name="NavigationStateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_NavigationStateChanged" />
+      <remover name="remove_NavigationStateChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Interop.NavigationStateChangedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="6b315d58-d10c-3919-8dea-ae65c2fc0e17" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.Settings">
+      <topicdata group="api" />
+      <apidata name="Settings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Settings" />
+      <returns>
+        <type api="T:System.Windows.Interop.Settings" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="3f88fe51-a714-aad8-afd3-d7dfff5fce22" />
+    </api>
+    <api id="P:System.Windows.Interop.SilverlightHost.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Source" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Interop" />
+        <type api="T:System.Windows.Interop.SilverlightHost" ref="true" />
+      </containers>
+      <file name="8f3f787b-87ea-36b2-f2e2-c5d2f43b44eb" />
+    </api>
+  </apis>
+</reflection>

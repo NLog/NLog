@@ -1,0 +1,737 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Xml.XPath">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.XPath.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.XPath.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Xml.XPath.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\Tools\devdiv\silverlightpublickey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Xml.Xsl">
+      <topicdata group="api" />
+      <apidata name="System.Xml.Xsl" group="namespace" />
+      <elements>
+        <element api="T:System.Xml.Xsl.XsltContext" />
+        <element api="T:System.Xml.Xsl.IXsltContextFunction" />
+        <element api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </elements>
+      <file name="ff0c843b-0669-e87c-5d6e-daf1c378f461" />
+    </api>
+    <api id="T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="702a21d0-fddd-3cab-8e26-8a80b4932ba5" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata name="IXsltContextFunction" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ArgTypes" />
+        <element api="M:System.Xml.Xsl.IXsltContextFunction.Invoke(System.Xml.Xsl.XsltContext,System.Object[],System.Xml.XPath.XPathNavigator)" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Maxargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Minargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ReturnType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" />
+      </containers>
+      <file name="558adfaf-a45b-24d6-6ae5-8d06f3476fab" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata name="IXsltContextFunction" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Xml.Xsl.IXsltContextFunction.Invoke(System.Xml.Xsl.XsltContext,System.Object[],System.Xml.XPath.XPathNavigator)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" />
+      </containers>
+      <file name="f6dc678c-3558-1bcc-2225-6820419fe1ce" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.IXsltContextFunction">
+      <topicdata name="IXsltContextFunction" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.IXsltContextFunction" />
+      <apidata name="IXsltContextFunction" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ArgTypes" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Maxargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.Minargs" />
+        <element api="P:System.Xml.Xsl.IXsltContextFunction.ReturnType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" />
+      </containers>
+      <file name="d08f0bf1-e408-541e-5d46-e31b38011b51" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.ArgTypes">
+      <topicdata group="api" />
+      <apidata name="ArgTypes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ArgTypes" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="112c14e3-6fb5-9fe7-7a77-029933eb5f31" />
+    </api>
+    <api id="M:System.Xml.Xsl.IXsltContextFunction.Invoke(System.Xml.Xsl.XsltContext,System.Object[],System.Xml.XPath.XPathNavigator)">
+      <topicdata group="api" />
+      <apidata name="Invoke" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="xsltContext">
+          <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+        </parameter>
+        <parameter name="args">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="docContext">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="26d3d74d-8105-1a7a-d877-e25900370b8d" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.Maxargs">
+      <topicdata group="api" />
+      <apidata name="Maxargs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Maxargs" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="41b757f7-9624-bdc2-ff89-39f78a412b1d" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.Minargs">
+      <topicdata group="api" />
+      <apidata name="Minargs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Minargs" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="36a2cd4b-9c2b-1d1b-b4d4-b5c047a9b82a" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextFunction.ReturnType">
+      <topicdata group="api" />
+      <apidata name="ReturnType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ReturnType" />
+      <returns>
+        <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </containers>
+      <file name="3e274879-67e7-88e4-a4e1-c93ca8168da6" />
+    </api>
+    <api id="T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="d2571653-4d00-007b-1639-d7f33703da28" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata name="IXsltContextVariable" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Xml.Xsl.IXsltContextVariable.Evaluate(System.Xml.Xsl.XsltContext)" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsLocal" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsParam" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.VariableType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </containers>
+      <file name="ea198848-5caa-fc8e-4e8a-49d9f7b72cc2" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata name="IXsltContextVariable" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Xml.Xsl.IXsltContextVariable.Evaluate(System.Xml.Xsl.XsltContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </containers>
+      <file name="6bca8373-8b51-3c4a-aa1a-308fc893228c" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.IXsltContextVariable">
+      <topicdata name="IXsltContextVariable" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.IXsltContextVariable" />
+      <apidata name="IXsltContextVariable" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsLocal" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.IsParam" />
+        <element api="P:System.Xml.Xsl.IXsltContextVariable.VariableType" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" />
+      </containers>
+      <file name="5de9193f-7d6f-64e7-cc12-a0226e88c633" />
+    </api>
+    <api id="M:System.Xml.Xsl.IXsltContextVariable.Evaluate(System.Xml.Xsl.XsltContext)">
+      <topicdata group="api" />
+      <apidata name="Evaluate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="xsltContext">
+          <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="fc7635f5-4131-8cde-85eb-1be860387f35" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextVariable.IsLocal">
+      <topicdata group="api" />
+      <apidata name="IsLocal" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsLocal" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="8bcad1ea-8a54-1480-9434-db68bef07fc7" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextVariable.IsParam">
+      <topicdata group="api" />
+      <apidata name="IsParam" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsParam" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="32dcae5a-1e94-cd76-471d-53d880980e8b" />
+    </api>
+    <api id="P:System.Xml.Xsl.IXsltContextVariable.VariableType">
+      <topicdata group="api" />
+      <apidata name="VariableType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_VariableType" />
+      <returns>
+        <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </containers>
+      <file name="20e13784-4fe1-9d53-fa63-d99e14b02d89" />
+    </api>
+    <api id="T:System.Xml.Xsl.XsltContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Xml.XmlNamespaceManager" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+      </containers>
+      <file name="f6c0455e-196c-980d-0afb-3b7583167983" />
+    </api>
+    <api id="AllMembers.T:System.Xml.Xsl.XsltContext">
+      <topicdata name="XsltContext" group="list" subgroup="members" typeTopicId="T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)" />
+        <element api="P:System.Xml.XmlNamespaceManager.DefaultNamespace" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetEnumerator" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)" />
+        <element api="M:System.Xml.XmlNamespaceManager.HasNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupPrefix(System.String)" />
+        <element api="P:System.Xml.XmlNamespaceManager.NameTable" />
+        <element api="M:System.Xml.XmlNamespaceManager.PopScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.PushScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)" />
+        <element api="Overload:System.Xml.Xsl.XsltContext.#ctor">
+          <element api="M:System.Xml.Xsl.XsltContext.#ctor" />
+          <element api="M:System.Xml.Xsl.XsltContext.#ctor(System.Xml.NameTable)" />
+        </element>
+        <element api="M:System.Xml.Xsl.XsltContext.CompareDocument(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveVariable(System.String,System.String)" />
+        <element api="P:System.Xml.Xsl.XsltContext.Whitespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" />
+      </containers>
+      <file name="f89eb41e-5cd5-7871-9ce4-c4727864ca2e" />
+    </api>
+    <api id="Methods.T:System.Xml.Xsl.XsltContext">
+      <topicdata name="XsltContext" group="list" subgroup="Methods" typeTopicId="T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetEnumerator" />
+        <element api="M:System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)" />
+        <element api="M:System.Xml.XmlNamespaceManager.HasNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupNamespace(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.LookupPrefix(System.String)" />
+        <element api="M:System.Xml.XmlNamespaceManager.PopScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.PushScope" />
+        <element api="M:System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltContext.CompareDocument(System.String,System.String)" />
+        <element api="M:System.Xml.Xsl.XsltContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])" />
+        <element api="M:System.Xml.Xsl.XsltContext.ResolveVariable(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" />
+      </containers>
+      <file name="9009f0e9-fbaa-919f-cf71-bab0afcffd16" />
+    </api>
+    <api id="Properties.T:System.Xml.Xsl.XsltContext">
+      <topicdata name="XsltContext" group="list" subgroup="Properties" typeTopicId="T:System.Xml.Xsl.XsltContext" />
+      <apidata name="XsltContext" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Xml.XmlNamespaceManager.DefaultNamespace" />
+        <element api="P:System.Xml.XmlNamespaceManager.NameTable" />
+        <element api="P:System.Xml.Xsl.XsltContext.Whitespace" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" />
+      </containers>
+      <file name="e89278ce-22e1-1a66-f654-6c5581a6a595" />
+    </api>
+    <api id="Overload:System.Xml.Xsl.XsltContext.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Xml.Xsl.XsltContext" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Xml.Xsl.XsltContext.#ctor" />
+        <element api="M:System.Xml.Xsl.XsltContext.#ctor(System.Xml.NameTable)" />
+      </elements>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="58f11200-38f0-8fd2-b159-80e03169779b" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Xml.Xsl.XsltContext.#ctor" />
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="b9b84c49-95a2-cd15-a9ae-f10862fecbfd" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.#ctor(System.Xml.NameTable)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" overload="Overload:System.Xml.Xsl.XsltContext.#ctor" />
+      <parameters>
+        <parameter name="table">
+          <type api="T:System.Xml.NameTable" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="42a59538-0a6e-2d37-6e10-e062721ffd17" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.CompareDocument(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="CompareDocument" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="baseUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="nextbaseUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="86baa877-6226-4394-bd76-a4aa678a5b07" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.PreserveWhitespace(System.Xml.XPath.XPathNavigator)">
+      <topicdata group="api" />
+      <apidata name="PreserveWhitespace" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="node">
+          <type api="T:System.Xml.XPath.XPathNavigator" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="61ec4b4d-2ec5-7c09-6e06-97aabab1390d" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.ResolveFunction(System.String,System.String,System.Xml.XPath.XPathResultType[])">
+      <topicdata group="api" />
+      <apidata name="ResolveFunction" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="ArgTypes">
+          <arrayOf rank="1">
+            <type api="T:System.Xml.XPath.XPathResultType" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.Xsl.IXsltContextFunction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="9fd39143-c829-8078-a331-a535601c48f7" />
+    </api>
+    <api id="M:System.Xml.Xsl.XsltContext.ResolveVariable(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="ResolveVariable" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="prefix">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.Xsl.IXsltContextVariable" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="6bb4f067-1359-6872-bf44-f1698959476b" />
+    </api>
+    <api id="P:System.Xml.Xsl.XsltContext.Whitespace">
+      <topicdata group="api" />
+      <apidata name="Whitespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Whitespace" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Xml.XPath" module="System.Xml.XPath" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.00" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Xml.Xsl" />
+        <type api="T:System.Xml.Xsl.XsltContext" ref="true" />
+      </containers>
+      <file name="decd17ba-ed5d-6237-f48e-f06d15813caf" />
+    </api>
+  </apis>
+</reflection>

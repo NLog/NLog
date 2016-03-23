@@ -1,0 +1,1303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Geolocation.Geofencing">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Geolocation.Geofencing" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" />
+        <element api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" />
+        <element api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" />
+        <element api="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason" />
+        <element api="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+        <element api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+        <element api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      </elements>
+      <file name="e43366dd-fe69-0a22-9ac4-9a97fcc3b933" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.Geofence">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      <apidata name="Geofence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.IGeofence" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="367fbcde-c82c-2f5f-da0b-f0562f398d45" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Geolocation.Geofencing.Geofence">
+      <topicdata name="Geofence" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      <apidata name="Geofence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor">
+          <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape)" />
+          <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean)" />
+          <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean,Windows.Foundation.TimeSpan)" />
+          <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean,Windows.Foundation.TimeSpan,Windows.Foundation.DateTime,Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.Duration" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.DwellTime" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.Geoshape" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.Id" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.MonitoredStates" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.SingleUse" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.StartTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      </containers>
+      <file name="5eb9ce86-533f-7f89-b60b-8a0d3577e546" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Geolocation.Geofencing.Geofence">
+      <topicdata name="Geofence" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      <apidata name="Geofence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      </containers>
+      <file name="800121d6-7eba-9dbb-74a9-67c87c2fe227" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Geolocation.Geofencing.Geofence">
+      <topicdata name="Geofence" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      <apidata name="Geofence" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.Duration" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.DwellTime" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.Geoshape" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.Id" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.MonitoredStates" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.SingleUse" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.Geofence.StartTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      </containers>
+      <file name="54ac9b3a-b2af-cb03-6767-f363cfe97047" />
+    </api>
+    <api id="Overload:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Geolocation.Geofencing.Geofence" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape)" />
+        <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean)" />
+        <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean,Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean,Windows.Foundation.TimeSpan,Windows.Foundation.DateTime,Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="e7ec224b-29bc-c8c3-36bf-a376b8ef806a" />
+    </api>
+    <api id="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="geoshape" in="true">
+          <type api="T:Windows.Devices.Geolocation.IGeoshape" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="a88b5ec3-e56c-7d22-b638-6fe005e95be4" />
+    </api>
+    <api id="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="geoshape" in="true">
+          <type api="T:Windows.Devices.Geolocation.IGeoshape" ref="true" />
+        </parameter>
+        <parameter name="monitoredStates" in="true">
+          <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+        </parameter>
+        <parameter name="singleUse" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="0de11205-4db7-381d-35f0-627246e6ff8a" />
+    </api>
+    <api id="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="geoshape" in="true">
+          <type api="T:Windows.Devices.Geolocation.IGeoshape" ref="true" />
+        </parameter>
+        <parameter name="monitoredStates" in="true">
+          <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+        </parameter>
+        <parameter name="singleUse" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="dwellTime" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="8333b06d-e9b8-1d88-37a6-5be5f81a7136" />
+    </api>
+    <api id="M:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor(System.String,Windows.Devices.Geolocation.IGeoshape,Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates,System.Boolean,Windows.Foundation.TimeSpan,Windows.Foundation.DateTime,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.Devices.Geolocation.Geofencing.Geofence.#ctor" />
+      <parameters>
+        <parameter name="id" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="geoshape" in="true">
+          <type api="T:Windows.Devices.Geolocation.IGeoshape" ref="true" />
+        </parameter>
+        <parameter name="monitoredStates" in="true">
+          <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+        </parameter>
+        <parameter name="singleUse" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="dwellTime" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="startTime" in="true">
+          <type api="T:System.DateTimeOffset" ref="false" />
+        </parameter>
+        <parameter name="duration" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="14b5dc13-62a3-08a2-9c1e-a87fdaf48a37" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="bcc7ca44-af2a-d6fb-1c5d-51f96d95d95a" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.DwellTime">
+      <topicdata group="api" />
+      <apidata name="DwellTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DwellTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="e79a8992-826d-6ca7-eb1f-2b0ce1c53a73" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.Geoshape">
+      <topicdata group="api" />
+      <apidata name="Geoshape" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Geoshape" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.IGeoshape" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="c1c2fcaa-e813-5615-63c4-46277e66761a" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="3c24bb96-3a16-2781-d009-ed58b5f90d6d" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.MonitoredStates">
+      <topicdata group="api" />
+      <apidata name="MonitoredStates" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MonitoredStates" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="4c0f1114-04d5-de45-a880-4c07209f7525" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.SingleUse">
+      <topicdata group="api" />
+      <apidata name="SingleUse" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SingleUse" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="c8de7932-df84-84a3-c2fe-81b22f8db3d0" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.Geofence.StartTime">
+      <topicdata group="api" />
+      <apidata name="StartTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_StartTime" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </containers>
+      <file name="05425600-ff53-fcfc-c95d-1c2091962199" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      <apidata name="GeofenceMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.IGeofenceMonitor" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="58fffe69-f9fc-31c7-6440-76b234958be8" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor">
+      <topicdata name="GeofenceMonitor" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      <apidata name="GeofenceMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Current" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Geofences" />
+        <element api="E:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.GeofenceStateChanged" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.LastKnownGeoposition" />
+        <element api="M:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.ReadReports" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Status" />
+        <element api="E:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.StatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      </containers>
+      <file name="dac0bd64-2a3f-2967-52d4-37a7d276f579" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor">
+      <topicdata name="GeofenceMonitor" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      <apidata name="GeofenceMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.ReadReports" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      </containers>
+      <file name="8640d19a-b3a3-f2e7-271a-4597f2ed5811" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor">
+      <topicdata name="GeofenceMonitor" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      <apidata name="GeofenceMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Current" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Geofences" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.LastKnownGeoposition" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Status" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      </containers>
+      <file name="d89c8ede-6357-98f6-ffc9-3d4cf977cbd9" />
+    </api>
+    <api id="Events.T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor">
+      <topicdata name="GeofenceMonitor" group="list" subgroup="Events" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      <apidata name="GeofenceMonitor" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.GeofenceStateChanged" />
+        <element api="E:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.StatusChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" />
+      </containers>
+      <file name="127aeac6-30aa-a44e-0283-553728f19acb" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="920f0294-c8ac-e7da-9a83-16393cdc9456" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Geofences">
+      <topicdata group="api" />
+      <apidata name="Geofences" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Geofences" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="e5007318-da9e-5737-92cf-1f7b4f1c09bf" />
+    </api>
+    <api id="E:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.GeofenceStateChanged">
+      <topicdata group="api" />
+      <apidata name="GeofenceStateChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_GeofenceStateChanged" />
+      <remover name="remove_GeofenceStateChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="e0116ba2-8e34-c061-2175-935901375242" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.LastKnownGeoposition">
+      <topicdata group="api" />
+      <apidata name="LastKnownGeoposition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LastKnownGeoposition" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geoposition" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="50587847-fe05-6a9a-9340-980389c6159e" />
+    </api>
+    <api id="M:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.ReadReports">
+      <topicdata group="api" />
+      <apidata name="ReadReports" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="0b5f619a-1a10-4db7-bf8a-9cafd2465884" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="81d21f86-c981-f1b8-1373-602a86bd1ae9" />
+    </api>
+    <api id="E:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor.StatusChanged">
+      <topicdata group="api" />
+      <apidata name="StatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StatusChanged" />
+      <remover name="remove_StatusChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitor" ref="true" />
+      </containers>
+      <file name="e812f4cd-136b-90c9-faf4-6df489b1ae3e" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus">
+      <topicdata group="api" />
+      <apidata name="GeofenceMonitorStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.Ready" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.Initializing" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.NoData" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.Disabled" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.NotInitialized" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.NotAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8e5011b2-8a59-b637-e9e1-6edbb5dfa106" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </containers>
+      <file name="910caa4f-10ec-6bce-94f6-d96716d45c15" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.Initializing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Initializing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </containers>
+      <file name="8cdfd4c1-c1b9-6fd3-04c3-5e82693af0da" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.NoData">
+      <topicdata group="api" notopic="" />
+      <apidata name="NoData" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </containers>
+      <file name="e45ce951-fd42-070a-68fb-8ae8e9da3958" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.NotAvailable">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotAvailable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </containers>
+      <file name="9b7a860d-e5c4-52c7-4327-71b42cf89713" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.NotInitialized">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotInitialized" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </containers>
+      <file name="de5f0b38-bd7a-6d3d-52a5-5c489bbf5393" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus.Ready">
+      <topicdata group="api" notopic="" />
+      <apidata name="Ready" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceMonitorStatus" ref="false" />
+      </containers>
+      <file name="a510f80a-4a2d-ffb0-89b6-be43ba365b18" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason">
+      <topicdata group="api" />
+      <apidata name="GeofenceRemovalReason" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason.Used" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason.Expired" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9933c7e0-c782-ea16-a6ed-e480a5672eb0" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason.Expired">
+      <topicdata group="api" notopic="" />
+      <apidata name="Expired" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason" ref="false" />
+      </containers>
+      <file name="5caf27a8-746e-61a2-523f-4227bfbf8e5d" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason.Used">
+      <topicdata group="api" notopic="" />
+      <apidata name="Used" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason" ref="false" />
+      </containers>
+      <file name="03ffedbf-5662-6653-10ac-6a6cd1fcf630" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.GeofenceState">
+      <topicdata group="api" />
+      <apidata name="GeofenceState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.None" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.Entered" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.Exited" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.Removed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="311494a5-2586-8537-f4dc-aeb69bf87211" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.Entered">
+      <topicdata group="api" notopic="" />
+      <apidata name="Entered" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </containers>
+      <file name="a81af3b7-8fb6-5fea-2810-c32fecc95911" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.Exited">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exited" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </containers>
+      <file name="4cf40934-37d1-51eb-b33c-c47e97477016" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </containers>
+      <file name="284d5688-6567-f204-d0cb-9835d633792f" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.GeofenceState.Removed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Removed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </containers>
+      <file name="b57e47c0-a261-414d-340a-4c4f886ee883" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      <apidata name="GeofenceStateChangeReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.IGeofenceStateChangeReport" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="453c1719-6ed5-66f9-f024-00af03c46298" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport">
+      <topicdata name="GeofenceStateChangeReport" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      <apidata name="GeofenceStateChangeReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.Geofence" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.Geoposition" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.NewState" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.RemovalReason" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      </containers>
+      <file name="daf71564-d362-5d61-cb1c-9508e888a4a0" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport">
+      <topicdata name="GeofenceStateChangeReport" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      <apidata name="GeofenceStateChangeReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      </containers>
+      <file name="9980764a-df82-ffca-dffc-e0cb290b82b7" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport">
+      <topicdata name="GeofenceStateChangeReport" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      <apidata name="GeofenceStateChangeReport" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.Geofence" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.Geoposition" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.NewState" />
+        <element api="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.RemovalReason" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" />
+      </containers>
+      <file name="0c21bf94-4525-b85e-a363-79342184de90" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.Geofence">
+      <topicdata group="api" />
+      <apidata name="Geofence" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Geofence" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.Geofence" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" ref="true" />
+      </containers>
+      <file name="96d9977f-5306-8db2-c933-151ec03e6dbb" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.Geoposition">
+      <topicdata group="api" />
+      <apidata name="Geoposition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Geoposition" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geoposition" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" ref="true" />
+      </containers>
+      <file name="bd09c4f6-5de3-cd82-fa45-a14ad8072c1c" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.NewState">
+      <topicdata group="api" />
+      <apidata name="NewState" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NewState" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" ref="true" />
+      </containers>
+      <file name="d4bfec97-49a7-1598-fd61-1bb11efe9b4e" />
+    </api>
+    <api id="P:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport.RemovalReason">
+      <topicdata group="api" />
+      <apidata name="RemovalReason" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_RemovalReason" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceRemovalReason" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.GeofenceStateChangeReport" ref="true" />
+      </containers>
+      <file name="8198674a-07cb-6728-ded2-33f305cad7f9" />
+    </api>
+    <api id="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates">
+      <topicdata group="api" />
+      <apidata name="MonitoredGeofenceStates" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.None" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.Entered" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.Exited" />
+        <element api="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.Removed" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="280925ab-6a32-390f-f722-173f9a39283c" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.Entered">
+      <topicdata group="api" notopic="" />
+      <apidata name="Entered" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </containers>
+      <file name="1cc9729d-7375-8404-d0af-3984eace4920" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.Exited">
+      <topicdata group="api" notopic="" />
+      <apidata name="Exited" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </containers>
+      <file name="386636a6-bb59-8825-3f2a-7f44f816aabc" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </containers>
+      <file name="c220de6d-623c-783f-07cb-245c454b468d" />
+    </api>
+    <api id="F:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates.Removed">
+      <topicdata group="api" notopic="" />
+      <apidata name="Removed" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Geolocation.Geofencing" />
+        <type api="T:Windows.Devices.Geolocation.Geofencing.MonitoredGeofenceStates" ref="false" />
+      </containers>
+      <file name="ae6302cf-d7b5-40e1-a98a-e38db5e7c315" />
+    </api>
+  </apis>
+</reflection>

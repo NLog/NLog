@@ -1,0 +1,1485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Devices.Bluetooth.Rfcomm">
+      <topicdata group="api" />
+      <apidata name="Windows.Devices.Bluetooth.Rfcomm" group="namespace" />
+      <elements>
+        <element api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+        <element api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+        <element api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      </elements>
+      <file name="64284f9f-87c2-c9d2-a37d-c682a865b0e1" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      <apidata name="RfcommDeviceService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Foundation.IClosable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="c9c08fec-5fc7-93cd-1a9f-de0e766a19d8" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService">
+      <topicdata name="RfcommDeviceService" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      <apidata name="RfcommDeviceService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.Close">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ConnectionHostName" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ConnectionServiceName" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.Device">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetDeviceSelector(Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId)" />
+        <element api="Overload:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync">
+          <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync" />
+          <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync(Windows.Devices.Bluetooth.BluetoothCacheMode)" />
+        </element>
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.MaxProtectionLevel" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ProtectionLevel" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ServiceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      </containers>
+      <file name="67102e07-cb94-87ac-b819-4eaafecefa46" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService">
+      <topicdata name="RfcommDeviceService" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      <apidata name="RfcommDeviceService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.Close">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.FromIdAsync(System.String)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetDeviceSelector(Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId)" />
+        <element api="Overload:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync">
+          <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync" />
+          <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync(Windows.Devices.Bluetooth.BluetoothCacheMode)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      </containers>
+      <file name="eaf4bfea-4f44-36b3-fc31-d3483d2ed244" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService">
+      <topicdata name="RfcommDeviceService" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      <apidata name="RfcommDeviceService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ConnectionHostName" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ConnectionServiceName" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.Device">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.MaxProtectionLevel" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ProtectionLevel" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ServiceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      </containers>
+      <file name="763d5fae-117f-61da-ab10-8568ae92e820" />
+    </api>
+    <api id="Overload:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync">
+      <topicdata name="GetSdpRawAttributesAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" />
+      <apidata name="GetSdpRawAttributesAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync(Windows.Devices.Bluetooth.BluetoothCacheMode)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="182f5eb3-9c2e-c450-cede-6f3b06f74d25" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.Close">
+      <topicdata group="api" />
+      <apidata name="Close" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.Foundation.IClosable.Close">
+          <type api="T:Windows.Foundation.IClosable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="8bcacf4e-d7b1-6ae1-feff-a52a30ec3af8" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ConnectionHostName">
+      <topicdata group="api" />
+      <apidata name="ConnectionHostName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionHostName" />
+      <returns>
+        <type api="T:Windows.Networking.HostName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="77e58ba5-165d-2942-03c3-95fe73da7ba7" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ConnectionServiceName">
+      <topicdata group="api" />
+      <apidata name="ConnectionServiceName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ConnectionServiceName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="efbdbc5d-0f30-2a8d-2c81-78443ffe3ee0" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.Device">
+      <topicdata group="api" />
+      <apidata name="Device" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Device" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.BluetoothDevice" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="d890ccb6-1482-ce36-de78-e132f64d705b" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.FromIdAsync(System.String)">
+      <topicdata group="api" />
+      <apidata name="FromIdAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="deviceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="4b518cf3-c3a1-bdbe-1e8c-cb103b7f2264" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetDeviceSelector(Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId)">
+      <topicdata group="api" />
+      <apidata name="GetDeviceSelector" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceId" in="true">
+          <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="94e7ca44-8d8d-3841-22ab-3ae95150b370" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync">
+      <topicdata group="api" />
+      <apidata name="GetSdpRawAttributesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.UInt32" ref="false" />
+                <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetSdpRawAttributesAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="58f15a52-d827-0b25-ce36-929b059c263e" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync(Windows.Devices.Bluetooth.BluetoothCacheMode)">
+      <topicdata group="api" />
+      <apidata name="GetSdpRawAttributesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.GetSdpRawAttributesAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="cacheMode" in="true">
+          <type api="T:Windows.Devices.Bluetooth.BluetoothCacheMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyDictionary`2" ref="true">
+              <specialization>
+                <type api="T:System.UInt32" ref="false" />
+                <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetSdpRawAttributesWithCacheModeAsync</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="96237a9a-5493-8966-6b57-37b2820e83cf" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.MaxProtectionLevel">
+      <topicdata group="api" />
+      <apidata name="MaxProtectionLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MaxProtectionLevel" />
+      <returns>
+        <type api="T:Windows.Networking.Sockets.SocketProtectionLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="3f518a8c-b9b3-48d7-2955-06a1336c3c0c" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ProtectionLevel">
+      <topicdata group="api" />
+      <apidata name="ProtectionLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProtectionLevel" />
+      <returns>
+        <type api="T:Windows.Networking.Sockets.SocketProtectionLevel" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="a35b7665-c966-0ba5-dc31-48ddc64981ea" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService.ServiceId">
+      <topicdata group="api" />
+      <apidata name="ServiceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ServiceId" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommDeviceService" ref="true" />
+      </containers>
+      <file name="62918ff5-f5da-b5bc-6667-a6ebe16b4d81" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      <apidata name="RfcommServiceId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e1b3198c-a891-32dc-0efa-6fc658bb67f8" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId">
+      <topicdata name="RfcommServiceId" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      <apidata name="RfcommServiceId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.AsShortId" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.AsString" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.FromShortId(System.UInt32)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.FromUuid(System.Guid)" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.GenericFileTransfer" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.ObexFileTransfer" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.ObexObjectPush" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.PhoneBookAccessPce" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.PhoneBookAccessPse" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.SerialPort" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.Uuid" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      </containers>
+      <file name="b6c50708-47f4-0584-1492-0d9d331abc85" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId">
+      <topicdata name="RfcommServiceId" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      <apidata name="RfcommServiceId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.AsShortId" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.AsString" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.FromShortId(System.UInt32)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.FromUuid(System.Guid)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      </containers>
+      <file name="d3d0d0fe-eced-2f71-c3a9-d91b9a93669b" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId">
+      <topicdata name="RfcommServiceId" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      <apidata name="RfcommServiceId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.GenericFileTransfer" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.ObexFileTransfer" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.ObexObjectPush" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.PhoneBookAccessPce" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.PhoneBookAccessPse" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.SerialPort" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.Uuid" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" />
+      </containers>
+      <file name="dac2ca09-ad09-3e88-bdf4-a127e82f4229" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.AsShortId">
+      <topicdata group="api" />
+      <apidata name="AsShortId" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="48f71650-5d5e-186f-c3f7-24fc4237d568" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.AsString">
+      <topicdata group="api" />
+      <apidata name="AsString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="319beb1a-2f43-5b17-18f6-b5938c30a590" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.FromShortId(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="FromShortId" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="shortId" in="true">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="2ca41624-6654-5b57-89f6-9dbf19ed7818" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.FromUuid(System.Guid)">
+      <topicdata group="api" />
+      <apidata name="FromUuid" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uuid" in="true">
+          <type api="T:System.Guid" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="3d349325-0227-6552-38ea-4f19418e0585" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.GenericFileTransfer">
+      <topicdata group="api" />
+      <apidata name="GenericFileTransfer" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GenericFileTransfer" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="49a0d9cd-10d8-e099-02f4-1faa810d6f7f" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.ObexFileTransfer">
+      <topicdata group="api" />
+      <apidata name="ObexFileTransfer" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ObexFileTransfer" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="a17d3d56-1d09-db73-3a56-c80fb19dff42" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.ObexObjectPush">
+      <topicdata group="api" />
+      <apidata name="ObexObjectPush" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ObexObjectPush" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="eba81835-e9e7-6d5c-6e74-af07b4186aa1" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.PhoneBookAccessPce">
+      <topicdata group="api" />
+      <apidata name="PhoneBookAccessPce" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PhoneBookAccessPce" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="002f8aa6-eeae-dd6d-4799-ac80a034d82f" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.PhoneBookAccessPse">
+      <topicdata group="api" />
+      <apidata name="PhoneBookAccessPse" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PhoneBookAccessPse" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="bce2b5e1-81d1-f933-1348-918a31098736" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.SerialPort">
+      <topicdata group="api" />
+      <apidata name="SerialPort" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SerialPort" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="d74eb903-0574-75ec-08ff-b0b8145f161a" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId.Uuid">
+      <topicdata group="api" />
+      <apidata name="Uuid" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Uuid" />
+      <returns>
+        <type api="T:System.Guid" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </containers>
+      <file name="4e34a930-c080-277f-22ef-be3125259f36" />
+    </api>
+    <api id="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      <apidata name="RfcommServiceProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="31064cf6-5f13-4179-0c43-79ecb9bffe56" />
+    </api>
+    <api id="AllMembers.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider">
+      <topicdata name="RfcommServiceProvider" group="list" subgroup="members" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      <apidata name="RfcommServiceProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.CreateAsync(Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId)" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.SdpRawAttributes" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.ServiceId" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.StartAdvertising(Windows.Networking.Sockets.StreamSocketListener)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.StopAdvertising" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      </containers>
+      <file name="01d78d8c-a274-b548-83af-8e286c3ca277" />
+    </api>
+    <api id="Methods.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider">
+      <topicdata name="RfcommServiceProvider" group="list" subgroup="Methods" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      <apidata name="RfcommServiceProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.CreateAsync(Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.StartAdvertising(Windows.Networking.Sockets.StreamSocketListener)" />
+        <element api="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.StopAdvertising" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      </containers>
+      <file name="b0a99596-14fd-8616-a3ed-f3c68e77ccd9" />
+    </api>
+    <api id="Properties.T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider">
+      <topicdata name="RfcommServiceProvider" group="list" subgroup="Properties" typeTopicId="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      <apidata name="RfcommServiceProvider" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.SdpRawAttributes" />
+        <element api="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.ServiceId" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" />
+      </containers>
+      <file name="40c09b8e-5495-71b2-1440-4823f3ea9ec1" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.CreateAsync(Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId)">
+      <topicdata group="api" />
+      <apidata name="CreateAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceId" in="true">
+          <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="6fba8ae1-0c50-18ca-b04c-e9a7bb6dc2a8" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.SdpRawAttributes">
+      <topicdata group="api" />
+      <apidata name="SdpRawAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SdpRawAttributes" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.UInt32" ref="false" />
+            <type api="T:Windows.Storage.Streams.IBuffer" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" ref="true" />
+      </containers>
+      <file name="3ead229d-1f73-f14f-6d42-2634f007c689" />
+    </api>
+    <api id="P:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.ServiceId">
+      <topicdata group="api" />
+      <apidata name="ServiceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ServiceId" />
+      <returns>
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" ref="true" />
+      </containers>
+      <file name="c9a2fdad-7d3d-8959-78c9-f01574b92d7f" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.StartAdvertising(Windows.Networking.Sockets.StreamSocketListener)">
+      <topicdata group="api" />
+      <apidata name="StartAdvertising" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="listener" in="true">
+          <type api="T:Windows.Networking.Sockets.StreamSocketListener" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" ref="true" />
+      </containers>
+      <file name="eef2bded-8aba-6029-ea90-1a41b91759b7" />
+    </api>
+    <api id="M:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider.StopAdvertising">
+      <topicdata group="api" />
+      <apidata name="StopAdvertising" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Devices.Bluetooth.Rfcomm" />
+        <type api="T:Windows.Devices.Bluetooth.Rfcomm.RfcommServiceProvider" ref="true" />
+      </containers>
+      <file name="8188139d-765f-57a9-2a4d-ff64c45188d2" />
+    </api>
+  </apis>
+</reflection>

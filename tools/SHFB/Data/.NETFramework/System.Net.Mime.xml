@@ -1,0 +1,1439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c800000140100000602000000240000525341310008000001000100613399aff18ef1a2c2514a273a42d9042b72321f1757102df9ebada69923e2738406c21e5b801552ab8d200a65a235e001ac9adc25f2d811eb09496a4c6a59d4619589c69f5baf0c4179a47311d92555cd006acc8b5959f2bd6e10e360c34537a1d266da8085856583c85d81da7f3ec01ed9564c58d93d713cd0172c8e23a10f0239b80c96b07736f5d8b022542a4e74251a5f432824318b3539a5a087f8e53d2f135f9ca47f3bb2e10aff0af0849504fb7cea3ff192dc8de0edad64c68efde34c56d302ad55fd6e80f302d5efcdeae953658d3452561b5f36c542efdbdd9f888538d374cef106acf7d93a4445c3c73cd911f0571aaf3d54da12b11ddec375b3</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>a5a866e1ee186f807668209f3b11236ace5e21f117803a3143abb126dd035d7d2f876b6938aaf2ee3414d5420d753621400db44a49c486ce134300a2106adb6bdb433590fef8ad5c43cba82290dc49530effd86523d9483c00f458af46890036b0e2c61d077d7fbac467a506eba29e467a87198b053c749aa2a4d2840c784e6d</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Net.Mime">
+      <topicdata group="api" />
+      <apidata name="System.Net.Mime" group="namespace" />
+      <elements>
+        <element api="T:System.Net.Mime.ContentDisposition" />
+        <element api="T:System.Net.Mime.ContentType" />
+        <element api="T:System.Net.Mime.DispositionTypeNames" />
+        <element api="T:System.Net.Mime.MediaTypeNames" />
+        <element api="T:System.Net.Mime.MediaTypeNames.Text" />
+        <element api="T:System.Net.Mime.MediaTypeNames.Application" />
+        <element api="T:System.Net.Mime.MediaTypeNames.Image" />
+        <element api="T:System.Net.Mime.TransferEncoding" />
+      </elements>
+      <file name="7fbe1bd1-63c4-8f98-f889-72202d08224b" />
+    </api>
+    <api id="T:System.Net.Mime.ContentDisposition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Mime.ContentDisposition" />
+      <apidata name="ContentDisposition" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentDisposition.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+      </containers>
+      <file name="4b03faff-cf1f-69b3-bc32-257b0e40f811" />
+    </api>
+    <api id="AllMembers.T:System.Net.Mime.ContentDisposition">
+      <topicdata name="ContentDisposition" group="list" subgroup="members" typeTopicId="T:System.Net.Mime.ContentDisposition" />
+      <apidata name="ContentDisposition" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentDisposition.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Net.Mime.ContentDisposition.#ctor">
+          <element api="M:System.Net.Mime.ContentDisposition.#ctor" />
+          <element api="M:System.Net.Mime.ContentDisposition.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Net.Mime.ContentDisposition.CreationDate" />
+        <element api="P:System.Net.Mime.ContentDisposition.DispositionType" />
+        <element api="M:System.Net.Mime.ContentDisposition.Equals(System.Object)" />
+        <element api="P:System.Net.Mime.ContentDisposition.FileName" />
+        <element api="M:System.Net.Mime.ContentDisposition.GetHashCode" />
+        <element api="P:System.Net.Mime.ContentDisposition.Inline" />
+        <element api="P:System.Net.Mime.ContentDisposition.ModificationDate" />
+        <element api="P:System.Net.Mime.ContentDisposition.Parameters" />
+        <element api="P:System.Net.Mime.ContentDisposition.ReadDate" />
+        <element api="P:System.Net.Mime.ContentDisposition.Size" />
+        <element api="M:System.Net.Mime.ContentDisposition.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" />
+      </containers>
+      <file name="4e688315-4576-0eb5-e397-bead27861fea" />
+    </api>
+    <api id="Methods.T:System.Net.Mime.ContentDisposition">
+      <topicdata name="ContentDisposition" group="list" subgroup="Methods" typeTopicId="T:System.Net.Mime.ContentDisposition" />
+      <apidata name="ContentDisposition" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentDisposition.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Net.Mime.ContentDisposition.Equals(System.Object)" />
+        <element api="M:System.Net.Mime.ContentDisposition.GetHashCode" />
+        <element api="M:System.Net.Mime.ContentDisposition.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" />
+      </containers>
+      <file name="85351331-81f6-6f3c-2537-c3762d8ba22f" />
+    </api>
+    <api id="Properties.T:System.Net.Mime.ContentDisposition">
+      <topicdata name="ContentDisposition" group="list" subgroup="Properties" typeTopicId="T:System.Net.Mime.ContentDisposition" />
+      <apidata name="ContentDisposition" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentDisposition.#ctor" />
+      <elements>
+        <element api="P:System.Net.Mime.ContentDisposition.CreationDate" />
+        <element api="P:System.Net.Mime.ContentDisposition.DispositionType" />
+        <element api="P:System.Net.Mime.ContentDisposition.FileName" />
+        <element api="P:System.Net.Mime.ContentDisposition.Inline" />
+        <element api="P:System.Net.Mime.ContentDisposition.ModificationDate" />
+        <element api="P:System.Net.Mime.ContentDisposition.Parameters" />
+        <element api="P:System.Net.Mime.ContentDisposition.ReadDate" />
+        <element api="P:System.Net.Mime.ContentDisposition.Size" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" />
+      </containers>
+      <file name="fa8136fa-b5a3-7995-c055-f3031bd5882f" />
+    </api>
+    <api id="Overload:System.Net.Mime.ContentDisposition.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Mime.ContentDisposition" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.Mime.ContentDisposition.#ctor" />
+        <element api="M:System.Net.Mime.ContentDisposition.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="7a4ac352-ca3e-a4b0-cb2a-01a7dcb0d77f" />
+    </api>
+    <api id="M:System.Net.Mime.ContentDisposition.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Mime.ContentDisposition.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="a95f5c33-ad5b-7f7c-fb4e-4538341a8238" />
+    </api>
+    <api id="M:System.Net.Mime.ContentDisposition.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Mime.ContentDisposition.#ctor" />
+      <parameters>
+        <parameter name="disposition">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="fa18b032-be7b-f9c2-6bf1-a5ebb90ca67e" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.CreationDate">
+      <topicdata group="api" />
+      <apidata name="CreationDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CreationDate" />
+      <setter name="set_CreationDate" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="f27fb4f4-6457-c1d5-8930-934612e2e16a" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.DispositionType">
+      <topicdata group="api" />
+      <apidata name="DispositionType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DispositionType" />
+      <setter name="set_DispositionType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="01e69024-cead-3a40-5a35-6633db4c773f" />
+    </api>
+    <api id="M:System.Net.Mime.ContentDisposition.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rparam">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="347d7e53-bad9-2edd-8e89-e47a18913683" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.FileName">
+      <topicdata group="api" />
+      <apidata name="FileName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FileName" />
+      <setter name="set_FileName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="1f930ef4-5214-4cdf-e79e-4bac131191e5" />
+    </api>
+    <api id="M:System.Net.Mime.ContentDisposition.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="dd28bd4b-47e6-f4a2-4c7f-83772ed866e6" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.Inline">
+      <topicdata group="api" />
+      <apidata name="Inline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Inline" />
+      <setter name="set_Inline" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="b9be68e2-2ffe-bb17-8a6b-cf225cfb6924" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.ModificationDate">
+      <topicdata group="api" />
+      <apidata name="ModificationDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ModificationDate" />
+      <setter name="set_ModificationDate" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="5f9cf3fe-76e1-af44-a51a-de62c06569ca" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parameters" />
+      <returns>
+        <type api="T:System.Collections.Specialized.StringDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="54db9153-1b7c-5ef1-7862-664262097034" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.ReadDate">
+      <topicdata group="api" />
+      <apidata name="ReadDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ReadDate" />
+      <setter name="set_ReadDate" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="73996e43-dfae-bc16-9c48-3cb17c96573d" />
+    </api>
+    <api id="P:System.Net.Mime.ContentDisposition.Size">
+      <topicdata group="api" />
+      <apidata name="Size" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Size" />
+      <setter name="set_Size" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="4ef5bc01-e87a-8385-4638-449966b48c0a" />
+    </api>
+    <api id="M:System.Net.Mime.ContentDisposition.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentDisposition" ref="true" />
+      </containers>
+      <file name="85e64e23-5265-d05a-f2a7-6f043d079438" />
+    </api>
+    <api id="T:System.Net.Mime.ContentType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Mime.ContentType" />
+      <apidata name="ContentType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentType.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+      </containers>
+      <file name="2ef7c4f0-ac66-bdb4-fb09-985de98398d0" />
+    </api>
+    <api id="AllMembers.T:System.Net.Mime.ContentType">
+      <topicdata name="ContentType" group="list" subgroup="members" typeTopicId="T:System.Net.Mime.ContentType" />
+      <apidata name="ContentType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentType.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Net.Mime.ContentType.#ctor">
+          <element api="M:System.Net.Mime.ContentType.#ctor" />
+          <element api="M:System.Net.Mime.ContentType.#ctor(System.String)" />
+        </element>
+        <element api="P:System.Net.Mime.ContentType.Boundary" />
+        <element api="P:System.Net.Mime.ContentType.CharSet" />
+        <element api="M:System.Net.Mime.ContentType.Equals(System.Object)" />
+        <element api="M:System.Net.Mime.ContentType.GetHashCode" />
+        <element api="P:System.Net.Mime.ContentType.MediaType" />
+        <element api="P:System.Net.Mime.ContentType.Name" />
+        <element api="P:System.Net.Mime.ContentType.Parameters" />
+        <element api="M:System.Net.Mime.ContentType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" />
+      </containers>
+      <file name="0c50751d-6c5f-4ecf-84f9-7111ce97f447" />
+    </api>
+    <api id="Methods.T:System.Net.Mime.ContentType">
+      <topicdata name="ContentType" group="list" subgroup="Methods" typeTopicId="T:System.Net.Mime.ContentType" />
+      <apidata name="ContentType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentType.#ctor" />
+      <elements>
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Net.Mime.ContentType.Equals(System.Object)" />
+        <element api="M:System.Net.Mime.ContentType.GetHashCode" />
+        <element api="M:System.Net.Mime.ContentType.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" />
+      </containers>
+      <file name="39b559d0-26e1-a196-cfa1-af2ccd4ec6dd" />
+    </api>
+    <api id="Properties.T:System.Net.Mime.ContentType">
+      <topicdata name="ContentType" group="list" subgroup="Properties" typeTopicId="T:System.Net.Mime.ContentType" />
+      <apidata name="ContentType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Net.Mime.ContentType.#ctor" />
+      <elements>
+        <element api="P:System.Net.Mime.ContentType.Boundary" />
+        <element api="P:System.Net.Mime.ContentType.CharSet" />
+        <element api="P:System.Net.Mime.ContentType.MediaType" />
+        <element api="P:System.Net.Mime.ContentType.Name" />
+        <element api="P:System.Net.Mime.ContentType.Parameters" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" />
+      </containers>
+      <file name="df5a8436-68e2-badc-1bb8-de5c7055cde9" />
+    </api>
+    <api id="Overload:System.Net.Mime.ContentType.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Net.Mime.ContentType" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Net.Mime.ContentType.#ctor" />
+        <element api="M:System.Net.Mime.ContentType.#ctor(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="55d4a866-2ab3-0d01-379b-0108bf2bff9b" />
+    </api>
+    <api id="M:System.Net.Mime.ContentType.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Mime.ContentType.#ctor" />
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="30385d65-dfde-7e85-f807-6af044ff06e8" />
+    </api>
+    <api id="M:System.Net.Mime.ContentType.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Net.Mime.ContentType.#ctor" />
+      <parameters>
+        <parameter name="contentType">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="ad391237-95a8-65c4-f67e-f800537f1ba6" />
+    </api>
+    <api id="P:System.Net.Mime.ContentType.Boundary">
+      <topicdata group="api" />
+      <apidata name="Boundary" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Boundary" />
+      <setter name="set_Boundary" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="6ae2fed5-150c-7f1d-50e6-8f0fbbe41da5" />
+    </api>
+    <api id="P:System.Net.Mime.ContentType.CharSet">
+      <topicdata group="api" />
+      <apidata name="CharSet" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CharSet" />
+      <setter name="set_CharSet" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="4baf2220-442d-ce24-98a6-bf1397c33f13" />
+    </api>
+    <api id="M:System.Net.Mime.ContentType.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Equals(System.Object)">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="rparam">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="47ab03ca-db65-ba27-5690-7a6646487257" />
+    </api>
+    <api id="M:System.Net.Mime.ContentType.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.GetHashCode">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="abe75d17-366a-c196-313b-d97908183e05" />
+    </api>
+    <api id="P:System.Net.Mime.ContentType.MediaType">
+      <topicdata group="api" />
+      <apidata name="MediaType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MediaType" />
+      <setter name="set_MediaType" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="caf3a472-0d5f-2d4a-a55a-2d534f347fc2" />
+    </api>
+    <api id="P:System.Net.Mime.ContentType.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Name" />
+      <setter name="set_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="48d1a363-de51-3836-dcec-93abb78cd958" />
+    </api>
+    <api id="P:System.Net.Mime.ContentType.Parameters">
+      <topicdata group="api" />
+      <apidata name="Parameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parameters" />
+      <returns>
+        <type api="T:System.Collections.Specialized.StringDictionary" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="38eeb56a-19a9-d174-e2c7-de6145e46725" />
+    </api>
+    <api id="M:System.Net.Mime.ContentType.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.ContentType" ref="true" />
+      </containers>
+      <file name="2217801c-7a78-2323-fadd-b9f1fdd167bb" />
+    </api>
+    <api id="T:System.Net.Mime.DispositionTypeNames">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Mime.DispositionTypeNames" />
+      <apidata name="DispositionTypeNames" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+      </containers>
+      <file name="62d309b4-adcb-34c2-9e1d-dc5e7fadc160" />
+    </api>
+    <api id="AllMembers.T:System.Net.Mime.DispositionTypeNames">
+      <topicdata name="DispositionTypeNames" group="list" subgroup="members" typeTopicId="T:System.Net.Mime.DispositionTypeNames" />
+      <apidata name="DispositionTypeNames" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.DispositionTypeNames.Attachment" />
+        <element api="F:System.Net.Mime.DispositionTypeNames.Inline" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.DispositionTypeNames" />
+      </containers>
+      <file name="4386656a-b6bf-cf90-f822-972b8ada224f" />
+    </api>
+    <api id="Fields.T:System.Net.Mime.DispositionTypeNames">
+      <topicdata name="DispositionTypeNames" group="list" subgroup="Fields" typeTopicId="T:System.Net.Mime.DispositionTypeNames" />
+      <apidata name="DispositionTypeNames" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.DispositionTypeNames.Attachment" />
+        <element api="F:System.Net.Mime.DispositionTypeNames.Inline" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.DispositionTypeNames" />
+      </containers>
+      <file name="7de240f3-3a0f-a8a3-99f7-7ca45a984fcb" />
+    </api>
+    <api id="F:System.Net.Mime.DispositionTypeNames.Attachment">
+      <topicdata group="api" />
+      <apidata name="Attachment" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>attachment</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.DispositionTypeNames" ref="true" />
+      </containers>
+      <file name="79c7a64e-e75b-eb93-6381-018ccf4d1644" />
+    </api>
+    <api id="F:System.Net.Mime.DispositionTypeNames.Inline">
+      <topicdata group="api" />
+      <apidata name="Inline" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>inline</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.DispositionTypeNames" ref="true" />
+      </containers>
+      <file name="007f1990-2bd4-1ce5-fc65-e073b947920f" />
+    </api>
+    <api id="T:System.Net.Mime.MediaTypeNames">
+      <topicdata group="api" />
+      <apidata name="MediaTypeNames" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+      </containers>
+      <file name="7a0cbde4-0ede-1c4c-eaad-0315c17d24c5" />
+    </api>
+    <api id="T:System.Net.Mime.MediaTypeNames.Application">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Mime.MediaTypeNames.Application" />
+      <apidata name="Application" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+      </containers>
+      <file name="4a2f1168-5991-c3b7-1f42-912b35e7a5a2" />
+    </api>
+    <api id="AllMembers.T:System.Net.Mime.MediaTypeNames.Application">
+      <topicdata name="Application" group="list" subgroup="members" typeTopicId="T:System.Net.Mime.MediaTypeNames.Application" />
+      <apidata name="Application" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Octet" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Pdf" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Rtf" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Soap" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Zip" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" />
+      </containers>
+      <file name="900500f8-e825-de93-5bd0-b8d399f1f52d" />
+    </api>
+    <api id="Fields.T:System.Net.Mime.MediaTypeNames.Application">
+      <topicdata name="Application" group="list" subgroup="Fields" typeTopicId="T:System.Net.Mime.MediaTypeNames.Application" />
+      <apidata name="Application" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Octet" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Pdf" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Rtf" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Soap" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Application.Zip" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" />
+      </containers>
+      <file name="bc952263-19d5-9da5-e057-45be262de276" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Application.Octet">
+      <topicdata group="api" />
+      <apidata name="Octet" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>application/octet-stream</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="538ea11f-da6c-6f4b-ff7a-4d6a8338e4ac" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Application.Pdf">
+      <topicdata group="api" />
+      <apidata name="Pdf" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>application/pdf</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="6740a862-c882-24f3-ccd4-5a54221e72fe" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Application.Rtf">
+      <topicdata group="api" />
+      <apidata name="Rtf" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>application/rtf</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="ab7252d6-05e5-c9b5-448f-df07a90f20e4" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Application.Soap">
+      <topicdata group="api" />
+      <apidata name="Soap" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>application/soap+xml</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="a06d0de8-1dbe-0dc7-3664-c915bd6beb9f" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Application.Zip">
+      <topicdata group="api" />
+      <apidata name="Zip" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>application/zip</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Application" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="dc788ba5-c112-9f02-0f07-ffd5152b7659" />
+    </api>
+    <api id="T:System.Net.Mime.MediaTypeNames.Image">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Mime.MediaTypeNames.Image" />
+      <apidata name="Image" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+      </containers>
+      <file name="1502dbcf-b270-7d89-1047-e7956af20d8f" />
+    </api>
+    <api id="AllMembers.T:System.Net.Mime.MediaTypeNames.Image">
+      <topicdata name="Image" group="list" subgroup="members" typeTopicId="T:System.Net.Mime.MediaTypeNames.Image" />
+      <apidata name="Image" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.MediaTypeNames.Image.Gif" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Image.Jpeg" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Image.Tiff" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Image" />
+      </containers>
+      <file name="aa33ed2a-9710-4df9-036f-fc75e336ea99" />
+    </api>
+    <api id="Fields.T:System.Net.Mime.MediaTypeNames.Image">
+      <topicdata name="Image" group="list" subgroup="Fields" typeTopicId="T:System.Net.Mime.MediaTypeNames.Image" />
+      <apidata name="Image" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.MediaTypeNames.Image.Gif" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Image.Jpeg" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Image.Tiff" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Image" />
+      </containers>
+      <file name="859c3603-1500-2a3b-83be-99bcec546b98" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Image.Gif">
+      <topicdata group="api" />
+      <apidata name="Gif" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>image/gif</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Image" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="a75a3359-5d7c-a02e-0fdb-54408b118ea5" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Image.Jpeg">
+      <topicdata group="api" />
+      <apidata name="Jpeg" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>image/jpeg</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Image" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="a38b7ce1-951e-8246-76f0-373d23b722fc" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Image.Tiff">
+      <topicdata group="api" />
+      <apidata name="Tiff" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>image/tiff</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Image" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="093cbf7b-3d9d-3f01-0faf-39f3c6243a66" />
+    </api>
+    <api id="T:System.Net.Mime.MediaTypeNames.Text">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Net.Mime.MediaTypeNames.Text" />
+      <apidata name="Text" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+      </containers>
+      <file name="cd87f183-788b-5db9-fec3-65fe1b0ead3a" />
+    </api>
+    <api id="AllMembers.T:System.Net.Mime.MediaTypeNames.Text">
+      <topicdata name="Text" group="list" subgroup="members" typeTopicId="T:System.Net.Mime.MediaTypeNames.Text" />
+      <apidata name="Text" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.Html" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.Plain" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.RichText" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.Xml" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Text" />
+      </containers>
+      <file name="6ec7e0ad-6487-eaa8-1c05-b82784c3a208" />
+    </api>
+    <api id="Fields.T:System.Net.Mime.MediaTypeNames.Text">
+      <topicdata name="Text" group="list" subgroup="Fields" typeTopicId="T:System.Net.Mime.MediaTypeNames.Text" />
+      <apidata name="Text" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.Html" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.Plain" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.RichText" />
+        <element api="F:System.Net.Mime.MediaTypeNames.Text.Xml" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Text" />
+      </containers>
+      <file name="2ac72d5b-8f85-d351-c912-755c01d2dc43" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Text.Html">
+      <topicdata group="api" />
+      <apidata name="Html" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>text/html</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Text" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="e5ea4182-89ef-da95-4f71-d41120f73281" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Text.Plain">
+      <topicdata group="api" />
+      <apidata name="Plain" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>text/plain</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Text" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="efbdb6af-aa9f-4e1f-c2a8-5eefcc48a06a" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Text.RichText">
+      <topicdata group="api" />
+      <apidata name="RichText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>text/richtext</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Text" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="d58dc1a4-41cb-1e07-77de-32569368cbe7" />
+    </api>
+    <api id="F:System.Net.Mime.MediaTypeNames.Text.Xml">
+      <topicdata group="api" />
+      <apidata name="Xml" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>text/xml</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.MediaTypeNames.Text" ref="true">
+          <type api="T:System.Net.Mime.MediaTypeNames" ref="true" />
+        </type>
+      </containers>
+      <file name="607e3210-0020-6189-5a26-654d29dc7c48" />
+    </api>
+    <api id="T:System.Net.Mime.TransferEncoding">
+      <topicdata group="api" />
+      <apidata name="TransferEncoding" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Net.Mime.TransferEncoding.QuotedPrintable" />
+        <element api="F:System.Net.Mime.TransferEncoding.Base64" />
+        <element api="F:System.Net.Mime.TransferEncoding.SevenBit" />
+        <element api="F:System.Net.Mime.TransferEncoding.EightBit" />
+        <element api="F:System.Net.Mime.TransferEncoding.Unknown" />
+      </elements>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+      </containers>
+      <file name="17fe94bd-25c9-4b45-d1b9-176f22286016" />
+    </api>
+    <api id="F:System.Net.Mime.TransferEncoding.Base64">
+      <topicdata group="api" notopic="" />
+      <apidata name="Base64" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </containers>
+      <file name="92ed60db-8fce-5f7c-1fff-27a5f0931116" />
+    </api>
+    <api id="F:System.Net.Mime.TransferEncoding.EightBit">
+      <topicdata group="api" notopic="" />
+      <apidata name="EightBit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </containers>
+      <file name="a1120038-7cca-b028-bcbb-4b3611aa361a" />
+    </api>
+    <api id="F:System.Net.Mime.TransferEncoding.QuotedPrintable">
+      <topicdata group="api" notopic="" />
+      <apidata name="QuotedPrintable" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </containers>
+      <file name="301e4f05-68ce-262b-a6ce-e049c9f63cd0" />
+    </api>
+    <api id="F:System.Net.Mime.TransferEncoding.SevenBit">
+      <topicdata group="api" notopic="" />
+      <apidata name="SevenBit" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </containers>
+      <file name="7bf87d51-7b72-9391-beb0-6f66126de703" />
+    </api>
+    <api id="F:System.Net.Mime.TransferEncoding.Unknown">
+      <topicdata group="api" notopic="" />
+      <apidata name="Unknown" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="System" module="System" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Net.Mime" />
+        <type api="T:System.Net.Mime.TransferEncoding" ref="false" />
+      </containers>
+      <file name="32695e33-aeb2-4904-77c8-cc7ba5d12633" />
+    </api>
+  </apis>
+</reflection>

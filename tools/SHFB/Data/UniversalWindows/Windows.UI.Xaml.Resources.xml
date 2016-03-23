@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.Xaml.Resources">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.Xaml.Resources" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      </elements>
+      <file name="a7eef2df-957f-0415-afdd-08bdf2134177" />
+    </api>
+    <api id="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      <apidata name="CustomXamlResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="acb2207e-cc93-a903-314d-1f5e59261c6a" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader">
+      <topicdata name="CustomXamlResourceLoader" group="list" subgroup="members" typeTopicId="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      <apidata name="CustomXamlResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Finalize">
+          <apidata name="Finalize" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="true" />
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.MemberwiseClone">
+          <apidata name="MemberwiseClone" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Object" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.#ctor" />
+        <element api="P:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.Current" />
+        <element api="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.GetResource(System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      </containers>
+      <file name="2bcefb74-30f0-3bdb-7eed-86c1fdf06207" />
+    </api>
+    <api id="Methods.T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader">
+      <topicdata name="CustomXamlResourceLoader" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      <apidata name="CustomXamlResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Finalize">
+          <apidata name="Finalize" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="true" />
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.MemberwiseClone">
+          <apidata name="MemberwiseClone" group="member" subgroup="method" />
+          <memberdata visibility="family" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Object" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.GetResource(System.String,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      </containers>
+      <file name="801db88e-9ff7-0660-3118-318534509409" />
+    </api>
+    <api id="Properties.T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader">
+      <topicdata name="CustomXamlResourceLoader" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      <apidata name="CustomXamlResourceLoader" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.Current" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" />
+      </containers>
+      <file name="d338ffbf-7a56-1da6-189f-d238d8bdb069" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" ref="true" />
+      </containers>
+      <file name="3b6fbd8b-0e72-030f-c552-129c626e2d1e" />
+    </api>
+    <api id="P:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Current" />
+      <setter name="set_Current" />
+      <returns>
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" ref="true" />
+      </containers>
+      <file name="0e414fdb-aff4-13f4-991e-960b8435d052" />
+    </api>
+    <api id="M:Windows.UI.Xaml.Resources.CustomXamlResourceLoader.GetResource(System.String,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="GetResource" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="resourceId" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="objectType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="propertyName" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="propertyType" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.Xaml.Resources" />
+        <type api="T:Windows.UI.Xaml.Resources.CustomXamlResourceLoader" ref="true" />
+      </containers>
+      <file name="02d906c7-dcd9-b1f0-bbc2-b79f5612daa3" />
+    </api>
+  </apis>
+</reflection>

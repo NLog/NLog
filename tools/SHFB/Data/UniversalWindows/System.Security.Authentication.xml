@@ -1,0 +1,1361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Net.Security">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Security</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Net.Primitives">
+      <assemblydata version="4.0.10.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Net.Primitives</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.23123.00 built by: PROJECTKREL</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyMetadataAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Security.Authentication">
+      <topicdata group="api" />
+      <apidata name="System.Security.Authentication" group="namespace" />
+      <elements>
+        <element api="T:System.Security.Authentication.CipherAlgorithmType" />
+        <element api="T:System.Security.Authentication.ExchangeAlgorithmType" />
+        <element api="T:System.Security.Authentication.HashAlgorithmType" />
+        <element api="T:System.Security.Authentication.SslProtocols" />
+        <element api="T:System.Security.Authentication.AuthenticationException" />
+      </elements>
+      <file name="39bbb198-bb18-6d6c-f656-3c62d09f0887" />
+    </api>
+    <api id="T:System.Security.Authentication.AuthenticationException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="17218e40-639a-0008-936c-6164703cf936" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Security.Authentication.AuthenticationException.#ctor">
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor" />
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String)" />
+          <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String,System.Exception)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="898c3172-4865-bdf8-2601-dfc9e1582f19" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.ToString" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="96e83cda-2ce0-e1d1-50d8-6fc4fcb2c683" />
+    </api>
+    <api id="Properties.T:System.Security.Authentication.AuthenticationException">
+      <topicdata name="AuthenticationException" group="list" subgroup="Properties" typeTopicId="T:System.Security.Authentication.AuthenticationException" />
+      <apidata name="AuthenticationException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Security.Authentication.AuthenticationException.#ctor" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" />
+      </containers>
+      <file name="74830ecc-bbab-8ce4-8014-5aade7daaef1" />
+    </api>
+    <api id="Overload:System.Security.Authentication.AuthenticationException.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Security.Authentication.AuthenticationException" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor" />
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String)" />
+        <element api="M:System.Security.Authentication.AuthenticationException.#ctor(System.String,System.Exception)" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="ea0bcd8d-7863-1d84-248c-c4e7bee59cf0" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="0918ccb6-6828-d5f6-ceb2-75f2851cb1f8" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="ffe1cd5f-8ad2-258f-5f42-ecc40e94e213" />
+    </api>
+    <api id="M:System.Security.Authentication.AuthenticationException.#ctor(System.String,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Security.Authentication.AuthenticationException.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="innerException">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Net.Security" module="System.Net.Security" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.AuthenticationException" ref="true" />
+      </containers>
+      <file name="2743d61e-e1c4-8dd5-d161-ea5d4724047a" />
+    </api>
+    <api id="T:System.Security.Authentication.CipherAlgorithmType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.CipherAlgorithmType" />
+      <apidata name="CipherAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="901ae46b-6bdf-dd06-9a58-d3ddbcaf6a89" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.CipherAlgorithmType">
+      <topicdata name="CipherAlgorithmType" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.CipherAlgorithmType" />
+      <apidata name="CipherAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.CipherAlgorithmType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes128" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes192" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes256" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Des" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Null" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Rc2" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Rc4" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.TripleDes" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" />
+      </containers>
+      <file name="cf65b9d9-e9d6-b34b-7d33-9c1b6ad93eb9" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.CipherAlgorithmType">
+      <topicdata name="CipherAlgorithmType" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.CipherAlgorithmType" />
+      <apidata name="CipherAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.CipherAlgorithmType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" />
+      </containers>
+      <file name="6d2f6131-d48c-a5a9-9f9f-56ccb0f5ed42" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.CipherAlgorithmType">
+      <topicdata name="CipherAlgorithmType" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.CipherAlgorithmType" />
+      <apidata name="CipherAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes128" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes192" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Aes256" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Des" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Null" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Rc2" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.Rc4" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.TripleDes" />
+        <element api="F:System.Security.Authentication.CipherAlgorithmType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" />
+      </containers>
+      <file name="6e3b757f-5d45-87e5-b41a-c72c7f31d96d" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes">
+      <topicdata group="api" />
+      <apidata name="Aes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26129</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="c639c347-ac48-826a-3547-98df0a3e4f98" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes128">
+      <topicdata group="api" />
+      <apidata name="Aes128" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26126</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="e630bf64-1667-ea77-3b9e-97ac859e96af" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes192">
+      <topicdata group="api" />
+      <apidata name="Aes192" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26127</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="8abf1f50-3637-e513-cd49-845e91dc64d9" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Aes256">
+      <topicdata group="api" />
+      <apidata name="Aes256" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26128</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="fb471470-ed63-a260-0981-b57d6e0ab780" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Des">
+      <topicdata group="api" />
+      <apidata name="Des" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26113</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="c9af9c6b-3a8d-540d-981e-370c7da4064f" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="31dc1298-8d4d-cfaa-a91a-e1f261001c54" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Null">
+      <topicdata group="api" />
+      <apidata name="Null" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>24576</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="03a1a199-1d39-040d-2faf-e2d9f5df7b3c" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Rc2">
+      <topicdata group="api" />
+      <apidata name="Rc2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26114</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="12e949ed-014c-7f41-dce1-005004033d2d" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.Rc4">
+      <topicdata group="api" />
+      <apidata name="Rc4" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26625</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="0d9c7798-5f31-9795-1ba5-c26aa2d9209d" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.TripleDes">
+      <topicdata group="api" />
+      <apidata name="TripleDes" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </returns>
+      <value>26115</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="a0df9113-afc1-c78a-043a-1ea39f6ee6bd" />
+    </api>
+    <api id="F:System.Security.Authentication.CipherAlgorithmType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.CipherAlgorithmType" ref="true" />
+      </containers>
+      <file name="33dd8f2f-4bb8-c640-0902-c7168ed7bdd7" />
+    </api>
+    <api id="T:System.Security.Authentication.ExchangeAlgorithmType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.ExchangeAlgorithmType" />
+      <apidata name="ExchangeAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="b3b6e545-d933-89b2-518e-bdd55e74bcd1" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.ExchangeAlgorithmType">
+      <topicdata name="ExchangeAlgorithmType" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.ExchangeAlgorithmType" />
+      <apidata name="ExchangeAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExchangeAlgorithmType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.DiffieHellman" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.RsaKeyX" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.RsaSign" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" />
+      </containers>
+      <file name="b2575708-9c06-0044-4a0f-cd503cf8e2ae" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.ExchangeAlgorithmType">
+      <topicdata name="ExchangeAlgorithmType" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.ExchangeAlgorithmType" />
+      <apidata name="ExchangeAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.ExchangeAlgorithmType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" />
+      </containers>
+      <file name="37100e77-223c-6128-cacb-549d8ea27f86" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.ExchangeAlgorithmType">
+      <topicdata name="ExchangeAlgorithmType" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.ExchangeAlgorithmType" />
+      <apidata name="ExchangeAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.DiffieHellman" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.RsaKeyX" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.RsaSign" />
+        <element api="F:System.Security.Authentication.ExchangeAlgorithmType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" />
+      </containers>
+      <file name="acc25418-e2f5-f5a1-3680-7941d9b8066c" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.DiffieHellman">
+      <topicdata group="api" />
+      <apidata name="DiffieHellman" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </returns>
+      <value>43522</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </containers>
+      <file name="7e9c1916-e6df-6e0f-cee4-75eeb1c2d95d" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </containers>
+      <file name="4778f11b-be9c-ad23-3079-cd5ce9481abc" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.RsaKeyX">
+      <topicdata group="api" />
+      <apidata name="RsaKeyX" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </returns>
+      <value>41984</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </containers>
+      <file name="88ea7da5-d060-4f01-d971-889b7237c194" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.RsaSign">
+      <topicdata group="api" />
+      <apidata name="RsaSign" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </returns>
+      <value>9216</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </containers>
+      <file name="762b4516-8823-e491-27ff-9bf79a310cce" />
+    </api>
+    <api id="F:System.Security.Authentication.ExchangeAlgorithmType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.ExchangeAlgorithmType" ref="true" />
+      </containers>
+      <file name="6cbad75d-b798-5169-7c6b-bc0cadbf1063" />
+    </api>
+    <api id="T:System.Security.Authentication.HashAlgorithmType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.HashAlgorithmType" />
+      <apidata name="HashAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <file name="538a3aed-c381-20fa-fb9f-b73ffdefebd2" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.HashAlgorithmType">
+      <topicdata name="HashAlgorithmType" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.HashAlgorithmType" />
+      <apidata name="HashAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.HashAlgorithmType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.Md5" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.Sha1" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" />
+      </containers>
+      <file name="04590f2d-4cda-9aff-63a3-403722505729" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.HashAlgorithmType">
+      <topicdata name="HashAlgorithmType" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.HashAlgorithmType" />
+      <apidata name="HashAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.HashAlgorithmType.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" />
+      </containers>
+      <file name="2c56656b-3df5-d34c-fd3e-ae8fb0276dc7" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.HashAlgorithmType">
+      <topicdata name="HashAlgorithmType" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.HashAlgorithmType" />
+      <apidata name="HashAlgorithmType" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.HashAlgorithmType.Md5" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.None" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.Sha1" />
+        <element api="F:System.Security.Authentication.HashAlgorithmType.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" />
+      </containers>
+      <file name="2e6f9b3d-f677-baee-27cc-b9b4a3aa6ee7" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.Md5">
+      <topicdata group="api" />
+      <apidata name="Md5" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </returns>
+      <value>32771</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </containers>
+      <file name="062a7622-e3aa-e7c2-319f-40405ded9184" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </containers>
+      <file name="b68d7bdb-1151-40e3-5215-bebc6776dded" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.Sha1">
+      <topicdata group="api" />
+      <apidata name="Sha1" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </returns>
+      <value>32772</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </containers>
+      <file name="eef3e3b5-a58b-c1e2-ea79-86e12e001584" />
+    </api>
+    <api id="F:System.Security.Authentication.HashAlgorithmType.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.HashAlgorithmType" ref="true" />
+      </containers>
+      <file name="f408d7e5-e3e8-fa59-388c-09d41d3431d8" />
+    </api>
+    <api id="T:System.Security.Authentication.SslProtocols">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Security.Authentication.SslProtocols" />
+      <apidata name="SslProtocols" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Enum" ref="true" />
+          <type api="T:System.ValueType" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="fcf9abbf-28b9-56e8-553e-70d0b9b499b2" />
+    </api>
+    <api id="AllMembers.T:System.Security.Authentication.SslProtocols">
+      <topicdata name="SslProtocols" group="list" subgroup="members" typeTopicId="T:System.Security.Authentication.SslProtocols" />
+      <apidata name="SslProtocols" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.SslProtocols.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+        <element api="F:System.Security.Authentication.SslProtocols.None" />
+        <element api="F:System.Security.Authentication.SslProtocols.Ssl2" />
+        <element api="F:System.Security.Authentication.SslProtocols.Ssl3" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls11" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls12" />
+        <element api="F:System.Security.Authentication.SslProtocols.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" />
+      </containers>
+      <file name="4bf678c0-9e1b-2823-f75b-a556c45a450d" />
+    </api>
+    <api id="Methods.T:System.Security.Authentication.SslProtocols">
+      <topicdata name="SslProtocols" group="list" subgroup="Methods" typeTopicId="T:System.Security.Authentication.SslProtocols" />
+      <apidata name="SslProtocols" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Enum.CompareTo(System.Object)" />
+        <element api="M:System.Enum.Equals(System.Object)" />
+        <element api="M:System.Enum.GetHashCode" />
+        <element api="M:System.Enum.HasFlag(System.Enum)" />
+        <element api="M:System.Enum.System#IConvertible#GetTypeCode" />
+        <element api="M:System.Enum.System#IConvertible#ToBoolean(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToChar(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToString(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToType(System.Type,System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)" />
+        <element api="M:System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)" />
+        <element api="Overload:System.Security.Authentication.SslProtocols.ToString">
+          <element api="M:System.Enum.ToString" />
+          <element api="M:System.Enum.ToString(System.String)" />
+        </element>
+        <element api="M:System.Object.GetType" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" />
+      </containers>
+      <file name="4cf8a436-453c-aab1-44f6-4b379f07c956" />
+    </api>
+    <api id="Fields.T:System.Security.Authentication.SslProtocols">
+      <topicdata name="SslProtocols" group="list" subgroup="Fields" typeTopicId="T:System.Security.Authentication.SslProtocols" />
+      <apidata name="SslProtocols" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Security.Authentication.SslProtocols.None" />
+        <element api="F:System.Security.Authentication.SslProtocols.Ssl2" />
+        <element api="F:System.Security.Authentication.SslProtocols.Ssl3" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls11" />
+        <element api="F:System.Security.Authentication.SslProtocols.Tls12" />
+        <element api="F:System.Security.Authentication.SslProtocols.value__" />
+      </elements>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" />
+      </containers>
+      <file name="3a9ab558-b3b5-1de1-1a94-2e5235166310" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.None">
+      <topicdata group="api" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="d74153a6-8ccc-cc04-6b74-72e76a8965d2" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Ssl2">
+      <topicdata group="api" />
+      <apidata name="Ssl2" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="6952fdda-9df8-7798-71de-a4425b1471c3" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Ssl3">
+      <topicdata group="api" />
+      <apidata name="Ssl3" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <value>48</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="b8feca15-8b61-a5ac-023f-732fa8ef5cfa" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Tls">
+      <topicdata group="api" />
+      <apidata name="Tls" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <value>192</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="c489e9c7-2822-6a55-00a7-35e9775cf10f" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Tls11">
+      <topicdata group="api" />
+      <apidata name="Tls11" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <value>768</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="721c8aec-d629-5e60-95ce-3db0b32594c0" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.Tls12">
+      <topicdata group="api" />
+      <apidata name="Tls12" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </returns>
+      <value>3072</value>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="c1cc14bb-6a19-2f6a-72e4-ea3c512f0781" />
+    </api>
+    <api id="F:System.Security.Authentication.SslProtocols.value__">
+      <topicdata group="api" />
+      <apidata name="value__" group="member" subgroup="field" />
+      <memberdata visibility="public" special="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Net.Primitives" module="System.Net.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.23123.00 built by: PROJECTKREL" />
+        </library>
+        <namespace api="N:System.Security.Authentication" />
+        <type api="T:System.Security.Authentication.SslProtocols" ref="true" />
+      </containers>
+      <file name="8987db3d-6b41-8979-2898-fff6026364ae" />
+    </api>
+  </apis>
+</reflection>

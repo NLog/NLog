@@ -1,0 +1,988 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Threading">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Threading" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Threading.WorkItemPriority" />
+        <element api="T:Windows.System.Threading.WorkItemOptions" />
+        <element api="T:Windows.System.Threading.TimerElapsedHandler" />
+        <element api="T:Windows.System.Threading.ThreadPoolTimer" />
+        <element api="T:Windows.System.Threading.TimerDestroyedHandler" />
+        <element api="T:Windows.System.Threading.WorkItemHandler" />
+        <element api="T:Windows.System.Threading.ThreadPool" />
+      </elements>
+      <file name="861ad92f-81e6-c338-e0f4-e2a576dc19a9" />
+    </api>
+    <api id="T:Windows.System.Threading.ThreadPool">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Threading.ThreadPool" />
+      <apidata name="ThreadPool" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bd0efb75-093e-d8e3-1f3e-1fc0a95fcd43" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Threading.ThreadPool">
+      <topicdata name="ThreadPool" group="list" subgroup="members" typeTopicId="T:Windows.System.Threading.ThreadPool" />
+      <apidata name="ThreadPool" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.System.Threading.ThreadPool.RunAsync">
+          <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler)" />
+          <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)" />
+          <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPool" />
+      </containers>
+      <file name="5b27872c-2f57-0a3f-00a7-290865facc93" />
+    </api>
+    <api id="Methods.T:Windows.System.Threading.ThreadPool">
+      <topicdata name="ThreadPool" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Threading.ThreadPool" />
+      <apidata name="ThreadPool" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Windows.System.Threading.ThreadPool.RunAsync">
+          <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler)" />
+          <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)" />
+          <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPool" />
+      </containers>
+      <file name="4f5eac6e-f904-325d-685e-49f113c6e0d1" />
+    </api>
+    <api id="Overload:Windows.System.Threading.ThreadPool.RunAsync">
+      <topicdata name="RunAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Threading.ThreadPool" />
+      <apidata name="RunAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler)" />
+        <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)" />
+        <element api="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPool" ref="true" />
+      </containers>
+      <file name="781a3dfe-bdad-10d9-bf88-5fb01987a27a" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler)">
+      <topicdata group="api" />
+      <apidata name="RunAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPool.RunAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.WorkItemHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPool" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RunAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="352199b5-5f6a-0b03-8aa7-9d9099e59c28" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)">
+      <topicdata group="api" />
+      <apidata name="RunAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPool.RunAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.WorkItemHandler" ref="true" />
+        </parameter>
+        <parameter name="priority" in="true">
+          <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPool" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RunWithPriorityAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2fd1eb32-2a6f-9b21-c457-a98d585502ac" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPool.RunAsync(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)">
+      <topicdata group="api" />
+      <apidata name="RunAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPool.RunAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.WorkItemHandler" ref="true" />
+        </parameter>
+        <parameter name="priority" in="true">
+          <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.System.Threading.WorkItemOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPool" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RunWithPriorityAndOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="40d19017-facd-61c9-0275-35215f6a8aaa" />
+    </api>
+    <api id="T:Windows.System.Threading.ThreadPoolTimer">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Threading.ThreadPoolTimer" />
+      <apidata name="ThreadPoolTimer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.System.Threading.IThreadPoolTimer" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ae3e9ef9-d582-6739-e576-6a0908cc7a14" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Threading.ThreadPoolTimer">
+      <topicdata name="ThreadPoolTimer" group="list" subgroup="members" typeTopicId="T:Windows.System.Threading.ThreadPoolTimer" />
+      <apidata name="ThreadPoolTimer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.System.Threading.ThreadPoolTimer.Cancel" />
+        <element api="Overload:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer">
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)" />
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)" />
+        </element>
+        <element api="Overload:Windows.System.Threading.ThreadPoolTimer.CreateTimer">
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)" />
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)" />
+        </element>
+        <element api="P:Windows.System.Threading.ThreadPoolTimer.Delay" />
+        <element api="P:Windows.System.Threading.ThreadPoolTimer.Period" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" />
+      </containers>
+      <file name="9de87bd3-95e9-47fe-d479-4f8bcb746b35" />
+    </api>
+    <api id="Methods.T:Windows.System.Threading.ThreadPoolTimer">
+      <topicdata name="ThreadPoolTimer" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Threading.ThreadPoolTimer" />
+      <apidata name="ThreadPoolTimer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.System.Threading.ThreadPoolTimer.Cancel" />
+        <element api="Overload:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer">
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)" />
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)" />
+        </element>
+        <element api="Overload:Windows.System.Threading.ThreadPoolTimer.CreateTimer">
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)" />
+          <element api="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" />
+      </containers>
+      <file name="92c6813e-6bd4-d3e5-cde1-5774cd9ad6f5" />
+    </api>
+    <api id="Properties.T:Windows.System.Threading.ThreadPoolTimer">
+      <topicdata name="ThreadPoolTimer" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Threading.ThreadPoolTimer" />
+      <apidata name="ThreadPoolTimer" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Threading.ThreadPoolTimer.Delay" />
+        <element api="P:Windows.System.Threading.ThreadPoolTimer.Period" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" />
+      </containers>
+      <file name="042ba188-ea80-8ce5-abbb-699954bbeb5b" />
+    </api>
+    <api id="Overload:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer">
+      <topicdata name="CreatePeriodicTimer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Threading.ThreadPoolTimer" />
+      <apidata name="CreatePeriodicTimer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <file name="aaef96a5-a8dd-a728-a087-0570370badcf" />
+    </api>
+    <api id="Overload:Windows.System.Threading.ThreadPoolTimer.CreateTimer">
+      <topicdata name="CreateTimer" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Threading.ThreadPoolTimer" />
+      <apidata name="CreateTimer" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <file name="90355d14-13bb-ab47-aebd-2b647d8fd128" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPoolTimer.Cancel">
+      <topicdata group="api" />
+      <apidata name="Cancel" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <file name="f62d78cf-06c2-c837-95f5-b94a26465243" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="CreatePeriodicTimer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.TimerElapsedHandler" ref="true" />
+        </parameter>
+        <parameter name="period" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreatePeriodicTimer</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="23fb7419-d3bc-17ee-fd06-789db7b742b4" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)">
+      <topicdata group="api" />
+      <apidata name="CreatePeriodicTimer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPoolTimer.CreatePeriodicTimer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.TimerElapsedHandler" ref="true" />
+        </parameter>
+        <parameter name="period" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="destroyed" in="true">
+          <type api="T:Windows.System.Threading.TimerDestroyedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreatePeriodicTimerWithCompletion</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bf181308-bda0-b81c-a82e-49080418002f" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="CreateTimer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPoolTimer.CreateTimer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.TimerElapsedHandler" ref="true" />
+        </parameter>
+        <parameter name="delay" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateTimer</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="adfc7779-68eb-5991-f15e-a8a36a9c71f2" />
+    </api>
+    <api id="M:Windows.System.Threading.ThreadPoolTimer.CreateTimer(Windows.System.Threading.TimerElapsedHandler,Windows.Foundation.TimeSpan,Windows.System.Threading.TimerDestroyedHandler)">
+      <topicdata group="api" />
+      <apidata name="CreateTimer" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.ThreadPoolTimer.CreateTimer" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.TimerElapsedHandler" ref="true" />
+        </parameter>
+        <parameter name="delay" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="destroyed" in="true">
+          <type api="T:Windows.System.Threading.TimerDestroyedHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>CreateTimerWithCompletion</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a6f858d6-110e-b35b-4328-f382b780bc05" />
+    </api>
+    <api id="P:Windows.System.Threading.ThreadPoolTimer.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <file name="3b54f7f2-3b6c-e38c-2b69-8dd4a2e6e8b8" />
+    </api>
+    <api id="P:Windows.System.Threading.ThreadPoolTimer.Period">
+      <topicdata group="api" />
+      <apidata name="Period" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Period" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+      </containers>
+      <file name="0df2879f-023e-00e4-5818-28f13d50c127" />
+    </api>
+    <api id="T:Windows.System.Threading.TimerDestroyedHandler">
+      <topicdata group="api" />
+      <apidata name="TimerDestroyedHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="timer" in="true">
+          <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>887953914</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>33668</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20153</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>130</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>9</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>251</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>80</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>148</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>238</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>236</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>53</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7a021c3b-bb1c-f92c-62c8-390b3df16fc0" />
+    </api>
+    <api id="T:Windows.System.Threading.TimerElapsedHandler">
+      <topicdata group="api" />
+      <apidata name="TimerElapsedHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="timer" in="true">
+          <type api="T:Windows.System.Threading.ThreadPoolTimer" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>4205749863</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>64491</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18891</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>173</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>178</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>113</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>24</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>76</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>85</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>110</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>67</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="7b7b7ffc-1fde-c185-3a66-560d5b208de3" />
+    </api>
+    <api id="T:Windows.System.Threading.WorkItemHandler">
+      <topicdata group="api" />
+      <apidata name="WorkItemHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="operation" in="true">
+          <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>488278923</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>64102</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>16719</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>156</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>189</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>95</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>201</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>157</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>23</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>250</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="95255a0c-a49f-9ff7-6f34-46352907cdf7" />
+    </api>
+    <api id="T:Windows.System.Threading.WorkItemOptions">
+      <topicdata group="api" />
+      <apidata name="WorkItemOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.System.Threading.WorkItemOptions.None" />
+        <element api="F:Windows.System.Threading.WorkItemOptions.TimeSliced" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="d89b324b-c9de-f4c3-1ae7-be806cb4f655" />
+    </api>
+    <api id="F:Windows.System.Threading.WorkItemOptions.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Threading.WorkItemOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.WorkItemOptions" ref="false" />
+      </containers>
+      <file name="c6f2dca0-2ee2-8180-7b33-0ca22568b983" />
+    </api>
+    <api id="F:Windows.System.Threading.WorkItemOptions.TimeSliced">
+      <topicdata group="api" notopic="" />
+      <apidata name="TimeSliced" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Threading.WorkItemOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.WorkItemOptions" ref="false" />
+      </containers>
+      <file name="dc580e89-9aa0-09bc-f96f-571d889b1bc8" />
+    </api>
+    <api id="T:Windows.System.Threading.WorkItemPriority">
+      <topicdata group="api" />
+      <apidata name="WorkItemPriority" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.Threading.WorkItemPriority.Low" />
+        <element api="F:Windows.System.Threading.WorkItemPriority.Normal" />
+        <element api="F:Windows.System.Threading.WorkItemPriority.High" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b04dc7a6-4425-5d2d-929a-47497832777f" />
+    </api>
+    <api id="F:Windows.System.Threading.WorkItemPriority.High">
+      <topicdata group="api" notopic="" />
+      <apidata name="High" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+      </containers>
+      <file name="3e3e28a9-e4d7-fcd4-4991-bdc2757bc93e" />
+    </api>
+    <api id="F:Windows.System.Threading.WorkItemPriority.Low">
+      <topicdata group="api" notopic="" />
+      <apidata name="Low" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+      </returns>
+      <value>-1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+      </containers>
+      <file name="20a4475a-1d47-d71b-d72e-f95feb843f45" />
+    </api>
+    <api id="F:Windows.System.Threading.WorkItemPriority.Normal">
+      <topicdata group="api" notopic="" />
+      <apidata name="Normal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading" />
+        <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+      </containers>
+      <file name="69e9e6a2-89e2-21ff-7609-f53b8f57935d" />
+    </api>
+  </apis>
+</reflection>

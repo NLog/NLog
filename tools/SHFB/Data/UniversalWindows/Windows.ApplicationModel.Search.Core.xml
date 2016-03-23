@@ -1,0 +1,1894 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.ApplicationModel.Search.Core.SearchCoreContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel.Search.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel.Search.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" />
+        <element api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" />
+        <element api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+        <element api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+        <element api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+        <element api="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" />
+      </elements>
+      <file name="14075673-744e-3865-fbc8-7a9890b09bc9" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" />
+      <apidata name="RequestingFocusOnKeyboardInputEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e75d43b5-b919-52c2-8a1e-33fc0a9e5e54" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs">
+      <topicdata name="RequestingFocusOnKeyboardInputEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" />
+      <apidata name="RequestingFocusOnKeyboardInputEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" />
+      </containers>
+      <file name="62a0f33f-a09d-8f78-646d-b04355a40a07" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs">
+      <topicdata name="RequestingFocusOnKeyboardInputEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" />
+      <apidata name="RequestingFocusOnKeyboardInputEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" />
+      </containers>
+      <file name="3de6bcee-14c0-6891-424a-d77d2b95ca8d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Search.Core.SearchCoreContract">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchCoreContract" />
+      <apidata name="SearchCoreContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ApiContractAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f3dd4ffc-2f3e-f6b1-d2ec-a3a6b382888c" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchCoreContract">
+      <topicdata name="SearchCoreContract" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" />
+      <apidata name="SearchCoreContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" />
+      </containers>
+      <file name="3219ee90-96c4-4b4e-c05d-843a37be1fb3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Search.Core.SearchCoreContract">
+      <topicdata name="SearchCoreContract" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" />
+      <apidata name="SearchCoreContract" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" />
+      </containers>
+      <file name="216c73b2-d137-24da-dfe2-0a64e4505857" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Search.Core.SearchSuggestion">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      <apidata name="SearchSuggestion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d260cac0-3f02-3132-21c0-2611a2f82c11" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestion">
+      <topicdata name="SearchSuggestion" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      <apidata name="SearchSuggestion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.DetailText" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Image" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.ImageAlternateText" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Kind" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Tag" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Text" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      </containers>
+      <file name="5f6b08f3-5e65-078d-14ea-6c031586cdbc" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Search.Core.SearchSuggestion">
+      <topicdata name="SearchSuggestion" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      <apidata name="SearchSuggestion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      </containers>
+      <file name="8f89a0c1-925d-1e98-6418-34c2673041b6" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Search.Core.SearchSuggestion">
+      <topicdata name="SearchSuggestion" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      <apidata name="SearchSuggestion" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.DetailText" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Image" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.ImageAlternateText" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Kind" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Tag" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Text" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" />
+      </containers>
+      <file name="8fb8853d-a1dd-8cd7-ee04-0bb2a3399266" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.DetailText">
+      <topicdata group="api" />
+      <apidata name="DetailText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DetailText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+      </containers>
+      <file name="7896817b-1cd4-e04f-4cf9-d08e844e70b3" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Image">
+      <topicdata group="api" />
+      <apidata name="Image" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Image" />
+      <returns>
+        <type api="T:Windows.Storage.Streams.IRandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+      </containers>
+      <file name="e185f674-8ff1-eba0-819e-b69a735b1aa9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.ImageAlternateText">
+      <topicdata group="api" />
+      <apidata name="ImageAlternateText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ImageAlternateText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+      </containers>
+      <file name="9ec980ef-acd7-5e2b-adab-16136d533ca2" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Kind">
+      <topicdata group="api" />
+      <apidata name="Kind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Kind" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+      </containers>
+      <file name="ac3ce14b-0235-7114-2c6c-931c1d0ae9bc" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Tag">
+      <topicdata group="api" />
+      <apidata name="Tag" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Tag" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+      </containers>
+      <file name="decaab75-18c4-2918-5fb5-41f9fa07f706" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestion.Text">
+      <topicdata group="api" />
+      <apidata name="Text" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Text" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+      </containers>
+      <file name="fe76bf01-0ff5-e909-4408-40694c00a984" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind">
+      <topicdata group="api" />
+      <apidata name="SearchSuggestionKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.Search.Core.SearchSuggestionKind.Query" />
+        <element api="F:Windows.ApplicationModel.Search.Core.SearchSuggestionKind.Result" />
+        <element api="F:Windows.ApplicationModel.Search.Core.SearchSuggestionKind.Separator" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="20c9e553-fdea-4648-358c-848be98cf0ee" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Search.Core.SearchSuggestionKind.Query">
+      <topicdata group="api" notopic="" />
+      <apidata name="Query" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </containers>
+      <file name="3224d14f-021b-158c-11e2-b81e058efb66" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Search.Core.SearchSuggestionKind.Result">
+      <topicdata group="api" notopic="" />
+      <apidata name="Result" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </containers>
+      <file name="1b6aa570-af62-33f2-4ba3-69813da57c61" />
+    </api>
+    <api id="F:Windows.ApplicationModel.Search.Core.SearchSuggestionKind.Separator">
+      <topicdata group="api" notopic="" />
+      <apidata name="Separator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionKind" ref="false" />
+      </containers>
+      <file name="b85a4b6f-5b45-ecdd-0d04-da3f26dcde96" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="SearchSuggestionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="73fd4685-3ff5-2457-f492-f992839efa75" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager">
+      <topicdata name="SearchSuggestionManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="SearchSuggestionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor" />
+        <element api="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory">
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String)" />
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.ClearHistory" />
+        <element api="E:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.RequestingFocusOnKeyboardInput" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SearchHistoryContext" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SearchHistoryEnabled" />
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetLocalContentSuggestionSettings(Windows.ApplicationModel.Search.LocalContentSuggestionSettings)" />
+        <element api="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery">
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String)" />
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String)" />
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String,Windows.ApplicationModel.Search.SearchQueryLinguisticDetails)" />
+        </element>
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.Suggestions" />
+        <element api="E:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SuggestionsRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      </containers>
+      <file name="b2b85402-ae9f-05d2-e12f-2b42f9465b64" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager">
+      <topicdata name="SearchSuggestionManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="SearchSuggestionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory">
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String)" />
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String,System.String)" />
+        </element>
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.ClearHistory" />
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetLocalContentSuggestionSettings(Windows.ApplicationModel.Search.LocalContentSuggestionSettings)" />
+        <element api="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery">
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String)" />
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String)" />
+          <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String,Windows.ApplicationModel.Search.SearchQueryLinguisticDetails)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      </containers>
+      <file name="71943be0-6d04-0080-0004-ac60c5111778" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager">
+      <topicdata name="SearchSuggestionManager" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="SearchSuggestionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SearchHistoryContext" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SearchHistoryEnabled" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.Suggestions" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      </containers>
+      <file name="a9abfa50-2894-13b3-a2fb-3ac38e9d3286" />
+    </api>
+    <api id="Events.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager">
+      <topicdata name="SearchSuggestionManager" group="list" subgroup="Events" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="SearchSuggestionManager" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor" />
+      <elements>
+        <element api="E:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.RequestingFocusOnKeyboardInput" />
+        <element api="E:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SuggestionsRequested" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      </containers>
+      <file name="c59b9770-aa37-a051-66f8-5e82ae668eb5" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory">
+      <topicdata name="AddToHistory" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="AddToHistory" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String)" />
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="c217b623-3bac-75ed-5b34-254dea9a671a" />
+    </api>
+    <api id="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery">
+      <topicdata name="SetQuery" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" />
+      <apidata name="SetQuery" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String)" />
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String)" />
+        <element api="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String,Windows.ApplicationModel.Search.SearchQueryLinguisticDetails)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="48417284-f609-e6a4-7d3f-baa0a01454d9" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="a244e614-2b89-0b9b-6222-40f96afebdc5" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String)">
+      <topicdata group="api" />
+      <apidata name="AddToHistory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="queryText" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddToHistory</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d057c98d-7889-2319-3d3b-11631d0f7277" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="AddToHistory" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.AddToHistory" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="queryText" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="language" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AddToHistoryWithLanguage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="710110bd-a7f4-d3a1-dd8f-f2b51861afbc" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.ClearHistory">
+      <topicdata group="api" />
+      <apidata name="ClearHistory" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="adedebe3-5749-1d27-d73c-ecf6762fe797" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.RequestingFocusOnKeyboardInput">
+      <topicdata group="api" />
+      <apidata name="RequestingFocusOnKeyboardInput" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RequestingFocusOnKeyboardInput" />
+      <remover name="remove_RequestingFocusOnKeyboardInput" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+            <type api="T:Windows.ApplicationModel.Search.Core.RequestingFocusOnKeyboardInputEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="0749b904-f07d-2bdc-1ca9-38eabaa3f1ff" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SearchHistoryContext">
+      <topicdata group="api" />
+      <apidata name="SearchHistoryContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SearchHistoryContext" />
+      <setter name="set_SearchHistoryContext" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="53e5dcb0-bf5a-6e04-70c0-028cf8e066eb" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SearchHistoryEnabled">
+      <topicdata group="api" />
+      <apidata name="SearchHistoryEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SearchHistoryEnabled" />
+      <setter name="set_SearchHistoryEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="55d627d6-0b6a-0c8d-b925-3363cf639ffb" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetLocalContentSuggestionSettings(Windows.ApplicationModel.Search.LocalContentSuggestionSettings)">
+      <topicdata group="api" />
+      <apidata name="SetLocalContentSuggestionSettings" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="settings" in="true">
+          <type api="T:Windows.ApplicationModel.Search.LocalContentSuggestionSettings" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="41815d75-0a22-e28e-8fd3-d35d9131c074" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String)">
+      <topicdata group="api" />
+      <apidata name="SetQuery" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="queryText" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetQuery</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="83db4418-92d5-ab5d-2e84-d7d270475551" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name="SetQuery" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="queryText" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="language" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetQueryWithLanguage</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="32bc8874-ca07-3e9f-4f1c-8248f8c08688" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery(System.String,System.String,Windows.ApplicationModel.Search.SearchQueryLinguisticDetails)">
+      <topicdata group="api" />
+      <apidata name="SetQuery" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SetQuery" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="queryText" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="language" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="linguisticDetails" in="true">
+          <type api="T:Windows.ApplicationModel.Search.SearchQueryLinguisticDetails" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SetQueryWithSearchQueryLinguisticDetails</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5311b222-e07e-d861-0619-9737a60c4dac" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.Suggestions">
+      <topicdata group="api" />
+      <apidata name="Suggestions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Suggestions" />
+      <returns>
+        <type api="T:Windows.Foundation.Collections.IObservableVector`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestion" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="57df172c-3a57-26b5-cb39-bd01733dda6d" />
+    </api>
+    <api id="E:Windows.ApplicationModel.Search.Core.SearchSuggestionManager.SuggestionsRequested">
+      <topicdata group="api" />
+      <apidata name="SuggestionsRequested" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SuggestionsRequested" />
+      <remover name="remove_SuggestionsRequested" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+            <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionManager" ref="true" />
+      </containers>
+      <file name="56599407-3afc-ca3a-cdd0-629156c94773" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      <apidata name="SearchSuggestionsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.ApplicationModel.Search.Core.SearchCoreContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="59547be6-2588-e189-be00-835d4902c4a1" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs">
+      <topicdata name="SearchSuggestionsRequestedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      <apidata name="SearchSuggestionsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.Language" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.LinguisticDetails" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.QueryText" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      </containers>
+      <file name="6392cac7-373e-d2d3-eb95-b4d3a31dca9c" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs">
+      <topicdata name="SearchSuggestionsRequestedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      <apidata name="SearchSuggestionsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      </containers>
+      <file name="f0aeda28-2ea8-8984-5c1c-8c22f4970720" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs">
+      <topicdata name="SearchSuggestionsRequestedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      <apidata name="SearchSuggestionsRequestedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.Language" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.LinguisticDetails" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.QueryText" />
+        <element api="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.Request" />
+      </elements>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" />
+      </containers>
+      <file name="6de0f750-e3c9-41be-0e50-c3c7cb6a6306" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.Language">
+      <topicdata group="api" />
+      <apidata name="Language" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Language" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="04163034-5435-98c7-f821-92853330a707" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.LinguisticDetails">
+      <topicdata group="api" />
+      <apidata name="LinguisticDetails" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LinguisticDetails" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Search.SearchQueryLinguisticDetails" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="14f80ea5-523b-258e-a711-072e9d7e5161" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.QueryText">
+      <topicdata group="api" />
+      <apidata name="QueryText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_QueryText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="8bad72e3-db93-273a-1363-518519871f49" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs.Request">
+      <topicdata group="api" />
+      <apidata name="Request" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Request" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Search.SearchSuggestionsRequest" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.ApplicationModel.Search.Core.SearchCoreContract" module="Windows.ApplicationModel.Search.Core.SearchCoreContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel.Search.Core" />
+        <type api="T:Windows.ApplicationModel.Search.Core.SearchSuggestionsRequestedEventArgs" ref="true" />
+      </containers>
+      <file name="16b4cd66-4331-9cd2-6667-ff91374d9a52" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,715 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Core.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Core.Presentation">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Core.Presentation" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Core.Presentation.ConnectionPointType" />
+        <element api="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+        <element api="T:System.Activities.Core.Presentation.DesignerMetadata" />
+        <element api="T:System.Activities.Core.Presentation.FlowchartDesignerCommands" />
+        <element api="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" />
+        <element api="T:System.Activities.Core.Presentation.FinalState" />
+      </elements>
+      <file name="41ab4d92-3ef2-b9e4-c651-bcc345ad0c85" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.ConnectionPointType">
+      <topicdata group="api" />
+      <apidata name="ConnectionPointType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Core.Presentation.ConnectionPointType.Default" />
+        <element api="F:System.Activities.Core.Presentation.ConnectionPointType.Incoming" />
+        <element api="F:System.Activities.Core.Presentation.ConnectionPointType.Outgoing" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+      </containers>
+      <file name="1fb43072-0df2-2d99-61e7-2fffbd43d44e" />
+    </api>
+    <api id="F:System.Activities.Core.Presentation.ConnectionPointType.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Core.Presentation.ConnectionPointType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.ConnectionPointType" ref="false" />
+      </containers>
+      <file name="71dc4e28-0b8b-c976-8d4c-fcfc10898021" />
+    </api>
+    <api id="F:System.Activities.Core.Presentation.ConnectionPointType.Incoming">
+      <topicdata group="api" notopic="" />
+      <apidata name="Incoming" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Core.Presentation.ConnectionPointType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.ConnectionPointType" ref="false" />
+      </containers>
+      <file name="bf0088b8-a6e6-f694-ecea-bc99d5345d84" />
+    </api>
+    <api id="F:System.Activities.Core.Presentation.ConnectionPointType.Outgoing">
+      <topicdata group="api" notopic="" />
+      <apidata name="Outgoing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Activities.Core.Presentation.ConnectionPointType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.ConnectionPointType" ref="false" />
+      </containers>
+      <file name="650e89d2-1ef7-fa0e-7411-5d3504ac473b" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.DesignerMetadata">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.DesignerMetadata" />
+      <apidata name="DesignerMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.DesignerMetadata.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Activities.Presentation.Metadata.IRegisterMetadata" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+      </containers>
+      <file name="26c7bfaf-0661-ea94-02aa-7bdcee290ec5" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.DesignerMetadata">
+      <topicdata name="DesignerMetadata" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.DesignerMetadata" />
+      <apidata name="DesignerMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.DesignerMetadata.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.DesignerMetadata.#ctor" />
+        <element api="M:System.Activities.Core.Presentation.DesignerMetadata.Register" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.DesignerMetadata" />
+      </containers>
+      <file name="27931f44-df13-a0fe-b411-6078ade65863" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.DesignerMetadata">
+      <topicdata name="DesignerMetadata" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.DesignerMetadata" />
+      <apidata name="DesignerMetadata" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.DesignerMetadata.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.DesignerMetadata.Register" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.DesignerMetadata" />
+      </containers>
+      <file name="1db81f43-3dcf-4157-3440-4847405f1c41" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.DesignerMetadata.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.DesignerMetadata" ref="true" />
+      </containers>
+      <file name="8ad68083-282c-34d6-6db3-1a026c4b256d" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.DesignerMetadata.Register">
+      <topicdata group="api" />
+      <apidata name="Register" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.Activities.Presentation.Metadata.IRegisterMetadata.Register">
+          <type api="T:System.Activities.Presentation.Metadata.IRegisterMetadata" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.DesignerMetadata" ref="true" />
+      </containers>
+      <file name="162d8d8f-bb4a-51a3-206f-172d80af5688" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.FinalState">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.FinalState" />
+      <apidata name="FinalState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.FinalState.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+      </containers>
+      <file name="aac0c507-a44b-1e92-e752-cd052ee53a5f" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.FinalState">
+      <topicdata name="FinalState" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.FinalState" />
+      <apidata name="FinalState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.FinalState.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.FinalState.#ctor" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.FinalState" />
+      </containers>
+      <file name="49d84945-b48f-76ee-0054-8c471088c076" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.FinalState">
+      <topicdata name="FinalState" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.FinalState" />
+      <apidata name="FinalState" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.FinalState.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.FinalState" />
+      </containers>
+      <file name="430e5658-6c61-cc8e-e48d-77176d35b882" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.FinalState.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.FinalState" ref="true" />
+      </containers>
+      <file name="3c371b3a-2398-1c41-3910-e9186af251b7" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.FlowchartDesignerCommands">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.FlowchartDesignerCommands" />
+      <apidata name="FlowchartDesignerCommands" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+      </containers>
+      <file name="0a644af0-a6c1-4e76-f4fa-344b64e48b71" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.FlowchartDesignerCommands">
+      <topicdata name="FlowchartDesignerCommands" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.FlowchartDesignerCommands" />
+      <apidata name="FlowchartDesignerCommands" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Core.Presentation.FlowchartDesignerCommands.ConnectNodesCommand" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.FlowchartDesignerCommands" />
+      </containers>
+      <file name="95ef8621-66e4-99b1-5f25-8c1536a408e0" />
+    </api>
+    <api id="Fields.T:System.Activities.Core.Presentation.FlowchartDesignerCommands">
+      <topicdata name="FlowchartDesignerCommands" group="list" subgroup="Fields" typeTopicId="T:System.Activities.Core.Presentation.FlowchartDesignerCommands" />
+      <apidata name="FlowchartDesignerCommands" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Core.Presentation.FlowchartDesignerCommands.ConnectNodesCommand" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.FlowchartDesignerCommands" />
+      </containers>
+      <file name="4b77078d-d00c-c757-be58-71a5d4d67ede" />
+    </api>
+    <api id="F:System.Activities.Core.Presentation.FlowchartDesignerCommands.ConnectNodesCommand">
+      <topicdata group="api" />
+      <apidata name="ConnectNodesCommand" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.RoutedCommand" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.FlowchartDesignerCommands" ref="true" />
+      </containers>
+      <file name="480fc9ff-04c5-fa33-ed86-283ce653ab03" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" />
+      <apidata name="GenericTypeArgumentConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+      </containers>
+      <file name="b34704ae-c58d-b546-fbda-37a144123734" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.GenericTypeArgumentConverter">
+      <topicdata name="GenericTypeArgumentConverter" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" />
+      <apidata name="GenericTypeArgumentConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.#ctor" />
+        <element api="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" />
+      </containers>
+      <file name="1536a032-3d6a-f887-9972-2955df66725f" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.GenericTypeArgumentConverter">
+      <topicdata name="GenericTypeArgumentConverter" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" />
+      <apidata name="GenericTypeArgumentConverter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+        <element api="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" />
+      </containers>
+      <file name="b2d03bf5-9c18-41c1-15bc-585684b8aa1c" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" ref="true" />
+      </containers>
+      <file name="db6371e7-cee6-e75c-5e0e-3f52054fd67b" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="Convert" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" ref="true" />
+      </containers>
+      <file name="f6c3b872-be5a-8fee-0395-9c733aeff858" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.GenericTypeArgumentConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+      <topicdata group="api" />
+      <apidata name="ConvertBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="targetType">
+          <type api="T:System.Type" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="culture">
+          <type api="T:System.Globalization.CultureInfo" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Data.IValueConverter.ConvertBack(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+          <type api="T:System.Windows.Data.IValueConverter" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.GenericTypeArgumentConverter" ref="true" />
+      </containers>
+      <file name="064a1386-8125-06b8-cd8d-70b4d855901c" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.LocationChangedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      <apidata name="LocationChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+      </containers>
+      <file name="d804b688-300c-ef27-4f93-435a4e1a88ff" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.LocationChangedEventArgs">
+      <topicdata name="LocationChangedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      <apidata name="LocationChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.LocationChangedEventArgs.#ctor(System.Windows.Point)" />
+        <element api="P:System.Activities.Core.Presentation.LocationChangedEventArgs.NewLocation" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      </containers>
+      <file name="788732d0-410c-8c04-1102-ebb4b22786a9" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.LocationChangedEventArgs">
+      <topicdata name="LocationChangedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      <apidata name="LocationChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      </containers>
+      <file name="02d726b4-7e1a-75f8-4bad-91d54d8c2930" />
+    </api>
+    <api id="Properties.T:System.Activities.Core.Presentation.LocationChangedEventArgs">
+      <topicdata name="LocationChangedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      <apidata name="LocationChangedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Core.Presentation.LocationChangedEventArgs.NewLocation" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.LocationChangedEventArgs" />
+      </containers>
+      <file name="d4785031-61fe-3aba-4060-0c6f5b5e4cbf" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.LocationChangedEventArgs.#ctor(System.Windows.Point)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="newLocation">
+          <type api="T:System.Windows.Point" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.LocationChangedEventArgs" ref="true" />
+      </containers>
+      <file name="8debeea8-1a74-b884-0d7a-fc42e93ac98b" />
+    </api>
+    <api id="P:System.Activities.Core.Presentation.LocationChangedEventArgs.NewLocation">
+      <topicdata group="api" />
+      <apidata name="NewLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NewLocation" />
+      <returns>
+        <type api="T:System.Windows.Point" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation" />
+        <type api="T:System.Activities.Core.Presentation.LocationChangedEventArgs" ref="true" />
+      </containers>
+      <file name="115f5226-4c7e-75b9-9bbe-13c2617f3073" />
+    </api>
+  </apis>
+</reflection>

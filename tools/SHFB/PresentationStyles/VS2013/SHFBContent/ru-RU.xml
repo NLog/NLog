@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- NOTE: This file must appear LAST in the list of content files so that these items override the matching
+						 items in the stock content files! -->
+
+	<!-- Note that the copyright item in the shared content is not used. The following items are used instead. -->
+	<item id="copyright_info">{@HtmlEncCopyrightInfo}</item>
+	<item id="copyright_link">{@HtmlEncCopyrightHref}</item>
+	<item id="copyright_text">{@HtmlEncCopyrightText}</item>
+
+	<item id="header"><span class="introStyle">{@HeaderText}</span> {@Preliminary}</item>
+	<item id="footer_content">{@FooterText}{@Copyright}{@Comments}</item>
+	<item id="feedback_body">Ваш отзыв будет использован для улучшения качества документации и продукта в целом. Адрес вашей электронной почты не будет использован для других целей и будет удалён, после того как ваш отзыв будет обработан. До окончания работ по обработке вашего отзыва, вы можете связаться с автором для получения дополнительной информации. После его обработки, вы можете получить сообщение об окончании работ по вашему отзыву на указанный адрес электронной почты.</item>
+
+	<!-- reference_content.xml overrides -->
+	<item id="topicTitle_root">{@RootNamespaceTitle}</item>
+    <!-- This is used when a title is not specified in the project -->
+    <item id="rootTopicTitleLocalized">Пространства имен</item>
+
+	<item id="productTitle">{@HtmlEncHelpTitle}</item>
+	<item id="runningHeaderText">{@HtmlEncHelpTitle}</item>
+
+	<!-- shared_content.xml overrides -->
+	<item id="locale">{@Locale}</item>
+	<item id="brandingLocaleCss">branding-{@LocaleMixedCase}.css</item>
+
+	<item id="preliminary"><p style="color: #dc143c; font-size: 8.5pt; font-weight: bold;">[Это предварительная версия документации. API может измениться в будущем.]</p></item>
+
+	<item id="comments"><div class="feedbackLink">Отправить комментарий по этой теме в
+        <a id="HT_MailLink" href="mailto:{@UrlEncFeedbackEMailAddress}?Subject={@UrlEncHelpTitle}">{@HtmlEncFeedbackEMailAddress}</a></div>
+        <script type="text/javascript">
+        var HT_mailLink = document.getElementById("HT_MailLink");
+        var HT_mailLinkText = HT_mailLink.innerHTML;
+        HT_mailLink.href += ": " + document.title + "\u0026body=" + encodeURIComponent("<include item='feedback_body' />");
+        HT_mailLink.innerHTML = HT_mailLinkText;
+        </script></item>
+
+	<!-- To format the copyright HREF and/or copyright text into a message of your choosing, you can specify
+			 @HtmlEncCopyrightHref and/or @HtmlEncCopyrightText in braces -->
+	<item id="copyright">{@HtmlEncCopyrightInfo}</item>
+</content>

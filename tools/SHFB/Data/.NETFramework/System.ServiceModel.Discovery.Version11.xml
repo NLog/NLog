@@ -1,0 +1,1092 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Discovery">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Discovery.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Discovery.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Discovery.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Discovery.Version11">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Discovery.Version11" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+        <element api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+        <element api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+        <element api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      </elements>
+      <file name="8f23147d-1303-c22f-f933-98e26eef9a9d" />
+    </api>
+    <api id="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+      <apidata name="DiscoveryMessageSequence11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlSchemaProviderAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetSchema</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b3be543f-c65e-ff47-0766-6a6a6e22e776" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11">
+      <topicdata name="DiscoveryMessageSequence11" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+      <apidata name="DiscoveryMessageSequence11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.FromDiscoveryMessageSequence(System.ServiceModel.Discovery.DiscoveryMessageSequence)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.ToDiscoveryMessageSequence" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+      </containers>
+      <file name="e607ce03-a6be-0ab2-8ba9-39777c5578d5" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11">
+      <topicdata name="DiscoveryMessageSequence11" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+      <apidata name="DiscoveryMessageSequence11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.FromDiscoveryMessageSequence(System.ServiceModel.Discovery.DiscoveryMessageSequence)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.ToDiscoveryMessageSequence" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+      </containers>
+      <file name="bc813180-597f-ad26-01bc-3eef67272280" />
+    </api>
+    <api id="Overload:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema">
+      <topicdata name="GetSchema" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema" />
+        <element api="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="212dcaa1-8096-63fc-7eac-73bffd40d44f" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.FromDiscoveryMessageSequence(System.ServiceModel.Discovery.DiscoveryMessageSequence)">
+      <topicdata group="api" />
+      <apidata name="FromDiscoveryMessageSequence" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="discoveryMessageSequence">
+          <type api="T:System.ServiceModel.Discovery.DiscoveryMessageSequence" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="888ecf05-3d09-86a3-de88-9b4c9095cac8" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchema" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.GetSchema">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="35aac36c-ea43-7cba-afbd-4e56b7496699" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema(System.Xml.Schema.XmlSchemaSet)">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.GetSchema" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="schemaSet">
+          <type api="T:System.Xml.Schema.XmlSchemaSet" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlQualifiedName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="a27e29f3-5afa-aa76-ac9b-b0e046d710dd" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.ReadXml(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="ReadXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="9a28e456-a032-d706-f2b2-d751029c9d5e" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.ToDiscoveryMessageSequence">
+      <topicdata group="api" />
+      <apidata name="ToDiscoveryMessageSequence" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.DiscoveryMessageSequence" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="f52b7786-5261-470e-c742-ce3efe88153e" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11.WriteXml(System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="WriteXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.DiscoveryMessageSequence11" ref="true" />
+      </containers>
+      <file name="2f49d6f2-2053-6ddc-7c1f-fff2818e1e72" />
+    </api>
+    <api id="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+      <apidata name="EndpointDiscoveryMetadata11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlSchemaProviderAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetSchema</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f6f9ab78-1cfe-9c86-3964-9939e04b473d" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11">
+      <topicdata name="EndpointDiscoveryMetadata11" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+      <apidata name="EndpointDiscoveryMetadata11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.FromEndpointDiscoveryMetadata(System.ServiceModel.Discovery.EndpointDiscoveryMetadata)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.ToEndpointDiscoveryMetadata" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+      </containers>
+      <file name="e4b8fdd0-e1af-bbb2-5b10-c72d74de2d81" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11">
+      <topicdata name="EndpointDiscoveryMetadata11" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+      <apidata name="EndpointDiscoveryMetadata11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.FromEndpointDiscoveryMetadata(System.ServiceModel.Discovery.EndpointDiscoveryMetadata)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.ToEndpointDiscoveryMetadata" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+      </containers>
+      <file name="af472967-4e18-ca40-da21-21c2c2b0e2b9" />
+    </api>
+    <api id="Overload:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema">
+      <topicdata name="GetSchema" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema" />
+        <element api="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="23cb9a56-42b9-f9d7-f6ea-abdb6dd3683e" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.FromEndpointDiscoveryMetadata(System.ServiceModel.Discovery.EndpointDiscoveryMetadata)">
+      <topicdata group="api" />
+      <apidata name="FromEndpointDiscoveryMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="endpointDiscoveryMetadata">
+          <type api="T:System.ServiceModel.Discovery.EndpointDiscoveryMetadata" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="7a8e89a8-bbb4-2e11-c999-781b2aeb447e" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchema" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.GetSchema">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="6b260ffb-9415-0990-dac2-1f6f72e221c8" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema(System.Xml.Schema.XmlSchemaSet)">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.GetSchema" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="schemaSet">
+          <type api="T:System.Xml.Schema.XmlSchemaSet" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlQualifiedName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="440cad84-bfed-b2ff-4bb5-6e0e664412f6" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.ReadXml(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="ReadXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="d66c3fb3-0930-d7db-077c-f8819d3a7a2a" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.ToEndpointDiscoveryMetadata">
+      <topicdata group="api" />
+      <apidata name="ToEndpointDiscoveryMetadata" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.EndpointDiscoveryMetadata" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="70f1d5d5-bfd7-a02a-c502-d9a9b1c1a0e3" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11.WriteXml(System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="WriteXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.EndpointDiscoveryMetadata11" ref="true" />
+      </containers>
+      <file name="32c174ba-8967-f01d-8ac5-378406006201" />
+    </api>
+    <api id="T:System.ServiceModel.Discovery.Version11.FindCriteria11">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+      <apidata name="FindCriteria11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlSchemaProviderAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetSchema</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a1918273-e2cb-c6dc-75bd-7b9ce7e4f0d3" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Discovery.Version11.FindCriteria11">
+      <topicdata name="FindCriteria11" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+      <apidata name="FindCriteria11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.FromFindCriteria(System.ServiceModel.Discovery.FindCriteria)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.ToFindCriteria" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+      </containers>
+      <file name="9105bb68-05aa-7fc1-21c8-cf1541d77cda" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Discovery.Version11.FindCriteria11">
+      <topicdata name="FindCriteria11" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+      <apidata name="FindCriteria11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.FromFindCriteria(System.ServiceModel.Discovery.FindCriteria)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.ToFindCriteria" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+      </containers>
+      <file name="2268a1da-07e0-63a5-39e0-6b654d45df5e" />
+    </api>
+    <api id="Overload:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema">
+      <topicdata name="GetSchema" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.FindCriteria11" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema" />
+        <element api="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="0107bd83-aaf7-ece6-6926-0fd82fe8da0c" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.FindCriteria11.FromFindCriteria(System.ServiceModel.Discovery.FindCriteria)">
+      <topicdata group="api" />
+      <apidata name="FromFindCriteria" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="findCriteria">
+          <type api="T:System.ServiceModel.Discovery.FindCriteria" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="251f24cc-9d39-c824-b3c6-e33a8593fc90" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchema" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.GetSchema">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="529eee1c-495e-2c1d-788b-ffddc8fddc34" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceModel.Discovery.Version11.FindCriteria11.GetSchema" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="schemaSet">
+          <type api="T:System.Xml.Schema.XmlSchemaSet" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlQualifiedName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="c7ed7c58-2e37-9eba-6ea4-0547081ff309" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.FindCriteria11.ReadXml(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="ReadXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="0d96efe6-51a7-859b-5e03-02bc5f20bc23" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.FindCriteria11.ToFindCriteria">
+      <topicdata group="api" />
+      <apidata name="ToFindCriteria" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.FindCriteria" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="980d38e1-499b-4e48-45e8-f9fef7906658" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.FindCriteria11.WriteXml(System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="WriteXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.FindCriteria11" ref="true" />
+      </containers>
+      <file name="8c26aba3-754b-8b5e-6717-7a2e241d9a5d" />
+    </api>
+    <api id="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      <apidata name="ResolveCriteria11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Xml.Serialization.XmlSchemaProviderAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GetSchema</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8db66404-586e-8fd1-1684-be34b87c143b" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Discovery.Version11.ResolveCriteria11">
+      <topicdata name="ResolveCriteria11" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      <apidata name="ResolveCriteria11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.FromResolveCriteria(System.ServiceModel.Discovery.ResolveCriteria)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.ToResolveCriteria" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      </containers>
+      <file name="ba20965b-cb9c-bfd5-02cf-bceea656c61b" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Discovery.Version11.ResolveCriteria11">
+      <topicdata name="ResolveCriteria11" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      <apidata name="ResolveCriteria11" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.FromResolveCriteria(System.ServiceModel.Discovery.ResolveCriteria)" />
+        <element api="Overload:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema">
+          <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema" />
+          <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+        </element>
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.ReadXml(System.Xml.XmlReader)" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.ToResolveCriteria" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.WriteXml(System.Xml.XmlWriter)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      </containers>
+      <file name="0e9bac26-3930-8177-6013-f7264654d579" />
+    </api>
+    <api id="Overload:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema">
+      <topicdata name="GetSchema" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema" />
+        <element api="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="9768d989-47d5-f692-0276-4c969f1bc85c" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.FromResolveCriteria(System.ServiceModel.Discovery.ResolveCriteria)">
+      <topicdata group="api" />
+      <apidata name="FromResolveCriteria" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="resolveCriteria">
+          <type api="T:System.ServiceModel.Discovery.ResolveCriteria" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="f8b289a3-5001-fd30-9a2f-341deb5696a8" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Xml.Schema.XmlSchema" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.GetSchema">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="d42d6ed4-176c-6c00-6d08-b3d16df2ccd4" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema(System.Xml.Schema.XmlSchemaSet)">
+      <topicdata group="api" />
+      <apidata name="GetSchema" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.ServiceModel.Discovery.Version11.ResolveCriteria11.GetSchema" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="schemaSet">
+          <type api="T:System.Xml.Schema.XmlSchemaSet" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Xml.XmlQualifiedName" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="92e4d48c-6a2b-3cc0-18c2-ed44b21eb389" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.ReadXml(System.Xml.XmlReader)">
+      <topicdata group="api" />
+      <apidata name="ReadXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="reader">
+          <type api="T:System.Xml.XmlReader" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.ReadXml(System.Xml.XmlReader)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="ca617897-73e9-2d75-e3a4-402a9148b3ac" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.ToResolveCriteria">
+      <topicdata group="api" />
+      <apidata name="ToResolveCriteria" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.ServiceModel.Discovery.ResolveCriteria" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="aef434b0-febf-39cb-a74a-caa045034dc1" />
+    </api>
+    <api id="M:System.ServiceModel.Discovery.Version11.ResolveCriteria11.WriteXml(System.Xml.XmlWriter)">
+      <topicdata group="api" />
+      <apidata name="WriteXml" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="writer">
+          <type api="T:System.Xml.XmlWriter" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Xml.Serialization.IXmlSerializable.WriteXml(System.Xml.XmlWriter)">
+          <type api="T:System.Xml.Serialization.IXmlSerializable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.ServiceModel.Discovery" module="System.ServiceModel.Discovery" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.ServiceModel.Discovery.Version11" />
+        <type api="T:System.ServiceModel.Discovery.Version11.ResolveCriteria11" ref="true" />
+      </containers>
+      <file name="51484118-4f24-ac5f-e0e1-d5f74f6a5ec2" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
+						xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+	<Template>Normal.dotm</Template>
+	<Application>Microsoft Office Word</Application>
+	<DocSecurity>0</DocSecurity>
+	<ScaleCrop>false</ScaleCrop>
+	<TitlesOfParts>
+		<vt:vector size="1" baseType="lpstr">
+			<vt:lpstr>{@HtmlEncHelpTitle}</vt:lpstr>
+		</vt:vector>
+	</TitlesOfParts>
+	<Company>{@HtmlEncVendorName}</Company>
+	<LinksUpToDate>false</LinksUpToDate>
+	<SharedDoc>false</SharedDoc>
+	<HyperlinksChanged>false</HyperlinksChanged>
+	<AppVersion>15.0000</AppVersion>
+</Properties>

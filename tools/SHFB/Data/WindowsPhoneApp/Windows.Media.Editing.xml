@@ -1,0 +1,1812 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Media.Editing">
+      <topicdata group="api" />
+      <apidata name="Windows.Media.Editing" group="namespace" />
+      <elements>
+        <element api="T:Windows.Media.Editing.VideoFramePrecision" />
+        <element api="T:Windows.Media.Editing.MediaTrimmingPreference" />
+        <element api="T:Windows.Media.Editing.MediaClip" />
+        <element api="T:Windows.Media.Editing.EmbeddedAudioTrack" />
+        <element api="T:Windows.Media.Editing.BackgroundAudioTrack" />
+        <element api="T:Windows.Media.Editing.MediaComposition" />
+      </elements>
+      <file name="86f30c1c-ce62-4e47-71fe-477c173bdf02" />
+    </api>
+    <api id="T:Windows.Media.Editing.BackgroundAudioTrack">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Editing.BackgroundAudioTrack" />
+      <apidata name="BackgroundAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Editing.IBackgroundAudioTrack" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e6394b70-fe61-14b8-cb61-843d228077a4" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Editing.BackgroundAudioTrack">
+      <topicdata name="BackgroundAudioTrack" group="list" subgroup="members" typeTopicId="T:Windows.Media.Editing.BackgroundAudioTrack" />
+      <apidata name="BackgroundAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.AudioEffectDefinitions" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.Clone" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.CreateFromEmbeddedAudioTrack(Windows.Media.Editing.EmbeddedAudioTrack)" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.CreateFromFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.Delay" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.GetAudioEncodingProperties" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.OriginalDuration" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.TrimmedDuration" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.TrimTimeFromEnd" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.TrimTimeFromStart" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.UserData" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" />
+      </containers>
+      <file name="bb741142-1566-deca-4c08-b06b60d52535" />
+    </api>
+    <api id="Methods.T:Windows.Media.Editing.BackgroundAudioTrack">
+      <topicdata name="BackgroundAudioTrack" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Editing.BackgroundAudioTrack" />
+      <apidata name="BackgroundAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.Clone" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.CreateFromEmbeddedAudioTrack(Windows.Media.Editing.EmbeddedAudioTrack)" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.CreateFromFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Media.Editing.BackgroundAudioTrack.GetAudioEncodingProperties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" />
+      </containers>
+      <file name="aa65d4dc-f14c-119d-b132-e9d0a62c63ab" />
+    </api>
+    <api id="Properties.T:Windows.Media.Editing.BackgroundAudioTrack">
+      <topicdata name="BackgroundAudioTrack" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Editing.BackgroundAudioTrack" />
+      <apidata name="BackgroundAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.AudioEffectDefinitions" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.Delay" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.OriginalDuration" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.TrimmedDuration" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.TrimTimeFromEnd" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.TrimTimeFromStart" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.UserData" />
+        <element api="P:Windows.Media.Editing.BackgroundAudioTrack.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" />
+      </containers>
+      <file name="85e6e106-31c5-0c21-5fa7-1f5c97d3c847" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.AudioEffectDefinitions">
+      <topicdata group="api" />
+      <apidata name="AudioEffectDefinitions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AudioEffectDefinitions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="249230fb-85a1-615d-8781-db9b49af84e5" />
+    </api>
+    <api id="M:Windows.Media.Editing.BackgroundAudioTrack.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="57297e57-fd4b-4bd6-57db-884247fa32d3" />
+    </api>
+    <api id="M:Windows.Media.Editing.BackgroundAudioTrack.CreateFromEmbeddedAudioTrack(Windows.Media.Editing.EmbeddedAudioTrack)">
+      <topicdata group="api" />
+      <apidata name="CreateFromEmbeddedAudioTrack" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="embeddedAudioTrack" in="true">
+          <type api="T:Windows.Media.Editing.EmbeddedAudioTrack" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="91aab76d-b5e3-7625-5c11-50fbbb3ffc51" />
+    </api>
+    <api id="M:Windows.Media.Editing.BackgroundAudioTrack.CreateFromFileAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="5eea1e66-c580-c607-7608-dd408e8d258f" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.Delay">
+      <topicdata group="api" />
+      <apidata name="Delay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Delay" />
+      <setter name="set_Delay" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="f0124ba9-faae-b91c-20ec-7c0110525450" />
+    </api>
+    <api id="M:Windows.Media.Editing.BackgroundAudioTrack.GetAudioEncodingProperties">
+      <topicdata group="api" />
+      <apidata name="GetAudioEncodingProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaProperties.AudioEncodingProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="17276c72-987f-2fe0-76f5-2a56192ed6d9" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.OriginalDuration">
+      <topicdata group="api" />
+      <apidata name="OriginalDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OriginalDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="5ebd2a88-13bb-e57c-1f47-3b7ab78c344a" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.TrimmedDuration">
+      <topicdata group="api" />
+      <apidata name="TrimmedDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TrimmedDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="9b0046af-fbea-4bfa-8fc4-4727f76fd104" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.TrimTimeFromEnd">
+      <topicdata group="api" />
+      <apidata name="TrimTimeFromEnd" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrimTimeFromEnd" />
+      <setter name="set_TrimTimeFromEnd" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="cecbfafc-9b4b-cdf8-f063-275a65c25528" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.TrimTimeFromStart">
+      <topicdata group="api" />
+      <apidata name="TrimTimeFromStart" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrimTimeFromStart" />
+      <setter name="set_TrimTimeFromStart" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="ad84f186-e979-3600-17d2-5134b0cba588" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.UserData">
+      <topicdata group="api" />
+      <apidata name="UserData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UserData" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="6cc0256c-6376-9364-4f87-0b81b02bc65f" />
+    </api>
+    <api id="P:Windows.Media.Editing.BackgroundAudioTrack.Volume">
+      <topicdata group="api" />
+      <apidata name="Volume" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Volume" />
+      <setter name="set_Volume" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+      </containers>
+      <file name="d19271e7-bb63-28cc-0e67-240cac483360" />
+    </api>
+    <api id="T:Windows.Media.Editing.EmbeddedAudioTrack">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Editing.EmbeddedAudioTrack" />
+      <apidata name="EmbeddedAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Editing.IEmbeddedAudioTrack" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="73b3c829-6c38-0059-9a2c-8560ee848528" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Editing.EmbeddedAudioTrack">
+      <topicdata name="EmbeddedAudioTrack" group="list" subgroup="members" typeTopicId="T:Windows.Media.Editing.EmbeddedAudioTrack" />
+      <apidata name="EmbeddedAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Editing.EmbeddedAudioTrack.GetAudioEncodingProperties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.EmbeddedAudioTrack" />
+      </containers>
+      <file name="49f1c09a-d21c-c2cc-4844-af94ffa8dccc" />
+    </api>
+    <api id="Methods.T:Windows.Media.Editing.EmbeddedAudioTrack">
+      <topicdata name="EmbeddedAudioTrack" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Editing.EmbeddedAudioTrack" />
+      <apidata name="EmbeddedAudioTrack" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Editing.EmbeddedAudioTrack.GetAudioEncodingProperties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.EmbeddedAudioTrack" />
+      </containers>
+      <file name="c899ac56-a380-b575-9baf-4893b619148f" />
+    </api>
+    <api id="M:Windows.Media.Editing.EmbeddedAudioTrack.GetAudioEncodingProperties">
+      <topicdata group="api" />
+      <apidata name="GetAudioEncodingProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaProperties.AudioEncodingProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.EmbeddedAudioTrack" ref="true" />
+      </containers>
+      <file name="1bc97b17-8fcb-a7eb-d9f5-94b8602b8e2d" />
+    </api>
+    <api id="T:Windows.Media.Editing.MediaClip">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Editing.MediaClip" />
+      <apidata name="MediaClip" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Editing.IMediaClip" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d3386ae-a014-6721-e1f7-efa10c4dd073" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Editing.MediaClip">
+      <topicdata name="MediaClip" group="list" subgroup="members" typeTopicId="T:Windows.Media.Editing.MediaClip" />
+      <apidata name="MediaClip" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.Media.Editing.MediaClip.AudioEffectDefinitions" />
+        <element api="M:Windows.Media.Editing.MediaClip.Clone" />
+        <element api="M:Windows.Media.Editing.MediaClip.CreateFromColor(Windows.UI.Color,Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.Editing.MediaClip.CreateFromFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Media.Editing.MediaClip.CreateFromImageFileAsync(Windows.Storage.IStorageFile,Windows.Foundation.TimeSpan)" />
+        <element api="P:Windows.Media.Editing.MediaClip.EmbeddedAudioTracks" />
+        <element api="P:Windows.Media.Editing.MediaClip.EndTimeInComposition" />
+        <element api="M:Windows.Media.Editing.MediaClip.GetVideoEncodingProperties" />
+        <element api="P:Windows.Media.Editing.MediaClip.OriginalDuration" />
+        <element api="P:Windows.Media.Editing.MediaClip.SelectedEmbeddedAudioTrackIndex" />
+        <element api="P:Windows.Media.Editing.MediaClip.StartTimeInComposition" />
+        <element api="P:Windows.Media.Editing.MediaClip.TrimmedDuration" />
+        <element api="P:Windows.Media.Editing.MediaClip.TrimTimeFromEnd" />
+        <element api="P:Windows.Media.Editing.MediaClip.TrimTimeFromStart" />
+        <element api="P:Windows.Media.Editing.MediaClip.UserData" />
+        <element api="P:Windows.Media.Editing.MediaClip.VideoEffectDefinitions" />
+        <element api="P:Windows.Media.Editing.MediaClip.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" />
+      </containers>
+      <file name="53f3ef1f-4486-8d26-7932-cef3c5966318" />
+    </api>
+    <api id="Methods.T:Windows.Media.Editing.MediaClip">
+      <topicdata name="MediaClip" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Editing.MediaClip" />
+      <apidata name="MediaClip" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Editing.MediaClip.Clone" />
+        <element api="M:Windows.Media.Editing.MediaClip.CreateFromColor(Windows.UI.Color,Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.Editing.MediaClip.CreateFromFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Media.Editing.MediaClip.CreateFromImageFileAsync(Windows.Storage.IStorageFile,Windows.Foundation.TimeSpan)" />
+        <element api="M:Windows.Media.Editing.MediaClip.GetVideoEncodingProperties" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" />
+      </containers>
+      <file name="efa36bb6-de93-f3a6-8521-59f0e6e78abe" />
+    </api>
+    <api id="Properties.T:Windows.Media.Editing.MediaClip">
+      <topicdata name="MediaClip" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Editing.MediaClip" />
+      <apidata name="MediaClip" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Media.Editing.MediaClip.AudioEffectDefinitions" />
+        <element api="P:Windows.Media.Editing.MediaClip.EmbeddedAudioTracks" />
+        <element api="P:Windows.Media.Editing.MediaClip.EndTimeInComposition" />
+        <element api="P:Windows.Media.Editing.MediaClip.OriginalDuration" />
+        <element api="P:Windows.Media.Editing.MediaClip.SelectedEmbeddedAudioTrackIndex" />
+        <element api="P:Windows.Media.Editing.MediaClip.StartTimeInComposition" />
+        <element api="P:Windows.Media.Editing.MediaClip.TrimmedDuration" />
+        <element api="P:Windows.Media.Editing.MediaClip.TrimTimeFromEnd" />
+        <element api="P:Windows.Media.Editing.MediaClip.TrimTimeFromStart" />
+        <element api="P:Windows.Media.Editing.MediaClip.UserData" />
+        <element api="P:Windows.Media.Editing.MediaClip.VideoEffectDefinitions" />
+        <element api="P:Windows.Media.Editing.MediaClip.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" />
+      </containers>
+      <file name="91d93a2f-20c1-202b-b1cb-43aaf50387c4" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.AudioEffectDefinitions">
+      <topicdata group="api" />
+      <apidata name="AudioEffectDefinitions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AudioEffectDefinitions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.IAudioEffectDefinition" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="68f0c82a-785a-733f-ac84-75e641e7e02e" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaClip.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="03c0a143-2063-375e-449e-2c35c4bc8ef0" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaClip.CreateFromColor(Windows.UI.Color,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="CreateFromColor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="color" in="true">
+          <type api="T:Windows.UI.Color" ref="false" />
+        </parameter>
+        <parameter name="originalDuration" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="709aa782-902b-da8d-b212-c4774bb50726" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaClip.CreateFromFileAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="CreateFromFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="378a1286-dc4c-8531-29e4-2759c777eab7" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaClip.CreateFromImageFileAsync(Windows.Storage.IStorageFile,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="CreateFromImageFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="originalDuration" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="cc9fa3fb-0a90-af22-f903-93a45701bbda" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.EmbeddedAudioTracks">
+      <topicdata group="api" />
+      <apidata name="EmbeddedAudioTracks" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EmbeddedAudioTracks" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.EmbeddedAudioTrack" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="34fdf84a-a9ad-c466-9d55-ecac21b79745" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.EndTimeInComposition">
+      <topicdata group="api" />
+      <apidata name="EndTimeInComposition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EndTimeInComposition" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="4ac2ae1e-3dec-e8af-6879-7d3b234ba29a" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaClip.GetVideoEncodingProperties">
+      <topicdata group="api" />
+      <apidata name="GetVideoEncodingProperties" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaProperties.VideoEncodingProperties" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="7f0cd7f2-be1d-b713-fde5-0ab700964a8e" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.OriginalDuration">
+      <topicdata group="api" />
+      <apidata name="OriginalDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OriginalDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="7213a540-e087-eb2d-2b4e-22a0938f0b3d" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.SelectedEmbeddedAudioTrackIndex">
+      <topicdata group="api" />
+      <apidata name="SelectedEmbeddedAudioTrackIndex" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SelectedEmbeddedAudioTrackIndex" />
+      <setter name="set_SelectedEmbeddedAudioTrackIndex" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="bb8651e2-d932-2880-075a-c9a71e0ab631" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.StartTimeInComposition">
+      <topicdata group="api" />
+      <apidata name="StartTimeInComposition" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_StartTimeInComposition" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="e4da45a2-7cc0-61d9-fd16-92e76814d6ae" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.TrimmedDuration">
+      <topicdata group="api" />
+      <apidata name="TrimmedDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_TrimmedDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="bf042c3d-bf9a-68fc-87b5-a3629e0de45e" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.TrimTimeFromEnd">
+      <topicdata group="api" />
+      <apidata name="TrimTimeFromEnd" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrimTimeFromEnd" />
+      <setter name="set_TrimTimeFromEnd" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="889c53de-be55-6b8c-3d2a-e11faa243f88" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.TrimTimeFromStart">
+      <topicdata group="api" />
+      <apidata name="TrimTimeFromStart" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TrimTimeFromStart" />
+      <setter name="set_TrimTimeFromStart" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="3bb1a042-c868-6238-63df-17fa46befb64" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.UserData">
+      <topicdata group="api" />
+      <apidata name="UserData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UserData" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="55fd958e-4eb9-5194-8c22-7eb73f633d37" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.VideoEffectDefinitions">
+      <topicdata group="api" />
+      <apidata name="VideoEffectDefinitions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_VideoEffectDefinitions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Effects.IVideoEffectDefinition" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="0005a3c9-5c05-4caa-68bd-19ddd4fda01e" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaClip.Volume">
+      <topicdata group="api" />
+      <apidata name="Volume" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Volume" />
+      <setter name="set_Volume" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+      </containers>
+      <file name="7d003a9e-e0dd-f467-31a9-daca3513a531" />
+    </api>
+    <api id="T:Windows.Media.Editing.MediaComposition">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Media.Editing.MediaComposition" />
+      <apidata name="MediaComposition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Editing.MediaComposition.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.Media.Editing.IMediaComposition" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f6fb1e13-94fa-b1a4-3fbf-d6ef90db0885" />
+    </api>
+    <api id="AllMembers.T:Windows.Media.Editing.MediaComposition">
+      <topicdata name="MediaComposition" group="list" subgroup="members" typeTopicId="T:Windows.Media.Editing.MediaComposition" />
+      <apidata name="MediaComposition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Editing.MediaComposition.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Editing.MediaComposition.#ctor" />
+        <element api="P:Windows.Media.Editing.MediaComposition.BackgroundAudioTracks" />
+        <element api="P:Windows.Media.Editing.MediaComposition.Clips" />
+        <element api="M:Windows.Media.Editing.MediaComposition.Clone" />
+        <element api="M:Windows.Media.Editing.MediaComposition.CreateDefaultEncodingProfile" />
+        <element api="P:Windows.Media.Editing.MediaComposition.Duration" />
+        <element api="Overload:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource">
+          <element api="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource" />
+          <element api="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource(Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        </element>
+        <element api="M:Windows.Media.Editing.MediaComposition.GeneratePreviewMediaStreamSource(System.Int32,System.Int32)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.GetThumbnailAsync(Windows.Foundation.TimeSpan,System.Int32,System.Int32,Windows.Media.Editing.VideoFramePrecision)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.GetThumbnailsAsync(Windows.Foundation.Collections.IIterable{Windows.Foundation.TimeSpan},System.Int32,System.Int32,Windows.Media.Editing.VideoFramePrecision)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.LoadAsync(Windows.Storage.StorageFile)" />
+        <element api="Overload:Windows.Media.Editing.MediaComposition.RenderToFileAsync">
+          <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile)" />
+          <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference)" />
+          <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        </element>
+        <element api="M:Windows.Media.Editing.MediaComposition.SaveAsync(Windows.Storage.IStorageFile)" />
+        <element api="P:Windows.Media.Editing.MediaComposition.UserData" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" />
+      </containers>
+      <file name="42287496-efb0-2ab5-0356-f3b6d0a3c3a2" />
+    </api>
+    <api id="Methods.T:Windows.Media.Editing.MediaComposition">
+      <topicdata name="MediaComposition" group="list" subgroup="Methods" typeTopicId="T:Windows.Media.Editing.MediaComposition" />
+      <apidata name="MediaComposition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Editing.MediaComposition.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.Media.Editing.MediaComposition.Clone" />
+        <element api="M:Windows.Media.Editing.MediaComposition.CreateDefaultEncodingProfile" />
+        <element api="Overload:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource">
+          <element api="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource" />
+          <element api="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource(Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        </element>
+        <element api="M:Windows.Media.Editing.MediaComposition.GeneratePreviewMediaStreamSource(System.Int32,System.Int32)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.GetThumbnailAsync(Windows.Foundation.TimeSpan,System.Int32,System.Int32,Windows.Media.Editing.VideoFramePrecision)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.GetThumbnailsAsync(Windows.Foundation.Collections.IIterable{Windows.Foundation.TimeSpan},System.Int32,System.Int32,Windows.Media.Editing.VideoFramePrecision)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.LoadAsync(Windows.Storage.StorageFile)" />
+        <element api="Overload:Windows.Media.Editing.MediaComposition.RenderToFileAsync">
+          <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile)" />
+          <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference)" />
+          <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+        </element>
+        <element api="M:Windows.Media.Editing.MediaComposition.SaveAsync(Windows.Storage.IStorageFile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" />
+      </containers>
+      <file name="59a85bb7-c148-4fb6-332c-a78d6a172d0f" />
+    </api>
+    <api id="Properties.T:Windows.Media.Editing.MediaComposition">
+      <topicdata name="MediaComposition" group="list" subgroup="Properties" typeTopicId="T:Windows.Media.Editing.MediaComposition" />
+      <apidata name="MediaComposition" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.Media.Editing.MediaComposition.#ctor" />
+      <elements>
+        <element api="P:Windows.Media.Editing.MediaComposition.BackgroundAudioTracks" />
+        <element api="P:Windows.Media.Editing.MediaComposition.Clips" />
+        <element api="P:Windows.Media.Editing.MediaComposition.Duration" />
+        <element api="P:Windows.Media.Editing.MediaComposition.UserData" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" />
+      </containers>
+      <file name="734b75c4-dcba-dc56-eacb-1c3e00d9ae68" />
+    </api>
+    <api id="Overload:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource">
+      <topicdata name="GenerateMediaStreamSource" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Editing.MediaComposition" />
+      <apidata name="GenerateMediaStreamSource" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource" />
+        <element api="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource(Windows.Media.MediaProperties.MediaEncodingProfile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="99e8f65e-8480-04f3-5072-3e640e9191ef" />
+    </api>
+    <api id="Overload:Windows.Media.Editing.MediaComposition.RenderToFileAsync">
+      <topicdata name="RenderToFileAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.Media.Editing.MediaComposition" />
+      <apidata name="RenderToFileAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference)" />
+        <element api="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference,Windows.Media.MediaProperties.MediaEncodingProfile)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="d98a365b-d5bf-cd59-93df-6b23bc2e6a0e" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="3807288e-ae3c-650d-2930-b38ef3fb39b8" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaComposition.BackgroundAudioTracks">
+      <topicdata group="api" />
+      <apidata name="BackgroundAudioTracks" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BackgroundAudioTracks" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.BackgroundAudioTrack" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="ecc53494-38b1-da0e-e1fb-9edbf7969158" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaComposition.Clips">
+      <topicdata group="api" />
+      <apidata name="Clips" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Clips" />
+      <returns>
+        <type api="T:System.Collections.Generic.IList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.MediaClip" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="458030bd-498d-9566-6e96-57a88a959e5f" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.Clone">
+      <topicdata group="api" />
+      <apidata name="Clone" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="4b8fea62-cf42-4c81-53d1-ad816d022dc1" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.CreateDefaultEncodingProfile">
+      <topicdata group="api" />
+      <apidata name="CreateDefaultEncodingProfile" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.MediaProperties.MediaEncodingProfile" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="240280af-3410-b310-11e5-6752be6c36d6" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaComposition.Duration">
+      <topicdata group="api" />
+      <apidata name="Duration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Duration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="ee3d0cd5-c073-6201-70e0-b1e4a8ef0014" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource">
+      <topicdata group="api" />
+      <apidata name="GenerateMediaStreamSource" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Media.Core.MediaStreamSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GenerateMediaStreamSource</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="31be0bcb-4772-0d98-4096-7b62856a1961" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource(Windows.Media.MediaProperties.MediaEncodingProfile)">
+      <topicdata group="api" />
+      <apidata name="GenerateMediaStreamSource" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Editing.MediaComposition.GenerateMediaStreamSource" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="encodingProfile" in="true">
+          <type api="T:Windows.Media.MediaProperties.MediaEncodingProfile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Core.MediaStreamSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>GenerateMediaStreamSourceWithProfile</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a4a101f3-da49-4307-da2a-d685ac38cfbc" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.GeneratePreviewMediaStreamSource(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="GeneratePreviewMediaStreamSource" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="scaledWidth" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="scaledHeight" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Media.Core.MediaStreamSource" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="5900d820-3bff-1c4e-384d-990f37b4c446" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.GetThumbnailAsync(Windows.Foundation.TimeSpan,System.Int32,System.Int32,Windows.Media.Editing.VideoFramePrecision)">
+      <topicdata group="api" />
+      <apidata name="GetThumbnailAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="timeFromStart" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+        <parameter name="scaledWidth" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="scaledHeight" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="framePrecision" in="true">
+          <type api="T:Windows.Media.Editing.VideoFramePrecision" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Graphics.Imaging.ImageStream" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="ab7e1b18-641c-a0a4-f70a-d40e6649e73e" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.GetThumbnailsAsync(Windows.Foundation.Collections.IIterable{Windows.Foundation.TimeSpan},System.Int32,System.Int32,Windows.Media.Editing.VideoFramePrecision)">
+      <topicdata group="api" />
+      <apidata name="GetThumbnailsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="timesFromStart" in="true">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.TimeSpan" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+        <parameter name="scaledWidth" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="scaledHeight" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="framePrecision" in="true">
+          <type api="T:Windows.Media.Editing.VideoFramePrecision" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.Graphics.Imaging.ImageStream" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="fb58df18-4120-c178-0f2c-39d56402805b" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.LoadAsync(Windows.Storage.StorageFile)">
+      <topicdata group="api" />
+      <apidata name="LoadAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.StorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="a461f39b-9155-9391-8b4f-a885cfe0292b" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="RenderToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Editing.MediaComposition.RenderToFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="destination" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+            <type api="T:System.Double" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RenderToFileAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="39264d51-8f96-e238-46ea-10e6c9c2d295" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference)">
+      <topicdata group="api" />
+      <apidata name="RenderToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Editing.MediaComposition.RenderToFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="destination" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="trimmingPreference" in="true">
+          <type api="T:Windows.Media.Editing.MediaTrimmingPreference" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+            <type api="T:System.Double" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RenderToFileWithTrimmingPreferenceAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="99c648b8-b1e2-a0cd-06e3-3b1e7588f25a" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.RenderToFileAsync(Windows.Storage.IStorageFile,Windows.Media.Editing.MediaTrimmingPreference,Windows.Media.MediaProperties.MediaEncodingProfile)">
+      <topicdata group="api" />
+      <apidata name="RenderToFileAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Windows.Media.Editing.MediaComposition.RenderToFileAsync" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="destination" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+        <parameter name="trimmingPreference" in="true">
+          <type api="T:Windows.Media.Editing.MediaTrimmingPreference" ref="false" />
+        </parameter>
+        <parameter name="encodingProfile" in="true">
+          <type api="T:Windows.Media.MediaProperties.MediaEncodingProfile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperationWithProgress`2" ref="true">
+          <specialization>
+            <type api="T:Windows.Media.Transcoding.TranscodeFailureReason" ref="false" />
+            <type api="T:System.Double" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>RenderToFileWithProfileAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bac943c3-f300-ad43-2876-c4329e57efe3" />
+    </api>
+    <api id="M:Windows.Media.Editing.MediaComposition.SaveAsync(Windows.Storage.IStorageFile)">
+      <topicdata group="api" />
+      <apidata name="SaveAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="file" in="true">
+          <type api="T:Windows.Storage.IStorageFile" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="4a281a3d-ce75-5ed4-0738-a9a269d19863" />
+    </api>
+    <api id="P:Windows.Media.Editing.MediaComposition.UserData">
+      <topicdata group="api" />
+      <apidata name="UserData" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_UserData" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaComposition" ref="true" />
+      </containers>
+      <file name="d2197056-8101-f0e5-0d16-53172514ed43" />
+    </api>
+    <api id="T:Windows.Media.Editing.MediaTrimmingPreference">
+      <topicdata group="api" />
+      <apidata name="MediaTrimmingPreference" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Editing.MediaTrimmingPreference.Fast" />
+        <element api="F:Windows.Media.Editing.MediaTrimmingPreference.Precise" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="05e1a441-83fa-ecae-fcd3-1589bc1ae366" />
+    </api>
+    <api id="F:Windows.Media.Editing.MediaTrimmingPreference.Fast">
+      <topicdata group="api" notopic="" />
+      <apidata name="Fast" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.MediaTrimmingPreference" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaTrimmingPreference" ref="false" />
+      </containers>
+      <file name="5e4679fc-b4a7-88fa-1135-6450869a43ca" />
+    </api>
+    <api id="F:Windows.Media.Editing.MediaTrimmingPreference.Precise">
+      <topicdata group="api" notopic="" />
+      <apidata name="Precise" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.MediaTrimmingPreference" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.MediaTrimmingPreference" ref="false" />
+      </containers>
+      <file name="8341ba9f-7bf2-d03f-002e-8fad12f02e50" />
+    </api>
+    <api id="T:Windows.Media.Editing.VideoFramePrecision">
+      <topicdata group="api" />
+      <apidata name="VideoFramePrecision" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.Media.Editing.VideoFramePrecision.NearestFrame" />
+        <element api="F:Windows.Media.Editing.VideoFramePrecision.NearestKeyFrame" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="693a84c6-266b-393b-4e6a-7fe00d66d38a" />
+    </api>
+    <api id="F:Windows.Media.Editing.VideoFramePrecision.NearestFrame">
+      <topicdata group="api" notopic="" />
+      <apidata name="NearestFrame" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.VideoFramePrecision" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.VideoFramePrecision" ref="false" />
+      </containers>
+      <file name="d7b490b2-b2ab-422a-905d-2460bfd03dbd" />
+    </api>
+    <api id="F:Windows.Media.Editing.VideoFramePrecision.NearestKeyFrame">
+      <topicdata group="api" notopic="" />
+      <apidata name="NearestKeyFrame" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.Media.Editing.VideoFramePrecision" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Media.Editing" />
+        <type api="T:Windows.Media.Editing.VideoFramePrecision" ref="false" />
+      </containers>
+      <file name="2ec1e28c-c7db-946a-3ffc-9126a2eac524" />
+    </api>
+  </apis>
+</reflection>

@@ -1,0 +1,924 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.IO">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.IO</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.IO">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.IO" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.IO.VolumeInfo" />
+        <element api="T:Microsoft.SPOT.IO.RemovableMedia" />
+        <element api="T:Microsoft.SPOT.IO.MediaEventArgs" />
+        <element api="T:Microsoft.SPOT.IO.InsertEventHandler" />
+        <element api="T:Microsoft.SPOT.IO.EjectEventHandler" />
+      </elements>
+      <file name="d4fa3e89-7dfd-0824-a1de-d434b03add5c" />
+    </api>
+    <api id="T:Microsoft.SPOT.IO.EjectEventHandler">
+      <topicdata group="api" />
+      <apidata name="EjectEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+      </containers>
+      <file name="45dcf20c-caa7-1e1d-6945-5112963c0d46" />
+    </api>
+    <api id="T:Microsoft.SPOT.IO.InsertEventHandler">
+      <topicdata group="api" />
+      <apidata name="InsertEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+      </containers>
+      <file name="7df19275-7e28-89a1-d3ab-164c768471ab" />
+    </api>
+    <api id="T:Microsoft.SPOT.IO.MediaEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.IO.MediaEventArgs" />
+      <apidata name="MediaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+      </containers>
+      <file name="aec4073e-f144-4783-8ab8-e2c9d12424ec" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.IO.MediaEventArgs">
+      <topicdata name="MediaEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.IO.MediaEventArgs" />
+      <apidata name="MediaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.IO.MediaEventArgs.#ctor(Microsoft.SPOT.IO.VolumeInfo,System.DateTime)" />
+        <element api="F:Microsoft.SPOT.IO.MediaEventArgs.Time" />
+        <element api="F:Microsoft.SPOT.IO.MediaEventArgs.Volume" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" />
+      </containers>
+      <file name="7a65c4f2-b809-bdf6-1ae0-594512e20380" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.IO.MediaEventArgs">
+      <topicdata name="MediaEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.IO.MediaEventArgs" />
+      <apidata name="MediaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" />
+      </containers>
+      <file name="763a2976-e6c5-f294-b59f-25998a9f5ccd" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.IO.MediaEventArgs">
+      <topicdata name="MediaEventArgs" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.IO.MediaEventArgs" />
+      <apidata name="MediaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.IO.MediaEventArgs.Time" />
+        <element api="F:Microsoft.SPOT.IO.MediaEventArgs.Volume" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" />
+      </containers>
+      <file name="2098f601-3925-88ca-e571-f9df17410fcb" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.MediaEventArgs.#ctor(Microsoft.SPOT.IO.VolumeInfo,System.DateTime)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="volume">
+          <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+        </parameter>
+        <parameter name="time">
+          <type api="T:System.DateTime" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+      </containers>
+      <file name="b1cf254b-d8ea-8e80-e704-c6337125527d" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.MediaEventArgs.Time">
+      <topicdata group="api" />
+      <apidata name="Time" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.DateTime" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+      </containers>
+      <file name="14273c6b-0055-ee03-6a1a-aba7021d538f" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.MediaEventArgs.Volume">
+      <topicdata group="api" />
+      <apidata name="Volume" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+      </containers>
+      <file name="4012a228-ea79-499c-0b3b-105d6eff7080" />
+    </api>
+    <api id="T:Microsoft.SPOT.IO.RemovableMedia">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.IO.RemovableMedia" />
+      <apidata name="RemovableMedia" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+      </containers>
+      <file name="57971c6a-cab5-b62a-321c-9550a1804bc9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.IO.RemovableMedia">
+      <topicdata name="RemovableMedia" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.IO.RemovableMedia" />
+      <apidata name="RemovableMedia" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.IO.RemovableMedia.Eject" />
+        <element api="E:Microsoft.SPOT.IO.RemovableMedia.Insert" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.RemovableMedia" />
+      </containers>
+      <file name="289050a3-32ec-8b18-f0ef-b032abc86e66" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.IO.RemovableMedia">
+      <topicdata name="RemovableMedia" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.IO.RemovableMedia" />
+      <apidata name="RemovableMedia" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.IO.RemovableMedia.Eject" />
+        <element api="E:Microsoft.SPOT.IO.RemovableMedia.Insert" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.RemovableMedia" />
+      </containers>
+      <file name="cf284717-c89e-da63-3a41-f92e54764e4d" />
+    </api>
+    <api id="E:Microsoft.SPOT.IO.RemovableMedia.Eject">
+      <topicdata group="api" />
+      <apidata name="Eject" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Eject" />
+      <remover name="remove_Eject" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.IO.EjectEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.RemovableMedia" ref="true" />
+      </containers>
+      <file name="e39b5acc-f84d-a0f8-0626-59761755b605" />
+    </api>
+    <api id="E:Microsoft.SPOT.IO.RemovableMedia.Insert">
+      <topicdata group="api" />
+      <apidata name="Insert" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Insert" />
+      <remover name="remove_Insert" />
+      <eventhandler>
+        <type api="T:Microsoft.SPOT.IO.InsertEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.SPOT.IO.MediaEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.RemovableMedia" ref="true" />
+      </containers>
+      <file name="6e1369f3-3b39-4dfb-0f1b-21566b53ad70" />
+    </api>
+    <api id="T:Microsoft.SPOT.IO.VolumeInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.IO.VolumeInfo" />
+      <apidata name="VolumeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+      </containers>
+      <file name="3f105bd8-3110-6b2e-3b3f-1a235646bfd6" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.IO.VolumeInfo">
+      <topicdata name="VolumeInfo" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.IO.VolumeInfo" />
+      <apidata name="VolumeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.#ctor(System.String)" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.DeviceFlags" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.FileSystem" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.FileSystemFlags" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.FlushAll" />
+        <element api="Overload:Microsoft.SPOT.IO.VolumeInfo.Format">
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32,System.Boolean)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.Boolean)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.String,System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.GetFileSystems" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.GetVolumes" />
+        <element api="P:Microsoft.SPOT.IO.VolumeInfo.IsFormatted" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.Name" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Refresh" />
+        <element api="P:Microsoft.SPOT.IO.VolumeInfo.RootDirectory" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.SerialNumber" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.TotalFreeSpace" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.TotalSize" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.VolumeID" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.VolumeLabel" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" />
+      </containers>
+      <file name="1f7c183d-fd70-9382-ad23-2a0323b1ca0e" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.IO.VolumeInfo">
+      <topicdata name="VolumeInfo" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.IO.VolumeInfo" />
+      <apidata name="VolumeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.FlushAll" />
+        <element api="Overload:Microsoft.SPOT.IO.VolumeInfo.Format">
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32,System.Boolean)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.Boolean)" />
+          <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.String,System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.GetFileSystems" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.GetVolumes" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Refresh" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" />
+      </containers>
+      <file name="1f95b770-384d-e62c-8cb5-6bd6f553a74a" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.IO.VolumeInfo">
+      <topicdata name="VolumeInfo" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.IO.VolumeInfo" />
+      <apidata name="VolumeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.IO.VolumeInfo.IsFormatted" />
+        <element api="P:Microsoft.SPOT.IO.VolumeInfo.RootDirectory" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" />
+      </containers>
+      <file name="58284575-0b8f-71d5-7811-4cc9ede040e8" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.IO.VolumeInfo">
+      <topicdata name="VolumeInfo" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.IO.VolumeInfo" />
+      <apidata name="VolumeInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.DeviceFlags" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.FileSystem" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.FileSystemFlags" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.Name" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.SerialNumber" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.TotalFreeSpace" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.TotalSize" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.VolumeID" />
+        <element api="F:Microsoft.SPOT.IO.VolumeInfo.VolumeLabel" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" />
+      </containers>
+      <file name="41b5f3df-7521-cdb0-b56a-f7c199865306" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.IO.VolumeInfo.Format">
+      <topicdata name="Format" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.IO.VolumeInfo" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32)" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32)" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.String,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="c05a9b2f-ed86-b2da-9d4d-9cc3c12e7235" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="volumeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="1c2ea87c-ed16-d482-2143-fa5d97579e23" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.DeviceFlags">
+      <topicdata group="api" />
+      <apidata name="DeviceFlags" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="b099134c-00bd-bf41-33a0-e827f8ec5b09" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.FileSystem">
+      <topicdata group="api" />
+      <apidata name="FileSystem" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="28b8fdd5-6dd1-50a9-2338-10b90c486bff" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.FileSystemFlags">
+      <topicdata group="api" />
+      <apidata name="FileSystemFlags" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="77eefa21-75b2-cf4d-2dfe-5dcaa0139f99" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.FlushAll">
+      <topicdata group="api" />
+      <apidata name="FlushAll" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="ddbab76e-9dd3-64c6-247e-74a62c9f7cb7" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.IO.VolumeInfo.Format" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="fileSystem">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="0ad55d61-6bbd-5a53-3830-9bce42b775dd" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.IO.VolumeInfo.Format" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="fileSystem">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="force">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="388abf5f-752c-647e-0dad-137b12cd101c" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.String,System.UInt32,System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.IO.VolumeInfo.Format" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="fileSystem">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="parameter">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="volumeLabel">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="force">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="252ff235-afaf-21ac-4dab-e93e848fbeb4" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.IO.VolumeInfo.Format" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="parameter">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="09896ec9-e863-0d34-62fd-e251ac2f1af7" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.Format(System.UInt32,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Format" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.SPOT.IO.VolumeInfo.Format" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="parameter">
+          <type api="T:System.UInt32" ref="false" />
+        </parameter>
+        <parameter name="force">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="eeb0cf35-33fb-3756-490d-9311910a5271" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.GetFileSystems">
+      <topicdata group="api" />
+      <apidata name="GetFileSystems" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:System.String" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="d73f5dcf-6481-8e7b-9db3-bcfcb6c49b7a" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.GetVolumes">
+      <topicdata group="api" />
+      <apidata name="GetVolumes" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <arrayOf rank="1">
+          <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+        </arrayOf>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="515abeca-5f44-7943-b5ac-4c1daf3ccc69" />
+    </api>
+    <api id="P:Microsoft.SPOT.IO.VolumeInfo.IsFormatted">
+      <topicdata group="api" />
+      <apidata name="IsFormatted" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsFormatted" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="c06a461b-522b-675e-2e4c-4b44af5b886a" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="a8543398-aaa1-0bcb-cc62-a86fcb96d074" />
+    </api>
+    <api id="M:Microsoft.SPOT.IO.VolumeInfo.Refresh">
+      <topicdata group="api" />
+      <apidata name="Refresh" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="62d192a9-b8e2-b168-4de8-3b52fe1c1f42" />
+    </api>
+    <api id="P:Microsoft.SPOT.IO.VolumeInfo.RootDirectory">
+      <topicdata group="api" />
+      <apidata name="RootDirectory" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RootDirectory" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="975bbae6-aa68-6326-8aa1-b18bbfc2743c" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.SerialNumber">
+      <topicdata group="api" />
+      <apidata name="SerialNumber" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="53185a0e-b190-53fe-6ffa-937102694566" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.TotalFreeSpace">
+      <topicdata group="api" />
+      <apidata name="TotalFreeSpace" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="a04171eb-c060-3fab-5625-5990bbe47545" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.TotalSize">
+      <topicdata group="api" />
+      <apidata name="TotalSize" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Int64" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="89a3634b-b00e-e032-02ce-377e5301d08e" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.VolumeID">
+      <topicdata group="api" />
+      <apidata name="VolumeID" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="caf745a0-baa1-4ba1-0e0c-647965601ea1" />
+    </api>
+    <api id="F:Microsoft.SPOT.IO.VolumeInfo.VolumeLabel">
+      <topicdata group="api" />
+      <apidata name="VolumeLabel" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.IO" module="Microsoft.SPOT.IO" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.IO" />
+        <type api="T:Microsoft.SPOT.IO.VolumeInfo" ref="true" />
+      </containers>
+      <file name="b464ee80-5938-6802-a0bb-d1e6cf3cd69e" />
+    </api>
+  </apis>
+</reflection>

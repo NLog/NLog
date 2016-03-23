@@ -1,0 +1,1012 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Web.Extensions">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.Script.AjaxFrameworkAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjax.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys._Application &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxApplicationServices.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxApplicationServices.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Services</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxComponentModel.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxComponentModel.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CommandEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxCore.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxCore.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxGlobalization.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxGlobalization.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CultureInfo</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxHistory.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxHistory.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.HistoryEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxNetwork.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxNetwork.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebRequestExecutor</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxSerialization.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxSerialization.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Serialization</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxTimer.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxTimer.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.UI &amp;&amp; Sys.UI._Timer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebForms.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebServices.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebServices.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebServiceProxy</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.HijriCalendar.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.HijriCalendar.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.HijriCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.UmAlQuraCalendar.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.UmAlQuraCalendar.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.UmAlQuraCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjax.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjax.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys._Application &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxApplicationServices.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxApplicationServices.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Services</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxComponentModel.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxComponentModel.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CommandEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxCore.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxCore.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Sys.Observer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxGlobalization.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxGlobalization.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.CultureInfo</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxHistory.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxHistory.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.HistoryEventArgs</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxNetwork.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxNetwork.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebRequestExecutor</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxSerialization.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxSerialization.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Serialization</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxTimer.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxTimer.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.UI &amp;&amp; Sys.UI._Timer</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebForms.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebForms.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.WebForms</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MicrosoftAjaxWebServices.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/MicrosoftAjaxWebServices.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Sys &amp;&amp; Sys.Net &amp;&amp; Sys.Net.WebServiceProxy</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.HijriCalendar.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.HijriCalendar.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.HijriCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Web.UI.WebResourceAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Date.UmAlQuraCalendar.debug.js</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>application/x-javascript</value>
+          </argument>
+          <assignment name="CdnSupportsSecureConnection">
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </assignment>
+          <assignment name="CdnPath">
+            <type api="T:System.String" ref="true" />
+            <value>http://ajax.aspnetcdn.com/ajax/4.6/1/Date.UmAlQuraCalendar.debug.js</value>
+          </assignment>
+          <assignment name="LoadSuccessExpression">
+            <type api="T:System.String" ref="true" />
+            <value>window.Type &amp;&amp; Type._registerScript &amp;&amp; Type._registerScript._scripts &amp;&amp; Type._registerScript._scripts['Date.UmAlQuraCalendar.js']</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Drawing.BitmapSuffixInSatelliteAssemblyAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+          <assignment name="PartialTrustVisibilityLevel">
+            <type api="T:System.Security.PartialTrustVisibilityLevel" ref="false" />
+            <enumValue>
+              <field name="NotVisibleByDefault" />
+            </enumValue>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Web.Extensions.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Web.Query.Dynamic">
+      <topicdata group="api" />
+      <apidata name="System.Web.Query.Dynamic" group="namespace" />
+      <elements>
+        <element api="T:System.Web.Query.Dynamic.DynamicClass" />
+        <element api="T:System.Web.Query.Dynamic.ParseException" />
+      </elements>
+      <file name="1e7718f5-649e-67ce-7cca-dcccf04f79c7" />
+    </api>
+    <api id="T:System.Web.Query.Dynamic.DynamicClass">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Query.Dynamic.DynamicClass" />
+      <apidata name="DynamicClass" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+      </containers>
+      <file name="af3672cb-62fa-3242-5385-d42246d8d721" />
+    </api>
+    <api id="AllMembers.T:System.Web.Query.Dynamic.DynamicClass">
+      <topicdata name="DynamicClass" group="list" subgroup="members" typeTopicId="T:System.Web.Query.Dynamic.DynamicClass" />
+      <apidata name="DynamicClass" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.Query.Dynamic.DynamicClass.#ctor" />
+        <element api="M:System.Web.Query.Dynamic.DynamicClass.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.DynamicClass" />
+      </containers>
+      <file name="fef81eda-fea1-0e31-edd0-27526f2aeb56" />
+    </api>
+    <api id="Methods.T:System.Web.Query.Dynamic.DynamicClass">
+      <topicdata name="DynamicClass" group="list" subgroup="Methods" typeTopicId="T:System.Web.Query.Dynamic.DynamicClass" />
+      <apidata name="DynamicClass" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.Query.Dynamic.DynamicClass.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.DynamicClass" />
+      </containers>
+      <file name="633d08b1-7de2-d394-52d3-b427b9377244" />
+    </api>
+    <api id="M:System.Web.Query.Dynamic.DynamicClass.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.DynamicClass" ref="true" />
+      </containers>
+      <file name="ba79c35d-c933-871e-cd1b-89c9469ed988" />
+    </api>
+    <api id="M:System.Web.Query.Dynamic.DynamicClass.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.DynamicClass" ref="true" />
+      </containers>
+      <file name="df1027c9-8b7f-2a83-23df-abf86324caac" />
+    </api>
+    <api id="T:System.Web.Query.Dynamic.ParseException">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Web.Query.Dynamic.ParseException" />
+      <apidata name="ParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Exception" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+      </containers>
+      <file name="5b9f3190-b80c-0eb3-988a-d3e707ab1587" />
+    </api>
+    <api id="AllMembers.T:System.Web.Query.Dynamic.ParseException">
+      <topicdata name="ParseException" group="list" subgroup="members" typeTopicId="T:System.Web.Query.Dynamic.ParseException" />
+      <apidata name="ParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="E:System.Exception.SerializeObjectState" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.Query.Dynamic.ParseException.#ctor(System.String,System.Int32)" />
+        <element api="P:System.Web.Query.Dynamic.ParseException.Position" />
+        <element api="M:System.Web.Query.Dynamic.ParseException.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" />
+      </containers>
+      <file name="5213051b-ae9f-f698-42f6-4cedf8f36300" />
+    </api>
+    <api id="Methods.T:System.Web.Query.Dynamic.ParseException">
+      <topicdata name="ParseException" group="list" subgroup="Methods" typeTopicId="T:System.Web.Query.Dynamic.ParseException" />
+      <apidata name="ParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Exception.GetBaseException" />
+        <element api="M:System.Exception.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)" />
+        <element api="M:System.Exception.GetType" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Web.Query.Dynamic.ParseException.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" />
+      </containers>
+      <file name="0fb3d66a-cd95-c447-a637-bc02d40db580" />
+    </api>
+    <api id="Properties.T:System.Web.Query.Dynamic.ParseException">
+      <topicdata name="ParseException" group="list" subgroup="Properties" typeTopicId="T:System.Web.Query.Dynamic.ParseException" />
+      <apidata name="ParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Exception.Data" />
+        <element api="P:System.Exception.HelpLink" />
+        <element api="P:System.Exception.HResult" />
+        <element api="P:System.Exception.InnerException" />
+        <element api="P:System.Exception.Message" />
+        <element api="P:System.Exception.Source" />
+        <element api="P:System.Exception.StackTrace" />
+        <element api="P:System.Exception.TargetSite" />
+        <element api="P:System.Web.Query.Dynamic.ParseException.Position" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" />
+      </containers>
+      <file name="87456baa-2981-085d-bf0d-9f3dd736c4fa" />
+    </api>
+    <api id="Events.T:System.Web.Query.Dynamic.ParseException">
+      <topicdata name="ParseException" group="list" subgroup="Events" typeTopicId="T:System.Web.Query.Dynamic.ParseException" />
+      <apidata name="ParseException" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:System.Exception.SerializeObjectState" />
+      </elements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" />
+      </containers>
+      <file name="4275f34b-e899-b3aa-9972-ab3c49af8933" />
+    </api>
+    <api id="M:System.Web.Query.Dynamic.ParseException.#ctor(System.String,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="position">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" ref="true" />
+      </containers>
+      <file name="ad62c47e-aeba-09f7-1be0-1ed52b358f9e" />
+    </api>
+    <api id="P:System.Web.Query.Dynamic.ParseException.Position">
+      <topicdata group="api" />
+      <apidata name="Position" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Position" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" ref="true" />
+      </containers>
+      <file name="cf765873-623c-66af-882f-f4ee26782199" />
+    </api>
+    <api id="M:System.Web.Query.Dynamic.ParseException.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Exception.ToString">
+          <type api="T:System.Exception" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Runtime.InteropServices._Exception.ToString">
+          <type api="T:System.Runtime.InteropServices._Exception" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Web.Extensions" module="System.Web.Extensions" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Web.Query.Dynamic" />
+        <type api="T:System.Web.Query.Dynamic.ParseException" ref="true" />
+      </containers>
+      <file name="f9341588-5ece-c37f-377f-7db42bb83bd6" />
+    </api>
+  </apis>
+</reflection>

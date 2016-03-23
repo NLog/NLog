@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Profile.SystemManufacturers">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Profile.SystemManufacturers" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" />
+      </elements>
+      <file name="d51cc490-4611-88ca-ef91-ecedb46d8f63" />
+    </api>
+    <api id="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" />
+      <apidata name="SmbiosInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile.SystemManufacturers" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3f00e366-8afa-101b-dca6-cb7b996c32d1" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Profile.SystemManufacturers.SmbiosInformation">
+      <topicdata name="SmbiosInformation" group="list" subgroup="members" typeTopicId="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" />
+      <apidata name="SmbiosInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.SystemManufacturers.SmbiosInformation.SerialNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile.SystemManufacturers" />
+        <type api="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" />
+      </containers>
+      <file name="5e01feaf-780e-6782-9826-58e2a40dd23b" />
+    </api>
+    <api id="Properties.T:Windows.System.Profile.SystemManufacturers.SmbiosInformation">
+      <topicdata name="SmbiosInformation" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" />
+      <apidata name="SmbiosInformation" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Profile.SystemManufacturers.SmbiosInformation.SerialNumber" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Profile.SystemManufacturers" />
+        <type api="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" />
+      </containers>
+      <file name="797221f1-fc43-f112-5d41-58c485950715" />
+    </api>
+    <api id="P:Windows.System.Profile.SystemManufacturers.SmbiosInformation.SerialNumber">
+      <topicdata group="api" />
+      <apidata name="SerialNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SerialNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Profile.SystemManufacturers" />
+        <type api="T:Windows.System.Profile.SystemManufacturers.SmbiosInformation" ref="true" />
+      </containers>
+      <file name="4fa03fdc-d64d-d136-b1f2-fbd53d0903fa" />
+    </api>
+  </apis>
+</reflection>

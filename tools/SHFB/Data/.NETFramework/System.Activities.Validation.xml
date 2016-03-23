@@ -1,0 +1,2318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>97bdccfe-43bf-4c17-991d-c797c2ef2243</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Validation">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Validation" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Validation.ActivityValidationServices" />
+        <element api="T:System.Activities.Validation.AddValidationError" />
+        <element api="T:System.Activities.Validation.AssertValidation" />
+        <element api="T:System.Activities.Validation.Constraint" />
+        <element api="T:System.Activities.Validation.Constraint`1" />
+        <element api="T:System.Activities.Validation.ValidationError" />
+        <element api="T:System.Activities.Validation.GetChildSubtree" />
+        <element api="T:System.Activities.Validation.GetParentChain" />
+        <element api="T:System.Activities.Validation.GetWorkflowTree" />
+        <element api="T:System.Activities.Validation.ValidationContext" />
+        <element api="T:System.Activities.Validation.ValidationResults" />
+        <element api="T:System.Activities.Validation.ValidationSettings" />
+      </elements>
+      <file name="0ab0e6bf-afc0-a223-0d40-6a2f858da8cb" />
+    </api>
+    <api id="T:System.Activities.Validation.ActivityValidationServices">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.ActivityValidationServices" />
+      <apidata name="ActivityValidationServices" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="275df9ea-0c4a-44bd-fca6-04d2c1a8afb1" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.ActivityValidationServices">
+      <topicdata name="ActivityValidationServices" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.ActivityValidationServices" />
+      <apidata name="ActivityValidationServices" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Validation.ActivityValidationServices.Resolve(System.Activities.Activity,System.String)" />
+        <element api="Overload:System.Activities.Validation.ActivityValidationServices.Validate">
+          <element api="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity)" />
+          <element api="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity,System.Activities.Validation.ValidationSettings)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ActivityValidationServices" />
+      </containers>
+      <file name="c458cd9d-d835-3740-f85c-a301f8daef3b" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.ActivityValidationServices">
+      <topicdata name="ActivityValidationServices" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.ActivityValidationServices" />
+      <apidata name="ActivityValidationServices" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Activities.Validation.ActivityValidationServices.Resolve(System.Activities.Activity,System.String)" />
+        <element api="Overload:System.Activities.Validation.ActivityValidationServices.Validate">
+          <element api="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity)" />
+          <element api="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity,System.Activities.Validation.ValidationSettings)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ActivityValidationServices" />
+      </containers>
+      <file name="8698ab6e-c04d-4d0c-34c4-7123b45d1a9f" />
+    </api>
+    <api id="Overload:System.Activities.Validation.ActivityValidationServices.Validate">
+      <topicdata name="Validate" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Validation.ActivityValidationServices" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity)" />
+        <element api="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity,System.Activities.Validation.ValidationSettings)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ActivityValidationServices" ref="true" />
+      </containers>
+      <file name="7edde838-3a6b-72c5-f330-ce5d0feeb3a8" />
+    </api>
+    <api id="M:System.Activities.Validation.ActivityValidationServices.Resolve(System.Activities.Activity,System.String)">
+      <topicdata group="api" />
+      <apidata name="Resolve" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="root">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+        <parameter name="id">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ActivityValidationServices" ref="true" />
+      </containers>
+      <file name="25045d71-b40f-441e-c698-1b3ea660cc8e" />
+    </api>
+    <api id="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Activities.Validation.ActivityValidationServices.Validate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="toValidate">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Validation.ValidationResults" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ActivityValidationServices" ref="true" />
+      </containers>
+      <file name="116be87f-8383-2459-abf1-f5a292c9decc" />
+    </api>
+    <api id="M:System.Activities.Validation.ActivityValidationServices.Validate(System.Activities.Activity,System.Activities.Validation.ValidationSettings)">
+      <topicdata group="api" />
+      <apidata name="Validate" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Activities.Validation.ActivityValidationServices.Validate" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="toValidate">
+          <type api="T:System.Activities.Activity" ref="true" />
+        </parameter>
+        <parameter name="settings">
+          <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Validation.ValidationResults" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ActivityValidationServices" ref="true" />
+      </containers>
+      <file name="35ec5c8d-3735-8cd3-9dd3-e6d4a3903fa7" />
+    </api>
+    <api id="T:System.Activities.Validation.AddValidationError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.AddValidationError" />
+      <apidata name="AddValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AddValidationError.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.NativeActivity" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="7e5202dc-730e-d00c-61fa-b459eb072f38" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.AddValidationError">
+      <topicdata name="AddValidationError" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.AddValidationError" />
+      <apidata name="AddValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AddValidationError.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.Validation.AddValidationError.#ctor" />
+        <element api="P:System.Activities.Validation.AddValidationError.IsWarning" />
+        <element api="P:System.Activities.Validation.AddValidationError.Message" />
+        <element api="P:System.Activities.Validation.AddValidationError.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" />
+      </containers>
+      <file name="a373a058-c8c1-3f00-0063-a50bc2ec0e79" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.AddValidationError">
+      <topicdata name="AddValidationError" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.AddValidationError" />
+      <apidata name="AddValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AddValidationError.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" />
+      </containers>
+      <file name="bd7846e5-1158-90df-fc2d-5b7bbbc99257" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.AddValidationError">
+      <topicdata name="AddValidationError" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.AddValidationError" />
+      <apidata name="AddValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AddValidationError.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Validation.AddValidationError.IsWarning" />
+        <element api="P:System.Activities.Validation.AddValidationError.Message" />
+        <element api="P:System.Activities.Validation.AddValidationError.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" />
+      </containers>
+      <file name="df133bc3-ae8b-094f-ee4a-9eb254e59a7e" />
+    </api>
+    <api id="M:System.Activities.Validation.AddValidationError.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" ref="true" />
+      </containers>
+      <file name="b2ca3408-24ad-f648-1f09-bda5dea19dce" />
+    </api>
+    <api id="P:System.Activities.Validation.AddValidationError.IsWarning">
+      <topicdata group="api" />
+      <apidata name="IsWarning" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsWarning" />
+      <setter name="set_IsWarning" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="9df28f8c-7669-ce0a-3935-09f37de92a37" />
+    </api>
+    <api id="P:System.Activities.Validation.AddValidationError.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Message" />
+      <setter name="set_Message" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" ref="true" />
+      </containers>
+      <file name="dbf92e36-41af-c87a-89a9-8c53edad957e" />
+    </api>
+    <api id="P:System.Activities.Validation.AddValidationError.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PropertyName" />
+      <setter name="set_PropertyName" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AddValidationError" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="3dbe0337-b333-3cba-6b37-4c5b18fb0b45" />
+    </api>
+    <api id="T:System.Activities.Validation.AssertValidation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.AssertValidation" />
+      <apidata name="AssertValidation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AssertValidation.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.NativeActivity" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="a2caf7d6-b598-5eff-a9ad-1ebeadc28f19" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.AssertValidation">
+      <topicdata name="AssertValidation" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.AssertValidation" />
+      <apidata name="AssertValidation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AssertValidation.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.Validation.AssertValidation.#ctor" />
+        <element api="P:System.Activities.Validation.AssertValidation.Assertion" />
+        <element api="P:System.Activities.Validation.AssertValidation.IsWarning" />
+        <element api="P:System.Activities.Validation.AssertValidation.Message" />
+        <element api="P:System.Activities.Validation.AssertValidation.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" />
+      </containers>
+      <file name="79570e98-a3a3-5fcc-ac09-09e7f58bf456" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.AssertValidation">
+      <topicdata name="AssertValidation" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.AssertValidation" />
+      <apidata name="AssertValidation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AssertValidation.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" />
+      </containers>
+      <file name="6e4af8dd-b914-8b5d-02cc-370a24a637e4" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.AssertValidation">
+      <topicdata name="AssertValidation" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.AssertValidation" />
+      <apidata name="AssertValidation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.AssertValidation.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Validation.AssertValidation.Assertion" />
+        <element api="P:System.Activities.Validation.AssertValidation.IsWarning" />
+        <element api="P:System.Activities.Validation.AssertValidation.Message" />
+        <element api="P:System.Activities.Validation.AssertValidation.PropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" />
+      </containers>
+      <file name="3fa8382d-32b8-bf7e-f230-27fc3e548502" />
+    </api>
+    <api id="M:System.Activities.Validation.AssertValidation.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" ref="true" />
+      </containers>
+      <file name="fb1b07b2-3896-1a63-c810-8af94860f58b" />
+    </api>
+    <api id="P:System.Activities.Validation.AssertValidation.Assertion">
+      <topicdata group="api" />
+      <apidata name="Assertion" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Assertion" />
+      <setter name="set_Assertion" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" ref="true" />
+      </containers>
+      <file name="e342ae60-35fe-0c7c-b876-b778c4a3d232" />
+    </api>
+    <api id="P:System.Activities.Validation.AssertValidation.IsWarning">
+      <topicdata group="api" />
+      <apidata name="IsWarning" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsWarning" />
+      <setter name="set_IsWarning" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fc5ea72a-fcd6-33a1-a8e1-690b5e3b33e0" />
+    </api>
+    <api id="P:System.Activities.Validation.AssertValidation.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Message" />
+      <setter name="set_Message" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" ref="true" />
+      </containers>
+      <file name="52d03df8-af0a-effe-cf8f-02b6e03d74a4" />
+    </api>
+    <api id="P:System.Activities.Validation.AssertValidation.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PropertyName" />
+      <setter name="set_PropertyName" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.AssertValidation" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.DefaultValueAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <nullValue />
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7db10ecc-b48d-dd10-3b42-0da40127babc" />
+    </api>
+    <api id="T:System.Activities.Validation.Constraint">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.Constraint" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.NativeActivity" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Activities.Validation.Constraint`1" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="8df7f3c8-b8e9-7b83-0955-82c317e56367" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.Constraint">
+      <topicdata name="Constraint" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.Constraint" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="P:System.Activities.Activity.CacheId" />
+        <element api="P:System.Activities.Activity.Constraints" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.NativeActivity.Abort(System.Activities.NativeActivityAbortContext)" />
+        <element api="Overload:System.Activities.Validation.Constraint.CacheMetadata">
+          <element api="M:System.Activities.NativeActivity.CacheMetadata(System.Activities.ActivityMetadata)" />
+          <element api="M:System.Activities.Validation.Constraint.CacheMetadata(System.Activities.NativeActivityMetadata)" />
+        </element>
+        <element api="M:System.Activities.NativeActivity.Cancel(System.Activities.NativeActivityContext)" />
+        <element api="P:System.Activities.NativeActivity.CanInduceIdle" />
+        <element api="P:System.Activities.NativeActivity.Implementation" />
+        <element api="P:System.Activities.NativeActivity.ImplementationVersion" />
+        <element api="Overload:System.Activities.Validation.Constraint.OnCreateDynamicUpdateMap">
+          <element api="M:System.Activities.NativeActivity.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.NativeActivityUpdateMapMetadata,System.Activities.Activity)" />
+          <element api="M:System.Activities.NativeActivity.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.UpdateMapMetadata,System.Activities.Activity)" />
+        </element>
+        <element api="M:System.Activities.NativeActivity.UpdateInstance(System.Activities.DynamicUpdate.NativeActivityUpdateContext)" />
+        <element api="M:System.Activities.Validation.Constraint.AddValidationError(System.Activities.NativeActivityContext,System.Activities.Validation.ValidationError)" />
+        <element api="M:System.Activities.Validation.Constraint.Execute(System.Activities.NativeActivityContext)" />
+        <element api="M:System.Activities.Validation.Constraint.OnExecute(System.Activities.NativeActivityContext,System.Object,System.Activities.Validation.ValidationContext)" />
+        <element api="F:System.Activities.Validation.Constraint.ValidationErrorListPropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" />
+      </containers>
+      <file name="62fc87b2-b799-72ed-b4cb-943386c53a29" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.Constraint">
+      <topicdata name="Constraint" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.Constraint" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.NativeActivity.Abort(System.Activities.NativeActivityAbortContext)" />
+        <element api="Overload:System.Activities.Validation.Constraint.CacheMetadata">
+          <element api="M:System.Activities.NativeActivity.CacheMetadata(System.Activities.ActivityMetadata)" />
+          <element api="M:System.Activities.Validation.Constraint.CacheMetadata(System.Activities.NativeActivityMetadata)" />
+        </element>
+        <element api="M:System.Activities.NativeActivity.Cancel(System.Activities.NativeActivityContext)" />
+        <element api="Overload:System.Activities.Validation.Constraint.OnCreateDynamicUpdateMap">
+          <element api="M:System.Activities.NativeActivity.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.NativeActivityUpdateMapMetadata,System.Activities.Activity)" />
+          <element api="M:System.Activities.NativeActivity.OnCreateDynamicUpdateMap(System.Activities.DynamicUpdate.UpdateMapMetadata,System.Activities.Activity)" />
+        </element>
+        <element api="M:System.Activities.NativeActivity.UpdateInstance(System.Activities.DynamicUpdate.NativeActivityUpdateContext)" />
+        <element api="M:System.Activities.Validation.Constraint.AddValidationError(System.Activities.NativeActivityContext,System.Activities.Validation.ValidationError)" />
+        <element api="M:System.Activities.Validation.Constraint.Execute(System.Activities.NativeActivityContext)" />
+        <element api="M:System.Activities.Validation.Constraint.OnExecute(System.Activities.NativeActivityContext,System.Object,System.Activities.Validation.ValidationContext)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" />
+      </containers>
+      <file name="2e06f4d1-5098-d202-c615-92623c6078d0" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.Constraint">
+      <topicdata name="Constraint" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.Constraint" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Activity.CacheId" />
+        <element api="P:System.Activities.Activity.Constraints" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.NativeActivity.CanInduceIdle" />
+        <element api="P:System.Activities.NativeActivity.Implementation" />
+        <element api="P:System.Activities.NativeActivity.ImplementationVersion" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" />
+      </containers>
+      <file name="88436ce3-0060-6d4a-d400-ccc67c476045" />
+    </api>
+    <api id="Fields.T:System.Activities.Validation.Constraint">
+      <topicdata name="Constraint" group="list" subgroup="Fields" typeTopicId="T:System.Activities.Validation.Constraint" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="F:System.Activities.Validation.Constraint.ValidationErrorListPropertyName" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" />
+      </containers>
+      <file name="5294eb93-fac1-61ea-0f1b-c984d8313409" />
+    </api>
+    <api id="Overload:System.Activities.Validation.Constraint.CacheMetadata">
+      <topicdata name="CacheMetadata" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Validation.Constraint" />
+      <apidata name="CacheMetadata" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Activities.NativeActivity.CacheMetadata(System.Activities.ActivityMetadata)" />
+        <element api="M:System.Activities.Validation.Constraint.CacheMetadata(System.Activities.NativeActivityMetadata)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </containers>
+      <file name="a8e4ac6e-30cd-13a9-e4a8-058143bfb764" />
+    </api>
+    <api id="M:System.Activities.Validation.Constraint.AddValidationError(System.Activities.NativeActivityContext,System.Activities.Validation.ValidationError)">
+      <topicdata group="api" />
+      <apidata name="AddValidationError" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.NativeActivityContext" ref="true" />
+        </parameter>
+        <parameter name="error">
+          <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </containers>
+      <file name="906e1a85-6e4e-6c44-42ff-15ba5059cbce" />
+    </api>
+    <api id="M:System.Activities.Validation.Constraint.CacheMetadata(System.Activities.NativeActivityMetadata)">
+      <topicdata group="api" />
+      <apidata name="CacheMetadata" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:System.Activities.Validation.Constraint.CacheMetadata" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.NativeActivity.CacheMetadata(System.Activities.NativeActivityMetadata)">
+          <type api="T:System.Activities.NativeActivity" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="metadata">
+          <type api="T:System.Activities.NativeActivityMetadata" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </containers>
+      <file name="6ef7441b-fbcd-92e0-459f-3a6172eecebc" />
+    </api>
+    <api id="M:System.Activities.Validation.Constraint.Execute(System.Activities.NativeActivityContext)">
+      <topicdata group="api" />
+      <apidata name="Execute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Activities.NativeActivity.Execute(System.Activities.NativeActivityContext)">
+          <type api="T:System.Activities.NativeActivity" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.NativeActivityContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </containers>
+      <file name="6b321ffe-40eb-d63a-e357-4570077a785d" />
+    </api>
+    <api id="M:System.Activities.Validation.Constraint.OnExecute(System.Activities.NativeActivityContext,System.Object,System.Activities.Validation.ValidationContext)">
+      <topicdata group="api" />
+      <apidata name="OnExecute" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Activities.NativeActivityContext" ref="true" />
+        </parameter>
+        <parameter name="objectToValidate">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="objectToValidateContext">
+          <type api="T:System.Activities.Validation.ValidationContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </containers>
+      <file name="ac54ce45-9fe4-504e-2b5a-bcb3450673c4" />
+    </api>
+    <api id="F:System.Activities.Validation.Constraint.ValidationErrorListPropertyName">
+      <topicdata group="api" />
+      <apidata name="ValidationErrorListPropertyName" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <value>System.Activities.Validation.Constraint.ValidationErrorList</value>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint" ref="true" />
+      </containers>
+      <file name="e50a4dd3-f007-1558-2829-4c64233e7b22" />
+    </api>
+    <api id="T:System.Activities.Validation.Constraint`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.Constraint`1" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.Constraint`1.#ctor" contentProperty="P:System.Activities.Validation.Constraint`1.Body" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.Validation.Constraint" ref="true" />
+          <type api="T:System.Activities.NativeActivity" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Body</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="82096941-dd9b-63bc-f8c8-956b2f773872" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.Constraint`1">
+      <topicdata name="Constraint" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.Constraint`1" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.Constraint`1.#ctor" contentProperty="P:System.Activities.Validation.Constraint`1.Body" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="M:System.Activities.Validation.Constraint`1.#ctor" />
+        <element api="P:System.Activities.Validation.Constraint`1.Body" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint`1" />
+      </containers>
+      <file name="300935f7-1062-57d0-2307-3a2d7c19c78f" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.Constraint`1">
+      <topicdata name="Constraint" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.Constraint`1" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.Constraint`1.#ctor" contentProperty="P:System.Activities.Validation.Constraint`1.Body" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint`1" />
+      </containers>
+      <file name="23308435-95b7-9c38-5cb6-535dcc88d6f5" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.Constraint`1">
+      <topicdata name="Constraint" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.Constraint`1" />
+      <apidata name="Constraint" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.Constraint`1.#ctor" contentProperty="P:System.Activities.Validation.Constraint`1.Body" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Validation.Constraint`1.Body" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint`1" />
+      </containers>
+      <file name="ac06def9-b3b0-8edd-b6ae-0e24c92acecc" />
+    </api>
+    <api id="M:System.Activities.Validation.Constraint`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint`1" ref="true" />
+      </containers>
+      <file name="aba6a4cb-9c6c-e85e-df65-bf037a327390" />
+    </api>
+    <api id="P:System.Activities.Validation.Constraint`1.Body">
+      <topicdata group="api" />
+      <apidata name="Body" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Body" />
+      <setter name="set_Body" />
+      <returns>
+        <type api="T:System.Activities.ActivityAction`2" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:System.Activities.Validation.Constraint`1" />
+            <type api="T:System.Activities.Validation.ValidationContext" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.Constraint`1" ref="true" />
+      </containers>
+      <file name="19a052e7-1bb3-aa5d-fa5d-b5929127edc8" />
+    </api>
+    <api id="T:System.Activities.Validation.GetChildSubtree">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.GetChildSubtree" />
+      <apidata name="GetChildSubtree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetChildSubtree.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.Activities.Activity" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.Activities.Activity" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="d5555f24-5215-30a6-2a86-fee1e5c24e2c" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.GetChildSubtree">
+      <topicdata name="GetChildSubtree" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.GetChildSubtree" />
+      <apidata name="GetChildSubtree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetChildSubtree.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="M:System.Activities.Validation.GetChildSubtree.#ctor" />
+        <element api="P:System.Activities.Validation.GetChildSubtree.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetChildSubtree" />
+      </containers>
+      <file name="e89b325a-f5a8-ee3b-4b37-c9264a894e55" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.GetChildSubtree">
+      <topicdata name="GetChildSubtree" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.GetChildSubtree" />
+      <apidata name="GetChildSubtree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetChildSubtree.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetChildSubtree" />
+      </containers>
+      <file name="f02b1271-695e-4e2f-be41-34f67ea88dc3" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.GetChildSubtree">
+      <topicdata name="GetChildSubtree" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.GetChildSubtree" />
+      <apidata name="GetChildSubtree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetChildSubtree.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.Validation.GetChildSubtree.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetChildSubtree" />
+      </containers>
+      <file name="d2ea2f37-6253-56f9-788f-a85d06553e57" />
+    </api>
+    <api id="M:System.Activities.Validation.GetChildSubtree.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetChildSubtree" ref="true" />
+      </containers>
+      <file name="a8284495-be57-d98f-200b-a731aeae69bb" />
+    </api>
+    <api id="P:System.Activities.Validation.GetChildSubtree.ValidationContext">
+      <topicdata group="api" />
+      <apidata name="ValidationContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidationContext" />
+      <setter name="set_ValidationContext" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Validation.ValidationContext" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetChildSubtree" ref="true" />
+      </containers>
+      <file name="de7b5424-5501-7332-672c-427eb85feb45" />
+    </api>
+    <api id="T:System.Activities.Validation.GetParentChain">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.GetParentChain" />
+      <apidata name="GetParentChain" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetParentChain.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.Activities.Activity" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.Activities.Activity" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="1966696b-f840-c3cd-2acd-998dc683134e" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.GetParentChain">
+      <topicdata name="GetParentChain" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.GetParentChain" />
+      <apidata name="GetParentChain" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetParentChain.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="M:System.Activities.Validation.GetParentChain.#ctor" />
+        <element api="P:System.Activities.Validation.GetParentChain.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetParentChain" />
+      </containers>
+      <file name="54a30485-5f0c-fd25-0a2a-e06fce123f9b" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.GetParentChain">
+      <topicdata name="GetParentChain" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.GetParentChain" />
+      <apidata name="GetParentChain" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetParentChain.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetParentChain" />
+      </containers>
+      <file name="fa5735a7-83b5-935f-3cf3-494ff4a7471b" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.GetParentChain">
+      <topicdata name="GetParentChain" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.GetParentChain" />
+      <apidata name="GetParentChain" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetParentChain.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.Validation.GetParentChain.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetParentChain" />
+      </containers>
+      <file name="df4cc71d-09ee-6f4a-401f-a83d28c2c1b2" />
+    </api>
+    <api id="M:System.Activities.Validation.GetParentChain.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetParentChain" ref="true" />
+      </containers>
+      <file name="660fc4bf-c095-fc9a-c6de-cff272416741" />
+    </api>
+    <api id="P:System.Activities.Validation.GetParentChain.ValidationContext">
+      <topicdata group="api" />
+      <apidata name="ValidationContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidationContext" />
+      <setter name="set_ValidationContext" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Validation.ValidationContext" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetParentChain" ref="true" />
+      </containers>
+      <file name="816ba5a2-f23f-b385-b211-f93e5d42a615" />
+    </api>
+    <api id="T:System.Activities.Validation.GetWorkflowTree">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.GetWorkflowTree" />
+      <apidata name="GetWorkflowTree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetWorkflowTree.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Activities.CodeActivity`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.Activities.Activity" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.Activity`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+                <specialization>
+                  <type api="T:System.Activities.Activity" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Activities.ActivityWithResult" ref="true" />
+          <type api="T:System.Activities.Activity" ref="true" contentProperty="P:System.Activities.Activity.Implementation" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="952c4700-7550-c28e-7e38-1a27f76dc5d7" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.GetWorkflowTree">
+      <topicdata name="GetWorkflowTree" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.GetWorkflowTree" />
+      <apidata name="GetWorkflowTree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetWorkflowTree.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="M:System.Activities.Validation.GetWorkflowTree.#ctor" />
+        <element api="P:System.Activities.Validation.GetWorkflowTree.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetWorkflowTree" />
+      </containers>
+      <file name="2da2314a-aae7-5e0d-e24c-281dbeeefa0d" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.GetWorkflowTree">
+      <topicdata name="GetWorkflowTree" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.GetWorkflowTree" />
+      <apidata name="GetWorkflowTree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetWorkflowTree.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Activities.Activity.ShouldSerializeDisplayName" />
+        <element api="M:System.Activities.Activity.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetWorkflowTree" />
+      </containers>
+      <file name="2bab9b71-7f6b-94db-feb1-d96fdbd83f0d" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.GetWorkflowTree">
+      <topicdata name="GetWorkflowTree" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.GetWorkflowTree" />
+      <apidata name="GetWorkflowTree" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Validation.GetWorkflowTree.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Activity.DisplayName" />
+        <element api="P:System.Activities.Activity.Id" />
+        <element api="P:System.Activities.Activity`1.Result" />
+        <element api="P:System.Activities.ActivityWithResult.ResultType" />
+        <element api="P:System.Activities.Validation.GetWorkflowTree.ValidationContext" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetWorkflowTree" />
+      </containers>
+      <file name="9fb073ec-5a97-0f97-382f-f924b8e0ebec" />
+    </api>
+    <api id="M:System.Activities.Validation.GetWorkflowTree.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetWorkflowTree" ref="true" />
+      </containers>
+      <file name="5927c7e6-ce5e-2ee4-35af-7992d1bd2273" />
+    </api>
+    <api id="P:System.Activities.Validation.GetWorkflowTree.ValidationContext">
+      <topicdata group="api" />
+      <apidata name="ValidationContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ValidationContext" />
+      <setter name="set_ValidationContext" />
+      <returns>
+        <type api="T:System.Activities.InArgument`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Validation.ValidationContext" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.GetWorkflowTree" ref="true" />
+      </containers>
+      <file name="967f1db0-601a-6a67-b27e-b0faf47922eb" />
+    </api>
+    <api id="T:System.Activities.Validation.ValidationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.ValidationContext" />
+      <apidata name="ValidationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="1b2b1020-f1c9-fdbe-c564-0b22ac014d9d" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.ValidationContext">
+      <topicdata name="ValidationContext" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.ValidationContext" />
+      <apidata name="ValidationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationContext" />
+      </containers>
+      <file name="548a7148-6ad0-750c-0c17-c4956b3b4c6d" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.ValidationContext">
+      <topicdata name="ValidationContext" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.ValidationContext" />
+      <apidata name="ValidationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationContext" />
+      </containers>
+      <file name="f247a50e-36af-59c2-d29c-780b99b8e8c2" />
+    </api>
+    <api id="T:System.Activities.Validation.ValidationError">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.ValidationError" />
+      <apidata name="ValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="7b8f2b51-8a0c-76ea-53eb-df82d284c678" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.ValidationError">
+      <topicdata name="ValidationError" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.ValidationError" />
+      <apidata name="ValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="Overload:System.Activities.Validation.ValidationError.#ctor">
+          <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String)" />
+          <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean)" />
+          <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean,System.String)" />
+          <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean,System.String,System.Object)" />
+        </element>
+        <element api="P:System.Activities.Validation.ValidationError.Id" />
+        <element api="P:System.Activities.Validation.ValidationError.IsWarning" />
+        <element api="P:System.Activities.Validation.ValidationError.Message" />
+        <element api="P:System.Activities.Validation.ValidationError.PropertyName" />
+        <element api="P:System.Activities.Validation.ValidationError.Source" />
+        <element api="P:System.Activities.Validation.ValidationError.SourceDetail" />
+        <element api="M:System.Activities.Validation.ValidationError.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" />
+      </containers>
+      <file name="7b2c872d-0436-56c3-8dce-febfc6cca11a" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.ValidationError">
+      <topicdata name="ValidationError" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.ValidationError" />
+      <apidata name="ValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Activities.Validation.ValidationError.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" />
+      </containers>
+      <file name="18690c6d-a718-4915-ca44-1d49a7f57ed5" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.ValidationError">
+      <topicdata name="ValidationError" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.ValidationError" />
+      <apidata name="ValidationError" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Validation.ValidationError.Id" />
+        <element api="P:System.Activities.Validation.ValidationError.IsWarning" />
+        <element api="P:System.Activities.Validation.ValidationError.Message" />
+        <element api="P:System.Activities.Validation.ValidationError.PropertyName" />
+        <element api="P:System.Activities.Validation.ValidationError.Source" />
+        <element api="P:System.Activities.Validation.ValidationError.SourceDetail" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" />
+      </containers>
+      <file name="f03c857d-81b7-4e51-4cea-3a754d972601" />
+    </api>
+    <api id="Overload:System.Activities.Validation.ValidationError.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Activities.Validation.ValidationError" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String)" />
+        <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean)" />
+        <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean,System.String)" />
+        <element api="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean,System.String,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="019ce3f8-f12a-f7f5-37f6-b1e1cd6a6e83" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationError.#ctor(System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Validation.ValidationError.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="4ae47048-78fb-71c9-b835-81e244fecb27" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Validation.ValidationError.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="isWarning">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="fcd7f53d-d76f-33fb-ce0c-bbbcf0f7ceaa" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Validation.ValidationError.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="isWarning">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="076c11e6-8abd-5789-3652-9cebb262c569" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationError.#ctor(System.String,System.Boolean,System.String,System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Activities.Validation.ValidationError.#ctor" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="isWarning">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="propertyName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="sourceDetail">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="f22c4ede-c590-ad8b-55ad-9226b898f649" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationError.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="f01ff797-2222-f83e-69f6-de9eb3ce2080" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationError.IsWarning">
+      <topicdata group="api" />
+      <apidata name="IsWarning" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsWarning" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="38fb6240-9f54-e109-5320-1836d1aa6950" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationError.Message">
+      <topicdata group="api" />
+      <apidata name="Message" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Message" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="a386e1b7-5f32-53ae-3fe7-e3d8bdb0e2e2" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationError.PropertyName">
+      <topicdata group="api" />
+      <apidata name="PropertyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PropertyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="7aa39961-01ea-a9c9-b8ce-0eb298cb6b78" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationError.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Source" />
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="37ab2d0f-b305-f328-d963-6e19c847588d" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationError.SourceDetail">
+      <topicdata group="api" />
+      <apidata name="SourceDetail" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_SourceDetail" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="8e8a4375-4b2e-0701-3787-6c9b9df5d3c9" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationError.ToString">
+      <topicdata group="api" />
+      <apidata name="ToString" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.ToString">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+      </containers>
+      <file name="c6507281-97c5-335e-7c99-cc3da519b3e9" />
+    </api>
+    <api id="T:System.Activities.Validation.ValidationResults">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.ValidationResults" />
+      <apidata name="ValidationResults" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="fbab88fd-c2cd-fcdc-b6ce-c5394912da29" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.ValidationResults">
+      <topicdata name="ValidationResults" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.ValidationResults" />
+      <apidata name="ValidationResults" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Validation.ValidationResults.#ctor(System.Collections.Generic.IList{System.Activities.Validation.ValidationError})" />
+        <element api="P:System.Activities.Validation.ValidationResults.Errors" />
+        <element api="P:System.Activities.Validation.ValidationResults.Warnings" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationResults" />
+      </containers>
+      <file name="3e37a763-daf5-f754-38ac-93ba590649c0" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.ValidationResults">
+      <topicdata name="ValidationResults" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.ValidationResults" />
+      <apidata name="ValidationResults" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationResults" />
+      </containers>
+      <file name="aa20c892-b717-654c-b199-b58bcc1a7e63" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.ValidationResults">
+      <topicdata name="ValidationResults" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.ValidationResults" />
+      <apidata name="ValidationResults" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Activities.Validation.ValidationResults.Errors" />
+        <element api="P:System.Activities.Validation.ValidationResults.Warnings" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationResults" />
+      </containers>
+      <file name="5006adb8-2d2b-000b-e8ee-61aa86bc9e05" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationResults.#ctor(System.Collections.Generic.IList{System.Activities.Validation.ValidationError})">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="allValidationErrors">
+          <type api="T:System.Collections.Generic.IList`1" ref="true">
+            <specialization>
+              <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationResults" ref="true" />
+      </containers>
+      <file name="ebdb1cd1-89b4-937d-77c6-3a9e961bd75a" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationResults.Errors">
+      <topicdata group="api" />
+      <apidata name="Errors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Errors" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationResults" ref="true" />
+      </containers>
+      <file name="50653750-f647-d834-16ee-d9c38018e341" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationResults.Warnings">
+      <topicdata group="api" />
+      <apidata name="Warnings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Warnings" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Activities.Validation.ValidationError" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationResults" ref="true" />
+      </containers>
+      <file name="eebf9e12-5c48-c492-23d1-973494d4fd86" />
+    </api>
+    <api id="T:System.Activities.Validation.ValidationSettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Validation.ValidationSettings" />
+      <apidata name="ValidationSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Validation.ValidationSettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+      </containers>
+      <file name="5a0d8fc7-390a-7f5e-dd8f-b6818433a0bd" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Validation.ValidationSettings">
+      <topicdata name="ValidationSettings" group="list" subgroup="members" typeTopicId="T:System.Activities.Validation.ValidationSettings" />
+      <apidata name="ValidationSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Validation.ValidationSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Validation.ValidationSettings.#ctor" />
+        <element api="P:System.Activities.Validation.ValidationSettings.AdditionalConstraints" />
+        <element api="P:System.Activities.Validation.ValidationSettings.CancellationToken" />
+        <element api="P:System.Activities.Validation.ValidationSettings.Environment" />
+        <element api="P:System.Activities.Validation.ValidationSettings.OnlyUseAdditionalConstraints" />
+        <element api="P:System.Activities.Validation.ValidationSettings.PrepareForRuntime" />
+        <element api="P:System.Activities.Validation.ValidationSettings.SingleLevel" />
+        <element api="P:System.Activities.Validation.ValidationSettings.SkipValidatingRootConfiguration" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" />
+      </containers>
+      <file name="4088bdf1-df90-2eff-c92c-b5d33dc01935" />
+    </api>
+    <api id="Methods.T:System.Activities.Validation.ValidationSettings">
+      <topicdata name="ValidationSettings" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Validation.ValidationSettings" />
+      <apidata name="ValidationSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Validation.ValidationSettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" />
+      </containers>
+      <file name="c8a31d60-e843-dcdf-e36b-ccfd3e34b0f1" />
+    </api>
+    <api id="Properties.T:System.Activities.Validation.ValidationSettings">
+      <topicdata name="ValidationSettings" group="list" subgroup="Properties" typeTopicId="T:System.Activities.Validation.ValidationSettings" />
+      <apidata name="ValidationSettings" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Activities.Validation.ValidationSettings.#ctor" />
+      <elements>
+        <element api="P:System.Activities.Validation.ValidationSettings.AdditionalConstraints" />
+        <element api="P:System.Activities.Validation.ValidationSettings.CancellationToken" />
+        <element api="P:System.Activities.Validation.ValidationSettings.Environment" />
+        <element api="P:System.Activities.Validation.ValidationSettings.OnlyUseAdditionalConstraints" />
+        <element api="P:System.Activities.Validation.ValidationSettings.PrepareForRuntime" />
+        <element api="P:System.Activities.Validation.ValidationSettings.SingleLevel" />
+        <element api="P:System.Activities.Validation.ValidationSettings.SkipValidatingRootConfiguration" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" />
+      </containers>
+      <file name="e9227495-c36e-efbd-928c-e972c488ef0c" />
+    </api>
+    <api id="M:System.Activities.Validation.ValidationSettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="792433fb-f5bc-1fc2-f660-56bf205a3017" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.AdditionalConstraints">
+      <topicdata group="api" />
+      <apidata name="AdditionalConstraints" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AdditionalConstraints" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+            <type api="T:System.Collections.Generic.IList`1" ref="true">
+              <specialization>
+                <type api="T:System.Activities.Validation.Constraint" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="25b64dba-3f6a-0968-c809-fb76b7faa8af" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.CancellationToken">
+      <topicdata group="api" />
+      <apidata name="CancellationToken" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_CancellationToken" />
+      <setter name="set_CancellationToken" />
+      <returns>
+        <type api="T:System.Threading.CancellationToken" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="1e592aa9-109c-ccd9-6935-9ac841e7fa7d" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.Environment">
+      <topicdata group="api" />
+      <apidata name="Environment" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Environment" />
+      <setter name="set_Environment" />
+      <returns>
+        <type api="T:System.Activities.LocationReferenceEnvironment" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="295eef85-a6ba-50aa-46e0-321e7ecec1fa" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.OnlyUseAdditionalConstraints">
+      <topicdata group="api" />
+      <apidata name="OnlyUseAdditionalConstraints" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OnlyUseAdditionalConstraints" />
+      <setter name="set_OnlyUseAdditionalConstraints" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="c38cff80-58ea-d738-cdc3-5ecde6733e10" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.PrepareForRuntime">
+      <topicdata group="api" />
+      <apidata name="PrepareForRuntime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_PrepareForRuntime" />
+      <setter name="set_PrepareForRuntime" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="2be575ad-57d3-a8d7-1035-0eaaed964345" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.SingleLevel">
+      <topicdata group="api" />
+      <apidata name="SingleLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SingleLevel" />
+      <setter name="set_SingleLevel" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="3bcecab2-080d-38cc-96c1-b8f8c37b2eb6" />
+    </api>
+    <api id="P:System.Activities.Validation.ValidationSettings.SkipValidatingRootConfiguration">
+      <topicdata group="api" />
+      <apidata name="SkipValidatingRootConfiguration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SkipValidatingRootConfiguration" />
+      <setter name="set_SkipValidatingRootConfiguration" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Activities" module="System.Activities" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Validation" />
+        <type api="T:System.Activities.Validation.ValidationSettings" ref="true" />
+      </containers>
+      <file name="6335f30c-36cd-dfa5-710d-75591b7d6de7" />
+    </api>
+  </apis>
+</reflection>

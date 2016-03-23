@@ -1,0 +1,1549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.ServiceModel.Primitives">
+      <assemblydata version="4.0.0.0" culture="" key="002400000480000094000000060200000024000052534131000400000100010007D1FA57C4AED9F0A32E84AA0FAEFD0DE9E8FD6AEC8F87FB03766C834C99921EB23BE79AD9D5DCC1DD9AD236132102900B723CF980957FC4E177108FC607774F29E8320E92EA05ECE4E821C0A5EFE8F1645C4C0C93C1AB99285D622CAA652C1DFAD63D745D6F2DE5F17E5EAF0FC4963D261C8A12436518206DC093344D5AD293" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Primitives.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Primitives.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.ServiceModel.Primitives.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.30319.17929</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\FinalPublicKey.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.ServiceModel.Dispatcher">
+      <topicdata group="api" />
+      <apidata name="System.ServiceModel.Dispatcher" group="namespace" />
+      <elements>
+        <element api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+        <element api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+        <element api="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+        <element api="T:System.ServiceModel.Dispatcher.DispatchRuntime" />
+        <element api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+        <element api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+        <element api="T:System.ServiceModel.Dispatcher.IClientMessageInspector" />
+        <element api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+        <element api="T:System.ServiceModel.Dispatcher.IParameterInspector" />
+      </elements>
+      <file name="c35c3ba1-74eb-663a-d32f-f12dc767fa0b" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="5ef87f6b-a19b-4f9e-caf8-c23ded52c9cc" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata name="ClientOperation" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor">
+          <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String)" />
+          <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String,System.String)" />
+        </element>
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.ClientParameterInspectors" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.DeserializeReply" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Formatter" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsOneWay" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Name" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Parent" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.ReplyAction" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.SerializeRequest" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.TaskMethod" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.TaskTResult" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </containers>
+      <file name="a2579d77-d687-54c2-d70f-b26622b85bac" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata name="ClientOperation" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </containers>
+      <file name="cf959663-514e-b5cd-cc30-7f65eef51930" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.ClientOperation">
+      <topicdata name="ClientOperation" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name="ClientOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.ClientParameterInspectors" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.DeserializeReply" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Formatter" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.IsOneWay" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Name" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.Parent" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.ReplyAction" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.SerializeRequest" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.TaskMethod" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientOperation.TaskTResult" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" />
+      </containers>
+      <file name="b49ab183-b189-f957-9488-17792703f5b6" />
+    </api>
+    <api id="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.ClientOperation" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String)" />
+        <element api="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String,System.String)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="bc2dfc86-1b5b-4653-6e77-b5c4f561b9c3" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="4706245d-def6-0ea5-ec7d-5491b8a7e793" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.ClientOperation.#ctor(System.ServiceModel.Dispatcher.ClientRuntime,System.String,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.ServiceModel.Dispatcher.ClientOperation.#ctor" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="replyAction">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="2422c805-bfda-59d8-4840-b490773bf614" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="1681bb96-5b5f-af4e-20d2-fc54e94760d7" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.ClientParameterInspectors">
+      <topicdata group="api" />
+      <apidata name="ClientParameterInspectors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientParameterInspectors" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.Dispatcher.IParameterInspector" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="2ceada1d-9416-9804-0bb7-ba8073fc8a77" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.DeserializeReply">
+      <topicdata group="api" />
+      <apidata name="DeserializeReply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DeserializeReply" />
+      <setter name="set_DeserializeReply" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="75ce11cb-673b-0378-7b32-49ce73dd24d4" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Formatter">
+      <topicdata group="api" />
+      <apidata name="Formatter" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Formatter" />
+      <setter name="set_Formatter" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="934af5df-aa2f-5671-f2bb-46c8f856ea43" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.IsOneWay">
+      <topicdata group="api" />
+      <apidata name="IsOneWay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsOneWay" />
+      <setter name="set_IsOneWay" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="22633972-04e9-ff13-a737-8913496b3dd7" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="49efcf60-483e-eb7e-4571-287538fba262" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parent" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="c7572cfa-e4c4-8ea9-37d5-20e344e8a14d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.ReplyAction">
+      <topicdata group="api" />
+      <apidata name="ReplyAction" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ReplyAction" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="ce27caa8-9342-152a-c367-3fd8d744dcd6" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.SerializeRequest">
+      <topicdata group="api" />
+      <apidata name="SerializeRequest" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SerializeRequest" />
+      <setter name="set_SerializeRequest" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="2ee93296-045c-9b60-bd80-2a99c166592f" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.TaskMethod">
+      <topicdata group="api" />
+      <apidata name="TaskMethod" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TaskMethod" />
+      <setter name="set_TaskMethod" />
+      <returns>
+        <type api="T:System.Reflection.MethodInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="11de696a-ac86-352b-16e8-4471ec698813" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientOperation.TaskTResult">
+      <topicdata group="api" />
+      <apidata name="TaskTResult" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TaskTResult" />
+      <setter name="set_TaskTResult" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </containers>
+      <file name="3bc13107-78c9-8e32-e3a5-a5a7f411ec34" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="12d5e6e4-5f51-1ed5-7c80-ce2cd5414a66" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata name="ClientRuntime" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ClientMessageInspectors" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ClientOperations" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractClientType" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractName" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractNamespace" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ManualAddressing" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.MaxFaultSize" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.OperationSelector" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.UnhandledClientOperation" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.Via" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      </containers>
+      <file name="2f0235a2-342f-0348-0e94-0223232d8fdf" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata name="ClientRuntime" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      </containers>
+      <file name="415bd4ff-7521-b884-bd45-bad5563b9dbe" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.ClientRuntime">
+      <topicdata name="ClientRuntime" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      <apidata name="ClientRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ClientMessageInspectors" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ClientOperations" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractClientType" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractName" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractNamespace" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.ManualAddressing" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.MaxFaultSize" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.OperationSelector" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.UnhandledClientOperation" />
+        <element api="P:System.ServiceModel.Dispatcher.ClientRuntime.Via" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" />
+      </containers>
+      <file name="93486724-04cd-b753-10fc-a63723ae213d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ClientMessageInspectors">
+      <topicdata group="api" />
+      <apidata name="ClientMessageInspectors" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientMessageInspectors" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.Dispatcher.IClientMessageInspector" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="cf443f8b-7807-b34b-2eb4-cb679a9ecee3" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ClientOperations">
+      <topicdata group="api" />
+      <apidata name="ClientOperations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ClientOperations" />
+      <returns>
+        <type api="T:System.Collections.Generic.ICollection`1" ref="true">
+          <specialization>
+            <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="c4c32d05-8095-f7d1-c274-c323040b2f8f" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractClientType">
+      <topicdata group="api" />
+      <apidata name="ContractClientType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ContractClientType" />
+      <setter name="set_ContractClientType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="e2028983-cec5-342d-16be-25f2e0ef6dff" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractName">
+      <topicdata group="api" />
+      <apidata name="ContractName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContractName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="687daa9b-a82e-3a83-c950-dd22ab9fa9fb" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ContractNamespace">
+      <topicdata group="api" />
+      <apidata name="ContractNamespace" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ContractNamespace" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="1637f4be-93ef-9114-4fd3-205fa31134e1" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.ManualAddressing">
+      <topicdata group="api" />
+      <apidata name="ManualAddressing" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ManualAddressing" />
+      <setter name="set_ManualAddressing" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="1c835f41-86c4-3748-6a07-e18612e223e8" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.MaxFaultSize">
+      <topicdata group="api" />
+      <apidata name="MaxFaultSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxFaultSize" />
+      <setter name="set_MaxFaultSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="d5a5e7fe-fa87-5f74-0368-bfee57a11432" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.OperationSelector">
+      <topicdata group="api" />
+      <apidata name="OperationSelector" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_OperationSelector" />
+      <setter name="set_OperationSelector" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="e42208c0-5867-891d-5a2c-29b7a3fbc61d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.UnhandledClientOperation">
+      <topicdata group="api" />
+      <apidata name="UnhandledClientOperation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UnhandledClientOperation" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.ClientOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="ce69e4c4-0e77-3f26-acd0-2044b38c7dcf" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.ClientRuntime.Via">
+      <topicdata group="api" />
+      <apidata name="Via" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Via" />
+      <setter name="set_Via" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.ClientRuntime" ref="true" />
+      </containers>
+      <file name="cc30c03f-b632-69e1-3447-c160dd8fc351" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.DispatchOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      <apidata name="DispatchOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="d70fae7e-1acd-1cfa-0d0f-7bec3d71744c" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.DispatchOperation">
+      <topicdata name="DispatchOperation" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      <apidata name="DispatchOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.ServiceModel.Dispatcher.DispatchOperation.#ctor(System.ServiceModel.Dispatcher.DispatchRuntime,System.String,System.String)" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.AutoDisposeParameters" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.DeserializeRequest" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.IsOneWay" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.Name" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.Parent" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.SerializeReply" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      </containers>
+      <file name="3eaaec02-2f41-e738-1349-96f8f82960e9" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.DispatchOperation">
+      <topicdata name="DispatchOperation" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      <apidata name="DispatchOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      </containers>
+      <file name="a54cb154-7a5e-920e-7f60-9d6007090035" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.DispatchOperation">
+      <topicdata name="DispatchOperation" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      <apidata name="DispatchOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.Action" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.AutoDisposeParameters" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.DeserializeRequest" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.IsOneWay" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.Name" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.Parent" />
+        <element api="P:System.ServiceModel.Dispatcher.DispatchOperation.SerializeReply" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" />
+      </containers>
+      <file name="cc3a0aa9-fedf-caad-e2ee-cca371a76c03" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.DispatchOperation.#ctor(System.ServiceModel.Dispatcher.DispatchRuntime,System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="parent">
+          <type api="T:System.ServiceModel.Dispatcher.DispatchRuntime" ref="true" />
+        </parameter>
+        <parameter name="name">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="action">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="6947eb78-fefb-51bd-9d57-6852b440bc77" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.Action">
+      <topicdata group="api" />
+      <apidata name="Action" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Action" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="cc3dc0fc-9037-e2ec-d445-1aca8e03dd5f" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.AutoDisposeParameters">
+      <topicdata group="api" />
+      <apidata name="AutoDisposeParameters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_AutoDisposeParameters" />
+      <setter name="set_AutoDisposeParameters" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="d1e887ad-4bd5-426c-b5c6-28921f8dcf43" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.DeserializeRequest">
+      <topicdata group="api" />
+      <apidata name="DeserializeRequest" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DeserializeRequest" />
+      <setter name="set_DeserializeRequest" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="2ca850f3-ac41-7d1b-39d5-968a5f3d952d" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.IsOneWay">
+      <topicdata group="api" />
+      <apidata name="IsOneWay" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsOneWay" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="72b00d5e-f183-ffa3-5ad6-8b2b3b783762" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="d2b80b5c-33a7-7a6f-a2da-dd0693524a07" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.Parent">
+      <topicdata group="api" />
+      <apidata name="Parent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Parent" />
+      <returns>
+        <type api="T:System.ServiceModel.Dispatcher.DispatchRuntime" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="224dce4f-ad86-39a8-ea40-3982a7a1e5ca" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.DispatchOperation.SerializeReply">
+      <topicdata group="api" />
+      <apidata name="SerializeReply" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SerializeReply" />
+      <setter name="set_SerializeReply" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchOperation" ref="true" />
+      </containers>
+      <file name="4c632afc-1952-e371-a843-2916355f15e9" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.DispatchRuntime">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.DispatchRuntime" />
+      <apidata name="DispatchRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="ef4549c5-84c8-4c90-0479-82d8a7ad7028" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.DispatchRuntime">
+      <topicdata name="DispatchRuntime" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.DispatchRuntime" />
+      <apidata name="DispatchRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchRuntime" />
+      </containers>
+      <file name="a843de6a-7611-87c5-bb30-acfe7345bd18" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.DispatchRuntime">
+      <topicdata name="DispatchRuntime" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.DispatchRuntime" />
+      <apidata name="DispatchRuntime" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.DispatchRuntime" />
+      </containers>
+      <file name="53a79bd9-3fb4-d4c4-6e81-2e79c74d7348" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.EndpointDispatcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      <apidata name="EndpointDispatcher" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="f93d93aa-faf7-85bb-8749-1f6476d69e20" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.EndpointDispatcher">
+      <topicdata name="EndpointDispatcher" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      <apidata name="EndpointDispatcher" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      </containers>
+      <file name="5cc56a02-648d-ce12-599d-442fc66c0739" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.EndpointDispatcher">
+      <topicdata name="EndpointDispatcher" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      <apidata name="EndpointDispatcher" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.EndpointDispatcher" />
+      </containers>
+      <file name="217cca52-50f2-1895-3cc4-0ddd230fa8ea" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IClientMessageFormatter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      <apidata name="IClientMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="15295579-ad18-9f3d-1c64-85f38375016f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IClientMessageFormatter">
+      <topicdata name="IClientMessageFormatter" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      <apidata name="IClientMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.DeserializeReply(System.ServiceModel.Channels.Message,System.Object[])" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      </containers>
+      <file name="7714f83a-7395-7b2d-024e-abf4c3376770" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IClientMessageFormatter">
+      <topicdata name="IClientMessageFormatter" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      <apidata name="IClientMessageFormatter" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.DeserializeReply(System.ServiceModel.Channels.Message,System.Object[])" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" />
+      </containers>
+      <file name="12893f44-5e30-0844-7866-466ebfdbc2ee" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.DeserializeReply(System.ServiceModel.Channels.Message,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="DeserializeReply" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="message">
+          <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" ref="true" />
+      </containers>
+      <file name="74c6a835-c680-1c8e-409f-362c1537cc50" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientMessageFormatter.SerializeRequest(System.ServiceModel.Channels.MessageVersion,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="SerializeRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="messageVersion">
+          <type api="T:System.ServiceModel.Channels.MessageVersion" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageFormatter" ref="true" />
+      </containers>
+      <file name="3d97455d-daf0-815f-651a-fa7757bce4fc" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IClientMessageInspector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IClientMessageInspector" />
+      <apidata name="IClientMessageInspector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="3ca492b3-f4bb-2870-b35d-871421f12100" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IClientMessageInspector">
+      <topicdata name="IClientMessageInspector" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IClientMessageInspector" />
+      <apidata name="IClientMessageInspector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageInspector.AfterReceiveReply(System.ServiceModel.Channels.Message@,System.Object)" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageInspector.BeforeSendRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageInspector" />
+      </containers>
+      <file name="6402e380-f53b-22f2-ab90-c0245df09e68" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IClientMessageInspector">
+      <topicdata name="IClientMessageInspector" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IClientMessageInspector" />
+      <apidata name="IClientMessageInspector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageInspector.AfterReceiveReply(System.ServiceModel.Channels.Message@,System.Object)" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientMessageInspector.BeforeSendRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel)" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageInspector" />
+      </containers>
+      <file name="d488a922-df8d-66d8-8a3f-3c94076c13d4" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientMessageInspector.AfterReceiveReply(System.ServiceModel.Channels.Message@,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AfterReceiveReply" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="reply">
+          <referenceTo>
+            <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="correlationState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageInspector" ref="true" />
+      </containers>
+      <file name="555bc9c5-e717-a27c-2043-5033923d7e9c" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientMessageInspector.BeforeSendRequest(System.ServiceModel.Channels.Message@,System.ServiceModel.IClientChannel)">
+      <topicdata group="api" />
+      <apidata name="BeforeSendRequest" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="request">
+          <referenceTo>
+            <type api="T:System.ServiceModel.Channels.Message" ref="true" />
+          </referenceTo>
+        </parameter>
+        <parameter name="channel">
+          <type api="T:System.ServiceModel.IClientChannel" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientMessageInspector" ref="true" />
+      </containers>
+      <file name="9a0521a7-127e-1605-6d5a-185917b1cb3a" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="45ee05a2-1903-6517-3184-46f69e48df78" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata name="IClientOperationSelector" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.IClientOperationSelector.AreParametersRequiredForSelection" />
+        <element api="M:System.ServiceModel.Dispatcher.IClientOperationSelector.SelectOperation(System.Reflection.MethodBase,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      </containers>
+      <file name="eab0ccc9-7b05-f67b-c567-63d35851d148" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata name="IClientOperationSelector" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IClientOperationSelector.SelectOperation(System.Reflection.MethodBase,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      </containers>
+      <file name="3681cc22-4355-3811-6363-bee7ddd68cd0" />
+    </api>
+    <api id="Properties.T:System.ServiceModel.Dispatcher.IClientOperationSelector">
+      <topicdata name="IClientOperationSelector" group="list" subgroup="Properties" typeTopicId="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      <apidata name="IClientOperationSelector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.ServiceModel.Dispatcher.IClientOperationSelector.AreParametersRequiredForSelection" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" />
+      </containers>
+      <file name="fe6cd040-20a8-64f3-773b-b44796f95a0a" />
+    </api>
+    <api id="P:System.ServiceModel.Dispatcher.IClientOperationSelector.AreParametersRequiredForSelection">
+      <topicdata group="api" />
+      <apidata name="AreParametersRequiredForSelection" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_AreParametersRequiredForSelection" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" ref="true" />
+      </containers>
+      <file name="fc678441-8478-cbf6-4750-43c3a2f362b3" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IClientOperationSelector.SelectOperation(System.Reflection.MethodBase,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="SelectOperation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="method">
+          <type api="T:System.Reflection.MethodBase" ref="true" />
+        </parameter>
+        <parameter name="parameters">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IClientOperationSelector" ref="true" />
+      </containers>
+      <file name="815528bc-356e-a672-c21a-2e87650254ab" />
+    </api>
+    <api id="T:System.ServiceModel.Dispatcher.IParameterInspector">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.ServiceModel.Dispatcher.IParameterInspector" />
+      <apidata name="IParameterInspector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+      </containers>
+      <file name="e62a77ca-17e5-79ec-ce78-a79911fbdf3f" />
+    </api>
+    <api id="AllMembers.T:System.ServiceModel.Dispatcher.IParameterInspector">
+      <topicdata name="IParameterInspector" group="list" subgroup="members" typeTopicId="T:System.ServiceModel.Dispatcher.IParameterInspector" />
+      <apidata name="IParameterInspector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IParameterInspector.AfterCall(System.String,System.Object[],System.Object,System.Object)" />
+        <element api="M:System.ServiceModel.Dispatcher.IParameterInspector.BeforeCall(System.String,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IParameterInspector" />
+      </containers>
+      <file name="eb46dea7-b81c-284b-ad9f-b46dcf06bf0e" />
+    </api>
+    <api id="Methods.T:System.ServiceModel.Dispatcher.IParameterInspector">
+      <topicdata name="IParameterInspector" group="list" subgroup="Methods" typeTopicId="T:System.ServiceModel.Dispatcher.IParameterInspector" />
+      <apidata name="IParameterInspector" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.ServiceModel.Dispatcher.IParameterInspector.AfterCall(System.String,System.Object[],System.Object,System.Object)" />
+        <element api="M:System.ServiceModel.Dispatcher.IParameterInspector.BeforeCall(System.String,System.Object[])" />
+      </elements>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IParameterInspector" />
+      </containers>
+      <file name="d2ed3956-ff38-f518-5fd3-99d8b33c7474" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IParameterInspector.AfterCall(System.String,System.Object[],System.Object,System.Object)">
+      <topicdata group="api" />
+      <apidata name="AfterCall" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="operationName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="outputs">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+        <parameter name="returnValue">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="correlationState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IParameterInspector" ref="true" />
+      </containers>
+      <file name="1054a600-e913-26bf-def4-addacee6c1da" />
+    </api>
+    <api id="M:System.ServiceModel.Dispatcher.IParameterInspector.BeforeCall(System.String,System.Object[])">
+      <topicdata group="api" />
+      <apidata name="BeforeCall" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="operationName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="inputs">
+          <arrayOf rank="1">
+            <type api="T:System.Object" ref="true" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.ServiceModel.Primitives" module="System.ServiceModel.Primitives" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.0.30319.17929" />
+        </library>
+        <namespace api="N:System.ServiceModel.Dispatcher" />
+        <type api="T:System.ServiceModel.Dispatcher.IParameterInspector" ref="true" />
+      </containers>
+      <file name="1a6f69f2-6d74-ca63-f1d9-aa3202857c8e" />
+    </api>
+  </apis>
+</reflection>

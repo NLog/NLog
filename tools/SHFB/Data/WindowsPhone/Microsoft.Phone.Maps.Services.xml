@@ -1,0 +1,3348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone.Maps">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Maps assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone.Maps</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright © Microsoft 2011</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>00ba7b7c-3b8e-4a48-b94b-14b64d6d07e7</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Phone.Maps.Services">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Phone.Maps.Services" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" />
+        <element api="T:Microsoft.Phone.Maps.Services.IRoutePath" />
+        <element api="T:Microsoft.Phone.Maps.Services.MapAddress" />
+        <element api="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+        <element api="T:Microsoft.Phone.Maps.Services.MapLocation" />
+        <element api="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+        <element api="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+        <element api="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+        <element api="T:Microsoft.Phone.Maps.Services.Route" />
+        <element api="T:Microsoft.Phone.Maps.Services.TravelMode" />
+        <element api="T:Microsoft.Phone.Maps.Services.RouteOptimization" />
+        <element api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+        <element api="T:Microsoft.Phone.Maps.Services.Query`1" />
+        <element api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+        <element api="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+        <element api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      </elements>
+      <file name="329ce508-3c8e-3553-d21c-cc7d9dac4c41" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.GeocodeQuery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      <apidata name="GeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IList`1" ref="true">
+                <specialization>
+                  <type api="T:Microsoft.Phone.Maps.Services.MapLocation" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="a99f1396-6d0f-f4a1-5054-7d0090442d15" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.GeocodeQuery">
+      <topicdata name="GeocodeQuery" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      <apidata name="GeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor" />
+        <element api="P:Microsoft.Phone.Maps.Services.GeocodeQuery.GeoCoordinate" />
+        <element api="P:Microsoft.Phone.Maps.Services.GeocodeQuery.MaxResultCount" />
+        <element api="P:Microsoft.Phone.Maps.Services.GeocodeQuery.SearchTerm" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      </containers>
+      <file name="834dbdbb-cdee-83d6-a151-f807ba453fe9" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.GeocodeQuery">
+      <topicdata name="GeocodeQuery" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      <apidata name="GeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      </containers>
+      <file name="061a9d40-2746-68d4-0166-d31890a3f792" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.GeocodeQuery">
+      <topicdata name="GeocodeQuery" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      <apidata name="GeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.GeocodeQuery.GeoCoordinate" />
+        <element api="P:Microsoft.Phone.Maps.Services.GeocodeQuery.MaxResultCount" />
+        <element api="P:Microsoft.Phone.Maps.Services.GeocodeQuery.SearchTerm" />
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      </containers>
+      <file name="f7a88f4a-e966-460a-ac34-ec2c40f7f7d9" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.Maps.Services.GeocodeQuery">
+      <topicdata name="GeocodeQuery" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      <apidata name="GeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" />
+      </containers>
+      <file name="4d110bf8-2177-75ed-5517-f68782cdc34b" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.GeocodeQuery.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" ref="true" />
+      </containers>
+      <file name="6dc70199-d3f5-2998-3bba-15b002664023" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.GeocodeQuery.GeoCoordinate">
+      <topicdata group="api" />
+      <apidata name="GeoCoordinate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_GeoCoordinate" />
+      <setter name="set_GeoCoordinate" />
+      <returns>
+        <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" ref="true" />
+      </containers>
+      <file name="1c67cb52-099e-8c60-5715-7185700611fe" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.GeocodeQuery.MaxResultCount">
+      <topicdata group="api" />
+      <apidata name="MaxResultCount" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MaxResultCount" />
+      <setter name="set_MaxResultCount" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" ref="true" />
+      </containers>
+      <file name="ba2476fb-7580-d3fc-7103-5196629f5593" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.GeocodeQuery.SearchTerm">
+      <topicdata group="api" />
+      <apidata name="SearchTerm" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SearchTerm" />
+      <setter name="set_SearchTerm" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" ref="true" />
+      </containers>
+      <file name="8131c56f-3df6-5998-b61f-82206bdfb5dd" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.IRoutePath">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.IRoutePath" />
+      <apidata name="IRoutePath" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="7b3a8a00-ad34-70df-3631-0e132379ecb5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.IRoutePath">
+      <topicdata name="IRoutePath" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.IRoutePath" />
+      <apidata name="IRoutePath" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.EstimatedDuration" />
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.Geometry" />
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.LengthInMeters" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" />
+      </containers>
+      <file name="7ff3ff46-d1e7-5e43-ffdc-000c3e820be9" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.IRoutePath">
+      <topicdata name="IRoutePath" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.IRoutePath" />
+      <apidata name="IRoutePath" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.EstimatedDuration" />
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.Geometry" />
+        <element api="P:Microsoft.Phone.Maps.Services.IRoutePath.LengthInMeters" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" />
+      </containers>
+      <file name="dee77d16-5a95-a44b-110b-88064611b807" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.IRoutePath.BoundingBox">
+      <topicdata group="api" />
+      <apidata name="BoundingBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingBox" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Controls.LocationRectangle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+      </containers>
+      <file name="9c5847b5-465c-69e7-7c92-957e05b2760b" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.IRoutePath.EstimatedDuration">
+      <topicdata group="api" />
+      <apidata name="EstimatedDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_EstimatedDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+      </containers>
+      <file name="9e57339f-5799-77c8-9c91-409e17355fb1" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.IRoutePath.Geometry">
+      <topicdata group="api" />
+      <apidata name="Geometry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Geometry" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+      </containers>
+      <file name="bae226e5-35ce-4991-f2c2-fc408d323419" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.IRoutePath.LengthInMeters">
+      <topicdata group="api" />
+      <apidata name="LengthInMeters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_LengthInMeters" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+      </containers>
+      <file name="a6940452-fd69-ab4b-73e1-0c9f76b461b7" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.LocationInformation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      <apidata name="LocationInformation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="2abf1d45-2966-1706-d0e3-db73ce3ba802" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.LocationInformation">
+      <topicdata name="LocationInformation" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      <apidata name="LocationInformation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.LocationInformation.Address" />
+        <element api="P:Microsoft.Phone.Maps.Services.LocationInformation.Description" />
+        <element api="P:Microsoft.Phone.Maps.Services.LocationInformation.Name" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      </containers>
+      <file name="c094bfe4-d263-5279-8433-58ee9a5c0fb2" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.LocationInformation">
+      <topicdata name="LocationInformation" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      <apidata name="LocationInformation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      </containers>
+      <file name="a4b4df6b-ae2e-7755-f333-69035989b714" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.LocationInformation">
+      <topicdata name="LocationInformation" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      <apidata name="LocationInformation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.LocationInformation.Address" />
+        <element api="P:Microsoft.Phone.Maps.Services.LocationInformation.Description" />
+        <element api="P:Microsoft.Phone.Maps.Services.LocationInformation.Name" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" />
+      </containers>
+      <file name="ccf037a1-af65-1fa6-ca08-0def67727994" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.LocationInformation.Address">
+      <topicdata group="api" />
+      <apidata name="Address" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Address" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" ref="true" />
+      </containers>
+      <file name="17b80437-0a51-8ce1-17a6-abf1a332f2da" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.LocationInformation.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" ref="true" />
+      </containers>
+      <file name="4cf1f3e5-6f4d-9212-113e-f26988d70f8c" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.LocationInformation.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" ref="true" />
+      </containers>
+      <file name="d85afe63-31ba-17ac-d199-4b35cd0d603a" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.MapAddress">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.MapAddress" />
+      <apidata name="MapAddress" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="2b62de1a-e0a6-b2f5-e77a-7ef0a3049811" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.MapAddress">
+      <topicdata name="MapAddress" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.MapAddress" />
+      <apidata name="MapAddress" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingFloor" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingName" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingRoom" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingZone" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.City" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Continent" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Country" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.CountryCode" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.County" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.District" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.HouseNumber" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Neighborhood" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.PostalCode" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Province" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.State" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.StateCode" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Street" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Township" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" />
+      </containers>
+      <file name="7989ccd8-72f3-149f-4a20-5de5beb6eaa4" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.MapAddress">
+      <topicdata name="MapAddress" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.MapAddress" />
+      <apidata name="MapAddress" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" />
+      </containers>
+      <file name="b93fc6da-e5b5-674a-4af9-026b9af5f4fa" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.MapAddress">
+      <topicdata name="MapAddress" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.MapAddress" />
+      <apidata name="MapAddress" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingFloor" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingName" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingRoom" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingZone" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.City" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Continent" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Country" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.CountryCode" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.County" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.District" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.HouseNumber" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Neighborhood" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.PostalCode" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Province" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.State" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.StateCode" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Street" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapAddress.Township" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" />
+      </containers>
+      <file name="938ee782-bd87-ef7a-a745-d660dec24668" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingFloor">
+      <topicdata group="api" />
+      <apidata name="BuildingFloor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildingFloor" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="fb0bbbec-c546-9b2d-09da-46a512c8615e" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingName">
+      <topicdata group="api" />
+      <apidata name="BuildingName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildingName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="6c57ce17-0c7e-96db-cba0-68a2c5dc1e33" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingRoom">
+      <topicdata group="api" />
+      <apidata name="BuildingRoom" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildingRoom" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="64013a59-e8cc-c0b2-532f-6670521ea56c" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.BuildingZone">
+      <topicdata group="api" />
+      <apidata name="BuildingZone" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BuildingZone" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="189e60cb-f052-3294-7f7f-65a5735e5820" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.City">
+      <topicdata group="api" />
+      <apidata name="City" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_City" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="5ca44b06-73a0-2b13-9f92-35a73eb5c857" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.Continent">
+      <topicdata group="api" />
+      <apidata name="Continent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Continent" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="ea692588-bd01-5faf-aedb-535044bdda0d" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.Country">
+      <topicdata group="api" />
+      <apidata name="Country" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Country" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="dd994f5d-31aa-178c-0a4c-8ffc278d4524" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.CountryCode">
+      <topicdata group="api" />
+      <apidata name="CountryCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CountryCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="a537ac72-dc17-fdb6-d35c-2feaf0231df4" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.County">
+      <topicdata group="api" />
+      <apidata name="County" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_County" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="0bdd1752-e84b-4b30-076a-c2fd71c5ba65" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.District">
+      <topicdata group="api" />
+      <apidata name="District" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_District" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="f515f434-e1ae-d11d-40d2-abcbe3c59c38" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.HouseNumber">
+      <topicdata group="api" />
+      <apidata name="HouseNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_HouseNumber" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="6d8d85bf-73f6-f2b0-c3f5-2bae8703c657" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.Neighborhood">
+      <topicdata group="api" />
+      <apidata name="Neighborhood" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Neighborhood" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="a6c371f9-d509-72ba-dd66-2b64e198ca1b" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.PostalCode">
+      <topicdata group="api" />
+      <apidata name="PostalCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PostalCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="a6027354-b8b6-80bd-d5a1-a50d31615a48" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.Province">
+      <topicdata group="api" />
+      <apidata name="Province" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Province" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="29cf6b33-03f9-d7c0-514f-c644d7b65766" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.State">
+      <topicdata group="api" />
+      <apidata name="State" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_State" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="4c5c778d-f1cb-f918-e2f1-c7f5c797be70" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.StateCode">
+      <topicdata group="api" />
+      <apidata name="StateCode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StateCode" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="4c95d850-9d4e-ec13-c973-341d2ff4403e" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.Street">
+      <topicdata group="api" />
+      <apidata name="Street" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Street" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="02a1a793-9e5f-4091-a3ac-e5b488cc3256" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapAddress.Township">
+      <topicdata group="api" />
+      <apidata name="Township" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Township" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapAddress" ref="true" />
+      </containers>
+      <file name="63da7e3f-816d-8ed8-b950-b6d676344193" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.MapLocation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.MapLocation" />
+      <apidata name="MapLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="96b4d0a1-5a31-2bd1-596c-7782eb4a87d8" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.MapLocation">
+      <topicdata name="MapLocation" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.MapLocation" />
+      <apidata name="MapLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.MapLocation.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapLocation.GeoCoordinate" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapLocation.Information" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapLocation" />
+      </containers>
+      <file name="fe3fdb5f-eb2d-3e51-9b3d-0f073e131b08" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.MapLocation">
+      <topicdata name="MapLocation" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.MapLocation" />
+      <apidata name="MapLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapLocation" />
+      </containers>
+      <file name="337e8be3-5ac6-7c92-4748-7945b06e4a79" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.MapLocation">
+      <topicdata name="MapLocation" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.MapLocation" />
+      <apidata name="MapLocation" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.MapLocation.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapLocation.GeoCoordinate" />
+        <element api="P:Microsoft.Phone.Maps.Services.MapLocation.Information" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapLocation" />
+      </containers>
+      <file name="ab3f2a4a-117e-06f1-05e0-28750983bf89" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapLocation.BoundingBox">
+      <topicdata group="api" />
+      <apidata name="BoundingBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BoundingBox" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Controls.LocationRectangle" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapLocation" ref="true" />
+      </containers>
+      <file name="006318cd-502d-eb1d-0fb6-a2747a301a7a" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapLocation.GeoCoordinate">
+      <topicdata group="api" />
+      <apidata name="GeoCoordinate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_GeoCoordinate" />
+      <returns>
+        <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapLocation" ref="true" />
+      </containers>
+      <file name="e7736768-138c-f3c0-6ecc-f5dbdab70643" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.MapLocation.Information">
+      <topicdata group="api" />
+      <apidata name="Information" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Information" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.LocationInformation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.MapLocation" ref="true" />
+      </containers>
+      <file name="092c9148-70e4-8329-9c52-96818749a413" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.Query`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.Query`1" />
+      <apidata name="Query" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" ref="true" />
+          <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" ref="true" />
+          <type api="T:Microsoft.Phone.Maps.Services.GeocodeQuery" ref="true" />
+        </descendents>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="4b0e4a32-dfcc-d58d-348f-04039b3afb65" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.Query`1">
+      <topicdata name="Query" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.Query`1" />
+      <apidata name="Query" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CheckThread" />
+        <element api="Overload:Microsoft.Phone.Maps.Services.Query`1.Dispose">
+          <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+          <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.DoCancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.DoStartAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Finalize" />
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.OnQueryCompleted(`0,System.Exception)" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" />
+      </containers>
+      <file name="b53ebb69-63a4-e18e-6c23-05f3880f8108" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.Query`1">
+      <topicdata name="Query" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.Query`1" />
+      <apidata name="Query" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CheckThread" />
+        <element api="Overload:Microsoft.Phone.Maps.Services.Query`1.Dispose">
+          <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+          <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose(System.Boolean)" />
+        </element>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.DoCancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.DoStartAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Finalize" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.OnQueryCompleted(`0,System.Exception)" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" />
+      </containers>
+      <file name="fc1baa24-a4e3-804a-ef81-6e533953ce05" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.Query`1">
+      <topicdata name="Query" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.Query`1" />
+      <apidata name="Query" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" />
+      </containers>
+      <file name="78b8f61a-e5b1-425c-e6d8-604f29cc8c4e" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.Maps.Services.Query`1">
+      <topicdata name="Query" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.Maps.Services.Query`1" />
+      <apidata name="Query" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" />
+      </containers>
+      <file name="02db0751-f732-1b03-e230-5ae85aef4d5d" />
+    </api>
+    <api id="Overload:Microsoft.Phone.Maps.Services.Query`1.Dispose">
+      <topicdata name="Dispose" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.Query`1" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose(System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="48ad92fe-da60-a688-98a8-fe3bc803a33c" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync">
+      <topicdata group="api" />
+      <apidata name="CancelAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="d9c31820-e1b2-4236-8654-3b435bb70069" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.CheckThread">
+      <topicdata group="api" />
+      <apidata name="CheckThread" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="8b6d558e-223b-4120-f6cf-1d4153fbbeea" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" overload="Overload:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="9e99cf3d-bd0b-651b-2586-5344cf0a1eb8" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.Dispose(System.Boolean)">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="family" overload="Overload:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="disposing">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="eddae85d-0737-a871-5541-b3e23e78d94d" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.DoCancelAsync">
+      <topicdata group="api" />
+      <apidata name="DoCancelAsync" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="ec703dc8-d6f1-f210-663b-ba04b83f4be7" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.DoStartAsync">
+      <topicdata group="api" />
+      <apidata name="DoStartAsync" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="de563265-9ebe-81b8-c4c6-78500c615fc0" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="ffaee3f9-45ed-f9a0-16e1-c633455097f4" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy">
+      <topicdata group="api" />
+      <apidata name="IsBusy" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsBusy" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="e465cc2f-e196-c23b-f80c-9f7e8f437c34" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.OnQueryCompleted(`0,System.Exception)">
+      <topicdata group="api" />
+      <apidata name="OnQueryCompleted" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="result">
+          <template name="T" index="0" api="T:Microsoft.Phone.Maps.Services.Query`1" />
+        </parameter>
+        <parameter name="queryError">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="9cdf906f-5ce1-dedf-3687-44597b3fec60" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync">
+      <topicdata group="api" />
+      <apidata name="QueryAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="ae69255f-b636-acb2-439a-f0fe0fcbda9d" />
+    </api>
+    <api id="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted">
+      <topicdata group="api" />
+      <apidata name="QueryCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_QueryCompleted" />
+      <remover name="remove_QueryCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" ref="true">
+              <specialization>
+                <template name="T" index="0" api="T:Microsoft.Phone.Maps.Services.Query`1" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" ref="true">
+          <specialization>
+            <template name="T" index="0" api="T:Microsoft.Phone.Maps.Services.Query`1" />
+          </specialization>
+        </type>
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true" />
+      </containers>
+      <file name="e58bb031-beaf-c3e8-6768-b38c3e63fd52" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      <apidata name="QueryCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.AsyncCompletedEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="a19134a6-5b3a-1d74-c05c-dc26936baea5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1">
+      <topicdata name="QueryCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      <apidata name="QueryCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1.Result" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      </containers>
+      <file name="4c89d016-661f-b5c6-c732-06aa78c339ff" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1">
+      <topicdata name="QueryCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      <apidata name="QueryCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      </containers>
+      <file name="f6b9ff0a-1f52-c7e6-7001-d7f9b55a7a51" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1">
+      <topicdata name="QueryCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      <apidata name="QueryCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1.Result" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Cancelled" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.Error" />
+        <element api="P:System.ComponentModel.AsyncCompletedEventArgs.UserState" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      </containers>
+      <file name="fcd49403-4f40-4081-0ffc-2f06a66d44bc" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1.Result">
+      <topicdata group="api" />
+      <apidata name="Result" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Result" />
+      <returns>
+        <template name="T" index="0" api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.QueryCompletedEventArgs`1" ref="true" />
+      </containers>
+      <file name="1f384e41-61e8-c7d1-7f59-ae30912112a6" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      <apidata name="ReverseGeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true">
+            <specialization>
+              <type api="T:System.Collections.Generic.IList`1" ref="true">
+                <specialization>
+                  <type api="T:Microsoft.Phone.Maps.Services.MapLocation" ref="true" />
+                </specialization>
+              </type>
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="49802223-892f-0f12-9a0c-fb915fbcc651" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery">
+      <topicdata name="ReverseGeocodeQuery" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      <apidata name="ReverseGeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+        <element api="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor" />
+        <element api="P:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.GeoCoordinate" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      </containers>
+      <file name="efb8f065-2e26-5ecc-f7fa-a8fde92c7f37" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery">
+      <topicdata name="ReverseGeocodeQuery" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      <apidata name="ReverseGeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      </containers>
+      <file name="28fc5ba2-acca-4691-f867-624bbf73e2c2" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery">
+      <topicdata name="ReverseGeocodeQuery" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      <apidata name="ReverseGeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+        <element api="P:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.GeoCoordinate" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      </containers>
+      <file name="17d36482-5281-c275-4b7a-c208926bbc7d" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery">
+      <topicdata name="ReverseGeocodeQuery" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      <apidata name="ReverseGeocodeQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" />
+      </containers>
+      <file name="6eae997f-a68b-d272-54f4-b58395ca9140" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" ref="true" />
+      </containers>
+      <file name="726b87d1-1ebe-480c-3f73-23072fd2edef" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery.GeoCoordinate">
+      <topicdata group="api" />
+      <apidata name="GeoCoordinate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_GeoCoordinate" />
+      <setter name="set_GeoCoordinate" />
+      <returns>
+        <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.ReverseGeocodeQuery" ref="true" />
+      </containers>
+      <file name="32b7e50c-17c1-c2d9-d9b5-68cfc121b425" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.Route">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.Route" />
+      <apidata name="Route" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="a234a31d-7f6e-59f4-a91b-01f0c84495ab" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.Route">
+      <topicdata name="Route" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.Route" />
+      <apidata name="Route" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.Route.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.EstimatedDuration" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.Geometry" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.Legs" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.LengthInMeters" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" />
+      </containers>
+      <file name="72ee7c50-b3e8-4207-f342-1195570ea833" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.Route">
+      <topicdata name="Route" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.Route" />
+      <apidata name="Route" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" />
+      </containers>
+      <file name="557adb3d-89d3-cc7a-da82-a7adfb1b5394" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.Route">
+      <topicdata name="Route" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.Route" />
+      <apidata name="Route" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.Route.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.EstimatedDuration" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.Geometry" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.Legs" />
+        <element api="P:Microsoft.Phone.Maps.Services.Route.LengthInMeters" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" />
+      </containers>
+      <file name="90d70283-005b-0cdb-c87c-2cab8b15d21c" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.Route.BoundingBox">
+      <topicdata group="api" />
+      <apidata name="BoundingBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingBox" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Controls.LocationRectangle" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.BoundingBox">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+      </containers>
+      <file name="2f11479b-a9eb-5a10-9ea8-cdc16adec27f" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.Route.EstimatedDuration">
+      <topicdata group="api" />
+      <apidata name="EstimatedDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EstimatedDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.EstimatedDuration">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+      </containers>
+      <file name="d546f6ff-2d6c-0b28-36ff-6f0563a8d81b" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.Route.Geometry">
+      <topicdata group="api" />
+      <apidata name="Geometry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Geometry" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.Geometry">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+      </containers>
+      <file name="29aed076-f8e0-9587-79a9-b9492b6e2fde" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.Route.Legs">
+      <topicdata group="api" />
+      <apidata name="Legs" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Legs" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+      </containers>
+      <file name="bbc540f9-0e54-94bb-1fd8-b96102caf0a8" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.Route.LengthInMeters">
+      <topicdata group="api" />
+      <apidata name="LengthInMeters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LengthInMeters" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.LengthInMeters">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+      </containers>
+      <file name="64c2b3df-3084-2e67-4828-e0a44edb8bbf" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.RouteLeg">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      <apidata name="RouteLeg" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="f4f79373-b447-bfeb-ca67-f0f5ee4be72a" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.RouteLeg">
+      <topicdata name="RouteLeg" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      <apidata name="RouteLeg" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.EstimatedDuration" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.Geometry" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.LengthInMeters" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.Maneuvers" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      </containers>
+      <file name="55073e74-6038-2265-413f-d59b0919085e" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.RouteLeg">
+      <topicdata name="RouteLeg" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      <apidata name="RouteLeg" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      </containers>
+      <file name="7b669ea9-812d-274c-a146-9dcd76c302ff" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.RouteLeg">
+      <topicdata name="RouteLeg" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      <apidata name="RouteLeg" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.BoundingBox" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.EstimatedDuration" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.Geometry" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.LengthInMeters" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteLeg.Maneuvers" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" />
+      </containers>
+      <file name="7d06a611-610e-200a-bc4b-841a5381f616" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteLeg.BoundingBox">
+      <topicdata group="api" />
+      <apidata name="BoundingBox" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_BoundingBox" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Controls.LocationRectangle" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.BoundingBox">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+      </containers>
+      <file name="6e57aa81-561b-7add-2939-b1d47dbf55c7" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteLeg.EstimatedDuration">
+      <topicdata group="api" />
+      <apidata name="EstimatedDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_EstimatedDuration" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.EstimatedDuration">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+      </containers>
+      <file name="add45f43-4399-94f2-3ad5-876271cb2d59" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteLeg.Geometry">
+      <topicdata group="api" />
+      <apidata name="Geometry" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Geometry" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.Geometry">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+      </containers>
+      <file name="2f7d74d8-e6cb-e57d-c179-10f37283f575" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteLeg.LengthInMeters">
+      <topicdata group="api" />
+      <apidata name="LengthInMeters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LengthInMeters" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Microsoft.Phone.Maps.Services.IRoutePath.LengthInMeters">
+          <type api="T:Microsoft.Phone.Maps.Services.IRoutePath" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+      </containers>
+      <file name="dd3e2dd5-ac6a-0936-293f-59a5cc440ea1" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteLeg.Maneuvers">
+      <topicdata group="api" />
+      <apidata name="Maneuvers" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Maneuvers" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.ReadOnlyCollection`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteLeg" ref="true" />
+      </containers>
+      <file name="d7123638-1036-2021-8a45-b210ee8ae9ce" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.RouteManeuver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      <apidata name="RouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="d0364e66-0199-8bd4-cf50-f8d8f35b3f11" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.RouteManeuver">
+      <topicdata name="RouteManeuver" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      <apidata name="RouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionKind" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionText" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.LengthInMeters" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.StartGeoCoordinate" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      </containers>
+      <file name="5d1591b8-732a-448f-4214-ccd6d6d7fb2d" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.RouteManeuver">
+      <topicdata name="RouteManeuver" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      <apidata name="RouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      </containers>
+      <file name="8a41fb21-058c-859b-42e3-585ccfbcfd41" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.RouteManeuver">
+      <topicdata name="RouteManeuver" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      <apidata name="RouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionKind" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionText" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.LengthInMeters" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.StartGeoCoordinate" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" />
+      </containers>
+      <file name="85f4ec07-20ac-fc0c-a64c-fb19ce6ba0e1" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionKind">
+      <topicdata group="api" />
+      <apidata name="InstructionKind" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstructionKind" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" ref="true" />
+      </containers>
+      <file name="387b1f31-0da6-a6f5-4e1a-fbb86257877b" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionText">
+      <topicdata group="api" />
+      <apidata name="InstructionText" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_InstructionText" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" ref="true" />
+      </containers>
+      <file name="e2992fa7-f408-549a-dc37-7bf6242d87e5" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteManeuver.LengthInMeters">
+      <topicdata group="api" />
+      <apidata name="LengthInMeters" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LengthInMeters" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" ref="true" />
+      </containers>
+      <file name="7debffea-fd83-14d5-af4b-0d5698e1b189" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteManeuver.StartGeoCoordinate">
+      <topicdata group="api" />
+      <apidata name="StartGeoCoordinate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_StartGeoCoordinate" />
+      <returns>
+        <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" ref="true" />
+      </containers>
+      <file name="4c7bb80f-00a2-b80c-e733-2759ec9c7a8c" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind">
+      <topicdata group="api" />
+      <apidata name="RouteManeuverInstructionKind" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.Undefined" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.Start" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.Stopover" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.StopoverResume" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.End" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.GoStraight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.UTurnLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.UTurnRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnKeepLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnKeepRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnLightLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnLightRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnHardLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnHardRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayEnterLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayEnterRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayLeaveLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayLeaveRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayContinueLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayContinueRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TrafficCircleLeft" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TrafficCircleRight" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TakeFerry" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="bc814884-a615-dbb6-d49b-43b40c9d0a67" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.End">
+      <topicdata group="api" notopic="" />
+      <apidata name="End" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="e3e3ba50-1631-8a6b-edf9-1ed62f7b123f" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayContinueLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="FreewayContinueLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>20</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="b0eb7968-d91d-204c-5c21-da0c51a17251" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayContinueRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="FreewayContinueRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>21</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="60e45ca4-589e-11c9-7bc0-4bbfabdc436d" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayEnterLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="FreewayEnterLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>16</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="ea9e2202-1c78-f8d3-c532-b1971578c168" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayEnterRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="FreewayEnterRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>17</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="40a42234-0330-9ff3-4ae0-b2b1e6c00038" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayLeaveLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="FreewayLeaveLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>18</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="e6f6325d-8a3f-c296-bba1-71dbd85ac3f5" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.FreewayLeaveRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="FreewayLeaveRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>19</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="54906199-b1d7-24b5-1b53-8877d5620ccb" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.GoStraight">
+      <topicdata group="api" notopic="" />
+      <apidata name="GoStraight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="c8aeb701-205b-c353-13f2-ec52652d35cc" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.Start">
+      <topicdata group="api" notopic="" />
+      <apidata name="Start" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="ee48cf14-04b3-7d85-bd63-71a396af6d31" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.Stopover">
+      <topicdata group="api" notopic="" />
+      <apidata name="Stopover" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="f4924d51-9fca-5dba-032f-6ca36e594bbe" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.StopoverResume">
+      <topicdata group="api" notopic="" />
+      <apidata name="StopoverResume" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="cd1165cd-5950-4116-e578-ddaeb85dabaf" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TakeFerry">
+      <topicdata group="api" notopic="" />
+      <apidata name="TakeFerry" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>24</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="d89f13ea-dc77-3582-9d5f-4d60739af81e" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TrafficCircleLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="TrafficCircleLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>22</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="4a860135-a879-a712-f347-ad56a14b0a73" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TrafficCircleRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="TrafficCircleRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>23</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="1c11f688-ca5b-e83d-9439-572f2139af9c" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnHardLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnHardLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>14</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="09268e5e-550d-e2b3-5a25-1c8a3a3b7842" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnHardRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnHardRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="6c5e65b4-2177-3777-c361-0f545874f344" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnKeepLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnKeepLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="14ff8873-b091-4e50-e657-1815dd403a07" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnKeepRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnKeepRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="fd65e0de-40aa-076e-a9a3-ec636f10496c" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="4996a6e4-14f7-8b85-39bb-3b9e445267ca" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnLightLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnLightLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="63fb36b7-fd62-c2af-ddc0-025cd4fa9e96" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnLightRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnLightRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="25957430-f7f7-c092-1e12-76122ac1d1b9" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.TurnRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="TurnRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>13</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="48fcbc53-07fe-02fc-7d9a-8204c7028124" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.Undefined">
+      <topicdata group="api" notopic="" />
+      <apidata name="Undefined" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="130c8fd0-12d7-4196-809d-cc104c0bcaf8" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.UTurnLeft">
+      <topicdata group="api" notopic="" />
+      <apidata name="UTurnLeft" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="81502466-9d91-c538-3901-252af5f5e335" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind.UTurnRight">
+      <topicdata group="api" notopic="" />
+      <apidata name="UTurnRight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteManeuverInstructionKind" ref="false" />
+      </containers>
+      <file name="f97e70f1-569f-efff-9964-db36e9468fb9" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.RouteOptimization">
+      <topicdata group="api" />
+      <apidata name="RouteOptimization" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Maps.Services.RouteOptimization.MinimizeTime" />
+        <element api="F:Microsoft.Phone.Maps.Services.RouteOptimization.MinimizeDistance" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="d2745559-04d8-49ef-c1cb-f40ddacbad24" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteOptimization.MinimizeDistance">
+      <topicdata group="api" notopic="" />
+      <apidata name="MinimizeDistance" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteOptimization" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteOptimization" ref="false" />
+      </containers>
+      <file name="16c8cfbf-cd33-f34b-c44a-3d8214fe3a5f" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.RouteOptimization.MinimizeTime">
+      <topicdata group="api" notopic="" />
+      <apidata name="MinimizeTime" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteOptimization" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteOptimization" ref="false" />
+      </containers>
+      <file name="f0acda72-0fc9-79e3-ad2b-9f2b4cdd0dfa" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.RouteQuery">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      <apidata name="RouteQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Maps.Services.Query`1" ref="true">
+            <specialization>
+              <type api="T:Microsoft.Phone.Maps.Services.Route" ref="true" />
+            </specialization>
+          </type>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="cfc2bf28-8e03-e79c-b8f8-3c9059c5c39b" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.RouteQuery">
+      <topicdata name="RouteQuery" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      <apidata name="RouteQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+        <element api="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.InitialHeadingInDegrees" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.RouteOptimization" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.TravelMode" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.Waypoints" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      </containers>
+      <file name="201ad5b8-ccbe-56a3-2991-8aa959fa2f99" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.RouteQuery">
+      <topicdata name="RouteQuery" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      <apidata name="RouteQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.CancelAsync" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.Dispose" />
+        <element api="M:Microsoft.Phone.Maps.Services.Query`1.QueryAsync" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      </containers>
+      <file name="d14044d6-1328-fff6-76a2-034efc7d35d1" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.RouteQuery">
+      <topicdata name="RouteQuery" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      <apidata name="RouteQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.Query`1.IsBusy" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.InitialHeadingInDegrees" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.RouteOptimization" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.TravelMode" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteQuery.Waypoints" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      </containers>
+      <file name="cf1dbd03-395e-ec3e-4c08-ddd23366f0af" />
+    </api>
+    <api id="Events.T:Microsoft.Phone.Maps.Services.RouteQuery">
+      <topicdata name="RouteQuery" group="list" subgroup="Events" typeTopicId="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      <apidata name="RouteQuery" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Phone.Maps.Services.Query`1.QueryCompleted" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" />
+      </containers>
+      <file name="c8d881cf-64e8-6f23-3bcc-3b5e52807c14" />
+    </api>
+    <api id="M:Microsoft.Phone.Maps.Services.RouteQuery.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" ref="true" />
+      </containers>
+      <file name="aaba0c3e-d1ee-dcb0-8aae-ac0b7807af3e" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteQuery.InitialHeadingInDegrees">
+      <topicdata group="api" />
+      <apidata name="InitialHeadingInDegrees" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialHeadingInDegrees" />
+      <setter name="set_InitialHeadingInDegrees" />
+      <returns>
+        <type api="T:System.Nullable`1" ref="false">
+          <specialization>
+            <type api="T:System.Double" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" ref="true" />
+      </containers>
+      <file name="b98eb6ad-23f0-f200-d3c9-df872271bb7d" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteQuery.RouteOptimization">
+      <topicdata group="api" />
+      <apidata name="RouteOptimization" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RouteOptimization" />
+      <setter name="set_RouteOptimization" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.RouteOptimization" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" ref="true" />
+      </containers>
+      <file name="4fbdcea7-43bc-c5eb-5b52-6e62ec6ca385" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteQuery.TravelMode">
+      <topicdata group="api" />
+      <apidata name="TravelMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TravelMode" />
+      <setter name="set_TravelMode" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.TravelMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" ref="true" />
+      </containers>
+      <file name="f6e643d6-0fb1-43aa-cf5f-1be31c4f230e" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.RouteQuery.Waypoints">
+      <topicdata group="api" />
+      <apidata name="Waypoints" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Waypoints" />
+      <setter name="set_Waypoints" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Device.Location.GeoCoordinate" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.RouteQuery" ref="true" />
+      </containers>
+      <file name="22118894-b4d6-df95-7bf0-9015307e34b4" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      <apidata name="TrafficCircleRouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Phone.Maps.Services.RouteManeuver" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="1ec51a0e-f4af-e9bc-58de-3f2fab65d62d" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver">
+      <topicdata name="TrafficCircleRouteManeuver" group="list" subgroup="members" typeTopicId="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      <apidata name="TrafficCircleRouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionKind" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionText" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.LengthInMeters" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.StartGeoCoordinate" />
+        <element api="P:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver.ExitNumber" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      </containers>
+      <file name="aed7d323-8569-bd33-3253-c2f4afb603c2" />
+    </api>
+    <api id="Methods.T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver">
+      <topicdata name="TrafficCircleRouteManeuver" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      <apidata name="TrafficCircleRouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      </containers>
+      <file name="ab5a24c0-38c5-245c-7a70-a9e60d18af8b" />
+    </api>
+    <api id="Properties.T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver">
+      <topicdata name="TrafficCircleRouteManeuver" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      <apidata name="TrafficCircleRouteManeuver" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionKind" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.InstructionText" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.LengthInMeters" />
+        <element api="P:Microsoft.Phone.Maps.Services.RouteManeuver.StartGeoCoordinate" />
+        <element api="P:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver.ExitNumber" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" />
+      </containers>
+      <file name="7faf4539-ab0c-59f1-7ff5-199eb8e8e8fb" />
+    </api>
+    <api id="P:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver.ExitNumber">
+      <topicdata group="api" />
+      <apidata name="ExitNumber" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExitNumber" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.TrafficCircleRouteManeuver" ref="true" />
+      </containers>
+      <file name="46213605-21c3-9ab8-5243-7ed20d426066" />
+    </api>
+    <api id="T:Microsoft.Phone.Maps.Services.TravelMode">
+      <topicdata group="api" />
+      <apidata name="TravelMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Phone.Maps.Services.TravelMode.Driving" />
+        <element api="F:Microsoft.Phone.Maps.Services.TravelMode.Walking" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+      </containers>
+      <file name="3caa2c3f-755d-e751-e790-d978fb2d413d" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.TravelMode.Driving">
+      <topicdata group="api" notopic="" />
+      <apidata name="Driving" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.TravelMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.TravelMode" ref="false" />
+      </containers>
+      <file name="7fcc8e4e-c608-4249-184f-8038af089f72" />
+    </api>
+    <api id="F:Microsoft.Phone.Maps.Services.TravelMode.Walking">
+      <topicdata group="api" notopic="" />
+      <apidata name="Walking" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Phone.Maps.Services.TravelMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone.Maps" module="Microsoft.Phone.Maps" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Phone.Maps.Services" />
+        <type api="T:Microsoft.Phone.Maps.Services.TravelMode" ref="false" />
+      </containers>
+      <file name="09533898-8ec2-8df8-7086-9d4fc519ec3a" />
+    </api>
+  </apis>
+</reflection>

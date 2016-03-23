@@ -1,0 +1,2987 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="Windows" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.UI.ViewManagement">
+      <topicdata group="api" />
+      <apidata name="Windows.UI.ViewManagement" group="namespace" />
+      <elements>
+        <element api="T:Windows.UI.ViewManagement.ApplicationViewState" />
+        <element api="T:Windows.UI.ViewManagement.ApplicationViewOrientation" />
+        <element api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" />
+        <element api="T:Windows.UI.ViewManagement.ViewSizePreference" />
+        <element api="T:Windows.UI.ViewManagement.ApplicationView" />
+        <element api="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+        <element api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+        <element api="T:Windows.UI.ViewManagement.ProjectionManager" />
+        <element api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+        <element api="T:Windows.UI.ViewManagement.InputPane" />
+        <element api="T:Windows.UI.ViewManagement.HandPreference" />
+        <element api="T:Windows.UI.ViewManagement.UIElementType" />
+        <element api="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+        <element api="T:Windows.UI.ViewManagement.UISettings" />
+      </elements>
+      <file name="8286bc63-0ce8-8cea-13f1-b085c902028b" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.AccessibilitySettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      <apidata name="AccessibilitySettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.ViewManagement.IAccessibilitySettings" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="72f7097d-fe7e-4329-acd0-08dc4f88876b" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.AccessibilitySettings">
+      <topicdata name="AccessibilitySettings" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      <apidata name="AccessibilitySettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor" />
+        <element api="P:Windows.UI.ViewManagement.AccessibilitySettings.HighContrast" />
+        <element api="E:Windows.UI.ViewManagement.AccessibilitySettings.HighContrastChanged" />
+        <element api="P:Windows.UI.ViewManagement.AccessibilitySettings.HighContrastScheme" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      </containers>
+      <file name="404961e4-e5f5-ae03-6305-89e996c1f943" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.AccessibilitySettings">
+      <topicdata name="AccessibilitySettings" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      <apidata name="AccessibilitySettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      </containers>
+      <file name="39cf044a-de09-d150-b2b1-a93899a965c9" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.AccessibilitySettings">
+      <topicdata name="AccessibilitySettings" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      <apidata name="AccessibilitySettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.AccessibilitySettings.HighContrast" />
+        <element api="P:Windows.UI.ViewManagement.AccessibilitySettings.HighContrastScheme" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      </containers>
+      <file name="25b33949-016f-ee0a-54a8-40970fef9e14" />
+    </api>
+    <api id="Events.T:Windows.UI.ViewManagement.AccessibilitySettings">
+      <topicdata name="AccessibilitySettings" group="list" subgroup="Events" typeTopicId="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      <apidata name="AccessibilitySettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor" />
+      <elements>
+        <element api="E:Windows.UI.ViewManagement.AccessibilitySettings.HighContrastChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" />
+      </containers>
+      <file name="9abce650-9096-5233-71dc-179487cc590c" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.AccessibilitySettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" ref="true" />
+      </containers>
+      <file name="9d89c42f-47ed-5b12-39d2-8cdf7923f899" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.AccessibilitySettings.HighContrast">
+      <topicdata group="api" />
+      <apidata name="HighContrast" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HighContrast" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" ref="true" />
+      </containers>
+      <file name="7c604fcf-1144-3d48-dead-4d56824b74b4" />
+    </api>
+    <api id="E:Windows.UI.ViewManagement.AccessibilitySettings.HighContrastChanged">
+      <topicdata group="api" />
+      <apidata name="HighContrastChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HighContrastChanged" />
+      <remover name="remove_HighContrastChanged" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" ref="true" />
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" ref="true" />
+      </containers>
+      <file name="378c9035-54b2-9f9b-c3e2-ca414dd35c47" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.AccessibilitySettings.HighContrastScheme">
+      <topicdata group="api" />
+      <apidata name="HighContrastScheme" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HighContrastScheme" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.AccessibilitySettings" ref="true" />
+      </containers>
+      <file name="c6c7bb5a-0a66-5520-5f48-dfdd286d1b29" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ApplicationView">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.ApplicationView" />
+      <apidata name="ApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.ViewManagement.IApplicationView" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="09ace17a-3a4d-5019-39d3-d9b43e578fd5" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.ApplicationView">
+      <topicdata name="ApplicationView" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.ApplicationView" />
+      <apidata name="ApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.AdjacentToLeftDisplayEdge" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.AdjacentToRightDisplayEdge" />
+        <element api="E:Windows.UI.ViewManagement.ApplicationView.Consolidated" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationView.GetApplicationViewIdForWindow(Windows.UI.Core.ICoreWindow)" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationView.GetForCurrentView" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Id" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.IsFullScreen" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.IsOnLockScreen" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.IsScreenCaptureEnabled" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Orientation" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.TerminateAppOnFinalViewClose" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Title" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationView.TryUnsnap" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" />
+      </containers>
+      <file name="84a642ff-2964-f42a-3390-65d79591a737" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.ApplicationView">
+      <topicdata name="ApplicationView" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.ApplicationView" />
+      <apidata name="ApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationView.GetApplicationViewIdForWindow(Windows.UI.Core.ICoreWindow)" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationView.GetForCurrentView" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationView.TryUnsnap" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" />
+      </containers>
+      <file name="77a8174e-023f-1ac2-6b5d-2abc8fe1a16a" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.ApplicationView">
+      <topicdata name="ApplicationView" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.ApplicationView" />
+      <apidata name="ApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.AdjacentToLeftDisplayEdge" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.AdjacentToRightDisplayEdge" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Id" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.IsFullScreen" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.IsOnLockScreen" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.IsScreenCaptureEnabled" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Orientation" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.TerminateAppOnFinalViewClose" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Title" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationView.Value" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" />
+      </containers>
+      <file name="dbe43229-0cfc-fed8-2de2-e4154b584457" />
+    </api>
+    <api id="Events.T:Windows.UI.ViewManagement.ApplicationView">
+      <topicdata name="ApplicationView" group="list" subgroup="Events" typeTopicId="T:Windows.UI.ViewManagement.ApplicationView" />
+      <apidata name="ApplicationView" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.ViewManagement.ApplicationView.Consolidated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" />
+      </containers>
+      <file name="c4e3f854-a901-b7de-bd26-27f2b04df75a" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.AdjacentToLeftDisplayEdge">
+      <topicdata group="api" />
+      <apidata name="AdjacentToLeftDisplayEdge" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AdjacentToLeftDisplayEdge" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="9042bfb9-8d96-7e9d-949e-2eb712a65aad" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.AdjacentToRightDisplayEdge">
+      <topicdata group="api" />
+      <apidata name="AdjacentToRightDisplayEdge" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AdjacentToRightDisplayEdge" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="3a42f4df-0053-7802-1279-f13c54a99797" />
+    </api>
+    <api id="E:Windows.UI.ViewManagement.ApplicationView.Consolidated">
+      <topicdata group="api" />
+      <apidata name="Consolidated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Consolidated" />
+      <remover name="remove_Consolidated" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+            <type api="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="a354a80b-5c19-f111-ff17-c0b927b8cda2" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationView.GetApplicationViewIdForWindow(Windows.UI.Core.ICoreWindow)">
+      <topicdata group="api" />
+      <apidata name="GetApplicationViewIdForWindow" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="window" in="true">
+          <type api="T:Windows.UI.Core.ICoreWindow" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="8f22ea34-5106-f3d5-b8f6-61db3d6d498f" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationView.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="e72af98f-6298-7104-3ee2-34ac1f992d67" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="779b8d36-88e2-e2ba-e575-55208e3dad5e" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.IsFullScreen">
+      <topicdata group="api" />
+      <apidata name="IsFullScreen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsFullScreen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="4a36c17d-1e3d-af44-e8f6-7875f9773616" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.IsOnLockScreen">
+      <topicdata group="api" />
+      <apidata name="IsOnLockScreen" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsOnLockScreen" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="93c95335-6ca9-7f23-ee87-eb2a326aade0" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.IsScreenCaptureEnabled">
+      <topicdata group="api" />
+      <apidata name="IsScreenCaptureEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IsScreenCaptureEnabled" />
+      <setter name="set_IsScreenCaptureEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="03fd077f-c21f-9631-402d-caaeeccda4c2" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.Orientation">
+      <topicdata group="api" />
+      <apidata name="Orientation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Orientation" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewOrientation" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="6318ba61-5a79-c6c2-5bbb-d957a4cfb3cb" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.TerminateAppOnFinalViewClose">
+      <topicdata group="api" />
+      <apidata name="TerminateAppOnFinalViewClose" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TerminateAppOnFinalViewClose" />
+      <setter name="set_TerminateAppOnFinalViewClose" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="732a0237-c222-4b42-c87e-da32857d3468" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="5c2ea3df-8635-7895-a1d6-ffcfd675b688" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationView.TryUnsnap">
+      <topicdata group="api" />
+      <apidata name="TryUnsnap" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TryUnsnap may be altered or unavailable for releases after Windows 8.1. Apps can be continuously resized, but cannot be snapped, starting in Windows 8.1.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1495b66c-22e2-2357-2612-ebab23fab316" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationView.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Value">
+        <attributes>
+          <attribute>
+            <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+            <argument>
+              <type api="T:System.String" ref="true" />
+              <value>Value may be altered or unavailable for releases after Windows 8.1. Instead, query for window layout sizes directly.</value>
+            </argument>
+            <argument>
+              <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+              <enumValue>
+                <field name="Deprecate" />
+              </enumValue>
+            </argument>
+            <argument>
+              <type api="T:System.UInt32" ref="false" />
+              <value>100859904</value>
+            </argument>
+          </attribute>
+        </attributes>
+      </getter>
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationView" ref="true" />
+      </containers>
+      <file name="e515a75c-5359-e213-ce97-01e41d23769e" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      <apidata name="ApplicationViewConsolidatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.ViewManagement.IApplicationViewConsolidatedEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="990dd89a-d117-c4ec-cf22-285d69fa5009" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs">
+      <topicdata name="ApplicationViewConsolidatedEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      <apidata name="ApplicationViewConsolidatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs.IsUserInitiated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      </containers>
+      <file name="a966eae1-3f92-a648-f39e-b8c4678b74c2" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs">
+      <topicdata name="ApplicationViewConsolidatedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      <apidata name="ApplicationViewConsolidatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      </containers>
+      <file name="c27dc4d0-13e2-0dd6-1d57-892e2c6ef0fb" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs">
+      <topicdata name="ApplicationViewConsolidatedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      <apidata name="ApplicationViewConsolidatedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs.IsUserInitiated" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" />
+      </containers>
+      <file name="3b5b0c2a-b556-9b85-7a2f-d1de35de324c" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs.IsUserInitiated">
+      <topicdata group="api" />
+      <apidata name="IsUserInitiated" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsUserInitiated" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewConsolidatedEventArgs" ref="true" />
+      </containers>
+      <file name="1bd00de8-eb65-00c7-6360-90ef7de1c2e2" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ApplicationViewOrientation">
+      <topicdata group="api" />
+      <apidata name="ApplicationViewOrientation" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewOrientation.Landscape" />
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewOrientation.Portrait" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f64920d6-a354-c6a0-e720-47acc4ee620e" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewOrientation.Landscape">
+      <topicdata group="api" notopic="" />
+      <apidata name="Landscape" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewOrientation" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewOrientation" ref="false" />
+      </containers>
+      <file name="7ad630eb-42b3-47d3-745b-3d38e522ca9a" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewOrientation.Portrait">
+      <topicdata group="api" notopic="" />
+      <apidata name="Portrait" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewOrientation" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewOrientation" ref="false" />
+      </containers>
+      <file name="c6c2accf-faac-fcb8-b1dc-2313dcbdbf27" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ApplicationViewState">
+      <topicdata group="api" />
+      <apidata name="ApplicationViewState" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewState.FullScreenLandscape" />
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewState.Filled" />
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewState.Snapped" />
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewState.FullScreenPortrait" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>ApplicationViewState may be altered or unavailable for releases after Windows 8.1. Instead, query for window layout sizes directly.</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="103f41be-cff5-22ef-0ebf-eb018b8f8487" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewState.Filled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Filled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </containers>
+      <file name="b32cc6c7-38ea-3162-80dc-3d812b3236bb" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewState.FullScreenLandscape">
+      <topicdata group="api" notopic="" />
+      <apidata name="FullScreenLandscape" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </containers>
+      <file name="f9772353-007c-05fc-8028-6df1f9c297bf" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewState.FullScreenPortrait">
+      <topicdata group="api" notopic="" />
+      <apidata name="FullScreenPortrait" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </containers>
+      <file name="86535a87-56b1-4ef0-9058-2c20f21b15d4" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewState.Snapped">
+      <topicdata group="api" notopic="" />
+      <apidata name="Snapped" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewState" ref="false" />
+      </containers>
+      <file name="8a6c96b6-9fc9-226e-1e47-1877e065195c" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ApplicationViewSwitcher">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      <apidata name="ApplicationViewSwitcher" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="952318f6-b0b9-60f7-51c1-8631ce195b5b" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.ApplicationViewSwitcher">
+      <topicdata name="ApplicationViewSwitcher" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      <apidata name="ApplicationViewSwitcher" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.DisableShowingMainViewOnActivation" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.PrepareForCustomAnimatedSwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)" />
+        <element api="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync">
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)" />
+        </element>
+        <element api="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync">
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference,System.Int32,Windows.UI.ViewManagement.ViewSizePreference)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      </containers>
+      <file name="2c9060e0-dab0-7fc4-3d35-1b4c857202e0" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.ApplicationViewSwitcher">
+      <topicdata name="ApplicationViewSwitcher" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      <apidata name="ApplicationViewSwitcher" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.DisableShowingMainViewOnActivation" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.PrepareForCustomAnimatedSwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)" />
+        <element api="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync">
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)" />
+        </element>
+        <element api="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync">
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference)" />
+          <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference,System.Int32,Windows.UI.ViewManagement.ViewSizePreference)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      </containers>
+      <file name="9e507f59-952b-595f-96c4-bea4d66d061e" />
+    </api>
+    <api id="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync">
+      <topicdata name="SwitchAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      <apidata name="SwitchAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <file name="e8781bfa-e9ea-3ac2-67b0-4e9428a25175" />
+    </api>
+    <api id="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync">
+      <topicdata name="TryShowAsStandaloneAsync" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.ApplicationViewSwitcher" />
+      <apidata name="TryShowAsStandaloneAsync" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference)" />
+        <element api="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference,System.Int32,Windows.UI.ViewManagement.ViewSizePreference)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <file name="00af2d39-2aea-83f5-5227-47ada481740d" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.DisableShowingMainViewOnActivation">
+      <topicdata group="api" />
+      <apidata name="DisableShowingMainViewOnActivation" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <file name="3cb538ac-d92f-7e19-cd73-42d03d03e98a" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.PrepareForCustomAnimatedSwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)">
+      <topicdata group="api" />
+      <apidata name="PrepareForCustomAnimatedSwitchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="toViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="fromViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <file name="d05bffba-f79d-73fc-1e43-e2c1dd155f82" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SwitchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="viewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SwitchAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="7499e27e-aa2d-02cf-24a6-2166c2bbdefe" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SwitchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="toViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="fromViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SwitchFromViewAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0b8b48cb-ff6c-9530-2db8-cde2665af08e" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync(System.Int32,System.Int32,Windows.UI.ViewManagement.ApplicationViewSwitchingOptions)">
+      <topicdata group="api" />
+      <apidata name="SwitchAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.SwitchAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="toViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="fromViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>SwitchFromViewWithOptionsAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f8f1245b-e9c9-7156-4c31-bbd69dcf9d25" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="TryShowAsStandaloneAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="viewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TryShowAsStandaloneAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bf0e2c25-8793-eb6d-e474-77229a9168e2" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference)">
+      <topicdata group="api" />
+      <apidata name="TryShowAsStandaloneAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="viewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sizePreference" in="true">
+          <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TryShowAsStandaloneWithSizePreferenceAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ffff3dd0-f603-a3b8-d8f5-372ff34847ed" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync(System.Int32,Windows.UI.ViewManagement.ViewSizePreference,System.Int32,Windows.UI.ViewManagement.ViewSizePreference)">
+      <topicdata group="api" />
+      <apidata name="TryShowAsStandaloneAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.UI.ViewManagement.ApplicationViewSwitcher.TryShowAsStandaloneAsync" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="viewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="sizePreference" in="true">
+          <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+        </parameter>
+        <parameter name="anchorViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="anchorSizePreference" in="true">
+          <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Boolean" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitcher" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>TryShowAsStandaloneWithAnchorViewAndSizePreferenceAsync</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bfc4cbfc-3fde-afc7-ada7-de550d806abc" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions">
+      <topicdata group="api" />
+      <apidata name="ApplicationViewSwitchingOptions" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.UInt32" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions.Default" />
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions.SkipAnimation" />
+        <element api="F:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions.ConsolidateViews" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e144b16c-5683-7a87-117a-009ae32b8598" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions.ConsolidateViews">
+      <topicdata group="api" notopic="" />
+      <apidata name="ConsolidateViews" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+      </containers>
+      <file name="b2b29446-ddd4-64d3-a8cf-204da2ace7e7" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+      </containers>
+      <file name="a4df20ed-27ca-8940-7c44-e090c03f9d3b" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions.SkipAnimation">
+      <topicdata group="api" notopic="" />
+      <apidata name="SkipAnimation" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ApplicationViewSwitchingOptions" ref="false" />
+      </containers>
+      <file name="0703b61f-529f-4560-82f7-16122bb19a84" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.HandPreference">
+      <topicdata group="api" />
+      <apidata name="HandPreference" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.ViewManagement.HandPreference.LeftHanded" />
+        <element api="F:Windows.UI.ViewManagement.HandPreference.RightHanded" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="260031c4-ebbc-e630-867a-406c79a23101" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.HandPreference.LeftHanded">
+      <topicdata group="api" notopic="" />
+      <apidata name="LeftHanded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.HandPreference" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.HandPreference" ref="false" />
+      </containers>
+      <file name="a25e7166-6d9d-2f39-f649-42bdd1552e43" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.HandPreference.RightHanded">
+      <topicdata group="api" notopic="" />
+      <apidata name="RightHanded" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.HandPreference" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.HandPreference" ref="false" />
+      </containers>
+      <file name="ba05fed2-8fe3-471b-2afd-3b14bc307227" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.InputPane">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.InputPane" />
+      <apidata name="InputPane" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.ViewManagement.IInputPane" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f91c018e-453e-f431-f772-8182e7b4ce46" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.InputPane">
+      <topicdata name="InputPane" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.InputPane" />
+      <apidata name="InputPane" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ViewManagement.InputPane.GetForCurrentView" />
+        <element api="E:Windows.UI.ViewManagement.InputPane.Hiding" />
+        <element api="P:Windows.UI.ViewManagement.InputPane.OccludedRect" />
+        <element api="E:Windows.UI.ViewManagement.InputPane.Showing" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" />
+      </containers>
+      <file name="2fbd55de-9be1-b9e3-dd6c-bf750f2bdf22" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.InputPane">
+      <topicdata name="InputPane" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.InputPane" />
+      <apidata name="InputPane" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ViewManagement.InputPane.GetForCurrentView" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" />
+      </containers>
+      <file name="4858b00d-3546-3c96-11b9-3fe91f8de50a" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.InputPane">
+      <topicdata name="InputPane" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.InputPane" />
+      <apidata name="InputPane" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.InputPane.OccludedRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" />
+      </containers>
+      <file name="b2dc509c-1dff-ba40-894c-9df58126461f" />
+    </api>
+    <api id="Events.T:Windows.UI.ViewManagement.InputPane">
+      <topicdata name="InputPane" group="list" subgroup="Events" typeTopicId="T:Windows.UI.ViewManagement.InputPane" />
+      <apidata name="InputPane" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.ViewManagement.InputPane.Hiding" />
+        <element api="E:Windows.UI.ViewManagement.InputPane.Showing" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" />
+      </containers>
+      <file name="1bce2bfa-426c-44ef-7696-70e180fe6d30" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.InputPane.GetForCurrentView">
+      <topicdata group="api" />
+      <apidata name="GetForCurrentView" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+      </containers>
+      <file name="eadb710f-ae79-cd3b-f23f-0254fe86a670" />
+    </api>
+    <api id="E:Windows.UI.ViewManagement.InputPane.Hiding">
+      <topicdata group="api" />
+      <apidata name="Hiding" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Hiding" />
+      <remover name="remove_Hiding" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+            <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+      </containers>
+      <file name="33539e51-4482-01a3-bed6-228c8742c232" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.InputPane.OccludedRect">
+      <topicdata group="api" />
+      <apidata name="OccludedRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OccludedRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+      </containers>
+      <file name="71331275-cbd0-fc8d-789f-00f330069589" />
+    </api>
+    <api id="E:Windows.UI.ViewManagement.InputPane.Showing">
+      <topicdata group="api" />
+      <apidata name="Showing" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Showing" />
+      <remover name="remove_Showing" />
+      <eventhandler>
+        <type api="T:Windows.Foundation.TypedEventHandler`2" ref="true">
+          <specialization>
+            <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+            <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPane" ref="true" />
+      </containers>
+      <file name="71408e5d-d58a-a327-f140-3a5a0a08b914" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      <apidata name="InputPaneVisibilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.ViewManagement.IInputPaneVisibilityEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d5e3335b-baa7-3c65-e43a-0c62c2f5341f" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs">
+      <topicdata name="InputPaneVisibilityEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      <apidata name="InputPaneVisibilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs.EnsuredFocusedElementInView" />
+        <element api="P:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs.OccludedRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      </containers>
+      <file name="149ea8a4-b7de-909c-03c8-ea6c81396e78" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs">
+      <topicdata name="InputPaneVisibilityEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      <apidata name="InputPaneVisibilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      </containers>
+      <file name="9318b258-01bf-7b86-d809-e2ad7f9ae6ff" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs">
+      <topicdata name="InputPaneVisibilityEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      <apidata name="InputPaneVisibilityEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs.EnsuredFocusedElementInView" />
+        <element api="P:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs.OccludedRect" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" />
+      </containers>
+      <file name="c2bb45fe-1af6-60cb-7fec-51d925256747" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs.EnsuredFocusedElementInView">
+      <topicdata group="api" />
+      <apidata name="EnsuredFocusedElementInView" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EnsuredFocusedElementInView" />
+      <setter name="set_EnsuredFocusedElementInView" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" ref="true" />
+      </containers>
+      <file name="d7c8e110-e594-fa45-179a-adfd0358505b" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs.OccludedRect">
+      <topicdata group="api" />
+      <apidata name="OccludedRect" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_OccludedRect" />
+      <returns>
+        <type api="T:Windows.Foundation.Rect" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.InputPaneVisibilityEventArgs" ref="true" />
+      </containers>
+      <file name="5ee0d5dd-cd99-a438-d6ce-f6aa37e0f118" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ProjectionManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.ProjectionManager" />
+      <apidata name="ProjectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66c95ddb-f6ac-d8c3-ab84-40fa04ee4de3" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.ProjectionManager">
+      <topicdata name="ProjectionManager" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.ProjectionManager" />
+      <apidata name="ProjectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.ProjectionManager.ProjectionDisplayAvailable" />
+        <element api="E:Windows.UI.ViewManagement.ProjectionManager.ProjectionDisplayAvailableChanged" />
+        <element api="M:Windows.UI.ViewManagement.ProjectionManager.StartProjectingAsync(System.Int32,System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ProjectionManager.StopProjectingAsync(System.Int32,System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ProjectionManager.SwapDisplaysForViewsAsync(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" />
+      </containers>
+      <file name="aa4db8e5-a563-cd61-69ff-ab5ac3222433" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.ProjectionManager">
+      <topicdata name="ProjectionManager" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.ProjectionManager" />
+      <apidata name="ProjectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.UI.ViewManagement.ProjectionManager.StartProjectingAsync(System.Int32,System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ProjectionManager.StopProjectingAsync(System.Int32,System.Int32)" />
+        <element api="M:Windows.UI.ViewManagement.ProjectionManager.SwapDisplaysForViewsAsync(System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" />
+      </containers>
+      <file name="f62a1615-4232-bda0-7883-ef550360cc8d" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.ProjectionManager">
+      <topicdata name="ProjectionManager" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.ProjectionManager" />
+      <apidata name="ProjectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.ProjectionManager.ProjectionDisplayAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" />
+      </containers>
+      <file name="81570103-02c9-ddf5-d357-71ebd715e136" />
+    </api>
+    <api id="Events.T:Windows.UI.ViewManagement.ProjectionManager">
+      <topicdata name="ProjectionManager" group="list" subgroup="Events" typeTopicId="T:Windows.UI.ViewManagement.ProjectionManager" />
+      <apidata name="ProjectionManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.UI.ViewManagement.ProjectionManager.ProjectionDisplayAvailableChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" />
+      </containers>
+      <file name="3ea63759-29a6-659c-c042-9dc99b7c7df5" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.ProjectionManager.ProjectionDisplayAvailable">
+      <topicdata group="api" />
+      <apidata name="ProjectionDisplayAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ProjectionDisplayAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" ref="true" />
+      </containers>
+      <file name="5f32dc54-aa81-2065-2612-3f6cec10e2d9" />
+    </api>
+    <api id="E:Windows.UI.ViewManagement.ProjectionManager.ProjectionDisplayAvailableChanged">
+      <topicdata group="api" />
+      <apidata name="ProjectionDisplayAvailableChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ProjectionDisplayAvailableChanged" />
+      <remover name="remove_ProjectionDisplayAvailableChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" ref="true" />
+      </containers>
+      <file name="8e8ea1d1-bb36-8104-353c-e9f9d37bb1da" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ProjectionManager.StartProjectingAsync(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="StartProjectingAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="projectionViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="anchorViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" ref="true" />
+      </containers>
+      <file name="1c738777-c71c-cee7-9af3-0aeaa99381ba" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ProjectionManager.StopProjectingAsync(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="StopProjectingAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="projectionViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="anchorViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" ref="true" />
+      </containers>
+      <file name="aa5f648f-8e19-6f7f-2657-b9fec020ec78" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.ProjectionManager.SwapDisplaysForViewsAsync(System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="SwapDisplaysForViewsAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="projectionViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="anchorViewId" in="true">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ProjectionManager" ref="true" />
+      </containers>
+      <file name="1c0233d8-9e47-27a0-9d6c-6d9e1389d0ce" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.UIElementType">
+      <topicdata group="api" />
+      <apidata name="UIElementType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.ViewManagement.UIElementType.ActiveCaption" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.Background" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.ButtonFace" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.ButtonText" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.CaptionText" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.GrayText" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.Highlight" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.HighlightText" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.Hotlight" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.InactiveCaption" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.InactiveCaptionText" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.Window" />
+        <element api="F:Windows.UI.ViewManagement.UIElementType.WindowText" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="88a95d8f-c23f-dbe0-1ef2-7f7f4662f916" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.ActiveCaption">
+      <topicdata group="api" notopic="" />
+      <apidata name="ActiveCaption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="3c87cc57-c16d-3cfd-86cc-c1ff50992290" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.Background">
+      <topicdata group="api" notopic="" />
+      <apidata name="Background" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="e59b2748-2ffe-9df6-0fc1-d9e94e4d0fc0" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.ButtonFace">
+      <topicdata group="api" notopic="" />
+      <apidata name="ButtonFace" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="e360a89a-6183-09ba-d1a4-215c6a558195" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.ButtonText">
+      <topicdata group="api" notopic="" />
+      <apidata name="ButtonText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="304903f4-5106-22af-92f6-d68d8418931c" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.CaptionText">
+      <topicdata group="api" notopic="" />
+      <apidata name="CaptionText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="71930d72-af2b-4072-487e-3bf01698b907" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.GrayText">
+      <topicdata group="api" notopic="" />
+      <apidata name="GrayText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="d7720262-3165-77b5-55bd-908c3a8f91ed" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.Highlight">
+      <topicdata group="api" notopic="" />
+      <apidata name="Highlight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>6</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="24d04fb4-130d-1584-8e98-df864ea76703" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.HighlightText">
+      <topicdata group="api" notopic="" />
+      <apidata name="HighlightText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>7</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="4114282d-24fe-c099-0eab-e79cf5962442" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.Hotlight">
+      <topicdata group="api" notopic="" />
+      <apidata name="Hotlight" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="c17931bb-eb46-fd0a-a586-60aaa8c2e0f2" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.InactiveCaption">
+      <topicdata group="api" notopic="" />
+      <apidata name="InactiveCaption" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>9</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="5ec4c0a7-db49-12cb-650b-942fd2f3e80e" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.InactiveCaptionText">
+      <topicdata group="api" notopic="" />
+      <apidata name="InactiveCaptionText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>10</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="551a6562-5335-2650-c33a-4d51639d9669" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.Window">
+      <topicdata group="api" notopic="" />
+      <apidata name="Window" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>11</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="346538f5-83d1-dfb5-e130-5843f7b80142" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.UIElementType.WindowText">
+      <topicdata group="api" notopic="" />
+      <apidata name="WindowText" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </returns>
+      <value>12</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+      </containers>
+      <file name="f085009c-6318-7ebc-f9e5-bbbe974762bc" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.UISettings">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.UI.ViewManagement.UISettings" />
+      <apidata name="UISettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.UISettings.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.UI.ViewManagement.IUISettings" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ActivatableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8fde4d2c-a41e-616c-e361-fc749907ad6b" />
+    </api>
+    <api id="AllMembers.T:Windows.UI.ViewManagement.UISettings">
+      <topicdata name="UISettings" group="list" subgroup="members" typeTopicId="T:Windows.UI.ViewManagement.UISettings" />
+      <apidata name="UISettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.UISettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ViewManagement.UISettings.#ctor" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.AnimationsEnabled" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CaretBlinkRate" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CaretBrowsingEnabled" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CaretWidth" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CursorSize" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.DoubleClickTime" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.HandPreference" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.MessageDuration" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.MouseHoverTime" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.ScrollBarArrowSize" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.ScrollBarSize" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.ScrollBarThumbBoxSize" />
+        <element api="M:Windows.UI.ViewManagement.UISettings.UIElementColor(Windows.UI.ViewManagement.UIElementType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" />
+      </containers>
+      <file name="9fc26cc2-2e97-c0ef-8026-f827af87211c" />
+    </api>
+    <api id="Methods.T:Windows.UI.ViewManagement.UISettings">
+      <topicdata name="UISettings" group="list" subgroup="Methods" typeTopicId="T:Windows.UI.ViewManagement.UISettings" />
+      <apidata name="UISettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.UISettings.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Windows.UI.ViewManagement.UISettings.UIElementColor(Windows.UI.ViewManagement.UIElementType)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" />
+      </containers>
+      <file name="6f3d5ab2-2644-9bb0-45a5-fb2de3468d74" />
+    </api>
+    <api id="Properties.T:Windows.UI.ViewManagement.UISettings">
+      <topicdata name="UISettings" group="list" subgroup="Properties" typeTopicId="T:Windows.UI.ViewManagement.UISettings" />
+      <apidata name="UISettings" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Windows.UI.ViewManagement.UISettings.#ctor" />
+      <elements>
+        <element api="P:Windows.UI.ViewManagement.UISettings.AnimationsEnabled" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CaretBlinkRate" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CaretBrowsingEnabled" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CaretWidth" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.CursorSize" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.DoubleClickTime" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.HandPreference" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.MessageDuration" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.MouseHoverTime" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.ScrollBarArrowSize" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.ScrollBarSize" />
+        <element api="P:Windows.UI.ViewManagement.UISettings.ScrollBarThumbBoxSize" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" />
+      </containers>
+      <file name="23e0f025-b384-d1a2-8738-ee501e215564" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.UISettings.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="83fa5af8-fbe2-b22c-6dc6-0913ede226d1" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.AnimationsEnabled">
+      <topicdata group="api" />
+      <apidata name="AnimationsEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AnimationsEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="3974aa81-4b24-8aff-66ca-aa4daf3ac541" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.CaretBlinkRate">
+      <topicdata group="api" />
+      <apidata name="CaretBlinkRate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CaretBlinkRate" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="19355500-6920-a86a-78d2-28f960ed2694" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.CaretBrowsingEnabled">
+      <topicdata group="api" />
+      <apidata name="CaretBrowsingEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CaretBrowsingEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="4a8d676b-346f-7801-9544-1e8b3664869a" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.CaretWidth">
+      <topicdata group="api" />
+      <apidata name="CaretWidth" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CaretWidth" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="89f8f7c5-f907-14ec-a527-de7f6c5444e9" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.CursorSize">
+      <topicdata group="api" />
+      <apidata name="CursorSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_CursorSize" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="90e529f8-9675-11f1-2f5a-8b1d0669ae67" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.DoubleClickTime">
+      <topicdata group="api" />
+      <apidata name="DoubleClickTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DoubleClickTime" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="d61bf744-a8a9-bb46-eea2-2acf80d9bb50" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.HandPreference">
+      <topicdata group="api" />
+      <apidata name="HandPreference" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_HandPreference" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.HandPreference" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="9cc059a7-9b95-5c0a-84bf-6df07b7344ed" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.MessageDuration">
+      <topicdata group="api" />
+      <apidata name="MessageDuration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MessageDuration" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="c13dd436-6d2d-1f4e-78c6-73a72de9259f" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.MouseHoverTime">
+      <topicdata group="api" />
+      <apidata name="MouseHoverTime" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_MouseHoverTime" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="42d593df-c6cb-e0b3-4c14-b015ca7ef434" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.ScrollBarArrowSize">
+      <topicdata group="api" />
+      <apidata name="ScrollBarArrowSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ScrollBarArrowSize" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="c5cb7754-bd52-205b-1f35-a53812b41924" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.ScrollBarSize">
+      <topicdata group="api" />
+      <apidata name="ScrollBarSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ScrollBarSize" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="fb21ba36-7d1c-2a51-7063-09a7e84fe701" />
+    </api>
+    <api id="P:Windows.UI.ViewManagement.UISettings.ScrollBarThumbBoxSize">
+      <topicdata group="api" />
+      <apidata name="ScrollBarThumbBoxSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ScrollBarThumbBoxSize" />
+      <returns>
+        <type api="T:Windows.Foundation.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="db6c5a66-1c54-71fd-37e9-283eeeab232b" />
+    </api>
+    <api id="M:Windows.UI.ViewManagement.UISettings.UIElementColor(Windows.UI.ViewManagement.UIElementType)">
+      <topicdata group="api" />
+      <apidata name="UIElementColor" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="desiredElement" in="true">
+          <type api="T:Windows.UI.ViewManagement.UIElementType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.UI.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.UISettings" ref="true" />
+      </containers>
+      <file name="aba40794-a47e-e70b-830c-05c02a1350be" />
+    </api>
+    <api id="T:Windows.UI.ViewManagement.ViewSizePreference">
+      <topicdata group="api" />
+      <apidata name="ViewSizePreference" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.UI.ViewManagement.ViewSizePreference.Default" />
+        <element api="F:Windows.UI.ViewManagement.ViewSizePreference.UseLess" />
+        <element api="F:Windows.UI.ViewManagement.ViewSizePreference.UseHalf" />
+        <element api="F:Windows.UI.ViewManagement.ViewSizePreference.UseMore" />
+        <element api="F:Windows.UI.ViewManagement.ViewSizePreference.UseMinimum" />
+        <element api="F:Windows.UI.ViewManagement.ViewSizePreference.UseNone" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="fa7c57da-8ab0-a2c4-c78f-3ec89198532c" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ViewSizePreference.Default">
+      <topicdata group="api" notopic="" />
+      <apidata name="Default" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </containers>
+      <file name="b647c658-b433-e64a-89c5-55f52159e3fe" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ViewSizePreference.UseHalf">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseHalf" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </containers>
+      <file name="2e72d483-4a03-5ed8-3705-0fe95a7e70f7" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ViewSizePreference.UseLess">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseLess" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </containers>
+      <file name="c1963137-6ea9-77bc-e171-ba300e947b46" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ViewSizePreference.UseMinimum">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseMinimum" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </containers>
+      <file name="6813bf1d-3c40-2aca-6e74-0fa23a640283" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ViewSizePreference.UseMore">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseMore" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </containers>
+      <file name="35515df3-4e7b-8602-6a0c-de2f9f06613f" />
+    </api>
+    <api id="F:Windows.UI.ViewManagement.ViewSizePreference.UseNone">
+      <topicdata group="api" notopic="" />
+      <apidata name="UseNone" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </returns>
+      <value>5</value>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.UI.ViewManagement" />
+        <type api="T:Windows.UI.ViewManagement.ViewSizePreference" ref="false" />
+      </containers>
+      <file name="b3ddfaf2-be21-e859-b86d-e4ec43c4973f" />
+    </api>
+  </apis>
+</reflection>

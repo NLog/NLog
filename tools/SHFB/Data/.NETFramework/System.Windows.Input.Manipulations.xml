@@ -1,0 +1,3102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Input.Manipulations">
+      <assemblydata version="4.0.0.0" culture="" key="00000000000000000400000000000000" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Input.Manipulations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Input.Manipulations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Input.Manipulations.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\EcmaPublicKey.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Input.Manipulations">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Input.Manipulations" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+        <element api="T:System.Windows.Input.Manipulations.InertiaParameters2D" />
+        <element api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+        <element api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+        <element api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+        <element api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+        <element api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+        <element api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+        <element api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+        <element api="T:System.Windows.Input.Manipulations.ManipulationParameters2D" />
+        <element api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+        <element api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+        <element api="T:System.Windows.Input.Manipulations.Manipulations2D" />
+        <element api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+        <element api="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      </elements>
+      <file name="3f096021-f9ea-b950-8693-24e636a6207c" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      <apidata name="InertiaExpansionBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Input.Manipulations.InertiaParameters2D" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="5bd92f29-994a-46c4-0fda-3cdbb42dc587" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D">
+      <topicdata name="InertiaExpansionBehavior2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      <apidata name="InertiaExpansionBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredDeceleration" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionY" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialRadius" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      </containers>
+      <file name="549c7679-5bc7-0380-7950-c42e1a02ba39" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D">
+      <topicdata name="InertiaExpansionBehavior2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      <apidata name="InertiaExpansionBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      </containers>
+      <file name="6f7335ff-1787-2c7e-abb1-705bde0fb751" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D">
+      <topicdata name="InertiaExpansionBehavior2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      <apidata name="InertiaExpansionBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredDeceleration" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionY" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialRadius" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" />
+      </containers>
+      <file name="9ab132fb-cb92-ff2c-c372-c6d84956865c" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="5b88456c-7b55-bd61-d7cf-2529b0e60da7" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredDeceleration">
+      <topicdata group="api" />
+      <apidata name="DesiredDeceleration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredDeceleration" />
+      <setter name="set_DesiredDeceleration" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="1edee7e6-3a50-bc5d-12cd-46b8f15e70c2" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionX">
+      <topicdata group="api" />
+      <apidata name="DesiredExpansionX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredExpansionX" />
+      <setter name="set_DesiredExpansionX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="eaf1e021-0a4c-92d6-ec02-d5819af1facc" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionY">
+      <topicdata group="api" />
+      <apidata name="DesiredExpansionY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredExpansionY" />
+      <setter name="set_DesiredExpansionY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="a4b612e2-dd6b-8a61-e69a-e4a790f91a05" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialRadius">
+      <topicdata group="api" />
+      <apidata name="InitialRadius" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialRadius" />
+      <setter name="set_InitialRadius" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="426519f5-95f3-5461-719f-86bb10dba2c1" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityX">
+      <topicdata group="api" />
+      <apidata name="InitialVelocityX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialVelocityX" />
+      <setter name="set_InitialVelocityX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="3a6ea72e-2006-7102-fc17-fba711ccdf34" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityY">
+      <topicdata group="api" />
+      <apidata name="InitialVelocityY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialVelocityY" />
+      <setter name="set_InitialVelocityY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </containers>
+      <file name="8e4dfe0a-912f-112a-c892-c222e64dea2f" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.InertiaParameters2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.InertiaParameters2D" />
+      <apidata name="InertiaParameters2D" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+          <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" ref="true" />
+          <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="effbf783-9928-f49c-e7fe-e0386933d137" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.InertiaParameters2D">
+      <topicdata name="InertiaParameters2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.InertiaParameters2D" />
+      <apidata name="InertiaParameters2D" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaParameters2D" />
+      </containers>
+      <file name="ef274fb0-f5a7-b1e9-e159-0d2ba30b0ddf" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.InertiaParameters2D">
+      <topicdata name="InertiaParameters2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.InertiaParameters2D" />
+      <apidata name="InertiaParameters2D" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaParameters2D" />
+      </containers>
+      <file name="598b720d-ee39-9a6b-8499-9e77a52a305a" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.InertiaProcessor2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      <apidata name="InertiaProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="aa05b9db-e854-6810-ecf8-0f39100e813f" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.InertiaProcessor2D">
+      <topicdata name="InertiaProcessor2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      <apidata name="InertiaProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Complete(System.Int64)" />
+        <element api="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Completed" />
+        <element api="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.ExpansionBehavior" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginY" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.IsRunning" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Process(System.Int64)" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.RotationBehavior" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.SetParameters(System.Windows.Input.Manipulations.InertiaParameters2D)" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.TranslationBehavior" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      </containers>
+      <file name="839178f5-5dec-fe99-993f-457a97bb5454" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.InertiaProcessor2D">
+      <topicdata name="InertiaProcessor2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      <apidata name="InertiaProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Complete(System.Int64)" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Process(System.Int64)" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaProcessor2D.SetParameters(System.Windows.Input.Manipulations.InertiaParameters2D)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      </containers>
+      <file name="ab194feb-7294-be1c-130d-b77744a255bf" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.InertiaProcessor2D">
+      <topicdata name="InertiaProcessor2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      <apidata name="InertiaProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.ExpansionBehavior" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginY" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.IsRunning" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.RotationBehavior" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaProcessor2D.TranslationBehavior" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      </containers>
+      <file name="132a791c-c50a-98fe-6a1f-65a1f046b4dd" />
+    </api>
+    <api id="Events.T:System.Windows.Input.Manipulations.InertiaProcessor2D">
+      <topicdata name="InertiaProcessor2D" group="list" subgroup="Events" typeTopicId="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      <apidata name="InertiaProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor" />
+      <elements>
+        <element api="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Completed" />
+        <element api="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" />
+      </containers>
+      <file name="0e1812f9-0739-37af-805f-7c946b85a342" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="7f1b15be-d441-ad63-05d8-a8531c939e42" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Complete(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timestamp">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="c1d516e6-ed8d-a517-0c6a-d1f48b0e0c4d" />
+    </api>
+    <api id="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Completed">
+      <topicdata group="api" />
+      <apidata name="Completed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Completed" />
+      <remover name="remove_Completed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="a33ea1cf-4725-03b1-244e-cd0c01220684" />
+    </api>
+    <api id="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta">
+      <topicdata group="api" />
+      <apidata name="Delta" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Delta" />
+      <remover name="remove_Delta" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="38ef0026-1b50-0af9-6022-05cdf4859343" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaProcessor2D.ExpansionBehavior">
+      <topicdata group="api" />
+      <apidata name="ExpansionBehavior" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ExpansionBehavior" />
+      <setter name="set_ExpansionBehavior" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="ced0a616-d6f1-293d-5ade-5cc4078e4511" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginX">
+      <topicdata group="api" />
+      <apidata name="InitialOriginX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialOriginX" />
+      <setter name="set_InitialOriginX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="a016efed-99b3-99e4-ab97-9228a2340419" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginY">
+      <topicdata group="api" />
+      <apidata name="InitialOriginY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialOriginY" />
+      <setter name="set_InitialOriginY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="746a4582-b8b8-e369-78ca-8354ee7f921e" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaProcessor2D.IsRunning">
+      <topicdata group="api" />
+      <apidata name="IsRunning" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsRunning" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="84fb3be1-cd8d-16e9-0167-46491ea096ef" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Process(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="Process" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timestamp">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="94c23e4f-0bda-d7b6-9c23-6d8d3f307dd8" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaProcessor2D.RotationBehavior">
+      <topicdata group="api" />
+      <apidata name="RotationBehavior" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_RotationBehavior" />
+      <setter name="set_RotationBehavior" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="beed291b-26c2-d195-3cb9-d8208c1ffc45" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaProcessor2D.SetParameters(System.Windows.Input.Manipulations.InertiaParameters2D)">
+      <topicdata group="api" />
+      <apidata name="SetParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="parameters">
+          <type api="T:System.Windows.Input.Manipulations.InertiaParameters2D" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="2659423f-e558-79de-78e3-8d2076ebf71b" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaProcessor2D.TranslationBehavior">
+      <topicdata group="api" />
+      <apidata name="TranslationBehavior" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TranslationBehavior" />
+      <setter name="set_TranslationBehavior" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaProcessor2D" ref="true" />
+      </containers>
+      <file name="b120fa50-f59e-5688-b59c-f049fc1aa838" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      <apidata name="InertiaRotationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Input.Manipulations.InertiaParameters2D" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="569b9e1d-c607-b7e6-d335-f9d0ae7f6fc5" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D">
+      <topicdata name="InertiaRotationBehavior2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      <apidata name="InertiaRotationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredDeceleration" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredRotation" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.InitialVelocity" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      </containers>
+      <file name="23d88e37-61a8-663d-3f32-d6d9b1546bd9" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D">
+      <topicdata name="InertiaRotationBehavior2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      <apidata name="InertiaRotationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      </containers>
+      <file name="be81c55e-98d4-575b-6dea-46b5335e2888" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D">
+      <topicdata name="InertiaRotationBehavior2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      <apidata name="InertiaRotationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredDeceleration" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredRotation" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.InitialVelocity" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" />
+      </containers>
+      <file name="2d1a3621-dae5-96dd-b743-3a81056feae0" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" ref="true" />
+      </containers>
+      <file name="eb862d12-ab9a-a603-6da0-bfc0945f32d1" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredDeceleration">
+      <topicdata group="api" />
+      <apidata name="DesiredDeceleration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredDeceleration" />
+      <setter name="set_DesiredDeceleration" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" ref="true" />
+      </containers>
+      <file name="a140686f-d214-496f-1167-b88bc4765d0f" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredRotation">
+      <topicdata group="api" />
+      <apidata name="DesiredRotation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredRotation" />
+      <setter name="set_DesiredRotation" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" ref="true" />
+      </containers>
+      <file name="8957e4f0-f800-4267-cc20-ee67c5855824" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.InitialVelocity">
+      <topicdata group="api" />
+      <apidata name="InitialVelocity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialVelocity" />
+      <setter name="set_InitialVelocity" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" ref="true" />
+      </containers>
+      <file name="cb91503d-627d-1a3b-0a9d-e20de6fb4bd4" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      <apidata name="InertiaTranslationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Input.Manipulations.InertiaParameters2D" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="a583eac1-d043-5c4a-c143-4cfe65413e6f" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D">
+      <topicdata name="InertiaTranslationBehavior2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      <apidata name="InertiaTranslationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDeceleration" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDisplacement" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      </containers>
+      <file name="3de2de20-37fe-1839-a7c2-ede26203e679" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D">
+      <topicdata name="InertiaTranslationBehavior2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      <apidata name="InertiaTranslationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      </containers>
+      <file name="9a0d8212-ff5e-e21c-dbb2-1e34c58b2dd1" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D">
+      <topicdata name="InertiaTranslationBehavior2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      <apidata name="InertiaTranslationBehavior2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDeceleration" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDisplacement" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" />
+      </containers>
+      <file name="49d09a01-8840-d856-545f-8ac38583ac45" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+      </containers>
+      <file name="99b7ee07-52c2-5845-abb6-5f2d17809476" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDeceleration">
+      <topicdata group="api" />
+      <apidata name="DesiredDeceleration" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredDeceleration" />
+      <setter name="set_DesiredDeceleration" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+      </containers>
+      <file name="d117f932-5b15-51bd-dd08-69a6ab696fb6" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDisplacement">
+      <topicdata group="api" />
+      <apidata name="DesiredDisplacement" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DesiredDisplacement" />
+      <setter name="set_DesiredDisplacement" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+      </containers>
+      <file name="71856922-9446-0953-55df-527cc9bdecce" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityX">
+      <topicdata group="api" />
+      <apidata name="InitialVelocityX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialVelocityX" />
+      <setter name="set_InitialVelocityX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+      </containers>
+      <file name="fbe3104c-5459-ea27-f8ff-dcab13377c4b" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityY">
+      <topicdata group="api" />
+      <apidata name="InitialVelocityY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_InitialVelocityY" />
+      <setter name="set_InitialVelocityY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" ref="true" />
+      </containers>
+      <file name="98c792ca-3b03-21bf-41c0-6423ba9d85d6" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      <apidata name="Manipulation2DCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="e535a9ea-95be-29f7-0470-3dea0ae45240" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs">
+      <topicdata name="Manipulation2DCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      <apidata name="Manipulation2DCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginX" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginY" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Total" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Velocities" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      </containers>
+      <file name="56ecf196-46bb-f832-e33b-f36fb1067366" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs">
+      <topicdata name="Manipulation2DCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      <apidata name="Manipulation2DCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      </containers>
+      <file name="c0f5b567-8874-9496-9e3b-5f68c9f8b2a8" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs">
+      <topicdata name="Manipulation2DCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      <apidata name="Manipulation2DCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginX" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginY" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Total" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Velocities" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" />
+      </containers>
+      <file name="17052ba4-1ca9-36db-32d4-e52897766e4d" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginX">
+      <topicdata group="api" />
+      <apidata name="OriginX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="49d46f74-bed9-2d09-0dec-52ac832e51dc" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginY">
+      <topicdata group="api" />
+      <apidata name="OriginY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="c90eedae-6c2b-10db-28f4-7a6095f8308e" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Total">
+      <topicdata group="api" />
+      <apidata name="Total" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Total" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="38760ab9-2893-7acb-5d88-3eaaad03f639" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Velocities">
+      <topicdata group="api" />
+      <apidata name="Velocities" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Velocities" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="3ea5cbb7-1f00-4a9a-888c-dd1fca07c29c" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      <apidata name="Manipulation2DDeltaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="fa1439d4-6d2b-f1bf-f684-3051148980a5" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs">
+      <topicdata name="Manipulation2DDeltaEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      <apidata name="Manipulation2DDeltaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Cumulative" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Delta" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginX" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginY" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Velocities" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      </containers>
+      <file name="5cfa94da-e659-3f86-bfe9-78f8c1d62930" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs">
+      <topicdata name="Manipulation2DDeltaEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      <apidata name="Manipulation2DDeltaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      </containers>
+      <file name="f160d023-63fa-3046-1acb-0ffc3437d788" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs">
+      <topicdata name="Manipulation2DDeltaEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      <apidata name="Manipulation2DDeltaEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Cumulative" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Delta" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginX" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginY" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Velocities" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" />
+      </containers>
+      <file name="328fb8e7-0e9f-41bd-fb40-3eef500eaac2" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Cumulative">
+      <topicdata group="api" />
+      <apidata name="Cumulative" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Cumulative" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </containers>
+      <file name="7acb7ece-2596-3375-7910-27c78c915938" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Delta">
+      <topicdata group="api" />
+      <apidata name="Delta" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Delta" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </containers>
+      <file name="e1417c42-8b1b-511a-9cdd-67f8f868ab9e" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginX">
+      <topicdata group="api" />
+      <apidata name="OriginX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </containers>
+      <file name="729862f4-b164-9cd7-9a0a-16b1388751ce" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginY">
+      <topicdata group="api" />
+      <apidata name="OriginY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </containers>
+      <file name="87106fd4-eca8-57f1-ce2d-818037d0b863" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Velocities">
+      <topicdata group="api" />
+      <apidata name="Velocities" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Velocities" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </containers>
+      <file name="8b3fadc1-2d8d-cb08-1678-68faee21310e" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      <apidata name="Manipulation2DStartedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="fe71d2e3-6b9a-8b40-5655-6b23ffcc9b74" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs">
+      <topicdata name="Manipulation2DStartedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      <apidata name="Manipulation2DStartedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginX" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      </containers>
+      <file name="34672b71-0515-c576-0e1a-bab2ec4c237f" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs">
+      <topicdata name="Manipulation2DStartedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      <apidata name="Manipulation2DStartedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      </containers>
+      <file name="2cc499b9-400f-21f5-9049-a5479099266f" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs">
+      <topicdata name="Manipulation2DStartedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      <apidata name="Manipulation2DStartedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginX" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" />
+      </containers>
+      <file name="ee0ab594-81fd-4362-197b-c14530754488" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginX">
+      <topicdata group="api" />
+      <apidata name="OriginX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" ref="true" />
+      </containers>
+      <file name="78b3f0de-f692-e270-c282-85854620aa83" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginY">
+      <topicdata group="api" />
+      <apidata name="OriginY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_OriginY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" ref="true" />
+      </containers>
+      <file name="5319c71e-ceb8-0e5e-a573-19fa122890d1" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.ManipulationDelta2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      <apidata name="ManipulationDelta2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="6b0f17bc-3a0b-8fc5-9ec1-0b2c9dd735ab" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.ManipulationDelta2D">
+      <topicdata name="ManipulationDelta2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      <apidata name="ManipulationDelta2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionY" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.Rotation" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleY" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      </containers>
+      <file name="dd5659b3-5264-3cfd-9be6-39433283042c" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.ManipulationDelta2D">
+      <topicdata name="ManipulationDelta2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      <apidata name="ManipulationDelta2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      </containers>
+      <file name="f39b6430-2844-2bf0-f28d-cc896714826f" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.ManipulationDelta2D">
+      <topicdata name="ManipulationDelta2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      <apidata name="ManipulationDelta2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionY" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.Rotation" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleY" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" />
+      </containers>
+      <file name="dcfb4f7c-6f9d-95c5-b71a-06e816717b86" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionX">
+      <topicdata group="api" />
+      <apidata name="ExpansionX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExpansionX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="09a43417-6ff9-e788-6bb6-036bcc9e2340" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionY">
+      <topicdata group="api" />
+      <apidata name="ExpansionY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExpansionY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="56268949-355f-c588-7a67-802f8f4cb12a" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.Rotation">
+      <topicdata group="api" />
+      <apidata name="Rotation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Rotation" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="2f83803e-ff47-5438-28bb-e51111926d34" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleX">
+      <topicdata group="api" />
+      <apidata name="ScaleX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ScaleX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="ff88357e-d490-b6de-2750-d7aa7e12e4de" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleY">
+      <topicdata group="api" />
+      <apidata name="ScaleY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ScaleY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="f970962e-ad35-3ab0-5425-6ff8898617d1" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationX">
+      <topicdata group="api" />
+      <apidata name="TranslationX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TranslationX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="e655392e-5bef-7d3f-a43b-c051bda4597b" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationY">
+      <topicdata group="api" />
+      <apidata name="TranslationY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TranslationY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationDelta2D" ref="true" />
+      </containers>
+      <file name="a2831647-3d80-9271-ede0-7fae80b9c12e" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.ManipulationParameters2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.ManipulationParameters2D" />
+      <apidata name="ManipulationParameters2D" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="2d84434c-b695-4167-5c21-b441b5e291a6" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.ManipulationParameters2D">
+      <topicdata name="ManipulationParameters2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationParameters2D" />
+      <apidata name="ManipulationParameters2D" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationParameters2D" />
+      </containers>
+      <file name="8354de47-79a0-4129-2b34-3133f12bbe3f" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.ManipulationParameters2D">
+      <topicdata name="ManipulationParameters2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationParameters2D" />
+      <apidata name="ManipulationParameters2D" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationParameters2D" />
+      </containers>
+      <file name="343eb7a5-3cff-26eb-d637-4c4011237595" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.ManipulationPivot2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      <apidata name="ManipulationPivot2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Input.Manipulations.ManipulationParameters2D" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="664b17a4-da0d-8675-80c8-a3798a70d850" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.ManipulationPivot2D">
+      <topicdata name="ManipulationPivot2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      <apidata name="ManipulationPivot2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Radius" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationPivot2D.X" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Y" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      </containers>
+      <file name="fffcf9f3-eb16-4f47-1292-6560776cc521" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.ManipulationPivot2D">
+      <topicdata name="ManipulationPivot2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      <apidata name="ManipulationPivot2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      </containers>
+      <file name="93af8c65-f39a-57fd-bd8a-450f8cfbc898" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.ManipulationPivot2D">
+      <topicdata name="ManipulationPivot2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      <apidata name="ManipulationPivot2D" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Radius" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationPivot2D.X" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Y" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" />
+      </containers>
+      <file name="8d92b730-e221-0473-8b53-4b7f934b9621" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+      </containers>
+      <file name="8244a2cd-cd0d-8adb-1296-5c5d9082b1b7" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Radius">
+      <topicdata group="api" />
+      <apidata name="Radius" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Radius" />
+      <setter name="set_Radius" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+      </containers>
+      <file name="835fa965-c4e9-801d-4317-d488f33bf202" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationPivot2D.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_X" />
+      <setter name="set_X" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+      </containers>
+      <file name="5b4fb067-d832-1df0-51d6-a4646ee1c83a" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Y" />
+      <setter name="set_Y" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+      </containers>
+      <file name="99b8f56d-3e37-8f54-85cf-8ee9cfdc0b51" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.ManipulationProcessor2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      <apidata name="ManipulationProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="651a8a13-410e-8d69-f874-91fb267582f4" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.ManipulationProcessor2D">
+      <topicdata name="ManipulationProcessor2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      <apidata name="ManipulationProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor">
+          <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D)" />
+          <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D,System.Windows.Input.Manipulations.ManipulationPivot2D)" />
+        </element>
+        <element api="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.CompleteManipulation(System.Int64)" />
+        <element api="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators(System.Int64,System.Collections.Generic.IEnumerable{System.Windows.Input.Manipulations.Manipulator2D})" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.SetParameters(System.Windows.Input.Manipulations.ManipulationParameters2D)" />
+        <element api="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      </containers>
+      <file name="190ccf7e-d69d-bf78-358b-29d772f4d00a" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.ManipulationProcessor2D">
+      <topicdata name="ManipulationProcessor2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      <apidata name="ManipulationProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.CompleteManipulation(System.Int64)" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators(System.Int64,System.Collections.Generic.IEnumerable{System.Windows.Input.Manipulations.Manipulator2D})" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.SetParameters(System.Windows.Input.Manipulations.ManipulationParameters2D)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      </containers>
+      <file name="b5ad1139-8c26-c9af-8a84-5c14b6928bab" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.ManipulationProcessor2D">
+      <topicdata name="ManipulationProcessor2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      <apidata name="ManipulationProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      </containers>
+      <file name="2e2f2efe-56b3-3bc5-8482-2d06d72df155" />
+    </api>
+    <api id="Events.T:System.Windows.Input.Manipulations.ManipulationProcessor2D">
+      <topicdata name="ManipulationProcessor2D" group="list" subgroup="Events" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      <apidata name="ManipulationProcessor2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed" />
+        <element api="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta" />
+        <element api="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      </containers>
+      <file name="891357d6-f95a-1625-9e5a-d428c4913ac7" />
+    </api>
+    <api id="Overload:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.ManipulationProcessor2D" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D)" />
+        <element api="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D,System.Windows.Input.Manipulations.ManipulationPivot2D)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="6eb3e43c-69b7-a8b5-fbcf-b2501162aed8" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor" />
+      <parameters>
+        <parameter name="supportedManipulations">
+          <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="36f93ae4-098e-ef17-1afc-2cb772e6bac6" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D,System.Windows.Input.Manipulations.ManipulationPivot2D)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor" />
+      <parameters>
+        <parameter name="supportedManipulations">
+          <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+        </parameter>
+        <parameter name="pivot">
+          <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="b46dd837-1160-596e-44dd-4ef5e9cc0d87" />
+    </api>
+    <api id="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed">
+      <topicdata group="api" />
+      <apidata name="Completed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Completed" />
+      <remover name="remove_Completed" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="4d089da8-89b0-e016-dd6a-fceddc5d09b3" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.CompleteManipulation(System.Int64)">
+      <topicdata group="api" />
+      <apidata name="CompleteManipulation" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timestamp">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="ce9f7123-0ed8-af14-bfcb-3769fd53485c" />
+    </api>
+    <api id="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta">
+      <topicdata group="api" />
+      <apidata name="Delta" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Delta" />
+      <remover name="remove_Delta" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="d497b66d-ea03-161d-4f6f-c60e3c9f6c09" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius">
+      <topicdata group="api" />
+      <apidata name="MinimumScaleRotateRadius" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MinimumScaleRotateRadius" />
+      <setter name="set_MinimumScaleRotateRadius" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="aa8938aa-447f-6e0e-37d2-e16ebd8572ec" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot">
+      <topicdata group="api" />
+      <apidata name="Pivot" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Pivot" />
+      <setter name="set_Pivot" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationPivot2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="50e45dff-0904-c181-c122-29775bde0e9f" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators(System.Int64,System.Collections.Generic.IEnumerable{System.Windows.Input.Manipulations.Manipulator2D})">
+      <topicdata group="api" />
+      <apidata name="ProcessManipulators" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="timestamp">
+          <type api="T:System.Int64" ref="false" />
+        </parameter>
+        <parameter name="manipulators">
+          <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+            <specialization>
+              <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+            </specialization>
+          </type>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="f3e07d7c-1e8d-ef5b-4f5f-15b464035f2a" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.SetParameters(System.Windows.Input.Manipulations.ManipulationParameters2D)">
+      <topicdata group="api" />
+      <apidata name="SetParameters" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="parameters">
+          <type api="T:System.Windows.Input.Manipulations.ManipulationParameters2D" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="90e6d25e-6e78-cf76-fdc1-77964a2763aa" />
+    </api>
+    <api id="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started">
+      <topicdata group="api" />
+      <apidata name="Started" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Started" />
+      <remover name="remove_Started" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="c46dfdff-293f-351f-309b-5c7e4ac65d92" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations">
+      <topicdata group="api" />
+      <apidata name="SupportedManipulations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_SupportedManipulations" />
+      <setter name="set_SupportedManipulations" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" ref="true" />
+      </containers>
+      <file name="c35042d9-1336-e63f-d209-fd2640e9ceaa" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.Manipulations2D">
+      <topicdata group="api" />
+      <apidata name="Manipulations2D" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.None" />
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.TranslateX" />
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.TranslateY" />
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.Translate" />
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.Scale" />
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.Rotate" />
+        <element api="F:System.Windows.Input.Manipulations.Manipulations2D.All" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.FlagsAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="c225abbc-e0c1-9ba8-5c07-55fc5c4fc442" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.All">
+      <topicdata group="api" notopic="" />
+      <apidata name="All" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>15</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="71f64efb-62e2-1cb7-b0ea-8f03d653b46c" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.None">
+      <topicdata group="api" notopic="" />
+      <apidata name="None" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="bf384f94-d88e-c657-fbcc-daddf6abb133" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.Rotate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Rotate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>8</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="627ab068-3faa-08d1-ca2f-3e176fccc13c" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.Scale">
+      <topicdata group="api" notopic="" />
+      <apidata name="Scale" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="3e36e1c3-1fea-cbf3-b017-9a8dbb69d5a7" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.Translate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Translate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="171bbe0f-9288-2f38-600f-843e9da0806b" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.TranslateX">
+      <topicdata group="api" notopic="" />
+      <apidata name="TranslateX" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="f885d1ed-2d86-84a0-f1b7-2fb2117a33ce" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.Manipulations2D.TranslateY">
+      <topicdata group="api" notopic="" />
+      <apidata name="TranslateY" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulations2D" ref="false" />
+      </containers>
+      <file name="e93c5e23-e2d0-cfe3-ed5b-6ae78f0275b6" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.ManipulationVelocities2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      <apidata name="ManipulationVelocities2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="d6af6387-356d-89c4-1b30-2d9eaf7331ec" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.ManipulationVelocities2D">
+      <topicdata name="ManipulationVelocities2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      <apidata name="ManipulationVelocities2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.AngularVelocity" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityY" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityY" />
+        <element api="F:System.Windows.Input.Manipulations.ManipulationVelocities2D.Zero" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      </containers>
+      <file name="fcda6fd3-4692-0f16-bab6-5d12c81ff52e" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.ManipulationVelocities2D">
+      <topicdata name="ManipulationVelocities2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      <apidata name="ManipulationVelocities2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      </containers>
+      <file name="335dba72-c565-dde7-f2f8-3fa87a3ee8e2" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.ManipulationVelocities2D">
+      <topicdata name="ManipulationVelocities2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      <apidata name="ManipulationVelocities2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.AngularVelocity" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityY" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityX" />
+        <element api="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityY" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      </containers>
+      <file name="c5fe9fd6-8b09-1dbf-95bd-a744a774141c" />
+    </api>
+    <api id="Fields.T:System.Windows.Input.Manipulations.ManipulationVelocities2D">
+      <topicdata name="ManipulationVelocities2D" group="list" subgroup="Fields" typeTopicId="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      <apidata name="ManipulationVelocities2D" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Input.Manipulations.ManipulationVelocities2D.Zero" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />
+      </containers>
+      <file name="57908661-ad8b-9334-fdb4-2f270c14f2db" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.AngularVelocity">
+      <topicdata group="api" />
+      <apidata name="AngularVelocity" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AngularVelocity" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </containers>
+      <file name="fc8c8530-c63e-9df1-108e-c73d0650353f" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityX">
+      <topicdata group="api" />
+      <apidata name="ExpansionVelocityX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExpansionVelocityX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </containers>
+      <file name="245aec71-ec1b-9df2-5eba-1563e96fdb1c" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityY">
+      <topicdata group="api" />
+      <apidata name="ExpansionVelocityY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExpansionVelocityY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </containers>
+      <file name="e559c575-e3c6-5817-0392-f2f692dd3f01" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityX">
+      <topicdata group="api" />
+      <apidata name="LinearVelocityX" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LinearVelocityX" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </containers>
+      <file name="d109dafa-2232-c962-87c7-1653c70beff7" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityY">
+      <topicdata group="api" />
+      <apidata name="LinearVelocityY" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LinearVelocityY" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </containers>
+      <file name="9ea483ff-1ce9-72e3-04b8-abfe4e86b3c4" />
+    </api>
+    <api id="F:System.Windows.Input.Manipulations.ManipulationVelocities2D.Zero">
+      <topicdata group="api" />
+      <apidata name="Zero" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" ref="true" />
+      </containers>
+      <file name="54e65e9a-0e6a-d3cd-5d82-f7844359ecf8" />
+    </api>
+    <api id="T:System.Windows.Input.Manipulations.Manipulator2D">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Input.Manipulations.Manipulator2D" />
+      <apidata name="Manipulator2D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+      </containers>
+      <file name="3ac792a6-7a8a-9853-05fc-eb51f3e47573" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Input.Manipulations.Manipulator2D">
+      <topicdata name="Manipulator2D" group="list" subgroup="members" typeTopicId="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      <apidata name="Manipulator2D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.#ctor(System.Int32,System.Single,System.Single)" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.Equals(System.Object)" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.GetHashCode" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulator2D.Id" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.op_Equality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.op_Inequality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulator2D.X" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulator2D.Y" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      </containers>
+      <file name="3f7b21bc-68ac-13a1-7d0c-567c948f6edf" />
+    </api>
+    <api id="Methods.T:System.Windows.Input.Manipulations.Manipulator2D">
+      <topicdata name="Manipulator2D" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      <apidata name="Manipulator2D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.ValueType.ToString" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.Equals(System.Object)" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.GetHashCode" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      </containers>
+      <file name="79e4b266-b63f-206e-3558-ac28aba5ce55" />
+    </api>
+    <api id="Operators.T:System.Windows.Input.Manipulations.Manipulator2D">
+      <topicdata name="Manipulator2D" group="list" subgroup="Operators" subsubgroup="Operators" typeTopicId="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      <apidata name="Manipulator2D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.op_Equality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)" />
+        <element api="M:System.Windows.Input.Manipulations.Manipulator2D.op_Inequality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      </containers>
+      <file name="72a92e68-dd2d-8d3d-1073-cd8fff07841f" />
+    </api>
+    <api id="Properties.T:System.Windows.Input.Manipulations.Manipulator2D">
+      <topicdata name="Manipulator2D" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      <apidata name="Manipulator2D" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Input.Manipulations.Manipulator2D.Id" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulator2D.X" />
+        <element api="P:System.Windows.Input.Manipulations.Manipulator2D.Y" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" />
+      </containers>
+      <file name="b5ee72c0-0961-a6d0-00c5-de7e97ddfc8d" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.Manipulator2D.#ctor(System.Int32,System.Single,System.Single)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="id">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="x">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Single" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="df364a9a-16ae-00eb-de58-68a04d1d18c2" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.Manipulator2D.Equals(System.Object)">
+      <topicdata group="api" />
+      <apidata name="Equals" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.Equals(System.Object)">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="obj">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="0610f910-b468-e58e-b566-2904487a8f87" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.Manipulator2D.GetHashCode">
+      <topicdata group="api" />
+      <apidata name="GetHashCode" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.ValueType.GetHashCode">
+          <type api="T:System.ValueType" ref="true" />
+        </member>
+      </overrides>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="5e770778-fa17-c0ed-a0a0-c3d2a21d7a4a" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulator2D.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Id" />
+      <setter name="set_Id" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="86633bb2-16be-4a8a-333a-91b8fa52d052" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.Manipulator2D.op_Equality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)">
+      <topicdata group="api" />
+      <apidata name="Equality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manipulator1">
+          <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+        </parameter>
+        <parameter name="manipulator2">
+          <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="310ce193-388b-ef6c-6239-ff4939c97d2c" />
+    </api>
+    <api id="M:System.Windows.Input.Manipulations.Manipulator2D.op_Inequality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)">
+      <topicdata group="api" />
+      <apidata name="Inequality" group="member" subgroup="method" subsubgroup="operator" />
+      <memberdata visibility="public" static="true" special="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="manipulator1">
+          <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+        </parameter>
+        <parameter name="manipulator2">
+          <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="8b832d52-9ac8-9ebf-7ef4-5239ed72817c" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulator2D.X">
+      <topicdata group="api" />
+      <apidata name="X" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_X" />
+      <setter name="set_X" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="a7f7fb97-7427-1593-1ca7-b77c8b2fecee" />
+    </api>
+    <api id="P:System.Windows.Input.Manipulations.Manipulator2D.Y">
+      <topicdata group="api" />
+      <apidata name="Y" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Y" />
+      <setter name="set_Y" />
+      <returns>
+        <type api="T:System.Single" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Input.Manipulations" module="System.Windows.Input.Manipulations" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Input.Manipulations" />
+        <type api="T:System.Windows.Input.Manipulations.Manipulator2D" ref="false" />
+      </containers>
+      <file name="714cdcde-b1b2-32a1-3f20-e498091a15d8" />
+    </api>
+  </apis>
+</reflection>

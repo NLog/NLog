@@ -1,0 +1,983 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="WindowsBase">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WindowsBase.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WindowsBase.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>WindowsBase.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="PresentationFramework">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Windows.ThemeInfoAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="ExternalAssembly" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.Windows.ResourceDictionaryLocation" ref="false" />
+            <enumValue>
+              <field name="None" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.SecurityCriticalAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>PresentationFramework.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\wpf\src\windows.snk</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Markup.Primitives">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Markup.Primitives" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Markup.Primitives.MarkupWriter" />
+        <element api="T:System.Windows.Markup.Primitives.MarkupObject" />
+        <element api="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      </elements>
+      <file name="3ecf7309-2d21-735d-4180-7cc40eedb6ea" />
+    </api>
+    <api id="T:System.Windows.Markup.Primitives.MarkupObject">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Primitives.MarkupObject" />
+      <apidata name="MarkupObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+      </containers>
+      <file name="a1bbcace-e5fd-8cae-ac8a-2e76dd9bc654" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Primitives.MarkupObject">
+      <topicdata name="MarkupObject" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Primitives.MarkupObject" />
+      <apidata name="MarkupObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Primitives.MarkupObject.AssignRootContext(System.Windows.Markup.IValueSerializerContext)" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.Attributes" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.Instance" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.ObjectType" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.Properties" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" />
+      </containers>
+      <file name="0ace0816-8a40-073f-34b8-a028963fd076" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Primitives.MarkupObject">
+      <topicdata name="MarkupObject" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Primitives.MarkupObject" />
+      <apidata name="MarkupObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Primitives.MarkupObject.AssignRootContext(System.Windows.Markup.IValueSerializerContext)" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" />
+      </containers>
+      <file name="f9bd528c-6fa3-7ff1-bc92-ae8ae8d08524" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Primitives.MarkupObject">
+      <topicdata name="MarkupObject" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Primitives.MarkupObject" />
+      <apidata name="MarkupObject" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.Attributes" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.Instance" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.ObjectType" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupObject.Properties" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" />
+      </containers>
+      <file name="3d29069e-d0a6-3caa-c519-c24a10ec48b5" />
+    </api>
+    <api id="M:System.Windows.Markup.Primitives.MarkupObject.AssignRootContext(System.Windows.Markup.IValueSerializerContext)">
+      <topicdata group="api" />
+      <apidata name="AssignRootContext" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="context">
+          <type api="T:System.Windows.Markup.IValueSerializerContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </containers>
+      <file name="5645c380-4ea9-dc34-77a2-4c33543ec575" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupObject.Attributes">
+      <topicdata group="api" />
+      <apidata name="Attributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Attributes" />
+      <returns>
+        <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </containers>
+      <file name="6f395269-9ab1-eb5c-fd8b-829b04c093a0" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupObject.Instance">
+      <topicdata group="api" />
+      <apidata name="Instance" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Instance" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </containers>
+      <file name="440cec9f-c84b-a67a-f56c-3dcb2bc17203" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupObject.ObjectType">
+      <topicdata group="api" />
+      <apidata name="ObjectType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_ObjectType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </containers>
+      <file name="11804806-4e3d-5549-34c0-2b2b517a7407" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupObject.Properties">
+      <topicdata group="api" />
+      <apidata name="Properties" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Properties" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </containers>
+      <file name="501cf713-839b-abfe-a5b7-a283765eb23e" />
+    </api>
+    <api id="T:System.Windows.Markup.Primitives.MarkupProperty">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Primitives.MarkupProperty" />
+      <apidata name="MarkupProperty" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+      </containers>
+      <file name="9a3ba7ec-64c9-63a8-f9f5-2b01a897d62e" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Primitives.MarkupProperty">
+      <topicdata name="MarkupProperty" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      <apidata name="MarkupProperty" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Attributes" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.DependencyProperty" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsAttached" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsComposite" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsConstructorArgument" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsContent" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsKey" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsValueAsString" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Items" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Name" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.PropertyDescriptor" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.PropertyType" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.StringValue" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.TypeReferences" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Value" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      </containers>
+      <file name="e089c755-a561-52c0-e4a1-1922194b3b30" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Primitives.MarkupProperty">
+      <topicdata name="MarkupProperty" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      <apidata name="MarkupProperty" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      </containers>
+      <file name="072d1fbf-0c0e-3019-f507-45ab3237bbc7" />
+    </api>
+    <api id="Properties.T:System.Windows.Markup.Primitives.MarkupProperty">
+      <topicdata name="MarkupProperty" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      <apidata name="MarkupProperty" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Attributes" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.DependencyProperty" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsAttached" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsComposite" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsConstructorArgument" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsContent" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsKey" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.IsValueAsString" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Items" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Name" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.PropertyDescriptor" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.PropertyType" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.StringValue" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.TypeReferences" />
+        <element api="P:System.Windows.Markup.Primitives.MarkupProperty.Value" />
+      </elements>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" />
+      </containers>
+      <file name="6c7831eb-8f17-9a34-f2fb-e3662bd8653d" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.Attributes">
+      <topicdata group="api" />
+      <apidata name="Attributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Attributes" />
+      <returns>
+        <type api="T:System.ComponentModel.AttributeCollection" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="3a7286ee-cd04-eb89-6e73-b579b9f6a4e6" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.DependencyProperty">
+      <topicdata group="api" />
+      <apidata name="DependencyProperty" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_DependencyProperty" />
+      <returns>
+        <type api="T:System.Windows.DependencyProperty" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="67a72b19-9e32-a37c-4a6a-065ad4d852ab" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.IsAttached">
+      <topicdata group="api" />
+      <apidata name="IsAttached" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsAttached" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="1e75121f-b334-0f64-84c4-0aa04175b529" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.IsComposite">
+      <topicdata group="api" />
+      <apidata name="IsComposite" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsComposite" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="693abf0b-717f-089c-9e90-6deca2e18686" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.IsConstructorArgument">
+      <topicdata group="api" />
+      <apidata name="IsConstructorArgument" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsConstructorArgument" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="bebb2f0e-4ab4-f6c7-8a87-0acd73b0ad3c" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.IsContent">
+      <topicdata group="api" />
+      <apidata name="IsContent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsContent" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="56b7d3d9-3bd2-3df9-0c87-b5d7ac03ca6b" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.IsKey">
+      <topicdata group="api" />
+      <apidata name="IsKey" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsKey" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="9d884df4-693b-b7a1-550e-3ec56273165c" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.IsValueAsString">
+      <topicdata group="api" />
+      <apidata name="IsValueAsString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_IsValueAsString" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="cfa58bd8-932e-ac82-5313-0a2ce382fedc" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.Items">
+      <topicdata group="api" />
+      <apidata name="Items" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Items" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="91e933f9-7ca9-ccfa-2fe3-039255ec9f17" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="9606bcef-884f-970d-93b7-b3f7f4b8318f" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.PropertyDescriptor">
+      <topicdata group="api" />
+      <apidata name="PropertyDescriptor" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PropertyDescriptor" />
+      <returns>
+        <type api="T:System.ComponentModel.PropertyDescriptor" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="35e1d9d1-b52f-a269-3699-502c09b669c6" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.PropertyType">
+      <topicdata group="api" />
+      <apidata name="PropertyType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_PropertyType" />
+      <returns>
+        <type api="T:System.Type" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="ff5b8049-1c5b-5ef3-ab8d-705812627971" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.StringValue">
+      <topicdata group="api" />
+      <apidata name="StringValue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_StringValue" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="cfd62a0a-1399-6577-18bc-00327729d0cf" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.TypeReferences">
+      <topicdata group="api" />
+      <apidata name="TypeReferences" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_TypeReferences" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Type" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="39d9dd33-b4ac-ef6d-9c97-f59c2b1024e8" />
+    </api>
+    <api id="P:System.Windows.Markup.Primitives.MarkupProperty.Value">
+      <topicdata group="api" />
+      <apidata name="Value" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Value" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="WindowsBase" module="WindowsBase" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupProperty" ref="true" />
+      </containers>
+      <file name="65774719-deab-80e7-17af-89c86fe30ccb" />
+    </api>
+    <api id="T:System.Windows.Markup.Primitives.MarkupWriter">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Markup.Primitives.MarkupWriter" />
+      <apidata name="MarkupWriter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+      </containers>
+      <file name="23005afc-e2a7-b59e-2ede-0e2d72af9134" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Markup.Primitives.MarkupWriter">
+      <topicdata name="MarkupWriter" group="list" subgroup="members" typeTopicId="T:System.Windows.Markup.Primitives.MarkupWriter" />
+      <apidata name="MarkupWriter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Primitives.MarkupWriter.Dispose" />
+        <element api="Overload:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor">
+          <element api="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object)" />
+          <element api="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object,System.Windows.Markup.XamlDesignerSerializationManager)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupWriter" />
+      </containers>
+      <file name="a0545135-26dd-83c9-c72c-16ed87cda5db" />
+    </api>
+    <api id="Methods.T:System.Windows.Markup.Primitives.MarkupWriter">
+      <topicdata name="MarkupWriter" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Markup.Primitives.MarkupWriter" />
+      <apidata name="MarkupWriter" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Markup.Primitives.MarkupWriter.Dispose" />
+        <element api="Overload:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor">
+          <element api="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object)" />
+          <element api="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object,System.Windows.Markup.XamlDesignerSerializationManager)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupWriter" />
+      </containers>
+      <file name="f7a1de1d-adcb-5e1d-594e-44da1a6c5c3b" />
+    </api>
+    <api id="Overload:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor">
+      <topicdata name="GetMarkupObjectFor" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Markup.Primitives.MarkupWriter" />
+      <apidata name="GetMarkupObjectFor" group="member" subgroup="method" />
+      <elements>
+        <element api="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object)" />
+        <element api="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object,System.Windows.Markup.XamlDesignerSerializationManager)" />
+      </elements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupWriter" ref="true" />
+      </containers>
+      <file name="976e4cb8-08af-a404-1695-d76c015b5900" />
+    </api>
+    <api id="M:System.Windows.Markup.Primitives.MarkupWriter.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupWriter" ref="true" />
+      </containers>
+      <file name="5ea19cb2-9228-95cb-0849-6c041c694fef" />
+    </api>
+    <api id="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object)">
+      <topicdata group="api" />
+      <apidata name="GetMarkupObjectFor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupWriter" ref="true" />
+      </containers>
+      <file name="d8e1ad85-d4c8-3490-0a6e-08d3bb28d4bd" />
+    </api>
+    <api id="M:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor(System.Object,System.Windows.Markup.XamlDesignerSerializationManager)">
+      <topicdata group="api" />
+      <apidata name="GetMarkupObjectFor" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:System.Windows.Markup.Primitives.MarkupWriter.GetMarkupObjectFor" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="instance">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="manager">
+          <type api="T:System.Windows.Markup.XamlDesignerSerializationManager" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Markup.Primitives.MarkupObject" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="PresentationFramework" module="PresentationFramework" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Windows.Markup.Primitives" />
+        <type api="T:System.Windows.Markup.Primitives.MarkupWriter" ref="true" />
+      </containers>
+      <file name="02da7798-d816-2540-9ff3-a14b8245b9ae" />
+    </api>
+  </apis>
+</reflection>

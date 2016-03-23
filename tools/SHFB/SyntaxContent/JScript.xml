@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_JScript">JScript</item>
+  <item id="devlang_jscript#">JScript</item>
+  <item id="devlang_jsc">JScript</item>
+  <item id="devlang_jscript.net">JScript</item>
+  <item id="devlang_kbjscript">JScript</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_JScript">JScript</item>
+  <item id="metaLang_jscript#">JScript</item>
+  <item id="metaLang_jsc">JScript</item>
+  <item id="metaLang_jscript.net">JScript</item>
+  <item id="metaLang_kbjscript">JScript</item>
+
+	<!-- JScript syntax section messages -->
+	<item id="UnsupportedUnsafe_JScript">JScript does not support APIs that consume or return unsafe types.</item>
+	<item id="UnsupportedGeneric_JScript">JScript does not support generic types or methods.</item>
+	<item id="UnsupportedExplicit_Jscript">JScript does not support explicit interface implementations.</item>
+	<item id="UnsupportedOperator_JScript">JScript does not support overloaded operators.</item>
+	<item id="UnsupportedEvent_JScript">JScript does not support events.</item>
+	<item id="UnsupportedDelegate_JScript">JScript does not support delegates.</item>
+	<item id="UnsupportedStructure_JScript">JScript supports the use of structures, but not the declaration of new ones.</item>
+	<item id="UnsupportedIndex_JScript">JScript does not support indexed properties.</item>
+	<item id="UnsupportedCast_JScript">JScript does not support the declaration of new casting operators.</item>
+	<item id="UnsupportedStaticConstructor_JScript">JScript does not support static constructors.</item>
+	<item id="UnsupportedVarargs_JScript">JScript does not support methods that use variable length arguments
+(<span class="code">varargs</span>).  The compiler automatically resolves calls to this method to the same method
+that uses a parameter array.</item>
+
+</content>

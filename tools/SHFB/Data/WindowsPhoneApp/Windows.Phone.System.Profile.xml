@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Phone.System.Profile">
+      <topicdata group="api" />
+      <apidata name="Windows.Phone.System.Profile" group="namespace" />
+      <elements>
+        <element api="T:Windows.Phone.System.Profile.RetailMode" />
+      </elements>
+      <file name="22875a30-922b-837e-fc61-6d193d45fd13" />
+    </api>
+    <api id="T:Windows.Phone.System.Profile.RetailMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Phone.System.Profile.RetailMode" />
+      <apidata name="RetailMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Profile" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="750d7793-a1bd-5bd3-6037-0981bd07ac58" />
+    </api>
+    <api id="AllMembers.T:Windows.Phone.System.Profile.RetailMode">
+      <topicdata name="RetailMode" group="list" subgroup="members" typeTopicId="T:Windows.Phone.System.Profile.RetailMode" />
+      <apidata name="RetailMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.System.Profile.RetailMode.RetailModeEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Profile" />
+        <type api="T:Windows.Phone.System.Profile.RetailMode" />
+      </containers>
+      <file name="cf7b8379-f459-85e7-20d6-01002e80cf0c" />
+    </api>
+    <api id="Properties.T:Windows.Phone.System.Profile.RetailMode">
+      <topicdata name="RetailMode" group="list" subgroup="Properties" typeTopicId="T:Windows.Phone.System.Profile.RetailMode" />
+      <apidata name="RetailMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.Phone.System.Profile.RetailMode.RetailModeEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Phone.System.Profile" />
+        <type api="T:Windows.Phone.System.Profile.RetailMode" />
+      </containers>
+      <file name="5c70821f-05ef-0205-9400-f3ed85cf3331" />
+    </api>
+    <api id="P:Windows.Phone.System.Profile.RetailMode.RetailModeEnabled">
+      <topicdata group="api" />
+      <apidata name="RetailModeEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RetailModeEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Phone.System.Profile" />
+        <type api="T:Windows.Phone.System.Profile.RetailMode" ref="true" />
+      </containers>
+      <file name="8f630e92-c958-d20d-480d-e4777d669c23" />
+    </api>
+  </apis>
+</reflection>

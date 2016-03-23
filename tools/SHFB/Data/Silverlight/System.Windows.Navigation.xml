@@ -1,0 +1,2768 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Windows.Controls.Navigation">
+      <assemblydata version="5.0.5.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation. All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.Controls.Navigation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Silverlight Navigation Controls</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+    <assembly name="System.Windows">
+      <assemblydata version="5.0.5.0" culture="" key="00240000048000009400000006020000002400005253413100040000010001008D56C76F9E8649383049F383C44BE0EC204181822A6C31CF5EB7EF486944D032188EA1D3920763712CCB12D75FB77E9811149E6148E5D32FBAAB37611C1878DDC19E20EF135D0CB2CFF2BFEC3D115810C3D9069638FE4BE215DBF795861920E5AB6F7DB2E2CEEF136AC23D5DD2BF031700AEC232F6C6B1C785B4305C123B37AB" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Security.AllowPartiallyTrustedCallersAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Windows.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.61118.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>5.0.5.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Windows.Navigation">
+      <topicdata group="api" />
+      <apidata name="System.Windows.Navigation" group="namespace" />
+      <elements>
+        <element api="T:System.Windows.Navigation.LoadCompletedEventHandler" />
+        <element api="T:System.Windows.Navigation.NavigationEventArgs" />
+        <element api="T:System.Windows.Navigation.NavigatedEventHandler" />
+        <element api="T:System.Windows.Navigation.NavigatingCancelEventHandler" />
+        <element api="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+        <element api="T:System.Windows.Navigation.NavigationMode" />
+        <element api="T:System.Windows.Navigation.INavigationContentLoader" />
+        <element api="T:System.Windows.Navigation.LoadResult" />
+        <element api="T:System.Windows.Navigation.NavigationCacheMode" />
+        <element api="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+        <element api="T:System.Windows.Navigation.NavigationContext" />
+        <element api="T:System.Windows.Navigation.NavigationFailedEventHandler" />
+        <element api="T:System.Windows.Navigation.NavigationStoppedEventHandler" />
+        <element api="T:System.Windows.Navigation.FragmentNavigationEventHandler" />
+        <element api="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+        <element api="T:System.Windows.Navigation.PageResourceContentLoader" />
+        <element api="T:System.Windows.Navigation.JournalOwnership" />
+        <element api="T:System.Windows.Navigation.NavigationService" />
+        <element api="T:System.Windows.Navigation.UriMapperBase" />
+        <element api="T:System.Windows.Navigation.UriMapper" />
+        <element api="T:System.Windows.Navigation.UriMapping" />
+      </elements>
+      <file name="04d62995-2268-2d8a-e4c3-5994efbfce12" />
+    </api>
+    <api id="T:System.Windows.Navigation.FragmentNavigationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      <apidata name="FragmentNavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="fe9e4306-b9e7-64dc-6b44-f10009fece76" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.FragmentNavigationEventArgs">
+      <topicdata name="FragmentNavigationEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      <apidata name="FragmentNavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Navigation.FragmentNavigationEventArgs.Fragment" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      </containers>
+      <file name="73531cfd-874f-e63d-d484-29e4afa06f0c" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.FragmentNavigationEventArgs">
+      <topicdata name="FragmentNavigationEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      <apidata name="FragmentNavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      </containers>
+      <file name="204214ad-e4fd-90ec-c467-f2ffce86d40e" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.FragmentNavigationEventArgs">
+      <topicdata name="FragmentNavigationEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      <apidata name="FragmentNavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Navigation.FragmentNavigationEventArgs.Fragment" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.FragmentNavigationEventArgs" />
+      </containers>
+      <file name="355a4106-b347-0044-f204-71d73dd093ce" />
+    </api>
+    <api id="P:System.Windows.Navigation.FragmentNavigationEventArgs.Fragment">
+      <topicdata group="api" />
+      <apidata name="Fragment" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Fragment" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.FragmentNavigationEventArgs" ref="true" />
+      </containers>
+      <file name="8e59849c-66d2-a7f7-5a7f-cb6c28ff1343" />
+    </api>
+    <api id="T:System.Windows.Navigation.FragmentNavigationEventHandler">
+      <topicdata group="api" />
+      <apidata name="FragmentNavigationEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Navigation.FragmentNavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="787ae90a-22fb-38d1-6644-d6e8a144895c" />
+    </api>
+    <api id="T:System.Windows.Navigation.INavigationContentLoader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.INavigationContentLoader" />
+      <apidata name="INavigationContentLoader" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="cb9fb395-fd44-fc94-2225-7ce4efce716d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.INavigationContentLoader">
+      <topicdata name="INavigationContentLoader" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.INavigationContentLoader" />
+      <apidata name="INavigationContentLoader" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.CancelLoad(System.IAsyncResult)" />
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.CanLoad(System.Uri,System.Uri)" />
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.EndLoad(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" />
+      </containers>
+      <file name="8bb88009-3936-b08b-c70d-157b56c54339" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.INavigationContentLoader">
+      <topicdata name="INavigationContentLoader" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.INavigationContentLoader" />
+      <apidata name="INavigationContentLoader" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.CancelLoad(System.IAsyncResult)" />
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.CanLoad(System.Uri,System.Uri)" />
+        <element api="M:System.Windows.Navigation.INavigationContentLoader.EndLoad(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" />
+      </containers>
+      <file name="545236a3-2863-40f6-9451-77da5c73fc0f" />
+    </api>
+    <api id="M:System.Windows.Navigation.INavigationContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="targetUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="currentUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="userCallback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="asyncState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+      </containers>
+      <file name="b13d89f7-6caf-ef1b-a076-17920a0e04ad" />
+    </api>
+    <api id="M:System.Windows.Navigation.INavigationContentLoader.CancelLoad(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="CancelLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="asyncResult">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+      </containers>
+      <file name="935f4057-f143-5ab8-26b8-913cefaa7975" />
+    </api>
+    <api id="M:System.Windows.Navigation.INavigationContentLoader.CanLoad(System.Uri,System.Uri)">
+      <topicdata group="api" />
+      <apidata name="CanLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="targetUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="currentUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+      </containers>
+      <file name="4d3b2044-921a-9447-1c0d-89e8f7bbab77" />
+    </api>
+    <api id="M:System.Windows.Navigation.INavigationContentLoader.EndLoad(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="asyncResult">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+      </containers>
+      <file name="c1b07510-d3d7-fb94-41d3-2fb48bd9a457" />
+    </api>
+    <api id="T:System.Windows.Navigation.JournalOwnership">
+      <topicdata group="api" />
+      <apidata name="JournalOwnership" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Navigation.JournalOwnership.Automatic" />
+        <element api="F:System.Windows.Navigation.JournalOwnership.OwnsJournal" />
+        <element api="F:System.Windows.Navigation.JournalOwnership.UsesParentJournal" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="7edca053-75ee-1124-155d-b4f135459b2a" />
+    </api>
+    <api id="F:System.Windows.Navigation.JournalOwnership.Automatic">
+      <topicdata group="api" notopic="" />
+      <apidata name="Automatic" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.JournalOwnership" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.JournalOwnership" ref="false" />
+      </containers>
+      <file name="9be1c4f3-2de9-6195-9956-ca44c7b117c5" />
+    </api>
+    <api id="F:System.Windows.Navigation.JournalOwnership.OwnsJournal">
+      <topicdata group="api" notopic="" />
+      <apidata name="OwnsJournal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.JournalOwnership" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.JournalOwnership" ref="false" />
+      </containers>
+      <file name="c37f3bbf-1566-e9ff-83f9-1b3a51449d9e" />
+    </api>
+    <api id="F:System.Windows.Navigation.JournalOwnership.UsesParentJournal">
+      <topicdata group="api" notopic="" />
+      <apidata name="UsesParentJournal" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.JournalOwnership" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.JournalOwnership" ref="false" />
+      </containers>
+      <file name="97c459ae-43be-81d1-d1ca-6ea9bc094c7c" />
+    </api>
+    <api id="T:System.Windows.Navigation.LoadCompletedEventHandler">
+      <topicdata group="api" />
+      <apidata name="LoadCompletedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="83f419ea-be65-90a2-c5d9-a21a7e7d08c9" />
+    </api>
+    <api id="T:System.Windows.Navigation.LoadResult">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.LoadResult" />
+      <apidata name="LoadResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="6b3fd422-eb1c-a73a-f0a3-0ecfe4c4fa72" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.LoadResult">
+      <topicdata name="LoadResult" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.LoadResult" />
+      <apidata name="LoadResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Navigation.LoadResult.#ctor">
+          <element api="M:System.Windows.Navigation.LoadResult.#ctor(System.Object)" />
+          <element api="M:System.Windows.Navigation.LoadResult.#ctor(System.Uri)" />
+        </element>
+        <element api="P:System.Windows.Navigation.LoadResult.LoadedContent" />
+        <element api="P:System.Windows.Navigation.LoadResult.RedirectUri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" />
+      </containers>
+      <file name="53ed4dc3-d9ae-94ca-3388-315e5c18fa31" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.LoadResult">
+      <topicdata name="LoadResult" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.LoadResult" />
+      <apidata name="LoadResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" />
+      </containers>
+      <file name="72b357dc-5b24-c338-a80c-55b0b79b9f88" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.LoadResult">
+      <topicdata name="LoadResult" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.LoadResult" />
+      <apidata name="LoadResult" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Navigation.LoadResult.LoadedContent" />
+        <element api="P:System.Windows.Navigation.LoadResult.RedirectUri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" />
+      </containers>
+      <file name="fda7a36b-7c3f-f743-01f9-d09ba9865e44" />
+    </api>
+    <api id="Overload:System.Windows.Navigation.LoadResult.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Navigation.LoadResult" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Navigation.LoadResult.#ctor(System.Object)" />
+        <element api="M:System.Windows.Navigation.LoadResult.#ctor(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </containers>
+      <file name="b35b6c1d-e0a7-3478-a9e2-bbc81fa6836d" />
+    </api>
+    <api id="M:System.Windows.Navigation.LoadResult.#ctor(System.Object)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Navigation.LoadResult.#ctor" />
+      <parameters>
+        <parameter name="loadedContent">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </containers>
+      <file name="515e3417-ace5-2379-62fa-b676bfd7869f" />
+    </api>
+    <api id="M:System.Windows.Navigation.LoadResult.#ctor(System.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Navigation.LoadResult.#ctor" />
+      <parameters>
+        <parameter name="redirectUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </containers>
+      <file name="ed15ab07-3209-8fe5-f61c-18fd99464d93" />
+    </api>
+    <api id="P:System.Windows.Navigation.LoadResult.LoadedContent">
+      <topicdata group="api" />
+      <apidata name="LoadedContent" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LoadedContent" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </containers>
+      <file name="b6c38b95-5b7b-eba1-0afa-eb720f37239a" />
+    </api>
+    <api id="P:System.Windows.Navigation.LoadResult.RedirectUri">
+      <topicdata group="api" />
+      <apidata name="RedirectUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RedirectUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </containers>
+      <file name="947365a6-b6a2-cbc7-6aca-577784510166" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigatedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigatedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="c6d4fe59-a582-7754-9fe9-6baee7119051" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigatingCancelEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.ComponentModel.CancelEventArgs" ref="true" />
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="8e26cf5a-3ef7-b819-531c-c5bad88e58f1" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.NavigatingCancelEventArgs">
+      <topicdata name="NavigatingCancelEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.ComponentModel.CancelEventArgs.Cancel" />
+        <element api="Overload:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor">
+          <element api="M:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor(System.Uri,System.Windows.Navigation.NavigationMode)" />
+          <element api="M:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor(System.Uri,System.Windows.Navigation.NavigationMode,System.Boolean,System.Boolean)" />
+        </element>
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.IsCancelable" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.IsNavigationInitiator" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.NavigationMode" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      </containers>
+      <file name="86ec6cde-3036-fd88-1859-9f8aab9bdf13" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.NavigatingCancelEventArgs">
+      <topicdata name="NavigatingCancelEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      </containers>
+      <file name="65012bb7-2edb-0e1d-2654-e750917bcbcc" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.NavigatingCancelEventArgs">
+      <topicdata name="NavigatingCancelEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      <apidata name="NavigatingCancelEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.ComponentModel.CancelEventArgs.Cancel" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.IsCancelable" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.IsNavigationInitiator" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.NavigationMode" />
+        <element api="P:System.Windows.Navigation.NavigatingCancelEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      </containers>
+      <file name="2c7dce61-9f7a-65d5-a3db-be8bc8ebdb1a" />
+    </api>
+    <api id="Overload:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigatingCancelEventArgs" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor(System.Uri,System.Windows.Navigation.NavigationMode)" />
+        <element api="M:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor(System.Uri,System.Windows.Navigation.NavigationMode,System.Boolean,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="ba57aff0-5d57-45ec-72f4-be5ced8f15d4" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor(System.Uri,System.Windows.Navigation.NavigationMode)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="db321bcd-bd8f-4d54-5dc9-1681c5e270cd" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor(System.Uri,System.Windows.Navigation.NavigationMode,System.Boolean,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Navigation.NavigatingCancelEventArgs.#ctor" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="mode">
+          <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+        </parameter>
+        <parameter name="IsCancelable">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="IsNavigationInitiator">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="eb15ed85-e02c-1e31-55af-1ccbe155e465" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigatingCancelEventArgs.IsCancelable">
+      <topicdata group="api" />
+      <apidata name="IsCancelable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsCancelable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1450f521-0e58-bb49-cbd6-ff5fa3c20cd4" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigatingCancelEventArgs.IsNavigationInitiator">
+      <topicdata group="api" />
+      <apidata name="IsNavigationInitiator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsNavigationInitiator" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="95aba6c9-1137-9c23-329f-ed4c4b278349" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigatingCancelEventArgs.NavigationMode">
+      <topicdata group="api" />
+      <apidata name="NavigationMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NavigationMode" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="23e40007-e66b-9322-ebe8-ef83a21492bf" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigatingCancelEventArgs.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </containers>
+      <file name="69035a8b-8f32-5deb-0105-c315d41e8f9c" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigatingCancelEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigatingCancelEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="4d0df962-5e25-9e2b-73b8-742554b709d0" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationCacheMode">
+      <topicdata group="api" />
+      <apidata name="NavigationCacheMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:System.Windows.Navigation.NavigationCacheMode.Disabled" />
+        <element api="F:System.Windows.Navigation.NavigationCacheMode.Required" />
+        <element api="F:System.Windows.Navigation.NavigationCacheMode.Enabled" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="3046b495-d7b0-0025-9754-8e0f8dcb75a8" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationCacheMode.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationCacheMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationCacheMode" ref="false" />
+      </containers>
+      <file name="2a4210d7-de47-32af-d4f1-d315c47c7a89" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationCacheMode.Enabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Enabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationCacheMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationCacheMode" ref="false" />
+      </containers>
+      <file name="9553ed30-5fec-e9df-d8ed-aaaa63b081b2" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationCacheMode.Required">
+      <topicdata group="api" notopic="" />
+      <apidata name="Required" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationCacheMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationCacheMode" ref="false" />
+      </containers>
+      <file name="2fdaf171-4d82-d22c-bc3f-3036cd5975e8" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationContext">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigationContext" />
+      <apidata name="NavigationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="9a200ba5-506a-b1d0-8f6c-35b3e9cb096f" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.NavigationContext">
+      <topicdata name="NavigationContext" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.NavigationContext" />
+      <apidata name="NavigationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Navigation.NavigationContext.QueryString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationContext" />
+      </containers>
+      <file name="08af6180-4bfd-8385-1373-2d04f0dc3621" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.NavigationContext">
+      <topicdata name="NavigationContext" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.NavigationContext" />
+      <apidata name="NavigationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationContext" />
+      </containers>
+      <file name="cc598849-d249-a956-8a16-51df84b80b08" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.NavigationContext">
+      <topicdata name="NavigationContext" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.NavigationContext" />
+      <apidata name="NavigationContext" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Navigation.NavigationContext.QueryString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationContext" />
+      </containers>
+      <file name="c6e77f31-6e78-b82a-10be-3a051713376e" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationContext.QueryString">
+      <topicdata group="api" />
+      <apidata name="QueryString" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_QueryString" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationContext" ref="true" />
+      </containers>
+      <file name="e011eb7b-f80a-5e4b-f231-ebdee9f0ecda" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:MS.Internal.IManagedPeerBase" ref="true" />
+        <type api="T:MS.Internal.INativeCoreTypeWrapper" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="38e28062-122c-c1f1-e9b7-5409a2bd20f6" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.NavigationEventArgs">
+      <topicdata name="NavigationEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="Overload:System.Windows.Navigation.NavigationEventArgs.#ctor">
+          <element api="M:System.Windows.Navigation.NavigationEventArgs.#ctor(System.Object,System.Uri)" />
+          <element api="M:System.Windows.Navigation.NavigationEventArgs.#ctor(System.Object,System.Uri,System.Windows.Navigation.NavigationMode,System.Boolean)" />
+        </element>
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.Content" />
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.IsNavigationInitiator" />
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.NavigationMode" />
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" />
+      </containers>
+      <file name="23307b60-bf49-6cad-c966-222e50345548" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.NavigationEventArgs">
+      <topicdata name="NavigationEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" />
+      </containers>
+      <file name="b0fc2741-33ae-6e19-5064-949cd0ac2c00" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.NavigationEventArgs">
+      <topicdata name="NavigationEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.NavigationEventArgs" />
+      <apidata name="NavigationEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.Content" />
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.IsNavigationInitiator" />
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.NavigationMode" />
+        <element api="P:System.Windows.Navigation.NavigationEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" />
+      </containers>
+      <file name="175d041c-ff72-07a8-0822-dad60866166e" />
+    </api>
+    <api id="Overload:System.Windows.Navigation.NavigationEventArgs.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigationEventArgs" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:System.Windows.Navigation.NavigationEventArgs.#ctor(System.Object,System.Uri)" />
+        <element api="M:System.Windows.Navigation.NavigationEventArgs.#ctor(System.Object,System.Uri,System.Windows.Navigation.NavigationMode,System.Boolean)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="8f9b0857-2b46-8fbb-ee6d-7ed137152de0" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationEventArgs.#ctor(System.Object,System.Uri)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Navigation.NavigationEventArgs.#ctor" />
+      <parameters>
+        <parameter name="content">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="6f770fb4-4d73-5bbe-70b2-0ace14e8f4f9" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationEventArgs.#ctor(System.Object,System.Uri,System.Windows.Navigation.NavigationMode,System.Boolean)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:System.Windows.Navigation.NavigationEventArgs.#ctor" />
+      <parameters>
+        <parameter name="content">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="NavigationMode">
+          <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+        </parameter>
+        <parameter name="IsNavigationInitiator">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="70ccbb4c-a4f7-bf7f-7765-e918570acde6" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationEventArgs.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Content" />
+      <returns>
+        <type api="T:System.Object" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="ace946d8-c16a-9d5c-a314-0dae3c9ee11b" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationEventArgs.IsNavigationInitiator">
+      <topicdata group="api" />
+      <apidata name="IsNavigationInitiator" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsNavigationInitiator" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f15af5db-7c02-d1cb-9443-c2f1eff38001" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationEventArgs.NavigationMode">
+      <topicdata group="api" />
+      <apidata name="NavigationMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NavigationMode" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.ComponentModel.EditorBrowsableAttribute" ref="true" />
+          <argument>
+            <type api="T:System.ComponentModel.EditorBrowsableState" ref="false" />
+            <enumValue>
+              <field name="Never" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="30b93271-7327-597b-1f09-e1d1c08a72c5" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationEventArgs.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </containers>
+      <file name="3df4d9dd-2b90-b586-4666-320eb292499a" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationFailedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="37d7ca8d-c9fc-2a29-d425-970dc24f8905" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.NavigationFailedEventArgs">
+      <topicdata name="NavigationFailedEventArgs" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Navigation.NavigationFailedEventArgs.Exception" />
+        <element api="P:System.Windows.Navigation.NavigationFailedEventArgs.Handled" />
+        <element api="P:System.Windows.Navigation.NavigationFailedEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      </containers>
+      <file name="040c4fca-9456-8ce1-bd7a-af7c9c0b1f4b" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.NavigationFailedEventArgs">
+      <topicdata name="NavigationFailedEventArgs" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      </containers>
+      <file name="000a2dd5-a821-312e-a8a7-a9fb116f890f" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.NavigationFailedEventArgs">
+      <topicdata name="NavigationFailedEventArgs" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      <apidata name="NavigationFailedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Navigation.NavigationFailedEventArgs.Exception" />
+        <element api="P:System.Windows.Navigation.NavigationFailedEventArgs.Handled" />
+        <element api="P:System.Windows.Navigation.NavigationFailedEventArgs.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" />
+      </containers>
+      <file name="ddf4698a-b728-e8e5-d71d-459c1e78d8cf" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationFailedEventArgs.Exception">
+      <topicdata group="api" />
+      <apidata name="Exception" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Exception" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" ref="true" />
+      </containers>
+      <file name="ef88ab76-b261-43b5-551a-925c57930c60" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationFailedEventArgs.Handled">
+      <topicdata group="api" />
+      <apidata name="Handled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Handled" />
+      <setter name="set_Handled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" ref="true" />
+      </containers>
+      <file name="f05b984b-9298-a712-29ac-03e28193915e" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationFailedEventArgs.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" ref="true" />
+      </containers>
+      <file name="3fc3ab4d-f6f1-3a25-843e-675a69bdf6c0" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationFailedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigationFailedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="c5750845-bcf3-935a-e14c-f671ec09b3e2" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationMode">
+      <topicdata group="api" />
+      <apidata name="NavigationMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <enumerationbase>
+        <type api="T:System.Byte" ref="false" />
+      </enumerationbase>
+      <elements>
+        <element api="F:System.Windows.Navigation.NavigationMode.New" />
+        <element api="F:System.Windows.Navigation.NavigationMode.Back" />
+        <element api="F:System.Windows.Navigation.NavigationMode.Forward" />
+        <element api="F:System.Windows.Navigation.NavigationMode.Refresh" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="07f39d7d-35f5-d620-0c5a-2b9e4f953594" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationMode.Back">
+      <topicdata group="api" notopic="" />
+      <apidata name="Back" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="13e1af8d-916d-ed00-2fa9-501086db40ba" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationMode.Forward">
+      <topicdata group="api" notopic="" />
+      <apidata name="Forward" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="eb80a1f3-811e-f072-cadc-5606a6db7a48" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationMode.New">
+      <topicdata group="api" notopic="" />
+      <apidata name="New" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="75254f1d-5a51-a053-3829-01ed25f58189" />
+    </api>
+    <api id="F:System.Windows.Navigation.NavigationMode.Refresh">
+      <topicdata group="api" notopic="" />
+      <apidata name="Refresh" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="System.Windows" module="System.Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.61118.0" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationMode" ref="false" />
+      </containers>
+      <file name="c28b83a3-0092-0e44-36b2-040e0936e81a" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationService">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.NavigationService" />
+      <apidata name="NavigationService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="44a9c4d6-24e7-406f-8c5e-df74c95362bf" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.NavigationService">
+      <topicdata name="NavigationService" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.NavigationService" />
+      <apidata name="NavigationService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="P:System.Windows.Navigation.NavigationService.CanGoBack" />
+        <element api="P:System.Windows.Navigation.NavigationService.CanGoForward" />
+        <element api="P:System.Windows.Navigation.NavigationService.CurrentSource" />
+        <element api="E:System.Windows.Navigation.NavigationService.FragmentNavigation" />
+        <element api="M:System.Windows.Navigation.NavigationService.GoBack" />
+        <element api="M:System.Windows.Navigation.NavigationService.GoForward" />
+        <element api="M:System.Windows.Navigation.NavigationService.Navigate(System.Uri)" />
+        <element api="E:System.Windows.Navigation.NavigationService.Navigated" />
+        <element api="E:System.Windows.Navigation.NavigationService.Navigating" />
+        <element api="E:System.Windows.Navigation.NavigationService.NavigationFailed" />
+        <element api="E:System.Windows.Navigation.NavigationService.NavigationStopped" />
+        <element api="M:System.Windows.Navigation.NavigationService.Refresh" />
+        <element api="P:System.Windows.Navigation.NavigationService.Source" />
+        <element api="M:System.Windows.Navigation.NavigationService.StopLoading" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" />
+      </containers>
+      <file name="71c8386b-1d05-ceb5-d8b0-c078e740991c" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.NavigationService">
+      <topicdata name="NavigationService" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.NavigationService" />
+      <apidata name="NavigationService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.NavigationService.GoBack" />
+        <element api="M:System.Windows.Navigation.NavigationService.GoForward" />
+        <element api="M:System.Windows.Navigation.NavigationService.Navigate(System.Uri)" />
+        <element api="M:System.Windows.Navigation.NavigationService.Refresh" />
+        <element api="M:System.Windows.Navigation.NavigationService.StopLoading" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" />
+      </containers>
+      <file name="ee88eeb4-f79f-ea35-caf6-a0bf635dc3dd" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.NavigationService">
+      <topicdata name="NavigationService" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.NavigationService" />
+      <apidata name="NavigationService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:System.Windows.Navigation.NavigationService.CanGoBack" />
+        <element api="P:System.Windows.Navigation.NavigationService.CanGoForward" />
+        <element api="P:System.Windows.Navigation.NavigationService.CurrentSource" />
+        <element api="P:System.Windows.Navigation.NavigationService.Source" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" />
+      </containers>
+      <file name="04d4bf1b-6449-4a49-7142-45f8595156cf" />
+    </api>
+    <api id="Events.T:System.Windows.Navigation.NavigationService">
+      <topicdata name="NavigationService" group="list" subgroup="Events" typeTopicId="T:System.Windows.Navigation.NavigationService" />
+      <apidata name="NavigationService" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:System.Windows.Navigation.NavigationService.FragmentNavigation" />
+        <element api="E:System.Windows.Navigation.NavigationService.Navigated" />
+        <element api="E:System.Windows.Navigation.NavigationService.Navigating" />
+        <element api="E:System.Windows.Navigation.NavigationService.NavigationFailed" />
+        <element api="E:System.Windows.Navigation.NavigationService.NavigationStopped" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" />
+      </containers>
+      <file name="254be133-882d-9751-c231-5219da7101c7" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationService.CanGoBack">
+      <topicdata group="api" />
+      <apidata name="CanGoBack" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanGoBack" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="c9bc0705-11d5-e274-4b5b-c9d1f4a81d77" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationService.CanGoForward">
+      <topicdata group="api" />
+      <apidata name="CanGoForward" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CanGoForward" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="5a91105a-67f8-5bc4-7b8d-160edbf6e230" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationService.CurrentSource">
+      <topicdata group="api" />
+      <apidata name="CurrentSource" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CurrentSource" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="f25b834c-b747-bf45-7e84-e9b5ffb3b684" />
+    </api>
+    <api id="E:System.Windows.Navigation.NavigationService.FragmentNavigation">
+      <topicdata group="api" />
+      <apidata name="FragmentNavigation" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_FragmentNavigation" />
+      <remover name="remove_FragmentNavigation" />
+      <eventhandler>
+        <type api="T:System.Windows.Navigation.FragmentNavigationEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Navigation.FragmentNavigationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="408a2b2a-3de5-9dd7-339d-2dd3c327bb6e" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationService.GoBack">
+      <topicdata group="api" />
+      <apidata name="GoBack" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="160a6d8e-0529-c752-5539-1d62aced1db9" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationService.GoForward">
+      <topicdata group="api" />
+      <apidata name="GoForward" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="8be113ed-57d3-1415-3e84-1c95b57afd8d" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationService.Navigate(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="Navigate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="source">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="5142cb96-29ba-b062-fbdb-b533cf26d308" />
+    </api>
+    <api id="E:System.Windows.Navigation.NavigationService.Navigated">
+      <topicdata group="api" />
+      <apidata name="Navigated" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Navigated" />
+      <remover name="remove_Navigated" />
+      <eventhandler>
+        <type api="T:System.Windows.Navigation.NavigatedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="39d5b888-1e33-da12-9415-b56cdff4884b" />
+    </api>
+    <api id="E:System.Windows.Navigation.NavigationService.Navigating">
+      <topicdata group="api" />
+      <apidata name="Navigating" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Navigating" />
+      <remover name="remove_Navigating" />
+      <eventhandler>
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Navigation.NavigatingCancelEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="22d18aa0-36d6-ae1a-c7db-24a5700e243b" />
+    </api>
+    <api id="E:System.Windows.Navigation.NavigationService.NavigationFailed">
+      <topicdata group="api" />
+      <apidata name="NavigationFailed" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_NavigationFailed" />
+      <remover name="remove_NavigationFailed" />
+      <eventhandler>
+        <type api="T:System.Windows.Navigation.NavigationFailedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Navigation.NavigationFailedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="b4be64d0-b4d3-6ca9-00b8-b40cd5f754f4" />
+    </api>
+    <api id="E:System.Windows.Navigation.NavigationService.NavigationStopped">
+      <topicdata group="api" />
+      <apidata name="NavigationStopped" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_NavigationStopped" />
+      <remover name="remove_NavigationStopped" />
+      <eventhandler>
+        <type api="T:System.Windows.Navigation.NavigationStoppedEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="19f0275c-8d1c-f97c-31b8-454b2e427b4c" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationService.Refresh">
+      <topicdata group="api" />
+      <apidata name="Refresh" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="84beb208-ea02-b20a-6387-dc49de8c244b" />
+    </api>
+    <api id="P:System.Windows.Navigation.NavigationService.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Source" />
+      <setter name="set_Source" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="f49c647c-cdbf-8177-5408-e1cd29919bb2" />
+    </api>
+    <api id="M:System.Windows.Navigation.NavigationService.StopLoading">
+      <topicdata group="api" />
+      <apidata name="StopLoading" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.NavigationService" ref="true" />
+      </containers>
+      <file name="e26989d9-8242-38d5-1d58-60628bc7a027" />
+    </api>
+    <api id="T:System.Windows.Navigation.NavigationStoppedEventHandler">
+      <topicdata group="api" />
+      <apidata name="NavigationStoppedEventHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="sender">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+        <parameter name="e">
+          <type api="T:System.Windows.Navigation.NavigationEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="a7d87d7c-b4f7-b369-24ba-dd9dd0e060b0" />
+    </api>
+    <api id="T:System.Windows.Navigation.PageResourceContentLoader">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.PageResourceContentLoader" />
+      <apidata name="PageResourceContentLoader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.PageResourceContentLoader.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="2331d3fd-dd14-a304-a5b6-ab955241d244" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.PageResourceContentLoader">
+      <topicdata name="PageResourceContentLoader" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.PageResourceContentLoader" />
+      <apidata name="PageResourceContentLoader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.PageResourceContentLoader.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.#ctor" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.CancelLoad(System.IAsyncResult)" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.CanLoad(System.Uri,System.Uri)" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.EndLoad(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" />
+      </containers>
+      <file name="bbcc74ae-2ac3-3eac-fb29-da64fd2b5bd8" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.PageResourceContentLoader">
+      <topicdata name="PageResourceContentLoader" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.PageResourceContentLoader" />
+      <apidata name="PageResourceContentLoader" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.PageResourceContentLoader.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.CancelLoad(System.IAsyncResult)" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.CanLoad(System.Uri,System.Uri)" />
+        <element api="M:System.Windows.Navigation.PageResourceContentLoader.EndLoad(System.IAsyncResult)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" />
+      </containers>
+      <file name="e812c5fa-009b-f266-548c-3e7a0dc44f24" />
+    </api>
+    <api id="M:System.Windows.Navigation.PageResourceContentLoader.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" ref="true" />
+      </containers>
+      <file name="c0f63726-6f79-9e62-b855-a2642e7fff47" />
+    </api>
+    <api id="M:System.Windows.Navigation.PageResourceContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)">
+      <topicdata group="api" />
+      <apidata name="BeginLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="targetUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="currentUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="userCallback">
+          <type api="T:System.AsyncCallback" ref="true" />
+        </parameter>
+        <parameter name="asyncState">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.IAsyncResult" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Navigation.INavigationContentLoader.BeginLoad(System.Uri,System.Uri,System.AsyncCallback,System.Object)">
+          <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" ref="true" />
+      </containers>
+      <file name="c61cec2f-a2a7-a283-67c8-deccc9ececbb" />
+    </api>
+    <api id="M:System.Windows.Navigation.PageResourceContentLoader.CancelLoad(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="CancelLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="asyncResult">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <implements>
+        <member api="M:System.Windows.Navigation.INavigationContentLoader.CancelLoad(System.IAsyncResult)">
+          <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" ref="true" />
+      </containers>
+      <file name="6181f695-548a-8c13-99de-e439d4f39363" />
+    </api>
+    <api id="M:System.Windows.Navigation.PageResourceContentLoader.CanLoad(System.Uri,System.Uri)">
+      <topicdata group="api" />
+      <apidata name="CanLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="targetUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+        <parameter name="currentUri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Navigation.INavigationContentLoader.CanLoad(System.Uri,System.Uri)">
+          <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" ref="true" />
+      </containers>
+      <file name="4bb43ff5-5a84-4f10-7fb1-f1460d588fc1" />
+    </api>
+    <api id="M:System.Windows.Navigation.PageResourceContentLoader.EndLoad(System.IAsyncResult)">
+      <topicdata group="api" />
+      <apidata name="EndLoad" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="asyncResult">
+          <type api="T:System.IAsyncResult" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Windows.Navigation.LoadResult" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Windows.Navigation.INavigationContentLoader.EndLoad(System.IAsyncResult)">
+          <type api="T:System.Windows.Navigation.INavigationContentLoader" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.PageResourceContentLoader" ref="true" />
+      </containers>
+      <file name="e91cb184-4a8e-65a6-4eba-b57fab975327" />
+    </api>
+    <api id="T:System.Windows.Navigation.UriMapper">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.UriMapper" />
+      <apidata name="UriMapper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapper.#ctor" contentProperty="P:System.Windows.Navigation.UriMapper.UriMappings" />
+      <family>
+        <ancestors>
+          <type api="T:System.Windows.Navigation.UriMapperBase" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Windows.Markup.ContentPropertyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>UriMappings</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="1f85fd98-d127-d349-30da-ca9469a0896d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.UriMapper">
+      <topicdata name="UriMapper" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.UriMapper" />
+      <apidata name="UriMapper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapper.#ctor" contentProperty="P:System.Windows.Navigation.UriMapper.UriMappings" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.UriMapper.#ctor" />
+        <element api="M:System.Windows.Navigation.UriMapper.MapUri(System.Uri)" />
+        <element api="P:System.Windows.Navigation.UriMapper.UriMappings" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapper" />
+      </containers>
+      <file name="b0892a50-2ac7-5e84-d560-6026ec560a81" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.UriMapper">
+      <topicdata name="UriMapper" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.UriMapper" />
+      <apidata name="UriMapper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapper.#ctor" contentProperty="P:System.Windows.Navigation.UriMapper.UriMappings" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.UriMapper.MapUri(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapper" />
+      </containers>
+      <file name="b45cfafc-0d56-21ac-b73b-d600931f1c20" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.UriMapper">
+      <topicdata name="UriMapper" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.UriMapper" />
+      <apidata name="UriMapper" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapper.#ctor" contentProperty="P:System.Windows.Navigation.UriMapper.UriMappings" />
+      <elements>
+        <element api="P:System.Windows.Navigation.UriMapper.UriMappings" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapper" />
+      </containers>
+      <file name="e44c91b7-ef92-612e-e12f-b8038d4d0161" />
+    </api>
+    <api id="M:System.Windows.Navigation.UriMapper.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapper" ref="true" />
+      </containers>
+      <file name="54986640-b66d-0541-d3c0-9994d221d667" />
+    </api>
+    <api id="M:System.Windows.Navigation.UriMapper.MapUri(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="MapUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Windows.Navigation.UriMapperBase.MapUri(System.Uri)">
+          <type api="T:System.Windows.Navigation.UriMapperBase" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapper" ref="true" />
+      </containers>
+      <file name="4e88cd42-bf20-95f2-ca45-4a2168c02840" />
+    </api>
+    <api id="P:System.Windows.Navigation.UriMapper.UriMappings">
+      <topicdata group="api" />
+      <apidata name="UriMappings" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_UriMappings" />
+      <returns>
+        <type api="T:System.Collections.ObjectModel.Collection`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Navigation.UriMapping" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapper" ref="true" />
+      </containers>
+      <file name="8c2a6234-b7a3-de4b-8d8d-3ef1f8569eff" />
+    </api>
+    <api id="T:System.Windows.Navigation.UriMapperBase">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.UriMapperBase" />
+      <apidata name="UriMapperBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:System.Windows.Navigation.UriMapper" ref="true" />
+        </descendents>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="651dc0f0-199b-0283-af9f-5be178e7503d" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.UriMapperBase">
+      <topicdata name="UriMapperBase" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.UriMapperBase" />
+      <apidata name="UriMapperBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.UriMapperBase.#ctor" />
+        <element api="M:System.Windows.Navigation.UriMapperBase.MapUri(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapperBase" />
+      </containers>
+      <file name="603f015a-5ca3-5f44-0c31-cc3a3e1fc699" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.UriMapperBase">
+      <topicdata name="UriMapperBase" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.UriMapperBase" />
+      <apidata name="UriMapperBase" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.UriMapperBase.MapUri(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapperBase" />
+      </containers>
+      <file name="b3ae93c5-dd7a-f9a8-5722-97acbeca3c15" />
+    </api>
+    <api id="M:System.Windows.Navigation.UriMapperBase.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="family" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapperBase" ref="true" />
+      </containers>
+      <file name="e5116319-c4e1-1810-8750-09fd5ba3f4f8" />
+    </api>
+    <api id="M:System.Windows.Navigation.UriMapperBase.MapUri(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="MapUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapperBase" ref="true" />
+      </containers>
+      <file name="64319954-982a-aaaa-4c21-5eacc586d128" />
+    </api>
+    <api id="T:System.Windows.Navigation.UriMapping">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Windows.Navigation.UriMapping" />
+      <apidata name="UriMapping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapping.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+      </containers>
+      <file name="c2246ef0-8eb0-5c48-052b-3b2f765872b6" />
+    </api>
+    <api id="AllMembers.T:System.Windows.Navigation.UriMapping">
+      <topicdata name="UriMapping" group="list" subgroup="members" typeTopicId="T:System.Windows.Navigation.UriMapping" />
+      <apidata name="UriMapping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapping.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.UriMapping.#ctor" />
+        <element api="P:System.Windows.Navigation.UriMapping.MappedUri" />
+        <element api="M:System.Windows.Navigation.UriMapping.MapUri(System.Uri)" />
+        <element api="P:System.Windows.Navigation.UriMapping.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" />
+      </containers>
+      <file name="d6f5e357-8c52-e723-b82f-44af006a59fa" />
+    </api>
+    <api id="Methods.T:System.Windows.Navigation.UriMapping">
+      <topicdata name="UriMapping" group="list" subgroup="Methods" typeTopicId="T:System.Windows.Navigation.UriMapping" />
+      <apidata name="UriMapping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapping.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Windows.Navigation.UriMapping.MapUri(System.Uri)" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" />
+      </containers>
+      <file name="b151f3d1-be8c-cc48-ef94-ec98258df4d6" />
+    </api>
+    <api id="Properties.T:System.Windows.Navigation.UriMapping">
+      <topicdata name="UriMapping" group="list" subgroup="Properties" typeTopicId="T:System.Windows.Navigation.UriMapping" />
+      <apidata name="UriMapping" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Windows.Navigation.UriMapping.#ctor" />
+      <elements>
+        <element api="P:System.Windows.Navigation.UriMapping.MappedUri" />
+        <element api="P:System.Windows.Navigation.UriMapping.Uri" />
+      </elements>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" />
+      </containers>
+      <file name="0461e85e-8c0b-4d9a-6561-8fd40944fd74" />
+    </api>
+    <api id="M:System.Windows.Navigation.UriMapping.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" ref="true" />
+      </containers>
+      <file name="efaea00a-8a08-5eb2-677f-32db055fa4f2" />
+    </api>
+    <api id="P:System.Windows.Navigation.UriMapping.MappedUri">
+      <topicdata group="api" />
+      <apidata name="MappedUri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_MappedUri" />
+      <setter name="set_MappedUri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" ref="true" />
+      </containers>
+      <file name="436ca3c9-9aff-cb53-d09f-596b0ceb6692" />
+    </api>
+    <api id="M:System.Windows.Navigation.UriMapping.MapUri(System.Uri)">
+      <topicdata group="api" />
+      <apidata name="MapUri" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="uri">
+          <type api="T:System.Uri" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" ref="true" />
+      </containers>
+      <file name="226663f2-a7fa-35af-a3a0-fa3b90ef226e" />
+    </api>
+    <api id="P:System.Windows.Navigation.UriMapping.Uri">
+      <topicdata group="api" />
+      <apidata name="Uri" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Uri" />
+      <setter name="set_Uri" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="System.Windows.Controls.Navigation" module="System.Windows.Controls.Navigation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="5.0.5.0 (5.0.61118.0)" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Windows.Navigation" />
+        <type api="T:System.Windows.Navigation.UriMapping" ref="true" />
+      </containers>
+      <file name="d6d524bc-3ed4-a85b-c0dc-611360f7da48" />
+    </api>
+  </apis>
+</reflection>

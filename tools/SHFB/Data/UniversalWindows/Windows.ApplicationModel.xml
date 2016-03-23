@@ -1,0 +1,4081 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+    <assembly name="Windows.Phone.PhoneContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.ApplicationModel">
+      <topicdata group="api" />
+      <apidata name="Windows.ApplicationModel" group="namespace" />
+      <elements>
+        <element api="T:Windows.ApplicationModel.AppDisplayInfo" />
+        <element api="T:Windows.ApplicationModel.AppInfo" />
+        <element api="T:Windows.ApplicationModel.SuspendingEventArgs" />
+        <element api="T:Windows.ApplicationModel.ISuspendingDeferral" />
+        <element api="T:Windows.ApplicationModel.SuspendingDeferral" />
+        <element api="T:Windows.ApplicationModel.ISuspendingOperation" />
+        <element api="T:Windows.ApplicationModel.SuspendingOperation" />
+        <element api="T:Windows.ApplicationModel.ISuspendingEventArgs" />
+        <element api="T:Windows.ApplicationModel.PackageVersion" />
+        <element api="T:Windows.ApplicationModel.PackageStatus" />
+        <element api="T:Windows.ApplicationModel.PackageId" />
+        <element api="T:Windows.ApplicationModel.Package" />
+        <element api="T:Windows.ApplicationModel.DesignMode" />
+        <element api="T:Windows.ApplicationModel.CameraApplicationManager" />
+      </elements>
+      <file name="8005e47a-a5a9-1b39-d4fc-96fe1ca79aff" />
+    </api>
+    <api id="T:Windows.ApplicationModel.AppDisplayInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.AppDisplayInfo" />
+      <apidata name="AppDisplayInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="5fbd75ea-012e-ad52-18ba-fb6f183db0f7" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.AppDisplayInfo">
+      <topicdata name="AppDisplayInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.AppDisplayInfo" />
+      <apidata name="AppDisplayInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.AppDisplayInfo.Description" />
+        <element api="P:Windows.ApplicationModel.AppDisplayInfo.DisplayName" />
+        <element api="M:Windows.ApplicationModel.AppDisplayInfo.GetLogo(Windows.Foundation.Size)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" />
+      </containers>
+      <file name="36b0314e-d5b4-dcc4-c0f7-d18833b65723" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.AppDisplayInfo">
+      <topicdata name="AppDisplayInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.AppDisplayInfo" />
+      <apidata name="AppDisplayInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.AppDisplayInfo.GetLogo(Windows.Foundation.Size)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" />
+      </containers>
+      <file name="69ab9427-8ee0-f74a-6a4a-d1ff105cd40a" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.AppDisplayInfo">
+      <topicdata name="AppDisplayInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.AppDisplayInfo" />
+      <apidata name="AppDisplayInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.AppDisplayInfo.Description" />
+        <element api="P:Windows.ApplicationModel.AppDisplayInfo.DisplayName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" />
+      </containers>
+      <file name="1ca7ede6-8b0f-e683-0056-2fb847722c13" />
+    </api>
+    <api id="P:Windows.ApplicationModel.AppDisplayInfo.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" ref="true" />
+      </containers>
+      <file name="0fd10ba2-e063-0a8a-aa9c-3475a5fa4276" />
+    </api>
+    <api id="P:Windows.ApplicationModel.AppDisplayInfo.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" ref="true" />
+      </containers>
+      <file name="ad986e94-d2b2-96eb-3391-0a5664498942" />
+    </api>
+    <api id="M:Windows.ApplicationModel.AppDisplayInfo.GetLogo(Windows.Foundation.Size)">
+      <topicdata group="api" />
+      <apidata name="GetLogo" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="size" in="true">
+          <type api="T:Windows.Foundation.Size" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.Storage.Streams.RandomAccessStreamReference" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" ref="true" />
+      </containers>
+      <file name="3666e183-e889-6a9e-464e-34626808e5f0" />
+    </api>
+    <api id="T:Windows.ApplicationModel.AppInfo">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.AppInfo" />
+      <apidata name="AppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="cd9c514c-48a1-91a5-867f-e855a94effe6" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.AppInfo">
+      <topicdata name="AppInfo" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.AppInfo" />
+      <apidata name="AppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.AppInfo.AppUserModelId" />
+        <element api="P:Windows.ApplicationModel.AppInfo.DisplayInfo" />
+        <element api="P:Windows.ApplicationModel.AppInfo.Id" />
+        <element api="P:Windows.ApplicationModel.AppInfo.PackageFamilyName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" />
+      </containers>
+      <file name="4d99a4dd-7bfd-a0c0-a2f8-cd229794e059" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.AppInfo">
+      <topicdata name="AppInfo" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.AppInfo" />
+      <apidata name="AppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" />
+      </containers>
+      <file name="1d202fc1-63eb-a9dd-2244-c8763bd553ee" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.AppInfo">
+      <topicdata name="AppInfo" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.AppInfo" />
+      <apidata name="AppInfo" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.AppInfo.AppUserModelId" />
+        <element api="P:Windows.ApplicationModel.AppInfo.DisplayInfo" />
+        <element api="P:Windows.ApplicationModel.AppInfo.Id" />
+        <element api="P:Windows.ApplicationModel.AppInfo.PackageFamilyName" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" />
+      </containers>
+      <file name="d6ce9285-6b15-74d6-278f-d2d0ba7e4aa3" />
+    </api>
+    <api id="P:Windows.ApplicationModel.AppInfo.AppUserModelId">
+      <topicdata group="api" />
+      <apidata name="AppUserModelId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_AppUserModelId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" ref="true" />
+      </containers>
+      <file name="a5af7c26-21eb-dc41-abd2-eb7158e08d14" />
+    </api>
+    <api id="P:Windows.ApplicationModel.AppInfo.DisplayInfo">
+      <topicdata group="api" />
+      <apidata name="DisplayInfo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayInfo" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.AppDisplayInfo" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" ref="true" />
+      </containers>
+      <file name="8a186066-c5c6-a100-07b8-9f3de2d199e9" />
+    </api>
+    <api id="P:Windows.ApplicationModel.AppInfo.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" ref="true" />
+      </containers>
+      <file name="bf3ca663-9494-02e7-6d67-f069e5e4e829" />
+    </api>
+    <api id="P:Windows.ApplicationModel.AppInfo.PackageFamilyName">
+      <topicdata group="api" />
+      <apidata name="PackageFamilyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PackageFamilyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.AppInfo" ref="true" />
+      </containers>
+      <file name="c99c7a45-7511-2438-a0e2-5566cf1e25ea" />
+    </api>
+    <api id="T:Windows.ApplicationModel.CameraApplicationManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.CameraApplicationManager" />
+      <apidata name="CameraApplicationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Phone.PhoneContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="54ddfa2e-e221-41e2-bbcd-dba4180c3086" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.CameraApplicationManager">
+      <topicdata name="CameraApplicationManager" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.CameraApplicationManager" />
+      <apidata name="CameraApplicationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.CameraApplicationManager.ShowInstalledApplicationsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.CameraApplicationManager" />
+      </containers>
+      <file name="d4c5e9c7-e260-dbc7-ec68-c0538d2a39b9" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.CameraApplicationManager">
+      <topicdata name="CameraApplicationManager" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.CameraApplicationManager" />
+      <apidata name="CameraApplicationManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.CameraApplicationManager.ShowInstalledApplicationsUI" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.CameraApplicationManager" />
+      </containers>
+      <file name="5b4a0510-f08b-55f2-3e20-64e098265f48" />
+    </api>
+    <api id="M:Windows.ApplicationModel.CameraApplicationManager.ShowInstalledApplicationsUI">
+      <topicdata group="api" />
+      <apidata name="ShowInstalledApplicationsUI" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Windows.Phone.PhoneContract" module="Windows.Phone.PhoneContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.CameraApplicationManager" ref="true" />
+      </containers>
+      <file name="5d56e00e-4213-b39d-7d91-63afbb1e631d" />
+    </api>
+    <api id="T:Windows.ApplicationModel.DesignMode">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.DesignMode" />
+      <apidata name="DesignMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="71fe622e-aac0-6f51-35bb-fe89b63f0bdf" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.DesignMode">
+      <topicdata name="DesignMode" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.DesignMode" />
+      <apidata name="DesignMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DesignMode.DesignModeEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.DesignMode" />
+      </containers>
+      <file name="18147565-6012-0110-1bac-da5fdf7e857a" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.DesignMode">
+      <topicdata name="DesignMode" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.DesignMode" />
+      <apidata name="DesignMode" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.DesignMode.DesignModeEnabled" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.DesignMode" />
+      </containers>
+      <file name="85e2d0be-32f7-3520-53db-8f20a3abe849" />
+    </api>
+    <api id="P:Windows.ApplicationModel.DesignMode.DesignModeEnabled">
+      <topicdata group="api" />
+      <apidata name="DesignModeEnabled" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DesignModeEnabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.DesignMode" ref="true" />
+      </containers>
+      <file name="855fe19c-2057-cf7e-c911-9a678a19de2f" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ISuspendingDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.ISuspendingDeferral" />
+      <apidata name="ISuspendingDeferral" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.WebUI.SuspendingDeferral" ref="true" />
+        <type api="T:Windows.ApplicationModel.SuspendingDeferral" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>1494484233</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>35785</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20148</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>54</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>218</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>189</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>196</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>244</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>111</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>102</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="d9f9c4f9-6f42-96c0-b081-c79eecd14563" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.ISuspendingDeferral">
+      <topicdata name="ISuspendingDeferral" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.ISuspendingDeferral" />
+      <apidata name="ISuspendingDeferral" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.ISuspendingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingDeferral" />
+      </containers>
+      <file name="3326bdec-c55f-129d-c4ab-f5c2ac1a9bcc" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.ISuspendingDeferral">
+      <topicdata name="ISuspendingDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.ISuspendingDeferral" />
+      <apidata name="ISuspendingDeferral" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.ISuspendingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingDeferral" />
+      </containers>
+      <file name="c384e044-c34e-d798-1f9b-27f62d35731d" />
+    </api>
+    <api id="M:Windows.ApplicationModel.ISuspendingDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingDeferral" ref="true" />
+      </containers>
+      <file name="a968629a-6db4-8f41-ad5d-2e9a70e15db0" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ISuspendingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.ISuspendingEventArgs" />
+      <apidata name="ISuspendingEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.WebUI.SuspendingEventArgs" ref="true" />
+        <type api="T:Windows.ApplicationModel.SuspendingEventArgs" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2516982789</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>11706</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>19720</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>176</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>189</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>43</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>48</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>161</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>49</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>198</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>170</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8afd61fe-7510-2163-d7ef-270e2da89bb0" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.ISuspendingEventArgs">
+      <topicdata name="ISuspendingEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.ISuspendingEventArgs" />
+      <apidata name="ISuspendingEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.ISuspendingEventArgs.SuspendingOperation" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingEventArgs" />
+      </containers>
+      <file name="062b8039-8143-3741-410b-997c75a97117" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.ISuspendingEventArgs">
+      <topicdata name="ISuspendingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.ISuspendingEventArgs" />
+      <apidata name="ISuspendingEventArgs" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.ISuspendingEventArgs.SuspendingOperation" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingEventArgs" />
+      </containers>
+      <file name="336e540f-a3f9-a03a-07bb-0f7fea35682a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.ISuspendingEventArgs.SuspendingOperation">
+      <topicdata group="api" />
+      <apidata name="SuspendingOperation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_SuspendingOperation" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingEventArgs" ref="true" />
+      </containers>
+      <file name="013e90d0-50b6-32c0-7a66-5d4bc24abcde" />
+    </api>
+    <api id="T:Windows.ApplicationModel.ISuspendingOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.ISuspendingOperation" />
+      <apidata name="ISuspendingOperation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <implementors>
+        <type api="T:Windows.UI.WebUI.SuspendingOperation" ref="true" />
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" ref="true" />
+      </implementors>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2644822593</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>8417</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>20123</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>159</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>101</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>169</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>244</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>53</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>52</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>12</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>58</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="efe846d9-bea9-50f7-9b7b-ba735af91ee7" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.ISuspendingOperation">
+      <topicdata name="ISuspendingOperation" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.ISuspendingOperation" />
+      <apidata name="ISuspendingOperation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.ISuspendingOperation.Deadline" />
+        <element api="M:Windows.ApplicationModel.ISuspendingOperation.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingOperation" />
+      </containers>
+      <file name="74ab25a2-8a45-e933-6c3c-e98808f3aea6" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.ISuspendingOperation">
+      <topicdata name="ISuspendingOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.ISuspendingOperation" />
+      <apidata name="ISuspendingOperation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.ApplicationModel.ISuspendingOperation.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingOperation" />
+      </containers>
+      <file name="7b4b9a03-d8c5-a5e8-2ef5-000ead712f5d" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.ISuspendingOperation">
+      <topicdata name="ISuspendingOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.ISuspendingOperation" />
+      <apidata name="ISuspendingOperation" group="type" subgroup="interface" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.ISuspendingOperation.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingOperation" />
+      </containers>
+      <file name="15ba0a25-9616-de71-2ef5-6093baeac48f" />
+    </api>
+    <api id="P:Windows.ApplicationModel.ISuspendingOperation.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingOperation" ref="true" />
+      </containers>
+      <file name="73ba4467-1ca5-83c7-59ae-5379368bc7ba" />
+    </api>
+    <api id="M:Windows.ApplicationModel.ISuspendingOperation.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata abstract="true" virtual="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SuspendingDeferral" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.ISuspendingOperation" ref="true" />
+      </containers>
+      <file name="1ca8bd89-7538-9dd6-d22b-29d0aa484ca6" />
+    </api>
+    <api id="T:Windows.ApplicationModel.Package">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.Package" />
+      <apidata name="Package" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="c965879a-c0b8-8eda-fa73-6c1112c74b03" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.Package">
+      <topicdata name="Package" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.Package" />
+      <apidata name="Package" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.Current" />
+        <element api="P:Windows.ApplicationModel.Package.Dependencies" />
+        <element api="P:Windows.ApplicationModel.Package.Description" />
+        <element api="P:Windows.ApplicationModel.Package.DisplayName" />
+        <element api="M:Windows.ApplicationModel.Package.GetAppListEntriesAsync">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.ApplicationModel.Package.GetThumbnailToken">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.Id" />
+        <element api="P:Windows.ApplicationModel.Package.InstallDate">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.InstalledDate">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.InstalledLocation" />
+        <element api="P:Windows.ApplicationModel.Package.IsBundle" />
+        <element api="P:Windows.ApplicationModel.Package.IsDevelopmentMode" />
+        <element api="P:Windows.ApplicationModel.Package.IsFramework" />
+        <element api="P:Windows.ApplicationModel.Package.IsResourcePackage" />
+        <element api="M:Windows.ApplicationModel.Package.Launch(System.String)">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.Logo" />
+        <element api="P:Windows.ApplicationModel.Package.PublisherDisplayName" />
+        <element api="P:Windows.ApplicationModel.Package.Status">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" />
+      </containers>
+      <file name="a5797296-704f-a20b-92d6-bf9dd247ff04" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.Package">
+      <topicdata name="Package" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.Package" />
+      <apidata name="Package" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.Package.GetAppListEntriesAsync">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.ApplicationModel.Package.GetThumbnailToken">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="M:Windows.ApplicationModel.Package.Launch(System.String)">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" />
+      </containers>
+      <file name="5db6a02d-db79-78bc-f050-242b456045c2" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.Package">
+      <topicdata name="Package" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.Package" />
+      <apidata name="Package" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.Package.Current" />
+        <element api="P:Windows.ApplicationModel.Package.Dependencies" />
+        <element api="P:Windows.ApplicationModel.Package.Description" />
+        <element api="P:Windows.ApplicationModel.Package.DisplayName" />
+        <element api="P:Windows.ApplicationModel.Package.Id" />
+        <element api="P:Windows.ApplicationModel.Package.InstallDate">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.InstalledDate">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.Package.InstalledLocation" />
+        <element api="P:Windows.ApplicationModel.Package.IsBundle" />
+        <element api="P:Windows.ApplicationModel.Package.IsDevelopmentMode" />
+        <element api="P:Windows.ApplicationModel.Package.IsFramework" />
+        <element api="P:Windows.ApplicationModel.Package.IsResourcePackage" />
+        <element api="P:Windows.ApplicationModel.Package.Logo" />
+        <element api="P:Windows.ApplicationModel.Package.PublisherDisplayName" />
+        <element api="P:Windows.ApplicationModel.Package.Status">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" />
+      </containers>
+      <file name="b4a2038e-86ea-86d1-8a25-8a4e4874c9e6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.Current">
+      <topicdata group="api" />
+      <apidata name="Current" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Current" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="57648c04-66a4-c807-06ab-31882ba86cab" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.Dependencies">
+      <topicdata group="api" />
+      <apidata name="Dependencies" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Dependencies" />
+      <returns>
+        <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+          <specialization>
+            <type api="T:Windows.ApplicationModel.Package" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="23164604-2ae6-9811-0bc2-8cd8a642cf07" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.Description">
+      <topicdata group="api" />
+      <apidata name="Description" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Description" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="afc83a9e-6d22-62b0-02f5-5070ae2ab6e5" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.DisplayName">
+      <topicdata group="api" />
+      <apidata name="DisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="17e135af-a0b1-484f-98e3-d68696cd1737" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Package.GetAppListEntriesAsync">
+      <topicdata group="api" />
+      <apidata name="GetAppListEntriesAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncOperation`1" ref="true">
+          <specialization>
+            <type api="T:System.Collections.Generic.IReadOnlyList`1" ref="true">
+              <specialization>
+                <type api="T:Windows.ApplicationModel.Core.AppListEntry" ref="true" />
+              </specialization>
+            </type>
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="de82e86f-d321-72f0-2fdd-4dc9cd8ff2a9" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Package.GetThumbnailToken">
+      <topicdata group="api" />
+      <apidata name="GetThumbnailToken" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="18869b56-ecd1-b35e-808a-456769a17493" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.Id">
+      <topicdata group="api" />
+      <apidata name="Id" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Id" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="67c21c04-ced0-4614-6ce3-629b2cbdb966" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.InstallDate">
+      <topicdata group="api" />
+      <apidata name="InstallDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InstallDate" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="4c759c5f-fa93-ec32-d7d0-4917e6a52952" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.InstalledDate">
+      <topicdata group="api" />
+      <apidata name="InstalledDate" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InstalledDate" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="c36bf07e-2f45-d779-e260-442d5a2035e6" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.InstalledLocation">
+      <topicdata group="api" />
+      <apidata name="InstalledLocation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_InstalledLocation" />
+      <returns>
+        <type api="T:Windows.Storage.StorageFolder" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="eb64be31-db43-f827-d8f9-70d7cb37d380" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.IsBundle">
+      <topicdata group="api" />
+      <apidata name="IsBundle" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsBundle" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="f8c656f2-56cc-2d56-64e2-91cd94b8ce75" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.IsDevelopmentMode">
+      <topicdata group="api" />
+      <apidata name="IsDevelopmentMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsDevelopmentMode" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="ac09baa8-8820-13a8-26e2-ae54c80d5c1a" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.IsFramework">
+      <topicdata group="api" />
+      <apidata name="IsFramework" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsFramework" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="4b59f913-ea69-6bb1-b113-c44394e668d4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.IsResourcePackage">
+      <topicdata group="api" />
+      <apidata name="IsResourcePackage" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_IsResourcePackage" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="2a271cad-7550-2f07-ee9a-8e7c6dd13329" />
+    </api>
+    <api id="M:Windows.ApplicationModel.Package.Launch(System.String)">
+      <topicdata group="api" />
+      <apidata name="Launch" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="parameters" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DeprecatedAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Launch may be altered or unavailable for releases after Windows 8.1. Instead, for SmartCardTrigger scenarios use SmartCardTriggerDetails.TryLaunchSelfAsync</value>
+          </argument>
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.DeprecationType" ref="false" />
+            <enumValue>
+              <field name="Deprecate" />
+            </enumValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a8ef136a-daa6-34fd-e6fd-ca0bd932c5d7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.Logo">
+      <topicdata group="api" />
+      <apidata name="Logo" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Logo" />
+      <returns>
+        <type api="T:System.Uri" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="c2fa033d-5876-35df-1d55-3cd9a682f025" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.PublisherDisplayName">
+      <topicdata group="api" />
+      <apidata name="PublisherDisplayName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PublisherDisplayName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="dccb33a2-90d9-6ed5-f23d-925f2e69ee16" />
+    </api>
+    <api id="P:Windows.ApplicationModel.Package.Status">
+      <topicdata group="api" />
+      <apidata name="Status" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Status" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.Package" ref="true" />
+      </containers>
+      <file name="d37e529a-87a6-aa2a-42b3-fb54f650159a" />
+    </api>
+    <api id="T:Windows.ApplicationModel.PackageId">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.PackageId" />
+      <apidata name="PackageId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100794368</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="89bd6946-0eaf-2632-ef41-fbba444a9a41" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.PackageId">
+      <topicdata name="PackageId" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.PackageId" />
+      <apidata name="PackageId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.PackageId.Architecture" />
+        <element api="P:Windows.ApplicationModel.PackageId.Author">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.PackageId.FamilyName" />
+        <element api="P:Windows.ApplicationModel.PackageId.FullName" />
+        <element api="P:Windows.ApplicationModel.PackageId.Name" />
+        <element api="P:Windows.ApplicationModel.PackageId.ProductId">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.PackageId.Publisher" />
+        <element api="P:Windows.ApplicationModel.PackageId.PublisherId" />
+        <element api="P:Windows.ApplicationModel.PackageId.ResourceId" />
+        <element api="P:Windows.ApplicationModel.PackageId.Version" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" />
+      </containers>
+      <file name="c39ca2c9-7714-ba73-1eb8-ff54d8a08eb4" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.PackageId">
+      <topicdata name="PackageId" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.PackageId" />
+      <apidata name="PackageId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" />
+      </containers>
+      <file name="2c7c1c29-3c23-9b3e-9b88-2c46cd2d2ee2" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.PackageId">
+      <topicdata name="PackageId" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.PackageId" />
+      <apidata name="PackageId" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.PackageId.Architecture" />
+        <element api="P:Windows.ApplicationModel.PackageId.Author">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.PackageId.FamilyName" />
+        <element api="P:Windows.ApplicationModel.PackageId.FullName" />
+        <element api="P:Windows.ApplicationModel.PackageId.Name" />
+        <element api="P:Windows.ApplicationModel.PackageId.ProductId">
+          <libraries>
+            <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary" />
+          </libraries>
+        </element>
+        <element api="P:Windows.ApplicationModel.PackageId.Publisher" />
+        <element api="P:Windows.ApplicationModel.PackageId.PublisherId" />
+        <element api="P:Windows.ApplicationModel.PackageId.ResourceId" />
+        <element api="P:Windows.ApplicationModel.PackageId.Version" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" />
+      </containers>
+      <file name="097ce84c-37ef-3aa0-f40a-597c5cb53d23" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.Architecture">
+      <topicdata group="api" />
+      <apidata name="Architecture" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Architecture" />
+      <returns>
+        <type api="T:Windows.System.ProcessorArchitecture" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="c4ecbd2a-7f43-4d3b-4904-8ef4e0b9daff" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.Author">
+      <topicdata group="api" />
+      <apidata name="Author" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Author" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="fc5b06e2-b173-d565-2d93-28d95864b3fe" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.FamilyName">
+      <topicdata group="api" />
+      <apidata name="FamilyName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FamilyName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="660bd98a-bdf5-5671-dd9b-d836b191fd5d" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.FullName">
+      <topicdata group="api" />
+      <apidata name="FullName" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_FullName" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="c086017c-e885-87af-fade-71fb92a0cb10" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.Name">
+      <topicdata group="api" />
+      <apidata name="Name" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Name" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="8e2fc3dc-fdfd-c261-cb79-ba4c8e3778f4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.ProductId">
+      <topicdata group="api" />
+      <apidata name="ProductId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ProductId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="1ef4d044-2b64-254e-df4d-a9fb696d8882" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.Publisher">
+      <topicdata group="api" />
+      <apidata name="Publisher" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Publisher" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="7a716a0c-0269-5270-1102-1d4b25679dcd" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.PublisherId">
+      <topicdata group="api" />
+      <apidata name="PublisherId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PublisherId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="0156ea1e-75b9-5b6d-9cef-7fc13cfea1e8" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.ResourceId">
+      <topicdata group="api" />
+      <apidata name="ResourceId" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ResourceId" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="30f78fec-d529-347d-b093-02cd8c220624" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageId.Version">
+      <topicdata group="api" />
+      <apidata name="Version" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Version" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.PackageVersion" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageId" ref="true" />
+      </containers>
+      <file name="807163cf-8690-9dbf-bffc-fdaefd9e918a" />
+    </api>
+    <api id="T:Windows.ApplicationModel.PackageStatus">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.PackageStatus" />
+      <apidata name="PackageStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.DualApiPartitionAttribute" ref="true" />
+          <assignment name="version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>167772160</value>
+          </assignment>
+        </attribute>
+      </attributes>
+      <file name="ddf2250c-5961-cee1-ab18-bd938b05dce4" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.PackageStatus">
+      <topicdata name="PackageStatus" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.PackageStatus" />
+      <apidata name="PackageStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.PackageStatus.DataOffline" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.DependencyIssue" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.DeploymentInProgress" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Disabled" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.LicenseIssue" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Modified" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.NeedsRemediation" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.NotAvailable" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.PackageOffline" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Servicing" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Tampered" />
+        <element api="M:Windows.ApplicationModel.PackageStatus.VerifyIsOK" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" />
+      </containers>
+      <file name="58b982f9-4247-0cae-eda2-36a9d309038a" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.PackageStatus">
+      <topicdata name="PackageStatus" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.PackageStatus" />
+      <apidata name="PackageStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.PackageStatus.VerifyIsOK" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" />
+      </containers>
+      <file name="bed0d3b3-7d3a-2121-427d-9d640008da4c" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.PackageStatus">
+      <topicdata name="PackageStatus" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.PackageStatus" />
+      <apidata name="PackageStatus" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.PackageStatus.DataOffline" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.DependencyIssue" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.DeploymentInProgress" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Disabled" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.LicenseIssue" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Modified" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.NeedsRemediation" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.NotAvailable" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.PackageOffline" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Servicing" />
+        <element api="P:Windows.ApplicationModel.PackageStatus.Tampered" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" />
+      </containers>
+      <file name="27eaa9b8-c45e-3a3b-9833-0ef1cc997154" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.DataOffline">
+      <topicdata group="api" />
+      <apidata name="DataOffline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DataOffline" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="c1946987-1a15-872d-c684-d5b8b9433412" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.DependencyIssue">
+      <topicdata group="api" />
+      <apidata name="DependencyIssue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DependencyIssue" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="6f72edea-7350-0af5-c9e1-5f2b67ce0daa" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.DeploymentInProgress">
+      <topicdata group="api" />
+      <apidata name="DeploymentInProgress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_DeploymentInProgress" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="e4ccfaf0-386b-1086-81db-2202241efa7c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.Disabled">
+      <topicdata group="api" />
+      <apidata name="Disabled" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Disabled" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="32777059-27fd-893a-d5a0-6df2299eb708" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.LicenseIssue">
+      <topicdata group="api" />
+      <apidata name="LicenseIssue" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_LicenseIssue" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="e4967c9f-068f-562e-53f9-6a9429de2ea1" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.Modified">
+      <topicdata group="api" />
+      <apidata name="Modified" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Modified" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="a17d94b7-5991-ddc6-a658-56130377e0d4" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.NeedsRemediation">
+      <topicdata group="api" />
+      <apidata name="NeedsRemediation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NeedsRemediation" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="8047c59d-b3df-8491-a673-3866c348eeca" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.NotAvailable">
+      <topicdata group="api" />
+      <apidata name="NotAvailable" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_NotAvailable" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="d862ecad-55d5-ea18-b359-96e7ba5d0c1c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.PackageOffline">
+      <topicdata group="api" />
+      <apidata name="PackageOffline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_PackageOffline" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="6a12a1fe-5ff9-d746-eafe-f59449a95f20" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.Servicing">
+      <topicdata group="api" />
+      <apidata name="Servicing" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Servicing" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="37a87854-4345-06da-2bae-6e3de1b19f2c" />
+    </api>
+    <api id="P:Windows.ApplicationModel.PackageStatus.Tampered">
+      <topicdata group="api" />
+      <apidata name="Tampered" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Tampered" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="acace2da-7dda-84f7-9b87-380e289e8227" />
+    </api>
+    <api id="M:Windows.ApplicationModel.PackageStatus.VerifyIsOK">
+      <topicdata group="api" />
+      <apidata name="VerifyIsOK" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageStatus" ref="true" />
+      </containers>
+      <file name="3d18e221-bfbe-1ddf-3315-19ea7b60fca8" />
+    </api>
+    <api id="T:Windows.ApplicationModel.PackageVersion">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.PackageVersion" />
+      <apidata name="PackageVersion" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="e29b936f-59e4-cd24-d86e-8b4d1c4b22b5" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.PackageVersion">
+      <topicdata name="PackageVersion" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.PackageVersion" />
+      <apidata name="PackageVersion" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="F:Windows.ApplicationModel.PackageVersion.Build" />
+        <element api="F:Windows.ApplicationModel.PackageVersion.Major" />
+        <element api="F:Windows.ApplicationModel.PackageVersion.Minor" />
+        <element api="F:Windows.ApplicationModel.PackageVersion.Revision" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" />
+      </containers>
+      <file name="d17f6a86-1f86-cfe4-a10c-370e65d7c2f3" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.PackageVersion">
+      <topicdata name="PackageVersion" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.PackageVersion" />
+      <apidata name="PackageVersion" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="M:System.ValueType.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.Equals(System.Object)">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.GetHashCode">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.ValueType.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <overrides>
+            <member api="M:System.Object.ToString">
+              <type api="T:System.Object" ref="true" />
+            </member>
+          </overrides>
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.ValueType" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" />
+      </containers>
+      <file name="6ec1ebbb-73d2-5ed9-7740-d0bb418d2630" />
+    </api>
+    <api id="Fields.T:Windows.ApplicationModel.PackageVersion">
+      <topicdata name="PackageVersion" group="list" subgroup="Fields" typeTopicId="T:Windows.ApplicationModel.PackageVersion" />
+      <apidata name="PackageVersion" group="type" subgroup="structure" />
+      <typedata visibility="public" sealed="true" serializable="false" noSettableProperties="true" />
+      <elements>
+        <element api="F:Windows.ApplicationModel.PackageVersion.Build" />
+        <element api="F:Windows.ApplicationModel.PackageVersion.Major" />
+        <element api="F:Windows.ApplicationModel.PackageVersion.Minor" />
+        <element api="F:Windows.ApplicationModel.PackageVersion.Revision" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" />
+      </containers>
+      <file name="b6ae13d3-a072-d709-9e4b-67745f76df5c" />
+    </api>
+    <api id="F:Windows.ApplicationModel.PackageVersion.Build">
+      <topicdata group="api" />
+      <apidata name="Build" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" ref="false" />
+      </containers>
+      <file name="b80cd60e-6e92-4fb4-1384-86775c6bc826" />
+    </api>
+    <api id="F:Windows.ApplicationModel.PackageVersion.Major">
+      <topicdata group="api" />
+      <apidata name="Major" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" ref="false" />
+      </containers>
+      <file name="02e6031a-dccc-4ef8-c507-0014d069960c" />
+    </api>
+    <api id="F:Windows.ApplicationModel.PackageVersion.Minor">
+      <topicdata group="api" />
+      <apidata name="Minor" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" ref="false" />
+      </containers>
+      <file name="ea32d06f-f9c7-a6a2-d1fd-1a1e7e475d04" />
+    </api>
+    <api id="F:Windows.ApplicationModel.PackageVersion.Revision">
+      <topicdata group="api" />
+      <apidata name="Revision" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.UInt16" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.PackageVersion" ref="false" />
+      </containers>
+      <file name="66e8690c-77c7-a1f2-08cd-99c27f991ad0" />
+    </api>
+    <api id="T:Windows.ApplicationModel.SuspendingDeferral">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.SuspendingDeferral" />
+      <apidata name="SuspendingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.ISuspendingDeferral" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="81fe6187-b87e-3d2c-2a82-67104608afae" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.SuspendingDeferral">
+      <topicdata name="SuspendingDeferral" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.SuspendingDeferral" />
+      <apidata name="SuspendingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SuspendingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingDeferral" />
+      </containers>
+      <file name="7d463e8b-c1a1-08ed-1bc2-eb42e98528a6" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.SuspendingDeferral">
+      <topicdata name="SuspendingDeferral" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.SuspendingDeferral" />
+      <apidata name="SuspendingDeferral" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SuspendingDeferral.Complete" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingDeferral" />
+      </containers>
+      <file name="0fd6df98-d19b-1e2c-cb29-6a11f44c6588" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SuspendingDeferral.Complete">
+      <topicdata group="api" />
+      <apidata name="Complete" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:Windows.ApplicationModel.ISuspendingDeferral.Complete">
+          <type api="T:Windows.ApplicationModel.ISuspendingDeferral" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingDeferral" ref="true" />
+      </containers>
+      <file name="63092b6b-75c8-7386-ada3-6f77bd62c280" />
+    </api>
+    <api id="T:Windows.ApplicationModel.SuspendingEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.SuspendingEventArgs" />
+      <apidata name="SuspendingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.ISuspendingEventArgs" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="dc5396c6-c5fd-b556-4527-8939bba8e327" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.SuspendingEventArgs">
+      <topicdata name="SuspendingEventArgs" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.SuspendingEventArgs" />
+      <apidata name="SuspendingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.SuspendingEventArgs.SuspendingOperation" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingEventArgs" />
+      </containers>
+      <file name="a852c060-0ae1-f991-f94e-c3c941ac427e" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.SuspendingEventArgs">
+      <topicdata name="SuspendingEventArgs" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.SuspendingEventArgs" />
+      <apidata name="SuspendingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingEventArgs" />
+      </containers>
+      <file name="3d335e05-ca82-1514-de90-bce9adb8b473" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.SuspendingEventArgs">
+      <topicdata name="SuspendingEventArgs" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.SuspendingEventArgs" />
+      <apidata name="SuspendingEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.SuspendingEventArgs.SuspendingOperation" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingEventArgs" />
+      </containers>
+      <file name="29624eb2-cc44-79f5-532a-f400f5d5a3a7" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SuspendingEventArgs.SuspendingOperation">
+      <topicdata group="api" />
+      <apidata name="SuspendingOperation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_SuspendingOperation" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Windows.ApplicationModel.ISuspendingEventArgs.SuspendingOperation">
+          <type api="T:Windows.ApplicationModel.ISuspendingEventArgs" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingEventArgs" ref="true" />
+      </containers>
+      <file name="aea15ac4-5fcd-4ff4-412a-3813cde8f756" />
+    </api>
+    <api id="T:Windows.ApplicationModel.SuspendingOperation">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.ApplicationModel.SuspendingOperation" />
+      <apidata name="SuspendingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Windows.ApplicationModel.ISuspendingOperation" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MuseAttribute" ref="true" />
+          <assignment name="Version">
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </assignment>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="79c1a58d-ab78-a8ca-56e9-c8995d7df9f2" />
+    </api>
+    <api id="AllMembers.T:Windows.ApplicationModel.SuspendingOperation">
+      <topicdata name="SuspendingOperation" group="list" subgroup="members" typeTopicId="T:Windows.ApplicationModel.SuspendingOperation" />
+      <apidata name="SuspendingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="P:Windows.ApplicationModel.SuspendingOperation.Deadline" />
+        <element api="M:Windows.ApplicationModel.SuspendingOperation.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" />
+      </containers>
+      <file name="cb142a31-f4dd-a199-8167-c19ac7deb0ad" />
+    </api>
+    <api id="Methods.T:Windows.ApplicationModel.SuspendingOperation">
+      <topicdata name="SuspendingOperation" group="list" subgroup="Methods" typeTopicId="T:Windows.ApplicationModel.SuspendingOperation" />
+      <apidata name="SuspendingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.ApplicationModel.SuspendingOperation.GetDeferral" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" />
+      </containers>
+      <file name="1bdb8738-9e50-2987-c9e5-1dc5775f30d7" />
+    </api>
+    <api id="Properties.T:Windows.ApplicationModel.SuspendingOperation">
+      <topicdata name="SuspendingOperation" group="list" subgroup="Properties" typeTopicId="T:Windows.ApplicationModel.SuspendingOperation" />
+      <apidata name="SuspendingOperation" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.ApplicationModel.SuspendingOperation.Deadline" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" />
+      </containers>
+      <file name="11fb9da6-f8b7-d1fa-8ab8-4e791235836b" />
+    </api>
+    <api id="P:Windows.ApplicationModel.SuspendingOperation.Deadline">
+      <topicdata group="api" />
+      <apidata name="Deadline" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_Deadline" />
+      <returns>
+        <type api="T:System.DateTimeOffset" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Windows.ApplicationModel.ISuspendingOperation.Deadline">
+          <type api="T:Windows.ApplicationModel.ISuspendingOperation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" ref="true" />
+      </containers>
+      <file name="d20568c2-24a3-ee7d-4f26-d0c62968886b" />
+    </api>
+    <api id="M:Windows.ApplicationModel.SuspendingOperation.GetDeferral">
+      <topicdata group="api" />
+      <apidata name="GetDeferral" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.ApplicationModel.SuspendingDeferral" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Windows.ApplicationModel.ISuspendingOperation.GetDeferral">
+          <type api="T:Windows.ApplicationModel.ISuspendingOperation" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.ApplicationModel" />
+        <type api="T:Windows.ApplicationModel.SuspendingOperation" ref="true" />
+      </containers>
+      <file name="9b01744f-90e5-e146-bf04-53e9965a8613" />
+    </api>
+  </apis>
+</reflection>

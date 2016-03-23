@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="System.Activities.Core.Presentation">
+      <assemblydata version="4.0.0.0" culture="" key="0024000004800000940000000602000000240000525341310004000001000100B5FC90E7027F67871E773A8FDE8938C81DD402BA65B9201D60593E96C492651E889CC13F1415EBB53FAC1131AE0BD333C5EE6021672D9718EA31A8AEBD0DA0072F25D87DBA6FC90FFD598ED4DA35E44C398C454307E8E33B8426143DAEC9F596836F97C8F74750E5975C64E2189F45DEF46B2A2B1247ADC3652BF5C308055DA9" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDefaultAliasAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>System.Activities.Core.Presentation.dll</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® .NET Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>© Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.6.81.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.SatelliteContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.0.0.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-US</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDelaySignAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyKeyFileAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>f:\dd\tools\devdiv\35MSSharedLib1024.snk</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblySignatureKeyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>002400000c80000014010000060200000024000052534131000800000100010085aad0bef0688d1b994a0d78e1fd29fc24ac34ed3d3ac3fb9b3d0c48386ba834aa880035060a8848b2d8adf58e670ed20914be3681a891c9c8c01eef2ab22872547c39be00af0e6c72485d7cfd1a51df8947d36ceba9989106b58abe79e6a3e71a01ed6bdc867012883e0b1a4d35b1b5eeed6df21e401bb0c22f2246ccb69979dc9e61eef262832ed0f2064853725a75485fa8a3efb7e027319c86dec03dc3b1bca2b5081bab52a627b9917450dfad534799e1c7af58683bdfa135f1518ff1ea60e90d7b993a6c87fd3dd93408e35d1296f9a7f9a97c5db56c0f3cc25ad11e9777f94d138b3cea53b9a8331c2e6dcb8d2ea94e18bf1163ff112a22dbd92d429a</value>
+          </argument>
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>8913ef869646d14971df222c210018ab394cfe63f8eb9b4d894c0dda7368cfb69df15d049b347f8a8b9205cdcc3d6bd6690f0bd24b3da3179feb8c03f410703027c7844ff654997e38015dfc97222c15061af2a1d3fe91775b9dd4b8ede64d3d59816270a9520e393c8e60619b80d40fc1dc4f12b5aa0c2df20d02ea32960851</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:System.Activities.Core.Presentation.Factories">
+      <topicdata group="api" />
+      <apidata name="System.Activities.Core.Presentation.Factories" group="namespace" />
+      <elements>
+        <element api="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" />
+        <element api="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" />
+        <element api="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" />
+        <element api="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" />
+      </elements>
+      <file name="b39be190-83c8-fc69-07c7-4e443ac80570" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" />
+      <apidata name="ForEachWithBodyFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <implements>
+        <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+      </containers>
+      <file name="afdcaf39-ac13-07f9-f7c6-594dd945f226" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1">
+      <topicdata name="ForEachWithBodyFactory" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" />
+      <apidata name="ForEachWithBodyFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.#ctor" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.#ctor" />
+        <element api="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" />
+      </containers>
+      <file name="70431f55-ea2a-9deb-c624-f2bba3c56895" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1">
+      <topicdata name="ForEachWithBodyFactory" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" />
+      <apidata name="ForEachWithBodyFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.#ctor" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" />
+      </containers>
+      <file name="9d118048-917b-d4f8-8feb-448cf6732e6d" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" ref="true" />
+      </containers>
+      <file name="9c2d2e11-e416-a2f9-5329-a2f75270c9bd" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1.Create(System.Windows.DependencyObject)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.IActivityTemplateFactory.Create(System.Windows.DependencyObject)">
+          <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ForEachWithBodyFactory`1" ref="true" />
+      </containers>
+      <file name="b5c2b063-b98b-3b93-b1dd-be3fe159a0d6" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" />
+      <apidata name="ParallelForEachWithBodyFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <templates>
+        <template name="T" />
+      </templates>
+      <implements>
+        <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+      </containers>
+      <file name="84ed4251-487c-ad60-13f7-eb3bd26f031b" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1">
+      <topicdata name="ParallelForEachWithBodyFactory" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" />
+      <apidata name="ParallelForEachWithBodyFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.#ctor" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.#ctor" />
+        <element api="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" />
+      </containers>
+      <file name="35250acb-9cbf-a7d9-f681-d9a8b3154bb2" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1">
+      <topicdata name="ParallelForEachWithBodyFactory" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" />
+      <apidata name="ParallelForEachWithBodyFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.#ctor" />
+      <templates>
+        <template name="T" />
+      </templates>
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" />
+      </containers>
+      <file name="7fc3694a-506f-7b60-3807-6ffb88e3f063" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" ref="true" />
+      </containers>
+      <file name="fd576622-c3b4-5a56-a515-f08d62eb2c6c" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1.Create(System.Windows.DependencyObject)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.IActivityTemplateFactory.Create(System.Windows.DependencyObject)">
+          <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.ParallelForEachWithBodyFactory`1" ref="true" />
+      </containers>
+      <file name="505ef837-1fa3-dd97-fc21-ba93df8deedf" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" />
+      <apidata name="PickWithTwoBranchesFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+      </containers>
+      <file name="c203aba8-b93e-e3de-d776-d50d69780a36" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory">
+      <topicdata name="PickWithTwoBranchesFactory" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" />
+      <apidata name="PickWithTwoBranchesFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.#ctor" />
+        <element api="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" />
+      </containers>
+      <file name="b75f2610-45aa-0d17-8dc5-6b1fe413ed3a" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory">
+      <topicdata name="PickWithTwoBranchesFactory" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" />
+      <apidata name="PickWithTwoBranchesFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" />
+      </containers>
+      <file name="31781497-1951-c8c5-9c75-4a2b656a7262" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" ref="true" />
+      </containers>
+      <file name="70104010-8a03-4730-5d16-2139f9f56377" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory.Create(System.Windows.DependencyObject)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.IActivityTemplateFactory.Create(System.Windows.DependencyObject)">
+          <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.PickWithTwoBranchesFactory" ref="true" />
+      </containers>
+      <file name="cb7744d4-7ba1-1ef2-9692-7749c007d999" />
+    </api>
+    <api id="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" />
+      <apidata name="StateMachineWithInitialStateFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+      </containers>
+      <file name="6787bd62-9eb0-020b-9980-f41983446d4c" />
+    </api>
+    <api id="AllMembers.T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory">
+      <topicdata name="StateMachineWithInitialStateFactory" group="list" subgroup="members" typeTopicId="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" />
+      <apidata name="StateMachineWithInitialStateFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.#ctor" />
+        <element api="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" />
+      </containers>
+      <file name="521b60eb-3434-6e39-4593-a219986994df" />
+    </api>
+    <api id="Methods.T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory">
+      <topicdata name="StateMachineWithInitialStateFactory" group="list" subgroup="Methods" typeTopicId="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" />
+      <apidata name="StateMachineWithInitialStateFactory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.Create(System.Windows.DependencyObject)" />
+      </elements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" />
+      </containers>
+      <file name="06a1259b-b219-f026-5dde-7ffef711dac6" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" ref="true" />
+      </containers>
+      <file name="37062039-5627-a84c-82ee-f97e34e82481" />
+    </api>
+    <api id="M:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory.Create(System.Windows.DependencyObject)">
+      <topicdata group="api" />
+      <apidata name="Create" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <parameters>
+        <parameter name="target">
+          <type api="T:System.Windows.DependencyObject" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Activities.Activity" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:System.Activities.Presentation.IActivityTemplateFactory.Create(System.Windows.DependencyObject)">
+          <type api="T:System.Activities.Presentation.IActivityTemplateFactory" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="System.Activities.Core.Presentation" module="System.Activities.Core.Presentation" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.6.81.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:System.Activities.Core.Presentation.Factories" />
+        <type api="T:System.Activities.Core.Presentation.Factories.StateMachineWithInitialStateFactory" ref="true" />
+      </containers>
+      <file name="b6428a83-0649-a777-1c0d-5f782f67ae7b" />
+    </api>
+  </apis>
+</reflection>

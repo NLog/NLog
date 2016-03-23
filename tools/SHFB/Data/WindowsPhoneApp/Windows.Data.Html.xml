@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows">
+      <assemblydata version="255.255.255.255" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.PlatformAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.Platform" ref="false" />
+            <enumValue>
+              <field name="WindowsPhone" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.Data.Html">
+      <topicdata group="api" />
+      <apidata name="Windows.Data.Html" group="namespace" />
+      <elements>
+        <element api="T:Windows.Data.Html.HtmlUtilities" />
+      </elements>
+      <file name="9fe7c399-5ad7-49c8-4936-d8425078faab" />
+    </api>
+    <api id="T:Windows.Data.Html.HtmlUtilities">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.Data.Html.HtmlUtilities" />
+      <apidata name="HtmlUtilities" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Html" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Standard" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.VersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>100859904</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2f4cf14c-a8b5-735c-0a34-374f68d6393f" />
+    </api>
+    <api id="AllMembers.T:Windows.Data.Html.HtmlUtilities">
+      <topicdata name="HtmlUtilities" group="list" subgroup="members" typeTopicId="T:Windows.Data.Html.HtmlUtilities" />
+      <apidata name="HtmlUtilities" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Html.HtmlUtilities.ConvertToText(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Html" />
+        <type api="T:Windows.Data.Html.HtmlUtilities" />
+      </containers>
+      <file name="c6ea6f03-5c1a-dda9-d051-01b741c40a5f" />
+    </api>
+    <api id="Methods.T:Windows.Data.Html.HtmlUtilities">
+      <topicdata name="HtmlUtilities" group="list" subgroup="Methods" typeTopicId="T:Windows.Data.Html.HtmlUtilities" />
+      <apidata name="HtmlUtilities" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Windows.Data.Html.HtmlUtilities.ConvertToText(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.Data.Html" />
+        <type api="T:Windows.Data.Html.HtmlUtilities" />
+      </containers>
+      <file name="2d5c2b01-aac2-be7a-6038-5723712ee327" />
+    </api>
+    <api id="M:Windows.Data.Html.HtmlUtilities.ConvertToText(System.String)">
+      <topicdata group="api" />
+      <apidata name="ConvertToText" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="html" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.Data.Html" />
+        <type api="T:Windows.Data.Html.HtmlUtilities" ref="true" />
+      </containers>
+      <file name="3f044443-5e38-e4a5-be77-2ff6143675e7" />
+    </api>
+  </apis>
+</reflection>

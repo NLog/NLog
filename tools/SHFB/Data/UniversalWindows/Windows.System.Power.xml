@@ -1,0 +1,1265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Power">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Power" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Power.BatteryStatus" />
+        <element api="T:Windows.System.Power.EnergySaverStatus" />
+        <element api="T:Windows.System.Power.PowerSupplyStatus" />
+        <element api="T:Windows.System.Power.PowerManager" />
+        <element api="T:Windows.System.Power.BackgroundEnergyManager" />
+        <element api="T:Windows.System.Power.ForegroundEnergyManager" />
+      </elements>
+      <file name="b80f5a01-590b-2655-93d1-0fb1135019df" />
+    </api>
+    <api id="T:Windows.System.Power.BackgroundEnergyManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Power.BackgroundEnergyManager" />
+      <apidata name="BackgroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="4d5008f9-e83a-d922-8bf8-ef0e316fdf42" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Power.BackgroundEnergyManager">
+      <topicdata name="BackgroundEnergyManager" group="list" subgroup="members" typeTopicId="T:Windows.System.Power.BackgroundEnergyManager" />
+      <apidata name="BackgroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.ExcessiveUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.LowUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.MaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.NearMaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.NearTerminationUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsage" />
+        <element api="E:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageIncreased" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageLevel" />
+        <element api="E:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageReturnedToLow" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.TerminationUsageLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" />
+      </containers>
+      <file name="606a1b5b-e6b3-853b-0b48-af6231856501" />
+    </api>
+    <api id="Properties.T:Windows.System.Power.BackgroundEnergyManager">
+      <topicdata name="BackgroundEnergyManager" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Power.BackgroundEnergyManager" />
+      <apidata name="BackgroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.ExcessiveUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.LowUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.MaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.NearMaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.NearTerminationUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsage" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageLevel" />
+        <element api="P:Windows.System.Power.BackgroundEnergyManager.TerminationUsageLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" />
+      </containers>
+      <file name="06f3e61c-a5a5-cf8a-27ff-43557fe49ca2" />
+    </api>
+    <api id="Events.T:Windows.System.Power.BackgroundEnergyManager">
+      <topicdata name="BackgroundEnergyManager" group="list" subgroup="Events" typeTopicId="T:Windows.System.Power.BackgroundEnergyManager" />
+      <apidata name="BackgroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageIncreased" />
+        <element api="E:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageReturnedToLow" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" />
+      </containers>
+      <file name="c25ecdef-b882-b9b5-cc97-c13029c4802f" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.ExcessiveUsageLevel">
+      <topicdata group="api" />
+      <apidata name="ExcessiveUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExcessiveUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="0a366e9b-5b87-f9a1-94fc-786c88742ec5" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.LowUsageLevel">
+      <topicdata group="api" />
+      <apidata name="LowUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LowUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="95ebb4ad-3133-3584-cc0b-27c40b2ee414" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.MaxAcceptableUsageLevel">
+      <topicdata group="api" />
+      <apidata name="MaxAcceptableUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxAcceptableUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="33958230-bf67-87e3-4856-466a9a83f775" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.NearMaxAcceptableUsageLevel">
+      <topicdata group="api" />
+      <apidata name="NearMaxAcceptableUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NearMaxAcceptableUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="50452cc7-aa28-df78-dc5b-8f26b176a3f6" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.NearTerminationUsageLevel">
+      <topicdata group="api" />
+      <apidata name="NearTerminationUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NearTerminationUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="0626c238-695e-4d9e-eee7-886df9707290" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsage">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RecentEnergyUsage" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="2130b76d-14f9-7d43-8da5-bbc2a9b2978e" />
+    </api>
+    <api id="E:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageIncreased">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsageIncreased" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RecentEnergyUsageIncreased" />
+      <remover name="remove_RecentEnergyUsageIncreased" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="0954c47d-250d-b4f1-7cc2-78bbaf812d47" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageLevel">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RecentEnergyUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="24a6258d-0600-7696-1a52-5c8804e33446" />
+    </api>
+    <api id="E:Windows.System.Power.BackgroundEnergyManager.RecentEnergyUsageReturnedToLow">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsageReturnedToLow" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RecentEnergyUsageReturnedToLow" />
+      <remover name="remove_RecentEnergyUsageReturnedToLow" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="d205472e-ec38-ea09-32f6-2ad0af2992df" />
+    </api>
+    <api id="P:Windows.System.Power.BackgroundEnergyManager.TerminationUsageLevel">
+      <topicdata group="api" />
+      <apidata name="TerminationUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_TerminationUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BackgroundEnergyManager" ref="true" />
+      </containers>
+      <file name="726ef08b-455a-84d3-1c3c-bf490ef2f7c5" />
+    </api>
+    <api id="T:Windows.System.Power.BatteryStatus">
+      <topicdata group="api" />
+      <apidata name="BatteryStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.Power.BatteryStatus.NotPresent" />
+        <element api="F:Windows.System.Power.BatteryStatus.Discharging" />
+        <element api="F:Windows.System.Power.BatteryStatus.Idle" />
+        <element api="F:Windows.System.Power.BatteryStatus.Charging" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="8180d453-dae1-2390-b73a-a56d8bf84969" />
+    </api>
+    <api id="F:Windows.System.Power.BatteryStatus.Charging">
+      <topicdata group="api" notopic="" />
+      <apidata name="Charging" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </containers>
+      <file name="310dcb69-1a30-764f-a741-4a6ae386918d" />
+    </api>
+    <api id="F:Windows.System.Power.BatteryStatus.Discharging">
+      <topicdata group="api" notopic="" />
+      <apidata name="Discharging" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </containers>
+      <file name="8a53fd9e-42e9-1c61-40d0-45585eebd656" />
+    </api>
+    <api id="F:Windows.System.Power.BatteryStatus.Idle">
+      <topicdata group="api" notopic="" />
+      <apidata name="Idle" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </containers>
+      <file name="2874d47c-0f4a-5487-8f0e-fe1033794b9b" />
+    </api>
+    <api id="F:Windows.System.Power.BatteryStatus.NotPresent">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotPresent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </containers>
+      <file name="645a0a0d-10ea-8ec7-39ac-2b5eee99f0ea" />
+    </api>
+    <api id="T:Windows.System.Power.EnergySaverStatus">
+      <topicdata group="api" />
+      <apidata name="EnergySaverStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.Power.EnergySaverStatus.Disabled" />
+        <element api="F:Windows.System.Power.EnergySaverStatus.Off" />
+        <element api="F:Windows.System.Power.EnergySaverStatus.On" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="bb38e8f9-892d-554f-8534-e986dade5e46" />
+    </api>
+    <api id="F:Windows.System.Power.EnergySaverStatus.Disabled">
+      <topicdata group="api" notopic="" />
+      <apidata name="Disabled" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </containers>
+      <file name="da76ac11-755f-0ac3-03b7-11cbb9e42d63" />
+    </api>
+    <api id="F:Windows.System.Power.EnergySaverStatus.Off">
+      <topicdata group="api" notopic="" />
+      <apidata name="Off" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </containers>
+      <file name="6fccdf8c-02fc-6003-825d-988f15b55209" />
+    </api>
+    <api id="F:Windows.System.Power.EnergySaverStatus.On">
+      <topicdata group="api" notopic="" />
+      <apidata name="On" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </containers>
+      <file name="7d0fe197-dd99-9cf3-9c5f-5d431cc9f5d5" />
+    </api>
+    <api id="T:Windows.System.Power.ForegroundEnergyManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Power.ForegroundEnergyManager" />
+      <apidata name="ForegroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="a2054ab7-601d-8b48-3ecd-b2cf892d4bd9" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Power.ForegroundEnergyManager">
+      <topicdata name="ForegroundEnergyManager" group="list" subgroup="members" typeTopicId="T:Windows.System.Power.ForegroundEnergyManager" />
+      <apidata name="ForegroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.ExcessiveUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.LowUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.MaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.NearMaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsage" />
+        <element api="E:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageIncreased" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageLevel" />
+        <element api="E:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageReturnedToLow" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" />
+      </containers>
+      <file name="befb7f0c-9030-57bd-d08e-96df85ced9d9" />
+    </api>
+    <api id="Properties.T:Windows.System.Power.ForegroundEnergyManager">
+      <topicdata name="ForegroundEnergyManager" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Power.ForegroundEnergyManager" />
+      <apidata name="ForegroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.ExcessiveUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.LowUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.MaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.NearMaxAcceptableUsageLevel" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsage" />
+        <element api="P:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageLevel" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" />
+      </containers>
+      <file name="6e239a63-9f13-c0bb-a141-76bca4c0d9a1" />
+    </api>
+    <api id="Events.T:Windows.System.Power.ForegroundEnergyManager">
+      <topicdata name="ForegroundEnergyManager" group="list" subgroup="Events" typeTopicId="T:Windows.System.Power.ForegroundEnergyManager" />
+      <apidata name="ForegroundEnergyManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageIncreased" />
+        <element api="E:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageReturnedToLow" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" />
+      </containers>
+      <file name="f0048677-b9c0-4331-e0d6-a13d032cce67" />
+    </api>
+    <api id="P:Windows.System.Power.ForegroundEnergyManager.ExcessiveUsageLevel">
+      <topicdata group="api" />
+      <apidata name="ExcessiveUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ExcessiveUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="f1335745-3316-5528-657b-a24abf1cda84" />
+    </api>
+    <api id="P:Windows.System.Power.ForegroundEnergyManager.LowUsageLevel">
+      <topicdata group="api" />
+      <apidata name="LowUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_LowUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="ea2ca112-0cc5-39e2-9adc-5c127281ba61" />
+    </api>
+    <api id="P:Windows.System.Power.ForegroundEnergyManager.MaxAcceptableUsageLevel">
+      <topicdata group="api" />
+      <apidata name="MaxAcceptableUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxAcceptableUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="d0571a43-692b-3a1a-287f-67c115eb2c2c" />
+    </api>
+    <api id="P:Windows.System.Power.ForegroundEnergyManager.NearMaxAcceptableUsageLevel">
+      <topicdata group="api" />
+      <apidata name="NearMaxAcceptableUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_NearMaxAcceptableUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="efb33402-275d-7adc-a5ea-6bd88a6e7313" />
+    </api>
+    <api id="P:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsage">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsage" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RecentEnergyUsage" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="a136aaff-69ca-3177-2045-417c5c87a8c7" />
+    </api>
+    <api id="E:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageIncreased">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsageIncreased" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RecentEnergyUsageIncreased" />
+      <remover name="remove_RecentEnergyUsageIncreased" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="b4c03646-64a4-f48c-a272-6874014afc61" />
+    </api>
+    <api id="P:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageLevel">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsageLevel" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RecentEnergyUsageLevel" />
+      <returns>
+        <type api="T:System.UInt32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="667ded5e-99ed-7b89-1963-4b5a5b069f07" />
+    </api>
+    <api id="E:Windows.System.Power.ForegroundEnergyManager.RecentEnergyUsageReturnedToLow">
+      <topicdata group="api" />
+      <apidata name="RecentEnergyUsageReturnedToLow" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RecentEnergyUsageReturnedToLow" />
+      <remover name="remove_RecentEnergyUsageReturnedToLow" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.ForegroundEnergyManager" ref="true" />
+      </containers>
+      <file name="4d842783-c932-89b5-fea1-b8c9b3846c83" />
+    </api>
+    <api id="T:Windows.System.Power.PowerManager">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="64bfa797-25ab-4eb2-2489-2806263bd130" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Power.PowerManager">
+      <topicdata name="PowerManager" group="list" subgroup="members" typeTopicId="T:Windows.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.PowerManager.BatteryStatus" />
+        <element api="E:Windows.System.Power.PowerManager.BatteryStatusChanged" />
+        <element api="P:Windows.System.Power.PowerManager.EnergySaverStatus" />
+        <element api="E:Windows.System.Power.PowerManager.EnergySaverStatusChanged" />
+        <element api="P:Windows.System.Power.PowerManager.PowerSupplyStatus" />
+        <element api="E:Windows.System.Power.PowerManager.PowerSupplyStatusChanged" />
+        <element api="P:Windows.System.Power.PowerManager.RemainingChargePercent" />
+        <element api="E:Windows.System.Power.PowerManager.RemainingChargePercentChanged" />
+        <element api="P:Windows.System.Power.PowerManager.RemainingDischargeTime" />
+        <element api="E:Windows.System.Power.PowerManager.RemainingDischargeTimeChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" />
+      </containers>
+      <file name="45d7fb4f-bd71-9a5f-e8b7-378f17970a40" />
+    </api>
+    <api id="Properties.T:Windows.System.Power.PowerManager">
+      <topicdata name="PowerManager" group="list" subgroup="Properties" typeTopicId="T:Windows.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Windows.System.Power.PowerManager.BatteryStatus" />
+        <element api="P:Windows.System.Power.PowerManager.EnergySaverStatus" />
+        <element api="P:Windows.System.Power.PowerManager.PowerSupplyStatus" />
+        <element api="P:Windows.System.Power.PowerManager.RemainingChargePercent" />
+        <element api="P:Windows.System.Power.PowerManager.RemainingDischargeTime" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" />
+      </containers>
+      <file name="84be7589-78e9-ec4b-3420-c25c77580021" />
+    </api>
+    <api id="Events.T:Windows.System.Power.PowerManager">
+      <topicdata name="PowerManager" group="list" subgroup="Events" typeTopicId="T:Windows.System.Power.PowerManager" />
+      <apidata name="PowerManager" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Windows.System.Power.PowerManager.BatteryStatusChanged" />
+        <element api="E:Windows.System.Power.PowerManager.EnergySaverStatusChanged" />
+        <element api="E:Windows.System.Power.PowerManager.PowerSupplyStatusChanged" />
+        <element api="E:Windows.System.Power.PowerManager.RemainingChargePercentChanged" />
+        <element api="E:Windows.System.Power.PowerManager.RemainingDischargeTimeChanged" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" />
+      </containers>
+      <file name="42e128d4-8b7c-3cb1-9d36-69848185d6c4" />
+    </api>
+    <api id="P:Windows.System.Power.PowerManager.BatteryStatus">
+      <topicdata group="api" />
+      <apidata name="BatteryStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_BatteryStatus" />
+      <returns>
+        <type api="T:Windows.System.Power.BatteryStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="f380af4e-b25a-3f54-2135-29f11bf9ed8d" />
+    </api>
+    <api id="E:Windows.System.Power.PowerManager.BatteryStatusChanged">
+      <topicdata group="api" />
+      <apidata name="BatteryStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_BatteryStatusChanged" />
+      <remover name="remove_BatteryStatusChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="f54b7a7f-b6e0-410b-647f-17a87301f1d2" />
+    </api>
+    <api id="P:Windows.System.Power.PowerManager.EnergySaverStatus">
+      <topicdata group="api" />
+      <apidata name="EnergySaverStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EnergySaverStatus" />
+      <returns>
+        <type api="T:Windows.System.Power.EnergySaverStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="ed4a9996-87d8-8206-9824-2594e519c7e1" />
+    </api>
+    <api id="E:Windows.System.Power.PowerManager.EnergySaverStatusChanged">
+      <topicdata group="api" />
+      <apidata name="EnergySaverStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_EnergySaverStatusChanged" />
+      <remover name="remove_EnergySaverStatusChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="db187b04-22d4-987c-5753-546002e77074" />
+    </api>
+    <api id="P:Windows.System.Power.PowerManager.PowerSupplyStatus">
+      <topicdata group="api" />
+      <apidata name="PowerSupplyStatus" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PowerSupplyStatus" />
+      <returns>
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="a912e7a5-5b73-2a08-46d8-45e066665644" />
+    </api>
+    <api id="E:Windows.System.Power.PowerManager.PowerSupplyStatusChanged">
+      <topicdata group="api" />
+      <apidata name="PowerSupplyStatusChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_PowerSupplyStatusChanged" />
+      <remover name="remove_PowerSupplyStatusChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="e8611283-de02-aeea-6050-65cb0eb65883" />
+    </api>
+    <api id="P:Windows.System.Power.PowerManager.RemainingChargePercent">
+      <topicdata group="api" />
+      <apidata name="RemainingChargePercent" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RemainingChargePercent" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="a56f46e8-c3b0-9772-7ab8-a0e70fb1d521" />
+    </api>
+    <api id="E:Windows.System.Power.PowerManager.RemainingChargePercentChanged">
+      <topicdata group="api" />
+      <apidata name="RemainingChargePercentChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RemainingChargePercentChanged" />
+      <remover name="remove_RemainingChargePercentChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="a78255d5-411c-00a3-41ec-29463a119bbf" />
+    </api>
+    <api id="P:Windows.System.Power.PowerManager.RemainingDischargeTime">
+      <topicdata group="api" />
+      <apidata name="RemainingDischargeTime" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RemainingDischargeTime" />
+      <returns>
+        <type api="T:System.TimeSpan" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="0d281406-e499-f974-c30b-d7e02942937c" />
+    </api>
+    <api id="E:Windows.System.Power.PowerManager.RemainingDischargeTimeChanged">
+      <topicdata group="api" />
+      <apidata name="RemainingDischargeTimeChanged" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_RemainingDischargeTimeChanged" />
+      <remover name="remove_RemainingDischargeTimeChanged" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:System.Object" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.Object" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerManager" ref="true" />
+      </containers>
+      <file name="737549bc-08a7-4684-e8c8-326d2e61c4f2" />
+    </api>
+    <api id="T:Windows.System.Power.PowerSupplyStatus">
+      <topicdata group="api" />
+      <apidata name="PowerSupplyStatus" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Windows.System.Power.PowerSupplyStatus.NotPresent" />
+        <element api="F:Windows.System.Power.PowerSupplyStatus.Inadequate" />
+        <element api="F:Windows.System.Power.PowerSupplyStatus.Adequate" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="50d57dfa-6c10-3793-7b00-39f885503648" />
+    </api>
+    <api id="F:Windows.System.Power.PowerSupplyStatus.Adequate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Adequate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </containers>
+      <file name="e1e2889c-2938-5cf1-fd43-47849814b027" />
+    </api>
+    <api id="F:Windows.System.Power.PowerSupplyStatus.Inadequate">
+      <topicdata group="api" notopic="" />
+      <apidata name="Inadequate" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </containers>
+      <file name="d2f93b9f-f32d-37ff-7ec4-543e64acfdf6" />
+    </api>
+    <api id="F:Windows.System.Power.PowerSupplyStatus.NotPresent">
+      <topicdata group="api" notopic="" />
+      <apidata name="NotPresent" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Power" />
+        <type api="T:Windows.System.Power.PowerSupplyStatus" ref="false" />
+      </containers>
+      <file name="cb806244-75b8-6575-560d-ca187ede5ff6" />
+    </api>
+  </apis>
+</reflection>

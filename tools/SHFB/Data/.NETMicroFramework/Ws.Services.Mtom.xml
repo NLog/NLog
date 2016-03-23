@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFWsStack">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFWsStack</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Ws.Services.Mtom">
+      <topicdata group="api" />
+      <apidata name="Ws.Services.Mtom" group="namespace" />
+      <elements>
+        <element api="T:Ws.Services.Mtom.WsMtomBodyPart" />
+        <element api="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      </elements>
+      <file name="f553e119-fc4f-2391-fb8f-5c1dca634a08" />
+    </api>
+    <api id="T:Ws.Services.Mtom.WsMtomBodyPart">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Mtom.WsMtomBodyPart" />
+      <apidata name="WsMtomBodyPart" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyPart.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+      </containers>
+      <file name="3abc8164-8941-3193-fb98-925a170c2984" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Mtom.WsMtomBodyPart">
+      <topicdata name="WsMtomBodyPart" group="list" subgroup="members" typeTopicId="T:Ws.Services.Mtom.WsMtomBodyPart" />
+      <apidata name="WsMtomBodyPart" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyPart.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyPart.#ctor" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.Content" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.ContentID" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.ContentTransferEncoding" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.ContentType" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" />
+      </containers>
+      <file name="7d6b2756-35cc-f091-8aa6-7524a714229d" />
+    </api>
+    <api id="Methods.T:Ws.Services.Mtom.WsMtomBodyPart">
+      <topicdata name="WsMtomBodyPart" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Mtom.WsMtomBodyPart" />
+      <apidata name="WsMtomBodyPart" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyPart.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" />
+      </containers>
+      <file name="e8897cf5-72b6-607c-e6c8-5753772a0651" />
+    </api>
+    <api id="Fields.T:Ws.Services.Mtom.WsMtomBodyPart">
+      <topicdata name="WsMtomBodyPart" group="list" subgroup="Fields" typeTopicId="T:Ws.Services.Mtom.WsMtomBodyPart" />
+      <apidata name="WsMtomBodyPart" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyPart.#ctor" />
+      <elements>
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.Content" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.ContentID" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.ContentTransferEncoding" />
+        <element api="F:Ws.Services.Mtom.WsMtomBodyPart.ContentType" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" />
+      </containers>
+      <file name="0eb67bfb-d977-4205-8e02-24d045c05cb0" />
+    </api>
+    <api id="M:Ws.Services.Mtom.WsMtomBodyPart.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </containers>
+      <file name="65961ac9-9ae0-ce64-9047-78fe447a09cb" />
+    </api>
+    <api id="F:Ws.Services.Mtom.WsMtomBodyPart.Content">
+      <topicdata group="api" />
+      <apidata name="Content" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.IO.MemoryStream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </containers>
+      <file name="02e98ede-ca96-9005-ef9e-f258b09c9628" />
+    </api>
+    <api id="F:Ws.Services.Mtom.WsMtomBodyPart.ContentID">
+      <topicdata group="api" />
+      <apidata name="ContentID" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </containers>
+      <file name="7a110885-44de-f94c-a04e-bcb67935bd89" />
+    </api>
+    <api id="F:Ws.Services.Mtom.WsMtomBodyPart.ContentTransferEncoding">
+      <topicdata group="api" />
+      <apidata name="ContentTransferEncoding" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </containers>
+      <file name="aae00475-895f-c33e-6fc8-a65a631f3759" />
+    </api>
+    <api id="F:Ws.Services.Mtom.WsMtomBodyPart.ContentType">
+      <topicdata group="api" />
+      <apidata name="ContentType" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </containers>
+      <file name="298bf5f7-2049-4eb7-d418-9ce1a50c894b" />
+    </api>
+    <api id="T:Ws.Services.Mtom.WsMtomBodyParts">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Ws.Services.Mtom.WsMtomBodyParts" />
+      <apidata name="WsMtomBodyParts" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyParts.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+      </containers>
+      <file name="034fd11e-7b54-3011-ee33-17bacb2f4185" />
+    </api>
+    <api id="AllMembers.T:Ws.Services.Mtom.WsMtomBodyParts">
+      <topicdata name="WsMtomBodyParts" group="list" subgroup="members" typeTopicId="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      <apidata name="WsMtomBodyParts" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyParts.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.#ctor" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.Add(Ws.Services.Mtom.WsMtomBodyPart)" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.AddStart(Ws.Services.Mtom.WsMtomBodyPart)" />
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Boundary" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.Clear" />
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Count" />
+        <element api="Overload:Ws.Services.Mtom.WsMtomBodyParts.Item">
+          <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.Int32)" />
+          <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.String)" />
+        </element>
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.Remove(Ws.Services.Mtom.WsMtomBodyPart)" />
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Start" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      </containers>
+      <file name="a627bbdb-2c4f-8812-3d10-ee8e1ca79056" />
+    </api>
+    <api id="Methods.T:Ws.Services.Mtom.WsMtomBodyParts">
+      <topicdata name="WsMtomBodyParts" group="list" subgroup="Methods" typeTopicId="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      <apidata name="WsMtomBodyParts" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyParts.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.Add(Ws.Services.Mtom.WsMtomBodyPart)" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.AddStart(Ws.Services.Mtom.WsMtomBodyPart)" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.Clear" />
+        <element api="M:Ws.Services.Mtom.WsMtomBodyParts.Remove(Ws.Services.Mtom.WsMtomBodyPart)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      </containers>
+      <file name="a377c8bc-5ad8-f7a4-7097-93776c806008" />
+    </api>
+    <api id="Properties.T:Ws.Services.Mtom.WsMtomBodyParts">
+      <topicdata name="WsMtomBodyParts" group="list" subgroup="Properties" typeTopicId="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      <apidata name="WsMtomBodyParts" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Ws.Services.Mtom.WsMtomBodyParts.#ctor" />
+      <elements>
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Boundary" />
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Count" />
+        <element api="Overload:Ws.Services.Mtom.WsMtomBodyParts.Item">
+          <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.Int32)" />
+          <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.String)" />
+        </element>
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Start" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" />
+      </containers>
+      <file name="2fefa257-721a-bb33-3a4b-02bfb22bd254" />
+    </api>
+    <api id="Overload:Ws.Services.Mtom.WsMtomBodyParts.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:Ws.Services.Mtom.WsMtomBodyParts" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.Int32)" />
+        <element api="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="e2b29a99-5eba-462b-7253-3dd2fe2e306b" />
+    </api>
+    <api id="M:Ws.Services.Mtom.WsMtomBodyParts.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="c4cf2d00-7c06-179d-72c8-a196b5bb279d" />
+    </api>
+    <api id="M:Ws.Services.Mtom.WsMtomBodyParts.Add(Ws.Services.Mtom.WsMtomBodyPart)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="e3cf133e-8bab-a949-ebb7-503ca5eb5750" />
+    </api>
+    <api id="M:Ws.Services.Mtom.WsMtomBodyParts.AddStart(Ws.Services.Mtom.WsMtomBodyPart)">
+      <topicdata group="api" />
+      <apidata name="AddStart" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="84fc25d0-58d6-b550-fe8f-06e41ca1d9bc" />
+    </api>
+    <api id="P:Ws.Services.Mtom.WsMtomBodyParts.Boundary">
+      <topicdata group="api" />
+      <apidata name="Boundary" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Boundary" />
+      <setter name="set_Boundary" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="3e94dd6e-a9bf-9225-14aa-8a0382fb7757" />
+    </api>
+    <api id="M:Ws.Services.Mtom.WsMtomBodyParts.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="5c0ea3a4-27b6-44c4-b611-8f4122ee4021" />
+    </api>
+    <api id="P:Ws.Services.Mtom.WsMtomBodyParts.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="5fb8e382-cdf7-94c8-87bc-41c39aa512e9" />
+    </api>
+    <api id="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.Mtom.WsMtomBodyParts.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="2287010d-8f42-f07c-d017-3979e507c675" />
+    </api>
+    <api id="P:Ws.Services.Mtom.WsMtomBodyParts.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Ws.Services.Mtom.WsMtomBodyParts.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="contentID">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="159dc702-3878-7619-5be9-3132d7b3715a" />
+    </api>
+    <api id="M:Ws.Services.Mtom.WsMtomBodyParts.Remove(Ws.Services.Mtom.WsMtomBodyPart)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="bodyPart">
+          <type api="T:Ws.Services.Mtom.WsMtomBodyPart" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="cc570d0d-4bec-7df0-8aeb-99028a84330c" />
+    </api>
+    <api id="P:Ws.Services.Mtom.WsMtomBodyParts.Start">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Start" />
+      <setter name="set_Start" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFWsStack" module="MFWsStack" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Ws.Services.Mtom" />
+        <type api="T:Ws.Services.Mtom.WsMtomBodyParts" ref="true" />
+      </containers>
+      <file name="b586d5de-4e4f-e10a-0c83-59b1c8c6ca31" />
+    </api>
+  </apis>
+</reflection>

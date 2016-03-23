@@ -1,0 +1,2645 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.Phone">
+      <assemblydata version="8.0.0.0" culture="" key="0024000004800000140100000602000000240000525341310008000001000100CB8F76DAE05D352C117A8467EF3260E002108AA9E70956E705F6430F6CBCFE359D02117563400017D1004D68D13FE574A25649580ED1EE225AA4BBC093062DA0B168BBEA3F5795508FCBD7531374C745CE6327A91AC7243571F2B4E8E4FC248CA1A2F3C873E149B3430B37BD51A6A3ADC95F685C91745769130FA10FBFC7B2282F25DFFD4BA2C0BD7C8288CDE4806C8BDC817D126C7E543610D3476A6317B5D54876A0E3B3AD42B12C5138DB2FFB669F1BE6314BC9587AC1ACE4751D6C5884DB048115907C090DBBDF98C65ED4C042C3775ACAA7D6042307FAE2AAFAE7128E17658192446C07400D22C5BA43F3A1E7A3E5AF81BE0E65A5016C5F0C62A3C0DEB3" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.ComVisibleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>False</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft® Silverlight</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Phone Core Assembly</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.Phone</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.CLSCompliantAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Boolean" ref="false" />
+            <value>True</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>3.0.30701.2350</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Resources.NeutralResourcesLanguageAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>en-us</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.InteropServices.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>969e33fe-1289-4bc2-863a-c848bb476cc0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.Devices">
+      <topicdata group="api" />
+      <apidata name="Microsoft.Devices" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.Devices.CameraVideoBrushExtensions" />
+        <element api="T:Microsoft.Devices.FlashMode" />
+        <element api="T:Microsoft.Devices.CameraType" />
+        <element api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+        <element api="T:Microsoft.Devices.Camera" />
+        <element api="T:Microsoft.Devices.CameraButtons" />
+        <element api="T:Microsoft.Devices.DeviceType" />
+        <element api="T:Microsoft.Devices.Environment" />
+        <element api="T:Microsoft.Devices.StartButton" />
+        <element api="T:Microsoft.Devices.MediaHistory" />
+        <element api="T:Microsoft.Devices.MediaHistoryItem" />
+        <element api="T:Microsoft.Devices.YCbCrPixelLayout" />
+        <element api="T:Microsoft.Devices.ContentReadyEventArgs" />
+        <element api="T:Microsoft.Devices.PhotoCamera" />
+        <element api="T:Microsoft.Devices.VibrateController" />
+      </elements>
+      <file name="a3548f99-6567-ba88-6d46-d8be17d75903" />
+    </api>
+    <api id="T:Microsoft.Devices.Camera">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Camera" />
+      <apidata name="Camera" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+        <descendents>
+          <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+        </descendents>
+      </family>
+      <implements>
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="55480353-7f38-6adc-253c-d8ba47f2eb66" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Camera">
+      <topicdata name="Camera" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Camera" />
+      <apidata name="Camera" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Camera.AvailableResolutions" />
+        <element api="P:Microsoft.Devices.Camera.CameraType" />
+        <element api="M:Microsoft.Devices.Camera.Dispose" />
+        <element api="M:Microsoft.Devices.Camera.Finalize" />
+        <element api="E:Microsoft.Devices.Camera.Initialized" />
+        <element api="M:Microsoft.Devices.Camera.IsCameraTypeSupported(Microsoft.Devices.CameraType)" />
+        <element api="P:Microsoft.Devices.Camera.Orientation" />
+        <element api="P:Microsoft.Devices.Camera.PreviewResolution" />
+        <element api="P:Microsoft.Devices.Camera.Resolution" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" />
+      </containers>
+      <file name="c672f468-0c16-c239-2ef8-a3fa02d269d6" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.Camera">
+      <topicdata name="Camera" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.Camera" />
+      <apidata name="Camera" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Devices.Camera.Dispose" />
+        <element api="M:Microsoft.Devices.Camera.Finalize" />
+        <element api="M:Microsoft.Devices.Camera.IsCameraTypeSupported(Microsoft.Devices.CameraType)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" />
+      </containers>
+      <file name="a4cedfdb-c188-3cba-f1a4-3792a9b14ea2" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Camera">
+      <topicdata name="Camera" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Camera" />
+      <apidata name="Camera" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Camera.AvailableResolutions" />
+        <element api="P:Microsoft.Devices.Camera.CameraType" />
+        <element api="P:Microsoft.Devices.Camera.Orientation" />
+        <element api="P:Microsoft.Devices.Camera.PreviewResolution" />
+        <element api="P:Microsoft.Devices.Camera.Resolution" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" />
+      </containers>
+      <file name="0771fccf-0b8e-1bf9-4564-e774dce7f7f0" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.Camera">
+      <topicdata name="Camera" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.Camera" />
+      <apidata name="Camera" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Devices.Camera.Initialized" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" />
+      </containers>
+      <file name="1a6f6ceb-d74f-5b2a-e31d-51dbbc510a7b" />
+    </api>
+    <api id="P:Microsoft.Devices.Camera.AvailableResolutions">
+      <topicdata group="api" />
+      <apidata name="AvailableResolutions" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_AvailableResolutions" />
+      <returns>
+        <type api="T:System.Collections.Generic.IEnumerable`1" ref="true">
+          <specialization>
+            <type api="T:System.Windows.Size" ref="false" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="1ea3ff90-cee6-91ce-4264-cb8bc0578dad" />
+    </api>
+    <api id="P:Microsoft.Devices.Camera.CameraType">
+      <topicdata group="api" />
+      <apidata name="CameraType" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" set-visibility="family" />
+      <getter name="get_CameraType" />
+      <setter name="set_CameraType" />
+      <returns>
+        <type api="T:Microsoft.Devices.CameraType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="04e3e7e4-4fb5-0686-7c70-991d4240b685" />
+    </api>
+    <api id="M:Microsoft.Devices.Camera.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="321824e1-b188-9bea-cfaf-a1cfff36a32b" />
+    </api>
+    <api id="M:Microsoft.Devices.Camera.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="0161ec99-50ca-4ae9-dad3-08cb3081172a" />
+    </api>
+    <api id="E:Microsoft.Devices.Camera.Initialized">
+      <topicdata group="api" />
+      <apidata name="Initialized" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_Initialized" />
+      <remover name="remove_Initialized" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="9b4ddd67-daa8-0b9c-8f09-53cb77f46bd6" />
+    </api>
+    <api id="M:Microsoft.Devices.Camera.IsCameraTypeSupported(Microsoft.Devices.CameraType)">
+      <topicdata group="api" />
+      <apidata name="IsCameraTypeSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:Microsoft.Devices.CameraType" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="e7259de0-42d7-1e4c-e031-39c39ba83189" />
+    </api>
+    <api id="P:Microsoft.Devices.Camera.Orientation">
+      <topicdata group="api" />
+      <apidata name="Orientation" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Orientation" />
+      <returns>
+        <type api="T:System.Double" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="1d7240fe-d55b-0953-ce81-076e0adfb921" />
+    </api>
+    <api id="P:Microsoft.Devices.Camera.PreviewResolution">
+      <topicdata group="api" />
+      <apidata name="PreviewResolution" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PreviewResolution" />
+      <returns>
+        <type api="T:System.Windows.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="b14d5613-0aa6-7c2c-858e-badc1066b947" />
+    </api>
+    <api id="P:Microsoft.Devices.Camera.Resolution">
+      <topicdata group="api" />
+      <apidata name="Resolution" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Resolution" />
+      <setter name="set_Resolution" />
+      <returns>
+        <type api="T:System.Windows.Size" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Camera" ref="true" />
+      </containers>
+      <file name="e3c2e6b1-fe73-4fca-2e29-03fea68e5f21" />
+    </api>
+    <api id="T:Microsoft.Devices.CameraButtons">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.CameraButtons" />
+      <apidata name="CameraButtons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="f0cbd48f-037e-4fcc-1b05-f2837d0e0057" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.CameraButtons">
+      <topicdata name="CameraButtons" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.CameraButtons" />
+      <apidata name="CameraButtons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Devices.CameraButtons.ShutterKeyHalfPressed" />
+        <element api="E:Microsoft.Devices.CameraButtons.ShutterKeyPressed" />
+        <element api="E:Microsoft.Devices.CameraButtons.ShutterKeyReleased" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraButtons" />
+      </containers>
+      <file name="9f675321-7b1b-eda2-10e6-f7db975ef6a8" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.CameraButtons">
+      <topicdata name="CameraButtons" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.CameraButtons" />
+      <apidata name="CameraButtons" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Devices.CameraButtons.ShutterKeyHalfPressed" />
+        <element api="E:Microsoft.Devices.CameraButtons.ShutterKeyPressed" />
+        <element api="E:Microsoft.Devices.CameraButtons.ShutterKeyReleased" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraButtons" />
+      </containers>
+      <file name="eea353dd-85e4-585e-9973-0ee261b6978f" />
+    </api>
+    <api id="E:Microsoft.Devices.CameraButtons.ShutterKeyHalfPressed">
+      <topicdata group="api" />
+      <apidata name="ShutterKeyHalfPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ShutterKeyHalfPressed" />
+      <remover name="remove_ShutterKeyHalfPressed" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraButtons" ref="true" />
+      </containers>
+      <file name="cd6422f9-2ae2-08da-e753-23736b83bc89" />
+    </api>
+    <api id="E:Microsoft.Devices.CameraButtons.ShutterKeyPressed">
+      <topicdata group="api" />
+      <apidata name="ShutterKeyPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ShutterKeyPressed" />
+      <remover name="remove_ShutterKeyPressed" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraButtons" ref="true" />
+      </containers>
+      <file name="8eb1a0fc-fe54-c7f8-906e-ac93c4cd8020" />
+    </api>
+    <api id="E:Microsoft.Devices.CameraButtons.ShutterKeyReleased">
+      <topicdata group="api" />
+      <apidata name="ShutterKeyReleased" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ShutterKeyReleased" />
+      <remover name="remove_ShutterKeyReleased" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraButtons" ref="true" />
+      </containers>
+      <file name="bf191754-d58b-7a88-fb91-f4bf2fcbe62f" />
+    </api>
+    <api id="T:Microsoft.Devices.CameraOperationCompletedEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      <apidata name="CameraOperationCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="dcfe30a4-a92f-af0b-daf5-32c2b06e01a9" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.CameraOperationCompletedEventArgs">
+      <topicdata name="CameraOperationCompletedEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      <apidata name="CameraOperationCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Devices.CameraOperationCompletedEventArgs.#ctor(System.Boolean,System.Exception)" />
+        <element api="P:Microsoft.Devices.CameraOperationCompletedEventArgs.Exception" />
+        <element api="P:Microsoft.Devices.CameraOperationCompletedEventArgs.Succeeded" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      </containers>
+      <file name="4fb0cff5-ada8-e5ea-6a6c-374304812864" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.CameraOperationCompletedEventArgs">
+      <topicdata name="CameraOperationCompletedEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      <apidata name="CameraOperationCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      </containers>
+      <file name="667bd65a-16c2-9498-257a-369ac5d765d3" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.CameraOperationCompletedEventArgs">
+      <topicdata name="CameraOperationCompletedEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      <apidata name="CameraOperationCompletedEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.CameraOperationCompletedEventArgs.Exception" />
+        <element api="P:Microsoft.Devices.CameraOperationCompletedEventArgs.Succeeded" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" />
+      </containers>
+      <file name="78bbf38d-ea56-f1b6-3894-4dcf234be2d1" />
+    </api>
+    <api id="M:Microsoft.Devices.CameraOperationCompletedEventArgs.#ctor(System.Boolean,System.Exception)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="succeeded">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+        <parameter name="exception">
+          <type api="T:System.Exception" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="86d036c8-e5cc-7aa3-1899-236034027397" />
+    </api>
+    <api id="P:Microsoft.Devices.CameraOperationCompletedEventArgs.Exception">
+      <topicdata group="api" />
+      <apidata name="Exception" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Exception" />
+      <returns>
+        <type api="T:System.Exception" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="1b7a6d81-cdf5-5c89-35c7-9fab3ed69858" />
+    </api>
+    <api id="P:Microsoft.Devices.CameraOperationCompletedEventArgs.Succeeded">
+      <topicdata group="api" />
+      <apidata name="Succeeded" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Succeeded" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+      </containers>
+      <file name="37e7c420-c1a1-c8db-cd5c-f4e2a73e71d6" />
+    </api>
+    <api id="T:Microsoft.Devices.CameraType">
+      <topicdata group="api" />
+      <apidata name="CameraType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.CameraType.Primary" />
+        <element api="F:Microsoft.Devices.CameraType.FrontFacing" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="36cb265f-36b1-e6c5-16d4-c2b8a24f3c60" />
+    </api>
+    <api id="F:Microsoft.Devices.CameraType.FrontFacing">
+      <topicdata group="api" notopic="" />
+      <apidata name="FrontFacing" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.CameraType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraType" ref="false" />
+      </containers>
+      <file name="09b01ab9-662b-ae7a-1a7c-ba46d5564187" />
+    </api>
+    <api id="F:Microsoft.Devices.CameraType.Primary">
+      <topicdata group="api" notopic="" />
+      <apidata name="Primary" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.CameraType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraType" ref="false" />
+      </containers>
+      <file name="a223ed5f-0604-584b-7efb-fd231697aa7c" />
+    </api>
+    <api id="T:Microsoft.Devices.CameraVideoBrushExtensions">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.CameraVideoBrushExtensions" />
+      <apidata name="CameraVideoBrushExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="ff557d53-32ba-5777-0f37-644888a8bda3" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.CameraVideoBrushExtensions">
+      <topicdata name="CameraVideoBrushExtensions" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.CameraVideoBrushExtensions" />
+      <apidata name="CameraVideoBrushExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Devices.CameraVideoBrushExtensions.SetSource">
+          <element api="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,Microsoft.Devices.Camera)" />
+          <element api="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraVideoBrushExtensions" />
+      </containers>
+      <file name="cabf3ce2-a256-a79c-351b-7de64d330b4b" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.CameraVideoBrushExtensions">
+      <topicdata name="CameraVideoBrushExtensions" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.CameraVideoBrushExtensions" />
+      <apidata name="CameraVideoBrushExtensions" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="Overload:Microsoft.Devices.CameraVideoBrushExtensions.SetSource">
+          <element api="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,Microsoft.Devices.Camera)" />
+          <element api="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,System.Object)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraVideoBrushExtensions" />
+      </containers>
+      <file name="f45b82e3-b349-3760-46f5-35daa28ece75" />
+    </api>
+    <api id="Overload:Microsoft.Devices.CameraVideoBrushExtensions.SetSource">
+      <topicdata name="SetSource" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Devices.CameraVideoBrushExtensions" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,Microsoft.Devices.Camera)" />
+        <element api="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,System.Object)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraVideoBrushExtensions" ref="true" />
+      </containers>
+      <file name="56b8f7aa-9e50-3acb-648d-cc3fe6e3c7fe" />
+    </api>
+    <api id="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,Microsoft.Devices.Camera)">
+      <topicdata group="api" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Devices.CameraVideoBrushExtensions.SetSource" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="brush">
+          <type api="T:System.Windows.Media.VideoBrush" ref="true" />
+        </parameter>
+        <parameter name="camera">
+          <type api="T:Microsoft.Devices.Camera" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraVideoBrushExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="2c12a539-33a5-1e35-67e3-0f888291d0d0" />
+    </api>
+    <api id="M:Microsoft.Devices.CameraVideoBrushExtensions.SetSource(System.Windows.Media.VideoBrush,System.Object)">
+      <topicdata group="api" />
+      <apidata name="SetSource" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Microsoft.Devices.CameraVideoBrushExtensions.SetSource" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="brush">
+          <type api="T:System.Windows.Media.VideoBrush" ref="true" />
+        </parameter>
+        <parameter name="camera">
+          <type api="T:System.Object" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.CameraVideoBrushExtensions" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:System.Runtime.CompilerServices.ExtensionAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="a4c05ae8-ece2-8ba6-f719-c2fead22eeac" />
+    </api>
+    <api id="T:Microsoft.Devices.ContentReadyEventArgs">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.ContentReadyEventArgs" />
+      <apidata name="ContentReadyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.EventArgs" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="396ffdc5-9848-0a7f-eb0f-d64f1c051800" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.ContentReadyEventArgs">
+      <topicdata name="ContentReadyEventArgs" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.ContentReadyEventArgs" />
+      <apidata name="ContentReadyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.ContentReadyEventArgs.ImageStream" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.ContentReadyEventArgs" />
+      </containers>
+      <file name="bc911c82-6d5b-3ccf-858c-c6a68d827b9a" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.ContentReadyEventArgs">
+      <topicdata name="ContentReadyEventArgs" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.ContentReadyEventArgs" />
+      <apidata name="ContentReadyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.ContentReadyEventArgs" />
+      </containers>
+      <file name="d12ac484-2dd1-d719-4e9f-176fed98af95" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.ContentReadyEventArgs">
+      <topicdata name="ContentReadyEventArgs" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.ContentReadyEventArgs" />
+      <apidata name="ContentReadyEventArgs" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.ContentReadyEventArgs.ImageStream" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.ContentReadyEventArgs" />
+      </containers>
+      <file name="5a653479-1644-1bcf-4f99-f31b710047d8" />
+    </api>
+    <api id="P:Microsoft.Devices.ContentReadyEventArgs.ImageStream">
+      <topicdata group="api" />
+      <apidata name="ImageStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_ImageStream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.ContentReadyEventArgs" ref="true" />
+      </containers>
+      <file name="4849ee27-100b-8dc3-47ca-5bbedfae1532" />
+    </api>
+    <api id="T:Microsoft.Devices.DeviceType">
+      <topicdata group="api" />
+      <apidata name="DeviceType" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.DeviceType.Device" />
+        <element api="F:Microsoft.Devices.DeviceType.Emulator" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="d5fa3c6c-bd9e-3c8d-710c-80ba99594559" />
+    </api>
+    <api id="F:Microsoft.Devices.DeviceType.Device">
+      <topicdata group="api" notopic="" />
+      <apidata name="Device" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.DeviceType" ref="false" />
+      </returns>
+      <value>0</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.DeviceType" ref="false" />
+      </containers>
+      <file name="f9ec894c-0d3e-e4d7-f584-6a55292e0fb5" />
+    </api>
+    <api id="F:Microsoft.Devices.DeviceType.Emulator">
+      <topicdata group="api" notopic="" />
+      <apidata name="Emulator" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.DeviceType" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.DeviceType" ref="false" />
+      </containers>
+      <file name="5a4d62b9-a3ac-fdc8-42fa-d6179f92a622" />
+    </api>
+    <api id="T:Microsoft.Devices.Environment">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.Environment" />
+      <apidata name="Environment" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="4de8a925-817c-ccd1-16c7-a0bc0ca8fe31" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.Environment">
+      <topicdata name="Environment" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.Environment" />
+      <apidata name="Environment" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Environment.DeviceType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Environment" />
+      </containers>
+      <file name="7bf5e35e-d377-5f39-4666-088f04735145" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.Environment">
+      <topicdata name="Environment" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.Environment" />
+      <apidata name="Environment" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.Environment.DeviceType" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Environment" />
+      </containers>
+      <file name="e192747b-b682-c240-2d70-d4b5455e7161" />
+    </api>
+    <api id="P:Microsoft.Devices.Environment.DeviceType">
+      <topicdata group="api" />
+      <apidata name="DeviceType" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DeviceType" />
+      <returns>
+        <type api="T:Microsoft.Devices.DeviceType" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.Environment" ref="true" />
+      </containers>
+      <file name="746e6c8e-7563-5cb7-0a32-0f7afb622a6f" />
+    </api>
+    <api id="T:Microsoft.Devices.FlashMode">
+      <topicdata group="api" />
+      <apidata name="FlashMode" group="type" subgroup="enumeration" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.FlashMode.On" />
+        <element api="F:Microsoft.Devices.FlashMode.Off" />
+        <element api="F:Microsoft.Devices.FlashMode.Auto" />
+        <element api="F:Microsoft.Devices.FlashMode.RedEyeReduction" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="8eaffec9-e7ac-fbbb-f113-df9d02c31555" />
+    </api>
+    <api id="F:Microsoft.Devices.FlashMode.Auto">
+      <topicdata group="api" notopic="" />
+      <apidata name="Auto" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </returns>
+      <value>3</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </containers>
+      <file name="012fa190-6a94-66a3-c7d5-374edc15be78" />
+    </api>
+    <api id="F:Microsoft.Devices.FlashMode.Off">
+      <topicdata group="api" notopic="" />
+      <apidata name="Off" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </returns>
+      <value>2</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </containers>
+      <file name="868cb857-3194-7556-fa7b-6be77df54d98" />
+    </api>
+    <api id="F:Microsoft.Devices.FlashMode.On">
+      <topicdata group="api" notopic="" />
+      <apidata name="On" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </returns>
+      <value>1</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </containers>
+      <file name="d1ffaecb-330e-d9ef-2503-e8ef97459842" />
+    </api>
+    <api id="F:Microsoft.Devices.FlashMode.RedEyeReduction">
+      <topicdata group="api" notopic="" />
+      <apidata name="RedEyeReduction" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="true" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </returns>
+      <value>4</value>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </containers>
+      <file name="1dc86ecb-4d03-deed-eece-6b0fc5b64e9b" />
+    </api>
+    <api id="T:Microsoft.Devices.MediaHistory">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.MediaHistory" />
+      <apidata name="MediaHistory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="eafc69e1-5b66-ca5a-5bfa-e6d9356d21af" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.MediaHistory">
+      <topicdata name="MediaHistory" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.MediaHistory" />
+      <apidata name="MediaHistory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.MediaHistory.Instance" />
+        <element api="P:Microsoft.Devices.MediaHistory.NowPlaying" />
+        <element api="M:Microsoft.Devices.MediaHistory.WriteAcquiredItem(Microsoft.Devices.MediaHistoryItem)" />
+        <element api="M:Microsoft.Devices.MediaHistory.WriteRecentPlay(Microsoft.Devices.MediaHistoryItem)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" />
+      </containers>
+      <file name="c838194b-4374-466a-8d82-b48ae225c2b3" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.MediaHistory">
+      <topicdata name="MediaHistory" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.MediaHistory" />
+      <apidata name="MediaHistory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Devices.MediaHistory.WriteAcquiredItem(Microsoft.Devices.MediaHistoryItem)" />
+        <element api="M:Microsoft.Devices.MediaHistory.WriteRecentPlay(Microsoft.Devices.MediaHistoryItem)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" />
+      </containers>
+      <file name="98e7803a-5cac-d0be-2756-570518390f55" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.MediaHistory">
+      <topicdata name="MediaHistory" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.MediaHistory" />
+      <apidata name="MediaHistory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.MediaHistory.NowPlaying" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" />
+      </containers>
+      <file name="c8ac24ce-93ea-1f33-b52f-d846d5589356" />
+    </api>
+    <api id="Fields.T:Microsoft.Devices.MediaHistory">
+      <topicdata name="MediaHistory" group="list" subgroup="Fields" typeTopicId="T:Microsoft.Devices.MediaHistory" />
+      <apidata name="MediaHistory" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.Devices.MediaHistory.Instance" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" />
+      </containers>
+      <file name="fa923bbf-cb52-33e4-e9af-a18cb57fcccc" />
+    </api>
+    <api id="F:Microsoft.Devices.MediaHistory.Instance">
+      <topicdata group="api" />
+      <apidata name="Instance" group="member" subgroup="field" />
+      <memberdata visibility="public" static="true" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.Devices.MediaHistory" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" ref="true" />
+      </containers>
+      <file name="b3dcea80-36c6-9a1c-873e-a3ee6c5a820b" />
+    </api>
+    <api id="P:Microsoft.Devices.MediaHistory.NowPlaying">
+      <topicdata group="api" />
+      <apidata name="NowPlaying" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_NowPlaying" />
+      <setter name="set_NowPlaying" />
+      <returns>
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" ref="true" />
+      </containers>
+      <file name="0255d9c5-a942-9394-1a28-09e90d3fde2f" />
+    </api>
+    <api id="M:Microsoft.Devices.MediaHistory.WriteAcquiredItem(Microsoft.Devices.MediaHistoryItem)">
+      <topicdata group="api" />
+      <apidata name="WriteAcquiredItem" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="item">
+          <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" ref="true" />
+      </containers>
+      <file name="acaa18e7-c6d0-e5f4-400b-7da291d7df3e" />
+    </api>
+    <api id="M:Microsoft.Devices.MediaHistory.WriteRecentPlay(Microsoft.Devices.MediaHistoryItem)">
+      <topicdata group="api" />
+      <apidata name="WriteRecentPlay" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="item">
+          <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistory" ref="true" />
+      </containers>
+      <file name="67b073ad-7d02-363a-c8bc-2edbbc930757" />
+    </api>
+    <api id="T:Microsoft.Devices.MediaHistoryItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.MediaHistoryItem" />
+      <apidata name="MediaHistoryItem" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.MediaHistoryItem.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="aea5bad7-d56f-b68d-a4dc-1686bdd07e7f" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.MediaHistoryItem">
+      <topicdata name="MediaHistoryItem" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.MediaHistoryItem" />
+      <apidata name="MediaHistoryItem" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.MediaHistoryItem.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.MediaHistoryItem.#ctor" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.ImageStream" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.MaxImageSize" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.PlayerContext" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.Source" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.Title" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" />
+      </containers>
+      <file name="6f43dd47-ac26-02ca-10cf-8921b8c03447" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.MediaHistoryItem">
+      <topicdata name="MediaHistoryItem" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.MediaHistoryItem" />
+      <apidata name="MediaHistoryItem" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.MediaHistoryItem.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" />
+      </containers>
+      <file name="516da1da-1f41-ca14-67b2-035764baaa89" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.MediaHistoryItem">
+      <topicdata name="MediaHistoryItem" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.MediaHistoryItem" />
+      <apidata name="MediaHistoryItem" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.Devices.MediaHistoryItem.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.MediaHistoryItem.ImageStream" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.MaxImageSize" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.PlayerContext" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.Source" />
+        <element api="P:Microsoft.Devices.MediaHistoryItem.Title" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" />
+      </containers>
+      <file name="e729f228-7425-8a4e-5ed8-4084ef21dc5b" />
+    </api>
+    <api id="M:Microsoft.Devices.MediaHistoryItem.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </containers>
+      <file name="116e6b93-975a-4427-84fe-4153d50d80d7" />
+    </api>
+    <api id="P:Microsoft.Devices.MediaHistoryItem.ImageStream">
+      <topicdata group="api" />
+      <apidata name="ImageStream" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_ImageStream" />
+      <setter name="set_ImageStream" />
+      <returns>
+        <type api="T:System.IO.Stream" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </containers>
+      <file name="4c6f5685-60db-1f4d-de48-90015e27a22e" />
+    </api>
+    <api id="P:Microsoft.Devices.MediaHistoryItem.MaxImageSize">
+      <topicdata group="api" />
+      <apidata name="MaxImageSize" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MaxImageSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </containers>
+      <file name="f537cbf8-209d-57fc-a21c-7e1c1f5a37d0" />
+    </api>
+    <api id="P:Microsoft.Devices.MediaHistoryItem.PlayerContext">
+      <topicdata group="api" />
+      <apidata name="PlayerContext" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_PlayerContext" />
+      <returns>
+        <type api="T:System.Collections.Generic.IDictionary`2" ref="true">
+          <specialization>
+            <type api="T:System.String" ref="true" />
+            <type api="T:System.String" ref="true" />
+          </specialization>
+        </type>
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </containers>
+      <file name="e64825f5-9c0a-a370-01e9-76f0f094770d" />
+    </api>
+    <api id="P:Microsoft.Devices.MediaHistoryItem.Source">
+      <topicdata group="api" />
+      <apidata name="Source" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Source" />
+      <setter name="set_Source" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </containers>
+      <file name="5fd41526-2798-f0f7-d338-fdb6c295b095" />
+    </api>
+    <api id="P:Microsoft.Devices.MediaHistoryItem.Title">
+      <topicdata group="api" />
+      <apidata name="Title" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Title" />
+      <setter name="set_Title" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.MediaHistoryItem" ref="true" />
+      </containers>
+      <file name="606c2daf-20cf-64f4-cc11-b8c6cb7f03df" />
+    </api>
+    <api id="T:Microsoft.Devices.PhotoCamera">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.PhotoCamera" />
+      <apidata name="PhotoCamera" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.PhotoCamera.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.Devices.Camera" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="3a4285e1-79b9-c5ef-6753-7e050de8a50e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.PhotoCamera">
+      <topicdata name="PhotoCamera" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.PhotoCamera" />
+      <apidata name="PhotoCamera" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.PhotoCamera.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.Camera.AvailableResolutions" />
+        <element api="P:Microsoft.Devices.Camera.CameraType" />
+        <element api="M:Microsoft.Devices.Camera.Dispose" />
+        <element api="E:Microsoft.Devices.Camera.Initialized" />
+        <element api="P:Microsoft.Devices.Camera.Orientation" />
+        <element api="P:Microsoft.Devices.Camera.PreviewResolution" />
+        <element api="P:Microsoft.Devices.Camera.Resolution" />
+        <element api="Overload:Microsoft.Devices.PhotoCamera.#ctor">
+          <element api="M:Microsoft.Devices.PhotoCamera.#ctor" />
+          <element api="M:Microsoft.Devices.PhotoCamera.#ctor(Microsoft.Devices.CameraType)" />
+        </element>
+        <element api="E:Microsoft.Devices.PhotoCamera.AutoFocusCompleted" />
+        <element api="M:Microsoft.Devices.PhotoCamera.CancelFocus" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureCompleted" />
+        <element api="M:Microsoft.Devices.PhotoCamera.CaptureImage" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureImageAvailable" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureStarted" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureThumbnailAvailable" />
+        <element api="P:Microsoft.Devices.PhotoCamera.FlashMode" />
+        <element api="M:Microsoft.Devices.PhotoCamera.Focus" />
+        <element api="M:Microsoft.Devices.PhotoCamera.FocusAtPoint(System.Double,System.Double)" />
+        <element api="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferArgb32(System.Int32[])" />
+        <element api="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferY(System.Byte[])" />
+        <element api="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferYCbCr(System.Byte[])" />
+        <element api="M:Microsoft.Devices.PhotoCamera.IsFlashModeSupported(Microsoft.Devices.FlashMode)" />
+        <element api="P:Microsoft.Devices.PhotoCamera.IsFocusAtPointSupported" />
+        <element api="P:Microsoft.Devices.PhotoCamera.IsFocusSupported" />
+        <element api="P:Microsoft.Devices.PhotoCamera.YCbCrPixelLayout" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" />
+      </containers>
+      <file name="84fe2a86-32c5-2985-7b3b-874341ec2858" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.PhotoCamera">
+      <topicdata name="PhotoCamera" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.PhotoCamera" />
+      <apidata name="PhotoCamera" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.PhotoCamera.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.Camera.Dispose" />
+        <element api="M:Microsoft.Devices.PhotoCamera.CancelFocus" />
+        <element api="M:Microsoft.Devices.PhotoCamera.CaptureImage" />
+        <element api="M:Microsoft.Devices.PhotoCamera.Focus" />
+        <element api="M:Microsoft.Devices.PhotoCamera.FocusAtPoint(System.Double,System.Double)" />
+        <element api="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferArgb32(System.Int32[])" />
+        <element api="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferY(System.Byte[])" />
+        <element api="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferYCbCr(System.Byte[])" />
+        <element api="M:Microsoft.Devices.PhotoCamera.IsFlashModeSupported(Microsoft.Devices.FlashMode)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" />
+      </containers>
+      <file name="9c4d8b13-ebe3-3f5e-cee8-97c857385c71" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.PhotoCamera">
+      <topicdata name="PhotoCamera" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.PhotoCamera" />
+      <apidata name="PhotoCamera" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.PhotoCamera.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.Camera.AvailableResolutions" />
+        <element api="P:Microsoft.Devices.Camera.CameraType" />
+        <element api="P:Microsoft.Devices.Camera.Orientation" />
+        <element api="P:Microsoft.Devices.Camera.PreviewResolution" />
+        <element api="P:Microsoft.Devices.Camera.Resolution" />
+        <element api="P:Microsoft.Devices.PhotoCamera.FlashMode" />
+        <element api="P:Microsoft.Devices.PhotoCamera.IsFocusAtPointSupported" />
+        <element api="P:Microsoft.Devices.PhotoCamera.IsFocusSupported" />
+        <element api="P:Microsoft.Devices.PhotoCamera.YCbCrPixelLayout" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" />
+      </containers>
+      <file name="abfb6fa7-1930-d434-f55d-e01d8fb2bc66" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.PhotoCamera">
+      <topicdata name="PhotoCamera" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.PhotoCamera" />
+      <apidata name="PhotoCamera" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.PhotoCamera.#ctor" />
+      <elements>
+        <element api="E:Microsoft.Devices.Camera.Initialized" />
+        <element api="E:Microsoft.Devices.PhotoCamera.AutoFocusCompleted" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureCompleted" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureImageAvailable" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureStarted" />
+        <element api="E:Microsoft.Devices.PhotoCamera.CaptureThumbnailAvailable" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" />
+      </containers>
+      <file name="8b83bc11-5a09-3551-61e9-9ce1fc60d3fb" />
+    </api>
+    <api id="Overload:Microsoft.Devices.PhotoCamera.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.Devices.PhotoCamera" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.Devices.PhotoCamera.#ctor" />
+        <element api="M:Microsoft.Devices.PhotoCamera.#ctor(Microsoft.Devices.CameraType)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="191bf871-5bf0-c14d-87c7-f6cabafb0c3e" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Devices.PhotoCamera.#ctor" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="81190705-1409-d164-ae90-64cb971f3be5" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.#ctor(Microsoft.Devices.CameraType)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.Devices.PhotoCamera.#ctor" />
+      <parameters>
+        <parameter name="type">
+          <type api="T:Microsoft.Devices.CameraType" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="87d2bf21-1013-0268-80e7-ca55ce09d26e" />
+    </api>
+    <api id="E:Microsoft.Devices.PhotoCamera.AutoFocusCompleted">
+      <topicdata group="api" />
+      <apidata name="AutoFocusCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_AutoFocusCompleted" />
+      <remover name="remove_AutoFocusCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="73449a76-36fa-f048-de45-a400c1d6d7b3" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.CancelFocus">
+      <topicdata group="api" />
+      <apidata name="CancelFocus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="6b0dc330-22f1-4f54-423f-6cc4c85cde32" />
+    </api>
+    <api id="E:Microsoft.Devices.PhotoCamera.CaptureCompleted">
+      <topicdata group="api" />
+      <apidata name="CaptureCompleted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CaptureCompleted" />
+      <remover name="remove_CaptureCompleted" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.CameraOperationCompletedEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="f2666473-1297-df1b-ee39-997d77e4982a" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.CaptureImage">
+      <topicdata group="api" />
+      <apidata name="CaptureImage" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="9630e1b0-6e57-14c7-8ba7-eb4a8a571b41" />
+    </api>
+    <api id="E:Microsoft.Devices.PhotoCamera.CaptureImageAvailable">
+      <topicdata group="api" />
+      <apidata name="CaptureImageAvailable" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CaptureImageAvailable" />
+      <remover name="remove_CaptureImageAvailable" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.ContentReadyEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.ContentReadyEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="1380d165-9acb-8f56-1565-7986fbcc4d44" />
+    </api>
+    <api id="E:Microsoft.Devices.PhotoCamera.CaptureStarted">
+      <topicdata group="api" />
+      <apidata name="CaptureStarted" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CaptureStarted" />
+      <remover name="remove_CaptureStarted" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="1359f66b-f80e-5bba-5a00-a640efb03d76" />
+    </api>
+    <api id="E:Microsoft.Devices.PhotoCamera.CaptureThumbnailAvailable">
+      <topicdata group="api" />
+      <apidata name="CaptureThumbnailAvailable" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_CaptureThumbnailAvailable" />
+      <remover name="remove_CaptureThumbnailAvailable" />
+      <eventhandler>
+        <type api="T:System.EventHandler`1" ref="true">
+          <specialization>
+            <type api="T:Microsoft.Devices.ContentReadyEventArgs" ref="true" />
+          </specialization>
+        </type>
+      </eventhandler>
+      <eventargs>
+        <type api="T:Microsoft.Devices.ContentReadyEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="0d05f6e8-edae-83f1-09a4-9c60088c52c6" />
+    </api>
+    <api id="P:Microsoft.Devices.PhotoCamera.FlashMode">
+      <topicdata group="api" />
+      <apidata name="FlashMode" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_FlashMode" />
+      <setter name="set_FlashMode" />
+      <returns>
+        <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="b408ca34-117d-87e9-99c6-42c19ba46a57" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.Focus">
+      <topicdata group="api" />
+      <apidata name="Focus" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="579f8d48-0687-7c21-5b2d-28d460b63ac6" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.FocusAtPoint(System.Double,System.Double)">
+      <topicdata group="api" />
+      <apidata name="FocusAtPoint" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="x">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+        <parameter name="y">
+          <type api="T:System.Double" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="db2a63f2-8db4-1d9a-f40a-5f4f275e9b1d" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferArgb32(System.Int32[])">
+      <topicdata group="api" />
+      <apidata name="GetPreviewBufferArgb32" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pixelData">
+          <arrayOf rank="1">
+            <type api="T:System.Int32" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="63070b90-5dd4-7fa3-969f-21fdb5716b68" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferY(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="GetPreviewBufferY" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pixelData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="335a8566-176f-7b80-38bb-ad54c1ee3d4d" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.GetPreviewBufferYCbCr(System.Byte[])">
+      <topicdata group="api" />
+      <apidata name="GetPreviewBufferYCbCr" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="pixelData">
+          <arrayOf rank="1">
+            <type api="T:System.Byte" ref="false" />
+          </arrayOf>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="7122c53d-6298-5c30-29b2-0e3b134ce975" />
+    </api>
+    <api id="M:Microsoft.Devices.PhotoCamera.IsFlashModeSupported(Microsoft.Devices.FlashMode)">
+      <topicdata group="api" />
+      <apidata name="IsFlashModeSupported" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="mode">
+          <type api="T:Microsoft.Devices.FlashMode" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="a45c91b4-0a5a-c335-27b2-7981f5cb638e" />
+    </api>
+    <api id="P:Microsoft.Devices.PhotoCamera.IsFocusAtPointSupported">
+      <topicdata group="api" />
+      <apidata name="IsFocusAtPointSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsFocusAtPointSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="66a7e497-b9c8-66fb-820e-ebff922f693b" />
+    </api>
+    <api id="P:Microsoft.Devices.PhotoCamera.IsFocusSupported">
+      <topicdata group="api" />
+      <apidata name="IsFocusSupported" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IsFocusSupported" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="58be3178-9628-d2d7-b0f1-cc1bc3d56d4c" />
+    </api>
+    <api id="P:Microsoft.Devices.PhotoCamera.YCbCrPixelLayout">
+      <topicdata group="api" />
+      <apidata name="YCbCrPixelLayout" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YCbCrPixelLayout" />
+      <returns>
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.PhotoCamera" ref="true" />
+      </containers>
+      <file name="b6da74a5-dbaa-3515-c2f9-5ce7c5f8ffd3" />
+    </api>
+    <api id="T:Microsoft.Devices.StartButton">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.StartButton" />
+      <apidata name="StartButton" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="db8ebdce-69c7-1854-65e2-0f494b07ea1e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.StartButton">
+      <topicdata name="StartButton" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.StartButton" />
+      <apidata name="StartButton" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Devices.StartButton.StartKeyPressed" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.StartButton" />
+      </containers>
+      <file name="e1d3aaad-d746-8f56-6de7-75e521f01124" />
+    </api>
+    <api id="Events.T:Microsoft.Devices.StartButton">
+      <topicdata name="StartButton" group="list" subgroup="Events" typeTopicId="T:Microsoft.Devices.StartButton" />
+      <apidata name="StartButton" group="type" subgroup="class" />
+      <typedata visibility="public" abstract="true" sealed="true" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.Devices.StartButton.StartKeyPressed" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.StartButton" />
+      </containers>
+      <file name="3e6e85a4-13fb-2073-fa84-1d1f899db9de" />
+    </api>
+    <api id="E:Microsoft.Devices.StartButton.StartKeyPressed">
+      <topicdata group="api" />
+      <apidata name="StartKeyPressed" group="member" subgroup="event" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_StartKeyPressed" />
+      <remover name="remove_StartKeyPressed" />
+      <eventhandler>
+        <type api="T:System.EventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:System.EventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.StartButton" ref="true" />
+      </containers>
+      <file name="6b9e64be-c8d6-fbf0-fb7a-60cc3fd8fc86" />
+    </api>
+    <api id="T:Microsoft.Devices.VibrateController">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.VibrateController" />
+      <apidata name="VibrateController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="fc5d111f-0dc6-509d-990b-883088bf6e40" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.VibrateController">
+      <topicdata name="VibrateController" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.VibrateController" />
+      <apidata name="VibrateController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.VibrateController.Default" />
+        <element api="M:Microsoft.Devices.VibrateController.Start(System.TimeSpan)" />
+        <element api="M:Microsoft.Devices.VibrateController.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.VibrateController" />
+      </containers>
+      <file name="da5fe9d5-de51-49cc-cbe8-05bf00a20568" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.VibrateController">
+      <topicdata name="VibrateController" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.VibrateController" />
+      <apidata name="VibrateController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.Devices.VibrateController.Start(System.TimeSpan)" />
+        <element api="M:Microsoft.Devices.VibrateController.Stop" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.VibrateController" />
+      </containers>
+      <file name="ee57f4bf-ee33-314d-bfa6-bf763602dc0f" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.VibrateController">
+      <topicdata name="VibrateController" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.VibrateController" />
+      <apidata name="VibrateController" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.Devices.VibrateController.Default" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.VibrateController" />
+      </containers>
+      <file name="ebc0cd3d-47c8-2268-5c4a-c4a0d9391b60" />
+    </api>
+    <api id="P:Microsoft.Devices.VibrateController.Default">
+      <topicdata group="api" />
+      <apidata name="Default" group="member" subgroup="property" />
+      <memberdata visibility="public" static="true" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Default" />
+      <returns>
+        <type api="T:Microsoft.Devices.VibrateController" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.VibrateController" ref="true" />
+      </containers>
+      <file name="d25fa6e8-3296-f2d5-1b65-971df44afbc3" />
+    </api>
+    <api id="M:Microsoft.Devices.VibrateController.Start(System.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="Start" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="duration">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.VibrateController" ref="true" />
+      </containers>
+      <file name="9c4cc262-497f-2382-3aa4-cf77a77c1c75" />
+    </api>
+    <api id="M:Microsoft.Devices.VibrateController.Stop">
+      <topicdata group="api" />
+      <apidata name="Stop" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.VibrateController" ref="true" />
+      </containers>
+      <file name="40a959e8-bf01-28c4-fce2-067f5b23da37" />
+    </api>
+    <api id="T:Microsoft.Devices.YCbCrPixelLayout">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.Devices.YCbCrPixelLayout" />
+      <apidata name="YCbCrPixelLayout" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.YCbCrPixelLayout.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+      </containers>
+      <file name="4d568469-e089-a51a-758e-d9102cd5c5fe" />
+    </api>
+    <api id="AllMembers.T:Microsoft.Devices.YCbCrPixelLayout">
+      <topicdata name="YCbCrPixelLayout" group="list" subgroup="members" typeTopicId="T:Microsoft.Devices.YCbCrPixelLayout" />
+      <apidata name="YCbCrPixelLayout" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.YCbCrPixelLayout.#ctor" />
+      <elements>
+        <element api="M:Microsoft.Devices.YCbCrPixelLayout.#ctor" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CbOffset" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CbPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CbXPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CrOffset" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CrPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CrXPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.RequiredBufferSize" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.YOffset" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.YPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.YXPitch" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" />
+      </containers>
+      <file name="d57f43cd-7581-a1f3-9e5c-6a2074a32cff" />
+    </api>
+    <api id="Methods.T:Microsoft.Devices.YCbCrPixelLayout">
+      <topicdata name="YCbCrPixelLayout" group="list" subgroup="Methods" typeTopicId="T:Microsoft.Devices.YCbCrPixelLayout" />
+      <apidata name="YCbCrPixelLayout" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.YCbCrPixelLayout.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" />
+      </containers>
+      <file name="a3707632-833e-2d80-c3a3-021ab1bd87d9" />
+    </api>
+    <api id="Properties.T:Microsoft.Devices.YCbCrPixelLayout">
+      <topicdata name="YCbCrPixelLayout" group="list" subgroup="Properties" typeTopicId="T:Microsoft.Devices.YCbCrPixelLayout" />
+      <apidata name="YCbCrPixelLayout" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" defaultConstructor="M:Microsoft.Devices.YCbCrPixelLayout.#ctor" />
+      <elements>
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CbOffset" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CbPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CbXPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CrOffset" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CrPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.CrXPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.RequiredBufferSize" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.YOffset" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.YPitch" />
+        <element api="P:Microsoft.Devices.YCbCrPixelLayout.YXPitch" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" />
+      </containers>
+      <file name="fffb9df5-3f88-fba0-4ed4-e5d8a1625b0e" />
+    </api>
+    <api id="M:Microsoft.Devices.YCbCrPixelLayout.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="5e5df7c8-b392-5a3e-fb89-0dfb65008416" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.CbOffset">
+      <topicdata group="api" />
+      <apidata name="CbOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CbOffset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="49042f1a-c452-ac1d-393d-ccdebea2b06d" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.CbPitch">
+      <topicdata group="api" />
+      <apidata name="CbPitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CbPitch" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="62ab03a3-782f-4767-08a0-cafec963e399" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.CbXPitch">
+      <topicdata group="api" />
+      <apidata name="CbXPitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CbXPitch" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="7ad58538-c492-ec47-7303-9f5d6f864fa3" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.CrOffset">
+      <topicdata group="api" />
+      <apidata name="CrOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CrOffset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="258a4468-af29-efd1-aa2d-a67e3ab12fff" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.CrPitch">
+      <topicdata group="api" />
+      <apidata name="CrPitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CrPitch" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="b8968e14-2c73-d03f-808e-fc99ff2da5fb" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.CrXPitch">
+      <topicdata group="api" />
+      <apidata name="CrXPitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_CrXPitch" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="86a3645b-3245-5a20-0a5c-6b0b2d7148ab" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.RequiredBufferSize">
+      <topicdata group="api" />
+      <apidata name="RequiredBufferSize" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_RequiredBufferSize" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="63d95b2e-a8ac-68fe-db54-91055be70fec" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.YOffset">
+      <topicdata group="api" />
+      <apidata name="YOffset" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YOffset" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="baf3c101-88c4-353c-f2a9-dbf0c65de41c" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.YPitch">
+      <topicdata group="api" />
+      <apidata name="YPitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YPitch" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="6d287431-e407-0f70-2cc4-f3e1e20feac4" />
+    </api>
+    <api id="P:Microsoft.Devices.YCbCrPixelLayout.YXPitch">
+      <topicdata group="api" />
+      <apidata name="YXPitch" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_YXPitch" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.Phone" module="Microsoft.Phone" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="8.0.0.0 (3.0.30701.2350)" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.Devices" />
+        <type api="T:Microsoft.Devices.YCbCrPixelLayout" ref="true" />
+      </containers>
+      <file name="4995881f-f1dd-238b-45bd-cca24af84209" />
+    </api>
+  </apis>
+</reflection>

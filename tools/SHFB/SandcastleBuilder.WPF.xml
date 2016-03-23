@@ -1,0 +1,2951 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SandcastleBuilder.WPF</name>
+    </assembly>
+    <members>
+        <member name="T:SandcastleBuilder.WPF.Commands.EditorCommands">
+            <summary>
+            This class contains the help file builder's routed UI commands for file editors
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.Edit">
+            <summary>
+            Open an item for editing
+            </summary>
+            <remarks>The default key binding is Ctrl+E</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.MoveUp">
+            <summary>
+            Move an item up within its collection
+            </summary>
+            <remarks>The default key binding is Ctrl+Up</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.MoveDown">
+            <summary>
+            Move an item down within its collection
+            </summary>
+            <remarks>The default key binding is Ctrl+Down</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.Sort">
+            <summary>
+            Sort a collection of items
+            </summary>
+            <remarks>The default key binding is Ctrl+Shift+T</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.PasteAsChild">
+            <summary>
+            Paste an item as a child of the selected item
+            </summary>
+            <remarks>The default key bindings are Ctrl+Shift+V and Ctrl+Shift+Insert</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.CollapseAll">
+            <summary>
+            Collapse all items in a collection
+            </summary>
+            <remarks>The default key binding is Ctrl+Shift+Left</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.ExpandAll">
+            <summary>
+            Expand all items in a collection
+            </summary>
+            <remarks>The default key binding is Ctrl+Shift+Right</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.CollapseCurrent">
+            <summary>
+            Collapse the current item and its children
+            </summary>
+            <remarks>The default key binding is Shift+Left</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.ExpandCurrent">
+            <summary>
+            Expand the current item and its children
+            </summary>
+            <remarks>The default key binding is Shift+Right</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.EditorCommands.AddItem">
+            <summary>
+            Add an item to the collection
+            </summary>
+            <remarks>This command has no default key binding</remarks>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Commands.ProjectCommands">
+            <summary>
+            This class contains the help file builder's routed UI commands for projects
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.ProjectCommands.AddFromTemplate">
+            <summary>
+            Add a file to the project from a template file
+            </summary>
+            <remarks>This command has no default key binding</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.ProjectCommands.AddExistingFile">
+            <summary>
+            Add an existing file to the project
+            </summary>
+            <remarks>This command has no default key binding</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Commands.ProjectCommands.AddAllFromFolder">
+            <summary>
+            Add all files from a folder to the project
+            </summary>
+            <remarks>This command has no default key binding</remarks>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.ControlExtensions">
+            <summary>
+            This class contains various extension methods for WPF controls
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.ParentElementOfType``1(System.Windows.FrameworkElement)">
+            <summary>
+            From the given starting element, this will work up the visual tree until it finds a parent
+            element of the given type.
+            </summary>
+            <typeparam name="T">The parent element type to find</typeparam>
+            <param name="element">The starting element</param>
+            <returns>The parent element of the given type if found or null if not found</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.CommitChanges(System.Windows.DependencyObject)">
+            <summary>
+            This is used to commit pending changes to the data source from
+            a bound object and its children.
+            </summary>
+            <param name="parent">The parent object</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.Find``1(System.Windows.Documents.FlowDocument,System.Predicate{``0})">
+            <summary>
+            Find elements of the given type that match the given predicate
+            </summary>
+            <typeparam name="T">The object type to find</typeparam>
+            <param name="document">The document to search</param>
+            <param name="predicate">The predicate to match</param>
+            <returns>A list of all document elements of the given type that match the predicate</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.FindByName(System.Windows.Documents.FlowDocument,System.String)">
+            <summary>
+            This is used to find all elements in a flow document with the given name
+            </summary>
+            <param name="document">The flow document to search</param>
+            <param name="name">The element name to find</param>
+            <returns>An enumerable list of elements with the given name</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.Flatten(System.Windows.Documents.TextElement)">
+            <summary>
+            This is used to flatten a flow document element hierarchy for searching
+            </summary>
+            <param name="element">The starting element to flatten</param>
+            <returns>A flattened enumerable list containing the element and all child elements and
+            their children recursively.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.AutoSizeTableColumns(System.Windows.Documents.Table)">
+            <summary>
+            This method is used to auto-size the columns in a table
+            </summary>
+            <param name="table">The table in which to auto-size the columns</param>
+            <remarks>This is a very simple, brute force method of sizing the columns based purely on the
+            length of the text in each cell.  It's far from perfect but does a decent job in most cases.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.ColumnWidths(System.Windows.Documents.Table)">
+            <summary>
+            This is used to get the width of each column in a table measured in characters
+            </summary>
+            <param name="table">The table for which to get the column widths</param>
+            <returns>An enumerable list of column width</returns>
+            <remarks>Nested images and tables within cells are also taken into account</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.ControlExtensions.AutoScrollIfNeeded(System.Windows.Controls.TreeView,System.Windows.Point)">
+            <summary>
+            This <see cref="T:System.Windows.Controls.TreeView"/> extension method auto-scrolls the tree view if the mouse position
+            is within a few display units of the top or bottom of the control.
+            </summary>
+            <param name="treeView">The tree view to use</param>
+            <param name="mousePosition">The current position of the mouse</param>
+            <remarks>This is useful for scrolling during drag and drop operations</remarks>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Controls.DropDownButton">
+            <summary>
+            A button control that has a dropdown menu
+            </summary>
+            <example>
+            <para><b>NOTE:</b> This control's resources must be included in the application, window, or user control
+            resources.  For example:</para>
+            
+            <code lang="xml">
+            &lt;Application.Resources&gt;
+              &lt;ResourceDictionary Source="/SandcastleBuilder.WPF;component/Controls/DropDownButtonStyle.xaml" /&gt;
+            &lt;/Application.Resources&gt;
+            </code>
+            </example>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.DropDownButton.DropDownContextMenuProperty">
+            <summary>
+            The dropdown context menu dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.DropDownButton.ImageProperty">
+            <summary>
+            The image dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.DropDownButton.TextProperty">
+            <summary>
+            The text dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.DropDownButton.TargetProperty">
+            <summary>
+            The target dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.DropDownButton.DropDownButtonCommandProperty">
+            <summary>
+            The drop down button command dependency property
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.DropDownButton.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.DropDownButton.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.DropDownButton.OnClick">
+            <inheritdoc />
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.DropDownButton.DropDownContextMenu">
+            <summary>
+            The dropdown context menu property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.DropDownButton.Image">
+            <summary>
+            The image property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.DropDownButton.Text">
+            <summary>
+            The text property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.DropDownButton.Target">
+            <summary>
+            The target property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.DropDownButton.DropDownButtonCommand">
+            <summary>
+            The dropdown button command property
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Controls.SplitButton">
+            <summary>
+            A split button control that allows a button to have a default action and a dropdown menu
+            </summary>
+            <example>
+            <para><b>NOTE:</b> This control's resources must be included in the application, window, or user control
+            resources.  For example:</para>
+            
+            <code lang="xml">
+            &lt;Application.Resources&gt;
+              &lt;ResourceDictionary Source="/SandcastleBuilder.WPF;component/Controls/SplitButtonStyle.xaml" /&gt;
+            &lt;/Application.Resources&gt;
+            </code>
+            </example>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.DropDownContextMenuProperty">
+            <summary>
+            The dropdown context menu dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.ImageProperty">
+            <summary>
+            The image dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.TextProperty">
+            <summary>
+            The text dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.TargetProperty">
+            <summary>
+            The target dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.MainButtonCommandProperty">
+            <summary>
+            The main button command dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.MainButtonCommandTargetProperty">
+            <summary>
+            The main button command target dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.MainButtonCommandParameterProperty">
+            <summary>
+            The main button command parameter dependency property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Controls.SplitButton.DropDownButtonCommandProperty">
+            <summary>
+            The dropdown button command dependency property
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.SplitButton.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.SplitButton.OnApplyTemplate">
+            <inheritdoc />
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.SplitButton.OnPropertyChanged(System.Windows.DependencyPropertyChangedEventArgs)">
+            <inheritdoc />
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.SplitButton.OnClick">
+            <inheritdoc />
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Controls.SplitButton.SetMainButtonCommand">
+            <summary>
+            Set the main button's command
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.DropDownContextMenu">
+            <summary>
+            The dropdown context menu property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.Image">
+            <summary>
+            The image property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.Text">
+            <summary>
+            The text property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.Target">
+            <summary>
+            The target property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.MainButtonCommand">
+            <summary>
+            The main button command property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.MainButtonCommandTarget">
+            <summary>
+            The main button command target
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.MainButtonCommandParameter">
+            <summary>
+            The main button command parameter property
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Controls.SplitButton.DropDownButtonCommand">
+            <summary>
+            The dropdown button command
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.EntityReference">
+            <summary>
+            This defines an entity that is bound and displayed in the tree view
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.EntityReference.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.EntityReference.OnPropertyChanged(System.String)">
+            <summary>
+            This raises the <see cref="E:SandcastleBuilder.WPF.EntityReference.PropertyChanged"/> event
+            </summary>
+            <param name="propertyName">The property name that changed</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.EntityReference.Find(System.String)">
+            <summary>
+            This is used to find the specified text within the reference's label text or ID value or any of its
+            sub-entities.
+            </summary>
+            <param name="findText">The text to find</param>
+            <returns>An enumerable list of all matches</returns>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.EntityType">
+            <summary>
+            The entity type
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.Id">
+            <summary>
+            The ID value of the entity
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.Label">
+            <summary>
+            The label for the entity
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.ToolTip">
+            <summary>
+            The tool tip for the entity
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.Tag">
+            <summary>
+            The entity object
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.IsSelected">
+            <summary>
+            This is used to get or set whether or not the entity is selected
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.IsExpanded">
+            <summary>
+            This is used to get or set whether or not the entity is expanded
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.EntityReference.SubEntities">
+            <summary>
+            A list of sub-entities for this entity (only used for file entities)
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.EntityReference.PropertyChanged">
+            <summary>
+            The property changed event
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.EntityType">
+            <summary>
+            This defines the entity types that can be inserted by the Entity References control
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.EntityType.Token">
+            <summary>Token entity</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.EntityType.Image">
+            <summary>Image entity</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.EntityType.TocEntry">
+            <summary>Table of contents entity</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.EntityType.CodeSnippet">
+            <summary>Code snippet entity</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.EntityType.CodeEntity">
+            <summary>Code member entity</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.EntityType.File">
+            <summary>A top level file entity (not insertable)</summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Maml.ElementProperties">
+            <summary>
+            This is used to pass parser state information to the various element handling methods
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.ElementProperties.#ctor(SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="converter">A reference to the converter that will use the properties</param>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.ElementProperties.Converter">
+            <summary>
+            This read-only property returns a reference to the converter
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.ElementProperties.Element">
+            <summary>
+            This is used to get or set the element on which to work
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.ElementProperties.ParseChildren">
+            <summary>
+            This is used to get or set whether or not the converter should parse child elements
+            </summary>
+            <value>This will be true by default if the element has children</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.ElementProperties.ReturnToParent">
+            <summary>
+            This is used to get or set whether or not to return to the parent element after the
+            current element has been parsed.
+            </summary>
+            <value>This will always be true by default.  Set it to false to stay in the current
+            parent after any child elements of the current element are parsed.</value>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Maml.GlossaryEntry">
+            <summary>
+            This class is used to hold information about a glossary entry
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.GlossaryEntry.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="glossaryEntry">The glossary entry element to represent</param>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.GlossaryEntry.Terms">
+            <summary>
+            This read-only property returns the term dictionary
+            </summary>
+            <value>The key is the term, the value is an optional term ID used for linking</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.GlossaryEntry.RelatedEntries">
+            <summary>
+            This read-only property returns an optional list of related entries
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.GlossaryEntry.Parent">
+            <summary>
+            This is used to get or set the parent division of the entry
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.GlossaryEntry.Definition">
+            <summary>
+            This is used to get or set the element containing the definition
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter">
+            <summary>
+            This class is used to convert a MAML topic file to a flow document
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ToFlowDocument(System.String,System.String)">
+            <summary>
+            Convert the specified MAML file to a flow document
+            </summary>
+            <param name="filename">The name of the MAML file to convert</param>
+            <param name="content">The content to convert or null or an empty string to load it from the
+            named file</param>
+            <returns>The converted flow document</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ToElementName(System.String)">
+            <summary>
+            This converts a MAML address value to a valid XAML element name
+            </summary>
+            <param name="name">The MAML address name value to convert</param>
+            <returns>A hashed ID value that can be used as a XAML element name</returns>
+            <remarks>Flow document elements are fussy about the value assigned to their Name property
+            (it's a XAML thing).  This is used to convert the MAML name value to one that is valid for use
+            as a flow document element name.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.IsMamlDocument(System.Xml.Linq.XDocument)">
+            <summary>
+            This is used to see if the given XML document is a MAML document
+            </summary>
+            <param name="doc">The document to check</param>
+            <returns>True if it is a recognized MAML document type, false if not</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ParseChildren(System.Collections.Generic.IEnumerable{System.Xml.Linq.XNode})">
+            <summary>
+            Recursively parse the document elements to create the flow document
+            </summary>
+            <param name="nodes">The nodes in the document</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ParseChildren(System.Windows.Documents.Block,System.Collections.Generic.IEnumerable{System.Xml.Linq.XNode})">
+            <summary>
+            Recursively parse the document elements and add them to the given parent block
+            </summary>
+            <param name="parent">The parent block to which the document elements are added</param>
+            <param name="nodes">The nodes in the document</param>
+            <remarks>This temporarily makes the given parent element the current block to which new child
+            elements are added.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.CreateFlowDocument">
+            <summary>
+            This creates a flow document with the necessary styles
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AddToBlockContainer(System.Windows.Documents.TextElement)">
+            <summary>
+            This is used to add a block element to the current block container element.  The added
+            block element becomes the new parent block for subsequent elements.
+            </summary>
+            <param name="blockElement">The block element to add</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AddNonParentToBlockContainer(System.Windows.Documents.TextElement)">
+            <summary>
+            This is used to add a block element to the current block container element without
+            making it the new current parent block.
+            </summary>
+            <param name="blockElement">The block element to add</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AddInlineToContainer(System.Windows.Documents.Inline)">
+            <summary>
+            This is used to add an inline element to the current block or inline container element
+            </summary>
+            <param name="inlineElement">The element to add to the current block container</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.LoadCodeBlock(System.String,System.String,System.Boolean)">
+            <summary>
+            This is used to load a code block from an external file
+            </summary>
+            <param name="sourceFile">The source file from which to obtain the code.</param>
+            <param name="regionName">An optional region name to limit what is imported.</param>
+            <param name="removeRegionMarkers">True to removed region markers or false to keep them if importing
+            a region.</param>
+            <returns>The code block extracted from the file.</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.StripLeadingWhitespace(System.String,System.Int32)">
+            <summary>
+            This is used to strip a common amount of leading whitespace on all  lines of a text block and to
+            convert tabs to a consistent number of spaces.
+            </summary>
+            <param name="text">The text containing the lines to clean up</param>
+            <param name="tabSize">The number of spaces to which tab characters are converted</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ColorizeCode(System.String,System.String,System.Boolean,System.Windows.Documents.Paragraph)">
+            <summary>
+            This is used to add a block of colorized code to the flow document
+            </summary>
+            <param name="code">The code to colorize</param>
+            <param name="language">The language to use when colorizing the code</param>
+            <param name="numberLines">True to number lines, false if not</param>
+            <param name="container">The container for the colorized code elements</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AlertElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle alert elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.CodeElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle code elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ParagraphElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle general paragraph type elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.QuoteElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle quote elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.SectionElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle general and named section elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>If the section is empty, it will be omitted</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.SummaryElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle summary elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>If the abstract attribute is set to true, this element is skipped</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.TitleElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle title elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>If the title element is inside a table, it is skipped as the table will already have
+            added it outside of itself.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.DefinedTermElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle defined term elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.DefinitionElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle definition elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ListElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle list elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ListItemElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle list item elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.RelatedTopicsElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle related topics elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>If empty, the related topics section is omitted</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AddRelatedTopicLinks(SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter,System.Windows.Documents.Section,System.Collections.Generic.List{System.Xml.Linq.XElement},System.String)">
+            <summary>
+            This is used to add the related topic links
+            </summary>
+            <param name="converter">The converter used to add the elements</param>
+            <param name="s">The section used to contain the links</param>
+            <param name="links">The list of links to add</param>
+            <param name="sectionTitle">The section title</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.MediaLinkElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle media link elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.MediaLinkInlineElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle media link inline elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.TableElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle table elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.TableHeaderElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle table header elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.RowElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle table row elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.EntryElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle table cell entry elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.BoldElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle elements with generic bold styling
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.InlineCodeElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle elements with inline code styling
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ItalicElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle elements with generic italic styling
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.LiteralElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle literal elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.MathElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle math elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.SubscriptElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle elements with generic subscript styling
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.SuperscriptElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle elements with generic superscript styling
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.UnderlineElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle elements with generic underline styling
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.CodeEntityReferenceElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle code entity reference elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ExternalLinkElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle external link elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.LinkElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle link elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AutoOutlineElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle auto-outline elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.InsertAutoOutline(System.Xml.Linq.XElement,System.Int32,System.Int32)">
+            <summary>
+            This is used to recursively add auto-outline links
+            </summary>
+            <param name="parent">The parent element from which to extract sections</param>
+            <param name="depth">The current depth of the outline</param>
+            <param name="maxDepth">The maximum depth to recurse for section titles</param>
+            <returns>A list element containing the outline or null if no valid sections where found</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.IgnoredElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle ignored elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>For ignored elements, we don't return to the parent element after parsing
+            this one's children as there may be other sibling elements after it.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.IgnoredElementWithChildren(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle ignored elements with ignored child elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>This ignores all child elements too.  For ignored elements, we don't return to the parent
+            element as there may be other sibling elements after it.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.MarkupElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle markup elements
+            </summary>
+            <param name="props">The element properties</param>
+            <remarks>Markup elements can contain anything so no attempt is made to parse the content.
+            Its is added as an inline or block element depending on the current context.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.TokenElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle token elements
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.GlossaryElement(SandcastleBuilder.WPF.Maml.ElementProperties)">
+            <summary>
+            Handle all aspects of glossary element and sub-element formatting
+            </summary>
+            <param name="props">The element properties</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.RenderGlossaryDivision(System.Xml.Linq.XElement,System.String,System.Collections.Generic.IEnumerable{SandcastleBuilder.WPF.Maml.GlossaryEntry},SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter)">
+            <summary>
+            This is used to render a glossary division
+            </summary>
+            <param name="d">The root glossary division element</param>
+            <param name="divisionId">The division ID used as a prefix for each letter section in the division</param>
+            <param name="entries">An enumerable list of all glossary entries</param>
+            <param name="converter">The converter to which the glossary elements will be added</param>
+            <returns>An enumerable list of blocks that define the glossary division in the document</returns>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.MediaFiles">
+            <summary>
+            This read-only property returns the dictionary used to map image IDs to media files
+            for media link elements.
+            </summary>
+            <value>The key is the image ID, the value is the key/value pair where the key is the filename
+            and the value is the optional alternate text to use as the image tool tip.</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.Tokens">
+            <summary>
+            This read-only property returns the dictionary used to stored token values that can be
+            resolved to content that is inserted into the topics.
+            </summary>
+            <value>The key is the token name, the value is the token content as an XML fragment.  The
+            children of the root node of the fragment are inserted into the document when the token is
+            encountered.</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.TopicTitles">
+            <summary>
+            This read-only property returns the dictionary used to map topic IDs to display titles
+            for hyperlinks.
+            </summary>
+            <value>The key is the topic ID, the value is the display title</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.CodeColorizer">
+            <summary>
+            This is used to get or set a code colorizer instance used to colorize code blocks
+            </summary>
+            <value>If null, code blocks will not be colorized</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ColorizerFlowDocumentTemplate">
+            <summary>
+            This is used to set the flow document template used when colorizing code blocks
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AlertTitles">
+            <summary>
+            This is used to map alert classes to their display titles
+            </summary>
+            <remarks>The key is the alert class and the value is the display title</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.AlertIcons">
+            <summary>
+            This is used to map alert classes to their icons
+            </summary>
+            <remarks>The key is the alert class and the value is the icon name</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.NamedSectionTitles">
+            <summary>
+            This is used to map named sections to their display titles
+            </summary>
+            <remarks>The key is the element name and the value is the display title</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.ImportedCodeBasePath">
+            <summary>
+            This is used to get or set the base path for imported code blocks
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.Document">
+            <summary>
+            This read-only property returns the flow document being created
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.CurrentBlockElement">
+            <summary>
+            This returns the current block element to which new elements will be added
+            </summary>
+            <value>This returns null if there is no current element.  Setting this value will not push the
+            current value on to the stack of parent elements.</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter.CurrentSpanElement">
+            <summary>
+            This returns the current span element to which new elements will be added
+            </summary>
+            <value>This returns null if there is no current element</value>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Maml.NamedStyle">
+            <summary>
+            These define the named styles used in the converted flow document
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.AlertBody">
+            <summary>Alert body style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.AlertTitle">
+            <summary>Alert title style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.CodeBlock">
+            <summary>Code block style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.CodeInline">
+            <summary>Code inline style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.DefinedTerm">
+            <summary>Defined term style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.Definition">
+            <summary>Definition style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.GlossaryDefinition">
+            <summary>Glossary definition style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.GlossaryDivisionTitle">
+            <summary>Glossary division title style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.GlossaryLetterBar">
+            <summary>Glossary letter bar style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.GlossaryLetterTitle">
+            <summary>Glossary letter title style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.Literal">
+            <summary>Literal style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.Math">
+            <summary>Math style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.NoMargin">
+            <summary>No margin paragraph style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.NoTopMargin">
+            <summary>No top margin paragraph style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.Quote">
+            <summary>Quote paragraph style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.RelatedTopicTitle">
+            <summary>Related topic title style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.TableHeaderRow">
+            <summary>Table header row style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.TableTitle">
+            <summary>Table title style</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Maml.NamedStyle.Title">
+            <summary>Title style</summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.SharedResources">
+            <summary>
+            This class is used to retrieve shared resources so that they can be merged with the user control
+            resources at runtime.
+            </summary>
+            <remarks>When used from a VSPackage, it can't find the shared resources.  Since Visual Studio is the
+            host application, we cannot use an <c>App.xaml</c> file to load them.  As such, this class is used to
+            locate and load them at runtime.  This also works for the standalone GUI.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.SharedResources.SplitButtonStyleResources">
+            <summary>
+            This read-only property returns the <see cref="T:SandcastleBuilder.WPF.Controls.SplitButton"/> control style resources
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.SharedResources.CautionIcon">
+            <summary>
+            This read-only property returns the Caution icon for the <see cref="T:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter"/>.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.SharedResources.NoteIcon">
+            <summary>
+            This read-only property returns the Note icon for the <see cref="T:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter"/>.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.SharedResources.SecurityIcon">
+            <summary>
+            This read-only property returns the Security icon for the <see cref="T:SandcastleBuilder.WPF.Maml.MamlToFlowDocumentConverter"/>.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Theme.ThemeColorId">
+            <summary>
+            This enumerated type is used to map theme color IDs to Visual Studio theme key elements
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonBackgroundColor">
+            <summary>Button background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonBorderColor">
+            <summary>Button border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonDisabledBackgroundColor">
+            <summary>Button disabled background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonDisabledBorderColor">
+            <summary>Button disabled border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonDisabledForegroundColor">
+            <summary>Button disabled foreground color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonForegroundColor">
+            <summary>Button foreground color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonHoverBackgroundColor">
+            <summary>Button hover background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonHoverBorderColor">
+            <summary>Button hover border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonHoverForegroundColor">
+            <summary>Button hover foreground color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonPressedBackgroundColor">
+            <summary>Button pressed background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonPressedBorderColor">
+            <summary>Button pressed border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ButtonPressedForegroundColor">
+            <summary>Button pressed foreground color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ComboBoxButtonMouseOverBackgroundColor">
+            <summary>Combo box mouse over background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ComboBoxDisabledGlyphColor">
+            <summary>Combo box disabled glyph color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ComboBoxGlyphColor">
+            <summary>Combo box glyph color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ComboBoxPopupBackground">
+            <summary>Combo box pop-up background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.DisabledTextColor">
+            <summary>Disabled text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemBorderColor">
+            <summary>Item border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemColor">
+            <summary>Item color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemHoverColor">
+            <summary>Item hover color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemHoverBorderColor">
+            <summary>Item hover border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemHoverTextColor">
+            <summary>Item hover text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemSelectedBorderColor">
+            <summary>Item selected border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemSelectedBorderNotFocusedColor">
+            <summary>Item selected border not focused color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemSelectedColor">
+            <summary>Item selected color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemSelectedNotFocusedColor">
+            <summary>Item selected not focused color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemSelectedTextColor">
+            <summary>Item selected text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemSelectedTextNotFocusedColor">
+            <summary>Item selected text not focused color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ItemTextColor">
+            <summary>Item text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.LinkTextColor">
+            <summary>Link text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.LinkTextHoverColor">
+            <summary>Link text hover color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.MenuBackgroundColor">
+            <summary>Menu background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.MenuBorderColor">
+            <summary>Menu border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.MenuHoverBackgroundColor">
+            <summary>Menu hover background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.MenuHoverTextColor">
+            <summary>Menu hover text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.MenuSeparatorColor">
+            <summary>Menu separator color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.MenuTextColor">
+            <summary>Menu text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.LightBorderColor">
+            <summary>Light border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.NotificationColor">
+            <summary>Notification color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.NotificationTextColor">
+            <summary>Notification text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.TextBoxBorderColor">
+            <summary>Text box border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.TextBoxColor">
+            <summary>Text box color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.TextBoxTextColor">
+            <summary>Text box text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ToolWindowBackgroundColor">
+            <summary>Tool window background color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ToolWindowBorderColor">
+            <summary>Tool window border color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.ToolWindowTextColor">
+            <summary>Tool window text color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.TreeViewGlyphColor">
+            <summary>Tree view glyph color</summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Theme.ThemeColorId.TreeViewHoverGlyphColor">
+            <summary>Tree view hover glyph color</summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Theme.ThemeColors">
+            <summary>
+            This class is used to provide Visual Studio Theme colors in a version independent manner
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Theme.ThemeColors.#ctor">
+            <summary>
+            Private constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Theme.ThemeColors.OnPropertyChanged(System.String)">
+            <summary>
+            This raises the <see cref="E:SandcastleBuilder.WPF.Theme.ThemeColors.PropertyChanged"/> event
+            </summary>
+            <param name="propertyName">The property name that changed</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Theme.ThemeColors.GetColor(SandcastleBuilder.WPF.Theme.ThemeColorId)">
+            <summary>
+            This is used to get a Visual Studio theme color for the given theme color ID
+            </summary>
+            <param name="id">The theme color ID for which to get the Visual Studio theme color</param>
+            <returns>The theme color to use</returns>
+            <remarks>Theme colors do not appear to be available at design time.  As such, this will return
+            related default system colors in their place.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Theme.ThemeColors.GetDefaultColor(SandcastleBuilder.WPF.Theme.ThemeColorId)">
+            <summary>
+            This is used to return a default system color for the given theme color ID
+            </summary>
+            <param name="id">The theme color ID for which to get the default system color</param>
+            <returns>The default system color to use</returns>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.Instance">
+            <summary>
+            This read-only property returns the theme color instance
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonBackgroundColor">
+            <summary>
+            Button background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonBorderColor">
+            <summary>
+            Button border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonDisabledBackgroundColor">
+            <summary>
+            Button disabled background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonDisabledBorderColor">
+            <summary>
+            Button disabled border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonDisabledForegroundColor">
+            <summary>
+            Button disabled foreground color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonForegroundColor">
+            <summary>
+            Button foreground color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonHoverBackgroundColor">
+            <summary>
+            Button hover background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonHoverBorderColor">
+            <summary>
+            Button hover border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonHoverForegroundColor">
+            <summary>
+            Button hover foreground color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonPressedBackgroundColor">
+            <summary>
+            Button pressed background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonPressedBorderColor">
+            <summary>
+            Button pressed border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ButtonPressedForegroundColor">
+            <summary>
+            Button pressed foreground color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ComboBoxButtonMouseOverBackgroundColor">
+            <summary>
+            Combo box button mouse over color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ComboBoxDisabledGlyphColor">
+            <summary>
+            Combo box disabled glyph color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ComboBoxGlyphColor">
+            <summary>
+            Combo box glyph color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ComboBoxPopupBackground">
+            <summary>
+            Combo box pop-up background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.DisabledTextColor">
+            <summary>
+            Disabled text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemBorderColor">
+            <summary>
+            Item border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemColor">
+            <summary>
+            Item color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemHoverColor">
+            <summary>
+            Item hover color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemHoverBorderColor">
+            <summary>
+            Item hover border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemHoverTextColor">
+            <summary>
+            Item hover text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemSelectedBorderColor">
+            <summary>
+            Item selected border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemSelectedBorderNotFocusedColor">
+            <summary>
+            Item selected border not focused color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemSelectedColor">
+            <summary>
+            Item selected color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemSelectedNotFocusedColor">
+            <summary>
+            Item selected not focused color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemSelectedTextColor">
+            <summary>
+            Item selected text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemSelectedTextNotFocusedColor">
+            <summary>
+            Item selected text not focused color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ItemTextColor">
+            <summary>
+            Item text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.LightBorderColor">
+            <summary>
+            Light border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.LinkTextColor">
+            <summary>
+            Link text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.LinkTextHoverColor">
+            <summary>
+            Link text hover color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.MenuBackgroundColor">
+            <summary>
+            Menu background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.MenuBorderColor">
+            <summary>
+            Menu border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.MenuHoverBackgroundColor">
+            <summary>
+            Menu hover background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.MenuHoverTextColor">
+            <summary>
+            Menu hover text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.MenuSeparatorColor">
+            <summary>
+            Menu separator color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.MenuTextColor">
+            <summary>
+            Menu text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.NotificationColor">
+            <summary>
+            Notification color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.NotificationTextColor">
+            <summary>
+            Notification text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.TextBoxBorderColor">
+            <summary>
+            Text box border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.TextBoxColor">
+            <summary>
+            Text box color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.TextBoxTextColor">
+            <summary>
+            Text box text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ToolWindowBackgroundColor">
+            <summary>
+            Tool window background color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ToolWindowBorderColor">
+            <summary>
+            Tool window border color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.ToolWindowTextColor">
+            <summary>
+            Tool window text color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.TreeViewGlyphColor">
+            <summary>
+            Tree view glyph color
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Theme.ThemeColors.TreeViewHoverGlyphColor">
+            <summary>
+            Tree view mouse over glyph color
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.Theme.ThemeColors.PropertyChanged">
+            <summary>
+            The property changed event
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl">
+            <summary>
+            This control is used to view the help file builder log file content
+            </summary>
+            <summary>
+            BuildLogViewerControl
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.LoadLogFile">
+            <summary>
+            This is used to load a log file
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.TransformLogFile(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            This is used to transform the log file from XML to HTML for viewing
+            </summary>
+            <param name="logFile">The log file to transform</param>
+            <param name="filtered">True to only show warnings and errors, false to show all messages</param>
+            <param name="highlight">True to highlight warnings and errors in the full log text or false to
+            just show the plain text.</param>
+            <returns>The HTML representing the transformed log file</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.ucBuildLogViewerControl_IsVisibleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This loads the log file when the control is first made visible
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.Filter_Checked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Reload the build log when the filter type changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.wbContent_Navigated(System.Object,System.Windows.Navigation.NavigationEventArgs)">
+            <summary>
+            This loads the content once the control is actually visible.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+            <remarks>If you attempt to load the content before the control is actually visible, it will not
+            get replaced by a blank page.  By delaying it, we get the content we want.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.BuildLogViewerControl.LogFilename">
+            <summary>
+            This is used to get or set the log filename
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl">
+            <summary>
+            This user control is used to edit content layout files
+            </summary>
+            <summary>
+            ContentLayoutEditorControl
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.ContentModifiedEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.ContentModified"/> event
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.AssociateTopicEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.AssociateTopic"/> event
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.LoadContentLayoutFile(SandcastleBuilder.Utils.FileItem)">
+            <summary>
+            Load a content layout file for editing
+            </summary>
+            <param name="contentLayoutFile">The content layout file item to load</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.GetTextToCopy">
+            <summary>
+            Get the text to copy as a link to the clipboard
+            </summary>
+            <returns>The string to copy to the clipboard or null if there is nothing to copy</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.topics_ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            This is used to mark the file as dirty when the collection changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.AddChildTopic_SubmenuOpened(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This is used to set the command parameter on the Add Child Topic sub-menu items so that
+            the command event handlers know how to add the topics.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.btnGo_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Find entities matching the entered text
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.txtFindID_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Clear the match enumerator when the text changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.txtFindID_KeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Find entities matching the entered text when Enter is hit
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.tvContent_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Select the item under the cursor if possible so that the context menu appears over the
+            correct item.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.tvContent_TreeViewItemMouseDoubleClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Edit the selected topic when the tree view item is double clicked
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdAddItem_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Add an empty container topic to the collection that is not associated with any file
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdExpandCollapse_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Collapse/Expand commands can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdExpandCollapseAll_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Collapse or expand all topics with children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdExpandCollapseCurrent_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Collapse or expand the current topic and its children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdMoveUp_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Move Up command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdMoveUp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Move the selected topic up within its parent collection
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdMoveDown_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Move Down command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdMoveDown_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Move the selected topic down within its parent collection
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdSort_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Sort command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdSort_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Sort the topics in the current topic's parent collection by display title
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdDelete_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Delete command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdDelete_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Delete the selected topic and all of its children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdCopyCut_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the Copy and Cut commands can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdCopy_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Copy the selected item to the clipboard as a link
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdCut_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Cut the selected topic to the internal clipboard
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdPaste_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the Paste command can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdPaste_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Paste the selected topic as a sibling or child of the selected topic
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.cmdHelp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            View help for this editor
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.btnAssociateTopic_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Associate a topic file with the selected node
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.btnClearTopic_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Clear the topic associated with the selected node
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.btnRefreshAssociations_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Refresh the topic file associations to reflect changes made to the project elsewhere (i.e. in the
+            Solution Explorer).
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.tvContent_PreviewMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            This is used to note the starting mouse position in order to trigger drag and drop operations
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.tvContent_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Allow drag and drop of the items.  The items are converted to their text form to allow dragging
+            and dropping in topic files.  They can also be dragged and dropped as topics within the tree view
+            to rearrange the topics.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.tvContent_DragOver(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            This validates the drop target during the drag operation
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.tvContent_Drop(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            This handles the drop operation for the tree view
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.Topics">
+            <summary>
+            This read-only property returns the current topic collection including any edits
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.CurrentTopic">
+            <summary>
+            This read-only property returns the current topic
+            </summary>
+            <value>If no topic is selected, it returns null</value>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.ContentModified">
+            <summary>
+            This event is used to signal that the content has been modified
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.ContentLayoutEditorControl.AssociateTopic">
+            <summary>
+            This event is used to request the owner associate a file with the current topic
+            </summary>
+            <remarks>If handled, the event's <c>Handled</c> property should be set to True</remarks>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.EntityReferencesControl">
+            <summary>
+            This user control is used to look up code entity references, code snippets, tokens, images, and
+            table of content entries and allows them to be dragged and dropped into a topic editor window.
+            </summary>
+            <summary>
+            EntityReferencesControl
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.FileContentNeededEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.FileContentNeeded"/> event
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.LoadTokenInfo">
+            <summary>
+            This loads the tree view with token file entries from the project
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.LoadImageInfo">
+            <summary>
+            This loads the tree view with image file entries from the project
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.LoadTableOfContentsInfo">
+            <summary>
+            This loads the tree view with table of contents file entries from the project
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.AddChildTocEntries(SandcastleBuilder.Utils.ConceptualContent.TocEntry,SandcastleBuilder.WPF.EntityReference,System.Boolean)">
+            <summary>
+            This is used to recursively add child TOC entries to the entity reference collection
+            </summary>
+            <param name="t">The TOC entry</param>
+            <param name="er">The parent entity reference</param>
+            <param name="hasSelectedItem">The selected item state.  Only first selected item found is
+            marked as the selected item.</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.LoadCodeSnippetInfo">
+            <summary>
+            This loads the tree view with code snippet file entries from the project
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.LoadCodeEntities">
+            <summary>
+            This loads the code entities from the project and base framework
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.DisposeOfTask">
+            <summary>
+            This is used to stop the task if it is still running
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.IndexComments">
+            <summary>
+            This is the method that indexes the comments files
+            </summary>
+            <remarks>Rather than a partial build, we'll just index the comments files.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.IndexCompleted(SandcastleBuilder.Utils.InheritedDocumentation.IndexedCommentsCache)">
+            <summary>
+            This is called if indexing completes successfully
+            </summary>
+            <param name="cache">The index cache</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.IndexFailed(System.AggregateException)">
+            <summary>
+            This is called if indexing fails
+            </summary>
+            <param name="ex">The exception that caused the failure</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.Find(System.String)">
+            <summary>
+            Search the entities to find those with the specified text in their ID or label
+            </summary>
+            <param name="matchText">The text to find</param>
+            <returns>An enumerable list of all matching entities</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.GetTextToCopy">
+            <summary>
+            Get the text to copy or use for drag and drop operations
+            </summary>
+            <returns>The text to use or null if there is nothing to copy</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.ucEntityReferences_IsVisibleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This loads the content when the control is first made visible
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.cmdHelp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            View help for this tool window
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.cmdRefresh_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Refresh the currently displayed entity information
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.cmdCopy_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the copy command can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.cmdCopy_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Copy the selected item to the clipboard as a link
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.cboEntityType_SelectionChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+            Change the type of entities listed in the window
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.btnGo_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Find entities matching the entered text
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.txtFindName_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Clear the match enumerator when the text changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.txtFindName_KeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Find entities matching the entered text when Enter is hit
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.tvEntities_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Allow drag and drop of the items.  The items are converted to their text form based on the
+            "Insert As" option if applicable.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.AllowAnimatedGif">
+            <summary>
+            This is used to enable or disable the animated GIF behavior
+            </summary>
+            <remarks>This is a hack to work around a problem when the control is hosted in a Windows
+            Forms application via a <c>HostElement</c>.  If set in the XAML, it causes an exception
+            related to the <c>CurrentFrameIndex</c> property already being registered.  By only enabling
+            it at runtime, it works around the problem.</remarks>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.CurrentProject">
+            <summary>
+            This is used to set or get the current project
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.FileContentNeeded">
+            <summary>
+            This event is used to get information for token, content layout, and site map files that are
+            open in editors so that current information is displayed.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.FileContentNeededEventArgs">
+            <summary>
+            This is used to contain the event arguments for the
+            <see cref="E:SandcastleBuilder.WPF.UserControls.EntityReferencesControl.FileContentNeeded"/> event.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.FileContentNeededEventArgs.#ctor(System.Windows.RoutedEvent,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="routedEvent">The routed event</param>
+            <param name="source">The routed event source</param>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.FileContentNeededEventArgs.ContentLayoutFiles">
+            <summary>
+            This is used to return the topic collections for content layout files
+            </summary>
+            <value>The key is the filename, the value is the topic collection</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.FileContentNeededEventArgs.SiteMapFiles">
+            <summary>
+            This is used to return the topic collections for site map files
+            </summary>
+            <value>The key is the filename, the value is the topic collection</value>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.FileContentNeededEventArgs.TokenFiles">
+            <summary>
+            This is used to return the token collections for token files
+            </summary>
+            <value>The key is the filename, the value is the token collection</value>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl">
+            <summary>
+            This user control is used to edit resource item files
+            </summary>
+            <summary>
+            ResourceItemEditorControl
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.ContentModifiedEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.ContentModified"/> event
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.LoadResourceItemsFile(System.String,SandcastleBuilder.Utils.SandcastleProject)">
+            <summary>
+            Load a resource items file for editing
+            </summary>
+            <param name="resourceItemsFile">The resource items file to load</param>
+            <param name="project">The current Sandcastle Builder project</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.LoadItemFile(System.String,System.Boolean)">
+            <summary>
+            This is used to load a resource item file's content into the dictionaries used by the editor
+            </summary>
+            <param name="filename">The file to load</param>
+            <param name="containsOverrides">True if this file contains overrides for the Sandcastle items</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.Find(System.Predicate{SandcastleBuilder.Utils.ConceptualContent.ResourceItem})">
+            <summary>
+            This is used to find all resource items that match the specified predicate
+            </summary>
+            <param name="match">The match predicate</param>
+            <returns>An enumerable list of all matches</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.Save(System.String)">
+            <summary>
+            Save the modified resource items to the project's resource item file
+            </summary>
+            <param name="resourceItemsFile">The resource item filename</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.resourceItems_ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            This is used to mark the file as dirty when the collection changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.btnGo_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Find entities matching the entered text
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.txtFindID_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Clear the match enumerator when the text changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.txtFindID_KeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Find entities matching the entered text when Enter is hit
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.chkLimitToOverridden_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Show all items or limit the list to overridden items
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.cmdUndo_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the Undo commands can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.cmdUndo_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Copy the selected item to the clipboard as a link
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.cmdHelp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            View help for this editor
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.ResourceItemEditorControl.ContentModified">
+            <summary>
+            This event is used to signal that the content has been modified
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl">
+            <summary>
+            This user control is used to edit site map files
+            </summary>
+            <summary>
+            SiteMapEditorControl
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.ContentModifiedEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.ContentModified"/> event
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.AssociateTopicEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.AssociateTopic"/> event
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.LoadSiteMapFile(SandcastleBuilder.Utils.FileItem)">
+            <summary>
+            Load a site map file for editing
+            </summary>
+            <param name="siteMapFile">The site map file item to load</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.GetTextToCopy">
+            <summary>
+            Get the text to copy as a link to the clipboard
+            </summary>
+            <returns>The string to copy to the clipboard or null if there is nothing to copy</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.topics_ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            This is used to mark the file as dirty when the collection changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.AddChildTopic_SubmenuOpened(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This is used to set the command parameter on the Add Child Topic sub-menu items so that
+            the command event handlers know how to add the topics.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.btnGo_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Find entities matching the entered text
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.txtFindID_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Clear the match enumerator when the text changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.txtFindID_KeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Find entities matching the entered text when Enter is hit
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.tvContent_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Select the item under the cursor if possible so that the context menu appears over the
+            correct item.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.tvContent_TreeViewItemMouseDoubleClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Edit the selected topic when the tree view item is double clicked
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdAddItem_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Add an empty container topic to the collection that is not associated with any file
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdExpandCollapse_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Collapse/Expand commands can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdExpandCollapseAll_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Collapse or expand all topics with children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdExpandCollapseCurrent_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Collapse or expand the current topic and its children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdMoveUp_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Move Up command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdMoveUp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Move the selected topic up within its parent collection
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdMoveDown_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Move Down command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdMoveDown_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Move the selected topic down within its parent collection
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdSort_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Sort command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdSort_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Sort the topics in the current topic's parent collection by display title
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdDelete_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Delete command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdDelete_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Delete the selected topic and all of its children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdCopyCut_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the Copy and Cut commands can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdCopy_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Copy the selected item to the clipboard as a link
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdCut_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Cut the selected topic to the internal clipboard
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdPaste_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the Paste command can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdPaste_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Paste the selected topic as a sibling or child of the selected topic
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.cmdHelp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            View help for this editor
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.btnAssociateTopic_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Associate a topic file with the selected node
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.btnClearTopic_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Clear the topic associated with the selected node
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.tvContent_PreviewMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            This is used to note the starting mouse position in order to trigger drag and drop operations
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.tvContent_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Allow drag and drop of the items.  The items are converted to their text form to allow dragging
+            and dropping in topic files.  They can also be dragged and dropped as topics within the tree view
+            to rearrange the topics.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.tvContent_DragOver(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            This validates the drop target during the drag operation
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.tvContent_Drop(System.Object,System.Windows.DragEventArgs)">
+            <summary>
+            This handles the drop operation for the tree view
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.Topics">
+            <summary>
+            This read-only property returns the current topic collection including any edits
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.CurrentTopic">
+            <summary>
+            This read-only property returns the current topic
+            </summary>
+            <value>If no topic is selected, it returns null</value>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.ContentModified">
+            <summary>
+            This event is used to signal that the content has been modified
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.SiteMapEditorControl.AssociateTopic">
+            <summary>
+            This event is used to request the owner associate a file with the current topic
+            </summary>
+            <remarks>If handled, the event's <c>Handled</c> property should be set to True</remarks>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.TokenEditorControl">
+            <summary>
+            This user control is used to edit token files
+            </summary>
+            <summary>
+            TokenEditorControl
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.TokenEditorControl.ContentModifiedEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.TokenEditorControl.ContentModified"/> event
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.LoadTokenFile(System.String,System.String)">
+            <summary>
+            Load a token file for editing
+            </summary>
+            <param name="tokenFile">The token file to load</param>
+            <param name="selectedToken">The token ID to select by default or null if no selection</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.GetTextToCopy">
+            <summary>
+            Get the text to copy as a link to the clipboard
+            </summary>
+            <returns>The string to copy to the clipboard or null if there is nothing to copy</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.tokens_ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            This is used to mark the file as dirty when the collection changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.btnGo_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Find entities matching the entered text
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.txtFindID_TextChanged(System.Object,System.Windows.Controls.TextChangedEventArgs)">
+            <summary>
+            Clear the match enumerator when the text changes
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.txtFindID_KeyUp(System.Object,System.Windows.Input.KeyEventArgs)">
+            <summary>
+            Find entities matching the entered text when Enter is hit
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.cmdAddItem_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Add a new token to the collection
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.cmdDelete_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Delete command can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.cmdDelete_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Delete the selected token
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.cmdCopy_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine if the Copy commands can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.cmdCopy_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Copy the selected item to the clipboard as a link
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.cmdHelp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            View help for this editor
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.lbTokens_PreviewMouseLeftButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            This is used to note the starting mouse position in order to trigger drag and drop operations
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.lbTokens_MouseMove(System.Object,System.Windows.Input.MouseEventArgs)">
+            <summary>
+            Allow drag and drop of the items.  The items are converted to their text form to allow dragging
+            and dropping in topic files.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TokenEditorControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.TokenEditorControl.Tokens">
+            <summary>
+            This read-only property returns the current token collection including any edits
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.TokenEditorControl.ContentModified">
+            <summary>
+            This event is used to signal that the content has been modified
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.TopicContentNeededEventArgs">
+            <summary>
+            This is used to contain the event arguments for the
+            <see cref="E:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.TopicContentNeeded"/> event.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicContentNeededEventArgs.#ctor(System.Windows.RoutedEvent,System.Object,System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="routedEvent">The routed event</param>
+            <param name="source">The routed event source</param>
+            <param name="topicFilename">The topic filename for which to search</param>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.TopicContentNeededEventArgs.TopicFilename">
+            <summary>
+            This read-only property returns the topic filename that the previewer wants
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.TopicContentNeededEventArgs.TopicContent">
+            <summary>
+            This is used to get or set the topic file content if it is found
+            </summary>
+            <value>If null upon return from the event, the topic was not found in an open editor and the
+            actual file content will be used.</value>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl">
+            <summary>
+            This control is used to preview MAML topic files
+            </summary>
+            <summary>
+            TopicPreviewerControl
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.FileContentNeededEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.FileContentNeeded"/> event
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.TopicContentNeededEvent">
+            <summary>
+            This registers the <see cref="E:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.TopicContentNeeded"/> event
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.Refresh(System.Boolean)">
+            <summary>
+            Refresh the table of contents and the current topic to show any changes made to them
+            </summary>
+            <param name="reloadLastTopic">True to reload the last topic, false to ignore it</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.FindAndDisplay(System.String)">
+            <summary>
+            This is used to find a topic by filename and display it
+            </summary>
+            <param name="filename">The filename of the topic to display</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.LoadTableOfContentsInfo">
+            <summary>
+            This loads the tree view with table of contents file entries from the project
+            </summary>
+            <remarks>Token information is also loaded here and passed on to the converter.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.SetImportedCodeBasePath">
+            <summary>
+            This is used to set the base path for imported code regions
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.AdjustPageWidth">
+            <summary>
+            This is used to adjust the page width to accommodate images wider than the available
+            display area.
+            </summary>
+            <remarks>If not adjusted, the images get clipped.</remarks>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.RecordHistory(System.Uri)">
+            <summary>
+            This is used to record browser history
+            </summary>
+            <param name="link">The link to add to the history</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.NavigateToTopic(System.Uri)">
+            <summary>
+            This is used to locate a topic by ID and display it
+            </summary>
+            <param name="link">The link to the topic</param>
+            <returns>True if found and displayed, false if not</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.CopyCode(System.Windows.Documents.Hyperlink)">
+            <summary>
+            Copy code from a code block element
+            </summary>
+            <param name="link">The hyperlink associated with the code block.  Note that this makes an assumption
+            about the structure of the document</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.ucTopicPreviewer_IsVisibleChanged(System.Object,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This loads the content when the control is first made visible
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.tvContent_MouseRightButtonDown(System.Object,System.Windows.Input.MouseButtonEventArgs)">
+            <summary>
+            Select the item under the cursor if possible so that the context menu appears over the
+            correct item.
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.tvContent_TreeViewItemMouseDoubleClick(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Edit the selected topic when the tree view item is double clicked
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.tvContent_SelectedItemChanged(System.Object,System.Windows.RoutedPropertyChangedEventArgs{System.Object})">
+            <summary>
+            Load the topic and display it when selected
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.fdViewer_SizeChanged(System.Object,System.Windows.SizeChangedEventArgs)">
+            <summary>
+            Resize the page width as needed to accommodate images wider than the display area
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.fdViewer_LinkClicked(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Handle hyperlink clicks within the currently displayed topic
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdBrowseBack_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            This is used to see if the Browse Back command can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdBrowseBack_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            This handles the Browse Back command
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdBrowseForward_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            This is used to see if the Browse Forward command can be executed
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdBrowseForward_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            This handles the Browse Forward command
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdExpandCollapse_CanExecute(System.Object,System.Windows.Input.CanExecuteRoutedEventArgs)">
+            <summary>
+            Determine whether the Collapse/Expand commands can execute
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdExpandCollapseAll_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Collapse or expand all topics with children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdExpandCollapseCurrent_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Collapse or expand the current topic and its children
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdHelp_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            View help for this tool window
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.cmdRefresh_Executed(System.Object,System.Windows.Input.ExecutedRoutedEventArgs)">
+            <summary>
+            Refresh the currently information
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.CurrentProject">
+            <summary>
+            This is used to set or get the current project
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.CurrentTopic">
+            <summary>
+            This read-only property returns the currently selected topic
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.FileContentNeeded">
+            <summary>
+            This event is used to get information for token, content layout, and site map files that are
+            open in editors so that current information is displayed.
+            </summary>
+        </member>
+        <member name="E:SandcastleBuilder.WPF.UserControls.TopicPreviewerControl.TopicContentNeeded">
+            <summary>
+            This event is used to get the content of a topic file that is open in an editor so that current
+            information is displayed.
+            </summary>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior">
+            <summary>
+            Exposes an attached behavior that can be used to animate GIF images in image controls
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.SupportAnimatedGifProperty">
+            <summary>
+            This defines the <see cref="P:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.SupportAnimatedGif"/>
+            attached property.
+            </summary>
+            <AttachedPropertyComments>
+            <summary>
+            This attached property indicates whether or not the image control supports animated GIF images.
+            If it does, animation will be enabled in GIF images containing animations.
+            </summary>
+            <value>The default value is false</value>
+            </AttachedPropertyComments>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.GetSupportAnimatedGif(System.Windows.Controls.Image)">
+            <summary>
+            Gets the property value
+            </summary>
+            <param name="image">The image control</param>
+            <returns>The property value</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.SetSupportAnimatedGif(System.Windows.Controls.Image,System.Boolean)">
+            <summary>
+            Sets the property value
+            </summary>
+            <param name="image">The image control</param>
+            <param name="value">The new value</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.OnSupportAnimatedGifChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Register/unregister to visibility changes and image source changes
+            </summary>
+            <param name="depObj">The image object.</param>
+            <param name="e">The SupportAnimatedGif Property values.</param>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.IsAnimationChangingFrameProperty">
+            <summary>
+            IsAnimationChangingFrame Dependency Property
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.DummyImageProperty">
+            <summary>
+            DummyImage Dependency Property - for keeping the original source binding when animation is applied
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.GetIsAnimationChangingFrame(System.Windows.Controls.Image)">
+            <summary>
+            Gets or sets the IsAnimationChangingFrame property. This dependency property
+            indicates that the animation is currently changing the image source.
+            </summary>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.StartFramesAnimation(System.Windows.Controls.Image)">
+            <summary>
+            Starts frame animation only if frames count is bigger than 1.
+            </summary>
+            <param name="image"></param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.SupportAnimatedGIFBehavior.OnCurrentFrameIndexChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Update the current image source to the relevant frame.
+            </summary>
+            <param name="dpo"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior">
+            <summary>
+            Exposes attached behaviors that can be applied to TreeViewItem objects.
+            </summary>
+        </member>
+        <member name="F:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior.IsBroughtIntoViewWhenSelectedProperty">
+            <summary>
+            This defines the <see cref="P:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior.IsBroughtIntoViewWhenSelected"/>
+            attached property.
+            </summary>
+            <AttachedPropertyComments>
+            <summary>
+            This attached property indicates whether or not a tree view item is brought into view when selected
+            </summary>
+            <value>The default value is false</value>
+            </AttachedPropertyComments>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior.GetIsBroughtIntoViewWhenSelected(System.Windows.Controls.TreeViewItem)">
+            <summary>
+            Get the property value
+            </summary>
+            <param name="treeViewItem">The tree view item</param>
+            <returns>The property value</returns>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior.SetIsBroughtIntoViewWhenSelected(System.Windows.Controls.TreeViewItem,System.Boolean)">
+            <summary>
+            Sets the property value
+            </summary>
+            <param name="treeViewItem">The tree view item</param>
+            <param name="value">The property value</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior.OnIsBroughtIntoViewWhenSelectedChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            This attaches and detaches the event handler to the tree view items
+            </summary>
+            <param name="depObj">The dependency object</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="M:SandcastleBuilder.WPF.Behaviors.TreeViewItemBehavior.OnTreeViewItemSelected(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            This brings the tree view item into view when selected
+            </summary>
+            <param name="sender">The sender of the event</param>
+            <param name="e">The event arguments</param>
+        </member>
+        <member name="T:SandcastleBuilder.WPF.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:SandcastleBuilder.WPF.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ReflectionDataSet Platform=".NETPortable" Version="4.0" Title=".NET Portable Library 4.0 (Legacy)" AllSystemTypesRedirected="true">
+  <AssemblyLocations>
+    <Location Path="%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.0">
+      <AssemblyDetails Filename="Microsoft.CSharp.dll" Name="Microsoft.CSharp" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="mscorlib.dll" Name="mscorlib" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.dll" Name="System" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.ComponentModel.Composition.dll" Name="System.ComponentModel.Composition" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ComponentModel.DataAnnotations.dll" Name="System.ComponentModel.DataAnnotations" Version="2.0.5.0" PublicKeyToken="ddd0da4d3e678217" />
+      <AssemblyDetails Filename="System.Core.dll" Name="System.Core" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Net.dll" Name="System.Net" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Numerics.dll" Name="System.Numerics" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Runtime.Serialization.dll" Name="System.Runtime.Serialization" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.ServiceModel.dll" Name="System.ServiceModel" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.ServiceModel.Web.dll" Name="System.ServiceModel.Web" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Windows.dll" Name="System.Windows" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.dll" Name="System.Xml" Version="2.0.5.0" PublicKeyToken="7cec85d7bea7798e" />
+      <AssemblyDetails Filename="System.Xml.Linq.dll" Name="System.Xml.Linq" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+      <AssemblyDetails Filename="System.Xml.Serialization.dll" Name="System.Xml.Serialization" Version="2.0.5.0" PublicKeyToken="31bf3856ad364e35" />
+    </Location>
+  </AssemblyLocations>
+</ReflectionDataSet>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content xml:space="preserve">
+	<!-- Translations provided by Michael Buchner -->
+
+	<!-- Syntax section and code example title.  Add one for the primary ID and one for each alternate ID. -->
+  <item id="devlang_XAML Usage">XAML</item>
+  <item id="devlang_XamlUsage">XAML</item>
+  <item id="devlang_xaml">XAML</item>
+
+	<!-- Development language metadata values.  Add one for the primary ID and one for each alternate ID.  -->
+  <item id="metaLang_XAML Usage">XAML</item>
+  <item id="metaLang_XamlUsage">XAML</item>
+  <item id="metaLang_xaml">XAML</item>
+
+	<!-- XAML syntax section messages -->
+	<item id="classXamlSyntax_abstract">Diese Klasse ist abstrakt; siehe <strong><include item="familyTitle"/></strong> für abgeleitete, nicht abstrakte Klassen, verwendbar in XAML.</item>
+	<item id="classXamlSyntax_excludedSubClass">Diese verwaltete Klasse wird typischerweise nicht in XAML verwendet.</item>
+	<item id="classXamlSyntax_noDefaultCtor">Sie können im XAML nicht direkt eine Instanz dieser Klasse erzeugen.</item>
+	<item id="classXamlSyntax_noDefaultCtorWithTypeConverter"></item>  <!-- This item intentionally empty, per spec -->
+
+	<item id="structXamlSyntax_nonXaml">Sie können diese verwaltete Struktur in XAML nicht verwenden.</item>
+	<item id="structXamlSyntax_attributeUsage"></item>  <!-- This item intentionally empty, per spec -->
+
+	<item id="eventXamlSyntax_parentIsExcludedSubClass">Member dieser Klasse werden typischerweise in XAML nicht verwendet oder können nicht verwendet werden.</item>
+	<item id="eventXamlSyntax_noXamlSyntaxForInterfaceMembers">Sie können dieses Ereignis in XAML nicht verwenden.</item>
+	<item id="eventXamlSyntax_nonXamlParent">Sie können dieses Ereignis in XAML nicht verwenden.</item>
+	<item id="eventXamlSyntax_notPublic">Sie können dieses Ereignis in XAML nicht verwenden.</item>
+	<item id="eventXamlSyntax_abstract">Sie können dieses Ereignis in XAML nicht verwenden.</item>
+	<item id="eventXamlSyntax_nonXaml">Sie können dieses Ereignis in XAML nicht verwenden.</item>  <!-- This id is not currently output by SyntaxBuilder -->
+
+	<item id="propertyXamlSyntax_parentIsExcludedSubClass">Member dieser Klasse werden typischerweise in XAML nicht verwendet oder können nicht verwendet werden.</item>
+	<item id="propertyXamlSyntax_noXamlSyntaxForInterfaceMembers">Sie können diese Eigenschaft in XAML nicht setzen.</item>
+	<item id="propertyXamlSyntax_nonXamlParent">Sie können diese Eigenschaft in XAML nicht setzen.</item>
+	<item id="propertyXamlSyntax_notPublic">Sie können diese Eigenschaft in XAML nicht setzen.</item>
+	<item id="propertyXamlSyntax_abstract">Sie können diese Eigenschaft in XAML nicht setzen.</item>
+	<item id="propertyXamlSyntax_readOnly">Sie können diese Eigenschaft in XAML nicht setzen.</item>
+	<item id="propertyXamlSyntax_abstractType">Für Informationen über XAML siehe Typ {0}.</item>
+	<item id="propertyXamlSyntax_nonXaml">Sie können diese Eigenschaft in XAML nicht setzen.</item>
+
+	<!-- Syntax used with all enumerations in XAML assemblies -->
+	<item id="enumerationOverviewXamlSyntax">&lt;<em>object property</em>="<em>enumerationMemberName</em>" .../&gt;</item>
+
+	<!-- Boilerplate used with all method, field, etc. in XAML assemblies -->
+	<item id="constructorOverviewXamlSyntax">Sie können in XAML keine Konstruktoren verwenden.</item>
+	<item id="methodOverviewXamlSyntax">Sie können in XAML keine Methoden verwenden.</item>
+	<item id="fieldOverviewXamlSyntax">Sie können in XAML keine Felder verwenden</item>
+	<item id="delegateOverviewXamlSyntax">In XAML können Sie Delegaten verwenden aber keine neuen definieren.</item>
+	<item id="interfaceOverviewXamlSyntax">Schnittstellen können in XAML nicht direkt verwendet werden; siehe Typen, die diese Schnittstelle implementieren.</item>
+
+	<!-- Boilerplate used with all types and members in all non-XAML assemblies -->
+	<item id="nonXamlAssemblyBoilerplate">Nicht anwendbar.</item>
+
+	<!-- XAML section headings -->
+	<item id="xamlAttributeUsageHeading">XAML Attribut Gebrauch</item>
+	<item id="xamlObjectElementUsageHeading">XAML Object Element Gebrauch</item>
+	<item id="xamlImplicitCollectionUsageHeading">XAML Implicit Collection Gebrauch</item>
+	<item id="xamlPropertyElementUsageHeading">XAML Property Element Gebrauch</item>
+	<item id="xamlContentElementUsageHeading">XAML Content Element Gebrauch</item>
+	<item id="xamlValuesSectionHeading">XAML Values</item>
+	<item id="xamlSyntaxBoilerplateHeading">XAML</item>
+  
+</content>

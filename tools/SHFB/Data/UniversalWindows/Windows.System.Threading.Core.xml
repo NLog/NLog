@@ -1,0 +1,910 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Windows.Foundation.UniversalApiContract">
+      <assemblydata version="1.0.0.0" culture="" key="" hash="SHA1" />
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Windows.System.Threading.Core">
+      <topicdata group="api" />
+      <apidata name="Windows.System.Threading.Core" group="namespace" />
+      <elements>
+        <element api="T:Windows.System.Threading.Core.SignalHandler" />
+        <element api="T:Windows.System.Threading.Core.SignalNotifier" />
+        <element api="T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      </elements>
+      <file name="ed30b774-95c5-d3f3-b2b6-c2d68de479d3" />
+    </api>
+    <api id="T:Windows.System.Threading.Core.PreallocatedWorkItem">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      <apidata name="PreallocatedWorkItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="0652c837-9936-4b27-570b-24d581cf2090" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Threading.Core.PreallocatedWorkItem">
+      <topicdata name="PreallocatedWorkItem" group="list" subgroup="members" typeTopicId="T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      <apidata name="PreallocatedWorkItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor">
+          <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler)" />
+          <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)" />
+          <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)" />
+        </element>
+        <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.RunAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      </containers>
+      <file name="18125146-32bd-425d-9cdf-d15b71be16b9" />
+    </api>
+    <api id="Methods.T:Windows.System.Threading.Core.PreallocatedWorkItem">
+      <topicdata name="PreallocatedWorkItem" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      <apidata name="PreallocatedWorkItem" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.RunAsync" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      </containers>
+      <file name="278ae60c-2dab-175c-deeb-09102861bfcb" />
+    </api>
+    <api id="Overload:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Threading.Core.PreallocatedWorkItem" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler)" />
+        <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)" />
+        <element api="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" ref="true" />
+      </containers>
+      <file name="daf9d16d-113b-ea37-4045-d73436970fb1" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.WorkItemHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" ref="true" />
+      </containers>
+      <file name="d613d91d-d4b9-faa0-695e-6475dda44c81" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.WorkItemHandler" ref="true" />
+        </parameter>
+        <parameter name="priority" in="true">
+          <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" ref="true" />
+      </containers>
+      <file name="51930b32-3e90-6cdd-8927-9b0b965c6107" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor(Windows.System.Threading.WorkItemHandler,Windows.System.Threading.WorkItemPriority,Windows.System.Threading.WorkItemOptions)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Windows.System.Threading.Core.PreallocatedWorkItem.#ctor" />
+      <parameters>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.WorkItemHandler" ref="true" />
+        </parameter>
+        <parameter name="priority" in="true">
+          <type api="T:Windows.System.Threading.WorkItemPriority" ref="false" />
+        </parameter>
+        <parameter name="options" in="true">
+          <type api="T:Windows.System.Threading.WorkItemOptions" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" ref="true" />
+      </containers>
+      <file name="ef4aeae1-a5f0-dd3f-ab84-de6b57fe3818" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.PreallocatedWorkItem.RunAsync">
+      <topicdata group="api" />
+      <apidata name="RunAsync" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <returns>
+        <type api="T:Windows.Foundation.IAsyncAction" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.PreallocatedWorkItem" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.RemoteAsyncAttribute" ref="true" />
+        </attribute>
+      </attributes>
+      <file name="25e4e03d-3261-5a52-ee8f-5c4b875604b8" />
+    </api>
+    <api id="T:Windows.System.Threading.Core.SignalHandler">
+      <topicdata group="api" />
+      <apidata name="SignalHandler" group="type" subgroup="delegate" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <parameters>
+        <parameter name="signalNotifier" in="true">
+          <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+        </parameter>
+        <parameter name="timedOut" in="true">
+          <type api="T:System.Boolean" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.GuidAttribute" ref="true" />
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>2453422126</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>18209</value>
+          </argument>
+          <argument>
+            <type api="T:System.UInt16" ref="false" />
+            <value>17422</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>157</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>218</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>85</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>182</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>242</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>224</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>119</value>
+          </argument>
+          <argument>
+            <type api="T:System.Byte" ref="false" />
+            <value>16</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="b2a25fd2-bd2f-9b57-205d-73dc11ef9a7b" />
+    </api>
+    <api id="T:Windows.System.Threading.Core.SignalNotifier">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Windows.System.Threading.Core.SignalNotifier" />
+      <apidata name="SignalNotifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ThreadingAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.ThreadingModel" ref="false" />
+            <enumValue>
+              <field name="Both" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.MarshalingBehaviorAttribute" ref="true" />
+          <argument>
+            <type api="T:Windows.Foundation.Metadata.MarshalingType" ref="false" />
+            <enumValue>
+              <field name="Agile" />
+            </enumValue>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.WebHostHiddenAttribute" ref="true" />
+        </attribute>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.ContractVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.Type" ref="true" />
+            <typeValue>
+              <type api="T:Windows.Foundation.UniversalApiContract" ref="false" />
+            </typeValue>
+          </argument>
+          <argument>
+            <type api="T:System.UInt32" ref="false" />
+            <value>65536</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="517bee94-b275-fe74-be26-17686370ec6e" />
+    </api>
+    <api id="AllMembers.T:Windows.System.Threading.Core.SignalNotifier">
+      <topicdata name="SignalNotifier" group="list" subgroup="members" typeTopicId="T:Windows.System.Threading.Core.SignalNotifier" />
+      <apidata name="SignalNotifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToEvent">
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler)" />
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore">
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler)" />
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.Enable" />
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.Terminate" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" />
+      </containers>
+      <file name="5e4dfab3-7c77-b699-7e1f-54dd9870167f" />
+    </api>
+    <api id="Methods.T:Windows.System.Threading.Core.SignalNotifier">
+      <topicdata name="SignalNotifier" group="list" subgroup="Methods" typeTopicId="T:Windows.System.Threading.Core.SignalNotifier" />
+      <apidata name="SignalNotifier" group="type" subgroup="class" />
+      <typedata visibility="public" sealed="true" serializable="false" />
+      <elements>
+        <element api="M:System.Object.ToString">
+          <apidata name="ToString" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.String" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.Equals(System.Object)">
+          <apidata name="Equals" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <parameters>
+            <parameter name="obj">
+              <type api="T:System.Object" ref="true" />
+            </parameter>
+          </parameters>
+          <returns>
+            <type api="T:System.Boolean" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetHashCode">
+          <apidata name="GetHashCode" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="true" />
+          <returns>
+            <type api="T:System.Int32" ref="false" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="M:System.Object.GetType">
+          <apidata name="GetType" group="member" subgroup="method" />
+          <memberdata visibility="public" />
+          <proceduredata virtual="false" />
+          <returns>
+            <type api="T:System.Type" ref="true" />
+          </returns>
+          <containers>
+            <library assembly="mscorlib" module="mscorlib" kind="DynamicallyLinkedLibrary" />
+            <namespace api="N:System" />
+            <type api="T:System.Object" ref="true" />
+          </containers>
+        </element>
+        <element api="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToEvent">
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler)" />
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore">
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler)" />
+          <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)" />
+        </element>
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.Enable" />
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.Terminate" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" />
+      </containers>
+      <file name="9361c666-7d94-69c1-34b6-69c3c063c817" />
+    </api>
+    <api id="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToEvent">
+      <topicdata name="AttachToEvent" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Threading.Core.SignalNotifier" />
+      <apidata name="AttachToEvent" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler)" />
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <file name="34440e3f-2b1e-83de-67f1-8457dbcc04b8" />
+    </api>
+    <api id="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore">
+      <topicdata name="AttachToSemaphore" group="list" subgroup="overload" memberSubgroup="method" pseudo="true" allMembersTopicId="AllMembers.T:Windows.System.Threading.Core.SignalNotifier" />
+      <apidata name="AttachToSemaphore" group="member" subgroup="method" />
+      <elements>
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler)" />
+        <element api="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)" />
+      </elements>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <file name="ff920857-5405-96fc-59ea-ca6805a55d54" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler)">
+      <topicdata group="api" />
+      <apidata name="AttachToEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.Core.SignalHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AttachToEvent</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="f6b10291-59e2-a470-b54a-37dfc6816b02" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.SignalNotifier.AttachToEvent(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="AttachToEvent" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToEvent" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.Core.SignalHandler" ref="true" />
+        </parameter>
+        <parameter name="timeout" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AttachToEventWithTimeout</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="ffebfab7-872d-99d7-dda5-d517f6cf5bc9" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler)">
+      <topicdata group="api" />
+      <apidata name="AttachToSemaphore" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.Core.SignalHandler" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AttachToSemaphore</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="66ff8d7d-a3dd-750b-cb98-ce04900cff9e" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore(System.String,Windows.System.Threading.Core.SignalHandler,Windows.Foundation.TimeSpan)">
+      <topicdata group="api" />
+      <apidata name="AttachToSemaphore" group="member" subgroup="method" />
+      <memberdata visibility="public" static="true" overload="Overload:Windows.System.Threading.Core.SignalNotifier.AttachToSemaphore" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="name" in="true">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="handler" in="true">
+          <type api="T:Windows.System.Threading.Core.SignalHandler" ref="true" />
+        </parameter>
+        <parameter name="timeout" in="true">
+          <type api="T:System.TimeSpan" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <attributes>
+        <attribute>
+          <type api="T:Windows.Foundation.Metadata.OverloadAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>AttachToSemaphoreWithTimeout</value>
+          </argument>
+        </attribute>
+      </attributes>
+      <file name="efa34a83-8d0d-8a2e-8bf8-406377a58800" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.SignalNotifier.Enable">
+      <topicdata group="api" />
+      <apidata name="Enable" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <file name="20f7b2bd-e4eb-76d7-2e4e-ad83d764f1d2" />
+    </api>
+    <api id="M:Windows.System.Threading.Core.SignalNotifier.Terminate">
+      <topicdata group="api" />
+      <apidata name="Terminate" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <containers>
+        <library assembly="Windows.Foundation.UniversalApiContract" module="Windows.Foundation.UniversalApiContract" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="1.0.0.0" />
+          <noAptca />
+        </library>
+        <library assembly="Windows" module="Windows" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="255.255.255.255" />
+          <noAptca />
+        </library>
+        <namespace api="N:Windows.System.Threading.Core" />
+        <type api="T:Windows.System.Threading.Core.SignalNotifier" ref="true" />
+      </containers>
+      <file name="ff98b3a3-c661-0940-8251-5b5785df41d0" />
+    </api>
+  </apis>
+</reflection>

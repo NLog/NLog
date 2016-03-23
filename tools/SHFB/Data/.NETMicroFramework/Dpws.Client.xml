@@ -1,0 +1,1026 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="MFDpwsClient">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>MFDpwsClient</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Dpws.Client">
+      <topicdata group="api" />
+      <apidata name="Dpws.Client" group="namespace" />
+      <elements>
+        <element api="T:Dpws.Client.DpwsClient" />
+        <element api="T:Dpws.Client.DpwsServiceType" />
+        <element api="T:Dpws.Client.DpwsServiceTypes" />
+      </elements>
+      <file name="c95678dd-7027-f604-b51f-f079c60c91e4" />
+    </api>
+    <api id="T:Dpws.Client.DpwsClient">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.DpwsClient" />
+      <apidata name="DpwsClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <implements>
+        <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        <type api="T:System.IDisposable" ref="true" />
+      </implements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+      </containers>
+      <file name="e49968e2-9772-f4c3-5155-43419836dca9" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.DpwsClient">
+      <topicdata name="DpwsClient" group="list" subgroup="members" typeTopicId="T:Dpws.Client.DpwsClient" />
+      <apidata name="DpwsClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Client.DpwsClient.#ctor(Ws.Services.Binding.Binding,Ws.Services.ProtocolVersion)" />
+        <element api="E:Dpws.Client.DpwsClient.ByeEvent" />
+        <element api="P:Dpws.Client.DpwsClient.DiscoveryClient" />
+        <element api="M:Dpws.Client.DpwsClient.Dispose" />
+        <element api="P:Dpws.Client.DpwsClient.EndpointAddress" />
+        <element api="P:Dpws.Client.DpwsClient.EventingClient" />
+        <element api="M:Dpws.Client.DpwsClient.Finalize" />
+        <element api="E:Dpws.Client.DpwsClient.HelloEvent" />
+        <element api="P:Dpws.Client.DpwsClient.IgnoreRequestFromThisIP" />
+        <element api="P:Dpws.Client.DpwsClient.IPV4Address" />
+        <element api="F:Dpws.Client.DpwsClient.m_localBinding" />
+        <element api="F:Dpws.Client.DpwsClient.m_version" />
+        <element api="P:Dpws.Client.DpwsClient.MexClient" />
+        <element api="P:Dpws.Client.DpwsClient.ServiceOperations" />
+        <element api="M:Dpws.Client.DpwsClient.StartEventListeners" />
+        <element api="E:Dpws.Client.DpwsClient.SubscriptionEndEvent" />
+        <element api="P:Dpws.Client.DpwsClient.TransportAddress" />
+        <element api="P:Dpws.Client.DpwsClient.Ws#Services#IWsServiceEndpoint#BlockingCall" />
+        <element api="M:Dpws.Client.DpwsClient.Ws#Services#IWsServiceEndpoint#ProcessRequest(Ws.Services.Soap.WsMessage)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" />
+      </containers>
+      <file name="f9a59394-7631-c0f1-134a-736b296407c9" />
+    </api>
+    <api id="Methods.T:Dpws.Client.DpwsClient">
+      <topicdata name="DpwsClient" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.DpwsClient" />
+      <apidata name="DpwsClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Client.DpwsClient.Dispose" />
+        <element api="M:Dpws.Client.DpwsClient.Finalize" />
+        <element api="M:Dpws.Client.DpwsClient.StartEventListeners" />
+        <element api="M:Dpws.Client.DpwsClient.Ws#Services#IWsServiceEndpoint#ProcessRequest(Ws.Services.Soap.WsMessage)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" />
+      </containers>
+      <file name="b01b2527-ca79-51ac-219a-a11a5e2a7a3f" />
+    </api>
+    <api id="Properties.T:Dpws.Client.DpwsClient">
+      <topicdata name="DpwsClient" group="list" subgroup="Properties" typeTopicId="T:Dpws.Client.DpwsClient" />
+      <apidata name="DpwsClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Dpws.Client.DpwsClient.DiscoveryClient" />
+        <element api="P:Dpws.Client.DpwsClient.EndpointAddress" />
+        <element api="P:Dpws.Client.DpwsClient.EventingClient" />
+        <element api="P:Dpws.Client.DpwsClient.IgnoreRequestFromThisIP" />
+        <element api="P:Dpws.Client.DpwsClient.IPV4Address" />
+        <element api="P:Dpws.Client.DpwsClient.MexClient" />
+        <element api="P:Dpws.Client.DpwsClient.ServiceOperations" />
+        <element api="P:Dpws.Client.DpwsClient.TransportAddress" />
+        <element api="P:Dpws.Client.DpwsClient.Ws#Services#IWsServiceEndpoint#BlockingCall" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" />
+      </containers>
+      <file name="0fd8a91d-82a8-c014-be40-898093f74b1a" />
+    </api>
+    <api id="Events.T:Dpws.Client.DpwsClient">
+      <topicdata name="DpwsClient" group="list" subgroup="Events" typeTopicId="T:Dpws.Client.DpwsClient" />
+      <apidata name="DpwsClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:Dpws.Client.DpwsClient.ByeEvent" />
+        <element api="E:Dpws.Client.DpwsClient.HelloEvent" />
+        <element api="E:Dpws.Client.DpwsClient.SubscriptionEndEvent" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" />
+      </containers>
+      <file name="6d1b7a48-0923-c16d-ab83-adb447f2fb5f" />
+    </api>
+    <api id="Fields.T:Dpws.Client.DpwsClient">
+      <topicdata name="DpwsClient" group="list" subgroup="Fields" typeTopicId="T:Dpws.Client.DpwsClient" />
+      <apidata name="DpwsClient" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.DpwsClient.m_localBinding" />
+        <element api="F:Dpws.Client.DpwsClient.m_version" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" />
+      </containers>
+      <file name="e265e227-a5ae-9a7f-6803-01041487f71c" />
+    </api>
+    <api id="M:Dpws.Client.DpwsClient.#ctor(Ws.Services.Binding.Binding,Ws.Services.ProtocolVersion)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="localBinding">
+          <type api="T:Ws.Services.Binding.Binding" ref="true" />
+        </parameter>
+        <parameter name="v">
+          <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="2defb9b4-5467-ec11-3fdf-8873f84279ec" />
+    </api>
+    <api id="E:Dpws.Client.DpwsClient.ByeEvent">
+      <topicdata group="api" />
+      <apidata name="ByeEvent" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_ByeEvent" />
+      <remover name="remove_ByeEvent" />
+      <eventhandler>
+        <type api="T:Dpws.Client.Discovery.ByeEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Dpws.Client.Discovery.DpwsServiceDescription" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="511a1634-f14f-c0ce-fe63-38f8be91984f" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.DiscoveryClient">
+      <topicdata group="api" />
+      <apidata name="DiscoveryClient" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_DiscoveryClient" />
+      <returns>
+        <type api="T:Dpws.Client.Discovery.DpwsDiscoveryClient" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="08266737-42e3-02ad-38f8-59a026bd6848" />
+    </api>
+    <api id="M:Dpws.Client.DpwsClient.Dispose">
+      <topicdata group="api" />
+      <apidata name="Dispose" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <implements>
+        <member api="M:System.IDisposable.Dispose">
+          <type api="T:System.IDisposable" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="fd95457e-461a-8ff9-27c5-6afd3a096032" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.EndpointAddress">
+      <topicdata group="api" />
+      <apidata name="EndpointAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_EndpointAddress" />
+      <setter name="set_EndpointAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Ws.Services.IWsServiceEndpoint.EndpointAddress">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="09039e3a-95f8-a459-825e-3ad8d41a50d1" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.EventingClient">
+      <topicdata group="api" />
+      <apidata name="EventingClient" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_EventingClient" />
+      <returns>
+        <type api="T:Dpws.Client.Eventing.DpwsEventingClient" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="c0d4456a-9a85-20b6-9d12-0567e0c03135" />
+    </api>
+    <api id="M:Dpws.Client.DpwsClient.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="5eeecc67-afef-cdea-73f5-430eb5103966" />
+    </api>
+    <api id="E:Dpws.Client.DpwsClient.HelloEvent">
+      <topicdata group="api" />
+      <apidata name="HelloEvent" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_HelloEvent" />
+      <remover name="remove_HelloEvent" />
+      <eventhandler>
+        <type api="T:Dpws.Client.Discovery.HelloEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Dpws.Client.Discovery.DpwsServiceDescription" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="4e10d4ae-7a39-38fa-c854-759be3c98519" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.IgnoreRequestFromThisIP">
+      <topicdata group="api" />
+      <apidata name="IgnoreRequestFromThisIP" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_IgnoreRequestFromThisIP" />
+      <setter name="set_IgnoreRequestFromThisIP" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="edef4758-fab3-8a9d-0dff-e07078912126" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.IPV4Address">
+      <topicdata group="api" />
+      <apidata name="IPV4Address" group="member" subgroup="property" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_IPV4Address" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="85167c0b-316f-86cc-e4f6-ee91f806022e" />
+    </api>
+    <api id="F:Dpws.Client.DpwsClient.m_localBinding">
+      <topicdata group="api" />
+      <apidata name="m_localBinding" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.Binding.Binding" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="18f28fa0-d54a-b14d-366d-e24d3c2cf63c" />
+    </api>
+    <api id="F:Dpws.Client.DpwsClient.m_version">
+      <topicdata group="api" />
+      <apidata name="m_version" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Ws.Services.ProtocolVersion" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="27038b54-8e70-9a6f-ec4d-a65e71c2dcec" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.MexClient">
+      <topicdata group="api" />
+      <apidata name="MexClient" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_MexClient" />
+      <returns>
+        <type api="T:Dpws.Client.Discovery.DpwsMexClient" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="078445e9-50ec-988b-26ee-73fb070d8681" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.ServiceOperations">
+      <topicdata group="api" />
+      <apidata name="ServiceOperations" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" final="true" />
+      <propertydata get="true" />
+      <getter name="get_ServiceOperations" />
+      <returns>
+        <type api="T:Ws.Services.WsServiceOperations" ref="true" />
+      </returns>
+      <implements>
+        <member api="P:Ws.Services.IWsServiceEndpoint.ServiceOperations">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="a95e3685-ffc8-63e1-9563-2fc5f486d965" />
+    </api>
+    <api id="M:Dpws.Client.DpwsClient.StartEventListeners">
+      <topicdata group="api" />
+      <apidata name="StartEventListeners" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="9c687588-5152-4fbd-ddf3-6bca5f98e66b" />
+    </api>
+    <api id="E:Dpws.Client.DpwsClient.SubscriptionEndEvent">
+      <topicdata group="api" />
+      <apidata name="SubscriptionEndEvent" group="member" subgroup="event" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <eventdata add="true" remove="true" />
+      <adder name="add_SubscriptionEndEvent" />
+      <remover name="remove_SubscriptionEndEvent" />
+      <eventhandler>
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventHandler" ref="true" />
+      </eventhandler>
+      <eventargs>
+        <type api="T:Dpws.Client.Eventing.SubscriptionEndEventArgs" ref="true" />
+      </eventargs>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="58a7a308-c03b-bddd-ef5f-96fade8fa7bf" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.TransportAddress">
+      <topicdata group="api" />
+      <apidata name="TransportAddress" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_TransportAddress" />
+      <setter name="set_TransportAddress" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="9bb21155-fbb9-dec1-9991-25e1327cafde" />
+    </api>
+    <api id="P:Dpws.Client.DpwsClient.Ws#Services#IWsServiceEndpoint#BlockingCall">
+      <topicdata group="api" eiiName="IWsServiceEndpoint.BlockingCall" />
+      <apidata name="BlockingCall" group="member" subgroup="property" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <propertydata get="true" set="true" />
+      <getter name="get_Ws.Services.IWsServiceEndpoint.BlockingCall" />
+      <setter name="set_Ws.Services.IWsServiceEndpoint.BlockingCall" />
+      <returns>
+        <type api="T:System.Boolean" ref="false" />
+      </returns>
+      <implements>
+        <member api="P:Ws.Services.IWsServiceEndpoint.BlockingCall">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="09c74111-d7de-f31e-9693-27baaefe619b" />
+    </api>
+    <api id="M:Dpws.Client.DpwsClient.Ws#Services#IWsServiceEndpoint#ProcessRequest(Ws.Services.Soap.WsMessage)">
+      <topicdata group="api" eiiName="IWsServiceEndpoint.ProcessRequest" />
+      <apidata name="ProcessRequest" group="member" subgroup="method" />
+      <memberdata visibility="private" />
+      <proceduredata virtual="true" final="true" eii="true" />
+      <parameters>
+        <parameter name="request">
+          <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Ws.Services.Soap.WsMessage" ref="true" />
+      </returns>
+      <implements>
+        <member api="M:Ws.Services.IWsServiceEndpoint.ProcessRequest(Ws.Services.Soap.WsMessage)">
+          <type api="T:Ws.Services.IWsServiceEndpoint" ref="true" />
+        </member>
+      </implements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsClient" ref="true" />
+      </containers>
+      <file name="85d5d10c-c884-2cf8-6fb3-c3e99aef6db5" />
+    </api>
+    <api id="T:Dpws.Client.DpwsServiceType">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.DpwsServiceType" />
+      <apidata name="DpwsServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+      </containers>
+      <file name="0ad49b6c-d271-4ae8-4972-173534ccf60a" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.DpwsServiceType">
+      <topicdata name="DpwsServiceType" group="list" subgroup="members" typeTopicId="T:Dpws.Client.DpwsServiceType" />
+      <apidata name="DpwsServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Dpws.Client.DpwsServiceType.#ctor(System.String,System.String)" />
+        <element api="F:Dpws.Client.DpwsServiceType.NamespaceUri" />
+        <element api="F:Dpws.Client.DpwsServiceType.TypeName" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceType" />
+      </containers>
+      <file name="317619b0-fbae-d81f-e935-ed5477bb9687" />
+    </api>
+    <api id="Methods.T:Dpws.Client.DpwsServiceType">
+      <topicdata name="DpwsServiceType" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.DpwsServiceType" />
+      <apidata name="DpwsServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceType" />
+      </containers>
+      <file name="469c455a-1798-f607-09f4-7d0971a42e9f" />
+    </api>
+    <api id="Fields.T:Dpws.Client.DpwsServiceType">
+      <topicdata name="DpwsServiceType" group="list" subgroup="Fields" typeTopicId="T:Dpws.Client.DpwsServiceType" />
+      <apidata name="DpwsServiceType" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Dpws.Client.DpwsServiceType.NamespaceUri" />
+        <element api="F:Dpws.Client.DpwsServiceType.TypeName" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceType" />
+      </containers>
+      <file name="f2e9e143-b7f1-198a-d6cf-56aba6454c53" />
+    </api>
+    <api id="M:Dpws.Client.DpwsServiceType.#ctor(System.String,System.String)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+        <parameter name="namespaceUri">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+      </containers>
+      <file name="abc1b40e-9937-48cd-fa79-fda8e2f24aa2" />
+    </api>
+    <api id="F:Dpws.Client.DpwsServiceType.NamespaceUri">
+      <topicdata group="api" />
+      <apidata name="NamespaceUri" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+      </containers>
+      <file name="5119b6d2-d9bc-6e0b-3137-ee2b87361739" />
+    </api>
+    <api id="F:Dpws.Client.DpwsServiceType.TypeName">
+      <topicdata group="api" />
+      <apidata name="TypeName" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="true" serialized="true" />
+      <returns>
+        <type api="T:System.String" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+      </containers>
+      <file name="dcd4c875-8c61-89d5-ce2a-1121d2b1a750" />
+    </api>
+    <api id="T:Dpws.Client.DpwsServiceTypes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Dpws.Client.DpwsServiceTypes" />
+      <apidata name="DpwsServiceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Client.DpwsServiceTypes.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+      </containers>
+      <file name="45bde60c-4747-4a1b-969f-1695dab826f5" />
+    </api>
+    <api id="AllMembers.T:Dpws.Client.DpwsServiceTypes">
+      <topicdata name="DpwsServiceTypes" group="list" subgroup="members" typeTopicId="T:Dpws.Client.DpwsServiceTypes" />
+      <apidata name="DpwsServiceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Client.DpwsServiceTypes.#ctor" />
+      <elements>
+        <element api="M:Dpws.Client.DpwsServiceTypes.#ctor" />
+        <element api="M:Dpws.Client.DpwsServiceTypes.Add(Dpws.Client.DpwsServiceType)" />
+        <element api="M:Dpws.Client.DpwsServiceTypes.Clear" />
+        <element api="P:Dpws.Client.DpwsServiceTypes.Count" />
+        <element api="Overload:Dpws.Client.DpwsServiceTypes.Item">
+          <element api="P:Dpws.Client.DpwsServiceTypes.Item(System.Int32)" />
+          <element api="P:Dpws.Client.DpwsServiceTypes.Item(System.String)" />
+        </element>
+        <element api="M:Dpws.Client.DpwsServiceTypes.Remove(Dpws.Client.DpwsServiceType)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" />
+      </containers>
+      <file name="3b6eca24-6c6e-876f-430a-d846727655da" />
+    </api>
+    <api id="Methods.T:Dpws.Client.DpwsServiceTypes">
+      <topicdata name="DpwsServiceTypes" group="list" subgroup="Methods" typeTopicId="T:Dpws.Client.DpwsServiceTypes" />
+      <apidata name="DpwsServiceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Client.DpwsServiceTypes.#ctor" />
+      <elements>
+        <element api="M:Dpws.Client.DpwsServiceTypes.Add(Dpws.Client.DpwsServiceType)" />
+        <element api="M:Dpws.Client.DpwsServiceTypes.Clear" />
+        <element api="M:Dpws.Client.DpwsServiceTypes.Remove(Dpws.Client.DpwsServiceType)" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" />
+      </containers>
+      <file name="477902a7-d368-73c2-0274-992752c8c10e" />
+    </api>
+    <api id="Properties.T:Dpws.Client.DpwsServiceTypes">
+      <topicdata name="DpwsServiceTypes" group="list" subgroup="Properties" typeTopicId="T:Dpws.Client.DpwsServiceTypes" />
+      <apidata name="DpwsServiceTypes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Dpws.Client.DpwsServiceTypes.#ctor" />
+      <elements>
+        <element api="P:Dpws.Client.DpwsServiceTypes.Count" />
+        <element api="Overload:Dpws.Client.DpwsServiceTypes.Item">
+          <element api="P:Dpws.Client.DpwsServiceTypes.Item(System.Int32)" />
+          <element api="P:Dpws.Client.DpwsServiceTypes.Item(System.String)" />
+        </element>
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" />
+      </containers>
+      <file name="04a8bb1b-2a7e-0940-64a8-b2bea79cd0e6" />
+    </api>
+    <api id="Overload:Dpws.Client.DpwsServiceTypes.Item">
+      <topicdata name="Item" group="list" subgroup="overload" memberSubgroup="property" pseudo="true" allMembersTopicId="AllMembers.T:Dpws.Client.DpwsServiceTypes" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <elements>
+        <element api="P:Dpws.Client.DpwsServiceTypes.Item(System.Int32)" />
+        <element api="P:Dpws.Client.DpwsServiceTypes.Item(System.String)" />
+      </elements>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="7d1a1220-72f8-29f6-49cf-2f41b159598c" />
+    </api>
+    <api id="M:Dpws.Client.DpwsServiceTypes.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="11a27ebc-3445-a35e-9e67-1da30620c9fb" />
+    </api>
+    <api id="M:Dpws.Client.DpwsServiceTypes.Add(Dpws.Client.DpwsServiceType)">
+      <topicdata group="api" />
+      <apidata name="Add" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="value">
+          <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="5331b6a0-cf67-5b90-f13f-d095f31a0b9f" />
+    </api>
+    <api id="M:Dpws.Client.DpwsServiceTypes.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="973f5f51-a1da-dfad-3ef5-90fa117530ce" />
+    </api>
+    <api id="P:Dpws.Client.DpwsServiceTypes.Count">
+      <topicdata group="api" />
+      <apidata name="Count" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Count" />
+      <returns>
+        <type api="T:System.Int32" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="dbbaf91b-220e-a9d6-fe1f-27d0e2f295ed" />
+    </api>
+    <api id="P:Dpws.Client.DpwsServiceTypes.Item(System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Dpws.Client.DpwsServiceTypes.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="index">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="c535973f-1007-3636-2614-92f28646530d" />
+    </api>
+    <api id="P:Dpws.Client.DpwsServiceTypes.Item(System.String)">
+      <topicdata group="api" />
+      <apidata name="Item" group="member" subgroup="property" />
+      <memberdata visibility="public" overload="Overload:Dpws.Client.DpwsServiceTypes.Item" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" />
+      <getter name="get_Item" />
+      <parameters>
+        <parameter name="typeName">
+          <type api="T:System.String" ref="true" />
+        </parameter>
+      </parameters>
+      <returns>
+        <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="34923874-8509-c108-630f-a3ec38dd49c9" />
+    </api>
+    <api id="M:Dpws.Client.DpwsServiceTypes.Remove(Dpws.Client.DpwsServiceType)">
+      <topicdata group="api" />
+      <apidata name="Remove" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <parameters>
+        <parameter name="serviceType">
+          <type api="T:Dpws.Client.DpwsServiceType" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="MFDpwsClient" module="MFDpwsClient" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Dpws.Client" />
+        <type api="T:Dpws.Client.DpwsServiceTypes" ref="true" />
+      </containers>
+      <file name="8f388476-bcf2-f9e4-bee0-beea681246dc" />
+    </api>
+  </apis>
+</reflection>

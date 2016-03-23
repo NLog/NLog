@@ -1,0 +1,769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<reflection>
+  <assemblies>
+    <assembly name="Microsoft.SPOT.Ink">
+      <assemblydata version="4.3.1.0" culture="" key="" hash="SHA1" />
+      <attributes>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTitleAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft.SPOT.Ink</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyDescriptionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value />
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyConfigurationAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Release</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCompanyAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft Corporation</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyProductAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Microsoft .NET Micro Framework</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyCopyrightAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>Copyright (C) Microsoft Corporation.  All rights reserved.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyTrademarkAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>.NET is a trademark of Microsoft Corporation.</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyFileVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+        <attribute>
+          <type api="T:System.Reflection.AssemblyInformationalVersionAttribute" ref="true" />
+          <argument>
+            <type api="T:System.String" ref="true" />
+            <value>4.3.1.0</value>
+          </argument>
+        </attribute>
+      </attributes>
+    </assembly>
+  </assemblies>
+  <apis>
+    <api id="N:Microsoft.SPOT.Ink">
+      <topicdata group="api" />
+      <apidata name="Microsoft.SPOT.Ink" group="namespace" />
+      <elements>
+        <element api="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+        <element api="T:Microsoft.SPOT.Ink.InkCanvas" />
+      </elements>
+      <file name="a86ae0a2-2234-4211-3bcb-078f343d2d53" />
+    </api>
+    <api id="T:Microsoft.SPOT.Ink.DrawingAttributes">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Ink.DrawingAttributes.#ctor" />
+      <family>
+        <ancestors>
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+      </containers>
+      <file name="33c2b673-105b-f13a-6bd6-703a266231e5" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Ink.DrawingAttributes">
+      <topicdata name="DrawingAttributes" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Ink.DrawingAttributes.#ctor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Ink.DrawingAttributes.#ctor" />
+        <element api="F:Microsoft.SPOT.Ink.DrawingAttributes.Color" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      </containers>
+      <file name="c441657c-ddb9-b825-747d-3d67b3cde23a" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Ink.DrawingAttributes">
+      <topicdata name="DrawingAttributes" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Ink.DrawingAttributes.#ctor" />
+      <elements>
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.Finalize" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      </containers>
+      <file name="8940b101-804d-3d34-8c5e-efc218c92c29" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Ink.DrawingAttributes">
+      <topicdata name="DrawingAttributes" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      <apidata name="DrawingAttributes" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" defaultConstructor="M:Microsoft.SPOT.Ink.DrawingAttributes.#ctor" />
+      <elements>
+        <element api="F:Microsoft.SPOT.Ink.DrawingAttributes.Color" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" />
+      </containers>
+      <file name="b3e7afaa-0aee-ff7f-17d4-5ddd970c9202" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.DrawingAttributes.#ctor">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="f0b14d1c-2019-632f-6d80-1fe8cb8d56ed" />
+    </api>
+    <api id="F:Microsoft.SPOT.Ink.DrawingAttributes.Color">
+      <topicdata group="api" />
+      <apidata name="Color" group="member" subgroup="field" />
+      <memberdata visibility="public" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Presentation.Media.Color" ref="false" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" ref="true" />
+      </containers>
+      <file name="ca66185b-facd-1f2e-1a87-c9a650f81155" />
+    </api>
+    <api id="T:Microsoft.SPOT.Ink.InkCanvas">
+      <topicdata group="api" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name="InkCanvas" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <family>
+        <ancestors>
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+          <type api="T:Microsoft.SPOT.DispatcherObject" ref="true" />
+          <type api="T:System.Object" ref="true" />
+        </ancestors>
+      </family>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+      </containers>
+      <file name="105b39a1-859c-86df-4b76-bc71f45f181e" />
+    </api>
+    <api id="AllMembers.T:Microsoft.SPOT.Ink.InkCanvas">
+      <topicdata name="InkCanvas" group="list" subgroup="members" typeTopicId="T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name="InkCanvas" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="Overload:Microsoft.SPOT.Ink.InkCanvas.#ctor">
+          <element api="M:Microsoft.SPOT.Ink.InkCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)" />
+          <element api="M:Microsoft.SPOT.Ink.InkCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="F:Microsoft.SPOT.Ink.InkCanvas._bitmap" />
+        <element api="F:Microsoft.SPOT.Ink.InkCanvas._defaultDrawingAttributes" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.Clear" />
+        <element api="P:Microsoft.SPOT.Ink.InkCanvas.DefaultDrawingAttributes" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.Finalize" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.Init(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="Overload:Microsoft.SPOT.Ink.InkCanvas.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" />
+      </containers>
+      <file name="9b61efa2-7241-5af8-2261-809a1d5a4d14" />
+    </api>
+    <api id="Methods.T:Microsoft.SPOT.Ink.InkCanvas">
+      <topicdata name="InkCanvas" group="list" subgroup="Methods" typeTopicId="T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name="InkCanvas" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="M:Microsoft.SPOT.DispatcherObject.CheckAccess" />
+        <element api="M:Microsoft.SPOT.DispatcherObject.VerifyAccess" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.Clear" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.Finalize" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.Init(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddHandler(Microsoft.SPOT.RoutedEvent,Microsoft.SPOT.RoutedEventHandler,System.Boolean)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.AddToEventRoute(Microsoft.SPOT.EventRoute,Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Arrange(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ArrangeOverride(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ChildElementFromPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.ContainsPoint(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetDesiredSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetLayoutOffset(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetMargin(System.Int32@,System.Int32@,System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetPointerTarget(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetRenderSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.GetUnclippedSize(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Invalidate" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateArrange" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateMeasure" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.InvalidateRect(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.Measure(System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildDesiredSizeChanged(Microsoft.SPOT.Presentation.UIElement)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnChildrenChanged(Microsoft.SPOT.Presentation.UIElement,Microsoft.SPOT.Presentation.UIElement,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGenericEvent(Microsoft.SPOT.Input.GenericEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnGotFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnLostFocus(Microsoft.SPOT.Input.FocusChangedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonDown(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnPreviewButtonUp(Microsoft.SPOT.Input.ButtonEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureChanged(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureEnded(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchGestureStarted(Microsoft.SPOT.Touch.TouchGestureEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchMove(Microsoft.SPOT.Input.TouchEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToClient(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.PointToScreen(System.Int32@,System.Int32@)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RaiseEvent(Microsoft.SPOT.RoutedEventArgs)" />
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.RenderRecursive(Microsoft.SPOT.Presentation.Media.DrawingContext)" />
+        <element api="Overload:Microsoft.SPOT.Ink.InkCanvas.SetMargin">
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32)" />
+          <element api="M:Microsoft.SPOT.Presentation.UIElement.SetMargin(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        </element>
+        <element api="M:Microsoft.SPOT.Presentation.UIElement.UpdateLayout" />
+        <element api="M:System.Object.Equals(System.Object)" />
+        <element api="M:System.Object.GetHashCode" />
+        <element api="M:System.Object.GetType" />
+        <element api="M:System.Object.MemberwiseClone" />
+        <element api="M:System.Object.ToString" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" />
+      </containers>
+      <file name="1d4d88b6-acfb-786e-db92-0d1cd66ea12f" />
+    </api>
+    <api id="Properties.T:Microsoft.SPOT.Ink.InkCanvas">
+      <topicdata name="InkCanvas" group="list" subgroup="Properties" typeTopicId="T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name="InkCanvas" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="P:Microsoft.SPOT.Ink.InkCanvas.DefaultDrawingAttributes" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualHeight" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.ActualWidth" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Height" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.HorizontalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.InstanceEventHandlersStore" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsArrangeValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsEnabled" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsFocused" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsMeasureValid" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.IsVisible" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.LogicalChildren" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Parent" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.RootUIElement" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.VerticalAlignment" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Visibility" />
+        <element api="P:Microsoft.SPOT.Presentation.UIElement.Width" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" />
+      </containers>
+      <file name="d21f48b1-3764-8f95-f49c-1bc7c500c54e" />
+    </api>
+    <api id="Events.T:Microsoft.SPOT.Ink.InkCanvas">
+      <topicdata name="InkCanvas" group="list" subgroup="Events" typeTopicId="T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name="InkCanvas" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsEnabledChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.IsVisibleChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchDown" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureChanged" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureEnd" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchGestureStart" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchMove" />
+        <element api="E:Microsoft.SPOT.Presentation.UIElement.TouchUp" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" />
+      </containers>
+      <file name="b6b9f13b-f6ba-ac0d-d52f-613466161390" />
+    </api>
+    <api id="Fields.T:Microsoft.SPOT.Ink.InkCanvas">
+      <topicdata name="InkCanvas" group="list" subgroup="Fields" typeTopicId="T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name="InkCanvas" group="type" subgroup="class" />
+      <typedata visibility="public" serializable="false" />
+      <elements>
+        <element api="F:Microsoft.SPOT.DispatcherObject.Dispatcher" />
+        <element api="F:Microsoft.SPOT.Ink.InkCanvas._bitmap" />
+        <element api="F:Microsoft.SPOT.Ink.InkCanvas._defaultDrawingAttributes" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._horizontalAlignment" />
+        <element api="F:Microsoft.SPOT.Presentation.UIElement._verticalAlignment" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" />
+      </containers>
+      <file name="3c6d62d0-002b-2247-a813-efdaeb387089" />
+    </api>
+    <api id="Overload:Microsoft.SPOT.Ink.InkCanvas.#ctor">
+      <topicdata name=".ctor" group="list" subgroup="overload" memberSubgroup="constructor" pseudo="true" allMembersTopicId="AllMembers.T:Microsoft.SPOT.Ink.InkCanvas" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <elements>
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)" />
+        <element api="M:Microsoft.SPOT.Ink.InkCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)" />
+      </elements>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="055b867c-087b-70ea-2b15-80cc6155c1c1" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Ink.InkCanvas.#ctor" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="top">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="f1a0e078-3b37-ba41-2b57-ef462d2e5bf0" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name=".ctor" group="member" subgroup="constructor" />
+      <memberdata visibility="public" special="true" overload="Overload:Microsoft.SPOT.Ink.InkCanvas.#ctor" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="top">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="borderWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="167fd1a7-d396-f6b8-72e6-8da9b00604c1" />
+    </api>
+    <api id="F:Microsoft.SPOT.Ink.InkCanvas._bitmap">
+      <topicdata group="api" />
+      <apidata name="_bitmap" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Bitmap" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="885b104e-5858-e271-8e84-aaab4f13723e" />
+    </api>
+    <api id="F:Microsoft.SPOT.Ink.InkCanvas._defaultDrawingAttributes">
+      <topicdata group="api" />
+      <apidata name="_defaultDrawingAttributes" group="member" subgroup="field" />
+      <memberdata visibility="family" />
+      <fielddata literal="false" initonly="false" serialized="true" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="9eabca6b-daa2-f79e-0a47-d85008446daf" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.Clear">
+      <topicdata group="api" />
+      <apidata name="Clear" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="64b6644c-045b-0ab0-aac8-32030ab5b3f9" />
+    </api>
+    <api id="P:Microsoft.SPOT.Ink.InkCanvas.DefaultDrawingAttributes">
+      <topicdata group="api" />
+      <apidata name="DefaultDrawingAttributes" group="member" subgroup="property" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="false" />
+      <propertydata get="true" set="true" />
+      <getter name="get_DefaultDrawingAttributes" />
+      <setter name="set_DefaultDrawingAttributes" />
+      <returns>
+        <type api="T:Microsoft.SPOT.Ink.DrawingAttributes" ref="true" />
+      </returns>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="2434b059-e00b-a161-c76a-be43d7221c1b" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.Finalize">
+      <topicdata group="api" />
+      <apidata name="Finalize" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:System.Object.Finalize">
+          <type api="T:System.Object" ref="true" />
+        </member>
+      </overrides>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="eb59c045-926d-6370-6f4f-814567f546b3" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.Init(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+      <topicdata group="api" />
+      <apidata name="Init" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <parameters>
+        <parameter name="left">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="top">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="width">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="height">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="borderWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="dc175f9d-d5da-c85c-9352-aedb5afac33f" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+      <topicdata group="api" />
+      <apidata name="MeasureOverride" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.MeasureOverride(System.Int32,System.Int32,System.Int32@,System.Int32@)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="availableWidth">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="availableHeight">
+          <type api="T:System.Int32" ref="false" />
+        </parameter>
+        <parameter name="desiredWidth" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+        <parameter name="desiredHeight" out="true">
+          <referenceTo>
+            <type api="T:System.Int32" ref="false" />
+          </referenceTo>
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="1ecf5582-2fad-b0f4-5a15-6336af6ef079" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+      <topicdata group="api" />
+      <apidata name="OnRender" group="member" subgroup="method" />
+      <memberdata visibility="public" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnRender(Microsoft.SPOT.Presentation.Media.DrawingContext)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="dc">
+          <type api="T:Microsoft.SPOT.Presentation.Media.DrawingContext" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="a53c41da-d762-70f8-1d21-8c76d9589f44" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnTouchDown" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchDown(Microsoft.SPOT.Input.TouchEventArgs)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Input.TouchEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="230ae809-e40e-4796-b106-4bc6a515bcfa" />
+    </api>
+    <api id="M:Microsoft.SPOT.Ink.InkCanvas.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)">
+      <topicdata group="api" />
+      <apidata name="OnTouchUp" group="member" subgroup="method" />
+      <memberdata visibility="family" />
+      <proceduredata virtual="true" />
+      <overrides>
+        <member api="M:Microsoft.SPOT.Presentation.UIElement.OnTouchUp(Microsoft.SPOT.Input.TouchEventArgs)">
+          <type api="T:Microsoft.SPOT.Presentation.UIElement" ref="true" />
+        </member>
+      </overrides>
+      <parameters>
+        <parameter name="e">
+          <type api="T:Microsoft.SPOT.Input.TouchEventArgs" ref="true" />
+        </parameter>
+      </parameters>
+      <containers>
+        <library assembly="Microsoft.SPOT.Ink" module="Microsoft.SPOT.Ink" kind="DynamicallyLinkedLibrary">
+          <assemblydata version="4.3.1.0" />
+          <noAptca />
+        </library>
+        <namespace api="N:Microsoft.SPOT.Ink" />
+        <type api="T:Microsoft.SPOT.Ink.InkCanvas" ref="true" />
+      </containers>
+      <file name="3fb600b1-ba7e-18a4-b1ff-99f595353d63" />
+    </api>
+  </apis>
+</reflection>
