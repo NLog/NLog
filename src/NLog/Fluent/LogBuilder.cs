@@ -92,7 +92,7 @@ namespace NLog.Fluent
         /// Sets the <paramref name="exception"/> information of the logging event.
         /// </summary>
         /// <param name="exception">The exception information of the logging event.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Exception(Exception exception)
         {
             _logEvent.Exception = exception;
@@ -103,7 +103,7 @@ namespace NLog.Fluent
         /// Sets the level of the logging event.
         /// </summary>
         /// <param name="logLevel">The level of the logging event.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Level(LogLevel logLevel)
         {
             if (logLevel == null)
@@ -117,7 +117,7 @@ namespace NLog.Fluent
         /// Sets the logger name of the logging event.
         /// </summary>
         /// <param name="loggerName">The logger name of the logging event.</param>
-        /// <returns></returns>
+            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder LoggerName(string loggerName)
         {
             _logEvent.LoggerName = loggerName;
@@ -128,7 +128,7 @@ namespace NLog.Fluent
         /// Sets the log message on the logging event.
         /// </summary>
         /// <param name="message">The log message for the logging event.</param>
-        /// <returns></returns>
+            /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Message(string message)
         {
             _logEvent.Message = message;
@@ -141,7 +141,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The object to format.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [StringFormatMethod("format")]
         public LogBuilder Message(string format, object arg0)
         {
@@ -157,7 +157,7 @@ namespace NLog.Fluent
         /// <param name="format">A composite format string.</param>
         /// <param name="arg0">The first object to format.</param>
         /// <param name="arg1">The second object to format.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [StringFormatMethod("format")]
         public LogBuilder Message(string format, object arg0, object arg1)
         {
@@ -174,7 +174,7 @@ namespace NLog.Fluent
         /// <param name="arg0">The first object to format.</param>
         /// <param name="arg1">The second object to format.</param>
         /// <param name="arg2">The third object to format.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [StringFormatMethod("format")]
         public LogBuilder Message(string format, object arg0, object arg1, object arg2)
         {
@@ -192,7 +192,7 @@ namespace NLog.Fluent
         /// <param name="arg1">The second object to format.</param>
         /// <param name="arg2">The third object to format.</param>
         /// <param name="arg3">The fourth object to format.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [StringFormatMethod("format")]
         public LogBuilder Message(string format, object arg0, object arg1, object arg2, object arg3)
         {
@@ -207,7 +207,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [StringFormatMethod("format")]
         public LogBuilder Message(string format, params object[] args)
         {
@@ -223,7 +223,7 @@ namespace NLog.Fluent
         /// <param name="provider">An object that supplies culture-specific formatting information.</param>
         /// <param name="format">A composite format string.</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         [StringFormatMethod("format")]
         public LogBuilder Message(IFormatProvider provider, string format, params object[] args)
         {
@@ -239,7 +239,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="name">The name of the context property.</param>
         /// <param name="value">The value of the context property.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Property(object name, object value)
         {
             if (name == null)
@@ -253,7 +253,7 @@ namespace NLog.Fluent
         /// Sets multiple per-event context properties on the logging event.
         /// </summary>
         /// <param name="properties">The properties to set.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder Properties(IDictionary properties)
         {
             if (properties == null)
@@ -270,7 +270,7 @@ namespace NLog.Fluent
         /// Sets the timestamp of the logging event.
         /// </summary>
         /// <param name="timeStamp">The timestamp of the logging event.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder TimeStamp(DateTime timeStamp)
         {
             _logEvent.TimeStamp = timeStamp;
@@ -282,7 +282,7 @@ namespace NLog.Fluent
         /// </summary>
         /// <param name="stackTrace">The stack trace.</param>
         /// <param name="userStackFrame">Index of the first user stack frame within the stack trace.</param>
-        /// <returns></returns>
+        /// <returns>current <see cref="LogBuilder"/> for chaining calls.</returns>
         public LogBuilder StackTrace(StackTrace stackTrace, int userStackFrame)
         {
             _logEvent.SetStackTrace(stackTrace, userStackFrame);
