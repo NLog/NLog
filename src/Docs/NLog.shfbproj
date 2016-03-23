@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="14.0">
   <PropertyGroup>
     <!-- The configuration and platform will be used to determine which
          assemblies to include from solution and project documentation
          sources -->
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{ff8480e8-de05-4447-a460-d63ee65bdcbf}</ProjectGuid>
@@ -65,14 +65,14 @@
     </ApiFilter>
     <Preliminary>False</Preliminary>
     <NamespaceSummaries>
-      <NamespaceSummaryItem name="NLog" isDocumented="True">Contains classes used by instrumented application to output log messages.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="NLog" isDocumented="True">Logging interface, context classes</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Internal" isDocumented="False">Components used internally for NLog.</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Config" isDocumented="True">Reading XML/API config</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.Targets" isDocumented="True">All targets</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets" isDocumented="True">Non-wrapper targets</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Targets.Wrappers" isDocumented="True">Targets which wraps other targets</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Filters" isDocumented="True">Message filters</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Layouts" isDocumented="True">All layouts</NamespaceSummaryItem>
-<NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">All layout renderers</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers" isDocumented="True">Non-wrapper layout renderers</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.LayoutRenderers.Wrappers" isDocumented="True">All layout renderers which wraps other layout renderers</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Conditions" isDocumented="True">Conditions used to filter log events.</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Common" isDocumented="True">Common components used when implementing NLog extensions.</NamespaceSummaryItem>
@@ -81,7 +81,9 @@
 <NamespaceSummaryItem name="NLog.Web" isDocumented="False">Integration with ASP.NET.</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Fluent" isDocumented="True">Fluent logging API</NamespaceSummaryItem>
 <NamespaceSummaryItem name="NLog.Internal.Fakeables" isDocumented="False" />
-<NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem></NamespaceSummaries>
+<NamespaceSummaryItem name="NLog.Time" isDocumented="True">Time calculations for messages.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.LayoutRenderers (Group)" isGroup="True" isDocumented="True">All layout renderers</NamespaceSummaryItem>
+<NamespaceSummaryItem name="NLog.Targets (Group)" isGroup="True" isDocumented="True">All targets</NamespaceSummaryItem></NamespaceSummaries>
     <PlugInConfigurations>
     </PlugInConfigurations>
     <NamingMethod>MemberName</NamingMethod>
@@ -102,6 +104,18 @@
     <PresentationStyle>VS2013</PresentationStyle>
     <Language>en-US</Language>
     <ContentPlacement>AboveNamespaces</ContentPlacement>
+    <MissingTags>AutoDocumentCtors, AutoDocumentDispose</MissingTags>
+    <TransformComponentArguments>
+      <Argument Key="logoFile" Value="../../NLogo.gif" />
+      <Argument Key="logoHeight" Value="" />
+      <Argument Key="logoWidth" Value="" />
+      <Argument Key="logoAltText" Value="" />
+      <Argument Key="logoPlacement" Value="left" />
+      <Argument Key="logoAlignment" Value="left" />
+      <Argument Key="maxVersionParts" Value="" />
+      <Argument Key="defaultLanguage" Value="cs" />
+      <Argument Key="includeEnumValues" Value="true" />
+    </TransformComponentArguments>
   </PropertyGroup>
   <!-- There are no properties for these two groups but they need to appear in
        order for Visual Studio to perform the build. -->
