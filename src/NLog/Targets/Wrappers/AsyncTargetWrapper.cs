@@ -176,6 +176,11 @@ namespace NLog.Targets.Wrappers
         /// </summary>
         protected override void InitializeTarget()
         {
+            if (this.TimeToSleepBetweenBatches == 0) {
+                throw new NLogConfigurationException(
+                    string.Format("The AysncTargetWrapper's TimeToSleepBetweenBatches property must be > 0"));
+            }
+
             base.InitializeTarget();
             this.RequestQueue.Clear();
             InternalLogger.Trace("AsyncWrapper '{0}': start timer", Name);
